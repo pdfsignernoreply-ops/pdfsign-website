@@ -1423,6 +1423,7 @@
     justify-content: center;
     box-shadow: 0 4px 24px rgba(22,163,74,0.4);
     transition: transform 0.2s, background 0.2s;
+    text-decoration: none;
   }
 
   .chat-fab:hover { transform: scale(1.08); background: var(--green-light); }
@@ -1460,6 +1461,145 @@
     .vs-divider { display: none; }
     .video-stat { flex: 0 0 50%; }
   }
+  /* ── INTERACTIVE DEMO ── */
+  .demo-wrap { position: relative; margin-bottom: 32px; }
+
+  .d-overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 50;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.25s;
+    border-radius: 10px;
+  }
+  .d-overlay.show { opacity: 1; pointer-events: all; }
+
+  .d-pin-dialog {
+    background: white; border-radius: 10px; padding: 24px 28px;
+    width: 300px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .d-overlay.show .d-pin-dialog, .d-overlay.show .d-success-dialog { transform: scale(1); }
+
+  .d-pin-title { font-size: 15px; font-weight: 700; color: #1E293B; margin-bottom: 3px; }
+  .d-pin-sub { font-size: 12px; color: #64748B; margin-bottom: 14px; }
+  .d-token-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 10px; background: #F0FDF4;
+    border: 1px solid #BBF7D0; border-radius: 7px; margin-bottom: 14px;
+  }
+  .d-token-dot { width: 7px; height: 7px; border-radius: 50%; background: #16A34A; flex-shrink: 0; animation: dblink 1.5s infinite; }
+  @keyframes dblink { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .d-token-name { font-size: 12px; font-weight: 600; color: #15803D; }
+  .d-token-sub { font-size: 10px; color: #4ADE80; }
+  .d-pin-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8892A4; margin-bottom: 7px; }
+  .d-pin-dots-row { display: flex; gap: 7px; margin-bottom: 16px; }
+  .d-pdot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #DDE0E8; transition: all 0.15s; }
+  .d-pdot.filled { background: #1B2A47; border-color: #1B2A47; }
+  .d-pin-btns { display: flex; gap: 7px; }
+  .d-btn-cancel { flex: 1; height: 36px; background: #F1F5F9; border: 1px solid #DDE0E8; border-radius: 7px; font-size: 13px; font-weight: 600; color: #475569; cursor: pointer; font-family: var(--font-body); }
+  .d-btn-ok { flex: 1; height: 36px; background: #16A34A; border: none; border-radius: 7px; font-size: 13px; font-weight: 700; color: white; cursor: pointer; font-family: var(--font-body); display: flex; align-items: center; justify-content: center; gap: 5px; }
+  .d-btn-ok:hover { background: #15803D; }
+
+  .d-success-dialog {
+    background: white; border-radius: 12px; padding: 30px;
+    width: 360px; text-align: center; box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+    transform: scale(0.85); transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .d-success-check { width: 64px; height: 64px; border-radius: 50%; background: #F0FDF4; border: 2px solid #16A34A; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
+  .d-success-title { font-size: 18px; font-weight: 800; color: #1E293B; margin-bottom: 6px; }
+  .d-success-p { font-size: 12px; color: #64748B; margin-bottom: 16px; line-height: 1.6; }
+  .d-success-file { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 8px; text-align: left; margin-bottom: 16px; }
+  .d-sfi { width: 32px; height: 32px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 800; color: #EF4444; flex-shrink: 0; }
+  .d-sfn { font-size: 11px; font-weight: 600; color: #1E293B; }
+  .d-sfm { font-size: 10px; color: #16A34A; margin-top: 2px; }
+  .d-valid-badge { margin-left: auto; padding: 3px 8px; background: #16A34A; color: white; border-radius: 100px; font-size: 10px; font-weight: 700; flex-shrink: 0; }
+  .d-restart-btn { width: 100%; height: 40px; background: #1B2A47; color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: var(--font-body); }
+  .d-restart-btn:hover { background: #243558; }
+
+  .d-window { background: #F0F2F5; border-radius: 10px; border: 1px solid #CDD0D8; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.12); }
+
+  .d-titlebar { height: 30px; background: #1B2A47; display: flex; align-items: center; padding: 0 12px; gap: 8px; }
+  .d-win-icon { width: 14px; height: 14px; background: rgba(255,255,255,0.1); border-radius: 3px; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; }
+  .d-wi-pdf, .d-wi-sign { font-size: 4px; font-weight: 800; color: white; line-height: 1; letter-spacing: 0.04em; }
+  .d-wi-sign { color: #93C5FD; }
+  .d-wi-div { width: 9px; height: 1px; background: #16A34A; margin: 1px 0; }
+  .d-win-title { font-size: 11px; color: rgba(255,255,255,0.6); flex: 1; }
+  .d-win-controls { display: flex; gap: 14px; font-size: 11px; color: rgba(255,255,255,0.4); }
+
+  .d-app-header { background: #1B2A47; padding: 0 16px; height: 48px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .d-header-logo { width: 32px; height: 32px; background: rgba(255,255,255,0.08); border: 1px solid rgba(147,197,253,0.2); border-radius: 7px; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; }
+  .d-header-logo span { font-size: 6px; font-weight: 800; color: white; line-height: 1.1; letter-spacing: 0.05em; }
+  .d-hl-div { width: 18px; height: 1.5px; background: #16A34A; margin: 1.5px 0; }
+  .d-hl-blue { color: #93C5FD !important; }
+  .d-header-titles { flex: 1; }
+  .d-header-name { font-size: 15px; font-weight: 700; color: white; line-height: 1; }
+  .d-header-sub { font-size: 10px; color: #16A34A; margin-top: 2px; }
+  .d-plan-badge { background: #16A34A; color: white; font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 7px; white-space: nowrap; }
+
+  .d-grid { padding: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .d-card { background: white; border-radius: 8px; border: 1px solid #DDE0E8; padding: 14px; }
+  .d-card-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8892A4; margin-bottom: 10px; }
+
+  .d-cert-row { display: flex; gap: 6px; margin-bottom: 10px; }
+  .d-cert-dropdown { flex: 1; height: 32px; border: 1px solid #CDD0D8; border-radius: 6px; padding: 0 8px; display: flex; align-items: center; justify-content: space-between; transition: border-color 0.3s; }
+  .d-cert-dropdown.loaded { border-color: #16A34A; }
+  .d-cert-text { font-size: 11px; color: #94A3B8; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .d-cert-text.loaded { color: #1E293B; }
+  .d-cert-arrow { font-size: 9px; color: #94A3B8; }
+  .d-refresh-btn { height: 32px; padding: 0 12px; background: #2D3F5E; color: white; border-radius: 6px; font-size: 11px; font-weight: 600; display: flex; align-items: center; gap: 4px; cursor: default; white-space: nowrap; flex-shrink: 0; }
+  .d-cert-info { border: 1px solid #DDE0E8; border-radius: 6px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; opacity: 0; transform: translateY(4px); transition: all 0.4s; }
+  .d-cert-info.show { opacity: 1; transform: translateY(0); }
+  .d-cert-person { font-size: 13px; font-weight: 700; color: #1E293B; }
+  .d-cert-issuer-lbl { font-size: 9px; color: #94A3B8; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px; }
+  .d-cert-issuer { font-size: 11px; color: #475569; margin-top: 2px; }
+  .d-cert-right { text-align: right; }
+  .d-cert-valid-lbl { font-size: 9px; color: #94A3B8; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .d-cert-valid-date { font-size: 13px; font-weight: 700; color: #16A34A; margin-top: 2px; }
+
+  .d-doc-tabs { display: flex; align-items: center; gap: 0; margin-bottom: 10px; }
+  .d-doc-tab-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8892A4; margin-right: 10px; }
+  .d-tab { padding: 5px 12px; font-size: 11px; font-weight: 600; border: 1px solid #DDE0E8; color: #475569; background: white; cursor: default; font-family: var(--font-body); }
+  .d-tab:first-of-type { border-radius: 5px 0 0 5px; border-right: none; }
+  .d-tab:last-of-type { border-radius: 0 5px 5px 0; }
+  .d-tab.active { background: #2563EB; color: white; border-color: #2563EB; }
+  .d-field-group { margin-bottom: 8px; }
+  .d-field-lbl { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8892A4; margin-bottom: 4px; }
+  .d-field-row { display: flex; gap: 5px; }
+  .d-field-input { flex: 1; height: 30px; border: 1px solid #DDE0E8; border-radius: 6px; padding: 0 8px; font-size: 11px; display: flex; align-items: center; transition: border-color 0.3s; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .d-field-input.filled { border-color: #16A34A; color: #1E293B !important; }
+  .d-browse-btn { height: 30px; padding: 0 10px; background: #F1F5F9; border: 1px solid #DDE0E8; border-radius: 6px; font-size: 11px; font-weight: 600; color: #475569; cursor: pointer; display: flex; align-items: center; white-space: nowrap; }
+  .d-browse-btn:hover { background: #E2E8F0; }
+  .d-checkbox-row { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
+  .d-checkbox { width: 12px; height: 12px; border: 1.5px solid #CDD0D8; border-radius: 2px; flex-shrink: 0; }
+  .d-checkbox-lbl { font-size: 11px; color: #475569; }
+
+  .d-sig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .d-sig-input { height: 30px; border: 1px solid #DDE0E8; border-radius: 6px; padding: 0 8px; font-size: 11px; display: flex; align-items: center; }
+  .d-sig-select { height: 30px; border: 1px solid #DDE0E8; border-radius: 6px; padding: 0 8px; font-size: 11px; color: #1E293B; display: flex; align-items: center; justify-content: space-between; }
+
+  .d-pos-content { display: flex; gap: 16px; align-items: flex-start; }
+  .d-pos-grid { display: grid; grid-template-columns: repeat(3,30px); grid-template-rows: repeat(3,30px); gap: 3px; flex-shrink: 0; }
+  .d-pos-cell { border: 1.5px solid #DDE0E8; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #94A3B8; cursor: pointer; background: #F8FAFC; transition: all 0.15s; }
+  .d-pos-cell:hover { border-color: #94A3B8; }
+  .d-pos-cell.selected { background: #1B2A47; border-color: #1B2A47; color: white; }
+  .d-pos-info { flex: 1; }
+  .d-pos-lbl { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8892A4; margin-bottom: 3px; }
+  .d-pos-val { font-size: 13px; font-weight: 700; color: #1E293B; margin-bottom: 10px; }
+  .d-pos-field-row { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #475569; margin-bottom: 4px; }
+  .d-mini { width: 40px; height: 24px; border: 1px solid #DDE0E8; border-radius: 5px; font-size: 11px; font-weight: 600; color: #1E293B; background: white; display: flex; align-items: center; justify-content: center; }
+  .d-unit { font-size: 10px; color: #94A3B8; }
+
+  .d-footer { padding: 0 12px 12px; display: flex; justify-content: center; gap: 10px; }
+  .d-btn-sign { height: 44px; padding: 0 32px; background: #16A34A; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; font-family: var(--font-body); cursor: pointer; display: flex; align-items: center; gap: 7px; transition: background 0.2s; }
+  .d-btn-sign:hover { background: #15803D; }
+  .d-btn-verify { height: 44px; padding: 0 32px; background: #2563EB; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; font-family: var(--font-body); cursor: pointer; display: flex; align-items: center; gap: 7px; }
+  .d-btn-verify:hover { background: #1D4ED8; }
+
+  .d-status { padding: 7px 16px; background: #F8FAFC; border-top: 1px solid #DDE0E8; font-size: 11px; color: #475569; }
+  .d-status.success { color: #16A34A; }
+  .d-status.progress { color: #2563EB; }
 </style>
 </head>
 <body>
@@ -1682,84 +1822,212 @@
   <div class="container">
     <div class="video-section-header">
       <div class="section-tag">See it in action</div>
-      <h2 class="section-title">Watch how easy it is to sign</h2>
-      <p class="section-sub" style="margin: 0 auto; text-align: center;">From plug-in to signed PDF in under 60 seconds. No setup, no Java, no browser plugins.</p>
+      <h2 class="section-title">Try the interactive demo</h2>
+      <p class="section-sub" style="margin: 0 auto; text-align: center;">Click through the actual app flow — from token detection to signed PDF in under 60 seconds.</p>
     </div>
     <div class="video-wrapper">
-      <div class="video-frame" id="videoFrame">
-        <!-- Thumbnail state -->
-        <div class="video-thumbnail" id="videoThumbnail" onclick="playVideo()">
-          <!-- Simulated app screenshot -->
-          <div class="video-app-mock">
-            <div class="app-titlebar">
-              <div class="app-dots">
-                <span></span><span></span><span></span>
+
+      <!-- ── INTERACTIVE APP DEMO ── -->
+      <div class="demo-wrap">
+
+        <!-- PIN Dialog -->
+        <div class="d-overlay" id="dPinOverlay">
+          <div class="d-pin-dialog">
+            <div class="d-pin-title">Enter Token PIN</div>
+            <div class="d-pin-sub">Your DSC token requires a PIN to sign</div>
+            <div class="d-token-row">
+              <div class="d-token-dot"></div>
+              <div>
+                <div class="d-token-name">HyperPKI HYP2003</div>
+                <div class="d-token-sub">Token detected · Ready</div>
               </div>
-              <span class="app-title">PDFSign.in</span>
             </div>
-            <div class="app-body">
-              <div class="app-sidebar">
-                <div class="app-sidebar-item active">Sign PDF</div>
-                <div class="app-sidebar-item">Batch Sign</div>
-                <div class="app-sidebar-item">History</div>
-                <div class="app-sidebar-item">Settings</div>
-              </div>
-              <div class="app-main">
-                <div class="app-dropzone">
-                  <svg width="32" height="32" fill="none" stroke="rgba(147,197,253,0.5)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
-                  <span>Tender_Document_2025.pdf</span>
-                </div>
-                <div class="app-token-bar">
-                  <div class="app-token-dot"></div>
-                  <span>HyperPKI HYP2003 · Rajesh Kumar · eMudhra CA</span>
-                </div>
-                <div class="app-sign-btn">Sign Now</div>
-              </div>
+            <div class="d-pin-label">PIN</div>
+            <div class="d-pin-dots-row" id="dPinDots">
+              <div class="d-pdot" id="dp1"></div><div class="d-pdot" id="dp2"></div>
+              <div class="d-pdot" id="dp3"></div><div class="d-pdot" id="dp4"></div>
+              <div class="d-pdot" id="dp5"></div><div class="d-pdot" id="dp6"></div>
+            </div>
+            <div class="d-pin-btns">
+              <button class="d-btn-cancel" onclick="dClosePIN()">Cancel</button>
+              <button class="d-btn-ok" onclick="dConfirmPIN()">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                Sign PDF
+              </button>
             </div>
           </div>
-          <!-- Play button overlay -->
-          <div class="play-overlay">
-            <div class="play-btn">
-              <svg width="28" height="28" fill="white" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+
+        <!-- Success Dialog -->
+        <div class="d-overlay" id="dSuccessOverlay">
+          <div class="d-success-dialog">
+            <div class="d-success-check">
+              <svg width="32" height="32" fill="none" stroke="#16A34A" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
             </div>
-            <span class="play-label">Watch demo · 1 min</span>
+            <div class="d-success-title">PDF Signed Successfully!</div>
+            <div class="d-success-p">Your document is digitally signed and accepted on GeM, CPPP, and all Indian government portals.</div>
+            <div class="d-success-file">
+              <div class="d-sfi">PDF</div>
+              <div>
+                <div class="d-sfn">Tender_Document_2025_signed.pdf</div>
+                <div class="d-sfm">✓ PAdES compliant · Digitally signed · 2.5 MB</div>
+              </div>
+              <div class="d-valid-badge">✓ Valid</div>
+            </div>
+            <button class="d-restart-btn" onclick="dRestart()">↺ &nbsp;Sign Another Document</button>
           </div>
         </div>
-        <!-- YouTube embed (hidden until play) -->
-        <div class="video-embed" id="videoEmbed" style="display:none;">
-          <iframe
-            id="ytFrame"
-            src=""
-            title="PDFSign.in Demo"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            style="width:100%; height:100%; border-radius: 16px;"
-          ></iframe>
-        </div>
-      </div>
-      <!-- Stats row below video -->
+
+        <!-- App Window -->
+        <div class="d-window">
+          <!-- Win titlebar -->
+          <div class="d-titlebar">
+            <div class="d-win-icon">
+              <span class="d-wi-pdf">PDF</span>
+              <div class="d-wi-div"></div>
+              <span class="d-wi-sign">SIGN</span>
+            </div>
+            <span class="d-win-title">PDF Signer</span>
+            <div class="d-win-controls">
+              <span>─</span><span>□</span><span>✕</span>
+            </div>
+          </div>
+
+          <!-- App header -->
+          <div class="d-app-header">
+            <div class="d-header-logo">
+              <span>PDF</span><div class="d-hl-div"></div><span class="d-hl-blue">SIGN</span>
+            </div>
+            <div class="d-header-titles">
+              <div class="d-header-name">PDF Signer</div>
+              <div class="d-header-sub">pdfsign.in</div>
+            </div>
+            <div class="d-plan-badge">v2.0 · monthly</div>
+          </div>
+
+          <!-- 4-panel grid -->
+          <div class="d-grid">
+
+            <!-- Certificate -->
+            <div class="d-card">
+              <div class="d-card-label">Certificate</div>
+              <div class="d-cert-row">
+                <div class="d-cert-dropdown" id="dCertDrop">
+                  <span class="d-cert-text" id="dCertText">Detecting certificates...</span>
+                  <span class="d-cert-arrow">▼</span>
+                </div>
+                <div class="d-refresh-btn">↻ Refresh</div>
+              </div>
+              <div class="d-cert-info" id="dCertInfo">
+                <div>
+                  <div class="d-cert-person">Rajesh Kumar</div>
+                  <div class="d-cert-issuer-lbl">Issuer</div>
+                  <div class="d-cert-issuer">HyperPKI Sub CA for Individual DSC 2022</div>
+                </div>
+                <div class="d-cert-right">
+                  <div class="d-cert-valid-lbl">Valid Until</div>
+                  <div class="d-cert-valid-date">01-06-2027</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Document -->
+            <div class="d-card">
+              <div class="d-doc-tabs">
+                <span class="d-doc-tab-label">Document</span>
+                <button class="d-tab active">Single File</button>
+                <button class="d-tab">Folder</button>
+              </div>
+              <div class="d-field-group">
+                <div class="d-field-lbl">Source File</div>
+                <div class="d-field-row">
+                  <div class="d-field-input" id="dSourceInput" style="color:#94A3B8">Select a PDF file...</div>
+                  <div class="d-browse-btn" onclick="dAnimateBrowse()">Browse</div>
+                </div>
+              </div>
+              <div class="d-field-group">
+                <div class="d-field-lbl">Destination Folder</div>
+                <div class="d-field-row">
+                  <div class="d-field-input" style="color:#94A3B8">Same as source</div>
+                  <div class="d-browse-btn">Browse</div>
+                </div>
+              </div>
+              <div class="d-checkbox-row">
+                <div class="d-checkbox"></div>
+                <span class="d-checkbox-lbl">Overwrite existing signed files</span>
+              </div>
+            </div>
+
+            <!-- Signature Details -->
+            <div class="d-card">
+              <div class="d-card-label">Signature Details</div>
+              <div class="d-sig-grid">
+                <div>
+                  <div class="d-field-lbl">Reason</div>
+                  <div class="d-sig-input" style="color:#94A3B8">e.g. Approved</div>
+                </div>
+                <div>
+                  <div class="d-field-lbl">Signature Page</div>
+                  <div class="d-sig-select">Last Page <span style="color:#94A3B8;font-size:10px;">▼</span></div>
+                </div>
+                <div style="grid-column:1/-1">
+                  <div class="d-field-lbl">Location</div>
+                  <div class="d-sig-input" style="color:#94A3B8">e.g. Mumbai, Maharashtra</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Signature Position -->
+            <div class="d-card">
+              <div class="d-card-label">Signature Position</div>
+              <div class="d-pos-content">
+                <div class="d-pos-grid" id="dPosGrid">
+                  <div class="d-pos-cell" data-i="0">↖</div><div class="d-pos-cell" data-i="1">↑</div><div class="d-pos-cell" data-i="2">↗</div>
+                  <div class="d-pos-cell" data-i="3">←</div><div class="d-pos-cell" data-i="4">·</div><div class="d-pos-cell" data-i="5">→</div>
+                  <div class="d-pos-cell" data-i="6">↙</div><div class="d-pos-cell" data-i="7">↓</div><div class="d-pos-cell selected" data-i="8">↘</div>
+                </div>
+                <div class="d-pos-info">
+                  <div class="d-pos-lbl">Position</div>
+                  <div class="d-pos-val" id="dPosVal">Bottom Right</div>
+                  <div class="d-pos-lbl">Stamp Size</div>
+                  <div class="d-pos-field-row">W: <div class="d-mini">50</div> H: <div class="d-mini">50</div> <span class="d-unit">pt</span></div>
+                  <div class="d-pos-lbl" style="margin-top:6px">Margin</div>
+                  <div class="d-pos-field-row"><div class="d-mini">30</div> <span class="d-unit">pt</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /d-grid -->
+
+          <!-- Buttons -->
+          <div class="d-footer">
+            <button class="d-btn-sign" id="dBtnSign" onclick="dClickSign()">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+              Sign PDF
+            </button>
+            <button class="d-btn-verify">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              Verify PDF
+            </button>
+          </div>
+
+          <!-- Status bar -->
+          <div class="d-status" id="dStatus">Initialising...</div>
+
+        </div><!-- /d-window -->
+      </div><!-- /demo-wrap -->
+
+      <!-- Stats row -->
       <div class="video-stats">
-        <div class="video-stat">
-          <span class="vs-num">30s</span>
-          <span class="vs-label">avg. time to sign</span>
-        </div>
+        <div class="video-stat"><span class="vs-num">30s</span><span class="vs-label">avg. time to sign</span></div>
         <div class="vs-divider"></div>
-        <div class="video-stat">
-          <span class="vs-num">100%</span>
-          <span class="vs-label">offline — no upload</span>
-        </div>
+        <div class="video-stat"><span class="vs-num">100%</span><span class="vs-label">offline — no upload</span></div>
         <div class="vs-divider"></div>
-        <div class="video-stat">
-          <span class="vs-num">Zero</span>
-          <span class="vs-label">Java or plugins needed</span>
-        </div>
+        <div class="video-stat"><span class="vs-num">Zero</span><span class="vs-label">Java or plugins needed</span></div>
         <div class="vs-divider"></div>
-        <div class="video-stat">
-          <span class="vs-num">All</span>
-          <span class="vs-label">major DSC tokens</span>
-        </div>
+        <div class="video-stat"><span class="vs-num">All</span><span class="vs-label">major DSC tokens</span></div>
       </div>
+
     </div>
   </div>
 </section>
@@ -2006,7 +2274,7 @@
           <span class="faq-q-icon">Q</span>
           What is your refund policy?
         </div>
-        <p class="faq-a">We offer a 7-day full refund if you're not satisfied, no questions asked. Write to <a href="/cdn-cgi/l/email-protection#1e767b726e5e6a7b707a7b6c6a6c7f7770777079307770" style="color:var(--green)"><span class="__cf_email__" data-cfemail="6d0508011d2d19080309081f191f0c040304030a430403">[email&#160;protected]</span></a> and we'll process your refund within 24 hours.</p>
+        <p class="faq-a">We offer a 7-day full refund if you're not satisfied, no questions asked. Write to help@pdfsign.in and we'll process your refund within 24 hours.</p>
       </div>
 
     </div>
@@ -2023,10 +2291,7 @@
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download Free Trial
       </a>
-      <a href="/cdn-cgi/l/email-protection#ed8588819dad99888389889f999f8c848384838ac38483" class="btn-secondary-lg">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Talk to Support
-      </a>
+      help@pdfsign.in
     </div>
     <p class="cta-footnote">For Windows 10 &amp; 11 · 30-day free trial · No credit card needed</p>
   </div>
@@ -2063,8 +2328,8 @@
         <h5>Support</h5>
         <ul>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="https://docs.pdfsign.in">Documentation</a></li>
-          <li><a href="/cdn-cgi/l/email-protection#d2bab7bea292a6b7bcb6b7a0a6a0b3bbbcbbbcb5fcbbbc">Email Support</a></li>
+          <li>help@pdfsign.in</li>
+          <li>help@pdfsign.in</li>
           <li><a href="https://pdfsign.in/status">System Status</a></li>
         </ul>
       </div>
@@ -2072,9 +2337,9 @@
       <div class="footer-col">
         <h5>Legal</h5>
         <ul>
-          <li><a href="/privacy">Privacy Policy</a></li>
-          <li><a href="/terms">Terms of Service</a></li>
-          <li><a href="/refund">Refund Policy</a></li>
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/terms.html">Terms of Service</a></li>
+          <li><a href="/refund.html">Refund Policy</a></li>
         </ul>
       </div>
     </div>
@@ -2082,43 +2347,165 @@
     <div class="footer-bottom">
       <p>© 2025 PDFSign.in · All rights reserved · Made in India �
       <div class="footer-bottom-links">
-        <a href="/privacy">Privacy</a>
-        <a href="/terms">Terms</a>
-        <a href="/cdn-cgi/l/email-protection#58303d3428182c3d363c3d2a2c2a39313631363f763136"><span class="__cf_email__" data-cfemail="b3dbd6dfc3f3c7d6ddd7d6c1c7c1d2dadddaddd49ddadd">[email&#160;protected]</span></a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        help@pdfsign.in
       </div>
     </div>
   </div>
 </footer>
 
 <!-- Live Chat FAB -->
-<button class="chat-fab" onclick="openWhatsApp()" aria-label="Chat with support">
+<a href="https://wa.me/917057413999?text=Hi%21%20I%20have%20a%20question%20about%20PDFSign.in" target="_blank" rel="noopener" class="chat-fab" aria-label="Chat with support on WhatsApp">
   <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
     <path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.413A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill="none" stroke="white" stroke-width="1.5"/>
   </svg>
-</button>
+</a>
 <div class="chat-tooltip">Chat with us on WhatsApp</div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 function openWhatsApp() {
   var msg = encodeURIComponent("Hi! I have a question about PDFSign.in");
   window.open("https://wa.me/917057413999?text=" + msg, "_blank");
 }
 
-function playVideo() {
-  var ytId = "YOUR_YOUTUBE_VIDEO_ID";
-  document.getElementById("videoThumbnail").style.display = "none";
-  var embed = document.getElementById("videoEmbed");
-  embed.style.display = "block";
-  document.getElementById("ytFrame").src =
-    "https://www.youtube.com/embed/" + ytId + "?autoplay=1&rel=0&modestbranding=1";
-}
-
-// Smooth nav link active state on scroll
-var sections = document.querySelectorAll("section[id], div[id]");
+// ── Nav scroll highlight ──
+var sections = document.querySelectorAll("section[id]");
 var navLinks = document.querySelectorAll(".nav-links a[href^='#']");
 window.addEventListener("scroll", function() {
   var scrollY = window.scrollY + 80;
   sections.forEach(function(sec) {
     if (sec.offsetTop <= scrollY && sec.offsetTop + sec.offsetHeight > scrollY) {
-      navLinks.forEach(fu
+      navLinks.forEach(function(a) {
+        a.style.color = a.getAttribute("href") === "#" + sec.id ? "#fff" : "rgba(255,255,255,0.65)";
+      });
+    }
+  });
+});
+
+// ── Scroll entrance animations ──
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.style.opacity="1"; e.target.style.transform="translateY(0)"; }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll(".feature-card,.how-step,.plan-card,.testimonial,.faq-item").forEach(function(el) {
+  el.style.opacity="0"; el.style.transform="translateY(20px)";
+  el.style.transition="opacity 0.5s ease, transform 0.5s ease";
+  observer.observe(el);
+});
+
+// ── INTERACTIVE DEMO ──
+var dFileLoaded = false;
+var dPosNames = ["Top Left","Top Center","Top Right","Middle Left","Center","Middle Right","Bottom Left","Bottom Center","Bottom Right"];
+
+window.addEventListener("DOMContentLoaded", function() {
+  // Position grid clicks
+  document.querySelectorAll(".d-pos-cell").forEach(function(c) {
+    c.addEventListener("click", function() {
+      document.querySelectorAll(".d-pos-cell").forEach(function(x){ x.classList.remove("selected"); });
+      c.classList.add("selected");
+      var el = document.getElementById("dPosVal");
+      if (el) el.textContent = dPosNames[parseInt(c.dataset.i)];
+    });
+  });
+  // Auto-start cert animation
+  dSetStatus("", "Initialising...");
+  setTimeout(dAnimateCert, 1000);
+});
+
+function dAnimateCert() {
+  var text = document.getElementById("dCertText");
+  var drop = document.getElementById("dCertDrop");
+  if (!text || !drop) return;
+  var stages = ["Detecting certificates.","Detecting certificates..","Detecting certificates...","Reading HyperPKI token..."];
+  var i = 0;
+  var t = setInterval(function() {
+    text.textContent = stages[i % stages.length];
+    i++;
+    if (i > 7) {
+      clearInterval(t);
+      text.textContent = "Rajesh Kumar  [HyperPKI Sub CA for Individual...";
+      text.classList.add("loaded");
+      drop.classList.add("loaded");
+      var info = document.getElementById("dCertInfo");
+      if (info) info.classList.add("show");
+      dSetStatus("success", "✓ Found 1 certificate(s) — ready to sign.");
+    }
+  }, 280);
+}
+
+function dAnimateBrowse() {
+  var inp = document.getElementById("dSourceInput");
+  if (!inp) return;
+  inp.textContent = "Opening file browser...";
+  inp.style.color = "#94A3B8";
+  setTimeout(function() {
+    inp.textContent = "C:\Users\Rajesh\Documents\Tender_Document_2025.pdf";
+    inp.style.color = "#1E293B";
+    inp.classList.add("filled");
+    dFileLoaded = true;
+    dSetStatus("success", "✓ File loaded. Click Sign PDF to continue.");
+  }, 700);
+}
+
+function dClickSign() {
+  if (!dFileLoaded) { dAnimateBrowse(); setTimeout(dShowPIN, 950); return; }
+  dShowPIN();
+}
+
+function dShowPIN() {
+  var ov = document.getElementById("dPinOverlay");
+  if (!ov) return;
+  ov.classList.add("show");
+  for (var i=1; i<=6; i++) { var d=document.getElementById("dp"+i); if(d) d.classList.remove("filled"); }
+}
+
+function dClosePIN() {
+  var ov = document.getElementById("dPinOverlay");
+  if (ov) ov.classList.remove("show");
+}
+
+function dConfirmPIN() {
+  var i = 1;
+  var t = setInterval(function() {
+    var d = document.getElementById("dp"+i);
+    if (d) d.classList.add("filled");
+    i++;
+    if (i > 6) { clearInterval(t); setTimeout(dStartSigning, 350); }
+  }, 110);
+}
+
+function dStartSigning() {
+  var ov = document.getElementById("dPinOverlay");
+  if (ov) ov.classList.remove("show");
+  var stages = [
+    [0,    "progress", "⟳ Authenticating with HyperPKI token..."],
+    [900,  "progress", "⟳ Computing document hash (SHA-256)..."],
+    [1800, "progress", "⟳ Applying digital signature (PAdES)..."],
+    [2700, "progress", "⟳ Embedding signature into PDF..."],
+    [3400, "success",  "✓ PDF signed successfully!"]
+  ];
+  stages.forEach(function(s) {
+    setTimeout(function() { dSetStatus(s[1], s[2]); }, s[0]);
+  });
+  setTimeout(function() {
+    var sov = document.getElementById("dSuccessOverlay");
+    if (sov) sov.classList.add("show");
+  }, 3700);
+}
+
+function dSetStatus(type, text) {
+  var bar = document.getElementById("dStatus");
+  if (!bar) return;
+  bar.className = "d-status" + (type ? " " + type : "");
+  bar.textContent = text;
+}
+
+function dRestart() {
+  var sov = document.getElementById("dSuccessOverlay");
+  if (sov) sov.classList.remove("show");
+  dFileLoaded = false;
+  var inp = document.getElementById("dSourceInput");
+  if (inp) { inp.textContent = "Select a PDF file..."; inp.style.
