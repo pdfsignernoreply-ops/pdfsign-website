@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Changelog — PDFSign.in</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231B2A47'/%3E%3Ctext x='16' y='12' font-family='system-ui' font-size='8' font-weight='700' fill='white' text-anchor='middle' dominant-baseline='middle'%3EPDF%3C/text%3E%3Crect x='6' y='15' width='20' height='1.5' fill='%2316A34A'/%3E%3Ctext x='16' y='23' font-family='system-ui' font-size='8' font-weight='700' fill='%2393C5FD' text-anchor='middle' dominant-baseline='middle'%3ESIGN%3C/text%3E%3C/svg%3E"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--navy:#1B2A47;--green:#16A34A;--blue:#93C5FD;}
+body{font-family:'Outfit',sans-serif;font-size:16px;color:#1E293B;background:#F8FAFC;line-height:1.7;-webkit-font-smoothing:antialiased;}
+nav{background:var(--navy);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-lm{width:32px;height:32px;background:rgba(255,255,255,0.1);border:1px solid rgba(147,197,253,0.2);border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.nav-lm span{font-size:6px;font-weight:800;color:white;line-height:1.1;letter-spacing:0.05em;}
+.nav-lm .nd{width:18px;height:1.5px;background:#16A34A;margin:1.5px 0;}
+.nav-lm .nb{color:#93C5FD;}
+.nav-name{font-family:'DM Serif Display',serif;font-size:18px;color:white;}
+.nav-name em{font-style:normal;color:#22C55E;}
+.nav-back{color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px;transition:color 0.2s;}
+.nav-back:hover{color:white;}
+.page-wrap{max-width:780px;margin:0 auto;padding:56px 24px 80px;}
+.page-wrap h1{font-family:'DM Serif Display',serif;font-size:clamp(28px,4vw,42px);color:var(--navy);margin-bottom:8px;letter-spacing:-0.02em;}
+.meta{font-size:13px;color:#94A3B8;margin-bottom:40px;}
+.page-wrap h2{font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);margin:36px 0 10px;font-weight:400;}
+.page-wrap p{font-size:15px;color:#475569;margin-bottom:16px;}
+.page-wrap a{color:var(--green);text-decoration:none;}
+.page-wrap a:hover{text-decoration:underline;}
+.page-wrap ul{margin:0 0 16px 20px;color:#475569;font-size:15px;}
+.page-wrap li{margin-bottom:6px;}
+.page-wrap strong{color:#1E293B;font-weight:600;}
+/* Changelog */
+.changelog-entry{margin-bottom:32px;padding:24px;background:white;border:1px solid #E2E8F0;border-radius:12px;}
+.changelog-version{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:12px;}
+.changelog-date{font-size:13px;font-weight:400;color:#94A3B8;margin-left:10px;}
+/* Status page */
+.status-hero{text-align:center;padding:40px 0 32px;}
+.status-overall-icon{width:64px;height:64px;border-radius:50%;background:#F0FDF4;border:2px solid #16A34A;display:flex;align-items:center;justify-content:center;font-size:28px;color:#16A34A;margin:0 auto 16px;}
+.status-grid{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
+.status-item{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:white;border:1px solid #E2E8F0;border-radius:10px;}
+.status-item-name{font-size:15px;font-weight:600;color:#1E293B;}
+.status-item-desc{font-size:12px;color:#94A3B8;margin-top:2px;}
+.status-badge{padding:4px 14px;border-radius:100px;font-size:12px;font-weight:700;}
+.status-badge.operational{background:#F0FDF4;color:#16A34A;border:1px solid #BBF7D0;}
+.status-badge.degraded{background:#FFFBEB;color:#D97706;border:1px solid #FDE68A;}
+.status-badge.outage{background:#FEF2F2;color:#DC2626;border:1px solid #FECACA;}
+.no-incidents{padding:20px 24px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;color:#15803D;font-size:14px;font-weight:500;}
+footer{background:var(--navy);padding:24px;text-align:center;}
+footer p{font-size:13px;color:rgba(255,255,255,0.4);}
+footer a{color:rgba(255,255,255,0.5);text-decoration:none;margin:0 12px;}
+footer a:hover{color:white;}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-lm"><span>PDF</span><div class="nd"></div><span class="nb">SIGN</span></div>
+    <span class="nav-name">PDF<em>Sign</em>.in</span>
+  </a>
+  <a href="/" class="nav-back">← Back to Home</a>
+</nav>
+<div class="page-wrap">
+
+        <h1>Changelog</h1>
+        <p class="meta">Release history for PDFSign.in</p>
+
+        <div class="changelog-entry">
+          <div class="changelog-version">v2.1.0 <span class="changelog-date">March 2026</span></div>
+          <ul>
+            <li>Added support for HyperPKI HYP2003 token auto-detection</li>
+            <li>Improved batch signing speed by 40%</li>
+            <li>Fixed PIN dialog not appearing on some Windows 11 configurations</li>
+            <li>Added signature position preview in the UI</li>
+            <li>Updated iText7 to latest version for improved PAdES compliance</li>
+          </ul>
+        </div>
+
+        <div class="changelog-entry">
+          <div class="changelog-version">v2.0.0 <span class="changelog-date">January 2026</span></div>
+          <ul>
+            <li>Complete UI redesign — lighter, faster, and easier to use</li>
+            <li>Added Folder/Batch signing mode</li>
+            <li>Online licence activation and management</li>
+            <li>Razorpay payment integration</li>
+            <li>Auto-update mechanism added</li>
+            <li>30-day free trial introduced</li>
+          </ul>
+        </div>
+
+        <div class="changelog-entry">
+          <div class="changelog-version">v1.2.0 <span class="changelog-date">September 2025</span></div>
+          <ul>
+            <li>Added support for Proxkey and eMudhra tokens</li>
+            <li>Signature stamp appearance customisation</li>
+            <li>Bug fix: signed PDF losing metadata on some documents</li>
+          </ul>
+        </div>
+
+        <div class="changelog-entry">
+          <div class="changelog-version">v1.0.0 <span class="changelog-date">June 2025</span></div>
+          <ul>
+            <li>Initial public release</li>
+            <li>Single file PDF signing with DSC token</li>
+            <li>Support for ePass 2003 and ePass 3003</li>
+            <li>PAdES compliant signatures</li>
+          </ul>
+        </div>
+        
+</div>
+<footer>
+  <p>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/refund.html">Refund Policy</a>
+    <a href="/changelog.html">Changelog</a>
+    &nbsp;·&nbsp; © 2026 PDFSign.in
+  </p>
+</footer>
+</body>
+</html>
