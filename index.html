@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>PDFSign.in — Sign PDFs with Your DSC Token on Windows</title>
+<title>PDF Signer with DSC Token | Sign PDF on Windows | PDFSign.in</title>
 <meta name="description" content="PDFSign.in is a Windows desktop app to digitally sign PDFs using your USB DSC token. Supports HyperPKI, ePass, Proxkey and all major tokens. Accepted on GeM, CPPP and all Indian government portals." />
-<meta name="keywords" content="PDF signer, DSC token, digital signature, sign PDF Windows, HyperPKI, ePass, Proxkey, tender signing, GeM portal, e-procurement" />
+<meta name="keywords" content="PDF signer DSC token, sign PDF with USB token, digital signature PDF Windows, HyperPKI PDF signer, ePass PDF signing, DSC token PDF software, tender document signing, GeM portal PDF sign, CPPP digital signature, e-procurement PDF signer India, PDF signing software India, Class 3 DSC PDF signer" />
 <meta name="robots" content="index, follow" />
 <meta name="author" content="PDFSign.in" />
 <link rel="canonical" href="https://pdfsign.in/" />
@@ -171,6 +171,21 @@
   }
 
   .nav-cta:hover { background: var(--green-light) !important; }
+
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .hero-badge-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+  }
 
   /* ─── HERO ─── */
   .hero {
@@ -1172,6 +1187,32 @@
 
   .footer-bottom-links a:hover { color: rgba(255,255,255,0.7); }
 
+
+  /* Made in India badge */
+  .made-in-india {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    background: rgba(255,255,255,0.05);
+  }
+  .made-in-india span {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .made-in-india svg {
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  @media (max-width: 900px) {
+    .made-in-india { display: none; }
+  }
+
   /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
     .hero-inner { grid-template-columns: 1fr; gap: 48px; }
@@ -1601,6 +1642,94 @@
   .d-status.success { color: #16A34A; }
   .d-status.progress { color: #2563EB; }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PDFSign.in",
+  "operatingSystem": "Windows 10, Windows 11",
+  "applicationCategory": "BusinessApplication",
+  "description": "Sign PDFs digitally using your USB DSC token on Windows. Supports HyperPKI, ePass, Proxkey and all major tokens. Accepted on GeM, CPPP and Indian government portals.",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Monthly Plan",
+      "price": "499",
+      "priceCurrency": "INR",
+      "description": "Monthly subscription for PDFSign.in"
+    },
+    {
+      "@type": "Offer",
+      "name": "Annual Plan",
+      "price": "2999",
+      "priceCurrency": "INR",
+      "description": "Annual subscription for PDFSign.in"
+    },
+    {
+      "@type": "Offer",
+      "name": "Lifetime Plan",
+      "price": "7999",
+      "priceCurrency": "INR",
+      "description": "Lifetime licence for PDFSign.in"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "ratingCount": "127"
+  },
+  "url": "https://pdfsign.in",
+  "downloadUrl": "https://cdn.pdfsign.in/PDFSignSetup.exe",
+  "softwareVersion": "2.1.0",
+  "fileSize": "45 MB",
+  "screenshot": "https://pdfsign.in/screenshot.png",
+  "author": {
+    "@type": "Organization",
+    "name": "Tender Training India",
+    "url": "https://pdfsign.in"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which Windows versions are supported by PDFSign.in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PDFSign.in runs on Windows 10 and Windows 11 (64-bit). It requires .NET 10 Runtime which the installer downloads automatically."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my PDFs uploaded when I sign with PDFSign.in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Signing happens 100% on your machine. Your documents never leave your computer. We do not have access to your files or DSC token private key."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will signed PDFs be accepted on government portals like GeM and CPPP?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. PDFSign.in uses PAdES (PDF Advanced Electronic Signatures) which is accepted on GeM, CPPP, e-Procurement, MCA21, Income Tax, and all major Indian government portals."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which DSC token brands does PDFSign.in support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PDFSign.in supports HyperPKI HYP2003, ePass 2003, ePass 3003, Proxkey, Feitian, WD Pro, Watchdata, and any PKCS#11 compatible USB DSC token issued by a licensed CA under CCA India."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -1615,6 +1744,40 @@
       </div>
       <span class="logo-name">PDF<em>Sign</em>.in</span>
     </a>
+    <div class="made-in-india">
+      <svg width="18" height="18" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+        <rect width="900" height="200" fill="#FF9933"/>
+        <rect y="200" width="900" height="200" fill="#FFFFFF"/>
+        <rect y="400" width="900" height="200" fill="#138808"/>
+        <circle cx="450" cy="300" r="66" fill="none" stroke="#000080" stroke-width="12"/>
+        <circle cx="450" cy="300" r="8" fill="#000080"/>
+        <g stroke="#000080" stroke-width="2">
+          <line x1="450" y1="234" x2="450" y2="366"/>
+          <line x1="384" y1="300" x2="516" y2="300"/>
+          <line x1="403" y1="253" x2="497" y2="347"/>
+          <line x1="497" y1="253" x2="403" y2="347"/>
+          <line x1="384.7" y1="275.5" x2="515.3" y2="324.5"/>
+          <line x1="384.7" y1="324.5" x2="515.3" y2="275.5"/>
+          <line x1="424.5" y1="234.7" x2="475.5" y2="365.3"/>
+          <line x1="475.5" y1="234.7" x2="424.5" y2="365.3"/>
+        </g>
+        <g fill="#000080">
+          <circle cx="450" cy="236" r="4.5"/>
+          <circle cx="486.5" cy="245.5" r="4.5"/>
+          <circle cx="511" cy="271" r="4.5"/>
+          <circle cx="520" cy="308" r="4.5"/>
+          <circle cx="511" cy="344" r="4.5"/>
+          <circle cx="486.5" cy="369.5" r="4.5"/>
+          <circle cx="450" cy="379" r="4.5"/>
+          <circle cx="413.5" cy="369.5" r="4.5"/>
+          <circle cx="389" cy="344" r="4.5"/>
+          <circle cx="380" cy="308" r="4.5"/>
+          <circle cx="389" cy="271" r="4.5"/>
+          <circle cx="413.5" cy="245.5" r="4.5"/>
+        </g>
+      </svg>
+      <span>Made in India</span>
+    </div>
     <ul class="nav-links">
       <li><a href="#features">Features</a></li>
       <li><a href="#how">How it works</a></li>
@@ -1647,6 +1810,24 @@
           View pricing
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
         </a>
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge-item">
+          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+          30-day free trial
+        </div>
+        <div class="hero-badge-item">
+          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+          No credit card needed
+        </div>
+        <div class="hero-badge-item">
+          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+          Works offline
+        </div>
+        <div class="hero-badge-item">
+          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+          7-day refund
+        </div>
       </div>
       <div class="hero-trust">
         <div class="trust-avatars">
@@ -2071,12 +2252,12 @@
             Email support
           </li>
         </ul>
-        <a href="https://rzp.io/l/pdfsign-monthly" class="plan-btn plan-btn-outline">Get Monthly Plan</a>
+        <a href="https://rzp.io/rzp/1oAsK3f" class="plan-btn plan-btn-outline">Get Monthly Plan</a>
       </div>
 
       <!-- Annual (Featured) -->
       <div class="plan-card featured">
-        <div class="plan-badge">Most Popular</div>
+        <div class="plan-badge">🔥 Most Popular</div>
         <div class="plan-name">Annual</div>
         <div class="plan-price">
           <span class="plan-currency">₹</span>
@@ -2107,7 +2288,7 @@
             Free upgrades for 1 year
           </li>
         </ul>
-        <a href="https://rzp.io/l/pdfsign-annual" class="plan-btn plan-btn-solid">Get Annual Plan</a>
+        <a href="https://rzp.io/rzp/1nFBvqj" class="plan-btn plan-btn-solid">Get Annual Plan</a>
       </div>
 
       <!-- Lifetime -->
@@ -2142,7 +2323,7 @@
             Priority + WhatsApp support
           </li>
         </ul>
-        <a href="https://rzp.io/l/pdfsign-lifetime" class="plan-btn plan-btn-outline">Get Lifetime Access</a>
+        <a href="https://rzp.io/rzp/35ldhw86" class="plan-btn plan-btn-outline">Get Lifetime Access</a>
       </div>
 
     </div>
@@ -2274,7 +2455,7 @@
           <span class="faq-q-icon">Q</span>
           What is your refund policy?
         </div>
-        <p class="faq-a">We offer a 7-day full refund if you're not satisfied, no questions asked. Write to help@pdfsign.in and we'll process your refund within 24 hours.</p>
+        <p class="faq-a">We offer a 7-day full refund if you're not satisfied, no questions asked. Write to <a href="/cdn-cgi/l/email-protection#e38b868f93a3938785908a848dcd8a8d"><span class="__cf_email__" data-cfemail="ddb5b8b1ad9dadb9bbaeb4bab3f3b4b3">[email&#160;protected]</span></a> and we'll process your refund within 24 hours.</p>
       </div>
 
     </div>
@@ -2291,7 +2472,7 @@
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download Free Trial
       </a>
-      help@pdfsign.in
+      <a href="/cdn-cgi/l/email-protection#e38b868f93a3938785908a848dcd8a8d"><span class="__cf_email__" data-cfemail="95fdf0f9e5d5e5f1f3e6fcf2fbbbfcfb">[email&#160;protected]</span></a>
     </div>
     <p class="cta-footnote">For Windows 10 &amp; 11 · 30-day free trial · No credit card needed</p>
   </div>
@@ -2324,13 +2505,12 @@
         </ul>
       </div>
 
-      <div class="footer-col">
+            <div class="footer-col">
         <h5>Support</h5>
         <ul>
           <li><a href="#faq">FAQ</a></li>
-          <li>help@pdfsign.in</li>
-          <li>help@pdfsign.in</li>
-          <li><a href="https://pdfsign.in/status">System Status</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#9df5f8f1edddedf9fbeef4faf3b3f4f3"><span class="__cf_email__" data-cfemail="82eae7eef2c2f2e6e4f1ebe5ecacebec">[email&#160;protected]</span></a></li>
+          <li><a href="https://wa.me/917057413999">WhatsApp Support</a></li>
         </ul>
       </div>
 
@@ -2345,11 +2525,11 @@
     </div>
 
     <div class="footer-bottom">
-      <p>© 2025 PDFSign.in · All rights reserved · Made in India �
+      <p>© 2026 PDFSign.in &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; Made with ♥ in India 🇮🇳</p>
       <div class="footer-bottom-links">
         <a href="/privacy.html">Privacy</a>
         <a href="/terms.html">Terms</a>
-        help@pdfsign.in
+        <a href="/cdn-cgi/l/email-protection#137b767f6353637775607a747d3d7a7d"><span class="__cf_email__" data-cfemail="c7afa2abb787b7a3a1b4aea0a9e9aea9">[email&#160;protected]</span></a>
       </div>
     </div>
   </div>
@@ -2364,7 +2544,7 @@
 </a>
 <div class="chat-tooltip">Chat with us on WhatsApp</div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function openWhatsApp() {
   var msg = encodeURIComponent("Hi! I have a question about PDFSign.in");
   window.open("https://wa.me/917057413999?text=" + msg, "_blank");
@@ -2402,15 +2582,16 @@ var dPosNames = ["Top Left","Top Center","Top Right","Middle Left","Center","Mid
 
 window.addEventListener("DOMContentLoaded", function() {
   // Position grid clicks
-  document.querySelectorAll(".d-pos-cell").forEach(function(c) {
-    c.addEventListener("click", function() {
-      document.querySelectorAll(".d-pos-cell").forEach(function(x){ x.classList.remove("selected"); });
-      c.classList.add("selected");
+  var posCells = document.querySelectorAll(".d-pos-cell");
+  posCells.forEach(function(cell) {
+    cell.addEventListener("click", function() {
+      posCells.forEach(function(x){ x.classList.remove("selected"); });
+      cell.classList.add("selected");
       var el = document.getElementById("dPosVal");
-      if (el) el.textContent = dPosNames[parseInt(c.dataset.i)];
+      if (el) el.textContent = dPosNames[parseInt(cell.dataset.i)];
     });
   });
-  // Auto-start cert animation
+  // Auto-start cert animation after 1s
   dSetStatus("", "Initialising...");
   setTimeout(dAnimateCert, 1000);
 });
@@ -2470,42 +2651,4 @@ function dClosePIN() {
 function dConfirmPIN() {
   var i = 1;
   var t = setInterval(function() {
-    var d = document.getElementById("dp"+i);
-    if (d) d.classList.add("filled");
-    i++;
-    if (i > 6) { clearInterval(t); setTimeout(dStartSigning, 350); }
-  }, 110);
-}
-
-function dStartSigning() {
-  var ov = document.getElementById("dPinOverlay");
-  if (ov) ov.classList.remove("show");
-  var stages = [
-    [0,    "progress", "⟳ Authenticating with HyperPKI token..."],
-    [900,  "progress", "⟳ Computing document hash (SHA-256)..."],
-    [1800, "progress", "⟳ Applying digital signature (PAdES)..."],
-    [2700, "progress", "⟳ Embedding signature into PDF..."],
-    [3400, "success",  "✓ PDF signed successfully!"]
-  ];
-  stages.forEach(function(s) {
-    setTimeout(function() { dSetStatus(s[1], s[2]); }, s[0]);
-  });
-  setTimeout(function() {
-    var sov = document.getElementById("dSuccessOverlay");
-    if (sov) sov.classList.add("show");
-  }, 3700);
-}
-
-function dSetStatus(type, text) {
-  var bar = document.getElementById("dStatus");
-  if (!bar) return;
-  bar.className = "d-status" + (type ? " " + type : "");
-  bar.textContent = text;
-}
-
-function dRestart() {
-  var sov = document.getElementById("dSuccessOverlay");
-  if (sov) sov.classList.remove("show");
-  dFileLoaded = false;
-  var inp = document.getElementById("dSourceInput");
-  if (inp) { inp.textContent = "Select a PDF file..."; inp.style.
+    var d 
