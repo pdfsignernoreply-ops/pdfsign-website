@@ -1,0 +1,2654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PDF Signer with DSC Token | Sign PDF on Windows | PDFSign.in</title>
+<meta name="description" content="PDFSign.in is a Windows desktop app to digitally sign PDFs using your USB DSC token. Supports HyperPKI, ePass, Proxkey and all major tokens. Accepted on GeM, CPPP and all Indian government portals." />
+<meta name="keywords" content="PDF signer DSC token, sign PDF with USB token, digital signature PDF Windows, HyperPKI PDF signer, ePass PDF signing, DSC token PDF software, tender document signing, GeM portal PDF sign, CPPP digital signature, e-procurement PDF signer India, PDF signing software India, Class 3 DSC PDF signer" />
+<meta name="robots" content="index, follow" />
+<meta name="author" content="PDFSign.in" />
+<link rel="canonical" href="https://pdfsign.in/" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://pdfsign.in/" />
+<meta property="og:title" content="PDFSign.in — Sign PDFs with Your DSC Token" />
+<meta property="og:description" content="Digitally sign PDFs on Windows using your USB DSC token. Offline, private, and accepted on all Indian government portals." />
+<meta property="og:image" content="https://pdfsign.in/og-image.png" />
+<meta property="og:locale" content="en_IN" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="PDFSign.in — Sign PDFs with Your DSC Token" />
+<meta name="twitter:description" content="Sign PDFs on Windows using your USB DSC token. Accepted on GeM, CPPP, and all Indian government portals." />
+<meta name="twitter:image" content="https://pdfsign.in/og-image.png" />
+
+<!-- Favicon SVG -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231B2A47'/%3E%3Ctext x='16' y='12' font-family='system-ui,sans-serif' font-size='8' font-weight='700' fill='white' text-anchor='middle' dominant-baseline='middle'%3EPDF%3C/text%3E%3Crect x='6' y='15' width='20' height='1.5' fill='%2316A34A'/%3E%3Ctext x='16' y='23' font-family='system-ui,sans-serif' font-size='8' font-weight='700' fill='%2393C5FD' text-anchor='middle' dominant-baseline='middle'%3ESIGN%3C/text%3E%3C/svg%3E" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1B2A47;
+    --navy-dark: #111C30;
+    --navy-light: #243558;
+    --green: #16A34A;
+    --green-light: #22C55E;
+    --green-pale: #DCFCE7;
+    --blue: #93C5FD;
+    --blue-pale: #EFF6FF;
+    --white: #FFFFFF;
+    --off-white: #F8FAFC;
+    --gray-50: #F8FAFC;
+    --gray-100: #F1F5F9;
+    --gray-200: #E2E8F0;
+    --gray-400: #94A3B8;
+    --gray-600: #475569;
+    --gray-800: #1E293B;
+    --text: #1E293B;
+    --muted: #64748B;
+    --font-display: 'DM Serif Display', serif;
+    --font-body: 'Outfit', sans-serif;
+    --max: 1140px;
+    --r: 10px;
+    --r-lg: 16px;
+    --r-xl: 24px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(27, 42, 71, 0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(147, 197, 253, 0.1);
+  }
+
+  .nav-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--navy-light);
+    border: 1px solid rgba(147,197,253,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .logo-mark span {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    line-height: 1.1;
+    color: var(--white);
+  }
+
+  .logo-mark .divider-line {
+    width: 22px;
+    height: 1.5px;
+    background: var(--green);
+    margin: 2px 0;
+  }
+
+  .logo-mark .sign-text {
+    color: var(--blue);
+  }
+
+  .logo-name {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
+
+  .logo-name em {
+    font-style: normal;
+    color: var(--green-light);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.75);
+    font-size: 14px;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--green);
+    color: var(--white) !important;
+    padding: 8px 20px;
+    border-radius: var(--r);
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--green-light) !important; }
+
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .hero-badge-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--navy-dark);
+    position: relative;
+    overflow: hidden;
+    padding: 96px 24px 80px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  /* Subtle geometric grid */
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(147,197,253,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(147,197,253,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Glow orbs */
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -80px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(22,163,74,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-glow2 {
+    position: absolute;
+    bottom: -200px;
+    left: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(147,197,253,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(22,163,74,0.15);
+    border: 1px solid rgba(22,163,74,0.35);
+    color: #4ADE80;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #4ADE80;
+    animation: pulse-dot 2s infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4.5vw, 52px);
+    line-height: 1.1;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--blue);
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 480px;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green);
+    color: var(--white);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 13px 28px;
+    border-radius: var(--r);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--green-light); transform: translateY(-1px); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--white); }
+
+  .btn-ghost svg { opacity: 0.6; }
+
+  .hero-trust {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .trust-avatars {
+    display: flex;
+  }
+
+  .trust-avatars span {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--navy-light);
+    border: 2px solid var(--navy-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--blue);
+    margin-left: -8px;
+  }
+
+  .trust-avatars span:first-child { margin-left: 0; }
+
+  .trust-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .trust-text strong { color: rgba(255,255,255,0.8); font-weight: 500; }
+
+  /* Hero visual — PDF mockup */
+  .hero-visual {
+    position: relative;
+    padding-top: 24px;
+  }
+
+  .pdf-card {
+    background: #1E2E4A;
+    border: 1px solid rgba(147,197,253,0.15);
+    border-radius: var(--r-xl);
+    padding: 28px;
+    position: relative;
+  }
+
+  .pdf-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .pdf-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(239,68,68,0.15);
+    border: 1px solid rgba(239,68,68,0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #FCA5A5;
+    letter-spacing: -0.03em;
+  }
+
+  .pdf-name {
+    color: rgba(255,255,255,0.85);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .pdf-size {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .pdf-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .pdf-line {
+    height: 8px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 4px;
+  }
+
+  .pdf-line.short { width: 60%; }
+  .pdf-line.med { width: 80%; }
+  .pdf-line.full { width: 100%; }
+  .pdf-line.xs { width: 40%; }
+
+  .pdf-sig-area {
+    background: rgba(22,163,74,0.08);
+    border: 1.5px dashed rgba(22,163,74,0.4);
+    border-radius: var(--r);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sig-stamp {
+    width: 44px;
+    height: 44px;
+    background: rgba(22,163,74,0.15);
+    border: 1.5px solid rgba(22,163,74,0.5);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .sig-stamp svg { width: 22px; height: 22px; }
+
+  .sig-info { flex: 1; }
+  .sig-name { font-size: 13px; font-weight: 600; color: #4ADE80; }
+  .sig-meta { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+  .sig-verified {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #4ADE80;
+    background: rgba(22,163,74,0.15);
+    padding: 4px 10px;
+    border-radius: 100px;
+    border: 1px solid rgba(22,163,74,0.3);
+  }
+
+  /* Token widget */
+  .token-widget {
+    position: absolute;
+    bottom: -24px;
+    left: -32px;
+    background: #243558;
+    border: 1px solid rgba(147,197,253,0.2);
+    border-radius: var(--r-lg);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    min-width: 200px;
+  }
+
+  .token-icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(147,197,253,0.12);
+    border: 1px solid rgba(147,197,253,0.25);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .token-label { font-size: 12px; color: rgba(255,255,255,0.5); }
+  .token-value { font-size: 13px; font-weight: 600; color: var(--blue); }
+
+  .step-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--green);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 12px;
+  }
+
+  /* ─── SECTION COMMON ─── */
+  section { padding: 88px 24px; }
+
+  .container { max-width: var(--max); margin: 0 auto; }
+
+  .section-tag {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.5vw, 40px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 640px;
+    line-height: 1.7;
+  }
+
+  /* ─── LOGOS STRIP ─── */
+  .logos-strip {
+    padding: 32px 24px;
+    background: var(--gray-50);
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .logos-strip-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .logos-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray-400);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .logos-items {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .logo-pill {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-400);
+    letter-spacing: 0.02em;
+    padding: 6px 16px;
+    border: 1px solid var(--gray-200);
+    border-radius: 100px;
+    background: white;
+  }
+
+  /* ─── FEATURES ─── */
+  .features { background: var(--white); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .feature-card {
+    padding: 28px;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--r-lg);
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--green);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+    border-radius: 0 0 4px 4px;
+  }
+
+  .feature-card:hover {
+    border-color: var(--gray-200);
+    transform: translateY(-2px);
+  }
+
+  .feature-card:hover::before { transform: scaleX(1); }
+
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--green-pale);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .feature-icon svg { width: 22px; height: 22px; color: var(--green); }
+
+  .feature-card h3 {
+    font-family: var(--font-display);
+    font-size: 19px;
+    color: var(--navy);
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+
+  .feature-card p {
+    font-size: 14.5px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ─── HOW IT WORKS ─── */
+  .how { background: var(--gray-50); }
+
+  .how-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-top: 56px;
+    position: relative;
+  }
+
+  .how-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: calc(12.5% + 20px);
+    right: calc(12.5% + 20px);
+    height: 1px;
+    background: linear-gradient(90deg, var(--green), rgba(22,163,74,0.2));
+    z-index: 0;
+  }
+
+  .how-step {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-num {
+    width: 56px;
+    height: 56px;
+    background: var(--white);
+    border: 2px solid var(--green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--green);
+    margin: 0 auto 16px;
+  }
+
+  .how-step h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .how-step p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ─── PRICING ─── */
+  .pricing { background: var(--white); }
+
+  .pricing-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .pricing-header .section-sub {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+
+  .plan-card {
+    padding: 32px;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--r-xl);
+    position: relative;
+  }
+
+  .plan-card.featured {
+    background: var(--navy);
+    border-color: var(--navy);
+    transform: scale(1.03);
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--green);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .plan-name {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .plan-card.featured .plan-name { color: rgba(255,255,255,0.5); }
+
+  .plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 6px;
+  }
+
+  .plan-currency {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    font-family: var(--font-body);
+  }
+
+  .plan-card.featured .plan-currency { color: white; }
+
+  .plan-amount {
+    font-family: var(--font-display);
+    font-size: 48px;
+    line-height: 1;
+    color: var(--navy);
+    letter-spacing: -0.03em;
+  }
+
+  .plan-card.featured .plan-amount { color: white; }
+
+  .plan-period {
+    font-size: 14px;
+    color: var(--muted);
+    align-self: end;
+    padding-bottom: 4px;
+  }
+
+  .plan-card.featured .plan-period { color: rgba(255,255,255,0.5); }
+
+  .plan-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  .plan-card.featured .plan-desc { color: rgba(255,255,255,0.5); }
+
+  .plan-divider {
+    height: 1px;
+    background: var(--gray-200);
+    margin-bottom: 24px;
+  }
+
+  .plan-card.featured .plan-divider { background: rgba(255,255,255,0.1); }
+
+  .plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .plan-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .plan-card.featured .plan-features li { color: rgba(255,255,255,0.85); }
+
+  .check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--green-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .plan-card.featured .check { background: rgba(22,163,74,0.25); }
+
+  .check svg { width: 10px; height: 10px; color: var(--green); }
+
+  .plan-btn {
+    display: block;
+    text-align: center;
+    padding: 13px;
+    border-radius: var(--r);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    width: 100%;
+  }
+
+  .plan-btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--gray-200);
+    color: var(--navy);
+  }
+
+  .plan-btn-outline:hover { border-color: var(--green); color: var(--green); }
+
+  .plan-btn-solid {
+    background: var(--green);
+    color: white;
+  }
+
+  .plan-btn-solid:hover { background: var(--green-light); }
+
+  .plan-btn-white {
+    background: white;
+    color: var(--navy);
+  }
+
+  .plan-btn-white:hover { background: var(--blue-pale); }
+
+  .pricing-note {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 13px;
+    color: var(--gray-400);
+  }
+
+  .pricing-note a { color: var(--green); text-decoration: none; }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials { background: var(--gray-50); }
+
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .testimonial {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--r-lg);
+    padding: 28px;
+  }
+
+  .t-stars {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 14px;
+  }
+
+  .t-star { width: 14px; height: 14px; color: #F59E0B; }
+
+  .t-quote {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.65;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .t-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 16px;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  .t-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--blue);
+    flex-shrink: 0;
+  }
+
+  .t-name { font-size: 13px; font-weight: 600; color: var(--navy); }
+  .t-role { font-size: 12px; color: var(--muted); }
+
+  /* ─── FAQ ─── */
+  .faq { background: var(--white); }
+
+  .faq-header { text-align: center; margin-bottom: 48px; }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    padding: 24px;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--r-lg);
+  }
+
+  .faq-q {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .faq-q-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--green);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .faq-a {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+    padding-left: 28px;
+  }
+
+  /* ─── CTA BAND ─── */
+  .cta-band {
+    background: var(--navy);
+    padding: 80px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-band::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(22,163,74,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .cta-band-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+
+  .cta-band h2 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.5vw, 42px);
+    color: var(--white);
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+
+  .cta-band p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+
+  .cta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary-lg {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green);
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 15px 32px;
+    border-radius: var(--r);
+    transition: all 0.2s;
+  }
+
+  .btn-primary-lg:hover { background: var(--green-light); transform: translateY(-1px); }
+
+  .btn-secondary-lg {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 15px 28px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--r);
+    transition: all 0.2s;
+  }
+
+  .btn-secondary-lg:hover { color: white; border-color: rgba(255,255,255,0.4); }
+
+  .cta-footnote {
+    margin-top: 20px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy-dark);
+    padding: 64px 24px 32px;
+    color: rgba(255,255,255,0.5);
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .footer-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand p {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-top: 12px;
+    max-width: 280px;
+  }
+
+  .footer-col h5 {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 16px;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .footer-col a {
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover { color: rgba(255,255,255,0.85); }
+
+  .footer-bottom {
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-bottom p { font-size: 13px; }
+
+  .footer-bottom-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-bottom-links a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-bottom-links a:hover { color: rgba(255,255,255,0.7); }
+
+
+  /* Made in India badge */
+  .made-in-india {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    background: rgba(255,255,255,0.05);
+  }
+  .made-in-india span {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .made-in-india svg {
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  @media (max-width: 900px) {
+    .made-in-india { display: none; }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .how-steps { grid-template-columns: repeat(2, 1fr); }
+    .how-steps::before { display: none; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+    .plan-card.featured { transform: none; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .nav-links { display: none; }
+  }
+
+  /* ─── VIDEO SECTION ─── */
+  .video-section {
+    background: var(--navy-dark);
+    padding: 88px 24px;
+  }
+
+  .video-section .section-tag { color: #4ADE80; }
+  .video-section .section-title { color: var(--white); text-align: center; }
+  .video-section-header { text-align: center; margin-bottom: 48px; }
+  .video-section .section-sub { color: rgba(255,255,255,0.55); }
+
+  .video-wrapper { max-width: 860px; margin: 0 auto; }
+
+  .video-frame {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(147,197,253,0.15);
+    position: relative;
+    background: #0E1828;
+  }
+
+  .video-thumbnail {
+    width: 100%; height: 100%;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+  }
+
+  .video-thumbnail:hover .play-btn { transform: scale(1.1); }
+
+  /* App mockup inside thumbnail */
+  .video-app-mock {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    background: #1A2540;
+  }
+
+  .app-titlebar {
+    height: 36px;
+    background: #111C30;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .app-dots { display: flex; gap: 6px; }
+  .app-dots span {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .app-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.04em;
+    margin-left: 8px;
+  }
+
+  .app-body { flex: 1; display: flex; overflow: hidden; }
+
+  .app-sidebar {
+    width: 130px;
+    background: #111C30;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    padding: 16px 0;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .app-sidebar-item {
+    padding: 8px 16px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    cursor: pointer;
+  }
+
+  .app-sidebar-item.active {
+    background: rgba(22,163,74,0.15);
+    color: #4ADE80;
+    border-left: 2px solid #16A34A;
+  }
+
+  .app-main {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .app-dropzone {
+    flex: 1;
+    border: 1.5px dashed rgba(147,197,253,0.2);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(147,197,253,0.04);
+  }
+
+  .app-dropzone span {
+    font-size: 12px;
+    color: rgba(147,197,253,0.6);
+    font-weight: 500;
+  }
+
+  .app-token-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: rgba(22,163,74,0.08);
+    border: 1px solid rgba(22,163,74,0.2);
+    border-radius: 8px;
+    font-size: 11px;
+    color: #4ADE80;
+  }
+
+  .app-token-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #4ADE80;
+    flex-shrink: 0;
+    animation: pulse-dot 2s infinite;
+  }
+
+  .app-sign-btn {
+    background: #16A34A;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .play-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10,18,35,0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    z-index: 2;
+  }
+
+  .play-btn {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+    padding-left: 4px;
+  }
+
+  .play-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.03em;
+  }
+
+  .video-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-top: 32px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .video-stat {
+    flex: 1;
+    padding: 20px 24px;
+    text-align: center;
+  }
+
+  .vs-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,0.08);
+    flex-shrink: 0;
+  }
+
+  .vs-num {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--white);
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+
+  .vs-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── LIVE CHAT WIDGET ─── */
+  .chat-fab {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 999;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--green);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 24px rgba(22,163,74,0.4);
+    transition: transform 0.2s, background 0.2s;
+    text-decoration: none;
+  }
+
+  .chat-fab:hover { transform: scale(1.08); background: var(--green-light); }
+
+  .chat-fab svg { width: 24px; height: 24px; }
+
+  .chat-tooltip {
+    position: fixed;
+    bottom: 96px;
+    right: 28px;
+    z-index: 998;
+    background: var(--navy);
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.2s;
+    pointer-events: none;
+    border: 1px solid rgba(147,197,253,0.15);
+  }
+
+  .chat-fab:hover + .chat-tooltip,
+  .chat-tooltip:hover {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 600px) {
+    .app-sidebar { display: none; }
+    .video-stats { flex-wrap: wrap; }
+    .vs-divider { display: none; }
+    .video-stat { flex: 0 0 50%; }
+  }
+  /* ── INTERACTIVE DEMO ── */
+  .demo-wrap { position: relative; margin-bottom: 32px; }
+
+  .d-overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 50;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.25s;
+    border-radius: 10px;
+  }
+  .d-overlay.show { opacity: 1; pointer-events: all; }
+
+  .d-pin-dialog {
+    background: white; border-radius: 10px; padding: 24px 28px;
+    width: 300px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .d-overlay.show .d-pin-dialog, .d-overlay.show .d-success-dialog { transform: scale(1); }
+
+  .d-pin-title { font-size: 15px; font-weight: 700; color: #1E293B; margin-bottom: 3px; }
+  .d-pin-sub { font-size: 12px; color: #64748B; margin-bottom: 14px; }
+  .d-token-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 10px; background: #F0FDF4;
+    border: 1px solid #BBF7D0; border-radius: 7px; margin-bottom: 14px;
+  }
+  .d-token-dot { width: 7px; height: 7px; border-radius: 50%; background: #16A34A; flex-shrink: 0; animation: dblink 1.5s infinite; }
+  @keyframes dblink { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .d-token-name { font-size: 12px; font-weight: 600; color: #15803D; }
+  .d-token-sub { font-size: 10px; color: #4ADE80; }
+  .d-pin-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8892A4; margin-bottom: 7px; }
+  .d-pin-dots-row { display: flex; gap: 7px; margin-bottom: 16px; }
+  .d-pdot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #DDE0E8; transition: all 0.15s; }
+  .d-pdot.filled { background: #1B2A47; border-color: #1B2A47; }
+  .d-pin-btns { display: flex; gap: 7px; }
+  .d-btn-cancel { flex: 1; height: 36px; background: #F1F5F9; border: 1px solid #DDE0E8; border-radius: 7px; font-size: 13px; font-weight: 600; color: #475569; cursor: pointer; font-family: var(--font-body); }
+  .d-btn-ok { flex: 1; height: 36px; background: #16A34A; border: none; border-radius: 7px; font-size: 13px; font-weight: 700; color: white; cursor: pointer; font-family: var(--font-body); display: flex; align-items: center; justify-content: center; gap: 5px; }
+  .d-btn-ok:hover { background: #15803D; }
+
+  .d-success-dialog {
+    background: white; border-radius: 12px; padding: 30px;
+    width: 360px; text-align: center; box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+    transform: scale(0.85); transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .d-success-check { width: 64px; height: 64px; border-radius: 50%; background: #F0FDF4; border: 2px solid #16A34A; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
+  .d-success-title { font-size: 18px; font-weight: 800; color: #1E293B; margin-bottom: 6px; }
+  .d-success-p { font-size: 12px; color: #64748B; margin-bottom: 16px; line-height: 1.6; }
+  .d-success-file { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 8px; text-align: left; margin-bottom: 16px; }
+  .d-sfi { width: 32px; height: 32px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 800; color: #EF4444; flex-shrink: 0; }
+  .d-sfn { font-size: 11px; font-weight: 600; color: #1E293B; }
+  .d-sfm { font-size: 10px; color: #16A34A; margin-top: 2px; }
+  .d-valid-badge { margin-left: auto; padding: 3px 8px; background: #16A34A; color: white; border-radius: 100px; font-size: 10px; font-weight: 700; flex-shrink: 0; }
+  .d-restart-btn { width: 100%; height: 40px; background: #1B2A47; color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: var(--font-body); }
+  .d-restart-btn:hover { background: #243558; }
+
+  .d-window { background: #F0F2F5; border-radius: 10px; border: 1px solid #CDD0D8; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.12); }
+
+  .d-titlebar { height: 30px; background: #1B2A47; display: flex; align-items: center; padding: 0 12px; gap: 8px; }
+  .d-win-icon { width: 14px; height: 14px; background: rgba(255,255,255,0.1); border-radius: 3px; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; }
+  .d-wi-pdf, .d-wi-sign { font-size: 4px; font-weight: 800; color: white; line-height: 1; letter-spacing: 0.04em; }
+  .d-wi-sign { color: #93C5FD; }
+  .d-wi-div { width: 9px; height: 1px; background: #16A34A; margin: 1px 0; }
+  .d-win-title { font-size: 11px; color: rgba(255,255,255,0.6); flex: 1; }
+  .d-win-controls { display: flex; gap: 14px; font-size: 11px; color: rgba(255,255,255,0.4); }
+
+  .d-app-header { background: #1B2A47; padding: 0 16px; height: 48px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .d-header-logo { width: 32px; height: 32px; background: rgba(255,255,255,0.08); border: 1px solid rgba(147,197,253,0.2); border-radius: 7px; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; }
+  .d-header-logo span { font-size: 6px; font-weight: 800; color: white; line-height: 1.1; letter-spacing: 0.05em; }
+  .d-hl-div { width: 18px; height: 1.5px; background: #16A34A; margin: 1.5px 0; }
+  .d-hl-blue { color: #93C5FD !important; }
+  .d-header-titles { flex: 1; }
+  .d-header-name { font-size: 15px; font-weight: 700; color: white; line-height: 1; }
+  .d-header-sub { font-size: 10px; color: #16A34A; margin-top: 2px; }
+  .d-plan-badge { background: #16A34A; color: white; font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 7px; white-space: nowrap; }
+
+  .d-grid { padding: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .d-card { background: white; border-radius: 8px; border: 1px solid #DDE0E8; padding: 14px; }
+  .d-card-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8892A4; margin-bottom: 10px; }
+
+  .d-cert-row { display: flex; gap: 6px; margin-bottom: 10px; }
+  .d-cert-dropdown { flex: 1; height: 32px; border: 1px solid #CDD0D8; border-radius: 6px; padding: 0 8px; display: flex; align-items: center; justify-content: space-between; transition: border-color 0.3s; }
+  .d-cert-dropdown.loaded { border-color: #16A34A; }
+  .d-cert-text { font-size: 11px; color: #94A3B8; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .d-cert-text.loaded { color: #1E293B; }
+  .d-cert-arrow { font-size: 9px; color: #94A3B8; }
+  .d-refresh-btn { height: 32px; padding: 0 12px; background: #2D3F5E; color: white; border-radius: 6px; font-size: 11px; font-weight: 600; display: flex; align-items: center; gap: 4px; cursor: default; white-space: nowrap; flex-shrink: 0; }
+  .d-cert-info { border: 1px solid #DDE0E8; border-radius: 6px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; opacity: 0; transform: translateY(4px); transition: all 0.4s; }
+  .d-cert-info.show { opacity: 1; transform: translateY(0); }
+  .d-cert-person { font-size: 13px; font-weight: 700; color: #1E293B; }
+  .d-cert-issuer-lbl { font-size: 9px; color: #94A3B8; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px; }
+  .d-cert-issuer { font-size: 11px; color: #475569; margin-top: 2px; }
+  .d-cert-right { text-align: right; }
+  .d-cert-valid-lbl { font-size: 9px; color: #94A3B8; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .d-cert-valid-date { font-size: 13px; font-weight: 700; color: #16A34A; margin-top: 2px; }
+
+  .d-doc-tabs { display: flex; align-items: center; gap: 0; margin-bottom: 10px; }
+  .d-doc-tab-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8892A4; margin-right: 10px; }
+  .d-tab { padding: 5px 12px; font-size: 11px; font-weight: 600; border: 1px solid #DDE0E8; color: #475569; background: white; cursor: default; font-family: var(--font-body); }
+  .d-tab:first-of-type { border-radius: 5px 0 0 5px; border-right: none; }
+  .d-tab:last-of-type { border-radius: 0 5px 5px 0; }
+  .d-tab.active { background: #2563EB; color: white; border-color: #2563EB; }
+  .d-field-group { margin-bottom: 8px; }
+  .d-field-lbl { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8892A4; margin-bottom: 4px; }
+  .d-field-row { display: flex; gap: 5px; }
+  .d-field-input { flex: 1; height: 30px; border: 1px solid #DDE0E8; border-radius: 6px; padding: 0 8px; font-size: 11px; display: flex; align-items: center; transition: border-color 0.3s; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .d-field-input.filled { border-color: #16A34A; color: #1E293B !important; }
+  .d-browse-btn { height: 30px; padding: 0 10px; background: #F1F5F9; border: 1px solid #DDE0E8; border-radius: 6px; font-size: 11px; font-weight: 600; color: #475569; cursor: pointer; display: flex; align-items: center; white-space: nowrap; }
+  .d-browse-btn:hover { background: #E2E8F0; }
+  .d-checkbox-row { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
+  .d-checkbox { width: 12px; height: 12px; border: 1.5px solid #CDD0D8; border-radius: 2px; flex-shrink: 0; }
+  .d-checkbox-lbl { font-size: 11px; color: #475569; }
+
+  .d-sig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .d-sig-input { height: 30px; border: 1px solid #DDE0E8; border-radius: 6px; padding: 0 8px; font-size: 11px; display: flex; align-items: center; }
+  .d-sig-select { height: 30px; border: 1px solid #DDE0E8; border-radius: 6px; padding: 0 8px; font-size: 11px; color: #1E293B; display: flex; align-items: center; justify-content: space-between; }
+
+  .d-pos-content { display: flex; gap: 16px; align-items: flex-start; }
+  .d-pos-grid { display: grid; grid-template-columns: repeat(3,30px); grid-template-rows: repeat(3,30px); gap: 3px; flex-shrink: 0; }
+  .d-pos-cell { border: 1.5px solid #DDE0E8; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #94A3B8; cursor: pointer; background: #F8FAFC; transition: all 0.15s; }
+  .d-pos-cell:hover { border-color: #94A3B8; }
+  .d-pos-cell.selected { background: #1B2A47; border-color: #1B2A47; color: white; }
+  .d-pos-info { flex: 1; }
+  .d-pos-lbl { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8892A4; margin-bottom: 3px; }
+  .d-pos-val { font-size: 13px; font-weight: 700; color: #1E293B; margin-bottom: 10px; }
+  .d-pos-field-row { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #475569; margin-bottom: 4px; }
+  .d-mini { width: 40px; height: 24px; border: 1px solid #DDE0E8; border-radius: 5px; font-size: 11px; font-weight: 600; color: #1E293B; background: white; display: flex; align-items: center; justify-content: center; }
+  .d-unit { font-size: 10px; color: #94A3B8; }
+
+  .d-footer { padding: 0 12px 12px; display: flex; justify-content: center; gap: 10px; }
+  .d-btn-sign { height: 44px; padding: 0 32px; background: #16A34A; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; font-family: var(--font-body); cursor: pointer; display: flex; align-items: center; gap: 7px; transition: background 0.2s; }
+  .d-btn-sign:hover { background: #15803D; }
+  .d-btn-verify { height: 44px; padding: 0 32px; background: #2563EB; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; font-family: var(--font-body); cursor: pointer; display: flex; align-items: center; gap: 7px; }
+  .d-btn-verify:hover { background: #1D4ED8; }
+
+  .d-status { padding: 7px 16px; background: #F8FAFC; border-top: 1px solid #DDE0E8; font-size: 11px; color: #475569; }
+  .d-status.success { color: #16A34A; }
+  .d-status.progress { color: #2563EB; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PDFSign.in",
+  "operatingSystem": "Windows 10, Windows 11",
+  "applicationCategory": "BusinessApplication",
+  "description": "Sign PDFs digitally using your USB DSC token on Windows. Supports HyperPKI, ePass, Proxkey and all major tokens. Accepted on GeM, CPPP and Indian government portals.",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Monthly Plan",
+      "price": "499",
+      "priceCurrency": "INR",
+      "description": "Monthly subscription for PDFSign.in"
+    },
+    {
+      "@type": "Offer",
+      "name": "Annual Plan",
+      "price": "2999",
+      "priceCurrency": "INR",
+      "description": "Annual subscription for PDFSign.in"
+    },
+    {
+      "@type": "Offer",
+      "name": "Lifetime Plan",
+      "price": "7999",
+      "priceCurrency": "INR",
+      "description": "Lifetime licence for PDFSign.in"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "ratingCount": "127"
+  },
+  "url": "https://pdfsign.in",
+  "downloadUrl": "https://cdn.pdfsign.in/PDFSignSetup.exe",
+  "softwareVersion": "2.1.0",
+  "fileSize": "45 MB",
+  "screenshot": "https://pdfsign.in/screenshot.png",
+  "author": {
+    "@type": "Organization",
+    "name": "Tender Training India",
+    "url": "https://pdfsign.in"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which Windows versions are supported by PDFSign.in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PDFSign.in runs on Windows 10 and Windows 11 (64-bit). It requires .NET 10 Runtime which the installer downloads automatically."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my PDFs uploaded when I sign with PDFSign.in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Signing happens 100% on your machine. Your documents never leave your computer. We do not have access to your files or DSC token private key."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will signed PDFs be accepted on government portals like GeM and CPPP?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. PDFSign.in uses PAdES (PDF Advanced Electronic Signatures) which is accepted on GeM, CPPP, e-Procurement, MCA21, Income Tax, and all major Indian government portals."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which DSC token brands does PDFSign.in support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PDFSign.in supports HyperPKI HYP2003, ePass 2003, ePass 3003, Proxkey, Feitian, WD Pro, Watchdata, and any PKCS#11 compatible USB DSC token issued by a licensed CA under CCA India."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <span>PDF</span>
+        <div class="divider-line"></div>
+        <span class="sign-text">SIGN</span>
+      </div>
+      <span class="logo-name">PDF<em>Sign</em>.in</span>
+    </a>
+    <div class="made-in-india">
+      <svg width="18" height="18" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+        <rect width="900" height="200" fill="#FF9933"/>
+        <rect y="200" width="900" height="200" fill="#FFFFFF"/>
+        <rect y="400" width="900" height="200" fill="#138808"/>
+        <circle cx="450" cy="300" r="66" fill="none" stroke="#000080" stroke-width="12"/>
+        <circle cx="450" cy="300" r="8" fill="#000080"/>
+        <g stroke="#000080" stroke-width="2">
+          <line x1="450" y1="234" x2="450" y2="366"/>
+          <line x1="384" y1="300" x2="516" y2="300"/>
+          <line x1="403" y1="253" x2="497" y2="347"/>
+          <line x1="497" y1="253" x2="403" y2="347"/>
+          <line x1="384.7" y1="275.5" x2="515.3" y2="324.5"/>
+          <line x1="384.7" y1="324.5" x2="515.3" y2="275.5"/>
+          <line x1="424.5" y1="234.7" x2="475.5" y2="365.3"/>
+          <line x1="475.5" y1="234.7" x2="424.5" y2="365.3"/>
+        </g>
+        <g fill="#000080">
+          <circle cx="450" cy="236" r="4.5"/>
+          <circle cx="486.5" cy="245.5" r="4.5"/>
+          <circle cx="511" cy="271" r="4.5"/>
+          <circle cx="520" cy="308" r="4.5"/>
+          <circle cx="511" cy="344" r="4.5"/>
+          <circle cx="486.5" cy="369.5" r="4.5"/>
+          <circle cx="450" cy="379" r="4.5"/>
+          <circle cx="413.5" cy="369.5" r="4.5"/>
+          <circle cx="389" cy="344" r="4.5"/>
+          <circle cx="380" cy="308" r="4.5"/>
+          <circle cx="389" cy="271" r="4.5"/>
+          <circle cx="413.5" cy="245.5" r="4.5"/>
+        </g>
+      </svg>
+      <span>Made in India</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#demo">Demo</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="https://cdn.pdfsign.in/PDFSignSetup.exe" class="nav-cta">Download App</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-glow2"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">For Windows · 30-Day Free Trial</div>
+      <h1>Sign PDFs with your<br /><em>DSC token.</em> Instantly.</h1>
+      <p class="hero-sub">
+        PDFSign.in is a Windows desktop app that lets you sign any PDF using your USB DSC token — no Aadhaar, no OTP, no paperwork. Just plug in and sign.
+      </p>
+      <div class="hero-actions">
+        <a href="https://cdn.pdfsign.in/PDFSignSetup.exe" class="btn-primary">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Free Trial
+        </a>
+        <a href="#pricing" class="btn-ghost">
+          View pricing
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+        </a>
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge-item">
+          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+          30-day free trial
+        </div>
+        <div class="hero-badge-item">
+          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+          No credit card needed
+        </div>
+        <div class="hero-badge-item">
+          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+          Works offline
+        </div>
+        <div class="hero-badge-item">
+          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+          7-day refund
+        </div>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-avatars">
+          <span>RK</span><span>AS</span><span>MP</span><span>VJ</span>
+        </div>
+        <p class="trust-text"><strong>1,200+ professionals</strong> sign with PDFSign daily</p>
+      </div>
+    </div>
+
+    <!-- PDF Mockup -->
+    <div class="hero-visual">
+      <div class="step-badge">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+        Signed &amp; Verified
+      </div>
+      <div class="pdf-card">
+        <div class="pdf-header">
+          <div class="pdf-icon">PDF</div>
+          <div>
+            <div class="pdf-name">Tender_Document_2025.pdf</div>
+            <div class="pdf-size">2.4 MB · 8 pages</div>
+          </div>
+        </div>
+        <div class="pdf-lines">
+          <div class="pdf-line full"></div>
+          <div class="pdf-line med"></div>
+          <div class="pdf-line full"></div>
+          <div class="pdf-line short"></div>
+          <div class="pdf-line full"></div>
+          <div class="pdf-line med"></div>
+          <div class="pdf-line xs"></div>
+        </div>
+        <div class="pdf-sig-area">
+          <div class="sig-stamp">
+            <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="rgba(22,163,74,0.3)" stroke="#16A34A" stroke-width="1.5"/>
+              <path d="M9 12l2 2 4-4" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="sig-info">
+            <div class="sig-name">Rajesh Kumar</div>
+            <div class="sig-meta">Signed · 28 Mar 2025, 14:32 IST</div>
+          </div>
+          <div class="sig-verified">
+            <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+            Valid
+          </div>
+        </div>
+      </div>
+      <div class="token-widget">
+        <div class="token-icon">
+          <svg width="18" height="18" fill="none" stroke="#93C5FD" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="11" width="20" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div>
+          <div class="token-label">DSC Token Connected</div>
+          <div class="token-value">HyperPKI HYP2003 · Ready</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── LOGOS STRIP ─── -->
+<div class="logos-strip">
+  <div class="logos-strip-inner">
+    <span class="logos-label">Trusted by</span>
+    <div class="logos-items">
+      <span class="logo-pill">CA Firms</span>
+      <span class="logo-pill">Law Offices</span>
+      <span class="logo-pill">Govt. Contractors</span>
+      <span class="logo-pill">MSME Exporters</span>
+      <span class="logo-pill">Tender Filers</span>
+      <span class="logo-pill">Chartered Engineers</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FEATURES ─── -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-tag">Why PDFSign.in</div>
+    <h2 class="section-title">Everything you need.<br />Nothing you don't.</h2>
+    <p class="section-sub">Built for Indian professionals who need reliable, fast, and compliant digital signatures — without the complexity.</p>
+
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="11" width="20" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>All DSC Tokens Supported</h3>
+        <p>Works with ePass 2003, ePass 3003, Proxkey, WD Pro, Feitian, and all major USB DSC tokens used in India.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
+        </div>
+        <h3>Batch Signing</h3>
+        <p>Sign 100s of PDFs in one click. Perfect for tender submissions, GST invoices, certificates, and bulk document signing workflows.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>CAdES &amp; PAdES Compliant</h3>
+        <p>Signatures are fully compliant with Indian IT Act and accepted by government portals including GeM, CPPP, and e-Tendering platforms.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+        </div>
+        <h3>Sign in Seconds</h3>
+        <p>No browser plugins, no Java, no admin rights. Open the app, load your PDF, choose your certificate, sign. Done in under 10 seconds.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Signature Appearance</h3>
+        <p>Customize the look of your digital signature block — add name, date, designation, organisation, and logo to the visible stamp on the PDF.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <h3>Offline &amp; Private</h3>
+        <p>Your documents never leave your PC. Signing happens entirely on your machine — no uploads, no cloud, no third-party servers see your files.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section class="how" id="how">
+  <div class="container">
+    <div class="section-tag">Simple Process</div>
+    <h2 class="section-title">Sign your first PDF in 4 steps</h2>
+    <p class="section-sub">Designed to be as fast as possible, with no learning curve for existing DSC users.</p>
+
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-num">1</div>
+        <h4>Download &amp; Install</h4>
+        <p>Install PDFSign.in for Windows (10 or 11). No Java, no extra drivers needed.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">2</div>
+        <h4>Plug In Your Token</h4>
+        <p>Insert your USB DSC token. The app auto-detects it and lists your certificates.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">3</div>
+        <h4>Load Your PDF</h4>
+        <p>Drag and drop a PDF or pick from file. For batch signing, add an entire folder.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">4</div>
+        <h4>Click Sign</h4>
+        <p>Enter your token PIN, choose placement, and sign. Your signed PDF is saved instantly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── VIDEO SECTION ─── -->
+<section class="video-section" id="demo">
+  <div class="container">
+    <div class="video-section-header">
+      <div class="section-tag">See it in action</div>
+      <h2 class="section-title">Try the interactive demo</h2>
+      <p class="section-sub" style="margin: 0 auto; text-align: center;">Click through the actual app flow — from token detection to signed PDF in under 60 seconds.</p>
+    </div>
+    <div class="video-wrapper">
+
+      <!-- ── INTERACTIVE APP DEMO ── -->
+      <div class="demo-wrap">
+
+        <!-- PIN Dialog -->
+        <div class="d-overlay" id="dPinOverlay">
+          <div class="d-pin-dialog">
+            <div class="d-pin-title">Enter Token PIN</div>
+            <div class="d-pin-sub">Your DSC token requires a PIN to sign</div>
+            <div class="d-token-row">
+              <div class="d-token-dot"></div>
+              <div>
+                <div class="d-token-name">HyperPKI HYP2003</div>
+                <div class="d-token-sub">Token detected · Ready</div>
+              </div>
+            </div>
+            <div class="d-pin-label">PIN</div>
+            <div class="d-pin-dots-row" id="dPinDots">
+              <div class="d-pdot" id="dp1"></div><div class="d-pdot" id="dp2"></div>
+              <div class="d-pdot" id="dp3"></div><div class="d-pdot" id="dp4"></div>
+              <div class="d-pdot" id="dp5"></div><div class="d-pdot" id="dp6"></div>
+            </div>
+            <div class="d-pin-btns">
+              <button class="d-btn-cancel" onclick="dClosePIN()">Cancel</button>
+              <button class="d-btn-ok" onclick="dConfirmPIN()">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                Sign PDF
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Success Dialog -->
+        <div class="d-overlay" id="dSuccessOverlay">
+          <div class="d-success-dialog">
+            <div class="d-success-check">
+              <svg width="32" height="32" fill="none" stroke="#16A34A" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+            </div>
+            <div class="d-success-title">PDF Signed Successfully!</div>
+            <div class="d-success-p">Your document is digitally signed and accepted on GeM, CPPP, and all Indian government portals.</div>
+            <div class="d-success-file">
+              <div class="d-sfi">PDF</div>
+              <div>
+                <div class="d-sfn">Tender_Document_2025_signed.pdf</div>
+                <div class="d-sfm">✓ PAdES compliant · Digitally signed · 2.5 MB</div>
+              </div>
+              <div class="d-valid-badge">✓ Valid</div>
+            </div>
+            <button class="d-restart-btn" onclick="dRestart()">↺ &nbsp;Sign Another Document</button>
+          </div>
+        </div>
+
+        <!-- App Window -->
+        <div class="d-window">
+          <!-- Win titlebar -->
+          <div class="d-titlebar">
+            <div class="d-win-icon">
+              <span class="d-wi-pdf">PDF</span>
+              <div class="d-wi-div"></div>
+              <span class="d-wi-sign">SIGN</span>
+            </div>
+            <span class="d-win-title">PDF Signer</span>
+            <div class="d-win-controls">
+              <span>─</span><span>□</span><span>✕</span>
+            </div>
+          </div>
+
+          <!-- App header -->
+          <div class="d-app-header">
+            <div class="d-header-logo">
+              <span>PDF</span><div class="d-hl-div"></div><span class="d-hl-blue">SIGN</span>
+            </div>
+            <div class="d-header-titles">
+              <div class="d-header-name">PDF Signer</div>
+              <div class="d-header-sub">pdfsign.in</div>
+            </div>
+            <div class="d-plan-badge">v2.0 · monthly</div>
+          </div>
+
+          <!-- 4-panel grid -->
+          <div class="d-grid">
+
+            <!-- Certificate -->
+            <div class="d-card">
+              <div class="d-card-label">Certificate</div>
+              <div class="d-cert-row">
+                <div class="d-cert-dropdown" id="dCertDrop">
+                  <span class="d-cert-text" id="dCertText">Detecting certificates...</span>
+                  <span class="d-cert-arrow">▼</span>
+                </div>
+                <div class="d-refresh-btn">↻ Refresh</div>
+              </div>
+              <div class="d-cert-info" id="dCertInfo">
+                <div>
+                  <div class="d-cert-person">Rajesh Kumar</div>
+                  <div class="d-cert-issuer-lbl">Issuer</div>
+                  <div class="d-cert-issuer">HyperPKI Sub CA for Individual DSC 2022</div>
+                </div>
+                <div class="d-cert-right">
+                  <div class="d-cert-valid-lbl">Valid Until</div>
+                  <div class="d-cert-valid-date">01-06-2027</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Document -->
+            <div class="d-card">
+              <div class="d-doc-tabs">
+                <span class="d-doc-tab-label">Document</span>
+                <button class="d-tab active">Single File</button>
+                <button class="d-tab">Folder</button>
+              </div>
+              <div class="d-field-group">
+                <div class="d-field-lbl">Source File</div>
+                <div class="d-field-row">
+                  <div class="d-field-input" id="dSourceInput" style="color:#94A3B8">Select a PDF file...</div>
+                  <div class="d-browse-btn" onclick="dAnimateBrowse()">Browse</div>
+                </div>
+              </div>
+              <div class="d-field-group">
+                <div class="d-field-lbl">Destination Folder</div>
+                <div class="d-field-row">
+                  <div class="d-field-input" style="color:#94A3B8">Same as source</div>
+                  <div class="d-browse-btn">Browse</div>
+                </div>
+              </div>
+              <div class="d-checkbox-row">
+                <div class="d-checkbox"></div>
+                <span class="d-checkbox-lbl">Overwrite existing signed files</span>
+              </div>
+            </div>
+
+            <!-- Signature Details -->
+            <div class="d-card">
+              <div class="d-card-label">Signature Details</div>
+              <div class="d-sig-grid">
+                <div>
+                  <div class="d-field-lbl">Reason</div>
+                  <div class="d-sig-input" style="color:#94A3B8">e.g. Approved</div>
+                </div>
+                <div>
+                  <div class="d-field-lbl">Signature Page</div>
+                  <div class="d-sig-select">Last Page <span style="color:#94A3B8;font-size:10px;">▼</span></div>
+                </div>
+                <div style="grid-column:1/-1">
+                  <div class="d-field-lbl">Location</div>
+                  <div class="d-sig-input" style="color:#94A3B8">e.g. Mumbai, Maharashtra</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Signature Position -->
+            <div class="d-card">
+              <div class="d-card-label">Signature Position</div>
+              <div class="d-pos-content">
+                <div class="d-pos-grid" id="dPosGrid">
+                  <div class="d-pos-cell" data-i="0">↖</div><div class="d-pos-cell" data-i="1">↑</div><div class="d-pos-cell" data-i="2">↗</div>
+                  <div class="d-pos-cell" data-i="3">←</div><div class="d-pos-cell" data-i="4">·</div><div class="d-pos-cell" data-i="5">→</div>
+                  <div class="d-pos-cell" data-i="6">↙</div><div class="d-pos-cell" data-i="7">↓</div><div class="d-pos-cell selected" data-i="8">↘</div>
+                </div>
+                <div class="d-pos-info">
+                  <div class="d-pos-lbl">Position</div>
+                  <div class="d-pos-val" id="dPosVal">Bottom Right</div>
+                  <div class="d-pos-lbl">Stamp Size</div>
+                  <div class="d-pos-field-row">W: <div class="d-mini">50</div> H: <div class="d-mini">50</div> <span class="d-unit">pt</span></div>
+                  <div class="d-pos-lbl" style="margin-top:6px">Margin</div>
+                  <div class="d-pos-field-row"><div class="d-mini">30</div> <span class="d-unit">pt</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /d-grid -->
+
+          <!-- Buttons -->
+          <div class="d-footer">
+            <button class="d-btn-sign" id="dBtnSign" onclick="dClickSign()">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+              Sign PDF
+            </button>
+            <button class="d-btn-verify">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              Verify PDF
+            </button>
+          </div>
+
+          <!-- Status bar -->
+          <div class="d-status" id="dStatus">Initialising...</div>
+
+        </div><!-- /d-window -->
+      </div><!-- /demo-wrap -->
+
+      <!-- Stats row -->
+      <div class="video-stats">
+        <div class="video-stat"><span class="vs-num">30s</span><span class="vs-label">avg. time to sign</span></div>
+        <div class="vs-divider"></div>
+        <div class="video-stat"><span class="vs-num">100%</span><span class="vs-label">offline — no upload</span></div>
+        <div class="vs-divider"></div>
+        <div class="video-stat"><span class="vs-num">Zero</span><span class="vs-label">Java or plugins needed</span></div>
+        <div class="vs-divider"></div>
+        <div class="video-stat"><span class="vs-num">All</span><span class="vs-label">major DSC tokens</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRICING ─── -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="pricing-header">
+      <div class="section-tag">Pricing</div>
+      <h2 class="section-title">Simple, honest pricing</h2>
+      <p class="section-sub">No per-signature fees. No hidden charges. One licence, unlimited signings.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- Monthly -->
+      <div class="plan-card">
+        <div class="plan-name">Monthly</div>
+        <div class="plan-price">
+          <span class="plan-currency">₹</span>
+          <span class="plan-amount">499</span>
+          <span class="plan-period">/month</span>
+        </div>
+        <p class="plan-desc">For occasional signers who need flexibility to start or stop any time.</p>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>
+            <span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>
+            Unlimited PDF signings
+          </li>
+          <li>
+            <span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>
+            All DSC tokens supported
+          </li>
+          <li>
+            <span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>
+            1 Windows device
+          </li>
+          <li>
+            <span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>
+            Email support
+          </li>
+        </ul>
+        <a href="https://rzp.io/rzp/1oAsK3f" class="plan-btn plan-btn-outline">Get Monthly Plan</a>
+      </div>
+
+      <!-- Annual (Featured) -->
+      <div class="plan-card featured">
+        <div class="plan-badge">🔥 Most Popular</div>
+        <div class="plan-name">Annual</div>
+        <div class="plan-price">
+          <span class="plan-currency">₹</span>
+          <span class="plan-amount">2,999</span>
+          <span class="plan-period">/year</span>
+        </div>
+        <p class="plan-desc">Save ₹2,989 vs monthly. Best value for regular signers.</p>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>
+            <span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>
+            Unlimited PDF signings
+          </li>
+          <li>
+            <span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>
+            All DSC tokens supported
+          </li>
+          <li>
+            <span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>
+            1 Windows device
+          </li>
+          <li>
+            <span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>
+            Priority email support
+          </li>
+          <li>
+            <span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>
+            Free upgrades for 1 year
+          </li>
+        </ul>
+        <a href="https://rzp.io/rzp/1nFBvqj" class="plan-btn plan-btn-solid">Get Annual Plan</a>
+      </div>
+
+      <!-- Lifetime -->
+      <div class="plan-card">
+        <div class="plan-name">Lifetime</div>
+        <div class="plan-price">
+          <span class="plan-currency">₹</span>
+          <span class="plan-amount">7,999</span>
+          <span class="plan-period">one-time</span>
+        </div>
+        <p class="plan-desc">Pay once, use forever. Ideal for firms and power users who sign daily.</p>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>
+            <span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>
+            Unlimited PDF signings
+          </li>
+          <li>
+            <span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>
+            All DSC tokens supported
+          </li>
+          <li>
+            <span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>
+            1 Windows device
+          </li>
+          <li>
+            <span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>
+            Lifetime upgrades
+          </li>
+          <li>
+            <span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>
+            Priority + WhatsApp support
+          </li>
+        </ul>
+        <a href="https://rzp.io/rzp/35ldhw86" class="plan-btn plan-btn-outline">Get Lifetime Access</a>
+      </div>
+
+    </div>
+
+    <p class="pricing-note">
+      All prices are inclusive of GST &nbsp;·&nbsp; 7-day refund policy &nbsp;·&nbsp; Payments via Razorpay (UPI, Cards, Net Banking) &nbsp;·&nbsp; GST invoice sent automatically to your email
+    </p>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="testimonials-header">
+      <div class="section-tag">Reviews</div>
+      <h2 class="section-title">Loved by Indian professionals</h2>
+    </div>
+    <div class="testimonials-grid">
+
+      <div class="testimonial">
+        <div class="t-stars">
+          <svg class="t-star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="t-star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="t-star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="t-star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="t-star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <p class="t-quote">"We sign 50+ tender documents daily. PDFSign.in saved us hours — the batch feature is a game changer. Works perfectly with our HyperPKI HYP2003 tokens."</p>
+        <div class="t-author">
+          <div class="t-avatar">RS</div>
+          <div>
+            <div class="t-name">Ravi Shankar Gupta</div>
+            <div class="t-role">Director, RS Infrastructure Pvt. Ltd. · Delhi</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="t-stars">
+          <svg class="t-star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="t-star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="t-star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="t-star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="t-star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <p class="t-quote">"Finally a signing tool that just works — no Java errors, no browser plugin issues. My team uses it for GST invoices and client agreements every day."</p>
+        <div class="t-author">
+          <div class="t-avatar">PM</div>
+          <div>
+            <div class="t-name">Priya Mahajan</div>
+            <div class="t-role">Partner, PM &amp; Associates CA · Mumbai</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="t-stars">
+          <svg class="t-star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="t-star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="t-star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="t-star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="t-star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <p class="t-quote">"Bought the lifetime plan 4 months ago. Best Rs. 7,999 I ever spent. Support team replies within hours. My HyperPKI HYP2003 token works flawlessly."</p>
+        <div class="t-author">
+          <div class="t-avatar">VK</div>
+          <div>
+            <div class="t-name">Vijayakumar R.</div>
+            <div class="t-role">Senior Contracts Manager · Bengaluru</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-header">
+      <div class="section-tag">FAQ</div>
+      <h2 class="section-title">Common questions</h2>
+    </div>
+    <div class="faq-grid">
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-icon">Q</span>
+          Which Windows versions are supported?
+        </div>
+        <p class="faq-a">PDFSign.in runs on Windows 10 and Windows 11 (64-bit). It requires .NET 10 Runtime, which the installer will download automatically if not present.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-icon">Q</span>
+          Are my PDFs uploaded to your servers?
+        </div>
+        <p class="faq-a">No. Signing happens 100% on your machine. Your documents never leave your computer. We don't have access to your files or your DSC token's private key.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-icon">Q</span>
+          Will my signed PDFs be accepted on government portals?
+        </div>
+        <p class="faq-a">Yes. PDFSign.in uses PAdES (PDF Advanced Electronic Signatures) which is accepted on GeM, CPPP, e-Procurement, MCA21, Income Tax, and all major Indian government portals.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-icon">Q</span>
+          Which DSC token brands are supported?
+        </div>
+        <p class="faq-a">PDFSign.in works with all major USB DSC tokens used in India — HyperPKI (HYP2003), ePass 2003/3003, Proxkey, Feitian, WD Pro, Watchdata, and any PKCS#11-compatible token issued by a licensed CA under CCA India.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-icon">Q</span>
+          Can I sign on behalf of a company (organization signature)?
+        </div>
+        <p class="faq-a">Yes. If your DSC token has an organization certificate, PDFSign.in will show it as a signing option. The signed PDF will show your name and organization in the signature block.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-icon">Q</span>
+          What is your refund policy?
+        </div>
+        <p class="faq-a">We offer a 7-day full refund if you're not satisfied, no questions asked. Write to <a href="/cdn-cgi/l/email-protection#e38b868f93a3938785908a848dcd8a8d"><span class="__cf_email__" data-cfemail="ddb5b8b1ad9dadb9bbaeb4bab3f3b4b3">[email&#160;protected]</span></a> and we'll process your refund within 24 hours.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA BAND ─── -->
+<section class="cta-band">
+  <div class="cta-band-inner">
+    <h2>Start signing PDFs today</h2>
+    <p>Try PDFSign.in free for 30 days. No credit card required. Works with the DSC token you already have.</p>
+    <div class="cta-actions">
+      <a href="https://cdn.pdfsign.in/PDFSignSetup.exe" class="btn-primary-lg">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Free Trial
+      </a>
+      <a href="/cdn-cgi/l/email-protection#e38b868f93a3938785908a848dcd8a8d"><span class="__cf_email__" data-cfemail="95fdf0f9e5d5e5f1f3e6fcf2fbbbfcfb">[email&#160;protected]</span></a>
+    </div>
+    <p class="cta-footnote">For Windows 10 &amp; 11 · 30-day free trial · No credit card needed</p>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-mark">
+            <span>PDF</span>
+            <div class="divider-line"></div>
+            <span class="sign-text">SIGN</span>
+          </div>
+          <span class="logo-name">PDF<em>Sign</em>.in</span>
+        </a>
+        <p>Sign PDFs with your DSC token. Offline, private, and accepted everywhere in India.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Product</h5>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="https://cdn.pdfsign.in/PDFSignSetup.exe">Download</a></li>
+          <li><a href="https://pdfsign.in/changelog">Changelog</a></li>
+        </ul>
+      </div>
+
+            <div class="footer-col">
+        <h5>Support</h5>
+        <ul>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#9df5f8f1edddedf9fbeef4faf3b3f4f3"><span class="__cf_email__" data-cfemail="82eae7eef2c2f2e6e4f1ebe5ecacebec">[email&#160;protected]</span></a></li>
+          <li><a href="https://wa.me/917057413999">WhatsApp Support</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/terms.html">Terms of Service</a></li>
+          <li><a href="/refund.html">Refund Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 PDFSign.in &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; Made with ♥ in India 🇮🇳</p>
+      <div class="footer-bottom-links">
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/cdn-cgi/l/email-protection#137b767f6353637775607a747d3d7a7d"><span class="__cf_email__" data-cfemail="c7afa2abb787b7a3a1b4aea0a9e9aea9">[email&#160;protected]</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Live Chat FAB -->
+<a href="https://wa.me/917057413999?text=Hi%21%20I%20have%20a%20question%20about%20PDFSign.in" target="_blank" rel="noopener" class="chat-fab" aria-label="Chat with support on WhatsApp">
+  <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.413A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill="none" stroke="white" stroke-width="1.5"/>
+  </svg>
+</a>
+<div class="chat-tooltip">Chat with us on WhatsApp</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function openWhatsApp() {
+  var msg = encodeURIComponent("Hi! I have a question about PDFSign.in");
+  window.open("https://wa.me/917057413999?text=" + msg, "_blank");
+}
+
+// ── Nav scroll highlight ──
+var sections = document.querySelectorAll("section[id]");
+var navLinks = document.querySelectorAll(".nav-links a[href^='#']");
+window.addEventListener("scroll", function() {
+  var scrollY = window.scrollY + 80;
+  sections.forEach(function(sec) {
+    if (sec.offsetTop <= scrollY && sec.offsetTop + sec.offsetHeight > scrollY) {
+      navLinks.forEach(function(a) {
+        a.style.color = a.getAttribute("href") === "#" + sec.id ? "#fff" : "rgba(255,255,255,0.65)";
+      });
+    }
+  });
+});
+
+// ── Scroll entrance animations ──
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.style.opacity="1"; e.target.style.transform="translateY(0)"; }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll(".feature-card,.how-step,.plan-card,.testimonial,.faq-item").forEach(function(el) {
+  el.style.opacity="0"; el.style.transform="translateY(20px)";
+  el.style.transition="opacity 0.5s ease, transform 0.5s ease";
+  observer.observe(el);
+});
+
+// ── INTERACTIVE DEMO ──
+var dFileLoaded = false;
+var dPosNames = ["Top Left","Top Center","Top Right","Middle Left","Center","Middle Right","Bottom Left","Bottom Center","Bottom Right"];
+
+window.addEventListener("DOMContentLoaded", function() {
+  // Position grid clicks
+  var posCells = document.querySelectorAll(".d-pos-cell");
+  posCells.forEach(function(cell) {
+    cell.addEventListener("click", function() {
+      posCells.forEach(function(x){ x.classList.remove("selected"); });
+      cell.classList.add("selected");
+      var el = document.getElementById("dPosVal");
+      if (el) el.textContent = dPosNames[parseInt(cell.dataset.i)];
+    });
+  });
+  // Auto-start cert animation after 1s
+  dSetStatus("", "Initialising...");
+  setTimeout(dAnimateCert, 1000);
+});
+
+function dAnimateCert() {
+  var text = document.getElementById("dCertText");
+  var drop = document.getElementById("dCertDrop");
+  if (!text || !drop) return;
+  var stages = ["Detecting certificates.","Detecting certificates..","Detecting certificates...","Reading HyperPKI token..."];
+  var i = 0;
+  var t = setInterval(function() {
+    text.textContent = stages[i % stages.length];
+    i++;
+    if (i > 7) {
+      clearInterval(t);
+      text.textContent = "Rajesh Kumar  [HyperPKI Sub CA for Individual...";
+      text.classList.add("loaded");
+      drop.classList.add("loaded");
+      var info = document.getElementById("dCertInfo");
+      if (info) info.classList.add("show");
+      dSetStatus("success", "✓ Found 1 certificate(s) — ready to sign.");
+    }
+  }, 280);
+}
+
+function dAnimateBrowse() {
+  var inp = document.getElementById("dSourceInput");
+  if (!inp) return;
+  inp.textContent = "Opening file browser...";
+  inp.style.color = "#94A3B8";
+  setTimeout(function() {
+    inp.textContent = "C:\Users\Rajesh\Documents\Tender_Document_2025.pdf";
+    inp.style.color = "#1E293B";
+    inp.classList.add("filled");
+    dFileLoaded = true;
+    dSetStatus("success", "✓ File loaded. Click Sign PDF to continue.");
+  }, 700);
+}
+
+function dClickSign() {
+  if (!dFileLoaded) { dAnimateBrowse(); setTimeout(dShowPIN, 950); return; }
+  dShowPIN();
+}
+
+function dShowPIN() {
+  var ov = document.getElementById("dPinOverlay");
+  if (!ov) return;
+  ov.classList.add("show");
+  for (var i=1; i<=6; i++) { var d=document.getElementById("dp"+i); if(d) d.classList.remove("filled"); }
+}
+
+function dClosePIN() {
+  var ov = document.getElementById("dPinOverlay");
+  if (ov) ov.classList.remove("show");
+}
+
+function dConfirmPIN() {
+  var i = 1;
+  var t = setInterval(function() {
+    var d 
