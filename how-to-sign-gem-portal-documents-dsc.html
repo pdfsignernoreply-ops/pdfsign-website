@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>How to Sign Documents on GeM Portal Using DSC | PDFSign</title>
+<meta name="description" content="Complete guide to signing GeM Government e-Marketplace documents using your DSC token on Windows. Avoid bid rejection and submit valid digitally signed PDFs."/>
+<meta name="keywords" content="GeM portal DSC sign, GeM portal digital signature, sign PDF GeM portal Windows, government eMarketplace DSC, Class 3 DSC GeM"/>
+<meta name="author" content="PDFSign"/>
+<meta name="geo.region" content="IN"/>
+<meta name="geo.country" content="India"/>
+<link rel="canonical" href="https://pdfsign.in/blog/how-to-sign-gem-portal-documents-dsc.html"/>
+<meta property="og:title" content="How to Sign Documents on GeM Portal Using DSC"/>
+<meta property="og:description" content="Complete guide to signing GeM Government e-Marketplace documents using your DSC token on Windows. Avoid bid rejection and submit valid digitally signed PDFs."/>
+<meta property="og:url" content="https://pdfsign.in/blog/how-to-sign-gem-portal-documents-dsc.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="PDFSign"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to Sign Documents on GeM Portal Using DSC"/>
+<meta name="twitter:description" content="Complete guide to signing GeM Government e-Marketplace documents using your DSC token on Windows. Avoid bid rejection and submit valid digitally signed PDFs."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"How to Sign Documents on GeM Portal Using DSC",
+  "description":"Complete guide to signing GeM Government e-Marketplace documents using your DSC token on Windows. Avoid bid rejection and submit valid digitally signed PDFs.",
+  "author":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "publisher":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "datePublished":"2026-04-07",
+  "dateModified":"2026-04-07",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://pdfsign.in/blog/how-to-sign-gem-portal-documents-dsc.html"},
+  "inLanguage":"en-IN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Why does GeM reject my digital signature?","acceptedAnswer":{"@type":"Answer","text":"GeM requires Class 3 DSC. Using Class 2 or an image signature will be rejected. PDFSign applies a cryptographically valid signature accepted by GeM."}},
+    {"@type":"Question","name":"Can I sign multiple GeM documents at once?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use PDFSign Batch mode to sign multiple files in one session."}},
+    {"@type":"Question","name":"Which CAs issue valid DSCs for GeM?","acceptedAnswer":{"@type":"Answer","text":"eMudhra, Capricorn, NSDL, (n)Code, Pentasign, vsign, and Sify are all licensed CAs accepted on GeM."}}
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+a{color:#16A34A;text-decoration:none}a:hover{text-decoration:underline}
+nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none}
+.nav-links a{color:#93C5FD;margin-left:1.5rem;font-size:.9rem}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.blog-hero{background:linear-gradient(135deg,#1B2A47 0%,#243352 100%);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center}
+.blog-hero .category{background:#16A34A;color:#fff;font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;display:inline-block;margin-bottom:1rem}
+.blog-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);max-width:750px;margin:0 auto .75rem;line-height:1.25}
+.blog-hero .meta{color:#93C5FD;font-size:.85rem}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#1B2A47;margin:2.5rem 0 .75rem;border-left:4px solid #16A34A;padding-left:.75rem}
+.content h3{font-size:1.1rem;font-weight:600;color:#1B2A47;margin:1.75rem 0 .5rem}
+.content p{margin-bottom:1rem;color:#334155}
+.content ul,.content ol{margin:.5rem 0 1rem 1.5rem;color:#334155}
+.content li{margin-bottom:.4rem}
+.content strong{color:#1B2A47}
+.step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin:1rem 0}
+.step-num{background:#1B2A47;color:#fff;font-size:.75rem;font-weight:700;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0}
+.step-title{font-weight:600;color:#1B2A47;display:flex;align-items:center;margin-bottom:.4rem}
+.step p{margin:0;color:#475569;font-size:.95rem}
+.tip{background:#f0fdf4;border-left:4px solid #16A34A;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.tip strong{color:#15803d}
+.warn{background:#fff7ed;border-left:4px solid #f97316;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.cta-box{background:linear-gradient(135deg,#1B2A47,#243352);color:#fff;border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0}
+.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.75rem;border:none;padding:0;color:#fff}
+.cta-box p{color:#93C5FD;margin-bottom:1.5rem}
+.btn-green{background:#16A34A;color:#fff;padding:.75rem 2rem;border-radius:8px;font-weight:600;display:inline-block;font-size:1rem}
+.btn-green:hover{background:#15803d;text-decoration:none}
+.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1.5rem}
+.breadcrumb a{color:#16A34A}
+footer{background:#1B2A47;color:#93C5FD;text-align:center;padding:2rem;font-size:.85rem;margin-top:3rem}
+footer a{color:#93C5FD}
+.related{background:#f8fafc;border-radius:12px;padding:2rem;margin:2rem 0}
+.related h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1B2A47;margin-bottom:1rem;border:none;padding:0}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.related-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;font-size:.9rem}
+.related-card a{color:#1B2A47;font-weight:500}.related-card a:hover{color:#16A34A}
+table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+th{background:#1B2A47;color:#fff;padding:.6rem 1rem;text-align:left;font-size:.85rem}
+td{padding:.6rem 1rem;border-bottom:1px solid #e2e8f0;font-size:.9rem;color:#334155}
+tr:nth-child(even) td{background:#f8fafc}
+@media(max-width:600px){nav{flex-direction:column;gap:.75rem}.nav-links a{margin-left:.75rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="https://pdfsign.in">PDF<span style="color:#16A34A">Sign</span>.in</a>
+  <div class="nav-links">
+    <a href="https://pdfsign.in">Home</a>
+    <a href="https://pdfsign.in/blog/">Blog</a>
+    <a href="https://pdfsign.in/#pricing">Pricing</a>
+    <a href="https://wa.me/917057413999">Support</a>
+  </div>
+</nav>
+<div class="blog-hero">
+  <div class="category">GeM Portal Guide</div>
+  <h1>How to Sign Documents on GeM Portal Using DSC</h1>
+  <div class="meta">By PDFSign &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 5 min read</div>
+</div>
+<div class="container">
+<div class="breadcrumb">
+  <a href="https://pdfsign.in">Home</a> › <a href="https://pdfsign.in/blog/">Blog</a> › How to Sign Documents on GeM Portal Using DSC
+</div>
+<div class="content">
+<p>The Government e-Marketplace (GeM) requires all registered sellers and service providers to digitally sign documents before submission. Without a valid DSC-signed PDF, your bid or order confirmation is incomplete and may be rejected outright.</p>
+<p>Most users try signing through browser plugins that conflict with Windows security policies. The result is a document that fails validation or carries no visible signature. The correct approach: sign on your desktop using PDFSign software, then upload the signed file to GeM.</p>
+
+<h2>What You Need</h2>
+<ul>
+  <li>Windows PC with PDFSign software installed (30-day free trial)</li>
+  <li>USB DSC token — HYP2003 or ProxyKey (Watchdata)</li>
+  <li>Token driver installed: ePass2003 for HYP2003, ProxyKey middleware for Watchdata tokens</li>
+  <li>Class 3 DSC issued by a licensed CA: eMudhra, Capricorn, NSDL, (n)Code, Pentasign, vsign, or Sify</li>
+</ul>
+
+<h2>Common Certificates Used for GeM</h2>
+<table>
+  <tr><th>Certificate Type</th><th>Use Case</th></tr>
+  <tr><td>Class 3 Individual DSC</td><td>Individual sellers, freelancers</td></tr>
+  <tr><td>Class 3 Organisation DSC</td><td>Company/firm registration and bids</td></tr>
+  <tr><td>DGFT DSC</td><td>Import/export related transactions</td></tr>
+</table>
+
+<h2>Step-by-Step: Sign GeM Documents</h2>
+<div class="step"><div class="step-title"><span class="step-num">1</span>Install Your Token Driver</div><p>Mandatory before anything else. For HYP2003 tokens, install the ePass2003 driver. For ProxyKey (Watchdata) tokens, install the ProxyKey middleware. Restart if prompted.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">2</span>Plug In Your DSC Token</div><p>Insert your USB token and wait for Windows to detect it.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">3</span>Open PDFSign Software</div><p>Launch PDFSign from your desktop or Start menu.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">4</span>Select Your Certificate</div><p>PDFSign automatically detects your token and shows your certificate in the dropdown. If you have multiple certificates, click <strong>Refresh</strong> and select your Class 3 certificate. Verify the name matches your GeM-registered identity.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">5</span>Select Signing Mode and Load Your Document</div><p>For a single GeM document, choose <strong>Single PDF</strong> mode and click Browse to load the downloaded document. For multiple GeM documents to sign in one session, use <strong>Batch</strong> mode and select all files together.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">6</span>Place Your Signature</div><p>Drag your signature box on the PDF preview to the required signature location, or enter the page number and position values manually. Refer to the GeM document for where the signature should appear.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">7</span>Choose Signing Scope</div><p>Select <strong>Single Page</strong> or <strong>All Pages</strong> depending on the document requirement.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">8</span>Click Sign and Enter Your PIN</div><p>Click Sign. Enter your token PIN when prompted. PDFSign applies your digital signature.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">9</span>Save and Upload to GeM</div><p>The signed file is saved automatically as <strong>filename_signed.pdf</strong>. Set a custom output folder before signing if needed. Upload the signed PDF back to GeM to complete your submission.</p></div>
+
+<div class="tip"><strong>Important:</strong> Always fill in all required fields in the GeM document before signing. Any modification after signing will break the cryptographic seal and invalidate the signature.</div>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Why does GeM not accept my signature?</h3>
+<p>The most common reasons are: using a Class 2 certificate (GeM requires Class 3), an expired DSC, or a signature applied as an image rather than a cryptographic digital signature. PDFSign applies a cryptographically valid signature that GeM's verification system accepts.</p>
+
+<h3>Can I sign multiple GeM documents at once?</h3>
+<p>Yes. Use PDFSign's Batch mode to select and sign multiple documents in one session with the same certificate and settings.</p>
+
+<h3>Which CAs issue valid DSCs for GeM?</h3>
+<p>eMudhra, Capricorn, NSDL, (n)Code, Pentasign, vsign, and Sify are all licensed Certifying Authorities whose Class 3 DSCs are accepted on GeM portal.</p>
+
+<div class="cta-box">
+  <h2>Try PDFSign Free for 30 Days</h2>
+  <p>Sign PDFs with your DSC token instantly. Works on Windows 10 and 11.</p>
+  <a class="btn-green" href="https://cdn.pdfsign.in/PDFSignSetup.exe">Download PDFSign — Free Trial</a>
+</div>
+<div class="related">
+  <h2>Related Articles</h2>
+  <div class="related-grid">
+    <div class="related-card"><a href="how-to-sign-pdf-dsc-token-windows.html">How to Sign a PDF with DSC Token on Windows</a></div>
+    <div class="related-card"><a href="how-to-sign-gem-portal-documents-dsc.html">How to Sign GeM Portal Documents</a></div>
+    <div class="related-card"><a href="hyp2003-token-sign-pdf-windows.html">Using HYP2003 Token on Windows</a></div>
+    <div class="related-card"><a href="dsc-token-not-working-chrome-fix.html">DSC Token Not Working in Chrome</a></div>
+    <div class="related-card"><a href="sign-cppp-tender-documents-dsc.html">Signing CPPP Tender Documents</a></div>
+    <div class="related-card"><a href="it-act-2000-digital-signatures-india.html">IT Act 2000 and Digital Signatures</a></div>
+    <div class="related-card"><a href="emudhra-capricorn-signer-digital-comparison.html">Comparing DSC Signing Tools</a></div>
+    <div class="related-card"><a href="sign-mca21-documents-dsc-token.html">Signing MCA21 Documents with DSC</a></div>
+  </div>
+</div>
+</div>
+</div>
+<footer>
+  <p>© 2026 PDFSign.in by Tender Training India &nbsp;|&nbsp; <a href="https://pdfsign.in/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="https://pdfsign.in/terms.html">Terms</a> &nbsp;|&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
+</footer>
+</body>
+</html>

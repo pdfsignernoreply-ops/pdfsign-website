@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>How to Use HyperPKI (HYP2003) Token to Sign PDFs on Windows | PDFSign</title>
+<meta name="description" content="Fix HyperPKI HYP2003 token not detected in PDF signing apps. Step-by-step guide to sign PDFs with HYP2003 DSC token on Windows 10 and 11."/>
+<meta name="keywords" content="HYP2003 token PDF sign, HyperPKI PDF sign Windows, ePass2003 driver, HYP2003 not detected, HyperPKI DSC token Windows 10"/>
+<meta name="author" content="PDFSign"/>
+<meta name="geo.region" content="IN"/>
+<meta name="geo.country" content="India"/>
+<link rel="canonical" href="https://pdfsign.in/blog/hyp2003-token-sign-pdf-windows.html"/>
+<meta property="og:title" content="How to Use HyperPKI (HYP2003) Token to Sign PDFs on Windows"/>
+<meta property="og:description" content="Fix HyperPKI HYP2003 token not detected in PDF signing apps. Step-by-step guide to sign PDFs with HYP2003 DSC token on Windows 10 and 11."/>
+<meta property="og:url" content="https://pdfsign.in/blog/hyp2003-token-sign-pdf-windows.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="PDFSign"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to Use HyperPKI (HYP2003) Token to Sign PDFs on Windows"/>
+<meta name="twitter:description" content="Fix HyperPKI HYP2003 token not detected in PDF signing apps. Step-by-step guide to sign PDFs with HYP2003 DSC token on Windows 10 and 11."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"How to Use HyperPKI (HYP2003) Token to Sign PDFs on Windows",
+  "description":"Fix HyperPKI HYP2003 token not detected in PDF signing apps. Step-by-step guide to sign PDFs with HYP2003 DSC token on Windows 10 and 11.",
+  "author":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "publisher":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "datePublished":"2026-04-07",
+  "dateModified":"2026-04-07",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://pdfsign.in/blog/hyp2003-token-sign-pdf-windows.html"},
+  "inLanguage":"en-IN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"My HYP2003 token is not showing in PDFSign. What do I do?","acceptedAnswer":{"@type":"Answer","text":"Click Refresh in PDFSign. If still not detected, verify the ePass2003 driver is installed via Device Manager. Reinstall the driver and restart."}},
+    {"@type":"Question","name":"Can I use HYP2003 with any CA certificate?","acceptedAnswer":{"@type":"Answer","text":"Yes. HYP2003 stores certificates from any licensed CA. PDFSign supports eMudhra, Capricorn, NSDL, (n)Code, Pentasign, vsign, and Sify."}}
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+a{color:#16A34A;text-decoration:none}a:hover{text-decoration:underline}
+nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none}
+.nav-links a{color:#93C5FD;margin-left:1.5rem;font-size:.9rem}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.blog-hero{background:linear-gradient(135deg,#1B2A47 0%,#243352 100%);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center}
+.blog-hero .category{background:#16A34A;color:#fff;font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;display:inline-block;margin-bottom:1rem}
+.blog-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);max-width:750px;margin:0 auto .75rem;line-height:1.25}
+.blog-hero .meta{color:#93C5FD;font-size:.85rem}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#1B2A47;margin:2.5rem 0 .75rem;border-left:4px solid #16A34A;padding-left:.75rem}
+.content h3{font-size:1.1rem;font-weight:600;color:#1B2A47;margin:1.75rem 0 .5rem}
+.content p{margin-bottom:1rem;color:#334155}
+.content ul,.content ol{margin:.5rem 0 1rem 1.5rem;color:#334155}
+.content li{margin-bottom:.4rem}
+.content strong{color:#1B2A47}
+.step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin:1rem 0}
+.step-num{background:#1B2A47;color:#fff;font-size:.75rem;font-weight:700;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0}
+.step-title{font-weight:600;color:#1B2A47;display:flex;align-items:center;margin-bottom:.4rem}
+.step p{margin:0;color:#475569;font-size:.95rem}
+.tip{background:#f0fdf4;border-left:4px solid #16A34A;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.tip strong{color:#15803d}
+.warn{background:#fff7ed;border-left:4px solid #f97316;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.cta-box{background:linear-gradient(135deg,#1B2A47,#243352);color:#fff;border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0}
+.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.75rem;border:none;padding:0;color:#fff}
+.cta-box p{color:#93C5FD;margin-bottom:1.5rem}
+.btn-green{background:#16A34A;color:#fff;padding:.75rem 2rem;border-radius:8px;font-weight:600;display:inline-block;font-size:1rem}
+.btn-green:hover{background:#15803d;text-decoration:none}
+.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1.5rem}
+.breadcrumb a{color:#16A34A}
+footer{background:#1B2A47;color:#93C5FD;text-align:center;padding:2rem;font-size:.85rem;margin-top:3rem}
+footer a{color:#93C5FD}
+.related{background:#f8fafc;border-radius:12px;padding:2rem;margin:2rem 0}
+.related h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1B2A47;margin-bottom:1rem;border:none;padding:0}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.related-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;font-size:.9rem}
+.related-card a{color:#1B2A47;font-weight:500}.related-card a:hover{color:#16A34A}
+table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+th{background:#1B2A47;color:#fff;padding:.6rem 1rem;text-align:left;font-size:.85rem}
+td{padding:.6rem 1rem;border-bottom:1px solid #e2e8f0;font-size:.9rem;color:#334155}
+tr:nth-child(even) td{background:#f8fafc}
+@media(max-width:600px){nav{flex-direction:column;gap:.75rem}.nav-links a{margin-left:.75rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="https://pdfsign.in">PDF<span style="color:#16A34A">Sign</span>.in</a>
+  <div class="nav-links">
+    <a href="https://pdfsign.in">Home</a>
+    <a href="https://pdfsign.in/blog/">Blog</a>
+    <a href="https://pdfsign.in/#pricing">Pricing</a>
+    <a href="https://wa.me/917057413999">Support</a>
+  </div>
+</nav>
+<div class="blog-hero">
+  <div class="category">Token Guide</div>
+  <h1>How to Use HyperPKI (HYP2003) Token to Sign PDFs on Windows</h1>
+  <div class="meta">By PDFSign &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 5 min read</div>
+</div>
+<div class="container">
+<div class="breadcrumb">
+  <a href="https://pdfsign.in">Home</a> › <a href="https://pdfsign.in/blog/">Blog</a> › How to Use HyperPKI (HYP2003) Token to Sign PDFs on Windows
+</div>
+<div class="content">
+<p>The HYP2003 is one of the most widely used DSC token hardware devices in India. It stores certificates issued by Certifying Authorities including eMudhra, Capricorn, NSDL, (n)Code, Pentasign, vsign, and Sify. Despite being common, users frequently report that the HYP2003 is not detected by PDF signing software.</p>
+
+<h2>Why HYP2003 Tokens Go Undetected</h2>
+<p>Most PDF tools look for certificates in the Windows Certificate Store. The HYP2003 stores certificates in <strong>PKCS#11 format</strong> directly on the hardware — not in the Windows store. Any tool that does not support PKCS#11 will show an empty certificate list even when your token is plugged in and working correctly.</p>
+<p>PDFSign software reads certificates directly from PKCS#11-compatible tokens including the HYP2003, without requiring manual import into Windows.</p>
+
+<h2>Step-by-Step: Sign PDFs with HYP2003</h2>
+<div class="step"><div class="step-title"><span class="step-num">1</span>Download and Install the ePass2003 Driver</div><p>This is mandatory. Without the driver, Windows cannot communicate with your HYP2003 token and no software will detect it. Download the ePass2003 driver from your token vendor's website or from the CD/documentation that came with your token. Install it and restart your computer if prompted.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">2</span>Plug In Your HYP2003 Token</div><p>Insert the token into a USB port. Wait for Windows to detect it — you may see a notification in the system tray. If the device shows an error in Device Manager, the driver installation may need to be repeated.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">3</span>Open PDFSign Software</div><p>Launch PDFSign from your desktop or Start menu.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">4</span>Select Your Certificate</div><p>PDFSign automatically scans connected PKCS#11 tokens and displays your certificate in the dropdown. If multiple certificates are present — for example if you have multiple tokens connected — click <strong>Refresh</strong>. Select your certificate and verify the name matches your expected identity.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">5</span>Select Signing Mode and Load Your Document</div><p>Choose <strong>Single PDF</strong> to sign one document and click Browse to select the file. Choose <strong>Batch</strong> mode to sign multiple PDFs at once — select all the files you want to process. PDFSign will use the same certificate and settings for each file.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">6</span>Place Your Signature</div><p>Drag your signature box directly on the PDF preview, or enter page and X/Y coordinate values in the fields for precise placement.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">7</span>Choose Signing Scope</div><p>Select <strong>Single Page</strong> or <strong>All Pages</strong> as required by the document.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">8</span>Set Password Protection (Optional)</div><p>Configure password protection or document permissions in the Document Security section if needed before signing.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">9</span>Click Sign and Enter Your PIN</div><p>Click Sign. Enter your HYP2003 token PIN when prompted. PDFSign applies your digital signature.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">10</span>Collect Your Signed File</div><p>The signed PDF is saved as <strong>filename_signed.pdf</strong> in the same folder. For batch signing, each document is saved individually with the _signed suffix. Change the output location before signing if a different folder is required.</p></div>
+
+<div class="tip"><strong>ProxyKey note:</strong> PDFSign also handles ProxyKey (Watchdata) tokens where the Common Name sometimes shows as "localhost" — the app correctly extracts your identity from the Subject Organisation field.</div>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>My HYP2003 token is plugged in but not showing in PDFSign. What do I do?</h3>
+<p>Click the Refresh button in PDFSign. If still not detected, check that the ePass2003 driver is installed correctly — open Device Manager and verify the token appears without errors. Reinstall the driver and restart your PC if needed.</p>
+
+<h3>Can I use HYP2003 with a certificate from any CA?</h3>
+<p>Yes. The HYP2003 is a hardware token that can store certificates from any licensed CA — eMudhra, Capricorn, NSDL, (n)Code, Pentasign, vsign, or Sify. PDFSign supports all of these.</p>
+
+<div class="cta-box">
+  <h2>Try PDFSign Free for 30 Days</h2>
+  <p>Sign PDFs with your DSC token instantly. Works on Windows 10 and 11.</p>
+  <a class="btn-green" href="https://cdn.pdfsign.in/PDFSignSetup.exe">Download PDFSign — Free Trial</a>
+</div>
+<div class="related">
+  <h2>Related Articles</h2>
+  <div class="related-grid">
+    <div class="related-card"><a href="how-to-sign-pdf-dsc-token-windows.html">How to Sign a PDF with DSC Token on Windows</a></div>
+    <div class="related-card"><a href="how-to-sign-gem-portal-documents-dsc.html">How to Sign GeM Portal Documents</a></div>
+    <div class="related-card"><a href="hyp2003-token-sign-pdf-windows.html">Using HYP2003 Token on Windows</a></div>
+    <div class="related-card"><a href="dsc-token-not-working-chrome-fix.html">DSC Token Not Working in Chrome</a></div>
+    <div class="related-card"><a href="sign-cppp-tender-documents-dsc.html">Signing CPPP Tender Documents</a></div>
+    <div class="related-card"><a href="it-act-2000-digital-signatures-india.html">IT Act 2000 and Digital Signatures</a></div>
+    <div class="related-card"><a href="emudhra-capricorn-signer-digital-comparison.html">Comparing DSC Signing Tools</a></div>
+    <div class="related-card"><a href="sign-mca21-documents-dsc-token.html">Signing MCA21 Documents with DSC</a></div>
+  </div>
+</div>
+</div>
+</div>
+<footer>
+  <p>© 2026 PDFSign.in by Tender Training India &nbsp;|&nbsp; <a href="https://pdfsign.in/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="https://pdfsign.in/terms.html">Terms</a> &nbsp;|&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
+</footer>
+</body>
+</html>
