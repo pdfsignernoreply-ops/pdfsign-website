@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>How to Sign a PDF with DSC Token on Windows | PDFSign</title>
+<meta name="description" content="Step-by-step guide to signing PDF documents using your USB DSC token on Windows. Works with HYP2003, ProxyKey (Watchdata), and all major DSC tokens issued by eMudhra, Capricorn, NSDL."/>
+<meta name="keywords" content="sign PDF DSC token Windows, digital signature PDF India, HYP2003 PDF sign, ePass2003, GeM portal sign PDF, DSC token Windows 10"/>
+<meta name="author" content="PDFSign"/>
+<meta name="geo.region" content="IN"/>
+<meta name="geo.country" content="India"/>
+<link rel="canonical" href="https://pdfsign.in/blog/how-to-sign-pdf-dsc-token-windows.html"/>
+<meta property="og:title" content="How to Sign a PDF with DSC Token on Windows"/>
+<meta property="og:description" content="Step-by-step guide to signing PDFs with USB DSC token on Windows. Works with HYP2003, ProxyKey, eMudhra, Capricorn, NSDL certificates."/>
+<meta property="og:url" content="https://pdfsign.in/blog/how-to-sign-pdf-dsc-token-windows.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="PDFSign"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to Sign a PDF with DSC Token on Windows"/>
+<meta name="twitter:description" content="Step-by-step guide to signing PDFs with USB DSC token on Windows."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"How to Sign a PDF with DSC Token on Windows",
+  "description":"Step-by-step guide to signing PDF documents using your USB DSC token on Windows.",
+  "author":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "publisher":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "datePublished":"2026-04-07",
+  "dateModified":"2026-04-07",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://pdfsign.in/blog/how-to-sign-pdf-dsc-token-windows.html"},
+  "inLanguage":"en-IN",
+  "about":[{"@type":"Thing","name":"Digital Signature Certificate"},{"@type":"Thing","name":"PDF Signing"},{"@type":"Thing","name":"DSC Token"}]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Which DSC tokens work with PDFSign software?","acceptedAnswer":{"@type":"Answer","text":"PDFSign software works with HYP2003 (HyperPKI) and ProxyKey (Watchdata) tokens, and any PKCS#11-compatible USB DSC token. Certificates issued by eMudhra, Capricorn, NSDL, (n)Code, Pentasign, vsign, and Sify are all supported."}},
+    {"@type":"Question","name":"Do I need to install a driver for my DSC token?","acceptedAnswer":{"@type":"Answer","text":"Yes. For HYP2003 tokens, install the ePass2003 driver. For ProxyKey (Watchdata) tokens, install the ProxyKey middleware. Without the driver, no software will detect your token."}},
+    {"@type":"Question","name":"Can I sign multiple PDFs at once?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign software supports batch signing — you can select multiple PDF files and sign them all in one operation using the same certificate and signature settings."}}
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+a{color:#16A34A;text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* NAV */
+nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none}
+.nav-links a{color:#93C5FD;margin-left:1.5rem;font-size:.9rem}
+.nav-links a:hover{color:#fff;text-decoration:none}
+
+/* HERO */
+.blog-hero{background:linear-gradient(135deg,#1B2A47 0%,#243352 100%);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center}
+.blog-hero .category{background:#16A34A;color:#fff;font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;display:inline-block;margin-bottom:1rem}
+.blog-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);max-width:750px;margin:0 auto .75rem;line-height:1.25}
+.blog-hero .meta{color:#93C5FD;font-size:.85rem}
+
+/* CONTENT */
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#1B2A47;margin:2.5rem 0 .75rem;border-left:4px solid #16A34A;padding-left:.75rem}
+.content h3{font-size:1.1rem;font-weight:600;color:#1B2A47;margin:1.75rem 0 .5rem}
+.content p{margin-bottom:1rem;color:#334155}
+.content ul,.content ol{margin:.5rem 0 1rem 1.5rem;color:#334155}
+.content li{margin-bottom:.4rem}
+.content strong{color:#1B2A47}
+
+/* STEP BOX */
+.step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin:1rem 0;position:relative}
+.step-num{background:#1B2A47;color:#fff;font-size:.75rem;font-weight:700;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0}
+.step-title{font-weight:600;color:#1B2A47;display:flex;align-items:center;margin-bottom:.4rem}
+.step p{margin:0;color:#475569;font-size:.95rem}
+
+/* TIP BOX */
+.tip{background:#f0fdf4;border-left:4px solid #16A34A;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.tip strong{color:#15803d}
+
+/* CTA */
+.cta-box{background:linear-gradient(135deg,#1B2A47,#243352);color:#fff;border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0}
+.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.75rem;border:none;padding:0;color:#fff}
+.cta-box p{color:#93C5FD;margin-bottom:1.5rem}
+.btn-green{background:#16A34A;color:#fff;padding:.75rem 2rem;border-radius:8px;font-weight:600;display:inline-block;font-size:1rem}
+.btn-green:hover{background:#15803d;text-decoration:none}
+
+/* BREADCRUMB */
+.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1.5rem}
+.breadcrumb a{color:#16A34A}
+
+/* FOOTER */
+footer{background:#1B2A47;color:#93C5FD;text-align:center;padding:2rem;font-size:.85rem;margin-top:3rem}
+footer a{color:#93C5FD}
+
+/* RELATED */
+.related{background:#f8fafc;border-radius:12px;padding:2rem;margin:2rem 0}
+.related h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1B2A47;margin-bottom:1rem;border:none;padding:0}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.related-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;font-size:.9rem}
+.related-card a{color:#1B2A47;font-weight:500}
+.related-card a:hover{color:#16A34A}
+
+@media(max-width:600px){nav{flex-direction:column;gap:.75rem}.nav-links a{margin-left:.75rem}.step-title{font-size:.95rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="https://pdfsign.in">PDF<span style="color:#16A34A">Sign</span>.in</a>
+  <div class="nav-links">
+    <a href="https://pdfsign.in">Home</a>
+    <a href="https://pdfsign.in/blog/">Blog</a>
+    <a href="https://pdfsign.in/#pricing">Pricing</a>
+    <a href="https://wa.me/917057413999">Support</a>
+  </div>
+</nav>
+
+<div class="blog-hero">
+  <div class="category">DSC Token Guide</div>
+  <h1>How to Sign a PDF with DSC Token on Windows</h1>
+  <div class="meta">By PDFSign &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 5 min read</div>
+</div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="https://pdfsign.in">Home</a> › <a href="https://pdfsign.in/blog/">Blog</a> › How to Sign a PDF with DSC Token on Windows
+  </div>
+
+  <div class="content">
+    <p>If you work with government portals in India, a Digital Signature Certificate (DSC) is not optional — it is mandatory. Whether you are submitting tenders on GeM, filing on MCA21, or uploading documents on CPPP, your PDF must carry a valid digital signature.</p>
+    <p>But the process has always been painful. You plug in your USB token, open your PDF, and spend the next 30 minutes figuring out why no certificate is showing up. PDFSign software fixes that.</p>
+
+    <h2>What You Need Before You Start</h2>
+    <ul>
+      <li>A Windows PC (Windows 10 or 11)</li>
+      <li>A USB DSC token — <strong>HYP2003</strong> or <strong>ProxyKey (Watchdata)</strong> are the most common</li>
+      <li>Your DSC token driver installed — <strong>ePass2003 driver</strong> for HYP2003, <strong>ProxyKey middleware</strong> for Watchdata tokens — this is mandatory</li>
+      <li>A valid DSC issued by a licensed Certifying Authority: <strong>eMudhra, Capricorn, NSDL, (n)Code, Pentasign, vsign, or Sify</strong></li>
+      <li>PDFSign software installed on your PC (30-day free trial available)</li>
+    </ul>
+
+    <h2>Step-by-Step: Signing Your PDF</h2>
+
+    <div class="step"><div class="step-title"><span class="step-num">1</span>Install Your Token Driver</div><p>Before anything else, install the driver for your token. For HYP2003 tokens, install the ePass2003 driver from your token vendor. For ProxyKey (Watchdata) tokens, install the ProxyKey middleware. Restart your computer after installation if prompted. Without this step, no software will detect your token.</p></div>
+
+    <div class="step"><div class="step-title"><span class="step-num">2</span>Plug In Your DSC Token</div><p>Insert your USB DSC token into your computer. Wait a few seconds for Windows to recognise it. You may see a notification in the taskbar confirming the device is ready.</p></div>
+
+    <div class="step"><div class="step-title"><span class="step-num">3</span>Open PDFSign Software</div><p>Launch PDFSign from your desktop or Start menu.</p></div>
+
+    <div class="step"><div class="step-title"><span class="step-num">4</span>Select Your Certificate</div><p>PDFSign automatically scans your connected token and displays your certificate in the certificate dropdown. If your system has multiple tokens or multiple certificates on one token, click the <strong>Refresh</strong> button to reload the list. Select the correct certificate — verify that the name matches your expected identity before proceeding.</p></div>
+
+    <div class="step"><div class="step-title"><span class="step-num">5</span>Select Your Signing Mode</div><p>PDFSign supports two signing modes:<br/><strong>Single PDF</strong> — sign one document at a time. Click Browse and select the PDF file.<br/><strong>Batch signing</strong> — sign multiple PDFs at once. Select your batch of files together. PDFSign processes each one using the same certificate and settings.</p></div>
+
+    <div class="step"><div class="step-title"><span class="step-num">6</span>Place Your Signature</div><p>Two placement options are available:<br/>• <strong>Drag on the PDF preview</strong> — click and drag to draw your signature box exactly where you want it.<br/>• <strong>Use position controls</strong> — enter the page number and X/Y coordinates for precise placement.</p></div>
+
+    <div class="step"><div class="step-title"><span class="step-num">7</span>Choose Signing Scope</div><p>Select <strong>Single Page</strong> or <strong>All Pages</strong>. Multi-page tender documents often require a signature on every page — use All Pages in that case.</p></div>
+
+    <div class="step"><div class="step-title"><span class="step-num">8</span>Set Password Protection (Optional)</div><p>If you want to protect the signed PDF with a password or restrict permissions such as printing or copying, configure this in the Document Security section before clicking Sign.</p></div>
+
+    <div class="step"><div class="step-title"><span class="step-num">9</span>Click Sign and Enter Your PIN</div><p>Click the Sign button. A prompt will appear asking for your token PIN. Enter the PIN you set when your DSC was issued. PDFSign will apply your digital signature to the document.</p></div>
+
+    <div class="step"><div class="step-title"><span class="step-num">10</span>Your Signed PDF Is Ready</div><p>PDFSign automatically saves the signed file as <strong>filename_signed.pdf</strong> in the same folder as your original. If you need to save it elsewhere, use the output path option to choose your preferred folder before signing. For batch signing, each file is saved individually with the <code>_signed</code> suffix.</p></div>
+
+    <div class="tip"><strong>Legal validity:</strong> Your signed PDF is legally valid under the IT Act 2000, Section 3 and Section 5, and is accepted on all major Indian government portals including GeM, CPPP, and MCA21.</div>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>Which DSC tokens work with PDFSign?</h3>
+    <p>PDFSign works with HYP2003 (HyperPKI), ProxyKey (Watchdata), and any PKCS#11-compatible USB DSC token. Certificates from eMudhra, Capricorn, NSDL, (n)Code, Pentasign, vsign, and Sify are all supported.</p>
+
+    <h3>Do I need to install a driver?</h3>
+    <p>Yes, always. For HYP2003 tokens, install the ePass2003 driver. For ProxyKey (Watchdata) tokens, install the ProxyKey middleware. Without the driver, no software — including PDFSign — will detect your token.</p>
+
+    <h3>Can I sign multiple PDFs at once?</h3>
+    <p>Yes. PDFSign supports batch signing — select multiple PDF files and sign them all in one operation using the same certificate and signature settings.</p>
+
+    <div class="cta-box">
+      <h2>Ready to Sign Your First PDF?</h2>
+      <p>30-day free trial. No credit card required. Works on Windows 10 and 11.</p>
+      <a class="btn-green" href="https://cdn.pdfsign.in/PDFSignSetup.exe">Download PDFSign — Free Trial</a>
+    </div>
+
+    <div class="related">
+      <h2>Related Articles</h2>
+      <div class="related-grid">
+        <div class="related-card"><a href="how-to-sign-gem-portal-documents-dsc.html">How to Sign GeM Portal Documents with DSC</a></div>
+        <div class="related-card"><a href="hyp2003-token-sign-pdf-windows.html">How to Use HYP2003 Token to Sign PDFs</a></div>
+        <div class="related-card"><a href="dsc-token-not-working-chrome-fix.html">DSC Token Not Working in Chrome — Fix</a></div>
+        <div class="related-card"><a href="sign-cppp-tender-documents-dsc.html">How to Sign CPPP Tender Documents</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 PDFSign.in by Tender Training India &nbsp;|&nbsp; <a href="https://pdfsign.in/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="https://pdfsign.in/terms.html">Terms</a> &nbsp;|&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
+</footer>
+
+</body>
+</html>
