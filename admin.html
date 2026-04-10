@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>PDFSign.in — Admin</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
+#login-page{display:flex;align-items:center;justify-content:center;min-height:100vh}
+.login-box{background:#1e293b;border:1px solid #334155;border-radius:16px;padding:40px;width:360px}
+.login-logo{text-align:center;margin-bottom:28px}
+.brand-lg{font-size:24px;font-weight:800;color:#fff}.brand-lg span{color:#16a34a}
+.login-sub{font-size:12px;color:#64748b;margin-top:4px}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.fg input,.fg select,.fg textarea{width:100%;background:#0f172a;border:1px solid #334155;color:#e2e8f0;padding:10px 14px;border-radius:8px;font-size:13px;outline:none;font-family:inherit}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:#16a34a}
+.fg textarea{resize:vertical;min-height:60px}
+.btn-p{width:100%;background:#16a34a;color:#fff;border:none;padding:12px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px}
+.btn-p:hover{background:#15803d}.btn-p:disabled{opacity:.5;cursor:not-allowed}
+.login-err{color:#f87171;font-size:13px;margin-top:10px;text-align:center;display:none}
+#app{display:none;min-height:100vh;flex-direction:column}
+header{background:#1b2a47;border-bottom:1px solid #334155;padding:13px 24px;display:flex;align-items:center;gap:12px}
+.brand{font-size:17px;font-weight:800;color:#fff}.brand span{color:#16a34a}
+.badge{background:#16a34a;color:#fff;font-size:10px;font-weight:700;padding:2px 9px;border-radius:100px}
+.hdr-right{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:12px;color:#94a3b8}
+.role-chip{font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;text-transform:uppercase}
+.chip-admin{background:#16a34a22;color:#4ade80;border:1px solid #16a34a44}
+.chip-viewer{background:#64748b22;color:#94a3b8;border:1px solid #64748b44}
+.btn-logout{background:none;border:1px solid #334155;color:#94a3b8;padding:4px 12px;border-radius:6px;font-size:11px;cursor:pointer}
+.btn-logout:hover{border-color:#ef4444;color:#ef4444}
+.tabs{background:#1e293b;border-bottom:1px solid #334155;display:flex}
+.tab{padding:11px 22px;font-size:13px;font-weight:600;color:#64748b;cursor:pointer;border-bottom:2px solid transparent}
+.tab:hover{color:#e2e8f0}.tab.active{color:#16a34a;border-bottom-color:#16a34a}
+main{padding:22px;flex:1}
+.section-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+h2{font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.08em}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.stat{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:14px 18px;flex:1;min-width:110px}
+.sv{font-size:26px;font-weight:800;color:#fff;line-height:1}
+.sl{font-size:10px;color:#64748b;margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.toolbar input,.toolbar select{background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:7px 11px;border-radius:7px;font-size:12px;outline:none}
+.toolbar input{width:220px}.toolbar input:focus,.toolbar select:focus{border-color:#16a34a}
+.btn-g{background:#16a34a;color:#fff;border:none;padding:7px 14px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer}
+.btn-g:hover{background:#15803d}
+.btn-r{background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:7px 12px;border-radius:7px;font-size:12px;cursor:pointer}
+.btn-r:hover{border-color:#16a34a;color:#4ade80}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:#1e293b;color:#64748b;text-align:left;padding:8px 11px;font-size:10px;text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid #334155;font-weight:700;white-space:nowrap}
+td{padding:9px 11px;border-bottom:1px solid #1e293b55;vertical-align:top}
+tr:hover td{background:#1e293b33}
+.key{font-family:'Courier New',monospace;font-size:11px;font-weight:700;color:#93c5fd;letter-spacing:.04em}
+.pb{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:100px;text-transform:uppercase;letter-spacing:.05em}
+.pb-monthly{background:#7c3aed22;color:#a78bfa;border:1px solid #7c3aed44}
+.pb-yearly{background:#0369a122;color:#38bdf8;border:1px solid #0369a144}
+.pb-lifetime{background:#16a34a22;color:#4ade80;border:1px solid #16a34a44}
+.pb-team-yearly{background:#ea580c22;color:#fb923c;border:1px solid #ea580c44}
+.pb-team-lifetime{background:#dc262622;color:#f87171;border:1px solid #dc262644}
+.ok{color:#4ade80;font-weight:700}.no{color:#ef4444;font-weight:700}
+.solo{background:#33415544;color:#94a3b8;border:1px solid #33415566;display:inline-block;font-size:9px;font-weight:700;padding:2px 6px;border-radius:100px;text-transform:uppercase}
+.ts{color:#64748b;font-size:11px}
+.src-manual{color:#fb923c;font-weight:700;font-size:11px}
+.src-other{color:#64748b;font-size:11px}
+.ib{font-size:10px;color:#64748b}
+.nt{font-size:10px;color:#94a3b8;font-style:italic}
+.sbar-wrap{display:flex;align-items:center;gap:5px}
+.sbar{height:5px;background:#1e293b;border-radius:3px;flex:1;min-width:36px;overflow:hidden;border:1px solid #334155}
+.sbar-fill{height:100%;background:#16a34a;border-radius:3px}
+.sbar-fill.full{background:#ef4444}
+.stxt{font-size:10px;color:#94a3b8;white-space:nowrap}
+.tbtn{background:none;border:1px solid #334155;color:#94a3b8;padding:2px 7px;border-radius:4px;font-size:10px;cursor:pointer}
+.tbtn:hover{border-color:#16a34a;color:#4ade80}
+.act-tbl{margin:5px 0 0;background:#0f172a;border-radius:6px;overflow:hidden;border:1px solid #334155;display:none;width:100%}
+.act-tbl.open{display:table}
+.act-tbl th{background:#0f172a;color:#475569;font-size:9px;padding:5px 9px}
+.act-tbl td{padding:5px 9px;font-size:10px;border-bottom:1px solid #1e293b33;color:#cbd5e1}
+.act-tbl tr:last-child td{border-bottom:none}
+.rbtn{background:#7f1d1d44;color:#fca5a5;border:1px solid #7f1d1d88;padding:2px 7px;border-radius:4px;font-size:9px;cursor:pointer;font-weight:700}
+.rbtn:hover{background:#ef4444;color:#fff;border-color:#ef4444}
+.rbtn:disabled{opacity:.4;cursor:not-allowed}
+.rtag{color:#475569;font-style:italic;font-size:10px}
+.empty{text-align:center;padding:48px;color:#475569}
+#tbl-load{text-align:center;padding:48px;color:#64748b}
+.mbg{display:none;position:fixed;inset:0;background:#00000099;z-index:100;align-items:center;justify-content:center}
+.mbg.open{display:flex}
+.mbox{background:#1e293b;border:1px solid #334155;border-radius:14px;padding:26px;width:460px;max-width:95vw;max-height:90vh;overflow-y:auto}
+.mbox h3{font-size:15px;font-weight:700;color:#fff;margin-bottom:18px}
+.mact{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+.btn-cancel{background:none;border:1px solid #334155;color:#94a3b8;padding:8px 16px;border-radius:7px;font-size:12px;cursor:pointer}
+.btn-cancel:hover{border-color:#ef4444;color:#ef4444}
+.mmsg{margin-top:10px;font-size:12px;text-align:center;display:none;padding:8px;border-radius:6px}
+.urow{display:flex;align-items:center;background:#1e293b;border:1px solid #334155;border-radius:10px;padding:12px 16px;margin-bottom:8px;gap:12px}
+.uavatar{width:34px;height:34px;border-radius:50%;background:#334155;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#94a3b8;flex-shrink:0}
+.uinfo{flex:1}.uname{font-size:13px;font-weight:600;color:#e2e8f0}
+.uemail{font-size:11px;color:#64748b}.umeta{font-size:10px;color:#475569;margin-top:2px}
+.uact{display:flex;gap:6px;align-items:center}
+.bsm{padding:4px 10px;border-radius:5px;font-size:10px;font-weight:700;cursor:pointer;border:1px solid transparent}
+.b-danger{background:#7f1d1d44;color:#fca5a5;border-color:#7f1d1d88}
+.b-danger:hover{background:#ef4444;color:#fff;border-color:#ef4444}
+.b-outline{background:none;border:1px solid #334155;color:#94a3b8}
+.b-outline:hover{border-color:#16a34a;color:#4ade80}
+.you-tag{font-size:9px;background:#16a34a22;color:#4ade80;border:1px solid #16a34a44;padding:1px 6px;border-radius:100px;margin-left:5px}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-page">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="brand-lg">PDF<span>Sign</span>.in</div>
+      <div class="login-sub">Admin Portal</div>
+    </div>
+    <div class="fg"><label>Email</label><input type="email" id="le" placeholder="you@example.com" autocomplete="username"/></div>
+    <div class="fg"><label>Password</label><input type="password" id="lp" placeholder="••••••••" autocomplete="current-password"/></div>
+    <button class="btn-p" id="lbtn" onclick="doLogin()">Sign In</button>
+    <div class="login-err" id="lerr"></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <header>
+    <div class="brand">PDF<span>Sign</span>.in</div>
+    <div class="badge">Admin</div>
+    <div class="hdr-right">
+      <span id="hname">—</span>
+      <span class="role-chip chip-admin" id="hrole">admin</span>
+      <span id="hrefresh" style="font-size:10px;color:#475569"></span>
+      <button class="btn-logout" onclick="logout()">Sign out</button>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('lic',this)">Licenses</div>
+    <div class="tab" onclick="showTab('usr',this)">Users</div>
+  </div>
+
+  <main>
+    <div id="plic">
+      <h2 style="margin-bottom:14px">Dashboard</h2>
+      <div class="stats">
+        <div class="stat"><div class="sv" id="st">—</div><div class="sl">Total</div></div>
+        <div class="stat"><div class="sv" id="sa">—</div><div class="sl">Active</div></div>
+        <div class="stat"><div class="sv" id="sm">—</div><div class="sl">Manual</div></div>
+        <div class="stat"><div class="sv" id="ste">—</div><div class="sl">Team</div></div>
+        <div class="stat"><div class="sv" id="ssu">—</div><div class="sl">Seats Used</div></div>
+      </div>
+      <div class="toolbar">
+        <input type="text" id="qsearch" placeholder="Search key, email, note…" oninput="render()"/>
+        <select id="qplan" onchange="render()">
+          <option value="">All Plans</option>
+          <option value="monthly">Monthly</option>
+          <option value="yearly">Yearly</option>
+          <option value="lifetime">Lifetime</option>
+          <option value="team-yearly">Team Yearly</option>
+          <option value="team-lifetime">Team Lifetime</option>
+        </select>
+        <select id="qstatus" onchange="render()">
+          <option value="">All Status</option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+        <select id="qsrc" onchange="render()">
+          <option value="">All Sources</option>
+          <option value="manual">Manual</option>
+          <option value="razorpay">Razorpay</option>
+          <option value="website">Website</option>
+          <option value="app">App</option>
+        </select>
+        <button class="btn-r" onclick="loadLicenses()">⟳ Refresh</button>
+        <button class="btn-g" id="issue-btn" style="display:none" onclick="openIssue()">+ Issue License</button>
+      </div>
+      <div id="tbl-load">Loading…</div>
+      <div id="tbl-wrap" style="display:none;overflow-x:auto">
+        <table>
+          <thead><tr>
+            <th>License Key</th><th>Plan</th><th>Status</th><th>Seats</th>
+            <th>Customer</th><th>Source / By</th><th>Note</th>
+            <th>Expiry</th><th>Created</th><th>Activations</th>
+          </tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+        <div id="tbl-empty" class="empty" style="display:none">No licenses match.</div>
+      </div>
+    </div>
+
+    <div id="pusr" style="display:none">
+      <div class="section-hdr">
+        <h2>Admin Users</h2>
+        <button class="btn-g" onclick="openAddUser()">+ Add User</button>
+      </div>
+      <div id="ulist"><div class="empty">Loading…</div></div>
+    </div>
+  </main>
+</div>
+
+<!-- ISSUE MODAL -->
+<div class="mbg" id="mIssue">
+  <div class="mbox">
+    <h3>Issue License Manually</h3>
+    <div class="fg"><label>Customer Name *</label><input type="text" id="iname" placeholder="Rajesh Sharma"/></div>
+    <div class="fg"><label>Email *</label><input type="email" id="iemail" placeholder="rajesh@example.com"/></div>
+    <div class="fg"><label>Phone (optional)</label><input type="text" id="iphone" placeholder="+91 98765 43210"/></div>
+    <div class="fg"><label>Plan *</label>
+      <select id="iplan" onchange="updateExpiry()">
+        <option value="yearly">1 Year — ₹999</option>
+        <option value="monthly">1 Month — ₹99</option>
+        <option value="lifetime">Lifetime — ₹4,999</option>
+        <option value="team-yearly">Team · 1 Year (5 seats) — ₹3,499</option>
+        <option value="team-lifetime">Team · Lifetime (5 seats) — ₹13,999</option>
+      </select>
+    </div>
+    <div class="fg"><label>Expiry (auto-set, editable)</label><input type="date" id="iexpiry"/></div>
+    <div class="fg"><label>Reason / Note *</label>
+      <textarea id="inote" placeholder="e.g. DSC bundle — Capricorn, Direct payment, Student offer"></textarea>
+    </div>
+    <div class="mmsg" id="imsg"></div>
+    <div class="mact">
+      <button class="btn-cancel" onclick="closeIssue()">Cancel</button>
+      <button class="btn-g" id="ibtn" onclick="doIssue()">Issue License</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD USER MODAL -->
+<div class="mbg" id="mUser">
+  <div class="mbox">
+    <h3>Add Admin User</h3>
+    <div class="fg"><label>Full Name *</label><input type="text" id="uname" placeholder="Priya Shah"/></div>
+    <div class="fg"><label>Email *</label><input type="email" id="uemail" placeholder="priya@example.com"/></div>
+    <div class="fg"><label>Password * (min 8 chars)</label><input type="password" id="upass" placeholder="••••••••"/></div>
+    <div class="fg"><label>Role</label>
+      <select id="urole">
+        <option value="viewer">Viewer — view licenses only, cannot issue</option>
+        <option value="admin">Admin — full access including issuing licenses</option>
+      </select>
+    </div>
+    <div class="mmsg" id="umsg"></div>
+    <div class="mact">
+      <button class="btn-cancel" onclick="closeAddUser()">Cancel</button>
+      <button class="btn-g" id="ubtn" onclick="doAddUser()">Create User</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var API = 'https://pdfsigner-api.vercel.app/api/admin';
+var S = null, ALL = [];
+
+window.onload = function() {
+  var saved = sessionStorage.getItem('pdfsign_adm');
+  if (saved) { try { S = JSON.parse(saved); showApp(); } catch(e) { showLogin(); } }
+  else showLogin();
+  document.getElementById('lp').onkeydown = function(e){ if(e.key==='Enter') doLogin(); };
+};
+
+function showLogin() {
+  document.getElementById('login-page').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+}
+function showApp() {
+  document.getElementById('login-page').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+  document.getElementById('hname').textContent = S.name;
+  document.getElementById('hrole').textContent = S.role;
+  document.getElementById('hrole').className = 'role-chip ' + (S.role==='admin' ? 'chip-admin' : 'chip-viewer');
+  if (S.role === 'admin') document.getElementById('issue-btn').style.display = 'inline-block';
+  updateExpiry();
+  loadLicenses();
+}
+
+async function doLogin() {
+  var email = document.getElementById('le').value.trim();
+  var pass  = document.getElementById('lp').value;
+  var btn   = document.getElementById('lbtn');
+  var err   = document.getElementById('lerr');
+  if (!email || !pass) { showErrEl(err,'Enter email and password'); return; }
+  btn.disabled=true; btn.textContent='Signing in…'; err.style.display='none';
+  try {
+    var r = await fetch(API+'/login', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email,password:pass}) });
+    var j = await r.json();
+    if (!r.ok) { showErrEl(err, j.error||'Login failed'); return; }
+    S = { token:j.token, name:j.name, role:j.role, email:j.email };
+    sessionStorage.setItem('pdfsign_adm', JSON.stringify(S));
+    showApp();
+  } catch(e) { showErrEl(err,'Network error: '+e.message);
+  } finally { btn.disabled=false; btn.textContent='Sign In'; }
+}
+function logout() {
+  sessionStorage.removeItem('pdfsign_adm'); S=null; ALL=[];
+  document.getElementById('le').value=''; document.getElementById('lp').value='';
+  showLogin();
+}
+
+function showTab(t, el) {
+  document.querySelectorAll('.tab').forEach(function(x){ x.classList.remove('active'); });
+  el.classList.add('active');
+  document.getElementById('plic').style.display = t==='lic' ? 'block' : 'none';
+  document.getElementById('pusr').style.display = t==='usr' ? 'block' : 'none';
+  if (t==='usr') loadUsers();
+}
+
+async function loadLicenses() {
+  document.getElementById('tbl-load').style.display = 'block';
+  document.getElementById('tbl-wrap').style.display = 'none';
+  try {
+    var r = await apicall(API+'/licenses');
+    if (r.status===401) { logout(); return; }
+    var j = await r.json();
+    ALL = j.licenses||[];
+    var s = j.stats||{};
+    document.getElementById('st').textContent  = s.total     ??'—';
+    document.getElementById('sa').textContent  = s.active    ??'—';
+    document.getElementById('sm').textContent  = s.manual    ??'—';
+    document.getElementById('ste').textContent = s.team      ??'—';
+    document.getElementById('ssu').textContent = s.seatsUsed ??'—';
+    render();
+    document.getElementById('hrefresh').textContent = new Date().toLocaleTimeString('en-IN');
+  } catch(e) { document.getElementById('tbl-load').textContent='Error: '+e.message; }
+}
+
+function render() {
+  var q   = document.getElementById('qsearch').value.toLowerCase();
+  var fp  = document.getElementById('qplan').value;
+  var fs  = document.getElementById('qstatus').value;
+  var fsr = document.getElementById('qsrc').value;
+  var rows = ALL.filter(function(l) {
+    if (fp  && l.plan   !== fp)  return false;
+    if (fsr && l.source !== fsr) return false;
+    if (fs==='active'   && !l.is_active) return false;
+    if (fs==='inactive' &&  l.is_active) return false;
+    if (q) {
+      var hay = [l.license_key,l.customer_email,l.customer_name,l.plan,l.issued_by,l.note,l.source].filter(Boolean).join(' ').toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+  document.getElementById('tbl-load').style.display  = 'none';
+  document.getElementById('tbl-wrap').style.display  = 'block';
+  document.getElementById('tbl-empty').style.display = rows.length ? 'none':'block';
+
+  document.getElementById('tbody').innerHTML = rows.map(function(l) {
+    var mx = l.max_seats||1, used = l.seats_used||0, isTeam = mx>1;
+    var pct = mx ? Math.round(used/mx*100) : 0;
+    var seatsCell = isTeam
+      ? '<div class="sbar-wrap"><div class="sbar"><div class="sbar-fill'+(used>=mx?' full':'')+'" style="width:'+pct+'%"></div></div><span class="stxt">'+used+'/'+mx+'</span></div>'
+      : '<span class="solo">Solo</span>';
+    var actSec = '';
+    if (isTeam && l.activations && l.activations.length) {
+      var arows = l.activations.map(function(a) {
+        var act = !a.deactivated_at;
+        return '<tr><td>'+esc(a.machine_name||a.machine_id)+'</td>'
+          +'<td style="font-family:monospace;font-size:9px;color:#64748b">'+esc(a.machine_id)+'</td>'
+          +'<td>'+new Date(a.activated_at).toLocaleDateString('en-IN')+'</td>'
+          +'<td>'+(act?'<span style="color:#4ade80;font-weight:700">Active</span>':'<span class="rtag">Revoked</span>')+'</td>'
+          +'<td>'+(act?'<button class="rbtn" onclick="revoke(\''+esc(l.license_key)+'\',\''+esc(a.machine_id)+'\',this)">Revoke</button>':'')+'</td></tr>';
+      }).join('');
+      actSec = '<table class="act-tbl" id="act-'+esc(l.license_key)+'"><thead><tr><th>Machine</th><th>ID</th><th>Date</th><th>Status</th><th></th></tr></thead><tbody>'+arows+'</tbody></table>';
+    }
+    var srcHtml = l.source==='manual'
+      ? '<span class="src-manual">manual</span><br><span class="ib">'+esc(l.issued_by||'')+'</span>'
+      : '<span class="src-other">'+esc(l.source||'—')+'</span>';
+    var custHtml = [l.customer_name,l.customer_email].filter(Boolean).map(esc).join('<br>') || '—';
+
+    return '<tr>'
+      +'<td><span class="key">'+esc(l.license_key)+'</span></td>'
+      +'<td><span class="pb pb-'+((l.plan||'').replace(/[^a-z-]/g,''))+'">'+esc(l.plan)+'</span></td>'
+      +'<td class="'+(l.is_active?'ok':'no')+'">'+(l.is_active?'Active':'Inactive')+'</td>'
+      +'<td>'+seatsCell+'</td>'
+      +'<td class="ts">'+custHtml+'</td>'
+      +'<td>'+srcHtml+'</td>'
+      +'<td class="nt">'+esc(l.note||'—')+'</td>'
+      +'<td class="ts">'+fmtDate(l.end_date)+'</td>'
+      +'<td class="ts">'+fmtDate(l.created_at)+'</td>'
+      +'<td>'+(isTeam && l.activations&&l.activations.length
+        ? '<button class="tbtn" onclick="toggleAct(\''+esc(l.license_key)+'\')">seats ('+l.activations.length+')</button>'+actSec
+        : (l.machine_id?'<span style="font-family:monospace;font-size:9px;color:#475569">'+esc(l.machine_id.slice(0,10))+'…</span>':'—'))
+      +'</td></tr>';
+  }).join('');
+}
+
+function toggleAct(key) { var el=document.getElementById('act-'+key); if(el) el.classList.toggle('open'); }
+
+async function revoke(licenseKey, machineId, btn) {
+  if (!confirm('Revoke seat?\nMachine: '+machineId)) return;
+  btn.disabled=true; btn.textContent='…';
+  try {
+    var r = await apicall(API+'/revoke','POST',{licenseKey,machineId});
+    var j = await r.json();
+    if (j.success) loadLicenses();
+    else { alert('Error: '+(j.error||'Unknown')); btn.disabled=false; btn.textContent='Revoke'; }
+  } catch(e) { alert('Network error'); btn.disabled=false; btn.textContent='Revoke'; }
+}
+
+function openIssue() {
+  ['iname','iemail','iphone','inote'].forEach(function(id){ document.getElementById(id).value=''; });
+  document.getElementById('iplan').value='yearly';
+  document.getElementById('imsg').style.display='none';
+  updateExpiry();
+  document.getElementById('mIssue').classList.add('open');
+}
+function closeIssue() { document.getElementById('mIssue').classList.remove('open'); }
+
+function updateExpiry() {
+  var plan = document.getElementById('iplan') ? document.getElementById('iplan').value : 'yearly';
+  var months = {monthly:1,yearly:12,'team-yearly':12}[plan];
+  var inp = document.getElementById('iexpiry');
+  if (!inp) return;
+  if (months) { var d=new Date(); d.setMonth(d.getMonth()+months); inp.value=d.toISOString().split('T')[0]; inp.disabled=false; }
+  else { inp.value=''; inp.disabled=true; }
+}
+
+async function doIssue() {
+  var name  = document.getElementById('iname').value.trim();
+  var email = document.getElementById('iemail').value.trim();
+  var phone = document.getElementById('iphone').value.trim();
+  var plan  = document.getElementById('iplan').value;
+  var exp   = document.getElementById('iexpiry').value;
+  var note  = document.getElementById('inote').value.trim();
+  var msg   = document.getElementById('imsg');
+  var btn   = document.getElementById('ibtn');
+  if (!name||!email||!note) { showMsg(msg,'Name, email and note are required.','#f87171'); return; }
+  btn.disabled=true; btn.textContent='Issuing…'; showMsg(msg,'Processing…','#94a3b8');
+  try {
+    var r = await apicall(API+'/issue','POST',{customerName:name,email,phone,plan,expiry:exp||null,note});
+    var j = await r.json();
+    if (j.success) {
+      showMsg(msg,'✓ License issued: '+j.licenseKey+(j.emailSent?' — Email sent ✓':' — Email failed, copy key'),'#4ade80');
+      loadLicenses();
+      setTimeout(closeIssue, 4000);
+    } else { showMsg(msg,'✗ '+(j.error||'Failed'),'#f87171'); }
+  } catch(e) { showMsg(msg,'✗ Network error','#f87171');
+  } finally { btn.disabled=false; btn.textContent='Issue License'; }
+}
+
+async function loadUsers() {
+  document.getElementById('ulist').innerHTML='<div class="empty">Loading…</div>';
+  try {
+    var r = await apicall(API+'/users');
+    if (!r.ok) throw new Error('Failed');
+    var j = await r.json();
+    renderUsers(j.users||[]);
+  } catch(e) { document.getElementById('ulist').innerHTML='<div class="empty">Error loading users</div>'; }
+}
+function renderUsers(users) {
+  if (!users.length) { document.getElementById('ulist').innerHTML='<div class="empty">No users yet.</div>'; return; }
+  document.getElementById('ulist').innerHTML = users.map(function(u) {
+    var isMe = u.email===S.email;
+    var ini  = u.name.split(' ').map(function(w){return w[0]||'';}).join('').slice(0,2).toUpperCase();
+    return '<div class="urow">'
+      +'<div class="uavatar">'+esc(ini)+'</div>'
+      +'<div class="uinfo"><div class="uname">'+esc(u.name)+(isMe?'<span class="you-tag">You</span>':'')+'</div>'
+      +'<div class="uemail">'+esc(u.email)+'</div>'
+      +'<div class="umeta">'+esc(u.role)+' &nbsp;·&nbsp; Last login: '+(u.last_login_at?new Date(u.last_login_at).toLocaleDateString('en-IN'):'Never')+'</div></div>'
+      +'<div class="uact">'
+      +'<span class="role-chip '+(u.role==='admin'?'chip-admin':'chip-viewer')+'">'+esc(u.role)+'</span>'
+      +(!isMe?'<button class="bsm b-outline" onclick="toggleRole('+u.id+',\''+(u.role==='admin'?'viewer':'admin')+'\')">→ '+(u.role==='admin'?'Viewer':'Admin')+'</button>'
+             +'<button class="bsm b-danger" onclick="toggleActive('+u.id+','+(!u.is_active)+')">'+( u.is_active?'Deactivate':'Activate')+'</button>':'')
+      +'</div></div>';
+  }).join('');
+}
+async function toggleRole(id,role) {
+  if (!confirm('Change role to '+role+'?')) return;
+  var r=await apicall(API+'/users','PATCH',{id,role}); var j=await r.json();
+  if(j.success) loadUsers(); else alert(j.error||'Failed');
+}
+async function toggleActive(id,is_active) {
+  if (!confirm(is_active?'Activate this user?':'Deactivate this user?')) return;
+  var r=await apicall(API+'/users','PATCH',{id,is_active}); var j=await r.json();
+  if(j.success) loadUsers(); else alert(j.error||'Failed');
+}
+function openAddUser() {
+  ['uname','uemail','upass'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('urole').value='viewer';
+  document.getElementById('umsg').style.display='none';
+  document.getElementById('mUser').classList.add('open');
+}
+function closeAddUser() { document.getElementById('mUser').classList.remove('open'); }
+async function doAddUser() {
+  var name=document.getElementById('uname').value.trim();
+  var email=document.getElementById('uemail').value.trim();
+  var pass=document.getElementById('upass').value;
+  var role=document.getElementById('urole').value;
+  var msg=document.getElementById('umsg'), btn=document.getElementById('ubtn');
+  if(!name||!email||!pass){showMsg(msg,'Name, email and password required.','#f87171');return;}
+  if(pass.length<8){showMsg(msg,'Password must be at least 8 characters.','#f87171');return;}
+  btn.disabled=true; btn.textContent='Creating…';
+  try {
+    var r=await apicall(API+'/users','POST',{email,password:pass,name,role});
+    var j=await r.json();
+    if(j.success){showMsg(msg,'✓ User created!','#4ade80');loadUsers();setTimeout(closeAddUser,2000);}
+    else showMsg(msg,'✗ '+(j.error||'Failed'),'#f87171');
+  } catch(e){showMsg(msg,'✗ Network error','#f87171');}
+  finally{btn.disabled=false;btn.textContent='Create User';}
+}
+
+function apicall(url,method,body){
+  var opts={method:method||'GET',headers:{'Content-Type':'application/json','Authorization':'Bearer '+S.token}};
+  if(body) opts.body=JSON.stringify(body);
+  return fetch(url,opts);
+}
+function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function fmtDate(s){if(!s)return'<span style="color:#475569">Never</span>';return new Date(s).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});}
+function showErrEl(el,m){el.textContent=m;el.style.display='block';}
+function showMsg(el,m,c){el.textContent=m;el.style.color=c;el.style.display='block';}
+
+setInterval(function(){ if(S && document.getElementById('plic').style.display!=='none') loadLicenses(); }, 60000);
+</script>
+</body>
+</html>
