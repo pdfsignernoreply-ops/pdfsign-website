@@ -39,22 +39,8 @@ nav{background:var(--navy);padding:0 24px;height:60px;display:flex;align-items:c
 .page-wrap ul{margin:0 0 16px 20px;color:#475569;font-size:15px;}
 .page-wrap li{margin-bottom:6px;}
 .page-wrap strong{color:#1E293B;font-weight:600;}
-/* Changelog */
-.changelog-entry{margin-bottom:32px;padding:24px;background:white;border:1px solid #E2E8F0;border-radius:12px;}
-.changelog-version{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:12px;}
-.changelog-date{font-size:13px;font-weight:400;color:#94A3B8;margin-left:10px;}
-/* Status page */
-.status-hero{text-align:center;padding:40px 0 32px;}
-.status-overall-icon{width:64px;height:64px;border-radius:50%;background:#F0FDF4;border:2px solid #16A34A;display:flex;align-items:center;justify-content:center;font-size:28px;color:#16A34A;margin:0 auto 16px;}
-.status-grid{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
-.status-item{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:white;border:1px solid #E2E8F0;border-radius:10px;}
-.status-item-name{font-size:15px;font-weight:600;color:#1E293B;}
-.status-item-desc{font-size:12px;color:#94A3B8;margin-top:2px;}
-.status-badge{padding:4px 14px;border-radius:100px;font-size:12px;font-weight:700;}
-.status-badge.operational{background:#F0FDF4;color:#16A34A;border:1px solid #BBF7D0;}
-.status-badge.degraded{background:#FFFBEB;color:#D97706;border:1px solid #FDE68A;}
-.status-badge.outage{background:#FEF2F2;color:#DC2626;border:1px solid #FECACA;}
-.no-incidents{padding:20px 24px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;color:#15803D;font-size:14px;font-weight:500;}
+.highlight-box{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:18px 22px;margin-bottom:24px;}
+.highlight-box p{margin:0;color:#15803D;font-size:14px;}
 footer{background:var(--navy);padding:24px;text-align:center;}
 footer p{font-size:13px;color:rgba(255,255,255,0.4);}
 footer a{color:rgba(255,255,255,0.5);text-decoration:none;margin:0 12px;}
@@ -69,28 +55,113 @@ footer a:hover{color:white;}
   </a>
   <a href="/" class="nav-back">← Back to Home</a>
 </nav>
+
 <div class="page-wrap">
 
-        <h1>Privacy Policy</h1>
-        <p class="meta">Last updated: March 2026</p>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Last updated: April 2026 &nbsp;·&nbsp; Effective from: January 2026</p>
 
-        <h2>1. What we collect</h2>
-        <p>When you purchase a licence or use PDFSign.in, we collect your name, email address, and payment information (processed by Razorpay — we never see your card details). We also collect your device's hardware fingerprint to enforce licence limits.</p>
+  <div class="highlight-box">
+    <p>🔒 <strong>Key promise:</strong> Your PDF documents are signed entirely on your local machine. No document, file, or its contents are ever uploaded to our servers. Your private key never leaves your DSC token.</p>
+  </div>
 
-        <h2>2. What we do NOT collect</h2>
-        <p>Your PDF documents are signed entirely on your local machine. No document, file, or their contents are ever uploaded to our servers. Your private key never leaves your DSC token.</p>
+  <p>This Privacy Policy describes how <strong>Tender Training India</strong> (GSTIN: 27ABZPW8421B1Z3), operating as <strong>PDFSign.in</strong>, collects, uses, and protects your personal information when you use our software or visit our website.</p>
 
-        <h2>3. How we use your data</h2>
-        <p>We use your email to deliver your licence key, send important product updates, and respond to support queries. We do not send marketing emails unless you opt in. We do not sell or share your data with any third party.</p>
+  <h2>1. Information We Collect</h2>
+  <p>We collect the following information only when necessary to provide our service:</p>
+  <ul>
+    <li><strong>Name and email address</strong> — collected at checkout to deliver your licence key and send transactional emails (invoice, renewal reminders).</li>
+    <li><strong>Phone number</strong> — optional, collected only if you provide it for support purposes.</li>
+    <li><strong>GSTIN (GST Identification Number)</strong> — optional, collected at checkout if you wish to receive a GST invoice for tax set-off purposes.</li>
+    <li><strong>Payment information</strong> — processed entirely by Razorpay. We never see or store your card details, UPI ID, or banking credentials.</li>
+    <li><strong>Machine fingerprint (hardware ID)</strong> — a one-way hash derived from your device's hardware properties. This is used solely to enforce licence seat limits and detect duplicate activations. It cannot be used to identify you personally.</li>
+    <li><strong>Licence activation records</strong> — which machine(s) activated a licence and when, used for team licence seat management.</li>
+  </ul>
 
-        <h2>4. Data storage</h2>
-        <p>Licence and account data is stored in Supabase (hosted in Singapore). Payment records are maintained by Razorpay in accordance with RBI guidelines. We retain your data for as long as your licence is active and for up to 3 years thereafter for legal compliance.</p>
+  <h2>2. Information We Do NOT Collect</h2>
+  <ul>
+    <li>Your PDF documents or their contents — signing happens 100% locally on your device.</li>
+    <li>Your DSC private key — it never leaves your physical token.</li>
+    <li>Browsing history or behaviour beyond what Google Analytics records (see Section 6).</li>
+    <li>Any biometric or sensitive personal data.</li>
+  </ul>
 
-        <h2>5. Cookies</h2>
-        <p>This website uses no tracking cookies. We use only essential functional cookies required for the website to operate.</p>
+  <h2>3. How We Use Your Information</h2>
+  <ul>
+    <li><strong>Licence delivery</strong> — sending your licence key by email after purchase.</li>
+    <li><strong>GST invoice</strong> — generating and emailing a GST-compliant tax invoice (SAC 997331) if you provided your GSTIN at checkout. Invoices are issued under Tender Training India, GSTIN 27ABZPW8421B1Z3.</li>
+    <li><strong>Renewal reminders</strong> — we may email you approximately 7 days before your licence expires to give you time to renew without interruption. You can request to opt out at any time.</li>
+    <li><strong>Product updates</strong> — notifying you of important software updates or security patches.</li>
+    <li><strong>Support</strong> — responding to your queries via email or WhatsApp.</li>
+    <li><strong>Fraud prevention</strong> — detecting licence misuse or duplicate activations.</li>
+  </ul>
+  <p>We do not use your data for advertising, profiling, or any purpose beyond what is listed above. We do not sell or share your personal data with any third party.</p>
 
-        <h2>6. Your rights</h2>
-        <p>You may request deletion of your data at any time by emailing <a href="mailto:help@pdfsign.in">help@pdfsign.in</a>. We will respond within 7 business days.</p>
+  <h2>4. Reseller Portal</h2>
+  <p>PDFSign.in operates a reseller programme for authorised DSC service providers. If you purchase through a reseller:</p>
+  <ul>
+    <li>Your name and email are collected by the reseller to generate your licence. Your email is used to send you the licence key directly from PDFSign.in.</li>
+    <li>The reseller does not receive your payment details; Razorpay handles all transactions.</li>
+    <li>The wholesale price paid by the reseller is not disclosed to you in any communication from PDFSign.in.</li>
+  </ul>
 
-        <h2>7. Contact</h2>
-        <p>For any privacy-related queries, write to us at <a href="mailto:help@pdfsign.in"><span class="__cf_email__" data-cfemail="38505d5448784c5d565c5d4a4c4a59515651565f165156">[email&#160;protected]<
+  <h2>5. Coupon Codes</h2>
+  <p>If you use a coupon or discount code at checkout, we record the code used alongside your licence record for accounting and fraud-prevention purposes. No additional personal data is collected in this process.</p>
+
+  <h2>6. Analytics &amp; Cookies</h2>
+  <p>We use <strong>Google Analytics 4</strong> on our website to understand aggregate visitor behaviour (pages visited, traffic sources, country). Google Analytics uses cookies and may collect your IP address. This data is anonymised and used only for improving our website.</p>
+  <p>We use no other tracking cookies, advertising pixels, or third-party analytics tools. Session data within the admin portal is stored in your browser's sessionStorage and is never sent to third-party services.</p>
+
+  <h2>7. Data Storage &amp; Security</h2>
+  <ul>
+    <li><strong>Licence and account data</strong> is stored in Supabase (PostgreSQL), hosted in Singapore (ap-southeast-1 region), with encryption at rest and in transit.</li>
+    <li><strong>Payment records</strong> are maintained by Razorpay in accordance with RBI guidelines and PCI-DSS standards.</li>
+    <li><strong>Emails</strong> are sent via Google Workspace (Gmail SMTP). Email content is not retained beyond delivery.</li>
+    <li>We retain your data for as long as your licence is active and for up to <strong>3 years</strong> thereafter for legal and accounting compliance under the Companies Act and GST laws.</li>
+  </ul>
+
+  <h2>8. Your Rights</h2>
+  <p>You have the right to:</p>
+  <ul>
+    <li>Request a copy of the personal data we hold about you.</li>
+    <li>Request correction of inaccurate data.</li>
+    <li>Request deletion of your data (subject to legal retention requirements).</li>
+    <li>Opt out of renewal reminder emails at any time.</li>
+  </ul>
+  <p>To exercise any of these rights, email us at <a href="mailto:help@pdfsign.in">help@pdfsign.in</a>. We will respond within 7 business days.</p>
+
+  <h2>9. Third-Party Services</h2>
+  <p>We use the following third-party services, each with their own privacy policies:</p>
+  <ul>
+    <li><strong>Razorpay</strong> — payment processing (<a href="https://razorpay.com/privacy/" target="_blank" rel="noopener">razorpay.com/privacy</a>)</li>
+    <li><strong>Supabase</strong> — database hosting (<a href="https://supabase.com/privacy" target="_blank" rel="noopener">supabase.com/privacy</a>)</li>
+    <li><strong>Google Analytics</strong> — website analytics (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>)</li>
+    <li><strong>Vercel</strong> — API hosting (<a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">vercel.com/legal/privacy-policy</a>)</li>
+    <li><strong>Cloudflare</strong> — website hosting and DDoS protection (<a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a>)</li>
+  </ul>
+
+  <h2>10. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. Continued use of our software or website after changes constitutes acceptance of the updated policy.</p>
+
+  <h2>11. Contact</h2>
+  <p>For any privacy-related queries, write to us at:</p>
+  <ul>
+    <li>Email: <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></li>
+    <li>WhatsApp: <a href="https://wa.me/917057413999">+91 70574 13999</a></li>
+    <li>Address: Tender Training India, Second Floor, Kalpak Niwas, Near Samrudhi Hotel, Airport Road, Pune — 411015, Maharashtra, India.</li>
+  </ul>
+
+</div>
+
+<footer>
+  <p>
+    <a href="/">Home</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/refund.html">Refund</a>
+    <a href="mailto:help@pdfsign.in">Contact</a>
+  </p>
+  <p style="margin-top:10px;">© 2026 PDFSign.in · Tender Training India · GSTIN 27ABZPW8421B1Z3</p>
+</footer>
+</body>
+</html>
