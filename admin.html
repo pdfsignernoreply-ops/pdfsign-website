@@ -137,6 +137,7 @@ tr:hover td{background:#1e293b33}
     <div class="tab active" onclick="showTab('lic',this)">Licenses</div>
     <div class="tab" onclick="showTab('usr',this)">Users</div>
     <div class="tab" onclick="showTab('res',this)">Resellers</div>
+    <div class="tab" onclick="showTab('cou',this)">Coupons</div>
   </div>
 
   <main>
@@ -172,6 +173,7 @@ tr:hover td{background:#1e293b33}
           <option value="app">App</option>
         </select>
         <button class="btn-r" onclick="loadLicenses()">⟳ Refresh</button>
+        <button class="btn-r" id="renewal-btn" style="display:none" onclick="sendRenewals()" title="Email customers expiring in 7 days">📧 Send Renewal Reminders</button>
         <button class="btn-g" id="issue-btn" style="display:none" onclick="openIssue()">+ Issue License</button>
       </div>
       <div id="tbl-load">Loading…</div>
@@ -203,6 +205,15 @@ tr:hover td{background:#1e293b33}
         <button class="btn-g" onclick="openAddReseller()">+ Add Reseller</button>
       </div>
       <div id="reslist"><div class="empty">Loading…</div></div>
+    </div>
+
+    <!-- Coupons -->
+    <div id="pcou" style="display:none">
+      <div class="section-hdr">
+        <h2>Coupon Codes</h2>
+        <button class="btn-g" id="coupon-add-btn" style="display:none" onclick="openAddCoupon()">+ Add Coupon</button>
+      </div>
+      <div id="coulist"><div class="empty">Loading…</div></div>
     </div>
   </main>
 </div>
@@ -266,6 +277,37 @@ tr:hover td{background:#1e293b33}
   </div>
 </div>
 
+<!-- ADD COUPON MODAL -->
+<div class="mbg" id="mCoupon">
+  <div class="mbox">
+    <h3>Create Coupon Code</h3>
+    <div class="fg"><label>Code *</label><input type="text" id="ccode" placeholder="LAUNCH20" style="text-transform:uppercase"/></div>
+    <div class="fg"><label>Discount Type *</label>
+      <select id="cdtype" onchange="updateCouponHint()">
+        <option value="percent">Percent (e.g. 20%)</option>
+        <option value="fixed">Fixed amount (e.g. ₹200 off)</option>
+      </select>
+    </div>
+    <div class="fg"><label id="cval-label">Discount Value * (percent)</label><input type="number" id="cval" placeholder="20" min="1"/></div>
+    <div class="fg"><label>Applicable Plans</label>
+      <select id="cplans">
+        <option value="all">All Plans</option>
+        <option value="monthly">Monthly only</option>
+        <option value="yearly">Yearly only</option>
+        <option value="lifetime">Lifetime only</option>
+        <option value="yearly,lifetime">Yearly + Lifetime</option>
+      </select>
+    </div>
+    <div class="fg"><label>Max Uses (optional — blank = unlimited)</label><input type="number" id="cmaxuses" placeholder="100" min="1"/></div>
+    <div class="fg"><label>Valid Until (optional)</label><input type="date" id="cexpiry"/></div>
+    <div class="mmsg" id="cmsg"></div>
+    <div class="mact">
+      <button class="btn-cancel" onclick="closeAddCoupon()">Cancel</button>
+      <button class="btn-g" id="cbtn" onclick="doAddCoupon()">Create Coupon</button>
+    </div>
+  </div>
+</div>
+
 <!-- ADD USER MODAL -->
 <div class="mbg" id="mUser">
   <div class="mbox">
@@ -308,7 +350,10 @@ function showApp() {
   document.getElementById('hname').textContent = S.name;
   document.getElementById('hrole').textContent = S.role;
   document.getElementById('hrole').className = 'role-chip ' + (S.role==='admin' ? 'chip-admin' : 'chip-viewer');
-  if (S.role === 'admin') document.getElementById('issue-btn').style.display = 'inline-block';
+  if (S.role === 'admin') {
+    document.getElementById('issue-btn').style.display = 'inline-block';
+    document.getElementById('renewal-btn').style.display = 'inline-block';
+  }
   updateExpiry();
   loadLicenses();
 }
@@ -342,8 +387,10 @@ function showTab(t, el) {
   document.getElementById('plic').style.display = t==='lic' ? 'block' : 'none';
   document.getElementById('pusr').style.display = t==='usr' ? 'block' : 'none';
   document.getElementById('pres').style.display = t==='res' ? 'block' : 'none';
+  document.getElementById('pcou').style.display = t==='cou' ? 'block' : 'none';
   if (t==='usr') loadUsers();
   if (t==='res') loadResellers();
+  if (t==='cou') { loadCoupons(); if(S&&S.role==='admin') document.getElementById('coupon-add-btn').style.display='inline-block'; }
 }
 
 async function loadLicenses() {
@@ -552,6 +599,20 @@ function showMsg(el,m,c){el.textContent=m;el.style.color=c;el.style.display='blo
 
 setInterval(function(){ if(S && document.getElementById('plic').style.display!=='none') loadLicenses(); }, 60000);
 
+async function sendRenewals() {
+  var btn = document.getElementById('renewal-btn');
+  btn.disabled = true; btn.textContent = '📧 Sending…';
+  try {
+    var r = await apicall(API+'/send-renewals', 'POST');
+    var j = await r.json();
+    if (r.ok) {
+      if (j.sent === 0) alert('No customers expiring in the next 7 days (or all already reminded).');
+      else alert('✓ Sent ' + j.sent + ' renewal reminder' + (j.sent===1?'':'s') + (j.failed?' · '+j.failed+' failed':'') + '.');
+    } else { alert('Error: ' + (j.error||'Unknown')); }
+  } catch(e) { alert('Network error: ' + e.message); }
+  finally { btn.disabled = false; btn.textContent = '📧 Send Renewal Reminders'; }
+}
+
 // ── Resellers ─────────────────────────────────────────────────────────────
 async function loadResellers() {
   document.getElementById('reslist').innerHTML = '<div class="empty">Loading…</div>';
@@ -652,6 +713,90 @@ async function doSavePricing(){
     setTimeout(closePricing,1500);
   }catch(e){showMsg(msg,'✗ Error: '+e.message,'#f87171');}
   finally{btn.disabled=false;btn.textContent='Save Pricing';}
+}
+
+// ── Coupons ────────────────────────────────────────────────────────────────
+var COUPONS = [];
+async function loadCoupons() {
+  document.getElementById('coulist').innerHTML = '<div class="empty">Loading…</div>';
+  try {
+    var r = await apicall(API+'/coupons');
+    if (!r.ok) throw new Error('Failed');
+    var j = await r.json();
+    COUPONS = j.coupons||[];
+    renderCoupons();
+  } catch(e) { document.getElementById('coulist').innerHTML = '<div class="empty">Error loading coupons</div>'; }
+}
+
+function renderCoupons() {
+  if (!COUPONS.length) {
+    document.getElementById('coulist').innerHTML = '<div class="empty">No coupons yet. Click + Add Coupon to create one.</div>';
+    return;
+  }
+  var html = '<div style="overflow-x:auto"><table><thead><tr>'
+    +'<th>Code</th><th>Discount</th><th>Plans</th><th>Uses</th><th>Valid Until</th><th>Status</th><th></th>'
+    +'</tr></thead><tbody>'
+    + COUPONS.map(function(c) {
+        var disc = c.discount_type==='percent' ? c.discount_value+'%' : '₹'+c.discount_value;
+        var uses = c.max_uses ? c.uses_count+'/'+c.max_uses : c.uses_count+' (unlimited)';
+        var until = c.valid_until ? new Date(c.valid_until).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}) : '—';
+        var active = c.is_active;
+        return '<tr>'
+          +'<td><span class="key">'+esc(c.code)+'</span></td>'
+          +'<td style="font-weight:700;color:'+(c.discount_type==='percent'?'#38bdf8':'#4ade80')+'">'+esc(disc)+'</td>'
+          +'<td><span style="font-size:11px;color:#94a3b8">'+esc(c.applicable_plans)+'</span></td>'
+          +'<td class="ts">'+esc(uses)+'</td>'
+          +'<td class="ts">'+until+'</td>'
+          +'<td class="'+(active?'ok':'no')+'">'+(active?'Active':'Inactive')+'</td>'
+          +'<td><button class="tbtn" onclick="toggleCoupon('+c.id+','+(!active)+')">'+(active?'Deactivate':'Activate')+'</button></td>'
+          +'</tr>';
+      }).join('')
+    +'</tbody></table></div>';
+  document.getElementById('coulist').innerHTML = html;
+}
+
+async function toggleCoupon(id, is_active) {
+  if (!confirm(is_active?'Activate this coupon?':'Deactivate this coupon?')) return;
+  var r = await apicall(API+'/coupons','PATCH',{id,is_active});
+  var j = await r.json();
+  if (j.success) loadCoupons(); else alert(j.error||'Failed');
+}
+
+function openAddCoupon() {
+  ['ccode','cval','cmaxuses','cexpiry'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('cdtype').value='percent';
+  document.getElementById('cplans').value='all';
+  document.getElementById('cmsg').style.display='none';
+  updateCouponHint();
+  document.getElementById('mCoupon').classList.add('open');
+}
+function closeAddCoupon() { document.getElementById('mCoupon').classList.remove('open'); }
+function updateCouponHint() {
+  var t = document.getElementById('cdtype').value;
+  document.getElementById('cval-label').textContent = t==='percent' ? 'Discount Value * (percent, e.g. 20 = 20%)' : 'Discount Value * (₹ rupees off)';
+}
+async function doAddCoupon() {
+  var code     = document.getElementById('ccode').value.trim().toUpperCase();
+  var dtype    = document.getElementById('cdtype').value;
+  var dval     = parseInt(document.getElementById('cval').value);
+  var plans    = document.getElementById('cplans').value;
+  var maxuses  = document.getElementById('cmaxuses').value.trim();
+  var expiry   = document.getElementById('cexpiry').value;
+  var msg=document.getElementById('cmsg'), btn=document.getElementById('cbtn');
+  if (!code||isNaN(dval)||dval<=0) { showMsg(msg,'Code and discount value are required.','#f87171'); return; }
+  btn.disabled=true; btn.textContent='Creating…';
+  try {
+    var r = await apicall(API+'/coupons','POST',{
+      code, discount_type:dtype, discount_value:dval,
+      applicable_plans:plans,
+      max_uses: maxuses ? parseInt(maxuses) : null,
+      valid_until: expiry || null
+    });
+    var j = await r.json();
+    if (j.success) { showMsg(msg,'✓ Coupon created!','#4ade80'); loadCoupons(); setTimeout(closeAddCoupon,2000); }
+    else showMsg(msg,'✗ '+(j.error||'Failed'),'#f87171');
+  } catch(e) { showMsg(msg,'✗ Network error','#f87171'); }
+  finally { btn.disabled=false; btn.textContent='Create Coupon'; }
 }
 </script>
 </body>
