@@ -136,6 +136,7 @@ tr:hover td{background:#1e293b33}
   <div class="tabs">
     <div class="tab active" onclick="showTab('lic',this)">Licenses</div>
     <div class="tab" onclick="showTab('usr',this)">Users</div>
+    <div class="tab" onclick="showTab('res',this)">Resellers</div>
   </div>
 
   <main>
@@ -194,6 +195,15 @@ tr:hover td{background:#1e293b33}
       </div>
       <div id="ulist"><div class="empty">Loading…</div></div>
     </div>
+
+    <!-- Resellers -->
+    <div id="pres" style="display:none">
+      <div class="section-hdr">
+        <h2>Resellers</h2>
+        <button class="btn-g" onclick="openAddReseller()">+ Add Reseller</button>
+      </div>
+      <div id="reslist"><div class="empty">Loading…</div></div>
+    </div>
   </main>
 </div>
 
@@ -221,6 +231,37 @@ tr:hover td{background:#1e293b33}
     <div class="mact">
       <button class="btn-cancel" onclick="closeIssue()">Cancel</button>
       <button class="btn-g" id="ibtn" onclick="doIssue()">Issue License</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD RESELLER MODAL -->
+<div class="mbg" id="mReseller">
+  <div class="mbox">
+    <h3>Add Reseller</h3>
+    <div class="fg"><label>Full Name *</label><input type="text" id="rname" placeholder="Capricorn DSC Center"/></div>
+    <div class="fg"><label>Email * <span style="color:#475569;font-size:10px">(used to log in)</span></label><input type="email" id="remail" placeholder="reseller@example.com"/></div>
+    <div class="fg"><label>Password * (min 8 chars)</label><input type="password" id="rpass" placeholder="••••••••"/></div>
+    <div class="fg"><label>Phone</label><input type="text" id="rphone" placeholder="+91 98765 43210"/></div>
+    <div class="fg"><label>Company</label><input type="text" id="rcompany" placeholder="Capricorn CA Services"/></div>
+    <div class="mmsg" id="rmsg"></div>
+    <div class="mact">
+      <button class="btn-cancel" onclick="closeAddReseller()">Cancel</button>
+      <button class="btn-g" id="rbtn" onclick="doAddReseller()">Create Reseller</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING MODAL -->
+<div class="mbg" id="mPricing">
+  <div class="mbox">
+    <h3 id="pricing-title">Set Pricing</h3>
+    <p style="font-size:11px;color:#64748b;margin-bottom:16px">Set the wholesale price (₹) this reseller pays per plan. Leave blank to disable a plan.</p>
+    <div id="pricing-fields"></div>
+    <div class="mmsg" id="pmsg"></div>
+    <div class="mact">
+      <button class="btn-cancel" onclick="closePricing()">Cancel</button>
+      <button class="btn-g" id="pbtn" onclick="doSavePricing()">Save Pricing</button>
     </div>
   </div>
 </div>
@@ -300,7 +341,9 @@ function showTab(t, el) {
   el.classList.add('active');
   document.getElementById('plic').style.display = t==='lic' ? 'block' : 'none';
   document.getElementById('pusr').style.display = t==='usr' ? 'block' : 'none';
+  document.getElementById('pres').style.display = t==='res' ? 'block' : 'none';
   if (t==='usr') loadUsers();
+  if (t==='res') loadResellers();
 }
 
 async function loadLicenses() {
@@ -508,6 +551,108 @@ function showErrEl(el,m){el.textContent=m;el.style.display='block';}
 function showMsg(el,m,c){el.textContent=m;el.style.color=c;el.style.display='block';}
 
 setInterval(function(){ if(S && document.getElementById('plic').style.display!=='none') loadLicenses(); }, 60000);
+
+// ── Resellers ─────────────────────────────────────────────────────────────
+async function loadResellers() {
+  document.getElementById('reslist').innerHTML = '<div class="empty">Loading…</div>';
+  try {
+    var r = await apicall(API+'/resellers');
+    if (!r.ok) throw new Error('Failed');
+    var j = await r.json();
+    renderResellers(j.resellers||[]);
+  } catch(e) { document.getElementById('reslist').innerHTML = '<div class="empty">Error loading resellers</div>'; }
+}
+var PLAN_RETAIL = {monthly:99,yearly:999,lifetime:4999,'team-yearly':3499,'team-lifetime':13999};
+var PLAN_NAMES  = {monthly:'1 Month',yearly:'1 Year',lifetime:'Lifetime','team-yearly':'Team 1 Year','team-lifetime':'Team Lifetime'};
+
+function renderResellers(resellers) {
+  if (!resellers.length) { document.getElementById('reslist').innerHTML='<div class="empty">No resellers yet. Click + Add Reseller to create one.</div>'; return; }
+  document.getElementById('reslist').innerHTML = resellers.map(function(r) {
+    var ini = r.name.split(' ').map(function(w){return w[0]||'';}).join('').slice(0,2).toUpperCase();
+    return '<div class="urow">'
+      +'<div class="uavatar">'+esc(ini)+'</div>'
+      +'<div class="uinfo">'
+      +'<div class="uname">'+esc(r.name)+(r.company?'<span style="color:#64748b;font-size:11px"> — '+esc(r.company)+'</span>':'')+'</div>'
+      +'<div class="uemail">'+esc(r.email)+(r.phone?' · '+esc(r.phone):'')+'</div>'
+      +'<div class="umeta">'+r.orders+' orders · Last login: '+(r.last_login_at?new Date(r.last_login_at).toLocaleDateString('en-IN'):'Never')+'</div>'
+      +'</div>'
+      +'<div class="uact">'
+      +'<span class="role-chip" style="background:#7c3aed22;color:#a78bfa;border:1px solid #7c3aed44">'+(r.is_active?'Active':'Inactive')+'</span>'
+      +'<button class="bsm b-outline" onclick="openPricing('+r.id+',\''+esc(r.name)+'\')">Set Pricing</button>'
+      +'<button class="bsm b-danger" onclick="toggleResellerActive('+r.id+','+(!r.is_active)+')">'+(r.is_active?'Deactivate':'Activate')+'</button>'
+      +'</div></div>';
+  }).join('');
+}
+
+function openAddReseller() {
+  ['rname','remail','rpass','rphone','rcompany'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('rmsg').style.display='none';
+  document.getElementById('mReseller').classList.add('open');
+}
+function closeAddReseller() { document.getElementById('mReseller').classList.remove('open'); }
+async function doAddReseller() {
+  var name=document.getElementById('rname').value.trim();
+  var email=document.getElementById('remail').value.trim();
+  var pass=document.getElementById('rpass').value;
+  var phone=document.getElementById('rphone').value.trim();
+  var company=document.getElementById('rcompany').value.trim();
+  var msg=document.getElementById('rmsg'),btn=document.getElementById('rbtn');
+  if(!name||!email||!pass){showMsg(msg,'Name, email and password required.','#f87171');return;}
+  if(pass.length<8){showMsg(msg,'Password must be at least 8 characters.','#f87171');return;}
+  btn.disabled=true; btn.textContent='Creating…';
+  try {
+    var r=await apicall(API+'/resellers','POST',{name,email,password:pass,phone,company});
+    var j=await r.json();
+    if(j.success){showMsg(msg,'✓ Reseller created! Set their pricing next.','#4ade80');loadResellers();setTimeout(closeAddReseller,2500);}
+    else showMsg(msg,'✗ '+(j.error||'Failed'),'#f87171');
+  }catch(e){showMsg(msg,'✗ Network error','#f87171');}
+  finally{btn.disabled=false;btn.textContent='Create Reseller';}
+}
+async function toggleResellerActive(id,is_active) {
+  if(!confirm(is_active?'Activate this reseller?':'Deactivate this reseller?'))return;
+  var r=await apicall(API+'/resellers','PATCH',{id,is_active});
+  var j=await r.json();
+  if(j.success) loadResellers(); else alert(j.error||'Failed');
+}
+
+var _pricingResellerId=null;
+async function openPricing(id,name) {
+  _pricingResellerId=id;
+  document.getElementById('pricing-title').textContent='Pricing — '+name;
+  document.getElementById('pmsg').style.display='none';
+  var r=await apicall(API+'/reseller-pricing?id='+id);
+  var j=await r.json();
+  var existing={};
+  (j.pricing||[]).forEach(function(p){existing[p.plan]=p.price_rupees;});
+  var plans=['monthly','yearly','lifetime','team-yearly','team-lifetime'];
+  document.getElementById('pricing-fields').innerHTML=plans.map(function(plan){
+    return '<div class="fg" style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'
+      +'<label style="flex:1;font-size:12px;color:#94a3b8">'+PLAN_NAMES[plan]+'<br><span style="color:#475569;font-size:10px">Retail ₹'+PLAN_RETAIL[plan]+'</span></label>'
+      +'<span style="color:#475569;font-size:12px">₹</span>'
+      +'<input type="number" id="price-'+plan+'" value="'+(existing[plan]||'')+'" placeholder="e.g. '+Math.round(PLAN_RETAIL[plan]*0.65)+'" style="width:110px;background:#0f172a;border:1px solid #334155;color:#e2e8f0;padding:8px 10px;border-radius:6px;font-size:13px;outline:none"/>'
+      +'</div>';
+  }).join('');
+  document.getElementById('mPricing').classList.add('open');
+}
+function closePricing(){document.getElementById('mPricing').classList.remove('open');}
+async function doSavePricing(){
+  var plans=['monthly','yearly','lifetime','team-yearly','team-lifetime'];
+  var msg=document.getElementById('pmsg'),btn=document.getElementById('pbtn');
+  btn.disabled=true; btn.textContent='Saving…';
+  try{
+    for(var i=0;i<plans.length;i++){
+      var plan=plans[i];
+      var val=document.getElementById('price-'+plan).value.trim();
+      if(!val) continue;
+      var price=parseInt(val);
+      if(isNaN(price)||price<=0) continue;
+      await apicall(API+'/reseller-pricing','POST',{reseller_id:_pricingResellerId,plan,price_rupees:price});
+    }
+    showMsg(msg,'✓ Pricing saved!','#4ade80');
+    setTimeout(closePricing,1500);
+  }catch(e){showMsg(msg,'✗ Error: '+e.message,'#f87171');}
+  finally{btn.disabled=false;btn.textContent='Save Pricing';}
+}
 </script>
 </body>
 </html>
