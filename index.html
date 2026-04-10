@@ -1308,6 +1308,58 @@
   }
 
   /* ─── ROADMAP ─── */
+  /* ─── TUTORIALS ─── */
+  .tutorials { background: var(--gray-50); padding: 88px 24px; }
+  .tutorials-header { text-align: center; margin-bottom: 48px; }
+  .tutorials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .tutorial-card {
+    background: var(--white);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: block;
+  }
+  .tutorial-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.10); transform: translateY(-2px); }
+  .tutorial-thumb {
+    background: linear-gradient(135deg, #1B2A47 0%, #2563EB 100%);
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .tutorial-thumb-dsc {
+    background: linear-gradient(135deg, #0F4C2A 0%, #16A34A 100%);
+  }
+  .tutorial-play {
+    width: 52px; height: 52px;
+    background: rgba(255,255,255,0.18);
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: white;
+    padding-left: 4px;
+  }
+  .tutorial-tag {
+    position: absolute; bottom: 10px; left: 12px;
+    background: rgba(0,0,0,0.45);
+    color: white; font-size: 11px; font-weight: 600;
+    padding: 3px 8px; border-radius: 4px;
+    letter-spacing: 0.03em;
+  }
+  .tutorial-body { padding: 16px 18px 18px; }
+  .tutorial-title { font-weight: 600; font-size: 14px; color: var(--navy-dark); margin-bottom: 6px; }
+  .tutorial-meta { font-size: 12px; color: var(--text-muted); }
+
   .roadmap { background: var(--gray-50); padding: 88px 24px; }
 
   .roadmap-grid {
@@ -2453,6 +2505,39 @@
         <div class="video-stat"><span class="vs-num">All</span><span class="vs-label">major DSC tokens</span></div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ─── TUTORIALS ─── -->
+<section class="tutorials" id="tutorials">
+  <div class="container">
+    <div class="tutorials-header">
+      <div class="section-tag">Video Tutorials</div>
+      <h2 class="section-title">Learn in minutes</h2>
+      <p class="section-sub">Step-by-step video guides to get you signing PDFs in under 5 minutes.</p>
+    </div>
+    <div class="tutorials-grid">
+      <a class="tutorial-card" href="https://www.youtube.com/@pdfsign-in" target="_blank" rel="noopener">
+        <div class="tutorial-thumb">
+          <div class="tutorial-play">▶</div>
+          <div class="tutorial-tag">Wet Signature Mode</div>
+        </div>
+        <div class="tutorial-body">
+          <div class="tutorial-title">How to sign PDF with wet/image signature</div>
+          <div class="tutorial-meta">PDFSign.in · YouTube</div>
+        </div>
+      </a>
+      <a class="tutorial-card" href="https://www.youtube.com/@pdfsign-in" target="_blank" rel="noopener">
+        <div class="tutorial-thumb tutorial-thumb-dsc">
+          <div class="tutorial-play">▶</div>
+          <div class="tutorial-tag">DSC Token Mode</div>
+        </div>
+        <div class="tutorial-body">
+          <div class="tutorial-title">How to sign PDF with USB DSC token (HYP2003, ePass)</div>
+          <div class="tutorial-meta">PDFSign.in · YouTube</div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
