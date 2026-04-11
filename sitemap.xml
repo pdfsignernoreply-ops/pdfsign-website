@@ -5,11 +5,17 @@
   <!-- Main Pages -->
   <url>
     <loc>https://pdfsign.in/</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en-in" href="https://pdfsign.in/"/>
+    <xhtml:link rel="alternate" hreflang="en-us" href="https://pdfsign.in/"/>
+    <xhtml:link rel="alternate" hreflang="en-gb" href="https://pdfsign.in/"/>
+    <xhtml:link rel="alternate" hreflang="en-ae" href="https://pdfsign.in/"/>
+    <xhtml:link rel="alternate" hreflang="en-au" href="https://pdfsign.in/"/>
+    <xhtml:link rel="alternate" hreflang="en-ca" href="https://pdfsign.in/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://pdfsign.in/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfsign.in/"/>
   </url>
 
   <url>

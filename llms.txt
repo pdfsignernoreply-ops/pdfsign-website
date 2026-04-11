@@ -1,0 +1,59 @@
+# PDFSign.in
+
+> PDFSign.in is a Windows desktop application for digitally signing PDFs using USB DSC tokens or signature/stamp images. 100% offline, no Java, no browser plugins. Accepted on all Indian government portals.
+
+## What it does
+
+PDFSign.in lets Indian professionals sign any PDF document in under 10 seconds using their USB DSC (Digital Signature Certificate) token or a signature/stamp image. All signing happens locally on the user's Windows PC — files are never uploaded to any server.
+
+## Key features
+
+- **DSC Token Signing** — Works with HyperPKI HYP2003, ePass 2003/3003, Proxkey, Feitian, WD Pro, Watchdata, and all PKCS#11-compatible tokens issued by CCA-licensed CAs in India
+- **Signature & Stamp Image** — Embed a handwritten signature or rubber stamp image on any PDF without a DSC token
+- **Batch Signing** — Sign hundreds of PDFs in one click from a folder
+- **PDF Security** — Restrict printing, editing, and copying; set document open password
+- **Pick Position on PDF** — Click anywhere on the PDF preview to place signature exactly
+- **RFC 3161 Timestamp** — Trusted timestamp from TSA server; signature valid even after cert expiry
+- **100% Offline** — No internet required after licence activation; files never leave the user's PC
+- **Government Compliant** — PAdES/CAdES signatures accepted on GeM, CPPP, NIC e-Procurement, MCA21, Income Tax, DGFT
+
+## Pricing (INR, inclusive of GST)
+
+| Plan | Solo | Team (5 seats) |
+|------|------|----------------|
+| Monthly | ₹99/month | — |
+| Annual | ₹999/year | ₹3,499/year |
+| Lifetime | ₹4,999 one-time | ₹13,999 one-time |
+
+30-day free trial · 7-day refund policy · Payments via Razorpay (UPI, Cards, Net Banking)
+
+## Who uses it
+
+- CA firms and accountants (audit reports, ITR, MCA21)
+- Lawyers and law firms (affidavits, court filings, agreements)
+- Government contractors (GeM bids, CPPP tenders, NIC e-Procurement)
+- MSMEs and exporters (GST invoices, DGFT, bank documents)
+- Corporate and HR teams (NDAs, offer letters, vendor agreements)
+- Indian diaspora abroad (NRIs signing Indian documents from UAE, UK, USA, Canada, Australia)
+
+## Technical details
+
+- Platform: Windows 10 and Windows 11 (64-bit)
+- Runtime: .NET 10
+- Signature standard: PAdES (PDF Advanced Electronic Signatures)
+- Timestamp: RFC 3161
+- Token protocol: PKCS#11
+- Current version: 3.0.0
+
+## Legal
+
+- Legally valid under IT Act 2000, India
+- Accepted by: GeM, CPPP, NIC, MCA21, Income Tax Department, DGFT, and all major Indian government portals
+- No Aadhaar OTP required — uses physical DSC token
+
+## Contact
+
+- Website: https://pdfsign.in
+- Email: help@pdfsign.in
+- WhatsApp: +91 70574 13999
+- Download: https://cdn.pdfsign.in/PDFSignSetup.exe
