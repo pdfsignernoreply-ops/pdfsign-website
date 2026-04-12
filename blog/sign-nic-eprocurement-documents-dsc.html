@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7E0J9Z32FK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7E0J9Z32FK');
+</script>
+<title>How to Sign Documents on NIC e-Procurement Portal with DSC Token | PDFSign</title>
+<meta name="description" content="Step-by-step guide to digitally sign bid documents on NIC e-Procurement portal (eprocure.gov.in) using your Class 3 DSC token on Windows. Offline sign and upload method."/>
+<meta name="keywords" content="NIC e-procurement DSC, eprocure.gov.in digital signature, sign bid documents NIC portal, Class 3 DSC NIC, HYP2003 ePass NIC eprocurement"/>
+<meta name="author" content="PDFSign"/>
+<meta name="geo.region" content="IN"/>
+<meta name="geo.country" content="India"/>
+<link rel="canonical" href="https://pdfsign.in/blog/sign-nic-eprocurement-documents-dsc.html"/>
+<meta property="og:title" content="How to Sign Documents on NIC e-Procurement Portal with DSC Token"/>
+<meta property="og:description" content="Step-by-step guide to digitally sign bid documents on NIC e-Procurement portal (eprocure.gov.in) using your Class 3 DSC token on Windows. Offline sign and upload method."/>
+<meta property="og:url" content="https://pdfsign.in/blog/sign-nic-eprocurement-documents-dsc.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="PDFSign.in"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to Sign Documents on NIC e-Procurement Portal with DSC Token"/>
+<meta name="twitter:description" content="Step-by-step guide to digitally sign bid documents on NIC e-Procurement portal (eprocure.gov.in) using your Class 3 DSC token on Windows. Offline sign and upload method."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"How to Sign Documents on NIC e-Procurement Portal with DSC Token",
+  "description":"Step-by-step guide to digitally sign bid documents on NIC e-Procurement portal (eprocure.gov.in) using your Class 3 DSC token on Windows. Offline sign and upload method.",
+  "author":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "publisher":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "datePublished":"2026-04-12",
+  "dateModified":"2026-04-12",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://pdfsign.in/blog/sign-nic-eprocurement-documents-dsc.html"},
+  "inLanguage":"en-IN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Which DSC class is required for NIC e-Procurement portal?","acceptedAnswer":{"@type":"Answer","text":"NIC e-Procurement (eprocure.gov.in) requires a Class 3 Digital Signature Certificate. Class 2 DSCs are not accepted for bid submission on this portal."}},
+    {"@type":"Question","name":"Can I use ePass 2003 or HYP2003 token on NIC eprocure portal?","acceptedAnswer":{"@type":"Answer","text":"Yes. Both the ePass 2003 (and ePass 3003) and the HYP2003 (HS serial series) USB DSC tokens are supported. Install the correct driver — ePass2003 middleware for ePass tokens and the appropriate middleware for HYP2003 — and sign the document offline with PDFSign before uploading."}},
+    {"@type":"Question","name":"What if the NIC portal rejects my signed PDF?","acceptedAnswer":{"@type":"Answer","text":"First check that the PDF was signed with a valid, unexpired Class 3 DSC. Make sure the signature is PAdES-compatible and that you are uploading the correct file. If the portal shows a certificate error, verify that your DSC has not expired and that the signing certificate chain is intact. Contact NIC helpdesk or your DSC issuing CA if the problem persists."}},
+    {"@type":"Question","name":"Do I need a separate DSC for each NIC tender?","acceptedAnswer":{"@type":"Answer","text":"No. One Class 3 DSC token is sufficient to sign bid documents for multiple tenders. The same USB token and the same signing workflow applies across all bids you submit on eprocure.gov.in."}},
+    {"@type":"Question","name":"Is it safe to sign offline and then upload?","acceptedAnswer":{"@type":"Answer","text":"Yes. The offline sign and upload method is completely safe and legally valid. The digital signature is embedded in the PDF file itself, not stored on any server. The portal verifies the embedded signature when you upload."}}
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+a{color:#16A34A;text-decoration:none}a:hover{text-decoration:underline}
+nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none}
+.nav-links a{color:#93C5FD;margin-left:1.5rem;font-size:.9rem}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.blog-hero{background:linear-gradient(135deg,#1B2A47 0%,#243352 100%);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center}
+.blog-hero .category{background:#16A34A;color:#fff;font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;display:inline-block;margin-bottom:1rem}
+.blog-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);max-width:750px;margin:0 auto .75rem;line-height:1.25}
+.blog-hero .meta{color:#93C5FD;font-size:.85rem}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#1B2A47;margin:2.5rem 0 .75rem;border-left:4px solid #16A34A;padding-left:.75rem}
+.content h3{font-size:1.1rem;font-weight:600;color:#1B2A47;margin:1.75rem 0 .5rem}
+.content p{margin-bottom:1rem;color:#334155}
+.content ul,.content ol{margin:.5rem 0 1rem 1.5rem;color:#334155}
+.content li{margin-bottom:.4rem}
+.content strong{color:#1B2A47}
+.step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin:1rem 0}
+.step-num{background:#1B2A47;color:#fff;font-size:.75rem;font-weight:700;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0}
+.step-title{font-weight:600;color:#1B2A47;display:flex;align-items:center;margin-bottom:.4rem}
+.step p{margin:0;color:#475569;font-size:.95rem}
+.tip{background:#f0fdf4;border-left:4px solid #16A34A;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.tip strong{color:#15803d}
+.warn{background:#fff7ed;border-left:4px solid #f97316;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.cta-box{background:linear-gradient(135deg,#1B2A47,#243352);color:#fff;border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0}
+.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.75rem;border:none;padding:0;color:#fff}
+.cta-box p{color:#93C5FD;margin-bottom:1.5rem}
+.btn-green{background:#16A34A;color:#fff;padding:.75rem 2rem;border-radius:8px;font-weight:600;display:inline-block;font-size:1rem}
+.btn-green:hover{background:#15803d;text-decoration:none}
+.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1.5rem}
+.breadcrumb a{color:#16A34A}
+footer{background:#1B2A47;color:#93C5FD;text-align:center;padding:2rem;font-size:.85rem;margin-top:3rem}
+footer a{color:#93C5FD}
+.related{background:#f8fafc;border-radius:12px;padding:2rem;margin:2rem 0}
+.related h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1B2A47;margin-bottom:1rem;border:none;padding:0}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.related-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;font-size:.9rem}
+.related-card a{color:#1B2A47;font-weight:500}.related-card a:hover{color:#16A34A}
+table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+th{background:#1B2A47;color:#fff;padding:.6rem 1rem;text-align:left;font-size:.85rem}
+td{padding:.6rem 1rem;border-bottom:1px solid #e2e8f0;font-size:.9rem;color:#334155}
+tr:nth-child(even) td{background:#f8fafc}
+@media(max-width:600px){nav{flex-direction:column;gap:.75rem}.nav-links a{margin-left:.75rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="https://pdfsign.in">PDF<span style="color:#16A34A">Sign</span>.in</a>
+  <div class="nav-links">
+    <a href="https://pdfsign.in">Home</a>
+    <a href="https://pdfsign.in/blog/">Blog</a>
+    <a href="https://pdfsign.in/#pricing">Pricing</a>
+    <a href="https://wa.me/917057413999">Support</a>
+  </div>
+</nav>
+<div class="blog-hero">
+  <div class="category">Portal Guide</div>
+  <h1>How to Sign Documents on NIC e-Procurement Portal with DSC Token</h1>
+  <div class="meta">By PDFSign &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 6 min read</div>
+</div>
+<div class="container">
+<div class="breadcrumb">
+  <a href="https://pdfsign.in">Home</a> › <a href="https://pdfsign.in/blog/">Blog</a> › How to Sign Documents on NIC e-Procurement Portal with DSC Token
+</div>
+<div class="content">
+
+<p>If you are a vendor or contractor bidding on central or state government tenders, you have almost certainly encountered the NIC e-Procurement portal at <strong>eprocure.gov.in</strong>. Operated by the National Informatics Centre (NIC) under the Ministry of Electronics and Information Technology, it is the primary e-tendering platform used by dozens of central government departments — including the Ministry of Railways, Ministry of Defence, Central Public Works Department, and many state governments that use the NIC-hosted stack.</p>
+
+<p>Submitting a bid on this portal requires a valid <strong>Class 3 Digital Signature Certificate</strong> on a USB DSC token. Without a properly signed document, your bid submission is incomplete and will not be accepted before the deadline. This guide walks you through everything you need to know — the right type of DSC, the most reliable signing workflow, and how to troubleshoot the most common problems.</p>
+
+<h2>What Is the NIC e-Procurement Portal?</h2>
+<p>The NIC e-Procurement portal (eprocure.gov.in) is a centralised government-to-business (G2B) platform that hosts tenders, quotations, rate contracts, and procurement notices from central government organisations. State governments including Rajasthan, Himachal Pradesh, Jharkhand, and several others use the same NIC platform infrastructure for their own e-tendering portals.</p>
+<p>The portal handles the full procurement lifecycle: publishing NITs (Notice Inviting Tender), pre-bid queries, bid submission, bid opening, and awarding. Vendors must register on the portal, and at the bid submission stage, all uploaded documents — bid form, price schedule, supporting certificates — must carry a valid digital signature.</p>
+
+<h2>Why DSC Is Mandatory for Bid Submission</h2>
+<p>Under the <strong>Information Technology Act, 2000</strong> and the Public Procurement Policy, electronic bid submission on government portals is legally equivalent to a physical submission only when it bears a valid digital signature from a recognised Certifying Authority. The digital signature:</p>
+<ul>
+  <li>Authenticates the identity of the bidder (individual or organisation)</li>
+  <li>Guarantees the integrity of the uploaded document — any tampering after signing is detectable</li>
+  <li>Provides non-repudiation — the signatory cannot later deny having signed the bid</li>
+  <li>Creates a legally binding record with an RFC 3161 timestamp marking the exact time of signing</li>
+</ul>
+<p>Portals that accept unsigned PDFs or images of signatures do not satisfy these legal requirements. The NIC portal specifically enforces digital signature verification at the time of bid upload.</p>
+
+<h2>What Type of DSC Is Required for NIC e-Procurement?</h2>
+<p>You need a <strong>Class 3 Digital Signature Certificate</strong>. Class 2 DSCs, which were historically used for income tax filings, are no longer issued and are not accepted on e-procurement portals.</p>
+
+<table>
+  <thead>
+    <tr><th>DSC Type</th><th>Acceptable for NIC e-Procurement?</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Class 3 Individual DSC</td><td>Yes — for proprietors, self-employed professionals</td></tr>
+    <tr><td>Class 3 Organisation DSC</td><td>Yes — for companies, partnerships, LLPs</td></tr>
+    <tr><td>Class 2 DSC (old)</td><td>No — not accepted</td></tr>
+    <tr><td>Class 1 DSC</td><td>No — not accepted</td></tr>
+  </tbody>
+</table>
+
+<p>Your Class 3 DSC is issued by a licensed Certifying Authority (CA) such as eMudhra, Capricorn CA, NSDL e-Governance, SafeScrypt, or (n)Code Solutions. The certificate is stored on a USB hardware token — it cannot be exported to a file or used without the physical token.</p>
+
+<h2>Supported USB DSC Tokens</h2>
+<p>The following USB tokens are widely used with Class 3 DSCs in India and are fully supported by PDFSign for offline signing before NIC portal upload:</p>
+<ul>
+  <li><strong>HYP2003 (HS serial series)</strong> — High Security FIPS 140-2 Level 3 certified token, issued since 2023</li>
+  <li><strong>ePass 2003 and ePass 3003</strong> — widely issued by eMudhra and Capricorn CA</li>
+  <li><strong>Proxkey (WD serial series)</strong> — Watchdata High Security token</li>
+  <li><strong>Feitian tokens</strong> — used by several CAs</li>
+  <li><strong>WD Pro</strong> — Watchdata Professional series</li>
+</ul>
+<p>If you are unsure which token model you have, check the label on the USB device or the packaging it came with. The serial number prefix (HS for HYP2003 High Security, WD for Proxkey) helps identify the model.</p>
+
+<h2>Common Problems with Browser-Based Signing on NIC Portal</h2>
+<p>The NIC portal historically relied on browser plugins and Java applets for in-browser token detection and signing. This approach has become increasingly unreliable for several reasons:</p>
+
+<h3>Java Applets No Longer Supported</h3>
+<p>Modern browsers — Chrome, Edge, Firefox — have completely removed support for Java applets and NPAPI plugins. Any NIC signing workflow that required a Java plugin in the browser will not work on current browser versions.</p>
+
+<h3>DSC Helper Applications Break After Windows Updates</h3>
+<p>Some portals provide a "DSC Helper" or "Signing Client" application that runs locally and communicates with the browser via a local port. These applications often break after Windows security updates or after Chrome/Edge updates that change how the browser handles localhost connections.</p>
+
+<h3>Certificate Not Detected</h3>
+<p>Even when the token is plugged in and the driver is correctly installed, browser-based detection can fail if the token middleware is not running, if the user account does not have administrator rights, or if the certificate has recently been renewed and the new certificate is not yet registered with the portal account.</p>
+
+<div class="warn"><strong>Do not wait until the last hour before the bid deadline to troubleshoot browser-based signing problems.</strong> Use the offline sign and upload method described below, which bypasses all browser detection issues entirely.</div>
+
+<h2>The Recommended Workflow: Download, Sign Offline, Upload</h2>
+<p>The most reliable approach for NIC e-Procurement — and the one that experienced vendors use — is a three-step offline workflow:</p>
+<ol>
+  <li><strong>Download</strong> the bid document or form from the NIC portal</li>
+  <li><strong>Sign it offline</strong> using PDFSign with your USB DSC token</li>
+  <li><strong>Upload</strong> the signed PDF back to the portal</li>
+</ol>
+<p>This workflow does not require any browser plugin, Java runtime, or DSC helper application. The signing happens entirely on your Windows PC using PKCS#11, the standard hardware cryptography interface for USB tokens. The browser is only used for downloading and uploading — standard operations that work on every modern browser.</p>
+
+<h2>Step-by-Step: Signing NIC Bid Documents with PDFSign</h2>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">1</span>Install Your Token Driver</div>
+  <p>Before anything else, install the correct middleware for your USB token. For ePass 2003/3003 tokens, install the ePass2003 middleware. For HYP2003 tokens, install the ePass2003 driver (it is compatible). For Proxkey/WD tokens, install the Proxkey middleware. Restart your PC after installation to ensure the driver is fully loaded.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">2</span>Download the Bid Document from NIC Portal</div>
+  <p>Log in to eprocure.gov.in, navigate to the tender you are bidding on, and download the required bid document(s) — typically a PDF bid form, BOQ, or price schedule. Save them to a folder you can easily locate, such as your Desktop or Documents.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">3</span>Plug In Your USB DSC Token and Open PDFSign</div>
+  <p>Insert your USB token into a USB port on your Windows 10 or 11 PC. Launch PDFSign from your desktop or Start menu. PDFSign works entirely offline — no internet connection is needed for the signing step.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">4</span>Select Your DSC Certificate</div>
+  <p>PDFSign automatically detects certificates loaded on your token via PKCS#11. Your Class 3 certificate will appear in the certificate dropdown. If you have multiple certificates (e.g., from a previous DSC renewal), select the one that is currently valid. Click Refresh if the certificate does not appear immediately after plugging in the token.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">5</span>Load the Bid Document</div>
+  <p>Click Browse and navigate to the bid document PDF you downloaded from the NIC portal. PDFSign will display the document. For NIC tenders that require signing every page, use the "All Pages" option. For a single signature on the final page, use the single-page option and set the page number accordingly.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">6</span>Place the Signature and Configure Timestamp</div>
+  <p>Drag the signature box to the appropriate location in the document — typically the signature block near the declaration at the end. PDFSign supports RFC 3161 trusted timestamps, which record the exact date and time of signing from a certified timestamp authority. Enable the timestamp option to add a legally valid time record to your signature.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">7</span>Click Sign and Enter Your Token PIN</div>
+  <p>Click Sign. PDFSign will prompt you to enter your USB token PIN. This is the 6–8 digit PIN set when the DSC was issued. The private key never leaves the token — the signing operation happens inside the hardware. Entering the wrong PIN three times will lock the token, so enter it carefully.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">8</span>Save the Signed PDF</div>
+  <p>PDFSign saves the signed PDF to your chosen output location. The file now contains an embedded PAdES digital signature, your signing certificate details, and the RFC 3161 timestamp. Open the signed PDF in Adobe Acrobat Reader to verify that the signature panel shows "Signature is valid" before uploading.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">9</span>Upload the Signed PDF to the NIC Portal</div>
+  <p>Log back in to eprocure.gov.in. Navigate to the bid submission section for the tender. Upload the signed PDF file in the appropriate document slot. The portal's signature verification engine will read the embedded signature and confirm the certificate details — no browser plugin needed.</p>
+</div>
+
+<div class="tip"><strong>Batch signing:</strong> If you need to sign multiple bid documents, use PDFSign's batch mode to process all files in a single session with one PIN entry. This saves time when a tender requires 5–10 separate signed documents.</div>
+
+<h2>What the Signed Document Contains</h2>
+<p>Once signed with PDFSign, the bid PDF carries the following information embedded in the signature:</p>
+<ul>
+  <li><strong>Signer name</strong> — as registered with the Certifying Authority</li>
+  <li><strong>Organisation name</strong> — for organisation-type Class 3 DSCs</li>
+  <li><strong>Certifying Authority</strong> — e.g., eMudhra, Capricorn CA, NSDL</li>
+  <li><strong>Certificate serial number</strong> — unique identifier of the DSC</li>
+  <li><strong>DSC validity dates</strong> — from/to dates of the certificate</li>
+  <li><strong>RFC 3161 timestamp</strong> — exact signing time from a trusted timestamp server</li>
+  <li><strong>Signature algorithm</strong> — SHA-256 with RSA, meeting current CCA requirements</li>
+</ul>
+<p>All of this is visible to the NIC portal's signature verification system and to anyone opening the signed document in Adobe Acrobat Reader. The signature panel in Acrobat will display a green tick and "Signature is valid" when the certificate chain is intact and the document has not been modified after signing.</p>
+
+<h2>Things to Verify Before the Bid Deadline</h2>
+<p>Missing a tender deadline because of a last-minute DSC problem is avoidable. Run through this checklist at least 48 hours before the submission deadline:</p>
+
+<h3>Check Certificate Expiry</h3>
+<p>Open your token management software (SafeNet Authentication Client or the ePass manager) and confirm the DSC expiry date. A Class 3 DSC is typically valid for 1, 2, or 3 years. If your DSC expires within 30 days, apply for renewal immediately — the renewal process can take 1–3 business days.</p>
+
+<h3>Confirm the Token Is Working</h3>
+<p>Plug in the token, open PDFSign, and confirm the certificate loads correctly. Sign a test PDF to verify that PIN entry works and the signature is applied. Do not assume the token is working just because it was fine last week — token middleware can fail after Windows updates.</p>
+
+<h3>Verify the Signed File Is Accepted</h3>
+<p>Some portals have file size restrictions on signed documents. PDFSign's PAdES signatures add only a small overhead to the file size. If the portal sets a limit (e.g., 5 MB per file), check the signed file size before uploading.</p>
+
+<h3>Keep the Original Unsigned Copy</h3>
+<p>Always keep the original downloaded bid document. If the portal rejects the signed version for any reason, you will need to re-sign the original rather than re-signing an already-signed PDF.</p>
+
+<h2>What If the NIC Portal Rejects the Signed File?</h2>
+<p>If the portal shows a signature validation error after you upload your signed PDF, work through the following checks:</p>
+<ul>
+  <li>Confirm the DSC has not expired — an expired certificate will always fail portal validation</li>
+  <li>Make sure you signed the correct downloaded file (not a previously signed version)</li>
+  <li>Check that the NIC portal account is registered under the same name/organisation as the DSC</li>
+  <li>Verify the certificate chain is complete — PDFSign embeds the full chain by default</li>
+  <li>Try opening the signed PDF in Adobe Acrobat Reader to see what error (if any) the signature panel shows</li>
+  <li>Contact the NIC helpdesk or the portal's technical support with the error message from the portal</li>
+  <li>Contact PDFSign support via WhatsApp at +91 70574 13999 or email help@pdfsign.in with a screenshot of the error</li>
+</ul>
+
+<div class="cta-box">
+  <h2>Sign NIC Tender Documents with Confidence</h2>
+  <p>PDFSign works 100% offline on Windows 10 and 11. Supports all USB DSC tokens — HYP2003, ePass, Proxkey and more. 30-day free trial, no credit card needed.</p>
+  <a class="btn-green" href="https://cdn.pdfsign.in/PDFSignSetup.exe">Download PDFSign — Free Trial</a>
+</div>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Which DSC class is required for NIC e-Procurement portal?</h3>
+<p>NIC e-Procurement (eprocure.gov.in) requires a <strong>Class 3 Digital Signature Certificate</strong>. Class 2 DSCs are no longer issued and are not accepted. Your Class 3 DSC must be on a USB hardware token — soft certificates are not accepted.</p>
+
+<h3>Can I use ePass 2003 or HYP2003 token on the NIC portal?</h3>
+<p>Yes. Both the ePass 2003 (and ePass 3003) and the HYP2003 (HS serial series High Security token) are supported. Install the correct driver for your token, then sign your bid documents offline with PDFSign and upload the signed PDFs to the portal. No in-browser plugin is required.</p>
+
+<h3>What if the portal rejects my signed PDF?</h3>
+<p>Check certificate expiry first — an expired DSC will always fail. Then verify you are uploading the correct signed file. Open the signed PDF in Adobe Acrobat Reader and check what the signature panel says. If the signature shows as invalid in Acrobat itself, contact PDFSign support. If Acrobat shows it as valid but the portal rejects it, contact the NIC helpdesk with the portal error message.</p>
+
+<h3>Do I need a separate DSC for each tender?</h3>
+<p>No. One Class 3 DSC token is sufficient to sign documents for multiple tenders. Use the same token and the same workflow for every bid you submit on eprocure.gov.in.</p>
+
+<h3>Can I sign multiple documents at once?</h3>
+<p>Yes. PDFSign includes a batch signing mode. Select multiple PDF files in one session, configure the signature position, enter your PIN once, and PDFSign signs all files automatically. This is particularly useful when a single tender requires signing 5–10 separate documents.</p>
+
+<div class="related">
+  <h2>Related Articles</h2>
+  <div class="related-grid">
+    <div class="related-card"><a href="how-to-sign-pdf-dsc-token-windows.html">How to Sign a PDF with DSC Token on Windows</a></div>
+    <div class="related-card"><a href="sign-cppp-tender-documents-dsc.html">Signing CPPP Tender Documents with DSC</a></div>
+    <div class="related-card"><a href="how-to-sign-gem-portal-documents-dsc.html">How to Sign GeM Portal Documents</a></div>
+    <div class="related-card"><a href="hyp2003-token-sign-pdf-windows.html">Using HYP2003 Token on Windows</a></div>
+    <div class="related-card"><a href="dsc-token-not-working-chrome-fix.html">DSC Token Not Working in Chrome — Fix</a></div>
+    <div class="related-card"><a href="sign-mca21-documents-dsc-token.html">Signing MCA21 Documents with DSC</a></div>
+    <div class="related-card"><a href="high-security-dsc-token-mandatory-india-2023.html">High Security DSC Tokens Mandatory — 2023</a></div>
+    <div class="related-card"><a href="dsc-token-not-detected-windows-11-fix.html">DSC Token Not Detected on Windows 11 — Fix</a></div>
+  </div>
+</div>
+
+</div>
+</div>
+<footer>
+  <p>© 2026 PDFSign.in by Tender Training India &nbsp;|&nbsp; <a href="https://pdfsign.in/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="https://pdfsign.in/terms.html">Terms</a> &nbsp;|&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
+</footer>
+</body>
+</html>

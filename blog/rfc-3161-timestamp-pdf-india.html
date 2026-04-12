@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7E0J9Z32FK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7E0J9Z32FK');
+</script>
+<title>RFC 3161 Timestamp in PDF Signing — What It Is and Why It Matters in India | PDFSign</title>
+<meta name="description" content="What is an RFC 3161 timestamp and why does it matter for PDF digital signatures in India? Learn how TSA timestamps make DSC-signed PDFs legally valid long after certificate expiry."/>
+<meta name="keywords" content="RFC 3161 timestamp PDF India, TSA timestamp DSC signing, trusted timestamp authority India, PAdES timestamp digital signature, DSC PDF timestamp valid after expiry"/>
+<meta name="author" content="PDFSign"/>
+<meta name="geo.region" content="IN"/>
+<meta name="geo.country" content="India"/>
+<link rel="canonical" href="https://pdfsign.in/blog/rfc-3161-timestamp-pdf-india.html"/>
+<meta property="og:title" content="RFC 3161 Timestamp in PDF Signing — What It Is and Why It Matters in India"/>
+<meta property="og:description" content="Learn how RFC 3161 TSA timestamps protect digitally signed PDFs in India — and why your DSC signing software must embed one for long-term validity."/>
+<meta property="og:url" content="https://pdfsign.in/blog/rfc-3161-timestamp-pdf-india.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="PDFSign"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="RFC 3161 Timestamp in PDF Signing — What It Is and Why It Matters in India"/>
+<meta name="twitter:description" content="How RFC 3161 timestamps make DSC-signed PDFs valid long after certificate expiry — explained for India's government portal users."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"RFC 3161 Timestamp in PDF Signing — What It Is and Why It Matters in India",
+  "description":"What is an RFC 3161 timestamp and why does it matter for PDF digital signatures in India? Learn how TSA timestamps make DSC-signed PDFs legally valid long after certificate expiry.",
+  "author":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "publisher":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "datePublished":"2026-04-12",
+  "dateModified":"2026-04-12",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://pdfsign.in/blog/rfc-3161-timestamp-pdf-india.html"},
+  "inLanguage":"en-IN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"What is RFC 3161?","acceptedAnswer":{"@type":"Answer","text":"RFC 3161 is an Internet Engineering Task Force (IETF) standard defining the protocol for Trusted Timestamping. A Timestamp Authority (TSA) server receives a cryptographic hash of a document and returns a digitally signed timestamp token proving the exact date and time the document existed in its current state."}},
+    {"@type":"Question","name":"Why is an RFC 3161 timestamp important for PDF digital signatures?","acceptedAnswer":{"@type":"Answer","text":"A timestamp proves when a document was signed, independently of the signer's clock or the DSC certificate's validity period. After the DSC certificate expires, the timestamp is the evidence that signing occurred while the certificate was still valid — keeping the signature legally enforceable."}},
+    {"@type":"Question","name":"Which TSA does PDFSign use?","acceptedAnswer":{"@type":"Answer","text":"PDFSign connects to a trusted RFC 3161 Timestamp Authority at the time of signing to obtain a tamper-proof timestamp token. The TSA's certificate chain is also embedded in the PDF for independent verification."}},
+    {"@type":"Question","name":"Does embedding a timestamp require internet?","acceptedAnswer":{"@type":"Answer","text":"Yes — a live connection to the TSA server is needed at the moment of signing to obtain the timestamp token. After signing, the PDF is self-contained and can be verified entirely offline."}}
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+a{color:#16A34A;text-decoration:none}a:hover{text-decoration:underline}
+nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none}
+.nav-links a{color:#93C5FD;margin-left:1.5rem;font-size:.9rem}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.blog-hero{background:linear-gradient(135deg,#1B2A47 0%,#243352 100%);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center}
+.blog-hero .category{background:#16A34A;color:#fff;font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;display:inline-block;margin-bottom:1rem}
+.blog-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);max-width:750px;margin:0 auto .75rem;line-height:1.25}
+.blog-hero .meta{color:#93C5FD;font-size:.85rem}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#1B2A47;margin:2.5rem 0 .75rem;border-left:4px solid #16A34A;padding-left:.75rem}
+.content h3{font-size:1.1rem;font-weight:600;color:#1B2A47;margin:1.75rem 0 .5rem}
+.content p{margin-bottom:1rem;color:#334155}
+.content ul,.content ol{margin:.5rem 0 1rem 1.5rem;color:#334155}
+.content li{margin-bottom:.4rem}
+.content strong{color:#1B2A47}
+.step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin:1rem 0}
+.step-num{background:#1B2A47;color:#fff;font-size:.75rem;font-weight:700;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0}
+.step-title{font-weight:600;color:#1B2A47;display:flex;align-items:center;margin-bottom:.4rem}
+.step p{margin:0;color:#475569;font-size:.95rem}
+.tip{background:#f0fdf4;border-left:4px solid #16A34A;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.tip strong{color:#15803d}
+.warn{background:#fff7ed;border-left:4px solid #f97316;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.cta-box{background:linear-gradient(135deg,#1B2A47,#243352);color:#fff;border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0}
+.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.75rem;border:none;padding:0;color:#fff}
+.cta-box p{color:#93C5FD;margin-bottom:1.5rem}
+.btn-green{background:#16A34A;color:#fff;padding:.75rem 2rem;border-radius:8px;font-weight:600;display:inline-block;font-size:1rem}
+.btn-green:hover{background:#15803d;text-decoration:none}
+.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1.5rem}
+.breadcrumb a{color:#16A34A}
+footer{background:#1B2A47;color:#93C5FD;text-align:center;padding:2rem;font-size:.85rem;margin-top:3rem}
+footer a{color:#93C5FD}
+.related{background:#f8fafc;border-radius:12px;padding:2rem;margin:2rem 0}
+.related h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1B2A47;margin-bottom:1rem;border:none;padding:0}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.related-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;font-size:.9rem}
+.related-card a{color:#1B2A47;font-weight:500}.related-card a:hover{color:#16A34A}
+table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+th{background:#1B2A47;color:#fff;padding:.6rem 1rem;text-align:left;font-size:.85rem}
+td{padding:.6rem 1rem;border-bottom:1px solid #e2e8f0;font-size:.9rem;color:#334155}
+tr:nth-child(even) td{background:#f8fafc}
+.flow-row{display:flex;align-items:center;gap:0;margin:1.5rem 0;flex-wrap:wrap}
+.flow-box{background:#1B2A47;color:#fff;padding:.7rem 1rem;border-radius:8px;font-size:.85rem;font-weight:600;text-align:center;min-width:120px}
+.flow-arrow{color:#16A34A;font-size:1.4rem;padding:0 .5rem;flex-shrink:0}
+.flow-box.tsa{background:#16A34A}
+.flow-box.pdf{background:#243352}
+.code-block{background:#1e293b;color:#e2e8f0;border-radius:8px;padding:1.25rem 1.5rem;margin:1.5rem 0;font-family:monospace;font-size:.85rem;overflow-x:auto;line-height:1.8}
+.code-block .comment{color:#64748b}
+.code-block .key{color:#93C5FD}
+.code-block .val{color:#86efac}
+@media(max-width:600px){nav{flex-direction:column;gap:.75rem}.nav-links a{margin-left:.75rem}.flow-row{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="https://pdfsign.in">PDF<span style="color:#16A34A">Sign</span>.in</a>
+  <div class="nav-links">
+    <a href="https://pdfsign.in">Home</a>
+    <a href="https://pdfsign.in/blog/">Blog</a>
+    <a href="https://pdfsign.in/#pricing">Pricing</a>
+    <a href="https://wa.me/917057413999">Support</a>
+  </div>
+</nav>
+<div class="blog-hero">
+  <div class="category">Standards &amp; Technology</div>
+  <h1>RFC 3161 Timestamp in PDF Signing — What It Is and Why It Matters in India</h1>
+  <div class="meta">By PDFSign &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 8 min read</div>
+</div>
+<div class="container">
+<div class="breadcrumb">
+  <a href="https://pdfsign.in">Home</a> › <a href="https://pdfsign.in/blog/">Blog</a> › RFC 3161 Timestamp in PDF Signing
+</div>
+<div class="content">
+
+<p>Every time you sign a PDF with your DSC token, software like PDFSign can contact a <strong>Timestamp Authority (TSA)</strong> server and embed a cryptographic timestamp into the document. This timestamp is governed by an IETF standard called <strong>RFC 3161</strong>.</p>
+<p>Why does this matter? Because the timestamp is the difference between a signature that is valid for 2 years (your DSC's lifetime) and one that is valid indefinitely. It is one of the most important — and most overlooked — aspects of digital signing for Indian government portals, tenders, and legal documents.</p>
+
+<!-- SVG: TSA flow diagram -->
+<svg viewBox="0 0 680 230" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:2rem auto;border-radius:12px;background:#f8fafc">
+  <!-- PDFSign box -->
+  <rect x="20" y="80" width="130" height="70" rx="10" fill="#1B2A47"/>
+  <text x="85" y="110" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="bold">PDFSign</text>
+  <text x="85" y="127" text-anchor="middle" fill="#93C5FD" font-family="sans-serif" font-size="10">Signs PDF</text>
+  <text x="85" y="141" text-anchor="middle" fill="#93C5FD" font-family="sans-serif" font-size="10">Computes hash</text>
+  <!-- Arrow to TSA -->
+  <path d="M 150 115 L 240 115" stroke="#16A34A" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="195" y="108" text-anchor="middle" fill="#64748b" font-family="sans-serif" font-size="9">Hash (SHA-256)</text>
+  <!-- TSA box -->
+  <rect x="240" y="75" width="150" height="80" rx="10" fill="#16A34A"/>
+  <text x="315" y="105" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="bold">TSA Server</text>
+  <text x="315" y="122" text-anchor="middle" fill="#dcfce7" font-family="sans-serif" font-size="10">Timestamp Authority</text>
+  <text x="315" y="139" text-anchor="middle" fill="#dcfce7" font-family="sans-serif" font-size="10">(RFC 3161)</text>
+  <!-- Arrow back -->
+  <path d="M 390 115 L 480 115" stroke="#1B2A47" stroke-width="2" marker-end="url(#arr2)"/>
+  <text x="435" y="108" text-anchor="middle" fill="#64748b" font-family="sans-serif" font-size="9">Token (signed)</text>
+  <!-- PDF output box -->
+  <rect x="480" y="75" width="150" height="80" rx="10" fill="#243352"/>
+  <text x="555" y="105" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="bold">Signed PDF</text>
+  <text x="555" y="122" text-anchor="middle" fill="#93C5FD" font-family="sans-serif" font-size="10">+ Timestamp Token</text>
+  <text x="555" y="139" text-anchor="middle" fill="#93C5FD" font-family="sans-serif" font-size="10">embedded inside</text>
+  <!-- Label below -->
+  <text x="340" y="195" text-anchor="middle" fill="#475569" font-family="sans-serif" font-size="11">TSA signs: "This hash existed at 14:32:07 IST on 12-Apr-2026"</text>
+  <text x="340" y="213" text-anchor="middle" fill="#16A34A" font-family="sans-serif" font-size="10" font-weight="bold">Tamper-proof. Trusted by Adobe, courts, and Indian government portals.</text>
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#16A34A"/>
+    </marker>
+    <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#1B2A47"/>
+    </marker>
+  </defs>
+</svg>
+
+<h2>What Is RFC 3161?</h2>
+<p>RFC 3161 is an IETF (Internet Engineering Task Force) standard formally titled <em>"Internet X.509 Public Key Infrastructure — Time-Stamp Protocol (TSP)"</em>. It was published in 2001 and defines a protocol for requesting and receiving trusted timestamps from a Timestamp Authority server.</p>
+<p>In plain terms: RFC 3161 is the universally accepted method by which a trusted third-party server — the Timestamp Authority (TSA) — certifies that a specific piece of data (such as a signed PDF's hash) existed at a specific moment in time.</p>
+<p>The TSA's timestamp token is itself digitally signed by the TSA's own certificate, creating a cryptographic chain: <strong>TSA trusts the time → TSA signs the hash → verifier trusts the TSA → verifier trusts the time</strong>.</p>
+
+<h2>How RFC 3161 Timestamping Works — Step by Step</h2>
+
+<div class="step"><div class="step-title"><span class="step-num">1</span>Document Is Signed</div><p>Your DSC token signs the PDF document. A cryptographic hash (SHA-256) of the signed content is computed. The private key never leaves the hardware token.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">2</span>Timestamp Request Sent to TSA</div><p>The signing software (PDFSign) sends the document hash — not the document itself — to a Timestamp Authority server over HTTPS. The document content is never transmitted.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">3</span>TSA Issues a Signed Timestamp Token</div><p>The TSA server records the current UTC time, combines it with the hash, and signs the resulting timestamp token using the TSA's own private key. The TSA's certificate chain is embedded in the token.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">4</span>Token Embedded Into PDF</div><p>The timestamp token is inserted into the PDF signature structure as an unsigned attribute. It is now permanently part of the signed document.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">5</span>Verification (Any Time, Offline)</div><p>A verifier (Acrobat Reader, any PAdES-compliant tool) reads the timestamp token, verifies the TSA's signature, and confirms the hash matches the document. This proves the document existed in its current form at the TSA-certified time.</p></div>
+
+<h2>What the Timestamp Token Contains</h2>
+
+<div class="code-block">
+<span class="comment">// RFC 3161 Timestamp Token (simplified structure)</span>
+{
+  <span class="key">version</span>: <span class="val">1</span>,
+  <span class="key">policy</span>: <span class="val">"1.3.6.1.4.1.4146.2.1"</span>,        <span class="comment">// TSA's timestamping policy OID</span>
+  <span class="key">messageImprint</span>: {
+    <span class="key">hashAlgorithm</span>: <span class="val">"SHA-256"</span>,
+    <span class="key">hashedMessage</span>: <span class="val">"a3f7c4..."</span>       <span class="comment">// SHA-256 of signed PDF content</span>
+  },
+  <span class="key">serialNumber</span>: <span class="val">1234567890</span>,
+  <span class="key">genTime</span>: <span class="val">"2026-04-12T14:32:07Z"</span>,     <span class="comment">// UTC time certified by TSA</span>
+  <span class="key">tsa</span>: <span class="val">"GlobalSign Timestamping CA"</span>,
+  <span class="key">signature</span>: <span class="val">"[TSA's RSA-2048 signature]"</span>  <span class="comment">// Proves token is authentic</span>
+}
+</div>
+
+<p>This token is then embedded inside the PDF's signature dictionary. It cannot be modified without breaking the TSA's signature — and if anyone tampers with the document after timestamping, the hash will no longer match, and the signature will show as invalid.</p>
+
+<h2>Why RFC 3161 Is Critical for Indian Government Signings</h2>
+
+<table>
+  <thead><tr><th>Scenario</th><th>Without Timestamp</th><th>With RFC 3161 Timestamp</th></tr></thead>
+  <tbody>
+    <tr><td>DSC certificate expires</td><td>Signature may show "validity unknown"</td><td>✅ Signature remains valid — timestamp proves signing was before expiry</td></tr>
+    <tr><td>Tender audit 3 years later</td><td>Cannot prove when document was signed</td><td>✅ TSA-certified time is tamper-proof evidence</td></tr>
+    <tr><td>Legal dispute about signing date</td><td>Contested — signer's clock not trusted</td><td>✅ Independent TSA clock; courts accept as evidence</td></tr>
+    <tr><td>Offline verification</td><td>May need CA server contact</td><td>✅ Fully offline once OCSP also embedded (PAdES-LT)</td></tr>
+    <tr><td>CA server becomes unreachable</td><td>Verification may fail</td><td>✅ Timestamp token embedded; no CA contact needed</td></tr>
+  </tbody>
+</table>
+
+<h2>The Difference Between the Signer's Clock and a TSA Timestamp</h2>
+<p>Many signing tools embed the signing time using the <em>local system clock</em> of the signer's computer — not an RFC 3161 timestamp. This is a critical difference:</p>
+
+<ul>
+  <li><strong>System clock time</strong>: set by the user; can be set to any date; not cryptographically verifiable; courts do not trust it as independent evidence</li>
+  <li><strong>RFC 3161 TSA time</strong>: independently certified by a third-party authority; signed with the TSA's private key; cannot be forged; universally accepted by Adobe, courts, and portal operators</li>
+</ul>
+
+<div class="warn"><strong>If your signing software shows "Signing time: [date]" from the computer's clock rather than from a TSA, the timestamp is not RFC 3161 compliant</strong> and will not protect your signature after the DSC certificate expires.</div>
+
+<h2>How to Verify a Timestamp in Adobe Acrobat Reader</h2>
+
+<div class="step"><div class="step-title"><span class="step-num">1</span>Open the Signed PDF</div><p>Open the PDF in Adobe Acrobat Reader (free download from Adobe).</p></div>
+<div class="step"><div class="step-title"><span class="step-num">2</span>Open the Signature Panel</div><p>Click the signature field or open the left-side panel and select "Signatures".</p></div>
+<div class="step"><div class="step-title"><span class="step-num">3</span>Click Signature Properties</div><p>Right-click the signature entry and choose "Show Signature Properties" or click the link at the bottom of the panel.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">4</span>Check Date/Time Source</div><p>Look at the "Date/Time" line. It should say <strong>"from the signature's timestamp"</strong> — not "from the clock on the signer's computer". The TSA issuer name (e.g., "GlobalSign", "DigiCert") should also be visible under timestamp details.</p></div>
+
+<div class="tip"><strong>If the date/time source says "from timestamp"</strong>, your signature is RFC 3161 compliant and will remain verifiable after the DSC certificate expires.</div>
+
+<h2>Which TSA Servers Are Used for Indian PDF Signing?</h2>
+<p>India's CCA-licensed CAs and international trusted TSAs are both acceptable. Common TSA servers used by Indian signing software include:</p>
+
+<table>
+  <thead><tr><th>TSA Provider</th><th>Type</th><th>Accepted In India?</th></tr></thead>
+  <tbody>
+    <tr><td>GlobalSign Timestamping CA</td><td>International (ETSI compliant)</td><td>✅ Yes — Adobe AATL trusted</td></tr>
+    <tr><td>DigiCert Timestamp Authority</td><td>International</td><td>✅ Yes — Adobe AATL trusted</td></tr>
+    <tr><td>Sectigo TSA</td><td>International</td><td>✅ Yes</td></tr>
+    <tr><td>eMudhra TSA</td><td>India (CCA licensed)</td><td>✅ Yes</td></tr>
+    <tr><td>Capricorn TSA</td><td>India (CCA licensed)</td><td>✅ Yes</td></tr>
+    <tr><td>CDAC SETCA TSA</td><td>India (Govt)</td><td>✅ Yes</td></tr>
+  </tbody>
+</table>
+
+<p>PDFSign uses a trusted TSA that is recognised by Adobe's Approved Trust List (AATL) — meaning Adobe Acrobat and Reader will display the signed document's timestamp as trusted without any manual configuration by the recipient.</p>
+
+<h2>RFC 3161 and the PAdES Standard</h2>
+<p>RFC 3161 timestamps are a core component of the PAdES (PDF Advanced Electronic Signatures) standard:</p>
+<ul>
+  <li><strong>PAdES-B</strong>: No timestamp — signature only</li>
+  <li><strong>PAdES-T</strong>: Adds RFC 3161 timestamp (the "T" stands for Timestamp)</li>
+  <li><strong>PAdES-LT</strong>: Adds OCSP/CRL data to enable offline verification</li>
+  <li><strong>PAdES-LTA</strong>: Adds an archive timestamp for very long-term preservation</li>
+</ul>
+<p>PDFSign produces <strong>PAdES-LT</strong> signatures — which include both the RFC 3161 timestamp and the OCSP revocation status data embedded in the PDF. This is the recommended level for Indian government, legal, and commercial use.</p>
+
+<h2>Privacy Note — What Does the TSA See?</h2>
+<p>The TSA server receives only a <strong>SHA-256 hash</strong> of the document's signed content. The actual document content is never transmitted to the TSA. The hash is a fixed-length fingerprint (64 hex characters) that proves a document existed but reveals nothing about its contents.</p>
+<p>This means timestamping works for confidential documents — tender financial bids, legal agreements, bank statements — without exposing any content to the TSA.</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Does RFC 3161 timestamping cost extra?</h3>
+<p>No. PDFSign includes RFC 3161 timestamping in every plan, including the free trial. There is no additional fee per document or per timestamp. Some enterprise TSA providers charge for high-volume usage, but this is transparent to end users.</p>
+
+<h3>What if the TSA server is down when I try to sign?</h3>
+<p>PDFSign will attempt to reach the TSA and will notify you if the connection fails. In that case, you can retry — the document signing itself does not require internet (only the timestamp request does). If no timestamp can be obtained, PDFSign will warn you before completing the signature.</p>
+
+<h3>Is my signed PDF tamper-evident?</h3>
+<p>Yes. Any modification to the PDF after signing — including changing a single character, adding a page, or altering the signature field — will cause the cryptographic hash to change. The signature verification will immediately show as invalid. This is independent of the timestamp.</p>
+
+<h3>Can I add a timestamp to an already-signed PDF?</h3>
+<p>You can add a <em>document-level timestamp</em> to an already-signed PDF — this is what PAdES-LTA does. However, this does not change the original signature timestamp. The original signature's validity is determined by the timestamp that was (or was not) embedded at the time of signing.</p>
+
+<div class="cta-box">
+  <h2>Every PDFSign Signature Includes RFC 3161 Timestamp</h2>
+  <p>Sign PDFs with your DSC token and get PAdES-LT signatures with embedded RFC 3161 timestamp and OCSP data. Valid forever. Works on Windows 10 and 11.</p>
+  <a class="btn-green" href="https://cdn.pdfsign.in/PDFSignSetup.exe">Download PDFSign — Free Trial</a>
+</div>
+
+<div class="related">
+  <h2>Related Articles</h2>
+  <div class="related-grid">
+    <div class="related-card"><a href="digital-signature-valid-after-dsc-expiry.html">Digital Signature Valid After DSC Expiry</a></div>
+    <div class="related-card"><a href="pades-vs-cades-digital-signatures-india.html">PAdES vs CAdES — Which Standard for India?</a></div>
+    <div class="related-card"><a href="how-to-verify-digital-signature-pdf-india.html">How to Verify a Digital Signature in PDF</a></div>
+    <div class="related-card"><a href="digital-signature-validity-unknown-pdf-fix.html">Fix: Signature Validity Unknown in PDF</a></div>
+    <div class="related-card"><a href="best-pdf-signing-software-india-2026.html">Best PDF Signing Software India 2026</a></div>
+    <div class="related-card"><a href="it-act-2000-digital-signatures-india.html">IT Act 2000 and Digital Signatures</a></div>
+  </div>
+</div>
+
+</div>
+</div>
+<footer>
+  <p>© 2026 PDFSign.in by Tender Training India &nbsp;|&nbsp; <a href="https://pdfsign.in/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="https://pdfsign.in/terms.html">Terms</a> &nbsp;|&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
+</footer>
+</body>
+</html>

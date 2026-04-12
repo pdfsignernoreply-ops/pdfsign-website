@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7E0J9Z32FK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7E0J9Z32FK');
+</script>
+<title>DSC Token Not Detected on Windows 11 — Complete Fix Guide | PDFSign</title>
+<meta name="description" content="DSC token not recognised on Windows 11? Complete fix guide for HYP2003, ePass 2003, Proxkey and other USB DSC tokens. Driver installation, PKCS#11 setup and PDF signing without browser."/>
+<meta name="keywords" content="DSC token not detected Windows 11, USB token not recognised Windows 11, HYP2003 driver Windows 11, ePass 2003 Windows 11, Proxkey not detected, digital signature token fix"/>
+<meta name="author" content="PDFSign"/>
+<meta name="geo.region" content="IN"/>
+<meta name="geo.country" content="India"/>
+<link rel="canonical" href="https://pdfsign.in/blog/dsc-token-not-detected-windows-11-fix.html"/>
+<meta property="og:title" content="DSC Token Not Detected on Windows 11 — Complete Fix Guide"/>
+<meta property="og:description" content="DSC token not recognised on Windows 11? Complete fix guide for HYP2003, ePass 2003, Proxkey and other USB DSC tokens. Driver installation, PKCS#11 setup and PDF signing without browser."/>
+<meta property="og:url" content="https://pdfsign.in/blog/dsc-token-not-detected-windows-11-fix.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="PDFSign.in"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="DSC Token Not Detected on Windows 11 — Complete Fix Guide"/>
+<meta name="twitter:description" content="DSC token not recognised on Windows 11? Complete fix guide for HYP2003, ePass 2003, Proxkey and other USB DSC tokens. Driver installation, PKCS#11 setup and PDF signing without browser."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"DSC Token Not Detected on Windows 11 — Complete Fix Guide",
+  "description":"DSC token not recognised on Windows 11? Complete fix guide for HYP2003, ePass 2003, Proxkey and other USB DSC tokens. Driver installation, PKCS#11 setup and PDF signing without browser.",
+  "author":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "publisher":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "datePublished":"2026-04-12",
+  "dateModified":"2026-04-12",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://pdfsign.in/blog/dsc-token-not-detected-windows-11-fix.html"},
+  "inLanguage":"en-IN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Why does my DSC token work on Windows 10 but not Windows 11?","acceptedAnswer":{"@type":"Answer","text":"Windows 11 enforces stricter driver signature requirements and has more aggressive USB power management settings. Older token drivers that were not digitally signed by Microsoft may fail to load. The fix is to install the latest driver version from your token vendor's website, or to disable driver signature enforcement temporarily during installation."}},
+    {"@type":"Question","name":"My token shows in Device Manager but the token software shows nothing — why?","acceptedAnswer":{"@type":"Answer","text":"Device Manager detects the USB hardware, but the PKCS#11 middleware layer (which reads the certificate stored on the token) may not be installed or may be outdated. Reinstall the correct middleware for your token model: ePass2003 middleware for HYP2003 tokens, Proxkey middleware for WD series tokens."}},
+    {"@type":"Question","name":"Do I need to install any driver to use PDFSign with my DSC token?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign accesses your DSC certificate through the PKCS#11 driver installed by your token middleware. You must install the driver for your specific token model before PDFSign can detect your certificate. Once the driver is installed and the token shows in your token management software, PDFSign will detect it automatically."}},
+    {"@type":"Question","name":"How do I identify whether my token is HYP2003 or Proxkey?","acceptedAnswer":{"@type":"Answer","text":"Check the serial number printed on the token body. HYP2003 tokens (also sold as e-Pass 2003) typically have serial numbers starting with HS. Proxkey and Watchdata WD Pro tokens have serial numbers starting with WD. When in doubt, check with your DSC issuing CA — they will have a record of which token model was issued to you."}},
+    {"@type":"Question","name":"Can I use PDFSign without a USB DSC token?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign also supports signing with a signature image or stamp image — useful for visual signatures without a DSC token. However, for legally enforceable digital signatures accepted on government portals (GeM, MCA21, CPPP, etc.), a USB DSC token is required."}}
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+a{color:#16A34A;text-decoration:none}a:hover{text-decoration:underline}
+nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none}
+.nav-links a{color:#93C5FD;margin-left:1.5rem;font-size:.9rem}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.blog-hero{background:linear-gradient(135deg,#1B2A47 0%,#243352 100%);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center}
+.blog-hero .category{background:#16A34A;color:#fff;font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;display:inline-block;margin-bottom:1rem}
+.blog-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);max-width:750px;margin:0 auto .75rem;line-height:1.25}
+.blog-hero .meta{color:#93C5FD;font-size:.85rem}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#1B2A47;margin:2.5rem 0 .75rem;border-left:4px solid #16A34A;padding-left:.75rem}
+.content h3{font-size:1.1rem;font-weight:600;color:#1B2A47;margin:1.75rem 0 .5rem}
+.content p{margin-bottom:1rem;color:#334155}
+.content ul,.content ol{margin:.5rem 0 1rem 1.5rem;color:#334155}
+.content li{margin-bottom:.4rem}
+.content strong{color:#1B2A47}
+.step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin:1rem 0}
+.step-num{background:#1B2A47;color:#fff;font-size:.75rem;font-weight:700;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0}
+.step-title{font-weight:600;color:#1B2A47;display:flex;align-items:center;margin-bottom:.4rem}
+.step p{margin:0;color:#475569;font-size:.95rem}
+.tip{background:#f0fdf4;border-left:4px solid #16A34A;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.tip strong{color:#15803d}
+.warn{background:#fff7ed;border-left:4px solid #f97316;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.cta-box{background:linear-gradient(135deg,#1B2A47,#243352);color:#fff;border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0}
+.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.75rem;border:none;padding:0;color:#fff}
+.cta-box p{color:#93C5FD;margin-bottom:1.5rem}
+.btn-green{background:#16A34A;color:#fff;padding:.75rem 2rem;border-radius:8px;font-weight:600;display:inline-block;font-size:1rem}
+.btn-green:hover{background:#15803d;text-decoration:none}
+.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1.5rem}
+.breadcrumb a{color:#16A34A}
+footer{background:#1B2A47;color:#93C5FD;text-align:center;padding:2rem;font-size:.85rem;margin-top:3rem}
+footer a{color:#93C5FD}
+.related{background:#f8fafc;border-radius:12px;padding:2rem;margin:2rem 0}
+.related h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1B2A47;margin-bottom:1rem;border:none;padding:0}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.related-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;font-size:.9rem}
+.related-card a{color:#1B2A47;font-weight:500}.related-card a:hover{color:#16A34A}
+table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+th{background:#1B2A47;color:#fff;padding:.6rem 1rem;text-align:left;font-size:.85rem}
+td{padding:.6rem 1rem;border-bottom:1px solid #e2e8f0;font-size:.9rem;color:#334155}
+tr:nth-child(even) td{background:#f8fafc}
+@media(max-width:600px){nav{flex-direction:column;gap:.75rem}.nav-links a{margin-left:.75rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="https://pdfsign.in">PDF<span style="color:#16A34A">Sign</span>.in</a>
+  <div class="nav-links">
+    <a href="https://pdfsign.in">Home</a>
+    <a href="https://pdfsign.in/blog/">Blog</a>
+    <a href="https://pdfsign.in/#pricing">Pricing</a>
+    <a href="https://wa.me/917057413999">Support</a>
+  </div>
+</nav>
+<div class="blog-hero">
+  <div class="category">Troubleshooting</div>
+  <h1>DSC Token Not Detected on Windows 11 — Complete Fix Guide</h1>
+  <div class="meta">By PDFSign &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 6 min read</div>
+</div>
+<div class="container">
+<div class="breadcrumb">
+  <a href="https://pdfsign.in">Home</a> › <a href="https://pdfsign.in/blog/">Blog</a> › DSC Token Not Detected on Windows 11 — Complete Fix Guide
+</div>
+<div class="content">
+
+<p>Your USB DSC token worked perfectly on Windows 10. You upgraded to Windows 11 — or bought a new laptop that came with Windows 11 — and now your token either isn't detected at all or appears in Device Manager but your signing software shows no certificate. This is a common problem, and it has specific, fixable causes.</p>
+
+<p>This guide covers every known fix for HYP2003 (HS series), ePass 2003/3003, Proxkey (WD series), Feitian, Watchdata, and WD Pro tokens on Windows 11, including 64-bit Home and Pro editions.</p>
+
+<h2>Why Windows 11 Causes More Detection Issues Than Windows 10</h2>
+
+<p>Windows 11 introduced several changes that directly affect DSC token detection:</p>
+
+<ul>
+  <li><strong>Stricter Driver Signature Enforcement (DSE):</strong> Windows 11 requires all kernel-mode drivers to be digitally signed by Microsoft. Older token drivers that were never updated for this requirement will fail to load silently.</li>
+  <li><strong>Aggressive USB Power Management:</strong> Windows 11's default power plan puts USB ports into selective suspend more aggressively, causing tokens to disconnect or fail to initialise after the PC wakes from sleep or idle.</li>
+  <li><strong>Secure Boot compatibility:</strong> On some systems, Secure Boot interactions with the UEFI firmware affect which drivers can load during startup, impacting middleware that uses early-load mechanisms.</li>
+  <li><strong>64-bit requirement:</strong> Windows 11 is 64-bit only. Some legacy 32-bit token middleware installers do not install correctly on Windows 11, even if they ran on 64-bit Windows 10.</li>
+</ul>
+
+<div class="warn"><strong>Common symptoms:</strong> Token LED blinks when inserted but PC does not detect it / token manager software shows "No token found" or an empty certificate list / Device Manager shows the device with a yellow exclamation mark / works sometimes but disappears after sleep.</div>
+
+<h2>Step 1: Identify Your Token Model</h2>
+
+<p>Before installing any driver, confirm your exact token model. The wrong driver will not work and can cause conflicts.</p>
+
+<table>
+  <thead>
+    <tr><th>Token Name</th><th>Serial Number Prefix</th><th>Driver to Install</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>HYP2003 / ePass 2003 Auto</td><td>HS series (e.g. HS123456)</td><td>ePass2003 PKCS#11 driver from Hypertrust / eMudhra</td></tr>
+    <tr><td>ePass 3003</td><td>Varies by batch</td><td>ePass3003 driver from etokenindia.com</td></tr>
+    <tr><td>Proxkey / WD Pro</td><td>WD series (e.g. WD987654)</td><td>Proxkey middleware from proxkey.com</td></tr>
+    <tr><td>Watchdata / Watchdata Pro</td><td>WD series</td><td>Watchdata USB Key driver from watchdata.com</td></tr>
+    <tr><td>Feitian ePass</td><td>Varies</td><td>Feitian SafeSign middleware from ftsafe.com</td></tr>
+    <tr><td>Capricorn / NSDL token</td><td>Varies by CA</td><td>Contact your issuing CA for the correct driver</td></tr>
+  </tbody>
+</table>
+
+<div class="tip"><strong>Tip:</strong> If you are unsure, check with your DSC issuing Certifying Authority (CA). They will have a record of which token model was supplied with your DSC.</div>
+
+<h2>Fix 1: Install the Correct Driver for Your Token</h2>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">1</span>Remove the Token First</div>
+  <p>Unplug the DSC token from your PC before installing any driver. Installing with the token already connected can cause conflicts during driver setup.</p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">2</span>Download the Correct Middleware</div>
+  <p>For HYP2003 (HS series): download the ePass2003 Auto PKCS#11 driver. For Proxkey (WD series): visit proxkey.com and download the Proxkey middleware installer. For ePass 3003: visit etokenindia.com. For Feitian: visit ftsafe.com and download SafeSign Identity Client.</p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">3</span>Run the Installer as Administrator</div>
+  <p>Right-click the downloaded installer and select <strong>"Run as administrator."</strong> Do not double-click directly. Administrator rights are mandatory for driver installation on Windows 11.</p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">4</span>Restart Your PC</div>
+  <p>After installation completes, restart Windows. Do not plug in the token yet.</p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">5</span>Plug in the Token</div>
+  <p>After the PC has fully restarted, plug in your DSC token. Windows should now detect it and load the correct driver automatically.</p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">6</span>Open Token Management Software</div>
+  <p>Open the token management software that came with your middleware (e.g., ePass2003 Token Manager or Proxkey Manager). You should see your certificate listed. If yes, proceed to signing.</p>
+</div>
+
+<h2>Fix 2: Disable USB Selective Suspend</h2>
+
+<p>This is one of the most common causes of intermittent token detection on Windows 11 — the token disappears after the PC is idle for a few minutes.</p>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">1</span>Open Power Options</div>
+  <p>Press <strong>Win + R</strong>, type <strong>powercfg.cpl</strong> and press Enter. Or search for "Power Options" in the Start menu.</p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">2</span>Change Plan Settings</div>
+  <p>Click <strong>"Change plan settings"</strong> next to your active power plan, then click <strong>"Change advanced power settings."</strong></p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">3</span>Find USB Settings</div>
+  <p>Expand <strong>USB settings &gt; USB selective suspend setting.</strong> Change the setting to <strong>Disabled</strong> for both "On battery" and "Plugged in."</p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">4</span>Apply and Restart</div>
+  <p>Click Apply, then OK. Restart your PC. Your token should now remain detected even after idle periods.</p>
+</div>
+
+<h2>Fix 3: Always Run Signing Software as Administrator</h2>
+
+<p>On Windows 11, PKCS#11 middleware often requires administrator privileges to access hardware cryptographic keys. If your token is detected by the management software but PDFSign shows no certificate, try running PDFSign as administrator.</p>
+
+<p>Right-click the PDFSign shortcut on your desktop or in the Start menu and select <strong>"Run as administrator."</strong> To make this permanent, right-click the shortcut, choose Properties, click the Compatibility tab, and check <strong>"Run this program as an administrator."</strong></p>
+
+<h2>Fix 4: Check Device Manager for Driver Errors</h2>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">1</span>Open Device Manager</div>
+  <p>Press <strong>Win + X</strong> and select Device Manager from the menu.</p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">2</span>Locate the Token</div>
+  <p>Plug in your token and look for it under <strong>"Smart card readers"</strong> or <strong>"Universal Serial Bus devices."</strong> A yellow exclamation mark indicates a driver problem.</p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">3</span>Uninstall the Device</div>
+  <p>Right-click the device with the exclamation mark and select <strong>"Uninstall device."</strong> Check the box to delete the driver software if prompted.</p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">4</span>Reinstall the Driver</div>
+  <p>Unplug the token, run the correct middleware installer as administrator again, restart, and plug the token back in.</p>
+</div>
+
+<h2>Fix 5: Disable Driver Signature Enforcement (Last Resort)</h2>
+
+<p>Only use this fix if you have confirmed that your token driver is an older version that is not signed for Windows 11, and no updated version is available from the vendor.</p>
+
+<div class="warn"><strong>Warning:</strong> Disabling driver signature enforcement reduces system security. Only do this temporarily during driver installation and re-enable it afterwards. Do not leave it disabled permanently on production systems.</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">1</span>Open Advanced Startup</div>
+  <p>Go to <strong>Settings &gt; System &gt; Recovery</strong> and click <strong>"Restart now"</strong> under Advanced startup.</p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">2</span>Choose Troubleshoot</div>
+  <p>On the blue screen, choose <strong>Troubleshoot &gt; Advanced options &gt; Startup Settings &gt; Restart.</strong></p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">3</span>Select Option 7</div>
+  <p>After restart, press <strong>7</strong> or <strong>F7</strong> to select "Disable driver signature enforcement." Windows will start with enforcement disabled for this session only.</p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">4</span>Install the Driver</div>
+  <p>Install your token middleware during this session. The unsigned driver will be allowed to install. Restart normally after installation — enforcement will re-enable automatically.</p>
+</div>
+
+<h2>Fix 6: Use a Direct USB Port — Avoid Hubs</h2>
+
+<p>USB hubs — especially unpowered hubs — frequently cause intermittent detection issues with cryptographic tokens. The token requires a stable power supply and USB signal integrity that many cheap hubs cannot provide.</p>
+
+<p>Always plug your DSC token directly into a USB port on the computer chassis (the ports built into the laptop body or the back panel of a desktop). If you are using a laptop docking station, try plugging directly into the laptop instead. Front panel USB ports on desktops can also be unreliable — try the rear panel ports first.</p>
+
+<div class="tip"><strong>Tip:</strong> If using a laptop, avoid plugging the token into the same USB controller as other high-bandwidth devices (external hard drives, webcams). DSC tokens are low-bandwidth but sensitive to USB bus congestion.</div>
+
+<h2>How to Confirm Your Token Is Working Correctly</h2>
+
+<p>Before attempting to sign any document, verify that your token is fully operational at the middleware level:</p>
+
+<ol>
+  <li>Open your token management software (ePass2003 Manager, Proxkey Manager, or equivalent)</li>
+  <li>You should see your token listed with its serial number</li>
+  <li>Click on the token to expand the view — you should see at least one certificate listed (Digital Signature or Encryption)</li>
+  <li>Try changing the PIN through the management software — if it succeeds, the token is fully accessible</li>
+</ol>
+
+<p>If the management software cannot see the token at this stage, the problem is at the driver or hardware level — go back through Fixes 1 through 6. If the management software sees the certificate but PDFSign does not, ensure PDFSign is running as administrator.</p>
+
+<h2>Using PDFSign Once Your Token Is Detected</h2>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">1</span>Launch PDFSign</div>
+  <p>Open PDFSign from your desktop (as administrator if needed). Make sure your token is already plugged in before launching.</p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">2</span>Select Your Certificate</div>
+  <p>PDFSign automatically scans for PKCS#11 tokens and lists available certificates. Select your DSC certificate from the dropdown. Click Refresh if it does not appear immediately.</p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">3</span>Load Your Document</div>
+  <p>Click Browse or drag your PDF into PDFSign. Choose Single PDF mode for one document or Batch mode if you have multiple documents to sign in one session.</p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">4</span>Place the Signature</div>
+  <p>Use the visual signature placement tool to drag the signature box to the correct position on the page, or enter co-ordinates manually. Choose whether to sign a single page or all pages.</p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">5</span>Click Sign and Enter PIN</div>
+  <p>Click the Sign button. PDFSign will prompt for your token PIN. Enter it correctly — most tokens lock after 3 incorrect attempts. The signed PDF is saved to your specified output folder.</p>
+</div>
+<div class="step">
+  <div class="step-title"><span class="step-num">6</span>Upload to the Portal</div>
+  <p>The signed PDF is ready to upload to GeM, CPPP, MCA21, NIC, Income Tax, DGFT, or any other government portal. No browser token detection required.</p>
+</div>
+
+<h2>Supported Tokens</h2>
+
+<p>PDFSign supports all major Indian DSC tokens via PKCS#11:</p>
+<ul>
+  <li><strong>HYP2003</strong> — HS serial series (ePass2003 PKCS#11 driver)</li>
+  <li><strong>ePass 2003 / ePass 3003</strong> — standard Hypertrust / eMudhra tokens</li>
+  <li><strong>Proxkey</strong> — WD serial series (Proxkey middleware)</li>
+  <li><strong>Watchdata / WD Pro</strong> — WD serial series</li>
+  <li><strong>Feitian ePass</strong> — Feitian SafeSign middleware</li>
+</ul>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>My token worked on Windows 10 but not on Windows 11 after upgrade — why?</h3>
+<p>Windows 11 enforces stricter driver signature requirements. Older token drivers that were not updated for Windows 11 compatibility will fail to load. The fix is to install the latest driver version from your token vendor's website. In most cases, updated drivers are available — the driver you installed years ago on Windows 10 is simply not compatible with Windows 11's kernel requirements.</p>
+
+<h3>My token appears in Device Manager but the token management software shows nothing</h3>
+<p>Device Manager detects the USB hardware, but the PKCS#11 middleware layer — which reads the certificate stored on the token's smart card chip — may not be installed or may be outdated. Uninstall the current middleware completely (via Add/Remove Programs), restart, then reinstall the latest version from the vendor's website as administrator.</p>
+
+<h3>I entered the wrong PIN too many times and now the token is locked</h3>
+<p>Contact your DSC issuing Certifying Authority or the token vendor. Most tokens can be unlocked using a PUK (PIN Unblock Key) that was provided at the time of issuance. Do not attempt to force any more PIN entries — most tokens permanently brick after exceeding the PUK attempt limit as well.</p>
+
+<h3>PDFSign shows "No certificate found" even though my token manager shows the certificate</h3>
+<p>Run PDFSign as administrator (right-click shortcut, Run as administrator). Also ensure that the PKCS#11 DLL path is correctly detected — PDFSign auto-detects the standard installation paths for common middleware. If you installed to a custom directory, contact PDFSign support on WhatsApp at +91 70574 13999.</p>
+
+<div class="cta-box">
+  <h2>Sign PDFs with Your DSC Token — Works on Windows 11</h2>
+  <p>PDFSign detects HYP2003, ePass 2003, Proxkey, Feitian and all major Indian DSC tokens. 100% offline. No browser required. Free 30-day trial.</p>
+  <a class="btn-green" href="https://cdn.pdfsign.in/PDFSignSetup.exe">Download PDFSign — Free Trial</a>
+</div>
+
+<div class="related">
+  <h2>Related Articles</h2>
+  <div class="related-grid">
+    <div class="related-card"><a href="how-to-sign-pdf-dsc-token-windows.html">How to Sign a PDF with DSC Token on Windows</a></div>
+    <div class="related-card"><a href="hyp2003-token-sign-pdf-windows.html">Using HYP2003 Token to Sign PDFs on Windows</a></div>
+    <div class="related-card"><a href="dsc-token-not-working-chrome-fix.html">DSC Token Not Working in Chrome — Fix</a></div>
+    <div class="related-card"><a href="digital-signature-validity-unknown-pdf-fix.html">Digital Signature Shows "Validity Unknown" — Fix</a></div>
+    <div class="related-card"><a href="how-to-sign-gem-portal-documents-dsc.html">How to Sign GeM Portal Documents with DSC</a></div>
+    <div class="related-card"><a href="sign-cppp-tender-documents-dsc.html">Signing CPPP Tender Documents with DSC</a></div>
+    <div class="related-card"><a href="emudhra-capricorn-signer-digital-comparison.html">Comparing DSC Signing Tools in India</a></div>
+    <div class="related-card"><a href="sign-mca21-documents-dsc-token.html">Signing MCA21 Documents with DSC Token</a></div>
+  </div>
+</div>
+
+</div>
+</div>
+<footer>
+  <p>© 2026 PDFSign.in by Tender Training India &nbsp;|&nbsp; <a href="https://pdfsign.in/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="https://pdfsign.in/terms.html">Terms</a> &nbsp;|&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
+</footer>
+</body>
+</html>

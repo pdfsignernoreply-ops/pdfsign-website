@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7E0J9Z32FK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7E0J9Z32FK');
+</script>
+<title>PAdES vs CAdES Digital Signatures — Which Standard Applies in India? | PDFSign</title>
+<meta name="description" content="PAdES vs CAdES — understand the difference between PDF and CMS electronic signature standards and why PAdES is the correct format for signing PDFs in India with a DSC token."/>
+<meta name="keywords" content="PAdES vs CAdES digital signature India, PDF digital signature standard, ETSI signature format, DSC token PDF sign India, PAdES B-LT PAdES B-LTA"/>
+<meta name="author" content="PDFSign"/>
+<meta name="geo.region" content="IN"/>
+<meta name="geo.country" content="India"/>
+<link rel="canonical" href="https://pdfsign.in/blog/pades-vs-cades-digital-signatures-india.html"/>
+<meta property="og:title" content="PAdES vs CAdES Digital Signatures — Which Standard Applies in India?"/>
+<meta property="og:description" content="PAdES vs CAdES — understand the difference between PDF and CMS electronic signature standards and why PAdES is the correct format for signing PDFs in India."/>
+<meta property="og:url" content="https://pdfsign.in/blog/pades-vs-cades-digital-signatures-india.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="PDFSign"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PAdES vs CAdES Digital Signatures — Which Standard Applies in India?"/>
+<meta name="twitter:description" content="Understand PAdES and CAdES signature standards and why PAdES is the right choice for PDF signing with DSC tokens in India."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"PAdES vs CAdES Digital Signatures — Which Standard Applies in India?",
+  "description":"PAdES vs CAdES — understand the difference between PDF and CMS electronic signature standards and why PAdES is the correct format for signing PDFs in India with a DSC token.",
+  "author":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "publisher":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "datePublished":"2026-04-12",
+  "dateModified":"2026-04-12",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://pdfsign.in/blog/pades-vs-cades-digital-signatures-india.html"},
+  "inLanguage":"en-IN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"What is PAdES?","acceptedAnswer":{"@type":"Answer","text":"PAdES (PDF Advanced Electronic Signatures) is the ETSI EN 319 102 standard for embedding digital signatures inside PDF files. It supports visible signature fields, timestamps, and long-term validation data — all inside the PDF structure."}},
+    {"@type":"Question","name":"What is CAdES?","acceptedAnswer":{"@type":"Answer","text":"CAdES (CMS Advanced Electronic Signatures) is an electronic signature format based on CMS (Cryptographic Message Syntax). It produces a .p7s or .p7m file — a separate signature file that wraps around the original document, not embedded inside a PDF."}},
+    {"@type":"Question","name":"Which signature format should I use for signing PDFs in India?","acceptedAnswer":{"@type":"Answer","text":"Use PAdES. It embeds the signature directly into the PDF, is readable by Adobe Acrobat Reader, and is accepted by all Indian government portals including GeM, CPPP, MCA21, and NIC eProcurement."}},
+    {"@type":"Question","name":"Does PDFSign use PAdES?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign produces PAdES B-LT signatures — PDF-native signatures with an RFC 3161 timestamp and OCSP-based long-term validation data embedded in the file."}},
+    {"@type":"Question","name":"What are the PAdES levels?","acceptedAnswer":{"@type":"Answer","text":"PAdES-B (basic), PAdES-T (with timestamp), PAdES-LT (with OCSP/CRL embedded for offline verification), and PAdES-LTA (with archive timestamp for very long-term validity). PDFSign produces PAdES-LT (also called B-LT)."}}
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+a{color:#16A34A;text-decoration:none}a:hover{text-decoration:underline}
+nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none}
+.nav-links a{color:#93C5FD;margin-left:1.5rem;font-size:.9rem}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.blog-hero{background:linear-gradient(135deg,#1B2A47 0%,#243352 100%);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center}
+.blog-hero .category{background:#16A34A;color:#fff;font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;display:inline-block;margin-bottom:1rem}
+.blog-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);max-width:750px;margin:0 auto .75rem;line-height:1.25}
+.blog-hero .meta{color:#93C5FD;font-size:.85rem}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#1B2A47;margin:2.5rem 0 .75rem;border-left:4px solid #16A34A;padding-left:.75rem}
+.content h3{font-size:1.1rem;font-weight:600;color:#1B2A47;margin:1.75rem 0 .5rem}
+.content p{margin-bottom:1rem;color:#334155}
+.content ul,.content ol{margin:.5rem 0 1rem 1.5rem;color:#334155}
+.content li{margin-bottom:.4rem}
+.content strong{color:#1B2A47}
+.step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin:1rem 0}
+.step-num{background:#1B2A47;color:#fff;font-size:.75rem;font-weight:700;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0}
+.step-title{font-weight:600;color:#1B2A47;display:flex;align-items:center;margin-bottom:.4rem}
+.step p{margin:0;color:#475569;font-size:.95rem}
+.tip{background:#f0fdf4;border-left:4px solid #16A34A;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.tip strong{color:#15803d}
+.warn{background:#fff7ed;border-left:4px solid #f97316;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.cta-box{background:linear-gradient(135deg,#1B2A47,#243352);color:#fff;border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0}
+.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.75rem;border:none;padding:0;color:#fff}
+.cta-box p{color:#93C5FD;margin-bottom:1.5rem}
+.btn-green{background:#16A34A;color:#fff;padding:.75rem 2rem;border-radius:8px;font-weight:600;display:inline-block;font-size:1rem}
+.btn-green:hover{background:#15803d;text-decoration:none}
+.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1.5rem}
+.breadcrumb a{color:#16A34A}
+footer{background:#1B2A47;color:#93C5FD;text-align:center;padding:2rem;font-size:.85rem;margin-top:3rem}
+footer a{color:#93C5FD}
+.related{background:#f8fafc;border-radius:12px;padding:2rem;margin:2rem 0}
+.related h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1B2A47;margin-bottom:1rem;border:none;padding:0}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.related-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;font-size:.9rem}
+.related-card a{color:#1B2A47;font-weight:500}.related-card a:hover{color:#16A34A}
+table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+th{background:#1B2A47;color:#fff;padding:.6rem 1rem;text-align:left;font-size:.85rem}
+td{padding:.6rem 1rem;border-bottom:1px solid #e2e8f0;font-size:.9rem;color:#334155}
+tr:nth-child(even) td{background:#f8fafc}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:1.5rem 0}
+.compare-card{border-radius:12px;padding:1.5rem;border:2px solid}
+.compare-card.pades{border-color:#16A34A;background:#f0fdf4}
+.compare-card.cades{border-color:#64748b;background:#f8fafc}
+.compare-card h3{margin:0 0 .75rem;font-size:1rem}
+.compare-card.pades h3{color:#15803d}
+.compare-card.cades h3{color:#475569}
+.compare-card ul{margin:0 0 0 1.2rem;color:#334155;font-size:.9rem}
+.compare-card li{margin-bottom:.3rem}
+.level-row{display:flex;gap:0;margin:1.5rem 0;border-radius:10px;overflow:hidden;border:1px solid #e2e8f0}
+.level-cell{flex:1;padding:.85rem 1rem;text-align:center;font-size:.82rem}
+.level-cell .label{font-weight:700;font-size:.9rem;display:block;margin-bottom:.2rem}
+.lv-b{background:#e0f2fe;color:#0369a1}
+.lv-t{background:#dcfce7;color:#15803d}
+.lv-lt{background:#16A34A;color:#fff}
+.lv-lta{background:#1B2A47;color:#fff}
+@media(max-width:600px){nav{flex-direction:column;gap:.75rem}.nav-links a{margin-left:.75rem}.compare-grid{grid-template-columns:1fr}.level-row{flex-direction:column}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="https://pdfsign.in">PDF<span style="color:#16A34A">Sign</span>.in</a>
+  <div class="nav-links">
+    <a href="https://pdfsign.in">Home</a>
+    <a href="https://pdfsign.in/blog/">Blog</a>
+    <a href="https://pdfsign.in/#pricing">Pricing</a>
+    <a href="https://wa.me/917057413999">Support</a>
+  </div>
+</nav>
+<div class="blog-hero">
+  <div class="category">Standards &amp; Technology</div>
+  <h1>PAdES vs CAdES Digital Signatures — Which Standard Applies in India?</h1>
+  <div class="meta">By PDFSign &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 7 min read</div>
+</div>
+<div class="container">
+<div class="breadcrumb">
+  <a href="https://pdfsign.in">Home</a> › <a href="https://pdfsign.in/blog/">Blog</a> › PAdES vs CAdES Digital Signatures
+</div>
+<div class="content">
+
+<p>When your DSC token signs a PDF, it uses a specific cryptographic standard that determines how the signature is stored, how it appears in Adobe Acrobat, and whether it remains verifiable years later. The two most common standards are <strong>PAdES</strong> and <strong>CAdES</strong> — and knowing the difference matters if you file documents with Indian government portals or courts.</p>
+
+<!-- SVG illustration: two document types side by side -->
+<svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:2rem auto;border-radius:12px;background:#f8fafc">
+  <!-- PAdES side -->
+  <rect x="40" y="30" width="260" height="160" rx="10" fill="#dcfce7" stroke="#16A34A" stroke-width="2"/>
+  <rect x="40" y="30" width="260" height="38" rx="10" fill="#16A34A"/>
+  <text x="170" y="55" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">PAdES</text>
+  <text x="170" y="72" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="10">PDF Advanced Electronic Signatures</text>
+  <!-- PDF icon -->
+  <rect x="100" y="90" width="50" height="65" rx="5" fill="#fff" stroke="#16A34A" stroke-width="1.5"/>
+  <text x="125" y="125" text-anchor="middle" fill="#16A34A" font-family="sans-serif" font-size="11" font-weight="bold">PDF</text>
+  <text x="125" y="140" text-anchor="middle" fill="#16A34A" font-family="sans-serif" font-size="8">+ signature</text>
+  <!-- embedded badge -->
+  <rect x="170" y="110" width="100" height="28" rx="6" fill="#15803d"/>
+  <text x="220" y="128" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="10">Embedded inside PDF</text>
+  <text x="170" y="180" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="10">✓ Visible in Acrobat Reader</text>
+  <text x="170" y="195" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="10">✓ Single signed .pdf file</text>
+
+  <!-- CAdES side -->
+  <rect x="370" y="30" width="270" height="160" rx="10" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/>
+  <rect x="370" y="30" width="270" height="38" rx="10" fill="#475569"/>
+  <text x="505" y="55" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">CAdES</text>
+  <text x="505" y="72" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif" font-size="10">CMS Advanced Electronic Signatures</text>
+  <!-- doc + sig icons -->
+  <rect x="400" y="90" width="45" height="58" rx="5" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="422" y="122" text-anchor="middle" fill="#475569" font-family="sans-serif" font-size="9">DOC</text>
+  <text x="453" y="120" fill="#94a3b8" font-family="sans-serif" font-size="20">+</text>
+  <rect x="465" y="90" width="45" height="58" rx="5" fill="#fff" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4"/>
+  <text x="487" y="118" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="9">.p7s</text>
+  <text x="487" y="130" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="8">sig file</text>
+  <text x="505" y="173" text-anchor="middle" fill="#64748b" font-family="sans-serif" font-size="10">Separate signature file</text>
+  <text x="505" y="188" text-anchor="middle" fill="#64748b" font-family="sans-serif" font-size="10">Both files needed to verify</text>
+</svg>
+
+<h2>What Is PAdES?</h2>
+<p><strong>PAdES (PDF Advanced Electronic Signatures)</strong> is an ETSI standard (EN 319 102) for embedding digital signatures directly inside a PDF file. When a PDF is signed with PAdES, the signature — including the certificate chain, timestamp, and OCSP/CRL data — is stored as part of the PDF document structure.</p>
+<p>The result is a single <code>.pdf</code> file that:</p>
+<ul>
+  <li>Shows a blue or green signature panel in Adobe Acrobat Reader</li>
+  <li>Can be verified without any additional files or software</li>
+  <li>Supports visible signature fields (name, date, seal image)</li>
+  <li>Remains verifiable years after the DSC certificate expires</li>
+</ul>
+
+<h2>What Is CAdES?</h2>
+<p><strong>CAdES (CMS Advanced Electronic Signatures)</strong> is an ETSI standard (EN 319 122) based on CMS (Cryptographic Message Syntax). It wraps a document with a cryptographic envelope and produces a separate <code>.p7s</code> or <code>.p7m</code> signature file.</p>
+<p>CAdES is format-agnostic — it can sign any file type (PDF, Word, ZIP, XML). However, for PDFs specifically, it means:</p>
+<ul>
+  <li>Two files must stay together: the original PDF and the <code>.p7s</code> signature</li>
+  <li>Acrobat Reader cannot display CAdES signatures natively inside a PDF</li>
+  <li>Portals must specifically support CAdES verification</li>
+</ul>
+
+<div class="compare-grid">
+  <div class="compare-card pades">
+    <h3>✅ PAdES — For PDF Signing</h3>
+    <ul>
+      <li>Signature embedded inside PDF</li>
+      <li>Single signed .pdf file output</li>
+      <li>Visible in Adobe Acrobat Reader</li>
+      <li>Timestamp &amp; OCSP inside PDF</li>
+      <li>Accepted by all Indian govt portals</li>
+      <li>Standard for GeM, MCA21, CPPP, NIC</li>
+    </ul>
+  </div>
+  <div class="compare-card cades">
+    <h3>CAdES — For Generic File Signing</h3>
+    <ul>
+      <li>Signature stored in separate .p7s file</li>
+      <li>Two files needed to verify</li>
+      <li>Not natively readable in Acrobat</li>
+      <li>Used for email (S/MIME), code signing</li>
+      <li>Not suitable for PDF portals in India</li>
+      <li>Used in EU eIDAS for non-PDF workflows</li>
+    </ul>
+  </div>
+</div>
+
+<h2>PAdES Levels — From Basic to Archive</h2>
+<p>PAdES has four levels of signature completeness, each adding more data to ensure the signature can be verified long into the future:</p>
+
+<div class="level-row">
+  <div class="level-cell lv-b">
+    <span class="label">PAdES-B</span>Basic signature + certificate chain
+  </div>
+  <div class="level-cell lv-t">
+    <span class="label">PAdES-T</span>+ RFC 3161 timestamp
+  </div>
+  <div class="level-cell lv-lt">
+    <span class="label">PAdES-LT</span>+ OCSP/CRL data embedded
+  </div>
+  <div class="level-cell lv-lta">
+    <span class="label">PAdES-LTA</span>+ Archive timestamp (decades)
+  </div>
+</div>
+
+<h3>PAdES-B (Basic)</h3>
+<p>Contains the cryptographic signature and the signer's certificate chain. No timestamp — so if the DSC certificate expires, the signing time cannot be proven. This is the minimum level; adequate for documents verified immediately but risky for long-term records.</p>
+
+<h3>PAdES-T (Timestamped)</h3>
+<p>Adds an RFC 3161 timestamp from a trusted TSA server at the moment of signing. The timestamp proves <em>when</em> the signing occurred, independently of certificate validity. If the DSC was valid at signing time, the signature remains valid even after the certificate expires.</p>
+
+<h3>PAdES-LT (Long-Term)</h3>
+<p>Embeds OCSP responses or CRL data so that the certificate status at signing time is captured inside the PDF. This allows offline verification without needing to contact the CA's servers years later — critical for tender records and legal documents.</p>
+<p><strong>PDFSign produces PAdES-LT signatures</strong> — the most practical level for Indian government and commercial use.</p>
+
+<h3>PAdES-LTA (Long-Term with Archive Timestamp)</h3>
+<p>Adds a second timestamp over the entire signature including the embedded OCSP data. This is used for archival scenarios — court records, land registry documents — where signatures must survive 20+ years and outlive both the TSA's and CA's own hash algorithms.</p>
+
+<div class="tip"><strong>For most Indian business use cases</strong> — tender bids, MCA filings, GST exports, NIC eProcurement — PAdES-LT is the right level. It gives you timestamp-backed validity and offline verifiability without the complexity of archive timestamps.</div>
+
+<h2>Which Standard Do Indian Government Portals Use?</h2>
+
+<table>
+  <thead><tr><th>Portal</th><th>Expected Signature Type</th><th>Format</th></tr></thead>
+  <tbody>
+    <tr><td>GeM Portal</td><td>DSC-based PDF signature</td><td>PAdES</td></tr>
+    <tr><td>CPPP / eprocure.gov.in</td><td>DSC-based PDF signature</td><td>PAdES</td></tr>
+    <tr><td>NIC eProcurement</td><td>DSC-based PDF signature</td><td>PAdES</td></tr>
+    <tr><td>MCA21 (ROC filing)</td><td>DSC attached to form</td><td>PAdES / PKCS#7</td></tr>
+    <tr><td>GST Portal</td><td>Aadhaar OTP or DSC (EVC)</td><td>Portal-managed</td></tr>
+    <tr><td>Court e-filing (India)</td><td>Signed PDF attachment</td><td>PAdES</td></tr>
+    <tr><td>CPC / CBDT e-assessment</td><td>Signed PDF response</td><td>PAdES</td></tr>
+  </tbody>
+</table>
+
+<h2>XAdES — A Third Standard Worth Knowing</h2>
+<p>There is also <strong>XAdES</strong> (XML Advanced Electronic Signatures), used for signing XML documents. In India, XAdES appears in certain banking and NSDL workflows where the transaction data is XML-structured. For everyday PDF signing, XAdES is not relevant.</p>
+
+<table>
+  <thead><tr><th>Standard</th><th>Target Format</th><th>Output</th><th>Used In India For</th></tr></thead>
+  <tbody>
+    <tr><td><strong>PAdES</strong></td><td>PDF</td><td>Signed .pdf</td><td>Government portals, legal docs, tenders</td></tr>
+    <tr><td><strong>CAdES</strong></td><td>Any file</td><td>.p7s / .p7m</td><td>S/MIME email, code signing</td></tr>
+    <tr><td><strong>XAdES</strong></td><td>XML</td><td>Signed .xml</td><td>Banking APIs, NSDL transactions</td></tr>
+  </tbody>
+</table>
+
+<h2>How PDFSign Handles PAdES</h2>
+<p>PDFSign applies PAdES-LT (also called PAdES B-LT) signatures to every document you sign:</p>
+
+<div class="step"><div class="step-title"><span class="step-num">1</span>Cryptographic Signature via PKCS#11</div><p>PDFSign uses your DSC token's hardware crypto engine (via the PKCS#11 interface) to sign the document hash. The private key never leaves the token.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">2</span>Certificate Chain Embedding</div><p>The signer's certificate, intermediate CA certificate, and root CA certificate are all embedded into the PDF signature.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">3</span>RFC 3161 Timestamp</div><p>PDFSign contacts a trusted Timestamp Authority (TSA) and embeds a cryptographic timestamp at the moment of signing. This proves the exact signing time independently of the certificate's validity period.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">4</span>OCSP / LTV Data Embedding</div><p>The certificate revocation status is fetched from the CA's OCSP server and embedded into the PDF. This is the LT (Long-Term) component — it allows offline verification years later without contacting any server.</p></div>
+
+<div class="warn"><strong>Internet required at signing time:</strong> To obtain the RFC 3161 timestamp and OCSP data, PDFSign requires an internet connection when you click Sign. All subsequent verification is fully offline.</div>
+
+<h2>Verifying a PAdES Signature in India</h2>
+<p>Any recipient can verify a PAdES-LT signature using Adobe Acrobat Reader (free) without installing any plugin:</p>
+<ol>
+  <li>Open the signed PDF in Adobe Acrobat Reader</li>
+  <li>Click the signature panel or the blue signature badge</li>
+  <li>Acrobat displays: signer name, certificate issuer (eMudhra / Capricorn / etc.), signing date/time from timestamp, and validity status</li>
+  <li>If the CCA India root is trusted, status shows <strong>Signature Valid</strong> in green</li>
+</ol>
+
+<div class="tip"><strong>Offline verification works</strong> because the OCSP data is embedded inside the PDF. No internet connection is needed to verify a PAdES-LT signed document.</div>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Can I convert a CAdES signature to PAdES?</h3>
+<p>No — they are fundamentally different signature structures. If a document was signed with CAdES (producing a .p7s file), you cannot convert it to a PDF-embedded PAdES signature. You would need to re-sign the document with a PAdES-compliant tool.</p>
+
+<h3>Does the Indian IT Act 2000 specify PAdES?</h3>
+<p>The IT Act 2000 and the 2015 Amendment define electronic signatures and DSC requirements but do not mandate a specific signing format. However, CCA India's licensed CAs and portal operators have converged on PAdES for PDF documents as the de facto standard.</p>
+
+<h3>Will PAdES signatures survive a DSC certificate expiry?</h3>
+<p>Yes — if the signature includes an RFC 3161 timestamp (PAdES-T or higher). The timestamp proves the certificate was valid <em>at the time of signing</em>, which is all that legally matters. See our detailed guide: <a href="digital-signature-valid-after-dsc-expiry.html">Digital Signature Validity After DSC Certificate Expiry</a>.</p>
+
+<div class="cta-box">
+  <h2>Sign PDFs with PAdES-LT — Offline, Instantly</h2>
+  <p>PDFSign applies PAdES-LT signatures with RFC 3161 timestamp and embedded OCSP data. Works on Windows 10 and 11 with all major DSC tokens.</p>
+  <a class="btn-green" href="https://cdn.pdfsign.in/PDFSignSetup.exe">Download PDFSign — Free Trial</a>
+</div>
+
+<div class="related">
+  <h2>Related Articles</h2>
+  <div class="related-grid">
+    <div class="related-card"><a href="rfc-3161-timestamp-pdf-india.html">RFC 3161 Timestamp in PDF Signing</a></div>
+    <div class="related-card"><a href="digital-signature-valid-after-dsc-expiry.html">Signature Valid After DSC Expiry</a></div>
+    <div class="related-card"><a href="how-to-verify-digital-signature-pdf-india.html">How to Verify a Digital Signature in PDF</a></div>
+    <div class="related-card"><a href="digital-signature-validity-unknown-pdf-fix.html">Fix: Signature Validity Unknown</a></div>
+    <div class="related-card"><a href="it-act-2000-digital-signatures-india.html">IT Act 2000 and Digital Signatures</a></div>
+    <div class="related-card"><a href="best-pdf-signing-software-india-2026.html">Best PDF Signing Software India 2026</a></div>
+  </div>
+</div>
+
+</div>
+</div>
+<footer>
+  <p>© 2026 PDFSign.in by Tender Training India &nbsp;|&nbsp; <a href="https://pdfsign.in/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="https://pdfsign.in/terms.html">Terms</a> &nbsp;|&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
+</footer>
+</body>
+</html>

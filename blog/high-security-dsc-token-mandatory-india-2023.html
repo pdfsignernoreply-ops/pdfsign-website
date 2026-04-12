@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7E0J9Z32FK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7E0J9Z32FK');
+</script>
+<title>High Security DSC Tokens Mandatory in India — What Changed in 2023 | PDFSign</title>
+<meta name="description" content="CCA India mandated FIPS 140-2 Level 3 High Security DSC tokens for all new Class 3 Digital Signature Certificates from 2023. What it means, which tokens qualify, and how to check yours."/>
+<meta name="keywords" content="High Security DSC token India, FIPS 140-2 Level 3 DSC, CCA mandatory token 2023, HYP2003 HS series, Proxkey WD series, Class 3 DSC token upgrade"/>
+<meta name="author" content="PDFSign"/>
+<meta name="geo.region" content="IN"/>
+<meta name="geo.country" content="India"/>
+<link rel="canonical" href="https://pdfsign.in/blog/high-security-dsc-token-mandatory-india-2023.html"/>
+<meta property="og:title" content="High Security DSC Tokens Mandatory in India — What Changed in 2023"/>
+<meta property="og:description" content="CCA India mandated FIPS 140-2 Level 3 High Security DSC tokens for all new Class 3 Digital Signature Certificates from 2023. What it means, which tokens qualify, and how to check yours."/>
+<meta property="og:url" content="https://pdfsign.in/blog/high-security-dsc-token-mandatory-india-2023.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="PDFSign.in"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="High Security DSC Tokens Mandatory in India — What Changed in 2023"/>
+<meta name="twitter:description" content="CCA India mandated FIPS 140-2 Level 3 High Security DSC tokens for all new Class 3 Digital Signature Certificates from 2023. What it means, which tokens qualify, and how to check yours."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"High Security DSC Tokens Mandatory in India — What Changed in 2023",
+  "description":"CCA India mandated FIPS 140-2 Level 3 High Security DSC tokens for all new Class 3 Digital Signature Certificates from 2023. What it means, which tokens qualify, and how to check yours.",
+  "author":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "publisher":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "datePublished":"2026-04-12",
+  "dateModified":"2026-04-12",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://pdfsign.in/blog/high-security-dsc-token-mandatory-india-2023.html"},
+  "inLanguage":"en-IN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Does my old ePass 2003 token still work after the 2023 mandate?","acceptedAnswer":{"@type":"Answer","text":"Yes. If your existing ePass 2003 token was issued before the mandate and carries a valid Class 3 DSC, it continues to work until the DSC expiry date. The mandate applies only to new issuances from 2023 onwards. When your DSC expires and you apply for renewal, the CA will issue the new certificate on a FIPS 140-2 Level 3 High Security token."}},
+    {"@type":"Question","name":"How do I know if my token is a High Security token?","acceptedAnswer":{"@type":"Answer","text":"Check the serial number printed on the USB token. HYP2003 High Security tokens have serial numbers beginning with HS (e.g., HS2XXXXXXX). Proxkey High Security tokens have serial numbers beginning with WD. You can also look for 'FIPS 140-2 Level 3' printed on the token body or packaging, or check the certificate issued by the CA which will specify the token type."}},
+    {"@type":"Question","name":"What happens if I have an HS series HYP2003 token but it is not working?","acceptedAnswer":{"@type":"Answer","text":"An HS series token not working is almost always a driver or middleware issue, not a hardware fault. Reinstall the ePass2003 middleware, restart your PC, and try again. Make sure you are running the driver installer as administrator. If the problem persists, contact your DSC-issuing CA or PDFSign support at +91 70574 13999."}},
+    {"@type":"Question","name":"Do I need to buy a new token when my DSC expires?","acceptedAnswer":{"@type":"Answer","text":"Not always. If your existing token is already FIPS 140-2 Level 3 certified (HS or WD series), the CA can sometimes reload a new certificate onto the same token during renewal. If your old token is not High Security certified, you will receive a new HS token when renewing. Check with your CA at the time of renewal."}},
+    {"@type":"Question","name":"Does PDFSign work with High Security tokens?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign fully supports all PKCS#11-compliant High Security tokens including the HYP2003 HS series and Proxkey WD series. No configuration changes are needed — PDFSign detects the token and loads the certificate automatically once the correct middleware is installed."}}
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+a{color:#16A34A;text-decoration:none}a:hover{text-decoration:underline}
+nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none}
+.nav-links a{color:#93C5FD;margin-left:1.5rem;font-size:.9rem}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.blog-hero{background:linear-gradient(135deg,#1B2A47 0%,#243352 100%);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center}
+.blog-hero .category{background:#16A34A;color:#fff;font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;display:inline-block;margin-bottom:1rem}
+.blog-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);max-width:750px;margin:0 auto .75rem;line-height:1.25}
+.blog-hero .meta{color:#93C5FD;font-size:.85rem}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#1B2A47;margin:2.5rem 0 .75rem;border-left:4px solid #16A34A;padding-left:.75rem}
+.content h3{font-size:1.1rem;font-weight:600;color:#1B2A47;margin:1.75rem 0 .5rem}
+.content p{margin-bottom:1rem;color:#334155}
+.content ul,.content ol{margin:.5rem 0 1rem 1.5rem;color:#334155}
+.content li{margin-bottom:.4rem}
+.content strong{color:#1B2A47}
+.step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin:1rem 0}
+.step-num{background:#1B2A47;color:#fff;font-size:.75rem;font-weight:700;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0}
+.step-title{font-weight:600;color:#1B2A47;display:flex;align-items:center;margin-bottom:.4rem}
+.step p{margin:0;color:#475569;font-size:.95rem}
+.tip{background:#f0fdf4;border-left:4px solid #16A34A;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.tip strong{color:#15803d}
+.warn{background:#fff7ed;border-left:4px solid #f97316;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.cta-box{background:linear-gradient(135deg,#1B2A47,#243352);color:#fff;border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0}
+.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.75rem;border:none;padding:0;color:#fff}
+.cta-box p{color:#93C5FD;margin-bottom:1.5rem}
+.btn-green{background:#16A34A;color:#fff;padding:.75rem 2rem;border-radius:8px;font-weight:600;display:inline-block;font-size:1rem}
+.btn-green:hover{background:#15803d;text-decoration:none}
+.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1.5rem}
+.breadcrumb a{color:#16A34A}
+footer{background:#1B2A47;color:#93C5FD;text-align:center;padding:2rem;font-size:.85rem;margin-top:3rem}
+footer a{color:#93C5FD}
+.related{background:#f8fafc;border-radius:12px;padding:2rem;margin:2rem 0}
+.related h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1B2A47;margin-bottom:1rem;border:none;padding:0}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.related-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;font-size:.9rem}
+.related-card a{color:#1B2A47;font-weight:500}.related-card a:hover{color:#16A34A}
+table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+th{background:#1B2A47;color:#fff;padding:.6rem 1rem;text-align:left;font-size:.85rem}
+td{padding:.6rem 1rem;border-bottom:1px solid #e2e8f0;font-size:.9rem;color:#334155}
+tr:nth-child(even) td{background:#f8fafc}
+@media(max-width:600px){nav{flex-direction:column;gap:.75rem}.nav-links a{margin-left:.75rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="https://pdfsign.in">PDF<span style="color:#16A34A">Sign</span>.in</a>
+  <div class="nav-links">
+    <a href="https://pdfsign.in">Home</a>
+    <a href="https://pdfsign.in/blog/">Blog</a>
+    <a href="https://pdfsign.in/#pricing">Pricing</a>
+    <a href="https://wa.me/917057413999">Support</a>
+  </div>
+</nav>
+<div class="blog-hero">
+  <div class="category">Compliance</div>
+  <h1>High Security DSC Tokens Mandatory in India — What Changed in 2023</h1>
+  <div class="meta">By PDFSign &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 6 min read</div>
+</div>
+<div class="container">
+<div class="breadcrumb">
+  <a href="https://pdfsign.in">Home</a> › <a href="https://pdfsign.in/blog/">Blog</a> › High Security DSC Tokens Mandatory in India — What Changed in 2023
+</div>
+<div class="content">
+
+<p>If you have applied for a new Class 3 Digital Signature Certificate (DSC) in 2023 or later, you received a USB token that looks slightly different from the older ePass 2003 or ProxyKey tokens that were issued before. The label might say "High Security" or show a FIPS certification mark. You may have noticed the serial number starts with "HS" or "WD" rather than the older format.</p>
+
+<p>This is not a coincidence. The <strong>Controller of Certifying Authorities (CCA)</strong>, operating under the Ministry of Electronics and Information Technology (MeitY) and empowered by the Information Technology Act, 2000, issued a directive in 2023 mandating that all new Class 3 DSC tokens must meet <strong>FIPS 140-2 Level 3</strong> security certification. This article explains what changed, why it matters, which tokens qualify, and what it means for your existing setup.</p>
+
+<h2>Background: The CCA and How DSCs Are Governed in India</h2>
+<p>Digital Signature Certificates in India are governed by the <strong>Information Technology Act, 2000</strong>. Section 17 of the IT Act establishes the Controller of Certifying Authorities, a statutory authority that licenses and oversees Certifying Authorities (CAs). In India, licensed CAs include eMudhra, Capricorn CA, NSDL e-Governance Infrastructure Limited, SafeScrypt (a Sify company), (n)Code Solutions, and a few others.</p>
+<p>The CCA sets the technical and procedural standards that CAs must follow when issuing DSCs. These standards cover key length, certificate validity period, revocation procedures, identity verification requirements, and — critically — the security specifications of the hardware token on which the private key is stored.</p>
+<p>Before 2023, the token standard required FIPS 140-2 Level 2 certification. The 2023 directive raised this requirement to Level 3 for all new Class 3 DSC issuances.</p>
+
+<h2>What Changed in 2023: The FIPS 140-2 Level 3 Mandate</h2>
+<p>FIPS 140-2 (Federal Information Processing Standard 140-2) is a US government standard for cryptographic module security, published by NIST. It defines four security levels, with Level 1 being the minimum and Level 4 being the highest. The standard is widely adopted internationally as the benchmark for secure hardware cryptographic devices.</p>
+
+<table>
+  <thead>
+    <tr><th>FIPS Level</th><th>Key Requirement</th><th>DSC Token Status (India)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Level 1</td><td>Basic software/hardware security</td><td>Not sufficient for Class 3 DSC</td></tr>
+    <tr><td>Level 2</td><td>Tamper-evident physical security</td><td>Required before 2023</td></tr>
+    <tr><td>Level 3</td><td>Tamper-resistant, key zeroisation on attack</td><td>Mandatory from 2023 for new Class 3 DSC</td></tr>
+    <tr><td>Level 4</td><td>Complete physical protection envelope</td><td>Not required for standard DSC</td></tr>
+  </tbody>
+</table>
+
+<p>The core difference between Level 2 and Level 3 is what happens when the hardware is physically attacked. A Level 2 device must show evidence of tampering (tamper-evident seals). A Level 3 device must actively resist physical intrusion and automatically erase (zeroize) the private key if the secure boundary is breached. At Level 3, the private key generation must happen on-chip — the key is never in plaintext outside the secure hardware boundary.</p>
+
+<h2>Why the Change Was Made</h2>
+<p>The primary motivation was to prevent <strong>private key cloning</strong>. On older FIPS 140-2 Level 2 tokens, it was theoretically possible — with physical access to the token and sophisticated hardware attacks — to extract the private key from the token's memory and copy it to another device. A cloned private key allows someone else to sign documents as you without your knowledge or consent.</p>
+<p>As India's digital economy has grown and the value of digitally signed documents — government tenders, company filings, income tax returns, property transactions — has increased, so has the incentive for malicious actors to clone DSC private keys. The 2023 mandate closes this vulnerability by requiring hardware that physically destroys the key rather than exposing it under attack.</p>
+<p>Additional reasons for the upgrade include:</p>
+<ul>
+  <li>Alignment with international best practices for high-assurance digital identity tokens</li>
+  <li>Preventing key export: on a Level 3 token, the private key cannot be exported by software even by the token owner — it is permanently bound to the hardware</li>
+  <li>Meeting the increasing assurance requirements of portals like MCA21, GeM, NIC e-Procurement, Income Tax, and DGFT</li>
+</ul>
+
+<h2>Difference Between Old Tokens and High Security Tokens</h2>
+
+<h3>Key Generation</h3>
+<p>On older Level 2 tokens, some models allowed the private key to be generated externally (on the PC) and then imported onto the token. This meant the key existed in computer memory — however briefly — and could potentially be intercepted. On a Level 3 High Security token, <strong>the key pair is generated inside the secure element on the token itself</strong>. The private key never exists outside the hardware. The CA software sends a key generation command to the token; the token generates the key internally and returns only the public key for certificate issuance.</p>
+
+<h3>Tamper Resistance vs. Tamper Evidence</h3>
+<p>Older Level 2 tokens were tamper-evident: physical stickers or seals would show if someone had opened the device. Level 3 tokens are tamper-resistant: the internal circuitry is designed so that probing the hardware or applying voltage attacks triggers automatic key erasure. The secure boundary is actively defended rather than merely labeled.</p>
+
+<h3>Key Export</h3>
+<p>On a Level 3 token, software cannot export the private key. The signing operation happens inside the token's secure element. The document hash is sent to the token, the token signs it internally with the private key, and the signature is returned — the private key itself never leaves the hardware under any circumstances.</p>
+
+<h2>How to Identify if Your Token Is High Security</h2>
+<p>There are several ways to check whether your USB DSC token meets the FIPS 140-2 Level 3 requirement:</p>
+
+<h3>Check the Serial Number</h3>
+<p>Serial number prefixes are the quickest identifier:</p>
+<ul>
+  <li><strong>HYP2003 tokens</strong>: High Security tokens have serial numbers beginning with <strong>HS</strong> (e.g., HS2XXXXXXX). Older non-HS tokens have serial numbers in other formats. If your HYP2003 serial starts with HS, it is a High Security FIPS 140-2 Level 3 token.</li>
+  <li><strong>Proxkey (Watchdata) tokens</strong>: High Security tokens have serial numbers beginning with <strong>WD</strong> (e.g., WD3XXXXXXX). These are the Proxkey WD series, which are FIPS 140-2 Level 3 certified.</li>
+</ul>
+
+<h3>Check the Token Body or Packaging</h3>
+<p>Many High Security tokens print "FIPS 140-2 Level 3" or "High Security" directly on the USB device body or on the packaging/card it was delivered with. Look for this text on the physical token.</p>
+
+<h3>Check Through Token Management Software</h3>
+<p>Open your token management application (SafeNet Authentication Client, ePass2003 Manager, or the Proxkey Manager). Navigate to the token information or properties section. High Security tokens typically report their FIPS certification level in the token details screen.</p>
+
+<h3>Check the DSC Certificate Itself</h3>
+<p>Open the certificate on your token (through the Windows Certificate Store or the token management software). Some CAs include a policy OID or a certificate policy statement that specifies the token security level. Your CA's certificate policy document (available on the CA's website) will list which tokens they use for different certificate classes.</p>
+
+<div class="tip"><strong>Quick check:</strong> If your HYP2003 token serial number begins with HS, or your Proxkey serial number begins with WD, you have a FIPS 140-2 Level 3 High Security token and you are compliant with the 2023 CCA mandate.</div>
+
+<h2>Certifying Authorities Issuing High Security Tokens</h2>
+<p>All licensed CAs in India are required to issue new Class 3 DSCs only on FIPS 140-2 Level 3 tokens from 2023. The main CAs and the tokens they commonly issue include:</p>
+
+<table>
+  <thead>
+    <tr><th>Certifying Authority</th><th>Common HS Tokens Issued</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>eMudhra</td><td>HYP2003 HS series, ePass 3003</td></tr>
+    <tr><td>Capricorn CA</td><td>HYP2003 HS series, Proxkey WD series</td></tr>
+    <tr><td>NSDL e-Governance</td><td>HYP2003 HS series, ePass 3003</td></tr>
+    <tr><td>SafeScrypt</td><td>HYP2003 HS series, Proxkey WD series</td></tr>
+    <tr><td>(n)Code Solutions</td><td>HYP2003 HS series</td></tr>
+  </tbody>
+</table>
+
+<p>Your CA may use different token models than those listed above depending on their procurement agreements with token manufacturers. The key point is that all current tokens issued by these CAs for Class 3 DSCs meet the FIPS 140-2 Level 3 requirement.</p>
+
+<h2>What Happens to Existing Old Tokens?</h2>
+<p>The 2023 mandate applies only to <strong>new issuances</strong>. If you received your Class 3 DSC before the mandate on an older Level 2 token, your DSC continues to be legally valid until its expiry date. Government portals — GeM, CPPP, NIC e-Procurement, MCA21, Income Tax, DGFT — will continue to accept signatures from certificates on pre-mandate tokens as long as the certificate has not expired and has not been revoked.</p>
+<p>The change takes effect at renewal. When your DSC expires and you apply for a new one, the CA will issue it on a FIPS 140-2 Level 3 High Security token. In some cases, if your existing token is already HS certified, the CA may load the new certificate onto the same hardware. In other cases, you will receive a new physical token.</p>
+
+<div class="warn"><strong>Do not delay DSC renewal.</strong> If your DSC expires and you have not renewed it, you will not be able to sign documents until the new DSC is issued and the token arrives. Renewal typically takes 1–3 business days, but plan ahead especially before major tender deadlines.</div>
+
+<h2>Impact on PDF Signing Software</h2>
+<p>From the perspective of PDF signing software, High Security tokens behave identically to their predecessors. They communicate via the same <strong>PKCS#11</strong> interface standard. The driver (middleware) handles the low-level communication between the software and the token's secure element.</p>
+<p>PDFSign uses the PKCS#11 standard to communicate with all USB DSC tokens. Because the interface is standardised, PDFSign works with High Security tokens without any special configuration:</p>
+<ul>
+  <li><strong>HYP2003 HS series</strong>: Use the same ePass2003 middleware driver as before. PDFSign detects the certificate automatically.</li>
+  <li><strong>Proxkey WD series</strong>: Use the Proxkey middleware. PDFSign detects the certificate automatically.</li>
+  <li><strong>ePass 3003</strong>: Use the ePass2003 or ePass3003 middleware. No change in workflow.</li>
+  <li><strong>Feitian and WD Pro tokens</strong>: Use the vendor's PKCS#11 middleware. PDFSign supports all PKCS#11-compliant tokens.</li>
+</ul>
+<p>The signing workflow in PDFSign is identical regardless of whether you are using an older Level 2 token or a new High Security Level 3 token. The software sends the document hash to the token, the token signs it inside its secure element, and the signature is embedded in the PDF. No changes to your PDFSign configuration are needed when you receive a new HS token.</p>
+
+<h2>How to Check If Your New HS Token Is Working Correctly</h2>
+<p>After receiving a new High Security token, follow these steps to verify it is functioning before you need it for an urgent signing task:</p>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">1</span>Install the Middleware</div>
+  <p>Install the token driver/middleware provided by your CA or downloaded from the token manufacturer's website. For HYP2003 HS tokens, install the ePass2003 middleware. For Proxkey WD tokens, install the Proxkey middleware. Run the installer as administrator and restart your PC afterwards.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">2</span>Open the Token Management Software</div>
+  <p>Open the token management application that came with the middleware. The token should appear in the software with its serial number. Verify the serial number matches what is printed on your physical token and confirm it begins with HS (HYP2003) or WD (Proxkey).</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">3</span>View Your Certificate</div>
+  <p>In the token management software, view the certificate stored on the token. Confirm the certificate shows your correct name, organisation, and a valid expiry date in the future. If the certificate is not yet loaded (for a freshly issued token), contact your CA.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">4</span>Open PDFSign and Confirm Detection</div>
+  <p>With the token plugged in, open PDFSign. The certificate should appear automatically in the certificate selection dropdown. If it does not appear, click Refresh. Confirm the certificate name matches your DSC details.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">5</span>Sign a Test PDF</div>
+  <p>Open any PDF in PDFSign, place a signature, and click Sign. Enter your PIN when prompted. Verify that the output PDF opens in Adobe Acrobat Reader and shows a valid signature with a green tick. This confirms your High Security token is working correctly end to end.</p>
+</div>
+
+<h2>What If Your HS Token Is Not Working?</h2>
+<p>If your HS series token is recognised by the token management software but not by PDFSign, or if the signature fails, work through these checks:</p>
+<ul>
+  <li><strong>Driver not installed as administrator</strong>: Uninstall and reinstall the middleware using right-click → Run as administrator</li>
+  <li><strong>Wrong middleware version</strong>: Some HYP2003 HS tokens require a specific version of the ePass2003 driver. Download the latest version from your CA's support page</li>
+  <li><strong>Token PIN not initialised</strong>: A new token from the CA should come with a default PIN on the documentation. If not, contact your CA to initialise the token</li>
+  <li><strong>Certificate not yet loaded</strong>: Newly issued tokens sometimes require the CA to complete a final provisioning step. Contact your CA if the certificate is not visible in the token management software</li>
+  <li><strong>USB port issue</strong>: Try a different USB port — preferably a USB 2.0 port directly on the PC rather than a USB hub</li>
+</ul>
+<p>For persistent issues, contact PDFSign support on WhatsApp at <strong>+91 70574 13999</strong> or by email at <strong>help@pdfsign.in</strong>. Have your token serial number and the error message ready.</p>
+
+<div class="cta-box">
+  <h2>PDFSign Works with All High Security Tokens</h2>
+  <p>HYP2003 HS series, Proxkey WD series, ePass 3003 — PDFSign supports every PKCS#11-compliant token. 100% offline, Windows 10 and 11. 30-day free trial.</p>
+  <a class="btn-green" href="https://cdn.pdfsign.in/PDFSignSetup.exe">Download PDFSign — Free Trial</a>
+</div>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Does my old ePass 2003 token still work after the 2023 mandate?</h3>
+<p>Yes. If your existing ePass 2003 token was issued before the mandate and carries a valid Class 3 DSC, it continues to work until the DSC expiry date. The mandate applies only to new issuances. When your DSC expires and you renew, your CA will issue the new certificate on a FIPS 140-2 Level 3 High Security token.</p>
+
+<h3>How do I know if my token is a High Security token?</h3>
+<p>Check the serial number on the USB token body. HYP2003 High Security tokens have serial numbers starting with <strong>HS</strong>. Proxkey High Security tokens have serial numbers starting with <strong>WD</strong>. You can also look for "FIPS 140-2 Level 3" printed on the token or packaging.</p>
+
+<h3>What if I have an HS series token but it is not working?</h3>
+<p>An HS token that is not working is almost always a driver or middleware issue. Reinstall the ePass2003 middleware as administrator, restart your PC, and try again. If the problem persists, contact your DSC-issuing CA or reach PDFSign support at +91 70574 13999.</p>
+
+<h3>Do I need to buy a new token when my DSC expires?</h3>
+<p>Not necessarily. If your current token is already FIPS 140-2 Level 3 certified, the CA may reload the renewed certificate onto the same hardware. If your token is a pre-mandate Level 2 token, you will receive a new HS token at renewal. Check with your CA during the renewal process.</p>
+
+<h3>Does PDFSign work with High Security tokens?</h3>
+<p>Yes. PDFSign fully supports all PKCS#11-compliant High Security tokens including HYP2003 HS series and Proxkey WD series. Install the correct middleware for your token model and PDFSign detects the certificate automatically — no additional configuration required.</p>
+
+<div class="related">
+  <h2>Related Articles</h2>
+  <div class="related-grid">
+    <div class="related-card"><a href="hyp2003-token-sign-pdf-windows.html">Using HYP2003 Token on Windows</a></div>
+    <div class="related-card"><a href="how-to-sign-pdf-dsc-token-windows.html">How to Sign a PDF with DSC Token on Windows</a></div>
+    <div class="related-card"><a href="it-act-2000-digital-signatures-india.html">IT Act 2000 and Digital Signatures in India</a></div>
+    <div class="related-card"><a href="dsc-token-not-detected-windows-11-fix.html">DSC Token Not Detected on Windows 11 — Fix</a></div>
+    <div class="related-card"><a href="sign-nic-eprocurement-documents-dsc.html">Sign Documents on NIC e-Procurement Portal</a></div>
+    <div class="related-card"><a href="dsc-token-not-working-chrome-fix.html">DSC Token Not Working in Chrome — Fix</a></div>
+    <div class="related-card"><a href="emudhra-capricorn-signer-digital-comparison.html">Comparing DSC Signing Tools</a></div>
+    <div class="related-card"><a href="digital-signature-validity-unknown-pdf-fix.html">Digital Signature Validity Unknown in PDF — Fix</a></div>
+  </div>
+</div>
+
+</div>
+</div>
+<footer>
+  <p>© 2026 PDFSign.in by Tender Training India &nbsp;|&nbsp; <a href="https://pdfsign.in/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="https://pdfsign.in/terms.html">Terms</a> &nbsp;|&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
+</footer>
+</body>
+</html>

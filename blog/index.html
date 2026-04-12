@@ -12,8 +12,8 @@
   gtag('config', 'G-7E0J9Z32FK');
 </script>
 <title>Blog — DSC Token PDF Signing Guides for India | PDFSign</title>
-<meta name="description" content="Step-by-step guides on signing PDFs with DSC tokens in India. Covers GeM portal, CPPP, MCA21, HYP2003, ProxyKey, IT Act 2000, and more."/>
-<meta name="keywords" content="DSC token PDF signing India, digital signature guide, GeM portal DSC, CPPP tender sign, MCA21 DSC, HYP2003 guide, sign PDF Windows India"/>
+<meta name="description" content="Step-by-step guides on signing PDFs with DSC tokens in India. Covers GeM portal, CPPP, MCA21, HYP2003, ProxyKey, IT Act 2000, RFC 3161 timestamps, PAdES standard and more."/>
+<meta name="keywords" content="DSC token PDF signing India, digital signature guide, GeM portal DSC, CPPP tender sign, MCA21 DSC, HYP2003 guide, sign PDF Windows India, PAdES RFC 3161 timestamp"/>
 <meta name="geo.region" content="IN"/>
 <link rel="canonical" href="https://pdfsign.in/blog/"/>
 <meta property="og:title" content="PDFSign Blog — DSC Signing Guides for India"/>
@@ -53,14 +53,19 @@ nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-betw
 .section-label{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#16A34A;margin-bottom:.5rem}
 
 .blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:2rem;margin-top:2rem}
-.blog-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;transition:box-shadow .2s,transform .2s}
+.blog-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;transition:box-shadow .2s,transform .2s;display:flex;flex-direction:column}
 .blog-card:hover{box-shadow:0 8px 30px rgba(27,42,71,.12);transform:translateY(-3px)}
+
+/* Thumbnail */
+.card-thumb{width:100%;height:160px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
+.card-thumb svg{width:100%;height:100%}
+
 .card-tag{background:#1B2A47;color:#93C5FD;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:.3rem .75rem}
-.card-body{padding:1.5rem}
-.card-body h2{font-family:'DM Serif Display',serif;font-size:1.15rem;color:#1B2A47;margin-bottom:.6rem;line-height:1.3}
-.card-body p{font-size:.9rem;color:#475569;margin-bottom:1rem;line-height:1.6}
-.card-meta{font-size:.78rem;color:#94a3b8;margin-bottom:.75rem}
-.read-more{display:inline-flex;align-items:center;gap:.3rem;color:#16A34A;font-size:.88rem;font-weight:600}
+.card-body{padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column}
+.card-body h2{font-family:'DM Serif Display',serif;font-size:1.1rem;color:#1B2A47;margin-bottom:.5rem;line-height:1.3}
+.card-body p{font-size:.88rem;color:#475569;margin-bottom:.75rem;line-height:1.6;flex:1}
+.card-meta{font-size:.75rem;color:#94a3b8;margin-bottom:.6rem}
+.read-more{display:inline-flex;align-items:center;gap:.3rem;color:#16A34A;font-size:.85rem;font-weight:600;margin-top:auto}
 .read-more:hover{text-decoration:none;gap:.5rem}
 
 .featured{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;background:linear-gradient(135deg,#1B2A47,#243352);border-radius:16px;overflow:hidden;color:#fff}
@@ -70,7 +75,7 @@ nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-betw
 .featured p{color:#93C5FD;font-size:.95rem;margin-bottom:1.5rem}
 .featured .read-more{color:#fff;background:#16A34A;padding:.6rem 1.25rem;border-radius:8px;font-size:.9rem}
 .featured .read-more:hover{background:#15803d}
-.featured-visual{background:#243352;display:flex;align-items:center;justify-content:center;padding:2rem;font-size:5rem}
+.featured-visual{background:#243352;display:flex;align-items:center;justify-content:center;padding:2rem}
 
 .cta-strip{background:linear-gradient(135deg,#16A34A,#15803d);color:#fff;border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0}
 .cta-strip h2{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.5rem}
@@ -113,7 +118,22 @@ footer a{color:#93C5FD}
         <p>The complete beginner's guide — from installing your token driver to producing a legally valid digitally signed PDF accepted on all Indian government portals.</p>
         <a class="read-more" href="how-to-sign-pdf-dsc-token-windows.html">Read the Guide →</a>
       </div>
-      <div class="featured-visual">🔐</div>
+      <div class="featured-visual">
+        <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" width="200" height="160">
+          <!-- USB Token -->
+          <rect x="60" y="60" width="80" height="45" rx="8" fill="#16A34A"/>
+          <rect x="88" y="50" width="24" height="15" rx="3" fill="#93C5FD"/>
+          <circle cx="100" cy="82" r="8" fill="#1B2A47"/>
+          <circle cx="100" cy="82" r="4" fill="#16A34A"/>
+          <!-- PDF doc -->
+          <rect x="130" y="55" width="42" height="55" rx="5" fill="#fff" opacity=".15"/>
+          <rect x="130" y="55" width="42" height="14" rx="5" fill="#fff" opacity=".25"/>
+          <text x="151" y="66" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="7" font-weight="bold">PDF</text>
+          <!-- checkmark -->
+          <circle cx="160" cy="100" r="10" fill="#16A34A"/>
+          <text x="160" y="104" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12">✓</text>
+        </svg>
+      </div>
     </div>
   </div>
 
@@ -121,7 +141,24 @@ footer a{color:#93C5FD}
     <div class="section-label">All Articles</div>
     <div class="blog-grid">
 
+      <!-- 1. GeM Portal -->
       <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#f0fdf4"/>
+            <!-- GeM store icon -->
+            <rect x="90" y="40" width="140" height="90" rx="8" fill="#16A34A" opacity=".15"/>
+            <rect x="90" y="40" width="140" height="28" rx="8" fill="#16A34A"/>
+            <text x="160" y="59" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="bold">GeM Portal</text>
+            <!-- document lines -->
+            <rect x="108" y="80" width="70" height="7" rx="3" fill="#16A34A" opacity=".5"/>
+            <rect x="108" y="93" width="50" height="7" rx="3" fill="#16A34A" opacity=".3"/>
+            <rect x="108" y="106" width="60" height="7" rx="3" fill="#16A34A" opacity=".3"/>
+            <!-- signature badge -->
+            <rect x="192" y="78" width="28" height="28" rx="6" fill="#16A34A"/>
+            <text x="206" y="97" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="16">✍</text>
+          </svg>
+        </div>
         <div class="card-tag">GeM Portal</div>
         <div class="card-body">
           <div class="card-meta">April 2026 · 6 min read</div>
@@ -131,7 +168,24 @@ footer a{color:#93C5FD}
         </div>
       </div>
 
+      <!-- 2. Comparison -->
       <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#eff6ff"/>
+            <!-- Balance scale -->
+            <line x1="160" y1="35" x2="160" y2="110" stroke="#1B2A47" stroke-width="3"/>
+            <line x1="100" y1="65" x2="220" y2="65" stroke="#1B2A47" stroke-width="3"/>
+            <circle cx="100" cy="90" r="22" fill="#16A34A" opacity=".2" stroke="#16A34A" stroke-width="2"/>
+            <text x="100" y="95" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="9" font-weight="bold">PDFSign</text>
+            <circle cx="220" cy="90" r="22" fill="#1B2A47" opacity=".1" stroke="#1B2A47" stroke-width="2"/>
+            <text x="220" y="92" text-anchor="middle" fill="#1B2A47" font-family="sans-serif" font-size="8" font-weight="bold">Others</text>
+            <circle cx="160" cy="35" r="6" fill="#1B2A47"/>
+            <rect x="148" y="112" width="24" height="18" rx="3" fill="#1B2A47"/>
+            <!-- VS label -->
+            <text x="160" y="145" text-anchor="middle" fill="#475569" font-family="sans-serif" font-size="11" font-weight="bold">Best Tool for India</text>
+          </svg>
+        </div>
         <div class="card-tag">Comparison</div>
         <div class="card-body">
           <div class="card-meta">Feb 2026 · 6 min read</div>
@@ -141,7 +195,20 @@ footer a{color:#93C5FD}
         </div>
       </div>
 
+      <!-- 3. HYP2003 Token -->
       <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#fefce8"/>
+            <!-- USB Token HYP2003 -->
+            <rect x="100" y="55" width="120" height="60" rx="10" fill="#1B2A47"/>
+            <rect x="140" y="42" width="40" height="18" rx="4" fill="#64748b"/>
+            <rect x="148" y="45" width="24" height="12" rx="2" fill="#93C5FD" opacity=".7"/>
+            <text x="160" y="88" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="9" font-weight="bold">HYP2003</text>
+            <text x="160" y="102" text-anchor="middle" fill="#93C5FD" font-family="sans-serif" font-size="8">HS Series Token</text>
+            <circle cx="115" cy="84" r="8" fill="#16A34A" opacity=".6"/>
+          </svg>
+        </div>
         <div class="card-tag">Token Guide</div>
         <div class="card-body">
           <div class="card-meta">Jan 2026 · 5 min read</div>
@@ -151,7 +218,25 @@ footer a{color:#93C5FD}
         </div>
       </div>
 
+      <!-- 4. CPPP Tenders -->
       <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#fff7ed"/>
+            <!-- Government building -->
+            <rect x="110" y="70" width="100" height="65" rx="0" fill="#1B2A47" opacity=".12"/>
+            <rect x="120" y="75" width="80" height="60" rx="3" fill="#1B2A47" opacity=".08"/>
+            <!-- Columns -->
+            <rect x="118" y="75" width="8" height="55" rx="2" fill="#1B2A47" opacity=".3"/>
+            <rect x="134" y="75" width="8" height="55" rx="2" fill="#1B2A47" opacity=".3"/>
+            <rect x="150" y="75" width="8" height="55" rx="2" fill="#1B2A47" opacity=".3"/>
+            <rect x="166" y="75" width="8" height="55" rx="2" fill="#1B2A47" opacity=".3"/>
+            <rect x="182" y="75" width="8" height="55" rx="2" fill="#1B2A47" opacity=".3"/>
+            <!-- Roof -->
+            <polygon points="100,75 160,42 220,75" fill="#1B2A47" opacity=".2"/>
+            <text x="160" y="148" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="11" font-weight="bold">CPPP Tender</text>
+          </svg>
+        </div>
         <div class="card-tag">CPPP Tenders</div>
         <div class="card-body">
           <div class="card-meta">Dec 2025 · 5 min read</div>
@@ -161,7 +246,23 @@ footer a{color:#93C5FD}
         </div>
       </div>
 
+      <!-- 5. IT Act 2000 -->
       <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#faf5ff"/>
+            <!-- Law book -->
+            <rect x="105" y="40" width="75" height="95" rx="4" fill="#7c3aed" opacity=".15"/>
+            <rect x="105" y="40" width="75" height="95" rx="4" fill="none" stroke="#7c3aed" stroke-width="2"/>
+            <rect x="105" y="40" width="12" height="95" rx="4" fill="#7c3aed" opacity=".3"/>
+            <text x="148" y="85" text-anchor="middle" fill="#7c3aed" font-family="sans-serif" font-size="9" font-weight="bold">IT Act</text>
+            <text x="148" y="97" text-anchor="middle" fill="#7c3aed" font-family="sans-serif" font-size="9" font-weight="bold">2000</text>
+            <!-- Gavel -->
+            <rect x="188" y="55" width="35" height="15" rx="5" fill="#1B2A47" opacity=".6" transform="rotate(-35,205,62)"/>
+            <line x1="195" y1="80" x2="215" y2="110" stroke="#1B2A47" stroke-width="4" stroke-linecap="round" opacity=".5"/>
+            <text x="218" y="148" text-anchor="middle" fill="#7c3aed" font-family="sans-serif" font-size="10">Legal Validity</text>
+          </svg>
+        </div>
         <div class="card-tag">Legal Guide</div>
         <div class="card-body">
           <div class="card-meta">Nov 2025 · 7 min read</div>
@@ -171,7 +272,23 @@ footer a{color:#93C5FD}
         </div>
       </div>
 
+      <!-- 6. Chrome Fix -->
       <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#fff1f2"/>
+            <!-- Chrome circle -->
+            <circle cx="145" cy="80" r="45" fill="none" stroke="#e11d48" stroke-width="3" opacity=".3"/>
+            <circle cx="145" cy="80" r="20" fill="#e11d48" opacity=".15"/>
+            <!-- X mark -->
+            <line x1="130" y1="65" x2="160" y2="95" stroke="#e11d48" stroke-width="4" stroke-linecap="round"/>
+            <line x1="160" y1="65" x2="130" y2="95" stroke="#e11d48" stroke-width="4" stroke-linecap="round"/>
+            <!-- USB icon -->
+            <rect x="200" y="65" width="60" height="35" rx="6" fill="#1B2A47" opacity=".2"/>
+            <text x="230" y="87" text-anchor="middle" fill="#1B2A47" font-family="sans-serif" font-size="9" opacity=".7">USB DSC</text>
+            <text x="160" y="148" text-anchor="middle" fill="#e11d48" font-family="sans-serif" font-size="10" font-weight="bold">Chrome Not Detecting Token</text>
+          </svg>
+        </div>
         <div class="card-tag">Troubleshooting</div>
         <div class="card-body">
           <div class="card-meta">Oct 2025 · 5 min read</div>
@@ -181,7 +298,22 @@ footer a{color:#93C5FD}
         </div>
       </div>
 
+      <!-- 7. MCA21 -->
       <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#f0f9ff"/>
+            <!-- Stack of forms -->
+            <rect x="85" y="55" width="80" height="90" rx="5" fill="#bae6fd" stroke="#0369a1" stroke-width="1.5"/>
+            <rect x="95" y="45" width="80" height="90" rx="5" fill="#e0f2fe" stroke="#0369a1" stroke-width="1.5"/>
+            <rect x="105" y="35" width="80" height="90" rx="5" fill="#fff" stroke="#0284c7" stroke-width="1.5"/>
+            <text x="145" y="63" text-anchor="middle" fill="#0369a1" font-family="sans-serif" font-size="10" font-weight="bold">MCA21</text>
+            <rect x="117" y="72" width="55" height="5" rx="2" fill="#0369a1" opacity=".3"/>
+            <rect x="117" y="83" width="45" height="5" rx="2" fill="#0369a1" opacity=".3"/>
+            <rect x="117" y="94" width="50" height="5" rx="2" fill="#0369a1" opacity=".3"/>
+            <rect x="117" y="105" width="40" height="5" rx="2" fill="#0369a1" opacity=".3"/>
+          </svg>
+        </div>
         <div class="card-tag">MCA21 Guide</div>
         <div class="card-body">
           <div class="card-meta">Sep 2025 · 5 min read</div>
@@ -191,12 +323,428 @@ footer a{color:#93C5FD}
         </div>
       </div>
 
+      <!-- 8. Win 11 Not Detected -->
+      <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#fff7ed"/>
+            <!-- Windows 11 logo simplified -->
+            <rect x="85" y="45" width="42" height="42" rx="5" fill="#0078d4" opacity=".8"/>
+            <rect x="133" y="45" width="42" height="42" rx="5" fill="#0078d4" opacity=".6"/>
+            <rect x="85" y="93" width="42" height="42" rx="5" fill="#0078d4" opacity=".6"/>
+            <rect x="133" y="93" width="42" height="42" rx="5" fill="#0078d4" opacity=".4"/>
+            <!-- Alert triangle -->
+            <polygon points="230,45 270,115 190,115" fill="#f97316" opacity=".2"/>
+            <polygon points="230,45 270,115 190,115" fill="none" stroke="#f97316" stroke-width="3"/>
+            <text x="230" y="95" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="22" font-weight="bold">!</text>
+            <text x="160" y="150" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="10" font-weight="bold">Token Not Detected</text>
+          </svg>
+        </div>
+        <div class="card-tag">Troubleshooting</div>
+        <div class="card-body">
+          <div class="card-meta">April 2026 · 6 min read</div>
+          <h2>DSC Token Not Detected on Windows 11 — Fix Guide</h2>
+          <p>Solve DSC token detection issues on Windows 11. Covers driver installation, USB port troubleshooting, and token identification by serial number.</p>
+          <a class="read-more" href="dsc-token-not-detected-windows-11-fix.html">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 9. NIC eProcurement -->
+      <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#f0fdf4"/>
+            <!-- Monitor/portal -->
+            <rect x="80" y="35" width="160" height="100" rx="8" fill="#1B2A47" opacity=".1" stroke="#1B2A47" stroke-width="2" opacity=".3"/>
+            <rect x="88" y="43" width="144" height="80" rx="4" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+            <rect x="88" y="43" width="144" height="18" rx="4" fill="#1B2A47"/>
+            <text x="160" y="56" text-anchor="middle" fill="#93C5FD" font-family="sans-serif" font-size="9" font-weight="bold">NIC eProcurement</text>
+            <!-- screen content lines -->
+            <rect x="96" y="70" width="80" height="5" rx="2" fill="#16A34A" opacity=".5"/>
+            <rect x="96" y="81" width="120" height="5" rx="2" fill="#64748b" opacity=".3"/>
+            <rect x="96" y="92" width="100" height="5" rx="2" fill="#64748b" opacity=".3"/>
+            <rect x="96" y="103" width="60" height="14" rx="4" fill="#16A34A"/>
+            <text x="126" y="114" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="8" font-weight="bold">Sign &amp; Submit</text>
+          </svg>
+        </div>
+        <div class="card-tag">eProcurement</div>
+        <div class="card-body">
+          <div class="card-meta">April 2026 · 6 min read</div>
+          <h2>How to Sign NIC eProcurement Documents with DSC</h2>
+          <p>Sign tender documents on state NIC portals (MSTC, Rajasthan, Maharashtra, etc.) using your Class 3 DSC token with the offline workflow.</p>
+          <a class="read-more" href="sign-nic-eprocurement-documents-dsc.html">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 10. FIPS / High Security Token -->
+      <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#f0fdf4"/>
+            <!-- Shield -->
+            <path d="M160,30 L210,55 L210,105 Q210,135 160,148 Q110,135 110,105 L110,55 Z" fill="#16A34A" opacity=".15" stroke="#16A34A" stroke-width="2.5"/>
+            <path d="M160,45 L198,65 L198,103 Q198,125 160,136 Q122,125 122,103 L122,65 Z" fill="#16A34A" opacity=".1"/>
+            <text x="160" y="88" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="10" font-weight="bold">FIPS 140-2</text>
+            <text x="160" y="102" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="9">Level 3</text>
+            <text x="160" y="117" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="20">🛡</text>
+          </svg>
+        </div>
+        <div class="card-tag">Policy Update</div>
+        <div class="card-body">
+          <div class="card-meta">April 2026 · 5 min read</div>
+          <h2>High Security DSC Token Mandatory in India Since 2023</h2>
+          <p>CCA India mandated FIPS 140-2 Level 3 tokens from 2023. Learn about HS series (HYP2003) and WD series (ProxyKey) and what it means for your PDF signing.</p>
+          <a class="read-more" href="high-security-dsc-token-mandatory-india-2023.html">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 11. Batch Sign CA Firms -->
+      <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#eff6ff"/>
+            <!-- Stack of audit reports -->
+            <rect x="75" y="70" width="65" height="80" rx="4" fill="#bfdbfe" stroke="#3b82f6" stroke-width="1.5"/>
+            <rect x="88" y="58" width="65" height="80" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+            <rect x="100" y="45" width="65" height="80" rx="4" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+            <text x="132" y="68" text-anchor="middle" fill="#2563eb" font-family="sans-serif" font-size="8" font-weight="bold">AUDIT</text>
+            <rect x="108" y="75" width="48" height="4" rx="2" fill="#2563eb" opacity=".3"/>
+            <rect x="108" y="85" width="40" height="4" rx="2" fill="#2563eb" opacity=".3"/>
+            <rect x="108" y="95" width="44" height="4" rx="2" fill="#2563eb" opacity=".3"/>
+            <!-- Checkmark batch -->
+            <circle cx="210" cy="80" r="28" fill="#16A34A" opacity=".15" stroke="#16A34A" stroke-width="2"/>
+            <text x="210" y="88" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="24">✓</text>
+            <text x="210" y="122" text-anchor="middle" fill="#2563eb" font-family="sans-serif" font-size="9">Batch Sign</text>
+          </svg>
+        </div>
+        <div class="card-tag">CA Firms</div>
+        <div class="card-body">
+          <div class="card-meta">April 2026 · 6 min read</div>
+          <h2>Batch Sign Audit Reports with DSC — Guide for CA Firms</h2>
+          <p>How Chartered Accountant firms can sign hundreds of audit reports, balance sheets, and certificates in minutes using PDFSign's batch mode.</p>
+          <a class="read-more" href="batch-sign-audit-reports-dsc-ca-firms.html">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 12. NRI -->
+      <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#fef9c3"/>
+            <!-- Globe -->
+            <circle cx="130" cy="80" r="50" fill="#0369a1" opacity=".1" stroke="#0369a1" stroke-width="2"/>
+            <ellipse cx="130" cy="80" rx="20" ry="50" fill="none" stroke="#0369a1" stroke-width="1.5" opacity=".5"/>
+            <line x1="80" y1="80" x2="180" y2="80" stroke="#0369a1" stroke-width="1.5" opacity=".5"/>
+            <line x1="80" y1="58" x2="180" y2="58" stroke="#0369a1" stroke-width="1" opacity=".3"/>
+            <line x1="80" y1="102" x2="180" y2="102" stroke="#0369a1" stroke-width="1" opacity=".3"/>
+            <!-- Document with India flag color -->
+            <rect x="195" y="50" width="65" height="80" rx="5" fill="#fff" stroke="#f97316" stroke-width="2"/>
+            <rect x="195" y="50" width="65" height="12" rx="5" fill="#f97316"/>
+            <text x="227" y="60" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="7" font-weight="bold">Indian Doc</text>
+            <rect x="203" y="70" width="48" height="4" rx="2" fill="#64748b" opacity=".4"/>
+            <rect x="203" y="80" width="38" height="4" rx="2" fill="#64748b" opacity=".4"/>
+            <rect x="203" y="90" width="44" height="4" rx="2" fill="#64748b" opacity=".4"/>
+            <circle cx="240" cy="115" r="10" fill="#16A34A"/>
+            <text x="240" y="119" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="10">✓</text>
+          </svg>
+        </div>
+        <div class="card-tag">NRI Guide</div>
+        <div class="card-body">
+          <div class="card-meta">April 2026 · 6 min read</div>
+          <h2>How NRIs Can Sign Indian Documents Abroad with DSC</h2>
+          <p>As an NRI, you can sign Indian legal and business documents using a Class 3 DSC token from anywhere in the world — no notary required.</p>
+          <a class="read-more" href="nri-sign-indian-documents-abroad-dsc.html">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 13. ProxyKey / WD Series -->
+      <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#f8fafc"/>
+            <!-- ProxyKey token shape -->
+            <rect x="95" y="55" width="130" height="65" rx="12" fill="#1B2A47"/>
+            <rect x="145" y="40" width="30" height="20" rx="4" fill="#64748b"/>
+            <rect x="150" y="43" width="20" height="13" rx="2" fill="#93C5FD" opacity=".6"/>
+            <circle cx="125" cy="87" r="10" fill="#16A34A" opacity=".5"/>
+            <circle cx="125" cy="87" r="5" fill="#16A34A"/>
+            <text x="175" y="85" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="9" font-weight="bold">ProxyKey</text>
+            <text x="175" y="97" text-anchor="middle" fill="#93C5FD" font-family="sans-serif" font-size="8">WD Series</text>
+            <text x="160" y="145" text-anchor="middle" fill="#475569" font-family="sans-serif" font-size="10">Watchdata USB Token</text>
+          </svg>
+        </div>
+        <div class="card-tag">Token Guide</div>
+        <div class="card-body">
+          <div class="card-meta">April 2026 · 5 min read</div>
+          <h2>ProxyKey (WD Series) Token — PDF Signing on Windows</h2>
+          <p>How to identify your ProxyKey token by WD serial number, install the correct driver, and sign PDFs on Windows 10 and 11.</p>
+          <a class="read-more" href="proxkey-wd-series-token-pdf-signing-windows.html">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 14. ePass 2003/3003 -->
+      <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#f0fdf4"/>
+            <!-- ePass token - two versions side by side -->
+            <rect x="75" y="60" width="75" height="55" rx="8" fill="#15803d"/>
+            <rect x="100" y="48" width="25" height="16" rx="3" fill="#64748b"/>
+            <text x="112" y="88" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="9" font-weight="bold">ePass</text>
+            <text x="112" y="100" text-anchor="middle" fill="#bbf7d0" font-family="sans-serif" font-size="8">2003</text>
+            <rect x="165" y="60" width="75" height="55" rx="8" fill="#166534"/>
+            <rect x="190" y="48" width="25" height="16" rx="3" fill="#64748b"/>
+            <text x="202" y="88" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="9" font-weight="bold">ePass</text>
+            <text x="202" y="100" text-anchor="middle" fill="#bbf7d0" font-family="sans-serif" font-size="8">3003</text>
+            <text x="160" y="140" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="10">Same Driver — Both Supported</text>
+          </svg>
+        </div>
+        <div class="card-tag">Token Guide</div>
+        <div class="card-body">
+          <div class="card-meta">April 2026 · 5 min read</div>
+          <h2>ePass 2003 and ePass 3003 Token — PDF Signing Guide</h2>
+          <p>Both ePass 2003 and 3003 tokens use the same driver. Learn how to install it, manage your PIN, and sign PDFs seamlessly on Windows.</p>
+          <a class="read-more" href="epass-2003-3003-token-pdf-signing-windows.html">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 15. Best Software 2026 -->
+      <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#fef9c3"/>
+            <!-- Trophy -->
+            <rect x="140" y="105" width="40" height="15" rx="3" fill="#d97706"/>
+            <rect x="130" y="118" width="60" height="10" rx="3" fill="#d97706"/>
+            <path d="M115,45 L115,100 Q115,120 160,120 Q205,120 205,100 L205,45 Z" fill="#fbbf24" opacity=".3"/>
+            <path d="M115,45 L115,100 Q115,120 160,120 Q205,120 205,100 L205,45 Z" fill="none" stroke="#d97706" stroke-width="2.5"/>
+            <!-- Stars -->
+            <text x="160" y="85" text-anchor="middle" fill="#d97706" font-family="sans-serif" font-size="28">★</text>
+            <!-- Side handles -->
+            <path d="M115,55 Q85,55 85,80 Q85,100 115,100" fill="none" stroke="#d97706" stroke-width="2.5"/>
+            <path d="M205,55 Q235,55 235,80 Q235,100 205,100" fill="none" stroke="#d97706" stroke-width="2.5"/>
+            <text x="160" y="148" text-anchor="middle" fill="#d97706" font-family="sans-serif" font-size="10" font-weight="bold">Best in India 2026</text>
+          </svg>
+        </div>
+        <div class="card-tag">Comparison</div>
+        <div class="card-body">
+          <div class="card-meta">April 2026 · 7 min read</div>
+          <h2>Best PDF Signing Software India 2026 — Full Comparison</h2>
+          <p>PDFSign vs eMudhra client vs Capricorn Signer vs Adobe Acrobat Pro vs online tools. Find the right solution for Indian DSC token signing.</p>
+          <a class="read-more" href="best-pdf-signing-software-india-2026.html">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 16. Validity Unknown Fix -->
+      <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#fff7ed"/>
+            <!-- PDF with warning -->
+            <rect x="100" y="35" width="80" height="100" rx="6" fill="#fff" stroke="#e2e8f0" stroke-width="2"/>
+            <rect x="100" y="35" width="80" height="22" rx="6" fill="#f97316"/>
+            <text x="140" y="51" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="10" font-weight="bold">PDF</text>
+            <!-- signature area with amber -->
+            <rect x="108" y="68" width="64" height="30" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="140" y="85" text-anchor="middle" fill="#d97706" font-family="sans-serif" font-size="9">⚠ Validity</text>
+            <text x="140" y="96" text-anchor="middle" fill="#d97706" font-family="sans-serif" font-size="9">Unknown</text>
+            <!-- wrench fix icon -->
+            <circle cx="215" cy="80" r="30" fill="#16A34A" opacity=".12"/>
+            <text x="215" y="88" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="26">🔧</text>
+            <text x="215" y="125" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="9" font-weight="bold">Fix It</text>
+          </svg>
+        </div>
+        <div class="card-tag">Troubleshooting</div>
+        <div class="card-body">
+          <div class="card-meta">April 2026 · 6 min read</div>
+          <h2>Fix "Signature Validity Unknown" in PDF — Complete Guide</h2>
+          <p>Why Adobe shows "Signature Validity Unknown" for Indian DSC signatures and how to fix it by updating the AATL or importing the CCA India root certificate.</p>
+          <a class="read-more" href="digital-signature-validity-unknown-pdf-fix.html">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 17. Verify Digital Signature -->
+      <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#f0fdf4"/>
+            <!-- Magnifying glass over PDF -->
+            <rect x="80" y="40" width="70" height="90" rx="6" fill="#fff" stroke="#e2e8f0" stroke-width="2"/>
+            <rect x="80" y="40" width="70" height="18" rx="6" fill="#1B2A47"/>
+            <text x="115" y="53" text-anchor="middle" fill="#93C5FD" font-family="sans-serif" font-size="9" font-weight="bold">PDF</text>
+            <rect x="88" y="70" width="52" height="4" rx="2" fill="#16A34A" opacity=".4"/>
+            <rect x="88" y="80" width="42" height="4" rx="2" fill="#64748b" opacity=".3"/>
+            <rect x="88" y="90" width="48" height="4" rx="2" fill="#64748b" opacity=".3"/>
+            <!-- Magnifying glass -->
+            <circle cx="185" cy="80" r="30" fill="none" stroke="#16A34A" stroke-width="3"/>
+            <circle cx="185" cy="80" r="20" fill="#dcfce7" opacity=".5"/>
+            <text x="185" y="87" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="18">✓</text>
+            <line x1="207" y1="102" x2="225" y2="120" stroke="#16A34A" stroke-width="4" stroke-linecap="round"/>
+            <text x="160" y="148" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="10" font-weight="bold">Verify Signature</text>
+          </svg>
+        </div>
+        <div class="card-tag">How-To</div>
+        <div class="card-body">
+          <div class="card-meta">April 2026 · 5 min read</div>
+          <h2>How to Verify a Digital Signature in a PDF — India Guide</h2>
+          <p>Step-by-step guide to verify DSC signatures in Adobe Acrobat Reader. Understand what green, amber, and red status mean for Indian documents.</p>
+          <a class="read-more" href="how-to-verify-digital-signature-pdf-india.html">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 18. MSME Tenders -->
+      <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#fef9c3"/>
+            <!-- MSME certificate ribbon -->
+            <rect x="95" y="30" width="130" height="100" rx="8" fill="#fff" stroke="#d97706" stroke-width="2"/>
+            <rect x="95" y="30" width="130" height="28" rx="8" fill="#d97706"/>
+            <text x="160" y="50" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="bold">MSME</text>
+            <rect x="115" y="70" width="90" height="5" rx="2" fill="#d97706" opacity=".3"/>
+            <rect x="115" y="82" width="70" height="5" rx="2" fill="#d97706" opacity=".3"/>
+            <!-- Medal -->
+            <circle cx="160" cy="110" r="18" fill="#fbbf24" opacity=".3" stroke="#d97706" stroke-width="2"/>
+            <text x="160" y="116" text-anchor="middle" fill="#d97706" font-family="sans-serif" font-size="16">★</text>
+          </svg>
+        </div>
+        <div class="card-tag">MSME Guide</div>
+        <div class="card-body">
+          <div class="card-meta">April 2026 · 6 min read</div>
+          <h2>MSME DSC for Government Tenders — Complete India Guide</h2>
+          <p>How MSMEs can get a Class 3 DSC and sign tender documents on GeM, CPPP, and state eProcurement portals to win government contracts.</p>
+          <a class="read-more" href="msme-dsc-government-tender-india.html">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 19. GST Invoice Signing -->
+      <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#f0fdf4"/>
+            <!-- Invoice document -->
+            <rect x="90" y="25" width="95" height="120" rx="6" fill="#fff" stroke="#16A34A" stroke-width="2"/>
+            <rect x="90" y="25" width="95" height="25" rx="6" fill="#16A34A"/>
+            <text x="137" y="43" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="10" font-weight="bold">GST Invoice</text>
+            <!-- Invoice lines -->
+            <rect x="98" y="60" width="78" height="4" rx="2" fill="#64748b" opacity=".3"/>
+            <rect x="98" y="70" width="60" height="4" rx="2" fill="#64748b" opacity=".3"/>
+            <rect x="98" y="80" width="70" height="4" rx="2" fill="#64748b" opacity=".3"/>
+            <line x1="98" y1="95" x2="178" y2="95" stroke="#e2e8f0" stroke-width="1"/>
+            <rect x="130" y="100" width="46" height="5" rx="2" fill="#16A34A" opacity=".5"/>
+            <text x="137" y="125" text-anchor="middle" fill="#16A34A" font-family="sans-serif" font-size="9">✍ Digitally Signed</text>
+            <!-- GST label -->
+            <rect x="200" y="55" width="50" height="50" rx="8" fill="#16A34A" opacity=".15"/>
+            <text x="225" y="80" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="14" font-weight="bold">GST</text>
+            <text x="225" y="95" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="9">India</text>
+          </svg>
+        </div>
+        <div class="card-tag">GST &amp; Invoicing</div>
+        <div class="card-body">
+          <div class="card-meta">April 2026 · 5 min read</div>
+          <h2>Digitally Sign GST Invoices in India with DSC Token</h2>
+          <p>How to apply a legally valid digital signature to GST invoices, export documents, and commercial invoices using your Class 3 DSC token.</p>
+          <a class="read-more" href="digitally-sign-gst-invoices-india-dsc.html">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 20. PAdES vs CAdES -->
+      <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#eff6ff"/>
+            <!-- PAdES: single PDF with embedded sig -->
+            <rect x="55" y="35" width="85" height="105" rx="7" fill="#fff" stroke="#16A34A" stroke-width="2.5"/>
+            <rect x="55" y="35" width="85" height="22" rx="7" fill="#16A34A"/>
+            <text x="97" y="51" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="bold">PAdES</text>
+            <rect x="65" y="68" width="64" height="5" rx="2" fill="#16A34A" opacity=".3"/>
+            <rect x="65" y="79" width="50" height="5" rx="2" fill="#16A34A" opacity=".3"/>
+            <rect x="65" y="95" width="64" height="20" rx="4" fill="#dcfce7" stroke="#16A34A" stroke-width="1"/>
+            <text x="97" y="109" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="9">✍ embedded</text>
+            <!-- VS label -->
+            <text x="160" y="95" text-anchor="middle" fill="#475569" font-family="sans-serif" font-size="14" font-weight="bold">vs</text>
+            <!-- CAdES: doc + separate p7s -->
+            <rect x="178" y="45" width="58" height="75" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+            <text x="207" y="83" text-anchor="middle" fill="#64748b" font-family="sans-serif" font-size="9">DOC</text>
+            <rect x="248" y="60" width="40" height="45" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4"/>
+            <text x="268" y="83" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="8">.p7s</text>
+            <text x="160" y="148" text-anchor="middle" fill="#475569" font-family="sans-serif" font-size="10">Signature Standards Compared</text>
+          </svg>
+        </div>
+        <div class="card-tag">Standards</div>
+        <div class="card-body">
+          <div class="card-meta">April 2026 · 7 min read</div>
+          <h2>PAdES vs CAdES Digital Signatures — Which Standard for India?</h2>
+          <p>Understand the difference between PDF-embedded PAdES and CMS-based CAdES signatures — and why PAdES is the right choice for Indian government portals.</p>
+          <a class="read-more" href="pades-vs-cades-digital-signatures-india.html">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 21. Signature Valid After Expiry -->
+      <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#f0fdf4"/>
+            <!-- Calendar with dates -->
+            <rect x="70" y="35" width="80" height="80" rx="8" fill="#fff" stroke="#16A34A" stroke-width="2"/>
+            <rect x="70" y="35" width="80" height="22" rx="8" fill="#16A34A"/>
+            <text x="110" y="51" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="10" font-weight="bold">Signed</text>
+            <text x="110" y="75" text-anchor="middle" fill="#1B2A47" font-family="sans-serif" font-size="20" font-weight="bold">12</text>
+            <text x="110" y="90" text-anchor="middle" fill="#64748b" font-family="sans-serif" font-size="10">Apr 2026</text>
+            <text x="110" y="105" text-anchor="middle" fill="#16A34A" font-family="sans-serif" font-size="9">✓ Timestamped</text>
+            <!-- Arrow -->
+            <path d="M160,80 L185,80" stroke="#64748b" stroke-width="2" marker-end="url(#arrv)"/>
+            <defs><marker id="arrv" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#64748b"/></marker></defs>
+            <!-- Valid stamp -->
+            <rect x="190" y="50" width="80" height="80" rx="50" fill="#dcfce7" stroke="#16A34A" stroke-width="2.5"/>
+            <text x="230" y="83" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="11" font-weight="bold">VALID</text>
+            <text x="230" y="98" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="9">Forever</text>
+          </svg>
+        </div>
+        <div class="card-tag">Legal Guide</div>
+        <div class="card-body">
+          <div class="card-meta">April 2026 · 6 min read</div>
+          <h2>Is Your Digital Signature Valid After DSC Certificate Expires?</h2>
+          <p>Yes — if it has an RFC 3161 timestamp. Understand exactly how timestamped signatures remain legally valid in India long after the DSC expires.</p>
+          <a class="read-more" href="digital-signature-valid-after-dsc-expiry.html">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 22. RFC 3161 Timestamp -->
+      <div class="blog-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#faf5ff"/>
+            <!-- Clock face -->
+            <circle cx="130" cy="80" r="52" fill="#fff" stroke="#7c3aed" stroke-width="2.5"/>
+            <circle cx="130" cy="80" r="45" fill="#faf5ff"/>
+            <!-- Clock hands -->
+            <line x1="130" y1="80" x2="130" y2="50" stroke="#1B2A47" stroke-width="3" stroke-linecap="round"/>
+            <line x1="130" y1="80" x2="152" y2="90" stroke="#7c3aed" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="130" cy="80" r="5" fill="#7c3aed"/>
+            <!-- TSA seal -->
+            <circle cx="220" cy="80" r="35" fill="#7c3aed" opacity=".12" stroke="#7c3aed" stroke-width="2"/>
+            <text x="220" y="74" text-anchor="middle" fill="#7c3aed" font-family="sans-serif" font-size="9" font-weight="bold">TSA</text>
+            <text x="220" y="86" text-anchor="middle" fill="#7c3aed" font-family="sans-serif" font-size="8">RFC 3161</text>
+            <text x="220" y="98" text-anchor="middle" fill="#7c3aed" font-family="sans-serif" font-size="10">🔒</text>
+            <text x="175" y="148" text-anchor="middle" fill="#7c3aed" font-family="sans-serif" font-size="10" font-weight="bold">Trusted Timestamp</text>
+          </svg>
+        </div>
+        <div class="card-tag">Standards</div>
+        <div class="card-body">
+          <div class="card-meta">April 2026 · 8 min read</div>
+          <h2>RFC 3161 Timestamp in PDF Signing — What It Is and Why It Matters</h2>
+          <p>What is an RFC 3161 timestamp, how does it work inside a signed PDF, and why is it critical for long-term validity of digital signatures in India?</p>
+          <a class="read-more" href="rfc-3161-timestamp-pdf-india.html">Read More →</a>
+        </div>
+      </div>
+
     </div>
   </div>
 
   <div class="cta-strip">
     <h2>Try PDFSign Free for 30 Days</h2>
-    <p>Sign PDFs with your DSC token on Windows. Works with HYP2003, ProxyKey, and all major tokens.</p>
+    <p>Sign PDFs with your DSC token on Windows. Works with HYP2003, ProxyKey, ePass, and all major FIPS 140-2 Level 3 tokens.</p>
     <a class="btn-white" href="https://cdn.pdfsign.in/PDFSignSetup.exe">Download PDFSign — Free Trial</a>
   </div>
 

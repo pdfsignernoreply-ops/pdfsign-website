@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7E0J9Z32FK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7E0J9Z32FK');
+</script>
+<title>Is Your Digital Signature Still Valid After DSC Certificate Expires? | PDFSign</title>
+<meta name="description" content="Find out whether a digitally signed PDF remains legally valid after your DSC certificate expires. Learn how RFC 3161 timestamps keep your signatures valid indefinitely in India."/>
+<meta name="keywords" content="digital signature valid after DSC expiry India, DSC certificate expired PDF valid, RFC 3161 timestamp signature validity, PAdES LT signature after expiry, DSC renewal signed document"/>
+<meta name="author" content="PDFSign"/>
+<meta name="geo.region" content="IN"/>
+<meta name="geo.country" content="India"/>
+<link rel="canonical" href="https://pdfsign.in/blog/digital-signature-valid-after-dsc-expiry.html"/>
+<meta property="og:title" content="Is Your Digital Signature Still Valid After DSC Certificate Expires?"/>
+<meta property="og:description" content="Learn how RFC 3161 timestamps keep your digitally signed PDFs legally valid in India even after the DSC certificate has expired."/>
+<meta property="og:url" content="https://pdfsign.in/blog/digital-signature-valid-after-dsc-expiry.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="PDFSign"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Is Your Digital Signature Still Valid After DSC Certificate Expires?"/>
+<meta name="twitter:description" content="RFC 3161 timestamps keep your digitally signed PDFs valid even after DSC certificate expiry. Learn how in this guide."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Is Your Digital Signature Still Valid After DSC Certificate Expires?",
+  "description":"Find out whether a digitally signed PDF remains legally valid after your DSC certificate expires. Learn how RFC 3161 timestamps keep your signatures valid indefinitely in India.",
+  "author":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "publisher":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "datePublished":"2026-04-12",
+  "dateModified":"2026-04-12",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://pdfsign.in/blog/digital-signature-valid-after-dsc-expiry.html"},
+  "inLanguage":"en-IN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Is a digitally signed PDF still valid after the DSC certificate expires?","acceptedAnswer":{"@type":"Answer","text":"Yes — if the signature includes an RFC 3161 timestamp. The timestamp proves the document was signed while the certificate was valid. What matters legally is whether the DSC was valid at the time of signing, not at the time of verification."}},
+    {"@type":"Question","name":"What happens if my DSC signature has no timestamp?","acceptedAnswer":{"@type":"Answer","text":"Without a timestamp, Adobe Acrobat and other verifiers cannot determine when the document was signed. After certificate expiry, the signature may show as 'validity unknown' or 'not verifiable'. This is why a timestamp is critical."}},
+    {"@type":"Question","name":"Do I need to re-sign documents after renewing my DSC?","acceptedAnswer":{"@type":"Answer","text":"No. Once a document is signed with a timestamped PAdES signature, it is valid permanently. DSC renewal affects future signing only — previously signed documents are not affected."}},
+    {"@type":"Question","name":"Does PDFSign embed a timestamp in signatures?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign contacts an RFC 3161 Timestamp Authority (TSA) at the moment of signing and embeds the timestamp into the PDF signature. This produces a PAdES-LT signature that remains valid long after the DSC certificate expires."}}
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+a{color:#16A34A;text-decoration:none}a:hover{text-decoration:underline}
+nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none}
+.nav-links a{color:#93C5FD;margin-left:1.5rem;font-size:.9rem}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.blog-hero{background:linear-gradient(135deg,#1B2A47 0%,#243352 100%);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center}
+.blog-hero .category{background:#16A34A;color:#fff;font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;display:inline-block;margin-bottom:1rem}
+.blog-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);max-width:750px;margin:0 auto .75rem;line-height:1.25}
+.blog-hero .meta{color:#93C5FD;font-size:.85rem}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#1B2A47;margin:2.5rem 0 .75rem;border-left:4px solid #16A34A;padding-left:.75rem}
+.content h3{font-size:1.1rem;font-weight:600;color:#1B2A47;margin:1.75rem 0 .5rem}
+.content p{margin-bottom:1rem;color:#334155}
+.content ul,.content ol{margin:.5rem 0 1rem 1.5rem;color:#334155}
+.content li{margin-bottom:.4rem}
+.content strong{color:#1B2A47}
+.step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin:1rem 0}
+.step-num{background:#1B2A47;color:#fff;font-size:.75rem;font-weight:700;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0}
+.step-title{font-weight:600;color:#1B2A47;display:flex;align-items:center;margin-bottom:.4rem}
+.step p{margin:0;color:#475569;font-size:.95rem}
+.tip{background:#f0fdf4;border-left:4px solid #16A34A;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.tip strong{color:#15803d}
+.warn{background:#fff7ed;border-left:4px solid #f97316;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.cta-box{background:linear-gradient(135deg,#1B2A47,#243352);color:#fff;border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0}
+.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.75rem;border:none;padding:0;color:#fff}
+.cta-box p{color:#93C5FD;margin-bottom:1.5rem}
+.btn-green{background:#16A34A;color:#fff;padding:.75rem 2rem;border-radius:8px;font-weight:600;display:inline-block;font-size:1rem}
+.btn-green:hover{background:#15803d;text-decoration:none}
+.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1.5rem}
+.breadcrumb a{color:#16A34A}
+footer{background:#1B2A47;color:#93C5FD;text-align:center;padding:2rem;font-size:.85rem;margin-top:3rem}
+footer a{color:#93C5FD}
+.related{background:#f8fafc;border-radius:12px;padding:2rem;margin:2rem 0}
+.related h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1B2A47;margin-bottom:1rem;border:none;padding:0}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.related-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;font-size:.9rem}
+.related-card a{color:#1B2A47;font-weight:500}.related-card a:hover{color:#16A34A}
+table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+th{background:#1B2A47;color:#fff;padding:.6rem 1rem;text-align:left;font-size:.85rem}
+td{padding:.6rem 1rem;border-bottom:1px solid #e2e8f0;font-size:.9rem;color:#334155}
+tr:nth-child(even) td{background:#f8fafc}
+.verdict-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:1.5rem 0}
+.verdict-card{padding:1.5rem;border-radius:12px;border:2px solid}
+.verdict-card.good{border-color:#16A34A;background:#f0fdf4}
+.verdict-card.bad{border-color:#ef4444;background:#fef2f2}
+.verdict-card h3{margin:0 0 .75rem;font-size:1rem}
+.verdict-card.good h3{color:#15803d}
+.verdict-card.bad h3{color:#b91c1c}
+.verdict-card ul{margin:0 0 0 1.2rem;font-size:.9rem}
+.verdict-card.good ul{color:#15803d}
+.verdict-card.bad ul{color:#b91c1c}
+@media(max-width:600px){nav{flex-direction:column;gap:.75rem}.nav-links a{margin-left:.75rem}.verdict-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="https://pdfsign.in">PDF<span style="color:#16A34A">Sign</span>.in</a>
+  <div class="nav-links">
+    <a href="https://pdfsign.in">Home</a>
+    <a href="https://pdfsign.in/blog/">Blog</a>
+    <a href="https://pdfsign.in/#pricing">Pricing</a>
+    <a href="https://wa.me/917057413999">Support</a>
+  </div>
+</nav>
+<div class="blog-hero">
+  <div class="category">Legal &amp; Compliance</div>
+  <h1>Is Your Digital Signature Still Valid After the DSC Certificate Expires?</h1>
+  <div class="meta">By PDFSign &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 6 min read</div>
+</div>
+<div class="container">
+<div class="breadcrumb">
+  <a href="https://pdfsign.in">Home</a> › <a href="https://pdfsign.in/blog/">Blog</a> › Digital Signature Valid After DSC Expiry
+</div>
+<div class="content">
+
+<p>Your DSC certificate has a validity period — typically 1, 2, or 3 years. Once it expires, you renew it. But what happens to all the PDFs you signed with the old certificate? Are those signatures still legally valid in India?</p>
+<p>The short answer: <strong>Yes — if the signature includes an RFC 3161 timestamp.</strong> Without a timestamp, the answer is more complicated.</p>
+
+<!-- SVG: timeline showing signing moment vs verification moment -->
+<svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:2rem auto;border-radius:12px;background:#f8fafc">
+  <!-- Timeline line -->
+  <line x1="60" y1="100" x2="620" y2="100" stroke="#cbd5e1" stroke-width="3"/>
+  <!-- DSC valid range -->
+  <rect x="100" y="80" width="220" height="40" rx="6" fill="#dcfce7" stroke="#16A34A" stroke-width="1.5"/>
+  <text x="210" y="105" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="11" font-weight="bold">DSC Certificate Valid</text>
+  <!-- Signing moment -->
+  <circle cx="260" cy="100" r="10" fill="#16A34A"/>
+  <text x="260" y="75" text-anchor="middle" fill="#16A34A" font-family="sans-serif" font-size="11" font-weight="bold">Signing</text>
+  <text x="260" y="63" text-anchor="middle" fill="#16A34A" font-family="sans-serif" font-size="10">+ Timestamp</text>
+  <!-- Expiry marker -->
+  <line x1="320" y1="60" x2="320" y2="140" stroke="#f97316" stroke-width="2" stroke-dasharray="5"/>
+  <text x="320" y="155" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="10">DSC Expires</text>
+  <!-- Verification moment -->
+  <circle cx="520" cy="100" r="10" fill="#1B2A47"/>
+  <text x="520" y="75" text-anchor="middle" fill="#1B2A47" font-family="sans-serif" font-size="11" font-weight="bold">Verification</text>
+  <text x="520" y="63" text-anchor="middle" fill="#64748b" font-family="sans-serif" font-size="10">Years later</text>
+  <!-- Timestamp arrow showing signing was before expiry -->
+  <path d="M 260 125 Q 290 165 320 140" stroke="#16A34A" stroke-width="1.5" fill="none" stroke-dasharray="4"/>
+  <text x="290" y="178" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="10">Timestamp proves signing was before expiry</text>
+  <!-- Valid label at right -->
+  <rect x="470" y="115" width="110" height="26" rx="6" fill="#16A34A"/>
+  <text x="525" y="132" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="bold">✓ Signature Valid</text>
+</svg>
+
+<h2>The Core Legal Principle</h2>
+<p>Under the <strong>IT Act 2000</strong> and the <strong>Information Technology (Certifying Authorities) Rules, 2000</strong>, what matters for a digital signature's legal validity is whether:</p>
+<ol>
+  <li>The DSC certificate was valid <strong>at the time the document was signed</strong></li>
+  <li>The document has not been altered after signing</li>
+  <li>The signature was created using the private key corresponding to the certified public key</li>
+</ol>
+<p>Note that requirement #1 says "at the time of signing" — not "at the time of verification." This is the key insight. A certificate that has since expired does not retroactively invalidate signatures made while it was active.</p>
+
+<h2>Why a Timestamp Is Critical</h2>
+<p>The problem is proving <em>when</em> the signing occurred. Without evidence of the signing time, a verifier cannot determine whether the certificate was valid when the document was signed or whether it was signed after the certificate expired.</p>
+<p>An <strong>RFC 3161 timestamp</strong> from a trusted Timestamp Authority (TSA) provides exactly this evidence. The TSA receives a hash of the signed document and issues a cryptographically signed timestamp token — a trusted, tamper-proof record of when the signing happened.</p>
+
+<div class="verdict-grid">
+  <div class="verdict-card good">
+    <h3>✅ With RFC 3161 Timestamp</h3>
+    <ul>
+      <li>Signing time is cryptographically proven</li>
+      <li>Signature valid forever (DSC may expire)</li>
+      <li>Adobe shows "Signature Valid" in green</li>
+      <li>Courts and portals can verify independently</li>
+      <li>Satisfies PAdES-T / PAdES-LT standard</li>
+    </ul>
+  </div>
+  <div class="verdict-card bad">
+    <h3>❌ Without Timestamp</h3>
+    <ul>
+      <li>No proof of when signing occurred</li>
+      <li>After cert expiry: shows "validity unknown"</li>
+      <li>Cannot establish signing was within validity</li>
+      <li>Legally contestable in disputes</li>
+      <li>Basic PAdES-B only — not recommended</li>
+    </ul>
+  </div>
+</div>
+
+<h2>What Happens to the Signature After DSC Expiry?</h2>
+
+<h3>Scenario 1 — Timestamped Signature (PAdES-T or LT)</h3>
+<p>When you open the PDF in Adobe Acrobat Reader after the DSC has expired:</p>
+<ul>
+  <li>The signature panel shows the <strong>signing date from the timestamp</strong> (not the current date)</li>
+  <li>Acrobat checks: was the certificate valid at the timestamp's recorded time? Yes → <strong>Signature Valid</strong></li>
+  <li>The green checkmark and "Signed by [Name]" display correctly</li>
+  <li>The embedded OCSP data (in PAdES-LT) confirms the certificate had not been revoked at that time</li>
+</ul>
+<div class="tip"><strong>This is the correct behavior.</strong> A timestamped signature produced while the DSC was valid will show as valid in Acrobat even 5 years after the DSC expired.</div>
+
+<h3>Scenario 2 — Signature Without Timestamp (PAdES-B)</h3>
+<p>If no timestamp was embedded at signing time:</p>
+<ul>
+  <li>After the certificate expires, Acrobat cannot determine when signing occurred</li>
+  <li>Acrobat may show <strong>"Signature validity is unknown"</strong> or a yellow warning</li>
+  <li>Some verifiers use the system clock as a fallback signing time, which creates a falsified "signing time" that is not cryptographically trustworthy</li>
+  <li>The signature is not necessarily invalid — but its validity is unproven</li>
+</ul>
+<div class="warn"><strong>If your signing software does not embed an RFC 3161 timestamp, signed documents become difficult to verify after DSC expiry.</strong> Always confirm your signing tool embeds a timestamp before relying on signatures for long-term records.</div>
+
+<h2>What If the DSC Was Revoked (Not Just Expired)?</h2>
+<p>Expiry and revocation are different:</p>
+<ul>
+  <li><strong>Expiry</strong> — certificate reaches its end-of-life date; signatures timestamped before expiry remain valid</li>
+  <li><strong>Revocation</strong> — CA invalidates the certificate mid-life (e.g., private key compromised). Signatures made <em>after</em> the revocation date are invalid. Signatures made <em>before</em> the revocation date remain valid if timestamped before revocation.</li>
+</ul>
+<p>The embedded OCSP data in a PAdES-LT signature records the revocation status <em>at signing time</em>, so the signature is protected even in revocation scenarios (as long as signing preceded the revocation).</p>
+
+<h2>Do I Need to Re-sign Documents After DSC Renewal?</h2>
+<p>No. Once a document is signed with a timestamped PAdES signature, it is permanently valid. Your DSC renewal creates a new certificate (with a new key pair), which you use for future signings. Previously signed documents are entirely independent of your new certificate.</p>
+
+<table>
+  <thead><tr><th>Situation</th><th>Action Required</th><th>Effect on Old Signatures</th></tr></thead>
+  <tbody>
+    <tr><td>DSC certificate expired</td><td>Renew DSC for future signing</td><td>Old timestamped signatures remain valid</td></tr>
+    <tr><td>DSC token lost / replaced</td><td>Get new token, import/enroll new cert</td><td>Old signatures unaffected</td></tr>
+    <tr><td>CA upgraded (e.g., eMudhra root)</td><td>None (automatic AATL trust update)</td><td>Old signatures unaffected if chain embedded</td></tr>
+    <tr><td>DSC revoked mid-life</td><td>Investigate cause; get new cert</td><td>Signatures before revocation date remain valid</td></tr>
+  </tbody>
+</table>
+
+<h2>How PDFSign Protects Your Signatures</h2>
+<p>Every signature produced by PDFSign automatically includes:</p>
+
+<div class="step"><div class="step-title"><span class="step-num">1</span>RFC 3161 Timestamp</div><p>Embedded at the moment of signing from a trusted TSA. Cryptographically proves the exact signing time regardless of certificate lifecycle.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">2</span>Full Certificate Chain</div><p>Signer's certificate + intermediate CA + root CA all embedded. Verification works even if the CA's server is unreachable.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">3</span>OCSP / LTV Data</div><p>Certificate revocation status fetched and embedded at signing time. Offline verification is possible years later — no need to contact the CA's OCSP server.</p></div>
+
+<div class="tip"><strong>Internet connection required only at signing time</strong> — to fetch the timestamp and OCSP response. After that, the signed PDF is self-contained and verifiable entirely offline.</div>
+
+<h2>Checking Whether Your Signed PDF Has a Timestamp</h2>
+<ol>
+  <li>Open the signed PDF in <strong>Adobe Acrobat Reader</strong> (free)</li>
+  <li>Click the signature or open the signature panel (left sidebar)</li>
+  <li>Click <strong>Signature Properties</strong></li>
+  <li>Look for <strong>Date/Time</strong> and check if it shows "from the signature's timestamp" or "from the clock on the signer's computer"</li>
+  <li>If it says "from timestamp" — your signature is timestamped and will remain valid after expiry</li>
+  <li>If it says "from clock" — the signature has no embedded timestamp</li>
+</ol>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>I signed a tender document 2 years ago. My DSC expired last year. Is the signed document still valid for audit?</h3>
+<p>If PDFSign (or any PAdES-LT compliant tool) was used, yes. The RFC 3161 timestamp embedded at signing time proves the document was signed while your DSC was valid. Auditors and courts treat this as valid. If the signature had no timestamp, the validity is uncertain and should be reviewed by a legal professional.</p>
+
+<h3>The government portal accepted the signed file when I uploaded it. But will it still be readable after years?</h3>
+<p>Yes. The portal acceptance confirms authenticity at submission time. The embedded timestamp and OCSP data ensure the PDF remains verifiable independently of the portal. Store the signed PDF file securely for your records.</p>
+
+<h3>Does the CA matter — eMudhra, Capricorn, Vsign?</h3>
+<p>All CCA-licensed CAs (eMudhra, Capricorn, Vsign, SafeScrypt, etc.) issue certificates that chain to the CCA India root. As long as that root is trusted in Adobe's AATL and the Windows Certificate Store, signatures from any licensed CA verify correctly regardless of which CA you used.</p>
+
+<div class="cta-box">
+  <h2>Sign PDFs with Timestamp-Protected Signatures</h2>
+  <p>PDFSign embeds RFC 3161 timestamps and OCSP data in every signature — ensuring your signed documents remain legally valid in India long after the DSC expires.</p>
+  <a class="btn-green" href="https://cdn.pdfsign.in/PDFSignSetup.exe">Download PDFSign — Free Trial</a>
+</div>
+
+<div class="related">
+  <h2>Related Articles</h2>
+  <div class="related-grid">
+    <div class="related-card"><a href="rfc-3161-timestamp-pdf-india.html">RFC 3161 Timestamp in PDF Signing Explained</a></div>
+    <div class="related-card"><a href="pades-vs-cades-digital-signatures-india.html">PAdES vs CAdES — Which Standard for India?</a></div>
+    <div class="related-card"><a href="how-to-verify-digital-signature-pdf-india.html">How to Verify a Digital Signature in PDF</a></div>
+    <div class="related-card"><a href="digital-signature-validity-unknown-pdf-fix.html">Fix: Signature Validity Unknown in PDF</a></div>
+    <div class="related-card"><a href="it-act-2000-digital-signatures-india.html">IT Act 2000 and Digital Signatures</a></div>
+    <div class="related-card"><a href="high-security-dsc-token-mandatory-india-2023.html">FIPS 140-2 Level 3 DSC Token Mandate India</a></div>
+  </div>
+</div>
+
+</div>
+</div>
+<footer>
+  <p>© 2026 PDFSign.in by Tender Training India &nbsp;|&nbsp; <a href="https://pdfsign.in/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="https://pdfsign.in/terms.html">Terms</a> &nbsp;|&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
+</footer>
+</body>
+</html>

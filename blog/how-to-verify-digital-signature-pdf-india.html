@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7E0J9Z32FK"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7E0J9Z32FK');</script>
+<title>How to Verify a Digital Signature in a PDF — Complete Guide for India | PDFSign</title>
+<meta name="description" content="How to verify a digital signature in a PDF in India. Check certificate validity, signer identity, and timestamp using Adobe Reader, browser viewers, and government portals. Complete guide."/>
+<meta name="keywords" content="how to verify digital signature PDF India, check digital signature PDF, verify DSC signature PDF, Adobe digital signature verify, PDF signature valid India"/>
+<meta name="author" content="PDFSign.in"/>
+<meta name="geo.region" content="IN"/>
+<meta name="geo.country" content="India"/>
+<link rel="canonical" href="https://pdfsign.in/blog/how-to-verify-digital-signature-pdf-india.html"/>
+<meta property="og:title" content="How to Verify a Digital Signature in a PDF — Complete Guide for India"/>
+<meta property="og:description" content="How to verify a digital signature in a PDF in India. Check certificate validity, signer identity, and timestamp using Adobe Reader."/>
+<meta property="og:url" content="https://pdfsign.in/blog/how-to-verify-digital-signature-pdf-india.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="PDFSign.in"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to Verify a Digital Signature in a PDF — India Guide"/>
+<meta name="twitter:description" content="Check signer identity, certificate validity, and timestamp in a DSC-signed PDF. Complete guide for India."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"How to Verify a Digital Signature in a PDF — Complete Guide for India","description":"How to verify a digital signature in a PDF in India. Check certificate validity, signer identity, and timestamp using Adobe Reader.","author":{"@type":"Organization","name":"PDFSign.in","url":"https://pdfsign.in"},"publisher":{"@type":"Organization","name":"PDFSign.in","url":"https://pdfsign.in"},"datePublished":"2026-04-12","dateModified":"2026-04-12","mainEntityOfPage":{"@type":"WebPage","@id":"https://pdfsign.in/blog/how-to-verify-digital-signature-pdf-india.html"},"inLanguage":"en-IN"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I verify a digital signature without Adobe Acrobat?","acceptedAnswer":{"@type":"Answer","text":"Chrome, Edge, and Firefox can display basic digital signature information in a PDF, but they do not fully verify the certificate chain against the CCA India root. For complete verification — especially for legally important documents — use Adobe Acrobat Reader with an updated AATL (Adobe Approved Trust List)."}},{"@type":"Question","name":"Is the signature still valid if the DSC has expired?","acceptedAnswer":{"@type":"Answer","text":"Yes, if the document was signed before the DSC expired and an RFC 3161 timestamp was embedded at the time of signing. The timestamp proves the exact time of signing. If the timestamp shows signing occurred while the certificate was valid, the signature remains legally valid even after expiry."}},{"@type":"Question","name":"What does it mean if a signature shows as Invalid (red cross)?","acceptedAnswer":{"@type":"Answer","text":"A red cross means either the document was modified after signing (the hash doesn't match) or the certificate has been revoked by the CA. In either case, the signature cannot be trusted. Do not accept a document with an invalid digital signature."}},{"@type":"Question","name":"How do I know who actually signed the document?","acceptedAnswer":{"@type":"Answer","text":"Click on the signature field in Adobe Acrobat to open signature properties. Click Show Certificate to see the full certificate details including the signer's name, organisation, Certifying Authority, and certificate serial number. This information comes directly from the DSC issued by the licensed CA."}},{"@type":"Question","name":"Does PDFSign embed all verification information in the signature?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign embeds the full certificate chain, RFC 3161 timestamp, and OCSP revocation status (Long-Term Validation) in every signature. This means recipients can verify the signature without contacting any external server."}}]}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+a{color:#16A34A;text-decoration:none}a:hover{text-decoration:underline}
+nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none}
+.nav-links a{color:#93C5FD;margin-left:1.5rem;font-size:.9rem}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.blog-hero{background:linear-gradient(135deg,#1B2A47 0%,#243352 100%);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center}
+.blog-hero .category{background:#16A34A;color:#fff;font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;display:inline-block;margin-bottom:1rem}
+.blog-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);max-width:750px;margin:0 auto .75rem;line-height:1.25}
+.blog-hero .meta{color:#93C5FD;font-size:.85rem}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#1B2A47;margin:2.5rem 0 .75rem;border-left:4px solid #16A34A;padding-left:.75rem}
+.content h3{font-size:1.1rem;font-weight:600;color:#1B2A47;margin:1.75rem 0 .5rem}
+.content p{margin-bottom:1rem;color:#334155}
+.content ul,.content ol{margin:.5rem 0 1rem 1.5rem;color:#334155}
+.content li{margin-bottom:.4rem}
+.content strong{color:#1B2A47}
+.step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin:1rem 0}
+.step-num{background:#1B2A47;color:#fff;font-size:.75rem;font-weight:700;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0}
+.step-title{font-weight:600;color:#1B2A47;display:flex;align-items:center;margin-bottom:.4rem}
+.step p{margin:0;color:#475569;font-size:.95rem}
+.tip{background:#f0fdf4;border-left:4px solid #16A34A;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.tip strong{color:#15803d}
+.warn{background:#fff7ed;border-left:4px solid #f97316;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.cta-box{background:linear-gradient(135deg,#1B2A47,#243352);color:#fff;border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0}
+.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.75rem;border:none;padding:0;color:#fff}
+.cta-box p{color:#93C5FD;margin-bottom:1.5rem}
+.btn-green{background:#16A34A;color:#fff;padding:.75rem 2rem;border-radius:8px;font-weight:600;display:inline-block;font-size:1rem}
+.btn-green:hover{background:#15803d;text-decoration:none}
+.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1.5rem}
+.breadcrumb a{color:#16A34A}
+footer{background:#1B2A47;color:#93C5FD;text-align:center;padding:2rem;font-size:.85rem;margin-top:3rem}
+footer a{color:#93C5FD}
+.related{background:#f8fafc;border-radius:12px;padding:2rem;margin:2rem 0}
+.related h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1B2A47;margin-bottom:1rem;border:none;padding:0}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.related-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;font-size:.9rem}
+.related-card a{color:#1B2A47;font-weight:500}.related-card a:hover{color:#16A34A}
+table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+th{background:#1B2A47;color:#fff;padding:.6rem 1rem;text-align:left;font-size:.85rem}
+td{padding:.6rem 1rem;border-bottom:1px solid #e2e8f0;font-size:.9rem;color:#334155}
+tr:nth-child(even) td{background:#f8fafc}
+.sig-status{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0}
+.ss{flex:1;min-width:155px;border-radius:10px;padding:1rem;text-align:center}
+.ss-g{background:#f0fdf4;border:1.5px solid #86efac}
+.ss-a{background:#fffbeb;border:1.5px solid #fcd34d}
+.ss-r{background:#fef2f2;border:1.5px solid #fca5a5}
+.ss-icon{font-size:1.6rem;display:block;margin-bottom:.4rem}
+.ss-label{font-size:.85rem;font-weight:600;color:#1B2A47;display:block}
+.ss-desc{font-size:.78rem;color:#475569;margin-top:.2rem}
+@media(max-width:600px){nav{flex-direction:column;gap:.75rem}.nav-links a{margin-left:.75rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="https://pdfsign.in">PDF<span style="color:#16A34A">Sign</span>.in</a>
+  <div class="nav-links">
+    <a href="https://pdfsign.in">Home</a>
+    <a href="https://pdfsign.in/blog/">Blog</a>
+    <a href="https://pdfsign.in/#pricing">Pricing</a>
+    <a href="https://wa.me/917057413999">Support</a>
+  </div>
+</nav>
+<div class="blog-hero">
+  <div class="category">How-To Guide</div>
+  <h1>How to Verify a Digital Signature in a PDF — Complete Guide for India</h1>
+  <div class="meta">By PDFSign.in &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 5 min read</div>
+</div>
+<div class="container">
+<div class="breadcrumb">
+  <a href="https://pdfsign.in">Home</a> › <a href="https://pdfsign.in/blog/">Blog</a> › How to Verify a Digital Signature in a PDF
+</div>
+<div class="content">
+
+<!-- SVG Illustration -->
+<svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:10px;margin:1rem 0">
+  <rect width="700" height="180" fill="#f8fafc" rx="10"/>
+  <!-- PDF doc -->
+  <rect x="30" y="25" width="100" height="130" rx="8" fill="#e2e8f0"/>
+  <rect x="30" y="25" width="100" height="35" rx="8" fill="#1B2A47"/>
+  <text x="80" y="48" font-family="sans-serif" font-size="12" font-weight="700" fill="white" text-anchor="middle">PDF</text>
+  <rect x="44" y="74" width="72" height="5" rx="2" fill="#cbd5e1"/>
+  <rect x="44" y="85" width="55" height="5" rx="2" fill="#cbd5e1"/>
+  <rect x="44" y="96" width="62" height="5" rx="2" fill="#cbd5e1"/>
+  <rect x="40" y="115" width="80" height="28" rx="5" fill="#dcfce7" stroke="#86efac" stroke-width="1.5"/>
+  <text x="80" y="133" font-family="sans-serif" font-size="10" fill="#166534" text-anchor="middle" font-weight="600">✓ Digitally Signed</text>
+  <!-- Arrow + info panel -->
+  <text x="152" y="96" font-family="sans-serif" font-size="20" fill="#94a3b8">→</text>
+  <rect x="178" y="30" width="240" height="120" rx="10" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="298" y="55" font-family="sans-serif" font-size="11" font-weight="700" fill="#1B2A47" text-anchor="middle">Signature Properties</text>
+  <text x="195" y="74" font-family="sans-serif" font-size="10" fill="#475569">Signer: Rahul Sharma</text>
+  <text x="195" y="90" font-family="sans-serif" font-size="10" fill="#475569">Org: ABC Enterprises Pvt. Ltd.</text>
+  <text x="195" y="106" font-family="sans-serif" font-size="10" fill="#475569">CA: eMudhra CA</text>
+  <text x="195" y="122" font-family="sans-serif" font-size="10" fill="#475569">Signed: 12 Apr 2026 14:32:05 IST</text>
+  <text x="195" y="138" font-family="sans-serif" font-size="10" fill="#475569">Valid Until: 11 Apr 2028</text>
+  <!-- Checkmark result -->
+  <text x="440" y="96" font-family="sans-serif" font-size="20" fill="#94a3b8">→</text>
+  <rect x="468" y="50" width="200" height="80" rx="10" fill="#dcfce7" stroke="#86efac" stroke-width="2"/>
+  <text x="568" y="82" font-family="sans-serif" font-size="28" text-anchor="middle">✅</text>
+  <text x="568" y="110" font-family="sans-serif" font-size="12" fill="#166534" text-anchor="middle" font-weight="700">Signature Valid</text>
+</svg>
+
+<p>You have received a digitally signed PDF — a contract, a tender document, a compliance certificate, or an audit report. Before relying on it or forwarding it to a government portal, you want to confirm that it is genuinely signed, has not been tampered with, and was signed by who it claims to be from.</p>
+
+<p>This guide walks through exactly how to do that — using Adobe Acrobat Reader, browser-based viewers, and what to look for when a signature is valid versus suspicious.</p>
+
+<h2>What Is Inside a Digital Signature?</h2>
+
+<p>When someone signs a PDF using a USB DSC token and software like PDFSign.in, the resulting signature is not just a visual mark. It is a cryptographic data structure embedded in the PDF file that contains:</p>
+
+<ul>
+  <li><strong>Signer's name and organisation</strong> — exactly as registered with the Certifying Authority (CA)</li>
+  <li><strong>Certifying Authority</strong> — the licensed CA that issued the DSC (e.g., eMudhra, Capricorn, NSDL)</li>
+  <li><strong>Certificate serial number</strong> — unique identifier for the specific DSC</li>
+  <li><strong>Certificate validity period</strong> — issue date and expiry date of the DSC</li>
+  <li><strong>Document hash</strong> — a cryptographic fingerprint of the document at the time of signing. If any byte in the document changes after signing, this hash will not match and the signature shows as invalid.</li>
+  <li><strong>RFC 3161 timestamp</strong> — from a Timestamp Authority (TSA) server, proving the exact date and time of signing</li>
+  <li><strong>OCSP revocation status</strong> — confirmation that the certificate had not been revoked at the time of signing</li>
+</ul>
+
+<p>All of this is verifiable by anyone who opens the signed PDF in a PDF reader that supports digital signatures — without needing to contact the CA or any external server (assuming the signature includes LTV data).</p>
+
+<h2>Signature Status in PDF Viewers</h2>
+
+<p>When you open a signed PDF, the PDF reader shows one of these signature statuses:</p>
+
+<div class="sig-status">
+  <div class="ss ss-g"><span class="ss-icon">✅</span><span class="ss-label">Signature Valid</span><span class="ss-desc">Full chain verified. Document unmodified since signing.</span></div>
+  <div class="ss ss-a"><span class="ss-icon">⚠️</span><span class="ss-label">Validity Unknown</span><span class="ss-desc">Reader can't verify root cert locally. Signature may still be genuine.</span></div>
+  <div class="ss ss-r"><span class="ss-icon">❌</span><span class="ss-label">Signature Invalid</span><span class="ss-desc">Document modified after signing, or certificate revoked. Do not trust.</span></div>
+</div>
+
+<p>"Validity unknown" is a local trust configuration issue — not an indication of fraud. See our guide on <a href="digital-signature-validity-unknown-pdf-fix.html">fixing Signature Validity Unknown</a> for the one-time fix. A red invalid status is more serious and should be investigated.</p>
+
+<h2>How to Verify in Adobe Acrobat Reader (Recommended)</h2>
+
+<p>Adobe Acrobat Reader is the most comprehensive free PDF reader for verifying digital signatures. Download the latest version from adobe.com if you do not have it installed.</p>
+
+<div class="step"><div class="step-title"><span class="step-num">1</span>Open the Signed PDF in Adobe Acrobat Reader</div><p>Double-click the PDF file. If it does not open in Acrobat Reader automatically, right-click the file and choose Open With → Adobe Acrobat Reader.</p></div>
+
+<div class="step"><div class="step-title"><span class="step-num">2</span>Look for the Signature Panel or Signature Field</div><p>At the top of the document, Adobe shows a blue or green information bar saying "Signed and all signatures are valid" or a similar message. You may also see a visible signature box on the page with the signer's name.</p></div>
+
+<div class="step"><div class="step-title"><span class="step-num">3</span>Open the Signatures Panel</div><p>Go to View → Show/Hide → Navigation Panels → Signatures. Or click the Signatures icon in the left panel (looks like a pen nib). The Signatures panel lists all signatures in the document.</p></div>
+
+<div class="step"><div class="step-title"><span class="step-num">4</span>Click on the Signature Entry</div><p>Click on a signature in the panel to expand its details. You will see the signature status (valid/unknown/invalid), the signer's name, and the time of signing.</p></div>
+
+<div class="step"><div class="step-title"><span class="step-num">5</span>Click "Signature Properties" for Full Details</div><p>Right-click the signature entry and choose "Show Signature Properties" (or click the link in the signature panel). A detailed dialog opens showing the complete certificate information.</p></div>
+
+<div class="step"><div class="step-title"><span class="step-num">6</span>Click "Show Certificate" for Signer Identity</div><p>In the Signature Properties dialog, click <strong>Show Certificate</strong>. This opens the certificate viewer showing the full certificate chain: your signer's certificate → CA's intermediate certificate → CCA India root certificate.</p></div>
+
+<div class="step"><div class="step-title"><span class="step-num">7</span>Verify Key Information</div><p>In the certificate viewer, confirm: the signer's <strong>Common Name</strong> (their name) and <strong>Organisation</strong> match who you expect. The <strong>Issuer</strong> should be an Indian licensed CA (eMudhra, Capricorn, NSDL, SafeScrypt, (n)Code). The <strong>Validity</strong> period shows the DSC was valid at the time of signing.</p></div>
+
+<h2>What to Check in the Signature Properties</h2>
+
+<table>
+  <tr><th>Property</th><th>What to Look For</th></tr>
+  <tr><td>Signer Name</td><td>Matches the expected signatory — individual or company director</td></tr>
+  <tr><td>Organisation</td><td>For Class 3 Org DSC, shows the company name</td></tr>
+  <tr><td>Certifying Authority</td><td>Should be an Indian licensed CA: eMudhra, Capricorn, NSDL, SafeScrypt, (n)Code</td></tr>
+  <tr><td>Certificate Valid From/To</td><td>The "from" date should be before the signing date; the "to" date should be after the signing date</td></tr>
+  <tr><td>Signing Time</td><td>Shows when the document was signed. If timestamped (RFC 3161), this is cryptographically verified.</td></tr>
+  <tr><td>Document Modified</td><td>"This document has not been modified since this signature was applied" = document is intact</td></tr>
+  <tr><td>Timestamp Authority</td><td>Shows the TSA that provided the timestamp — confirms exact signing time</td></tr>
+</table>
+
+<h2>Verifying in Chrome or Edge (Browser PDF Viewer)</h2>
+
+<p>Chrome and Edge can display PDFs and show basic digital signature information, but they do not fully verify the certificate chain. Limitations in browser-based verification:</p>
+
+<ul>
+  <li>Chrome and Edge may show "This document is signed" but cannot display the full certificate details</li>
+  <li>They cannot verify the CCA India root certificate chain in most configurations</li>
+  <li>They do not show the RFC 3161 timestamp details</li>
+  <li>They cannot distinguish between "validity unknown" and a genuine trust failure</li>
+</ul>
+
+<div class="warn"><strong>For legally important documents</strong> — tender bids, audit reports, property agreements, legal notices — always use Adobe Acrobat Reader for signature verification, not a browser PDF viewer. Browser viewers are sufficient only for casual review of signed documents.</div>
+
+<h2>Red Flags: When to Question a Signature</h2>
+
+<p>Even if a signature shows as valid in Adobe, there are additional checks worth doing for high-stakes documents:</p>
+
+<h3>Unexpected Signer Name</h3>
+<p>The name in the certificate does not match the person who claims to have signed the document. Confirm with the sender if there is any discrepancy.</p>
+
+<h3>Certifying Authority Is Unknown</h3>
+<p>The issuer is not one of the licensed Indian CAs (eMudhra, Capricorn, NSDL, SafeScrypt, (n)Code, or others licensed by CCA India). An unknown or foreign CA signing a document that should have an Indian DSC is suspicious.</p>
+
+<h3>Certificate Was Already Expired at Time of Signing</h3>
+<p>Check the certificate validity dates versus the signing time. If the "valid to" date is before the signing date, and there is no RFC 3161 timestamp to establish when signing actually occurred, be cautious.</p>
+
+<h3>No Timestamp</h3>
+<p>A signature without an RFC 3161 timestamp cannot definitively prove when the document was signed. After the DSC expires, anyone reviewing the document in the future cannot determine if signing happened during validity. Always prefer documents signed with timestamps.</p>
+
+<h3>Signature Is Invalid (Red Cross)</h3>
+<p>A red invalid status is a hard stop. Either the document was tampered with after signing, or the certificate was revoked. Do not accept the document — request a fresh signed copy from the signatory.</p>
+
+<div class="tip"><strong>When in doubt, ask for a re-sign.</strong> If you cannot verify a signature satisfactorily, ask the sender to re-sign the document with a fresh signature. A properly signed document takes under a minute to produce.</div>
+
+<h2>How PDFSign Ensures Maximum Verifiability</h2>
+
+<p>Documents signed with PDFSign include all the information needed for complete verification without any server dependency:</p>
+<ul>
+  <li><strong>Full certificate chain embedded</strong> — no need to download the CA certificate separately</li>
+  <li><strong>RFC 3161 timestamp</strong> — cryptographically proved signing time, independent of DSC validity</li>
+  <li><strong>OCSP revocation data embedded (LTV)</strong> — certificate status at time of signing is stored in the file. Verifiable even if the CA's OCSP server is offline years later.</li>
+  <li><strong>PAdES standard</strong> — the signature format accepted by all Indian government portals and compliant with ETSI standards</li>
+</ul>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Can I verify a digital signature without Adobe Acrobat?</h3>
+<p>Chrome and Edge can display basic signature information, but for complete verification — especially confirming the CCA India certificate chain, timestamp, and revocation status — use Adobe Acrobat Reader with an updated trust list.</p>
+
+<h3>Is the signature still valid if the DSC has expired?</h3>
+<p>Yes, if signing occurred before expiry and an RFC 3161 timestamp was embedded. The timestamp is the legal proof of when signing occurred. If the timestamp confirms signing during the certificate's validity period, the signature remains legally valid after the DSC expires.</p>
+
+<h3>What does a red "Signature Invalid" mean?</h3>
+<p>Either the document was modified after signing (the cryptographic hash doesn't match) or the signing certificate was revoked. Either way, the signature cannot be trusted. Request a fresh signed document.</p>
+
+<h3>How do I know who signed the document?</h3>
+<p>Click the signature in Adobe Acrobat → Signature Properties → Show Certificate. The Common Name field shows the signer's name. The Organisation field shows their company (for org DSC). The Issuer field shows which CA issued the certificate.</p>
+
+<div class="cta-box">
+  <h2>Sign PDFs with Full Verification Data Included</h2>
+  <p>PDFSign embeds the complete certificate chain, RFC 3161 timestamp, and OCSP data — so your signed documents are fully verifiable by anyone, anywhere, forever.</p>
+  <a class="btn-green" href="https://cdn.pdfsign.in/PDFSignSetup.exe">Download PDFSign — Free 30-Day Trial</a>
+</div>
+
+<div class="related">
+  <h2>Related Articles</h2>
+  <div class="related-grid">
+    <div class="related-card"><a href="digital-signature-validity-unknown-pdf-fix.html">Fix "Signature Validity Unknown" in PDF</a></div>
+    <div class="related-card"><a href="digital-signature-valid-after-dsc-expiry.html">How Long Is a Signature Valid After DSC Expiry?</a></div>
+    <div class="related-card"><a href="rfc-3161-timestamp-pdf-india.html">What Is RFC 3161 Timestamp?</a></div>
+    <div class="related-card"><a href="pades-vs-cades-digital-signatures-india.html">PAdES vs CAdES — What's the Difference?</a></div>
+    <div class="related-card"><a href="how-to-sign-pdf-dsc-token-windows.html">How to Sign a PDF with DSC Token</a></div>
+    <div class="related-card"><a href="it-act-2000-digital-signatures-india.html">IT Act 2000 and Digital Signatures</a></div>
+    <div class="related-card"><a href="dsc-token-not-working-chrome-fix.html">DSC Token Not Working in Chrome</a></div>
+    <div class="related-card"><a href="best-pdf-signing-software-india-2026.html">Best PDF Signing Software for India 2026</a></div>
+  </div>
+</div>
+</div>
+</div>
+<footer>
+  <p>© 2026 PDFSign.in by Tender Training India &nbsp;|&nbsp; <a href="https://pdfsign.in/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="https://pdfsign.in/terms.html">Terms</a> &nbsp;|&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
+</footer>
+</body>
+</html>

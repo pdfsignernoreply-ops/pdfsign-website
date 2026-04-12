@@ -4,7 +4,7 @@
 
 ## What it does
 
-PDFSign.in lets Indian professionals sign any PDF document in under 10 seconds using their USB DSC (Digital Signature Certificate) token or a signature/stamp image. All signing happens locally on the user's Windows PC — files are never uploaded to any server.
+PDFSign.in lets Indian professionals sign any PDF document in under 60 seconds using their USB DSC (Digital Signature Certificate) token or a signature/stamp image. All signing happens locally on the user's Windows PC — files are never uploaded to any server.
 
 ## Key features
 

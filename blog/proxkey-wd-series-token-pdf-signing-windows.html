@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7E0J9Z32FK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7E0J9Z32FK');
+</script>
+<title>Proxkey WD Series USB Token — Setup and PDF Signing on Windows | PDFSign</title>
+<meta name="description" content="Complete setup guide for Proxkey WD series USB DSC token on Windows 10 and 11. Install drivers, sign PDFs with DSC using PDFSign, and use on GeM, CPPP and Indian government portals."/>
+<meta name="keywords" content="Proxkey WD series token, Proxkey DSC token Windows, Watchdata token PDF signing, WD series token setup, Proxkey driver install, sign PDF DSC token India"/>
+<meta name="author" content="PDFSign"/>
+<meta name="geo.region" content="IN"/>
+<meta name="geo.country" content="India"/>
+<link rel="canonical" href="https://pdfsign.in/blog/proxkey-wd-series-token-pdf-signing-windows.html"/>
+<meta property="og:title" content="Proxkey WD Series USB Token — Setup and PDF Signing on Windows"/>
+<meta property="og:description" content="Complete setup guide for Proxkey WD series USB DSC token on Windows 10 and 11. Install drivers, sign PDFs with DSC using PDFSign, and use on GeM, CPPP and Indian government portals."/>
+<meta property="og:url" content="https://pdfsign.in/blog/proxkey-wd-series-token-pdf-signing-windows.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="PDFSign.in"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Proxkey WD Series USB Token — Setup and PDF Signing on Windows"/>
+<meta name="twitter:description" content="Complete setup guide for Proxkey WD series USB DSC token on Windows 10 and 11. Install drivers, sign PDFs with DSC using PDFSign, and use on GeM, CPPP and Indian government portals."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Proxkey WD Series USB Token — Setup and PDF Signing on Windows",
+  "description":"Complete setup guide for Proxkey WD series USB DSC token on Windows 10 and 11. Install drivers, sign PDFs with DSC using PDFSign, and use on GeM, CPPP and Indian government portals.",
+  "author":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "publisher":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "datePublished":"2026-04-12",
+  "dateModified":"2026-04-12",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://pdfsign.in/blog/proxkey-wd-series-token-pdf-signing-windows.html"},
+  "inLanguage":"en-IN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Is Proxkey the same as Watchdata?","acceptedAnswer":{"@type":"Answer","text":"Yes. Proxkey is a brand name for USB DSC tokens manufactured by Watchdata Technologies. The WD prefix in serial numbers stands for Watchdata. The tokens are issued by Certifying Authorities across India under the Proxkey brand."}},
+    {"@type":"Question","name":"Can I use my Proxkey token on Windows 11?","acceptedAnswer":{"@type":"Answer","text":"Yes. Proxkey tokens are fully compatible with Windows 10 and Windows 11 (64-bit). Install the Proxkey middleware from the official proxkey.com website, restart your PC, and plug in the token. PDFSign detects it automatically."}},
+    {"@type":"Question","name":"What if my Proxkey PIN is locked?","acceptedAnswer":{"@type":"Answer","text":"If you enter the wrong PIN too many times, the token locks and requires a PUK (PIN Unlock Key) to reset. Contact your Certifying Authority with your identity proof to obtain the PUK. Do not attempt to guess the PUK — the token may be permanently blocked."}},
+    {"@type":"Question","name":"How do I identify a WD series Proxkey token?","acceptedAnswer":{"@type":"Answer","text":"Flip the token over and look at the serial number printed on the back or side label. WD series tokens have serial numbers beginning with WD, such as WD2XXXXXXX. This confirms the token is manufactured by Watchdata Technologies."}},
+    {"@type":"Question","name":"Which government portals accept Proxkey DSC signatures?","acceptedAnswer":{"@type":"Answer","text":"Proxkey DSC tokens issued by licensed Certifying Authorities are accepted on GeM, CPPP, NIC, MCA21, DGFT, and all other Indian government e-procurement portals that support Class 3 digital signatures."}}
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+a{color:#16A34A;text-decoration:none}a:hover{text-decoration:underline}
+nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none}
+.nav-links a{color:#93C5FD;margin-left:1.5rem;font-size:.9rem}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.blog-hero{background:linear-gradient(135deg,#1B2A47 0%,#243352 100%);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center}
+.blog-hero .category{background:#16A34A;color:#fff;font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;display:inline-block;margin-bottom:1rem}
+.blog-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);max-width:750px;margin:0 auto .75rem;line-height:1.25}
+.blog-hero .meta{color:#93C5FD;font-size:.85rem}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#1B2A47;margin:2.5rem 0 .75rem;border-left:4px solid #16A34A;padding-left:.75rem}
+.content h3{font-size:1.1rem;font-weight:600;color:#1B2A47;margin:1.75rem 0 .5rem}
+.content p{margin-bottom:1rem;color:#334155}
+.content ul,.content ol{margin:.5rem 0 1rem 1.5rem;color:#334155}
+.content li{margin-bottom:.4rem}
+.content strong{color:#1B2A47}
+.step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin:1rem 0}
+.step-num{background:#1B2A47;color:#fff;font-size:.75rem;font-weight:700;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0}
+.step-title{font-weight:600;color:#1B2A47;display:flex;align-items:center;margin-bottom:.4rem}
+.step p{margin:0;color:#475569;font-size:.95rem}
+.tip{background:#f0fdf4;border-left:4px solid #16A34A;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.tip strong{color:#15803d}
+.warn{background:#fff7ed;border-left:4px solid #f97316;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.cta-box{background:linear-gradient(135deg,#1B2A47,#243352);color:#fff;border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0}
+.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.75rem;border:none;padding:0;color:#fff}
+.cta-box p{color:#93C5FD;margin-bottom:1.5rem}
+.btn-green{background:#16A34A;color:#fff;padding:.75rem 2rem;border-radius:8px;font-weight:600;display:inline-block;font-size:1rem}
+.btn-green:hover{background:#15803d;text-decoration:none}
+.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1.5rem}
+.breadcrumb a{color:#16A34A}
+footer{background:#1B2A47;color:#93C5FD;text-align:center;padding:2rem;font-size:.85rem;margin-top:3rem}
+footer a{color:#93C5FD}
+.related{background:#f8fafc;border-radius:12px;padding:2rem;margin:2rem 0}
+.related h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1B2A47;margin-bottom:1rem;border:none;padding:0}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.related-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;font-size:.9rem}
+.related-card a{color:#1B2A47;font-weight:500}.related-card a:hover{color:#16A34A}
+table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+th{background:#1B2A47;color:#fff;padding:.6rem 1rem;text-align:left;font-size:.85rem}
+td{padding:.6rem 1rem;border-bottom:1px solid #e2e8f0;font-size:.9rem;color:#334155}
+tr:nth-child(even) td{background:#f8fafc}
+@media(max-width:600px){nav{flex-direction:column;gap:.75rem}.nav-links a{margin-left:.75rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="https://pdfsign.in">PDF<span style="color:#16A34A">Sign</span>.in</a>
+  <div class="nav-links">
+    <a href="https://pdfsign.in">Home</a>
+    <a href="https://pdfsign.in/blog/">Blog</a>
+    <a href="https://pdfsign.in/#pricing">Pricing</a>
+    <a href="https://wa.me/917057413999">Support</a>
+  </div>
+</nav>
+<div class="blog-hero">
+  <div class="category">Token Guide</div>
+  <h1>Proxkey WD Series USB Token — Setup and PDF Signing on Windows</h1>
+  <div class="meta">By PDFSign &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 6 min read</div>
+</div>
+<div class="container">
+<div class="breadcrumb">
+  <a href="https://pdfsign.in">Home</a> › <a href="https://pdfsign.in/blog/">Blog</a> › Proxkey WD Series USB Token — Setup and PDF Signing on Windows
+</div>
+<div class="content">
+
+<p>The Proxkey WD series is one of the most widely distributed USB DSC tokens in India today. If your Certifying Authority issued you a token with a serial number beginning with <strong>WD</strong>, you are holding a Proxkey token made by Watchdata Technologies. This guide walks you through every step: identifying your token, installing the correct driver, verifying your certificate, and signing PDFs on Windows 10 and 11 using PDFSign.</p>
+
+<h2>What Is the Proxkey Token?</h2>
+<p>Proxkey is a brand of USB cryptographic tokens manufactured by <strong>Watchdata Technologies</strong>, a company with a long history in smart card and security hardware. In India, the Proxkey token is issued by multiple licensed Certifying Authorities as an alternative to the ePass and HYP2003 form factors. Despite different names, all of these tokens serve the same purpose: they securely store your Class 3 Digital Signature Certificate and allow you to sign documents using the private key that never leaves the hardware.</p>
+
+<p>Watchdata has supplied tokens to Indian CAs including eMudhra, Capricorn CA, NSDL e-Governance, and others. When you receive a Proxkey from any of these CAs, the underlying hardware and software middleware are identical.</p>
+
+<h2>Identifying Your Proxkey WD Series Token</h2>
+<p>Before installing any software, confirm you actually have a Proxkey WD series token rather than a different model. Here is how to identify it:</p>
+<ul>
+  <li>Flip the token over. The serial number is printed on the back or on a label along the side.</li>
+  <li><strong>WD series tokens</strong> have serial numbers starting with <strong>WD</strong> — for example, WD2XXXXXXX or WD3XXXXXXX.</li>
+  <li>The token body is typically compact, resembling a slim USB drive with a green or blue LED indicator.</li>
+  <li>The packaging or the CA's issuance email will also mention "Proxkey" or "Watchdata" as the token type.</li>
+</ul>
+
+<div class="tip"><strong>Not sure if it is a Proxkey?</strong> If your serial number starts with <strong>HS</strong>, you have an HYP2003 High Security token — see our <a href="hyp2003-token-sign-pdf-windows.html">HYP2003 guide</a> instead. If the serial starts with a number and your CA is eMudhra or NSDL, it is likely an ePass 2003 — covered in our <a href="epass-2003-3003-token-pdf-signing-windows.html">ePass guide</a>.</div>
+
+<h2>Security Certification: Why Proxkey Is Trusted</h2>
+<p>The Proxkey WD series is <strong>FIPS 140-2 Level 3 certified</strong> — the same certification level required by the Controller of Certifying Authorities (CCA) India for High Security DSC tokens. FIPS 140-2 Level 3 means:</p>
+<ul>
+  <li>The private key is <strong>generated on-chip</strong> inside the token's secure element. It never exists in plaintext outside the hardware.</li>
+  <li>The key <strong>cannot be exported</strong>, duplicated, or extracted — even by the person who issued the certificate.</li>
+  <li>Physical tamper resistance: the token resists physical probing and side-channel attacks.</li>
+  <li>The PIN protects access to the key. Without the correct PIN, the token will not sign anything.</li>
+</ul>
+<p>This makes the Proxkey WD series suitable for the highest-trust applications: company director DSC on MCA21, GeM vendor registration, income tax filings, DGFT import/export documents, and any other scenario where the government requires a Class 3 digital signature.</p>
+
+<h2>Step 1: Install the Proxkey Middleware on Windows</h2>
+<p>The Proxkey token requires a middleware (driver + PKCS#11 library) to be installed on your Windows machine before the token can be detected by any software.</p>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">1</span>Download the Proxkey Middleware</div>
+  <p>Go to <strong>proxkey.com</strong> — the official Watchdata Proxkey website — and download the latest Proxkey middleware for Windows. The installer is typically named something like <em>ProxkeySetup.exe</em> or <em>WD_Proxkey_Middleware_vX.X.exe</em>. Always download from the official source to avoid tampered software.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">2</span>Run the Installer as Administrator</div>
+  <p>Right-click the downloaded installer and choose <strong>Run as administrator</strong>. Follow the on-screen prompts to complete installation. The installer places the PKCS#11 library and Windows Smart Card service drivers on your system.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">3</span>Restart Your PC</div>
+  <p>A full restart is required for the driver to initialise correctly. Do not skip this step — plugging in the token before restarting often results in the "device not recognised" error.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">4</span>Plug In the Token After Restart</div>
+  <p>After your PC restarts, plug the Proxkey token into a USB port. The LED on the token should light up (green or blue depending on your model). Windows may show a brief "Device set up" notification in the taskbar.</p>
+</div>
+
+<h2>Step 2: Verify Installation in Proxkey Token Manager</h2>
+<p>The Proxkey middleware installs a <strong>Proxkey Token Manager</strong> utility (also called WD Token Manager on some versions). Open it from the Start menu after plugging in your token.</p>
+<ul>
+  <li>You should see your token listed with its serial number (WD series).</li>
+  <li>Click on the token entry to expand it — your DSC certificate should be visible, showing your name and the CA that issued it.</li>
+  <li>If the certificate does not appear, the token may not have been initialised by your CA yet, or the token is not seated properly in the USB port.</li>
+</ul>
+
+<div class="tip"><strong>Check Device Manager too.</strong> Open Device Manager (Win + X → Device Manager) and look under <strong>Smart Card Readers</strong>. You should see a Proxkey or Watchdata entry. If it shows a yellow warning icon, reinstall the middleware.</div>
+
+<h2>Step 3: Set and Change Your PIN</h2>
+<p>Your CA sets a default PIN when they issue the token. The default is typically <strong>12345678</strong>, though some CAs use a custom PIN printed on a sealed slip included with the token. You will be required to enter this PIN the first time you use the token.</p>
+
+<div class="warn"><strong>Change your default PIN immediately.</strong> If anyone obtains physical access to your token and the default PIN is still active, they can sign documents in your name. Use the Proxkey Token Manager to set a strong, unique PIN of at least 8 characters.</div>
+
+<p>To change your PIN in Proxkey Token Manager:</p>
+<ol>
+  <li>Open Proxkey Token Manager.</li>
+  <li>Select your token from the list.</li>
+  <li>Click <strong>Change PIN</strong>.</li>
+  <li>Enter the current (default) PIN, then enter and confirm your new PIN.</li>
+  <li>Click OK. The new PIN is active immediately.</li>
+</ol>
+
+<h2>Step 4: Install PDFSign and Sign Your First PDF</h2>
+<p>PDFSign is a 100% offline Windows desktop application that detects Proxkey WD series tokens automatically via the PKCS#11 interface. There is no manual configuration required — PDFSign reads the PKCS#11 library installed by the Proxkey middleware and presents your certificate in its dropdown.</p>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">1</span>Download and Install PDFSign</div>
+  <p>Download PDFSign from <a href="https://cdn.pdfsign.in/PDFSignSetup.exe">https://cdn.pdfsign.in/PDFSignSetup.exe</a>. Run the installer and follow the prompts. PDFSign works on Windows 10 and Windows 11 (64-bit).</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">2</span>Plug In Your Proxkey Token and Launch PDFSign</div>
+  <p>Ensure the token is connected before opening PDFSign. Launch PDFSign from the desktop shortcut or Start menu.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">3</span>Select Your Certificate</div>
+  <p>PDFSign scans all connected PKCS#11 tokens at startup. Your Proxkey certificate will appear in the certificate dropdown. If you have multiple certificates on the token, select the one with the correct name and validity period. Click <strong>Refresh</strong> if the certificate is not immediately visible.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">4</span>Load the PDF Document</div>
+  <p>Click <strong>Browse</strong> and select the PDF you want to sign — a tender document from GeM, a form from MCA21, a submission for CPPP, or any other PDF. PDFSign shows a preview of the document.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">5</span>Place the Signature and Set Options</div>
+  <p>Drag the signature box to the desired position on the page, or enter page and coordinate values manually. You can choose to sign a single page or all pages. PDFSign supports PAdES long-term validation signatures with RFC 3161 timestamp — the format accepted by all Indian government portals.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">6</span>Click Sign and Enter Your PIN</div>
+  <p>Click the <strong>Sign</strong> button. PDFSign will prompt you to enter your Proxkey PIN. Type your PIN and press Enter. The signing operation is performed entirely offline on your PC — no internet connection is required for the signing step itself (only for the timestamp if enabled).</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">7</span>Upload the Signed PDF to the Government Portal</div>
+  <p>The signed PDF is saved to your chosen output folder. Log in to GeM, CPPP, MCA21, DGFT, or whichever portal you need, and upload the signed file. The portal will validate the embedded digital signature — no browser plugin or extension required.</p>
+</div>
+
+<h2>Where Is Proxkey DSC Accepted?</h2>
+<p>A Class 3 DSC stored on a Proxkey WD series token is accepted on all major Indian government portals:</p>
+<table>
+  <tr><th>Portal</th><th>Use Case</th></tr>
+  <tr><td>GeM (Government e-Marketplace)</td><td>Vendor registration, bid submission</td></tr>
+  <tr><td>CPPP (Central Public Procurement Portal)</td><td>Tender document signing and submission</td></tr>
+  <tr><td>NIC e-Procurement</td><td>State and central government tenders</td></tr>
+  <tr><td>MCA21</td><td>Director DSC for ROC filings</td></tr>
+  <tr><td>DGFT</td><td>Import/export authorisation documents</td></tr>
+  <tr><td>Income Tax Portal</td><td>ITR filing with DSC verification</td></tr>
+</table>
+
+<h2>Common Proxkey Issues and How to Fix Them</h2>
+
+<h3>Token Not Detected by PDFSign or Windows</h3>
+<p>If your Proxkey token is not appearing in PDFSign or in Device Manager:</p>
+<ul>
+  <li>Try a different USB port — USB 3.0 ports (blue) sometimes have compatibility issues with older token firmware; try a USB 2.0 port instead.</li>
+  <li>Avoid USB hubs. Plug directly into a port on your laptop or desktop.</li>
+  <li>Uninstall and reinstall the Proxkey middleware. Restart after reinstalling before plugging in the token.</li>
+  <li>Ensure the Smart Card service is running: press Win + R, type <em>services.msc</em>, find <strong>Smart Card</strong>, and set it to Automatic and start it.</li>
+</ul>
+
+<h3>Wrong PIN — Token Locked</h3>
+<p>Entering an incorrect PIN multiple consecutive times (typically 5–10 attempts depending on the token configuration) will lock the token. A locked token cannot be used until it is unlocked with a PUK (PIN Unlock Key).</p>
+<ul>
+  <li>Do not guess the PUK — repeated wrong PUK attempts permanently block the token.</li>
+  <li>Contact your Certifying Authority's support team with your identity proof and the token's serial number.</li>
+  <li>The CA will verify your identity and provide the PUK, or issue a replacement token if required.</li>
+</ul>
+
+<h3>Certificate Shows as Expired</h3>
+<p>DSC certificates have a validity period of 1, 2, or 3 years depending on what you purchased. If your certificate has expired, you must renew it with your CA. Renewal typically results in a new token being issued — you cannot update the certificate on the old token after expiry.</p>
+
+<h3>Multiple Certificates on One Token</h3>
+<p>Some tokens carry more than one certificate (e.g., a signing certificate and an encryption certificate, or multiple DSCs from different renewals). In PDFSign, use the certificate dropdown to select the correct one. Check the subject name and expiry date to choose the right certificate for signing.</p>
+
+<h2>Proxkey vs. Other DSC Tokens: Quick Comparison</h2>
+<table>
+  <tr><th>Token</th><th>Manufacturer</th><th>Serial Prefix</th><th>Security Level</th></tr>
+  <tr><td>Proxkey</td><td>Watchdata Technologies</td><td>WD series</td><td>FIPS 140-2 Level 3</td></tr>
+  <tr><td>HYP2003</td><td>Hypersecu / High Security</td><td>HS series</td><td>FIPS 140-2 Level 3</td></tr>
+  <tr><td>ePass 2003</td><td>Feitian Technologies</td><td>Varies by CA</td><td>FIPS 140-2 Level 2/3</td></tr>
+  <tr><td>ePass 3003</td><td>Feitian Technologies</td><td>Varies by CA</td><td>FIPS 140-2 Level 3</td></tr>
+</table>
+<p>All of the above tokens work with PDFSign. The software detects each token via its PKCS#11 library automatically, with no manual path configuration needed.</p>
+
+<div class="tip"><strong>PDFSign works with all PKCS#11-compatible tokens.</strong> Whether your CA issued you a Proxkey, HYP2003, ePass, or Feitian token — PDFSign reads the certificate from whichever token is plugged in. You do not need separate software for each token type.</div>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Is Proxkey the same as Watchdata?</h3>
+<p>Yes. Proxkey is the product brand name for USB DSC tokens manufactured by Watchdata Technologies. The WD in WD series serial numbers stands for Watchdata. The tokens are identical in hardware; only the branding on the outer casing may differ between Certifying Authority distributors.</p>
+
+<h3>Can I use my Proxkey token on Windows 11?</h3>
+<p>Yes. Proxkey tokens with the current middleware are fully compatible with Windows 10 and Windows 11, including the latest 64-bit builds. Install the middleware from proxkey.com, restart, plug in the token, and use PDFSign normally. No additional configuration is required for Windows 11.</p>
+
+<h3>What if my Proxkey PIN is locked?</h3>
+<p>A locked token requires the PUK (PIN Unlock Key) to reset. Contact your Certifying Authority's helpdesk with your token's serial number and a copy of your identity proof. They will verify your identity and provide the PUK. Never attempt to guess the PUK — after a set number of failed PUK attempts, the token is permanently blocked and a new token must be issued.</p>
+
+<h3>Can I use the Proxkey token on multiple PCs?</h3>
+<p>Yes, as long as the Proxkey middleware is installed on each PC. The certificate and private key live on the hardware token, not on any specific computer. Plug the token into any Windows machine with the middleware installed and PDFSign, and you can sign documents from that machine.</p>
+
+<h3>Do I need an internet connection to sign PDFs?</h3>
+<p>PDFSign is 100% offline for the core signing operation. An internet connection is only required if you enable RFC 3161 timestamping from a Time Stamp Authority (TSA). The signature itself is created on your local machine using the key stored in the Proxkey token, with no data sent to any server.</p>
+
+<div class="cta-box">
+  <h2>Try PDFSign Free for 30 Days</h2>
+  <p>Works with Proxkey WD series, HYP2003, ePass 2003/3003, and all PKCS#11 DSC tokens. Windows 10 and 11.</p>
+  <a class="btn-green" href="https://cdn.pdfsign.in/PDFSignSetup.exe">Download PDFSign — Free Trial</a>
+</div>
+
+<div class="related">
+  <h2>Related Articles</h2>
+  <div class="related-grid">
+    <div class="related-card"><a href="how-to-sign-pdf-dsc-token-windows.html">How to Sign a PDF with DSC Token on Windows</a></div>
+    <div class="related-card"><a href="hyp2003-token-sign-pdf-windows.html">HYP2003 Token Setup and PDF Signing Guide</a></div>
+    <div class="related-card"><a href="epass-2003-3003-token-pdf-signing-windows.html">ePass 2003 and ePass 3003 Token Setup Guide</a></div>
+    <div class="related-card"><a href="dsc-token-not-working-chrome-fix.html">DSC Token Not Working in Chrome — Fix</a></div>
+    <div class="related-card"><a href="dsc-token-not-detected-windows-11-fix.html">DSC Token Not Detected on Windows 11</a></div>
+    <div class="related-card"><a href="digital-signature-validity-unknown-pdf-fix.html">Digital Signature Validity Unknown — Fix</a></div>
+    <div class="related-card"><a href="high-security-dsc-token-mandatory-india-2023.html">High Security DSC Token Mandate in India</a></div>
+    <div class="related-card"><a href="emudhra-capricorn-signer-digital-comparison.html">Comparing DSC Signing Software in India</a></div>
+  </div>
+</div>
+
+</div>
+</div>
+<footer>
+  <p>© 2026 PDFSign.in by Tender Training India &nbsp;|&nbsp; <a href="https://pdfsign.in/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="https://pdfsign.in/terms.html">Terms</a> &nbsp;|&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
+</footer>
+</body>
+</html>

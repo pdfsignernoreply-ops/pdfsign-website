@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7E0J9Z32FK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7E0J9Z32FK');
+</script>
+<title>ePass 2003 and ePass 3003 Token Setup and PDF Signing Guide | PDFSign</title>
+<meta name="description" content="Complete setup guide for ePass 2003 and ePass 3003 USB DSC tokens on Windows 10 and 11. Install PKCS#11 driver, configure PDFSign, and sign PDFs for GeM, CPPP, MCA21."/>
+<meta name="keywords" content="ePass 2003 token setup, ePass 3003 Windows, ePass2003 driver install, sign PDF ePass token, Feitian token PDF signing, DSC token India PDF"/>
+<meta name="author" content="PDFSign"/>
+<meta name="geo.region" content="IN"/>
+<meta name="geo.country" content="India"/>
+<link rel="canonical" href="https://pdfsign.in/blog/epass-2003-3003-token-pdf-signing-windows.html"/>
+<meta property="og:title" content="ePass 2003 and ePass 3003 Token Setup and PDF Signing Guide"/>
+<meta property="og:description" content="Complete setup guide for ePass 2003 and ePass 3003 USB DSC tokens on Windows 10 and 11. Install PKCS#11 driver, configure PDFSign, and sign PDFs for GeM, CPPP, MCA21."/>
+<meta property="og:url" content="https://pdfsign.in/blog/epass-2003-3003-token-pdf-signing-windows.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="PDFSign.in"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ePass 2003 and ePass 3003 Token Setup and PDF Signing Guide"/>
+<meta name="twitter:description" content="Complete setup guide for ePass 2003 and ePass 3003 USB DSC tokens on Windows 10 and 11. Install PKCS#11 driver, configure PDFSign, and sign PDFs for GeM, CPPP, MCA21."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"ePass 2003 and ePass 3003 Token Setup and PDF Signing Guide",
+  "description":"Complete setup guide for ePass 2003 and ePass 3003 USB DSC tokens on Windows 10 and 11. Install PKCS#11 driver, configure PDFSign, and sign PDFs for GeM, CPPP, MCA21.",
+  "author":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "publisher":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "datePublished":"2026-04-12",
+  "dateModified":"2026-04-12",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://pdfsign.in/blog/epass-2003-3003-token-pdf-signing-windows.html"},
+  "inLanguage":"en-IN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Is ePass 2003 compatible with Windows 11?","acceptedAnswer":{"@type":"Answer","text":"Yes. The ePass2003 Auto driver supports both Windows 10 and Windows 11 (64-bit). Download the latest driver from your CA's support page or Feitian's official website, install it, restart your PC, then plug in the token. PDFSign will detect your certificate automatically."}},
+    {"@type":"Question","name":"Is the driver the same for ePass 2003 and ePass 3003?","acceptedAnswer":{"@type":"Answer","text":"Yes. Both ePass 2003 and ePass 3003 use the same ePass2003 Auto driver and share the same PKCS#11 library. The HYP2003 token also uses this same driver. Installing one version of the driver covers all three models."}},
+    {"@type":"Question","name":"Can I use my ePass token on multiple PCs?","acceptedAnswer":{"@type":"Answer","text":"Yes. The certificate and private key are stored on the hardware token itself, not on any specific computer. Install the ePass2003 driver on each Windows machine you want to use. Plug in the token and PDFSign will read the certificate from the token on any of those machines."}},
+    {"@type":"Question","name":"My ePass PIN is locked — what do I do?","acceptedAnswer":{"@type":"Answer","text":"If your ePass PIN is locked due to too many wrong attempts, contact your Certifying Authority with your token serial number and identity proof. The CA will provide a PUK (PIN Unlock Key) to reset the PIN. Do not attempt to guess the PUK as repeated failures will permanently block the token."}},
+    {"@type":"Question","name":"My ePass token has multiple certificates — which one should I select?","acceptedAnswer":{"@type":"Answer","text":"In PDFSign, open the certificate dropdown and look at each certificate's subject name (your name or organisation) and validity period. Select the certificate that matches your current DSC. If you are unsure, check the expiry date — the most recently issued certificate is typically the active one."}},
+    {"@type":"Question","name":"What portals accept ePass DSC signatures?","acceptedAnswer":{"@type":"Answer","text":"ePass 2003 and ePass 3003 tokens issued by licensed CAs are accepted on GeM, CPPP, NIC e-procurement, MCA21, DGFT, the Income Tax portal, and all other Indian government portals that support Class 3 digital signatures."}}
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+a{color:#16A34A;text-decoration:none}a:hover{text-decoration:underline}
+nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none}
+.nav-links a{color:#93C5FD;margin-left:1.5rem;font-size:.9rem}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.blog-hero{background:linear-gradient(135deg,#1B2A47 0%,#243352 100%);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center}
+.blog-hero .category{background:#16A34A;color:#fff;font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;display:inline-block;margin-bottom:1rem}
+.blog-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);max-width:750px;margin:0 auto .75rem;line-height:1.25}
+.blog-hero .meta{color:#93C5FD;font-size:.85rem}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#1B2A47;margin:2.5rem 0 .75rem;border-left:4px solid #16A34A;padding-left:.75rem}
+.content h3{font-size:1.1rem;font-weight:600;color:#1B2A47;margin:1.75rem 0 .5rem}
+.content p{margin-bottom:1rem;color:#334155}
+.content ul,.content ol{margin:.5rem 0 1rem 1.5rem;color:#334155}
+.content li{margin-bottom:.4rem}
+.content strong{color:#1B2A47}
+.step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin:1rem 0}
+.step-num{background:#1B2A47;color:#fff;font-size:.75rem;font-weight:700;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0}
+.step-title{font-weight:600;color:#1B2A47;display:flex;align-items:center;margin-bottom:.4rem}
+.step p{margin:0;color:#475569;font-size:.95rem}
+.tip{background:#f0fdf4;border-left:4px solid #16A34A;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.tip strong{color:#15803d}
+.warn{background:#fff7ed;border-left:4px solid #f97316;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.cta-box{background:linear-gradient(135deg,#1B2A47,#243352);color:#fff;border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0}
+.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.75rem;border:none;padding:0;color:#fff}
+.cta-box p{color:#93C5FD;margin-bottom:1.5rem}
+.btn-green{background:#16A34A;color:#fff;padding:.75rem 2rem;border-radius:8px;font-weight:600;display:inline-block;font-size:1rem}
+.btn-green:hover{background:#15803d;text-decoration:none}
+.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1.5rem}
+.breadcrumb a{color:#16A34A}
+footer{background:#1B2A47;color:#93C5FD;text-align:center;padding:2rem;font-size:.85rem;margin-top:3rem}
+footer a{color:#93C5FD}
+.related{background:#f8fafc;border-radius:12px;padding:2rem;margin:2rem 0}
+.related h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1B2A47;margin-bottom:1rem;border:none;padding:0}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.related-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;font-size:.9rem}
+.related-card a{color:#1B2A47;font-weight:500}.related-card a:hover{color:#16A34A}
+table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+th{background:#1B2A47;color:#fff;padding:.6rem 1rem;text-align:left;font-size:.85rem}
+td{padding:.6rem 1rem;border-bottom:1px solid #e2e8f0;font-size:.9rem;color:#334155}
+tr:nth-child(even) td{background:#f8fafc}
+@media(max-width:600px){nav{flex-direction:column;gap:.75rem}.nav-links a{margin-left:.75rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="https://pdfsign.in">PDF<span style="color:#16A34A">Sign</span>.in</a>
+  <div class="nav-links">
+    <a href="https://pdfsign.in">Home</a>
+    <a href="https://pdfsign.in/blog/">Blog</a>
+    <a href="https://pdfsign.in/#pricing">Pricing</a>
+    <a href="https://wa.me/917057413999">Support</a>
+  </div>
+</nav>
+<div class="blog-hero">
+  <div class="category">Token Guide</div>
+  <h1>ePass 2003 and ePass 3003 Token Setup and PDF Signing Guide</h1>
+  <div class="meta">By PDFSign &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 6 min read</div>
+</div>
+<div class="container">
+<div class="breadcrumb">
+  <a href="https://pdfsign.in">Home</a> › <a href="https://pdfsign.in/blog/">Blog</a> › ePass 2003 and ePass 3003 Token Setup and PDF Signing Guide
+</div>
+<div class="content">
+
+<p>The ePass 2003 and ePass 3003 are the most widely distributed USB DSC tokens in India. If you have ever obtained a Class 3 Digital Signature Certificate from eMudhra, NSDL e-Governance, SafeScrypt, or any of the major Certifying Authorities, there is a high probability the token in your hands is an ePass model. This guide covers everything you need: understanding which model you have, installing the correct driver on Windows 10 or 11, verifying your certificate, and signing PDFs using PDFSign.</p>
+
+<h2>What Is the ePass 2003 and ePass 3003?</h2>
+<p>The ePass series is manufactured by <strong>Feitian Technologies</strong>, a Chinese hardware security company with an extensive presence in the Indian market. Feitian supplies the hardware; Indian Certifying Authorities load your Digital Signature Certificate onto the token and issue it to you under their own branding or under the ePass name.</p>
+<p>You will find ePass tokens distributed by:</p>
+<ul>
+  <li><strong>eMudhra</strong> — one of the largest CAs in India, issues both ePass 2003 and 3003</li>
+  <li><strong>NSDL e-Governance</strong> — distributes ePass 2003 tokens widely</li>
+  <li><strong>SafeScrypt</strong> — part of Sify Technologies, uses Feitian hardware</li>
+  <li><strong>Capricorn CA</strong> — issues ePass and other Feitian-based tokens</li>
+  <li>Various regional and state-level CA distributors</li>
+</ul>
+<p>Despite the different CA branding on the packaging, the underlying token hardware and the driver software are the same across all of these issuers.</p>
+
+<h2>ePass 2003 vs ePass 3003: What Is the Difference?</h2>
+<p>The ePass 3003 is the newer model, introduced with improved security specifications to meet the Controller of Certifying Authorities' (CCA) mandate for High Security DSC tokens. Here is how they compare:</p>
+
+<table>
+  <tr><th>Feature</th><th>ePass 2003</th><th>ePass 3003</th></tr>
+  <tr><td>Manufacturer</td><td>Feitian Technologies</td><td>Feitian Technologies</td></tr>
+  <tr><td>FIPS Certification</td><td>FIPS 140-2 Level 2</td><td>FIPS 140-2 Level 3</td></tr>
+  <tr><td>Key Generation</td><td>On-chip</td><td>On-chip</td></tr>
+  <tr><td>Key Export</td><td>Not possible</td><td>Not possible</td></tr>
+  <tr><td>Driver</td><td>ePass2003 Auto</td><td>ePass2003 Auto (same)</td></tr>
+  <tr><td>Windows Compatibility</td><td>Windows 10 / 11</td><td>Windows 10 / 11</td></tr>
+  <tr><td>Issued for CCA High Security mandate</td><td>Older issuances</td><td>Current issuances</td></tr>
+</table>
+
+<div class="tip"><strong>Key point:</strong> Both models use the <strong>same driver</strong>. You do not need to know which exact model you have before installing the driver — the ePass2003 Auto driver works for both ePass 2003 and ePass 3003.</div>
+
+<h2>The ePass2003 Driver Also Covers HYP2003</h2>
+<p>An important fact that surprises many users: the <strong>HYP2003 High Security token</strong> (serial numbers beginning with <strong>HS</strong>) also uses the ePass2003 Auto driver and shares the same PKCS#11 library. If you have a HYP2003 token, you install the same ePass2003 driver described in this guide. PDFSign detects all three token types — ePass 2003, ePass 3003, and HYP2003 — using the same interface.</p>
+
+<h2>Step 1: Download and Install the ePass2003 Driver</h2>
+<p>The ePass2003 driver (sometimes called the ePass2003 Auto driver or ePass2003 middleware) is the software layer that allows Windows to communicate with your token via the PKCS#11 standard.</p>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">1</span>Get the Driver from Your CA's Support Page</div>
+  <p>The safest source is your own CA. Log in to your CA's customer portal (eMudhra, NSDL e-Gov, SafeScrypt, etc.) and look for a "Token Driver" or "Software Download" section. Alternatively, the driver is available from Feitian's official website. The installer is typically named <em>ePass2003Auto_Setup.exe</em> or similar.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">2</span>Run the Installer as Administrator</div>
+  <p>Do not plug in the token yet. Right-click the downloaded installer file and choose <strong>Run as administrator</strong>. Follow the on-screen wizard. The installer registers the PKCS#11 library (<em>eps2003csp11.dll</em> or similar) and sets up the Windows Smart Card service to recognise the token.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">3</span>Restart Your Computer</div>
+  <p>A restart is mandatory. The driver integrates with the Windows Smart Card service, which requires a clean boot to initialise. Skipping the restart is the single most common cause of "device not recognised" errors after driver installation.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">4</span>Plug In the ePass Token</div>
+  <p>After your PC has restarted, insert the ePass 2003 or ePass 3003 token into a USB port. The token LED should light up. Windows may briefly show a "Setting up device" notification. Within a few seconds the token should be ready.</p>
+</div>
+
+<h2>Step 2: Verify the Token in Device Manager</h2>
+<p>Before proceeding to PDF signing, confirm the token is correctly recognised by Windows:</p>
+<ol>
+  <li>Press <strong>Win + X</strong> and choose <strong>Device Manager</strong>.</li>
+  <li>Expand the <strong>Smart Card Readers</strong> category.</li>
+  <li>You should see an entry for your ePass token — it may be listed as "ePass2003", "Feitian ePass", or a similar label.</li>
+  <li>If the entry shows a yellow warning triangle, the driver did not install correctly. Uninstall and reinstall the driver, restart, and try again.</li>
+</ol>
+
+<div class="tip"><strong>Also check the Smart Card service.</strong> Press Win + R, type <em>services.msc</em>, and press Enter. Find <strong>Smart Card</strong> in the list. Ensure its status is Running and its startup type is set to Automatic. If it is stopped, right-click and choose Start.</div>
+
+<h2>Step 3: Verify Your Certificate in ePass Token Manager</h2>
+<p>The ePass2003 driver installs a <strong>Token Manager</strong> utility (sometimes labelled ePass2003 Token Manager or simply ePass PKI Manager). Open it from the Start menu after plugging in your token.</p>
+<ul>
+  <li>Your token should appear in the list with its serial number.</li>
+  <li>Expand the token entry — your DSC certificate should be listed underneath, showing your name and issuing CA.</li>
+  <li>If no certificate appears, the token was not provisioned by your CA, or there is a seating issue. Try a different USB port.</li>
+  <li>Click the certificate to view its details: subject name, issuer (the CA), and validity period (start and expiry dates).</li>
+</ul>
+
+<h2>Step 4: Set Your PIN — And Change the Default Immediately</h2>
+<p>The ePass 2003 and ePass 3003 both ship with a default PIN set by your CA. In most cases the default is <strong>12345678</strong>. Some CAs print a custom default PIN on a sealed slip included with the token packaging.</p>
+
+<div class="warn"><strong>Change the default PIN before doing anything else.</strong> The default PIN is the same across millions of tokens. Anyone with physical access to your token can sign documents in your name if the default PIN is still active. Use the Token Manager to set a strong, unique PIN.</div>
+
+<p>To change your PIN:</p>
+<ol>
+  <li>Open ePass2003 Token Manager.</li>
+  <li>Select your token and click <strong>Change User PIN</strong> (or similar option).</li>
+  <li>Enter the current default PIN when prompted.</li>
+  <li>Enter and confirm your new PIN. Choose something at least 8 characters long that you have not used elsewhere.</li>
+  <li>Click OK. The new PIN is active immediately.</li>
+</ol>
+
+<h2>Step 5: Install PDFSign and Sign PDFs with ePass</h2>
+<p>PDFSign is a 100% offline Windows desktop application that detects ePass 2003 and ePass 3003 tokens automatically. No manual PKCS#11 path configuration is needed — PDFSign finds the ePass2003 library installed by the driver and reads your certificate from the token.</p>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">1</span>Download and Install PDFSign</div>
+  <p>Download PDFSign from <a href="https://cdn.pdfsign.in/PDFSignSetup.exe">https://cdn.pdfsign.in/PDFSignSetup.exe</a>. Run the installer. PDFSign supports Windows 10 and Windows 11, 64-bit. The free trial gives you 30 days of full-featured access with no restrictions.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">2</span>Plug In Your ePass Token and Open PDFSign</div>
+  <p>Ensure the ePass token is connected before launching PDFSign. Open PDFSign from the desktop or Start menu. The application scans for PKCS#11 tokens on startup.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">3</span>Select Your Certificate</div>
+  <p>Your ePass certificate will appear in the certificate dropdown. If you have more than one certificate on the token (for example, if the token was renewed and still holds an older certificate), choose the one with the correct name and the current validity period. Use <strong>Refresh</strong> if no certificate appears initially.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">4</span>Load the PDF to Sign</div>
+  <p>Click <strong>Browse</strong> and select the PDF document you need to sign. This could be a GeM bid document, an MCA21 form, a CPPP tender submission, a DGFT authorisation, or any other PDF requiring your digital signature. PDFSign displays a preview of the document.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">5</span>Place the Signature Box</div>
+  <p>Drag the signature widget to the desired location on the page, or type in coordinates directly. You can choose to apply the signature to a single page or to all pages in the document. PDFSign supports PAdES signatures with RFC 3161 timestamping — the standard accepted by Indian government portals.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">6</span>Click Sign and Enter Your PIN</div>
+  <p>Click <strong>Sign</strong>. PDFSign will prompt you to enter your ePass PIN. Type your PIN and press Enter. The signing operation is performed locally on your Windows machine — no browser, no plugin, no internet connection required for the signing itself.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">7</span>Upload the Signed PDF to the Portal</div>
+  <p>Save the signed PDF to your preferred folder. Log in to your government portal — GeM, CPPP, MCA21, NIC, DGFT — and upload the signed file as required. The portal validates the embedded digital signature without any browser plugin.</p>
+</div>
+
+<h2>Portal Compatibility for ePass DSC Tokens</h2>
+<p>Class 3 DSC certificates stored on ePass 2003 or ePass 3003 tokens and issued by licensed CAs are accepted on all major Indian government e-procurement and regulatory portals:</p>
+<table>
+  <tr><th>Portal</th><th>Typical Use</th></tr>
+  <tr><td>GeM (Government e-Marketplace)</td><td>Vendor registration, bid submission, order acceptance</td></tr>
+  <tr><td>CPPP (Central Public Procurement Portal)</td><td>Tender document signing, bid submission</td></tr>
+  <tr><td>NIC e-Procurement</td><td>State and central government tenders</td></tr>
+  <tr><td>MCA21 (ROC)</td><td>Company director DSC for statutory filings</td></tr>
+  <tr><td>DGFT</td><td>Import/export licences and authorisations</td></tr>
+  <tr><td>Income Tax Portal</td><td>ITR e-filing with digital signature verification</td></tr>
+</table>
+
+<h2>Common Issues with ePass Tokens and How to Fix Them</h2>
+
+<h3>Token Not Detected After Driver Installation</h3>
+<p>If the ePass token is not appearing in Device Manager or PDFSign:</p>
+<ul>
+  <li>Confirm you restarted the PC after driver installation — this is the most overlooked step.</li>
+  <li>Try a different USB port. Prefer a port directly on the laptop or desktop rather than a USB hub.</li>
+  <li>If you are on Windows 11 and using a USB-C adapter, try a direct USB-A port. Some adapters do not pass Smart Card signals correctly.</li>
+  <li>Uninstall the driver from Control Panel → Programs → Uninstall a Program, restart, reinstall, restart again.</li>
+  <li>Check that the Smart Card service is running (services.msc → Smart Card → Start).</li>
+</ul>
+
+<h3>Multiple Certificates on the Token — Which to Choose?</h3>
+<p>An ePass token may carry more than one certificate — for example, a signing certificate and an encryption certificate, or an older expired certificate alongside the current one. In PDFSign, the certificate dropdown lists all certificates present on the token. To identify the right one:</p>
+<ul>
+  <li>Look for the certificate whose <strong>subject name</strong> matches your name or organisation exactly as registered with the CA.</li>
+  <li>Check the <strong>expiry date</strong> — choose the certificate that is currently valid (not expired).</li>
+  <li>If two certificates appear valid, select the one with the later issue date — it is the most recent renewal.</li>
+</ul>
+
+<h3>PIN Locked — Token Will Not Accept PIN</h3>
+<p>Entering the wrong PIN too many times locks the token. The number of allowed attempts before lockout varies by CA configuration but is typically between 5 and 10.</p>
+<ul>
+  <li>Do not attempt more PINs once you suspect a lockout — the counter may still be decrementing.</li>
+  <li>Contact your CA's customer support with your token's serial number and a copy of your identity document (Aadhaar, PAN, or passport).</li>
+  <li>The CA will verify your identity and provide the PUK (PIN Unlock Key).</li>
+  <li>Use the PUK carefully — repeated wrong PUK entries permanently destroy the token's key material.</li>
+</ul>
+
+<div class="warn"><strong>Never try to guess the PUK.</strong> After the maximum PUK attempts are exhausted, the token is permanently blocked and a new token must be issued by your CA.</div>
+
+<h3>Certificate Expired — Cannot Sign</h3>
+<p>DSC certificates have a fixed validity of 1, 2, or 3 years. Once expired, the certificate cannot be used to create valid digital signatures. You must renew your DSC with your CA. In most cases, renewal results in a new token being issued — the old token is not reusable after expiry.</p>
+<p>Plan your renewal at least 30 days before expiry. Many government portals require a valid (non-expired) DSC at the time of submission. An expired DSC will cause signature validation to fail on the portal.</p>
+
+<h3>Signature Shows as "Validity Unknown" in Adobe Reader</h3>
+<p>This is a common display issue in older versions of Adobe Reader, not an actual signature problem. See our detailed guide on <a href="digital-signature-validity-unknown-pdf-fix.html">fixing "Signature Validity Unknown" in PDFs</a>. The short answer: add the CA's root certificate to your Adobe trusted identities list, or use Adobe Reader DC with the latest security settings.</p>
+
+<h2>PDFSign Pricing — Sign PDFs All Year for Less Than a Tender Fee</h2>
+<p>PDFSign is available with a 30-day free trial — no credit card required. After the trial, continue with one of the following plans:</p>
+<table>
+  <tr><th>Plan</th><th>Price</th><th>Best For</th></tr>
+  <tr><td>Monthly</td><td>₹99 / month</td><td>Occasional signers, short-term projects</td></tr>
+  <tr><td>Annual</td><td>₹999 / year</td><td>Regular GeM / CPPP vendors</td></tr>
+  <tr><td>Lifetime</td><td>₹4,999 one-time</td><td>High-volume users, CA offices, procurement teams</td></tr>
+</table>
+<p>All plans include unlimited PDF signing, batch signing, PAdES signatures, RFC 3161 timestamp support, and free updates. PDFSign runs 100% offline on your Windows machine — your documents never leave your computer.</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Is ePass 2003 compatible with Windows 11?</h3>
+<p>Yes. The ePass2003 Auto driver is compatible with both Windows 10 and Windows 11, including the latest 64-bit builds. Download the driver from your CA's support page, install it, restart your PC, then plug in the token. PDFSign will detect your certificate automatically.</p>
+
+<h3>Is the driver the same for ePass 2003 and ePass 3003?</h3>
+<p>Yes — both models use the same ePass2003 Auto driver. The driver also covers the HYP2003 token. You do not need separate drivers for these three token types. Installing one version of the ePass2003 driver covers all of them.</p>
+
+<h3>Can I use my ePass token on multiple PCs?</h3>
+<p>Yes. The certificate and private key live on the hardware token, not on any specific PC. Install the ePass2003 driver on each Windows machine you want to use. Plug in the token and PDFSign will read the certificate from the token on any of those machines. There is no limit to the number of machines you can use with a single token (as long as the driver is installed on each).</p>
+
+<h3>My ePass PIN is locked — what do I do?</h3>
+<p>Contact your Certifying Authority's support team with your token serial number and identity proof. The CA will provide a PUK to reset the PIN. Do not attempt to guess the PUK — repeated failures will permanently block the token. Your CA may also issue a replacement token if the PUK cannot be retrieved.</p>
+
+<h3>My token has multiple certificates — which one should I use in PDFSign?</h3>
+<p>In PDFSign, check the certificate dropdown. Look for the certificate with your name or organisation and a valid (non-expired) date. If you are unsure, check the validity period — the certificate issued most recently by your CA is typically the one you need for signing government portal documents.</p>
+
+<div class="cta-box">
+  <h2>Try PDFSign Free for 30 Days</h2>
+  <p>Works with ePass 2003, ePass 3003, HYP2003, Proxkey, and all PKCS#11 DSC tokens. 100% offline. Windows 10 and 11.</p>
+  <a class="btn-green" href="https://cdn.pdfsign.in/PDFSignSetup.exe">Download PDFSign — Free Trial</a>
+</div>
+
+<div class="related">
+  <h2>Related Articles</h2>
+  <div class="related-grid">
+    <div class="related-card"><a href="how-to-sign-pdf-dsc-token-windows.html">How to Sign a PDF with DSC Token on Windows</a></div>
+    <div class="related-card"><a href="hyp2003-token-sign-pdf-windows.html">HYP2003 Token Setup and PDF Signing Guide</a></div>
+    <div class="related-card"><a href="proxkey-wd-series-token-pdf-signing-windows.html">Proxkey WD Series Token Setup Guide</a></div>
+    <div class="related-card"><a href="dsc-token-not-working-chrome-fix.html">DSC Token Not Working in Chrome — Fix</a></div>
+    <div class="related-card"><a href="dsc-token-not-detected-windows-11-fix.html">DSC Token Not Detected on Windows 11</a></div>
+    <div class="related-card"><a href="digital-signature-validity-unknown-pdf-fix.html">Digital Signature Validity Unknown — Fix</a></div>
+    <div class="related-card"><a href="high-security-dsc-token-mandatory-india-2023.html">High Security DSC Token Mandate in India</a></div>
+    <div class="related-card"><a href="emudhra-capricorn-signer-digital-comparison.html">Comparing DSC Signing Software in India</a></div>
+  </div>
+</div>
+
+</div>
+</div>
+<footer>
+  <p>© 2026 PDFSign.in by Tender Training India &nbsp;|&nbsp; <a href="https://pdfsign.in/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="https://pdfsign.in/terms.html">Terms</a> &nbsp;|&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
+</footer>
+</body>
+</html>

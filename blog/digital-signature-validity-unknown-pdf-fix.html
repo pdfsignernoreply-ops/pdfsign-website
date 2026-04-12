@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7E0J9Z32FK"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7E0J9Z32FK');</script>
+<title>Digital Signature Shows "Validity Unknown" in PDF — How to Fix It | PDFSign</title>
+<meta name="description" content="Fix 'Signature Validity Unknown' error in Adobe Acrobat or PDF viewers for DSC-signed documents in India. Step-by-step guide to trust the CCA India certificate chain and verify signatures correctly."/>
+<meta name="keywords" content="digital signature validity unknown PDF, signature validity unknown Adobe, DSC signature not verified, PDF signature unknown India, fix digital signature PDF Adobe"/>
+<meta name="author" content="PDFSign.in"/>
+<meta name="geo.region" content="IN"/>
+<meta name="geo.country" content="India"/>
+<link rel="canonical" href="https://pdfsign.in/blog/digital-signature-validity-unknown-pdf-fix.html"/>
+<meta property="og:title" content="Digital Signature Shows Validity Unknown in PDF — How to Fix It"/>
+<meta property="og:description" content="Fix Signature Validity Unknown error in Adobe Acrobat for DSC-signed documents in India. Step-by-step guide."/>
+<meta property="og:url" content="https://pdfsign.in/blog/digital-signature-validity-unknown-pdf-fix.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="PDFSign.in"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Digital Signature Validity Unknown — Fix for India"/>
+<meta name="twitter:description" content="Fix signature validity unknown in Adobe Acrobat for Indian DSC-signed PDFs."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Digital Signature Shows Validity Unknown in PDF — How to Fix It","description":"Fix Signature Validity Unknown error in Adobe Acrobat for DSC-signed documents in India.","author":{"@type":"Organization","name":"PDFSign.in","url":"https://pdfsign.in"},"publisher":{"@type":"Organization","name":"PDFSign.in","url":"https://pdfsign.in"},"datePublished":"2026-04-12","dateModified":"2026-04-12","mainEntityOfPage":{"@type":"WebPage","@id":"https://pdfsign.in/blog/digital-signature-validity-unknown-pdf-fix.html"},"inLanguage":"en-IN"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is a digital signature legally valid even if it shows validity unknown?","acceptedAnswer":{"@type":"Answer","text":"Yes. Validity unknown is a display issue in the PDF viewer — it means the viewer cannot verify the certificate chain, not that the signature is fake or invalid. The document is still legally signed under IT Act 2000."}},{"@type":"Question","name":"Why does my DSC signature show unknown validity in Adobe?","acceptedAnswer":{"@type":"Answer","text":"Adobe Acrobat does not trust the CCA India root certificate by default. The fix is to update Adobe's Approved Trust List (AATL) or manually add CCA India's root certificates."}},{"@type":"Question","name":"Does the recipient need to do anything to verify my signed PDF?","acceptedAnswer":{"@type":"Answer","text":"For government portals like GeM and CPPP, no action is needed. For individual recipients, they need to update Adobe's AATL once and all future Indian DSC-signed documents will verify correctly."}},{"@type":"Question","name":"Does PDFSign add a timestamp to improve verifiability?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign adds an RFC 3161 trusted timestamp with every signature, keeping it verifiable even after your DSC certificate expires."}}]}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+a{color:#16A34A;text-decoration:none}a:hover{text-decoration:underline}
+nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none}
+.nav-links a{color:#93C5FD;margin-left:1.5rem;font-size:.9rem}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.blog-hero{background:linear-gradient(135deg,#1B2A47 0%,#243352 100%);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center}
+.blog-hero .category{background:#16A34A;color:#fff;font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;display:inline-block;margin-bottom:1rem}
+.blog-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);max-width:750px;margin:0 auto .75rem;line-height:1.25}
+.blog-hero .meta{color:#93C5FD;font-size:.85rem}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#1B2A47;margin:2.5rem 0 .75rem;border-left:4px solid #16A34A;padding-left:.75rem}
+.content h3{font-size:1.1rem;font-weight:600;color:#1B2A47;margin:1.75rem 0 .5rem}
+.content p{margin-bottom:1rem;color:#334155}
+.content ul,.content ol{margin:.5rem 0 1rem 1.5rem;color:#334155}
+.content li{margin-bottom:.4rem}
+.content strong{color:#1B2A47}
+.step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin:1rem 0}
+.step-num{background:#1B2A47;color:#fff;font-size:.75rem;font-weight:700;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0}
+.step-title{font-weight:600;color:#1B2A47;display:flex;align-items:center;margin-bottom:.4rem}
+.step p{margin:0;color:#475569;font-size:.95rem}
+.tip{background:#f0fdf4;border-left:4px solid #16A34A;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.tip strong{color:#15803d}
+.warn{background:#fff7ed;border-left:4px solid #f97316;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.cta-box{background:linear-gradient(135deg,#1B2A47,#243352);color:#fff;border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0}
+.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.75rem;border:none;padding:0;color:#fff}
+.cta-box p{color:#93C5FD;margin-bottom:1.5rem}
+.btn-green{background:#16A34A;color:#fff;padding:.75rem 2rem;border-radius:8px;font-weight:600;display:inline-block;font-size:1rem}
+.btn-green:hover{background:#15803d;text-decoration:none}
+.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1.5rem}
+.breadcrumb a{color:#16A34A}
+footer{background:#1B2A47;color:#93C5FD;text-align:center;padding:2rem;font-size:.85rem;margin-top:3rem}
+footer a{color:#93C5FD}
+.related{background:#f8fafc;border-radius:12px;padding:2rem;margin:2rem 0}
+.related h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1B2A47;margin-bottom:1rem;border:none;padding:0}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.related-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;font-size:.9rem}
+.related-card a{color:#1B2A47;font-weight:500}.related-card a:hover{color:#16A34A}
+table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+th{background:#1B2A47;color:#fff;padding:.6rem 1rem;text-align:left;font-size:.85rem}
+td{padding:.6rem 1rem;border-bottom:1px solid #e2e8f0;font-size:.9rem;color:#334155}
+tr:nth-child(even) td{background:#f8fafc}
+.post-illustration{width:100%;margin:1.5rem 0;border-radius:10px;overflow:hidden}
+.status-row{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0}
+.status-item{flex:1;min-width:170px;border-radius:10px;padding:1rem;display:flex;align-items:flex-start;gap:.6rem}
+.s-green{background:#f0fdf4;border:1px solid #86efac}
+.s-amber{background:#fffbeb;border:1px solid #fcd34d}
+.s-red{background:#fef2f2;border:1px solid #fca5a5}
+.s-icon{font-size:1.3rem;line-height:1}
+.s-text{font-size:.88rem;color:#334155}
+.s-text strong{display:block;font-size:.92rem;margin-bottom:.2rem;color:#1B2A47}
+@media(max-width:600px){nav{flex-direction:column;gap:.75rem}.nav-links a{margin-left:.75rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="https://pdfsign.in">PDF<span style="color:#16A34A">Sign</span>.in</a>
+  <div class="nav-links">
+    <a href="https://pdfsign.in">Home</a>
+    <a href="https://pdfsign.in/blog/">Blog</a>
+    <a href="https://pdfsign.in/#pricing">Pricing</a>
+    <a href="https://wa.me/917057413999">Support</a>
+  </div>
+</nav>
+
+<div class="blog-hero">
+  <div class="category">Troubleshooting</div>
+  <h1>Digital Signature Shows "Validity Unknown" in PDF — How to Fix It</h1>
+  <div class="meta">By PDFSign.in &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 6 min read</div>
+</div>
+
+<div class="container">
+<div class="breadcrumb">
+  <a href="https://pdfsign.in">Home</a> › <a href="https://pdfsign.in/blog/">Blog</a> › Digital Signature Validity Unknown Fix
+</div>
+<div class="content">
+
+<svg class="post-illustration" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="200" fill="#f8fafc" rx="10"/>
+  <rect x="30" y="25" width="110" height="150" rx="8" fill="#e2e8f0"/>
+  <rect x="30" y="25" width="110" height="38" rx="8" fill="#1B2A47"/>
+  <text x="85" y="50" font-family="sans-serif" font-size="14" font-weight="700" fill="white" text-anchor="middle">PDF</text>
+  <rect x="48" y="78" width="74" height="6" rx="3" fill="#cbd5e1"/>
+  <rect x="48" y="92" width="55" height="6" rx="3" fill="#cbd5e1"/>
+  <rect x="48" y="106" width="64" height="6" rx="3" fill="#cbd5e1"/>
+  <rect x="44" y="130" width="82" height="28" rx="5" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="85" y="148" font-family="sans-serif" font-size="10" fill="#92400e" text-anchor="middle">⚠ Validity Unknown</text>
+  <text x="190" y="104" font-family="sans-serif" font-size="22" fill="#94a3b8">→</text>
+  <rect x="220" y="40" width="220" height="120" rx="10" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="330" y="70" font-family="sans-serif" font-size="11" font-weight="700" fill="#1B2A47" text-anchor="middle">Adobe → Edit → Preferences</text>
+  <text x="330" y="88" font-family="sans-serif" font-size="10" fill="#475569" text-anchor="middle">Trust Manager → Update Now</text>
+  <rect x="240" y="100" width="180" height="22" rx="5" fill="#f0fdf4"/>
+  <text x="330" y="115" font-family="sans-serif" font-size="10" fill="#15803d" text-anchor="middle">Downloads CCA India root certs</text>
+  <rect x="240" y="130" width="180" height="22" rx="5" fill="#dcfce7"/>
+  <text x="330" y="145" font-family="sans-serif" font-size="11" fill="#166534" text-anchor="middle" font-weight="700">✓ Signature Now Valid</text>
+  <text x="460" y="104" font-family="sans-serif" font-size="22" fill="#94a3b8">→</text>
+  <rect x="490" y="60" width="175" height="80" rx="10" fill="#dcfce7" stroke="#86efac" stroke-width="1.5"/>
+  <text x="577" y="90" font-family="sans-serif" font-size="28" text-anchor="middle">✅</text>
+  <text x="577" y="118" font-family="sans-serif" font-size="11" fill="#166534" text-anchor="middle" font-weight="700">Signature Valid</text>
+</svg>
+
+<p>You open a digitally signed PDF in Adobe Acrobat and see a yellow warning banner: <strong>"Signature validity is unknown."</strong> The signature panel shows a question mark instead of a green tick. Your client is worried. Your auditor is questioning the document.</p>
+<p>Here is the critical truth: <strong>this is almost never a problem with the signature itself.</strong> In the vast majority of cases, the document is perfectly and legally signed. The issue lies in how your PDF viewer handles India's certificate authority chain — and it has a simple fix.</p>
+
+<h2>What "Validity Unknown" Actually Means</h2>
+<p>A digital signature in a PDF is backed by a certificate issued by a Certifying Authority (CA) — eMudhra, Capricorn, NSDL, SafeScrypt, or (n)Code. These CAs operate under the <strong>Controller of Certifying Authorities (CCA)</strong>, which is the apex body under the Government of India's IT Act 2000.</p>
+<p>For Adobe Acrobat to display a green "Signature Valid" tick, it must trust the entire certificate chain: Your Certificate → Your CA's Intermediate Certificate → CCA India Root Certificate. Adobe maintains a global list of trusted roots called the <strong>Adobe Approved Trust List (AATL)</strong>. The problem: CCA India's root certificates are not always pre-loaded in every version of Adobe Reader or Acrobat, especially on machines that have not been updated recently.</p>
+<p>When Adobe cannot find the CCA India root in its trusted list, it shows "validity unknown" — not "invalid." There is a fundamental difference between these three states:</p>
+
+<div class="status-row">
+  <div class="status-item s-green"><div class="s-icon">✅</div><div class="s-text"><strong>Valid (green tick)</strong>Adobe verified the full certificate chain to a trusted root. Document is unmodified.</div></div>
+  <div class="status-item s-amber"><div class="s-icon">⚠️</div><div class="s-text"><strong>Validity Unknown (amber ?)</strong>Adobe cannot verify the chain locally. Root cert not in trusted list. Signature may still be genuine.</div></div>
+  <div class="status-item s-red"><div class="s-icon">❌</div><div class="s-text"><strong>Invalid (red cross)</strong>Document was modified after signing, or the signer's certificate has been revoked. Investigate immediately.</div></div>
+</div>
+
+<p>Amber means "I cannot verify this right now" — not "this is fake." Red means "something is definitely wrong." If you see amber, apply the fixes below. If you see red, do not accept the document.</p>
+
+<h2>Why This Happens Specifically for Indian DSC Signatures</h2>
+<p>Indian Certifying Authorities (eMudhra, Capricorn, NSDL, SafeScrypt, (n)Code) issue certificates under the CCA India root certificate hierarchy. CCA India does participate in Adobe's AATL programme, but inclusion is not guaranteed for all root versions, and older Adobe installations may not have the latest trust list.</p>
+<p>Additionally, many users in India use Adobe Reader (the free version), which may not auto-update its AATL in enterprise or restricted network environments. The result: perfectly valid Indian DSC signatures appearing as "unknown" to both the signer and the recipient.</p>
+
+<h2>Fix 1 — Update Adobe's Trusted List (Recommended)</h2>
+<p>This is the simplest fix and works for most users. Adobe can download the latest trusted root certificates directly:</p>
+<div class="step"><div class="step-title"><span class="step-num">1</span>Open Adobe Acrobat or Reader</div><p>Ensure you are on version 2020 or newer. Earlier versions have limited AATL support.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">2</span>Go to Edit → Preferences (Ctrl+K on Windows)</div><p>On Mac: Acrobat → Preferences → Signatures.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">3</span>Click on "Trust Manager" in the left panel</div><p>You will see the Adobe Approved Trust List section at the top.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">4</span>Click "Update Now"</div><p>Adobe downloads the latest trusted root certificates from Adobe's servers. This requires an internet connection and takes about 30 seconds.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">5</span>Close and reopen your signed PDF</div><p>The signature should now show a green valid tick for DSC-signed documents from CCA-licensed CAs.</p></div>
+<div class="tip"><strong>After updating the AATL, most Indian DSC signatures will immediately show as valid.</strong> This is a one-time fix — Adobe keeps the list updated automatically going forward.</div>
+
+<h2>Fix 2 — Manually Add CCA India Root Certificate</h2>
+<p>If the automatic update does not resolve the issue (restricted network, older Adobe version, or offline environment), you can manually import the CCA India root certificate:</p>
+<div class="step"><div class="step-title"><span class="step-num">1</span>Download CCA India Root Certificate</div><p>Visit <strong>cca.gov.in</strong> → Repository → Root Certificates. Download the CCA India 2022 root certificate (.cer file).</p></div>
+<div class="step"><div class="step-title"><span class="step-num">2</span>Open Acrobat → Edit → Preferences → Signatures</div><p>Under "Identities and Trusted Certificates", click "More."</p></div>
+<div class="step"><div class="step-title"><span class="step-num">3</span>Click "Trusted Certificates" → Import</div><p>Browse and select the downloaded .cer file.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">4</span>Set as Trusted Root</div><p>In the import dialog, check <strong>"Use this certificate as a trusted root."</strong> Click OK.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">5</span>Reopen the PDF</div><p>Signatures from all CCA-licensed CAs — eMudhra, Capricorn, NSDL, SafeScrypt — will now verify with a green valid status.</p></div>
+
+<h2>Fix 3 — Windows Certificate Store (Advanced)</h2>
+<p>On Windows systems, you can also import the CCA root into the Windows Certificate Store and configure Adobe to use it:</p>
+<ul>
+  <li>Double-click the downloaded CCA .cer file → Install Certificate</li>
+  <li>Select "Local Machine" → Place in "Trusted Root Certification Authorities"</li>
+  <li>In Adobe: Edit → Preferences → Trust Manager → check <strong>"Load trusted root certificates from Windows Certificate Store"</strong></li>
+  <li>Restart Adobe and reopen the PDF</li>
+</ul>
+
+<h2>What About Government Portals?</h2>
+<p>If you are submitting signed documents to GeM, CPPP, MCA21, NIC e-Procurement, or the Income Tax portal, <strong>the portal validates signatures server-side</strong> — it does not rely on what Adobe displays on your screen. A document showing "validity unknown" locally is still accepted and validated correctly by these portals.</p>
+<div class="warn"><strong>If a government portal explicitly rejects your signed document,</strong> the reason is almost never "validity unknown." More likely causes: incorrect signature type (digital vs image), wrong PDF version, or the document was modified after signing. Contact the portal's helpdesk with the exact error message.</div>
+
+<h2>How PDFSign Ensures Maximum Long-Term Verifiability</h2>
+<p>When you sign a PDF using PDFSign, the software applies a PAdES (PDF Advanced Electronic Signatures) compliant signature and embeds three layers of verification data:</p>
+<ul>
+  <li><strong>Full Certificate Chain</strong> — your DSC certificate plus the issuing CA's intermediate certificate, embedded inside the PDF. Recipients do not need to download anything separately.</li>
+  <li><strong>RFC 3161 Trusted Timestamp</strong> — from a Timestamp Authority (TSA) server, cryptographically proving the exact date and time of signing. This is separate from your DSC and remains valid independently.</li>
+  <li><strong>OCSP Response (LTV)</strong> — the certificate's revocation status at the time of signing, embedded in the PDF. Even if the CA's OCSP server goes offline years later, the signature remains verifiable.</li>
+</ul>
+<p>This combination — called Long-Term Validation (LTV) — means your signed documents remain fully verifiable for 10–20 years, even after your DSC expires, the CA changes systems, or Adobe updates its trust list.</p>
+
+<h2>Signature Status Reference for Indian DSC Users</h2>
+<table>
+  <tr><th>Status in Adobe</th><th>Meaning</th><th>Action Required</th></tr>
+  <tr><td>✅ Signature Valid</td><td>Full chain verified, document unmodified</td><td>None — all good</td></tr>
+  <tr><td>⚠️ Validity Unknown</td><td>Root cert not trusted in this Adobe installation</td><td>Update AATL or add CCA root manually</td></tr>
+  <tr><td>❌ Signature Invalid</td><td>Document altered after signing, or cert revoked</td><td>Do not accept — investigate</td></tr>
+  <tr><td>🕐 Cert Expired (but timestamped)</td><td>DSC expired, but timestamp proves signing was during validity</td><td>Signature is still legally valid</td></tr>
+</table>
+
+<h2>Frequently Asked Questions</h2>
+<h3>Is my digitally signed document legally valid even if Adobe shows validity unknown?</h3>
+<p>Yes, absolutely. Legal validity under IT Act 2000 is determined by whether the signature was applied using a valid DSC from a CCA-licensed CA during the certificate's validity period — not by what Adobe displays. The amber status is a client-side display limitation, not a legal finding.</p>
+
+<h3>Does the person receiving my signed PDF need to do anything?</h3>
+<p>For government portals (GeM, CPPP, MCA21), no action is needed from either party — portals validate server-side. For individual recipients (clients, lawyers, banks), ask them to do Edit → Preferences → Trust Manager → Update Now in their Adobe. This is a one-time fix that solves the issue for all future Indian-signed documents.</p>
+
+<h3>My colleague's signed documents show green but mine show amber. Why?</h3>
+<p>Your Adobe installation has an older trust list that does not include the latest CCA India root. Update the AATL as described in Fix 1 above. After updating, your documents will show correctly too.</p>
+
+<h3>I signed with PDFSign and the output still shows unknown. Is PDFSign the problem?</h3>
+<p>No. PDFSign embeds the full certificate chain in every signature. The amber display happens on the recipient's Adobe installation because their local trust list is out of date. The fix is always on the viewer's side, not on the signing side. Share this article with them.</p>
+
+<div class="cta-box">
+  <h2>Sign PDFs with Full Certificate Chain — Included Free</h2>
+  <p>PDFSign embeds PAdES signatures with RFC 3161 timestamp and OCSP data for maximum long-term verifiability. 100% offline — works on Windows 10 and 11.</p>
+  <a class="btn-green" href="https://cdn.pdfsign.in/PDFSignSetup.exe">Download PDFSign — Free 30-Day Trial</a>
+</div>
+
+<div class="related">
+  <h2>Related Articles</h2>
+  <div class="related-grid">
+    <div class="related-card"><a href="how-to-verify-digital-signature-pdf-india.html">How to Verify a Digital Signature in a PDF</a></div>
+    <div class="related-card"><a href="digital-signature-valid-after-dsc-expiry.html">How Long Is a Signature Valid After DSC Expiry?</a></div>
+    <div class="related-card"><a href="rfc-3161-timestamp-pdf-india.html">What Is RFC 3161 Timestamp?</a></div>
+    <div class="related-card"><a href="dsc-token-not-working-chrome-fix.html">DSC Token Not Working in Chrome — Fix</a></div>
+    <div class="related-card"><a href="dsc-token-not-detected-windows-11-fix.html">DSC Token Not Detected on Windows 11</a></div>
+    <div class="related-card"><a href="it-act-2000-digital-signatures-india.html">IT Act 2000 and Digital Signatures</a></div>
+    <div class="related-card"><a href="emudhra-capricorn-signer-digital-comparison.html">Comparing DSC Signing Tools</a></div>
+    <div class="related-card"><a href="how-to-sign-pdf-dsc-token-windows.html">How to Sign a PDF with DSC Token</a></div>
+  </div>
+</div>
+</div>
+</div>
+<footer>
+  <p>© 2026 PDFSign.in by Tender Training India &nbsp;|&nbsp; <a href="https://pdfsign.in/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="https://pdfsign.in/terms.html">Terms</a> &nbsp;|&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
+</footer>
+</body>
+</html>
