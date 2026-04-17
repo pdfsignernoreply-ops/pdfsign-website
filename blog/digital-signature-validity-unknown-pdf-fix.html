@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"Digital Signature Shows Validity Unknown in PDF — How to Fix It","description":"Fix Signature Validity Unknown error in Adobe Acrobat for DSC-signed documents in India.","author":{"@type":"Organization","name":"PDFSign.in","url":"https://pdfsign.in"},"publisher":{"@type":"Organization","name":"PDFSign.in","url":"https://pdfsign.in"},"datePublished":"2026-04-12","dateModified":"2026-04-12","mainEntityOfPage":{"@type":"WebPage","@id":"https://pdfsign.in/blog/digital-signature-validity-unknown-pdf-fix.html"},"inLanguage":"en-IN"}
+{"@context":"https://schema.org","@type":"Article","headline":"Digital Signature Shows Validity Unknown in PDF — How to Fix It","description":"Fix Signature Validity Unknown error in Adobe Acrobat for DSC-signed documents in India.","author":{"@type":"Organization","name":"PDFSign.in","url":"https://pdfsign.in"},"publisher":{"@type":"Organization","name":"PDFSign.in","url":"https://pdfsign.in"},"datePublished": "2026-02-05","dateModified": "2026-02-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://pdfsign.in/blog/digital-signature-validity-unknown-pdf-fix.html"},"inLanguage":"en-IN"}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is a digital signature legally valid even if it shows validity unknown?","acceptedAnswer":{"@type":"Answer","text":"Yes. Validity unknown is a display issue in the PDF viewer — it means the viewer cannot verify the certificate chain, not that the signature is fake or invalid. The document is still legally signed under IT Act 2000."}},{"@type":"Question","name":"Why does my DSC signature show unknown validity in Adobe?","acceptedAnswer":{"@type":"Answer","text":"Adobe Acrobat does not trust the CCA India root certificate by default. The fix is to update Adobe's Approved Trust List (AATL) or manually add CCA India's root certificates."}},{"@type":"Question","name":"Does the recipient need to do anything to verify my signed PDF?","acceptedAnswer":{"@type":"Answer","text":"For government portals like GeM and CPPP, no action is needed. For individual recipients, they need to update Adobe's AATL once and all future Indian DSC-signed documents will verify correctly."}},{"@type":"Question","name":"Does PDFSign add a timestamp to improve verifiability?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign adds an RFC 3161 trusted timestamp with every signature, keeping it verifiable even after your DSC certificate expires."}}]}
@@ -99,7 +99,7 @@ tr:nth-child(even) td{background:#f8fafc}
 <div class="blog-hero">
   <div class="category">Troubleshooting</div>
   <h1>Digital Signature Shows "Validity Unknown" in PDF — How to Fix It</h1>
-  <div class="meta">By PDFSign.in &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 6 min read</div>
+  <div class="meta">By PDFSign.in &nbsp;·&nbsp; Feb 2026 &nbsp;·&nbsp; 6 min read</div>
 </div>
 
 <div class="container">
