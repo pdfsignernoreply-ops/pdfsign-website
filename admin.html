@@ -134,14 +134,71 @@ tr:hover td{background:#1e293b33}
   </header>
 
   <div class="tabs">
-    <div class="tab active" onclick="showTab('lic',this)">Licenses</div>
+    <div class="tab active" onclick="showTab('dash',this)">Dashboard</div>
+    <div class="tab" onclick="showTab('lic',this)">Licenses</div>
     <div class="tab" onclick="showTab('usr',this)">Users</div>
     <div class="tab" onclick="showTab('res',this)">Resellers</div>
     <div class="tab" onclick="showTab('cou',this)">Coupons</div>
   </div>
 
   <main>
-    <div id="plic">
+    <!-- ── DASHBOARD TAB ── -->
+    <div id="pdash">
+      <div class="section-hdr">
+        <h2>Funnel Overview</h2>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <select id="dash-period" onchange="renderDashPeriod()" style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:6px 10px;border-radius:7px;font-size:12px;outline:none;">
+            <option value="today">Today</option>
+            <option value="week" selected>Last 7 Days</option>
+            <option value="month">Last 30 Days</option>
+            <option value="allTime">All Time</option>
+          </select>
+          <button class="btn-r" onclick="loadDashboard()">⟳ Refresh</button>
+          <button class="btn-g" id="daily-report-btn" onclick="sendDailyReport()">📧 Send Daily Report</button>
+        </div>
+      </div>
+      <!-- Funnel stat cards -->
+      <div class="stats" id="dash-stats">
+        <div class="stat"><div class="sv" id="d-installs">—</div><div class="sl">Trial Installs</div></div>
+        <div class="stat"><div class="sv" id="d-conv">—</div><div class="sl">Conversions</div></div>
+        <div class="stat"><div class="sv" id="d-rev" style="color:#4ade80;">—</div><div class="sl">Revenue (₹)</div></div>
+        <div class="stat"><div class="sv" id="d-rate" style="color:#38bdf8;">—</div><div class="sl">Conv. Rate</div></div>
+      </div>
+      <div id="dash-report-msg" class="mmsg" style="display:none;"></div>
+      <!-- Recent activity: two columns -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;">
+        <div>
+          <h2 style="margin-bottom:10px;">Recent Installs</h2>
+          <div style="overflow-x:auto">
+            <table id="dash-installs-tbl">
+              <thead><tr><th>Machine ID</th><th>Date</th></tr></thead>
+              <tbody id="dash-installs-body"><tr><td colspan="2" style="color:#475569;text-align:center;">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <h2 style="margin-bottom:10px;">Recent Conversions</h2>
+          <div style="overflow-x:auto">
+            <table id="dash-conv-tbl">
+              <thead><tr><th>Customer</th><th>Plan</th><th>Amount</th><th>Date</th></tr></thead>
+              <tbody id="dash-conv-body"><tr><td colspan="4" style="color:#475569;text-align:center;">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- Plan breakdown -->
+      <div style="margin-top:20px;">
+        <h2 style="margin-bottom:10px;">Plan Breakdown (All Time)</h2>
+        <div style="overflow-x:auto">
+          <table id="dash-plan-tbl">
+            <thead><tr><th>Plan</th><th>Licenses</th><th>Revenue (₹)</th></tr></thead>
+            <tbody id="dash-plan-body"><tr><td colspan="3" style="color:#475569;text-align:center;">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div id="plic" style="display:none;">
       <h2 style="margin-bottom:14px">Dashboard</h2>
       <div class="stats">
         <div class="stat"><div class="sv" id="st">—</div><div class="sl">Total</div></div>
@@ -355,7 +412,7 @@ function showApp() {
     document.getElementById('renewal-btn').style.display = 'inline-block';
   }
   updateExpiry();
-  loadLicenses();
+  loadDashboard();
 }
 
 async function doLogin() {
@@ -384,14 +441,79 @@ function logout() {
 function showTab(t, el) {
   document.querySelectorAll('.tab').forEach(function(x){ x.classList.remove('active'); });
   el.classList.add('active');
-  document.getElementById('plic').style.display = t==='lic' ? 'block' : 'none';
-  document.getElementById('pusr').style.display = t==='usr' ? 'block' : 'none';
-  document.getElementById('pres').style.display = t==='res' ? 'block' : 'none';
-  document.getElementById('pcou').style.display = t==='cou' ? 'block' : 'none';
-  if (t==='usr') loadUsers();
-  if (t==='res') loadResellers();
+  document.getElementById('pdash').style.display = t==='dash' ? 'block' : 'none';
+  document.getElementById('plic').style.display  = t==='lic'  ? 'block' : 'none';
+  document.getElementById('pusr').style.display  = t==='usr'  ? 'block' : 'none';
+  document.getElementById('pres').style.display  = t==='res'  ? 'block' : 'none';
+  document.getElementById('pcou').style.display  = t==='cou'  ? 'block' : 'none';
+  if (t==='dash') loadDashboard();
+  if (t==='lic')  loadLicenses();
+  if (t==='usr')  loadUsers();
+  if (t==='res')  loadResellers();
   if (t==='cou') { loadCoupons(); if(S&&S.role==='admin') document.getElementById('coupon-add-btn').style.display='inline-block'; }
 }
+
+// ── DASHBOARD ────────────────────────────────────────────────────────────
+var DASH = null;
+async function loadDashboard() {
+  try {
+    var j = await apicall(API+'/dashboard','GET');
+    DASH = j;
+    renderDashPeriod();
+    // Recent installs
+    var ib = document.getElementById('dash-installs-body');
+    ib.innerHTML = (j.recentInstalls||[]).length === 0
+      ? '<tr><td colspan="2" style="color:#475569;text-align:center;">No installs yet</td></tr>'
+      : (j.recentInstalls||[]).map(function(m){
+          return '<tr><td class="key">'+esc(m.machine_id.substring(0,20))+'…</td><td style="color:#64748b;font-size:11px;">'+fmtDate(m.created_at)+'</td></tr>';
+        }).join('');
+    // Recent conversions
+    var cb = document.getElementById('dash-conv-body');
+    cb.innerHTML = (j.recentConversions||[]).length === 0
+      ? '<tr><td colspan="4" style="color:#475569;text-align:center;">No conversions yet</td></tr>'
+      : (j.recentConversions||[]).map(function(l){
+          return '<tr><td><div>'+esc(l.customer_name||'—')+'</div><div class="uemail">'+esc(l.customer_email||'')+'</div></td>'
+            +'<td><span class="pb pb-'+esc(l.plan)+'">'+esc(l.plan)+'</span></td>'
+            +'<td style="color:#4ade80;font-weight:700;">₹'+(l.amount_paid_rupees||0).toLocaleString('en-IN')+'</td>'
+            +'<td style="color:#64748b;font-size:11px;">'+fmtDate(l.created_at)+'</td></tr>';
+        }).join('');
+    // Plan breakdown
+    var pb = document.getElementById('dash-plan-body');
+    pb.innerHTML = (j.planBreakdown||[]).length === 0
+      ? '<tr><td colspan="3" style="color:#475569;text-align:center;">No data</td></tr>'
+      : (j.planBreakdown||[]).map(function(p){
+          return '<tr><td><span class="pb pb-'+esc(p.plan)+'">'+esc(p.plan)+'</span></td>'
+            +'<td style="font-weight:700;">'+p.count+'</td>'
+            +'<td style="color:#4ade80;font-weight:700;">₹'+(p.revenue||0).toLocaleString('en-IN')+'</td></tr>';
+        }).join('');
+  } catch(e) { console.error('Dashboard load error', e); }
+}
+function renderDashPeriod() {
+  if (!DASH) return;
+  var p = document.getElementById('dash-period').value;
+  document.getElementById('d-installs').textContent = DASH.installs[p]    ?? '—';
+  document.getElementById('d-conv').textContent     = DASH.conversions[p] ?? '—';
+  document.getElementById('d-rev').textContent      = '₹'+(DASH.revenue[p]||0).toLocaleString('en-IN');
+  document.getElementById('d-rate').textContent     = (p==='today' ? '—' : (DASH.conversionRate[p] || '—'));
+}
+async function sendDailyReport() {
+  var btn = document.getElementById('daily-report-btn');
+  var msg = document.getElementById('dash-report-msg');
+  btn.disabled = true; btn.textContent = 'Sending…';
+  try {
+    var j = await apicall(API+'/daily-report','POST');
+    showMsg(msg, '✓ Daily report sent to '+j.to, '#4ade80');
+  } catch(e) {
+    showMsg(msg, 'Failed: '+(e.message||'error'), '#f87171');
+  }
+  btn.disabled = false; btn.textContent = '📧 Send Daily Report';
+}
+function fmtDate(iso) {
+  if (!iso) return '—';
+  var d = new Date(iso);
+  return d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Kolkata'});
+}
+// ── END DASHBOARD ─────────────────────────────────────────────────────────
 
 async function loadLicenses() {
   document.getElementById('tbl-load').style.display = 'block';
