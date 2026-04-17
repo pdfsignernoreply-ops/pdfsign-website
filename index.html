@@ -1421,6 +1421,7 @@
     max-width: 860px;
     margin: 0 auto;
   }
+  .tutorial-card-wrap { display: flex; flex-direction: column; }
   .tutorial-card {
     background: var(--white);
     border-radius: 14px;
@@ -2530,32 +2531,38 @@
       <div class="section-tag">See It In Action</div>
       <h2 class="section-title">See how you can sign any PDF in under 60 seconds</h2>
       <p class="section-sub" style="margin:0 auto;">Step-by-step video walkthroughs showing exactly how PDFSign works</p>
-      <div style="display:flex;gap:12px;justify-content:center;margin-top:16px;flex-wrap:wrap;">
-        <span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;padding:6px 16px;border-radius:100px;font-size:13px;font-weight:600;">No DSC? → Use stamp image</span>
-        <span style="background:#16a34a22;border:1px solid #16a34a55;color:#4ade80;padding:6px 16px;border-radius:100px;font-size:13px;font-weight:600;">Have DSC token? → Use token signing</span>
-      </div>
     </div>
     <div class="tutorials-grid">
-      <a class="tutorial-card" href="https://www.youtube.com/@pdfsign-in" target="_blank" rel="noopener">
-        <div class="tutorial-thumb">
-          <div class="tutorial-play">▶</div>
-          <div class="tutorial-tag">Signature &amp; Stamp Mode</div>
+      <div class="tutorial-card-wrap">
+        <div class="tutorial-method-label" style="text-align:center;margin-bottom:10px;">
+          <span style="background:#1e293b;border:1px solid #334155;color:#94a3b8;padding:5px 14px;border-radius:100px;font-size:12px;font-weight:600;">No DSC? → Use stamp image</span>
         </div>
-        <div class="tutorial-body">
-          <div class="tutorial-title">How to sign PDF with a signature or stamp image</div>
-          <div class="tutorial-meta">PDFSign.in · YouTube</div>
+        <a class="tutorial-card" href="https://www.youtube.com/@pdfsign-in" target="_blank" rel="noopener">
+          <div class="tutorial-thumb">
+            <div class="tutorial-play">▶</div>
+            <div class="tutorial-tag">Signature &amp; Stamp Mode</div>
+          </div>
+          <div class="tutorial-body">
+            <div class="tutorial-title">How to sign PDF with a signature or stamp image</div>
+            <div class="tutorial-meta">PDFSign.in · YouTube</div>
+          </div>
+        </a>
+      </div>
+      <div class="tutorial-card-wrap">
+        <div class="tutorial-method-label" style="text-align:center;margin-bottom:10px;">
+          <span style="background:#16a34a22;border:1px solid #16a34a55;color:#4ade80;padding:5px 14px;border-radius:100px;font-size:12px;font-weight:600;">Have DSC token? → Use token signing</span>
         </div>
-      </a>
-      <a class="tutorial-card" href="https://www.youtube.com/@pdfsign-in" target="_blank" rel="noopener">
-        <div class="tutorial-thumb tutorial-thumb-dsc">
-          <div class="tutorial-play">▶</div>
-          <div class="tutorial-tag">DSC Token Mode</div>
-        </div>
-        <div class="tutorial-body">
-          <div class="tutorial-title">How to sign PDF with USB DSC token (HYP2003, ePass)</div>
-          <div class="tutorial-meta">PDFSign.in · YouTube</div>
-        </div>
-      </a>
+        <a class="tutorial-card" href="https://www.youtube.com/@pdfsign-in" target="_blank" rel="noopener">
+          <div class="tutorial-thumb tutorial-thumb-dsc">
+            <div class="tutorial-play">▶</div>
+            <div class="tutorial-tag">DSC Token Mode</div>
+          </div>
+          <div class="tutorial-body">
+            <div class="tutorial-title">How to sign PDF with USB DSC token (HYP2003, ePass)</div>
+            <div class="tutorial-meta">PDFSign.in · YouTube</div>
+          </div>
+        </a>
+      </div>
     </div>
     <!-- Stats strip below videos -->
     <div class="video-stats" style="max-width:900px;margin:40px auto 0;">
