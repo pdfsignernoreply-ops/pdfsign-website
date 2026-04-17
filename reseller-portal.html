@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>PDFSign.in — Reseller Portal</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
+
+/* ── LOGIN ── */
+#login-page{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
+.login-box{background:#1e293b;border:1px solid #334155;border-radius:16px;padding:40px;width:360px;max-width:100%}
+.login-logo{text-align:center;margin-bottom:28px}
+.brand-lg{font-size:24px;font-weight:800;color:#fff}.brand-lg span{color:#16a34a}
+.login-sub{font-size:12px;color:#64748b;margin-top:4px}
+.login-back{text-align:center;margin-top:18px;font-size:12px;color:#64748b}
+.login-back a{color:#4ade80;text-decoration:none}.login-back a:hover{text-decoration:underline}
+
+/* ── FORM ── */
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.fg input,.fg select{width:100%;background:#0f172a;border:1px solid #334155;color:#e2e8f0;padding:10px 14px;border-radius:8px;font-size:13px;outline:none;font-family:inherit}
+.fg input:focus,.fg select:focus{border-color:#16a34a}
+.btn-p{width:100%;background:#16a34a;color:#fff;border:none;padding:12px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px}
+.btn-p:hover{background:#15803d}.btn-p:disabled{opacity:.5;cursor:not-allowed}
+.login-err{color:#f87171;font-size:13px;margin-top:10px;text-align:center;display:none}
+
+/* ── APP SHELL ── */
+#app{display:none;min-height:100vh;flex-direction:column}
+header{background:#1b2a47;border-bottom:1px solid #334155;padding:13px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-size:17px;font-weight:800;color:#fff}.brand span{color:#16a34a}
+.badge{background:#16a34a;color:#fff;font-size:10px;font-weight:700;padding:2px 9px;border-radius:100px}
+.hdr-right{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:12px;color:#94a3b8;flex-wrap:wrap}
+.btn-logout{background:none;border:1px solid #334155;color:#94a3b8;padding:4px 12px;border-radius:6px;font-size:11px;cursor:pointer}
+.btn-logout:hover{border-color:#ef4444;color:#ef4444}
+
+/* ── TABS ── */
+.tabs{background:#1e293b;border-bottom:1px solid #334155;display:flex}
+.tab{padding:11px 22px;font-size:13px;font-weight:600;color:#64748b;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+.tab:hover{color:#e2e8f0}.tab.active{color:#16a34a;border-bottom-color:#16a34a}
+
+/* ── MAIN ── */
+main{padding:22px;flex:1}
+.section-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px}
+h2{font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.08em}
+
+/* ── STATS ── */
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.stat{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:14px 18px;flex:1;min-width:140px}
+.sv{font-size:26px;font-weight:800;color:#fff;line-height:1}
+.sl{font-size:10px;color:#64748b;margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+
+/* ── TABLE ── */
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:#1e293b;color:#64748b;text-align:left;padding:8px 11px;font-size:10px;text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid #334155;font-weight:700;white-space:nowrap}
+td{padding:9px 11px;border-bottom:1px solid #1e293b55;vertical-align:middle}
+tr:hover td{background:#1e293b33}
+.key{font-family:'Courier New',monospace;font-size:11px;font-weight:700;color:#93c5fd;letter-spacing:.04em}
+
+/* ── PLAN BADGES ── */
+.pb{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:100px;text-transform:uppercase;letter-spacing:.05em}
+.pb-monthly{background:#7c3aed22;color:#a78bfa;border:1px solid #7c3aed44}
+.pb-yearly{background:#0369a122;color:#38bdf8;border:1px solid #0369a144}
+.pb-lifetime{background:#16a34a22;color:#4ade80;border:1px solid #16a34a44}
+.pb-team-yearly{background:#ea580c22;color:#fb923c;border:1px solid #ea580c44}
+.pb-team-lifetime{background:#dc262622;color:#f87171;border:1px solid #dc262644}
+
+/* ── MISC ── */
+.ts{color:#64748b;font-size:11px}
+.empty{text-align:center;padding:48px;color:#475569}
+.tbl-load{text-align:center;padding:48px;color:#64748b}
+.notice{font-size:11px;color:#64748b;margin-top:14px;padding:10px 14px;background:#1e293b;border:1px solid #334155;border-radius:8px}
+.rev{color:#4ade80;font-weight:700}
+.margin-pill{font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;background:#16a34a22;color:#4ade80;border:1px solid #16a34a44}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  header{padding:10px 14px}
+  main{padding:14px}
+  .tab{padding:9px 14px;font-size:12px}
+  .stat{min-width:120px}
+  th,td{padding:7px 8px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ LOGIN PAGE ══════════════════════════════════════════════════════════ -->
+<div id="login-page">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="brand-lg">PDF<span>Sign</span>.in</div>
+      <div class="login-sub">Reseller Portal</div>
+    </div>
+    <div class="fg">
+      <label>Email</label>
+      <input type="email" id="le" placeholder="you@example.com" autocomplete="username"/>
+    </div>
+    <div class="fg">
+      <label>Password</label>
+      <input type="password" id="lp" placeholder="••••••••" autocomplete="current-password"/>
+    </div>
+    <button class="btn-p" id="lbtn" onclick="doLogin()">Sign In</button>
+    <div class="login-err" id="lerr"></div>
+    <div class="login-back">
+      <a href="https://pdfsign.in">← Back to PDFSign.in</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ APP ════════════════════════════════════════════════════════════════ -->
+<div id="app">
+  <header>
+    <div class="brand">PDF<span>Sign</span>.in</div>
+    <div class="badge">Reseller Portal</div>
+    <div class="hdr-right">
+      <span id="hname" style="font-weight:600;color:#e2e8f0">—</span>
+      <button class="btn-logout" onclick="logout()">Sign out</button>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('orders',this)">Orders</div>
+    <div class="tab" onclick="showTab('pricing',this)">My Pricing</div>
+  </div>
+
+  <main>
+
+    <!-- ── ORDERS TAB ────────────────────────────────────────────────── -->
+    <div id="porders">
+      <div class="section-hdr">
+        <h2>Order History</h2>
+        <button style="background:none;border:1px solid #334155;color:#94a3b8;padding:6px 12px;border-radius:7px;font-size:12px;cursor:pointer" onclick="loadOrders()">&#8635; Refresh</button>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="sv" id="stat-total">—</div>
+          <div class="sl">Total Orders</div>
+        </div>
+        <div class="stat">
+          <div class="sv rev" id="stat-rev">—</div>
+          <div class="sl">Total Revenue (₹)</div>
+        </div>
+      </div>
+
+      <div class="tbl-load" id="orders-load">Loading orders…</div>
+      <div class="tbl-wrap" id="orders-wrap" style="display:none">
+        <table>
+          <thead>
+            <tr>
+              <th>Customer Name</th>
+              <th>Customer Email</th>
+              <th>Plan</th>
+              <th>Amount (₹)</th>
+              <th>License Key</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="orders-body"></tbody>
+        </table>
+        <div class="empty" id="orders-empty" style="display:none">No orders yet. Share your PDFSign.in link to start earning!</div>
+      </div>
+    </div>
+
+    <!-- ── PRICING TAB ───────────────────────────────────────────────── -->
+    <div id="ppricing" style="display:none">
+      <div class="section-hdr">
+        <h2>My Pricing</h2>
+        <button style="background:none;border:1px solid #334155;color:#94a3b8;padding:6px 12px;border-radius:7px;font-size:12px;cursor:pointer" onclick="loadPricing()">&#8635; Refresh</button>
+      </div>
+
+      <div class="tbl-load" id="pricing-load">Loading pricing…</div>
+      <div class="tbl-wrap" id="pricing-wrap" style="display:none">
+        <table>
+          <thead>
+            <tr>
+              <th>Plan</th>
+              <th>Your Price (₹)</th>
+              <th>Retail Price (₹)</th>
+              <th>Your Margin</th>
+            </tr>
+          </thead>
+          <tbody id="pricing-body"></tbody>
+        </table>
+      </div>
+      <div class="notice" id="pricing-notice" style="display:none">
+        Contact your PDFSign.in manager to update your pricing.
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+var API = 'https://pdfsigner-api.vercel.app/api/reseller';
+var SESSION = null;
+
+// ── RETAIL REFERENCE PRICES ───────────────────────────────────────────────
+var RETAIL = {
+  monthly:       299,
+  yearly:        899,
+  lifetime:      1499,
+  'team-yearly': 3499,
+  'team-lifetime':5999
+};
+var PLAN_LABEL = {
+  monthly:       '1 Month',
+  yearly:        '1 Year',
+  lifetime:      'Lifetime',
+  'team-yearly': 'Team · 1 Year',
+  'team-lifetime':'Team · Lifetime'
+};
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+window.onload = function() {
+  var tok  = sessionStorage.getItem('RS_TOKEN');
+  var name = sessionStorage.getItem('RS_NAME');
+  if (tok) {
+    SESSION = { token: tok, name: name };
+    showApp();
+  } else {
+    showLogin();
+  }
+  document.getElementById('lp').onkeydown = function(e){ if (e.key === 'Enter') doLogin(); };
+};
+
+function showLogin() {
+  document.getElementById('login-page').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+}
+
+function showApp() {
+  document.getElementById('login-page').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+  document.getElementById('hname').textContent = SESSION.name || 'Reseller';
+  loadOrders();
+}
+
+// ── LOGIN ─────────────────────────────────────────────────────────────────
+async function doLogin() {
+  var email = document.getElementById('le').value.trim();
+  var pass  = document.getElementById('lp').value;
+  var btn   = document.getElementById('lbtn');
+  var err   = document.getElementById('lerr');
+  if (!email || !pass) { showErr(err, 'Enter email and password'); return; }
+  btn.disabled = true; btn.textContent = 'Signing in…'; err.style.display = 'none';
+  try {
+    var r = await fetch(API + '/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, password: pass })
+    });
+    var j = await r.json();
+    if (!r.ok) { showErr(err, j.error || 'Login failed'); return; }
+    SESSION = { token: j.token, name: j.name, resellerId: j.resellerId };
+    sessionStorage.setItem('RS_TOKEN', j.token);
+    sessionStorage.setItem('RS_NAME',  j.name || '');
+    showApp();
+  } catch(e) {
+    showErr(err, 'Network error: ' + e.message);
+  } finally {
+    btn.disabled = false; btn.textContent = 'Sign In';
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem('RS_TOKEN');
+  sessionStorage.removeItem('RS_NAME');
+  SESSION = null;
+  document.getElementById('le').value = '';
+  document.getElementById('lp').value = '';
+  showLogin();
+}
+
+// ── TABS ──────────────────────────────────────────────────────────────────
+function showTab(t, el) {
+  document.querySelectorAll('.tab').forEach(function(x){ x.classList.remove('active'); });
+  el.classList.add('active');
+  document.getElementById('porders').style.display  = t === 'orders'  ? 'block' : 'none';
+  document.getElementById('ppricing').style.display = t === 'pricing' ? 'block' : 'none';
+  if (t === 'orders')  loadOrders();
+  if (t === 'pricing') loadPricing();
+}
+
+// ── ORDERS ────────────────────────────────────────────────────────────────
+async function loadOrders() {
+  document.getElementById('orders-load').style.display = 'block';
+  document.getElementById('orders-wrap').style.display = 'none';
+  try {
+    var r = await apicall(API + '/orders', 'GET');
+    if (r.status === 401) { logout(); return; }
+    var j = await r.json();
+    var orders = j.orders || [];
+
+    // Stats
+    var totalRev = orders.reduce(function(sum, o) { return sum + (o.amount_rupees || 0); }, 0);
+    document.getElementById('stat-total').textContent = orders.length;
+    document.getElementById('stat-rev').textContent   = '₹' + totalRev.toLocaleString('en-IN');
+
+    // Table
+    document.getElementById('orders-load').style.display = 'none';
+    document.getElementById('orders-wrap').style.display = 'block';
+
+    if (!orders.length) {
+      document.getElementById('orders-empty').style.display = 'block';
+      document.getElementById('orders-body').innerHTML = '';
+      return;
+    }
+    document.getElementById('orders-empty').style.display = 'none';
+    document.getElementById('orders-body').innerHTML = orders.map(function(o) {
+      var plan = o.plan || '';
+      return '<tr>'
+        + '<td style="font-weight:600">' + esc(o.customer_name || '—') + '</td>'
+        + '<td class="ts">' + esc(o.customer_email || '—') + '</td>'
+        + '<td><span class="pb pb-' + esc(plan.replace(/[^a-z-]/g,'')) + '">' + esc(plan) + '</span></td>'
+        + '<td class="rev">₹' + (o.amount_rupees || 0).toLocaleString('en-IN') + '</td>'
+        + '<td><span class="key">' + esc(o.license_key || '—') + '</span></td>'
+        + '<td class="ts">' + fmtDate(o.created_at) + '</td>'
+        + '</tr>';
+    }).join('');
+  } catch(e) {
+    document.getElementById('orders-load').textContent = 'Error loading orders: ' + e.message;
+  }
+}
+
+// ── PRICING ───────────────────────────────────────────────────────────────
+async function loadPricing() {
+  document.getElementById('pricing-load').style.display  = 'block';
+  document.getElementById('pricing-wrap').style.display  = 'none';
+  document.getElementById('pricing-notice').style.display = 'none';
+  try {
+    var r = await apicall(API + '/pricing', 'GET');
+    if (r.status === 401) { logout(); return; }
+    var j = await r.json();
+    var pricing = j.pricing || [];
+
+    document.getElementById('pricing-load').style.display = 'none';
+    document.getElementById('pricing-wrap').style.display = 'block';
+    document.getElementById('pricing-notice').style.display = 'block';
+
+    if (!pricing.length) {
+      document.getElementById('pricing-body').innerHTML =
+        '<tr><td colspan="4" class="empty">No pricing configured. Contact your PDFSign.in manager.</td></tr>';
+      return;
+    }
+
+    document.getElementById('pricing-body').innerHTML = pricing.map(function(p) {
+      var plan   = p.plan || '';
+      var myP    = p.price_rupees || 0;
+      var retail = RETAIL[plan] || 0;
+      var label  = PLAN_LABEL[plan] || plan;
+      var margin = retail > 0 ? Math.round((retail - myP) / retail * 100) : 0;
+      return '<tr>'
+        + '<td><span class="pb pb-' + esc(plan.replace(/[^a-z-]/g,'')) + '">' + esc(plan) + '</span>'
+        + '<span style="font-size:11px;color:#94a3b8;margin-left:7px">' + esc(label) + '</span></td>'
+        + '<td style="font-weight:700;color:#fff">₹' + myP.toLocaleString('en-IN') + '</td>'
+        + '<td class="ts">₹' + (retail ? retail.toLocaleString('en-IN') : '—') + '</td>'
+        + '<td>' + (margin > 0
+            ? '<span class="margin-pill">' + margin + '% margin</span>'
+            : '<span style="font-size:11px;color:#64748b">—</span>')
+        + '</td>'
+        + '</tr>';
+    }).join('');
+  } catch(e) {
+    document.getElementById('pricing-load').textContent = 'Error loading pricing: ' + e.message;
+  }
+}
+
+// ── HELPERS ───────────────────────────────────────────────────────────────
+function apicall(url, method) {
+  return fetch(url, {
+    method: method || 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + SESSION.token
+    }
+  });
+}
+
+function esc(s) {
+  if (!s) return '';
+  return String(s)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+function fmtDate(iso) {
+  if (!iso) return '<span style="color:#475569">—</span>';
+  return new Date(iso).toLocaleDateString('en-IN', {
+    day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata'
+  });
+}
+
+function showErr(el, msg) {
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+</script>
+</body>
+</html>
