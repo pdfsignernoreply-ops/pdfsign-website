@@ -5,7 +5,7 @@
   <!-- Main Pages -->
   <url>
     <loc>https://pdfsign.in/</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en-in" href="https://pdfsign.in/"/>
@@ -56,7 +56,7 @@
   <!-- Blog Index -->
   <url>
     <loc>https://pdfsign.in/blog/</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -64,58 +64,163 @@
   <!-- Blog Posts -->
   <url>
     <loc>https://pdfsign.in/blog/how-to-sign-pdf-dsc-token-windows.html</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2025-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://pdfsign.in/blog/how-to-sign-gem-portal-documents-dsc.html</loc>
-    <lastmod>2026-02-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://pdfsign.in/blog/emudhra-capricorn-signer-digital-comparison.html</loc>
-    <lastmod>2026-01-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://pdfsign.in/blog/hyp2003-token-sign-pdf-windows.html</loc>
-    <lastmod>2025-12-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://pdfsign.in/blog/sign-cppp-tender-documents-dsc.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://pdfsign.in/blog/it-act-2000-digital-signatures-india.html</loc>
-    <lastmod>2025-10-1</lastmod>
+    <lastmod>2025-06-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://pdfsign.in/blog/dsc-token-not-working-chrome-fix.html</loc>
+    <lastmod>2025-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/dsc-token-not-detected-windows-11-fix.html</loc>
+    <lastmod>2025-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/hyp2003-token-sign-pdf-windows.html</loc>
     <lastmod>2025-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://pdfsign.in/blog/sign-mca21-documents-dsc-token.html</loc>
-    <lastmod>2025-06-07</lastmod>
+    <loc>https://pdfsign.in/blog/epass-2003-3003-token-pdf-signing-windows.html</loc>
+    <lastmod>2025-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/proxkey-wd-series-token-pdf-signing-windows.html</loc>
+    <lastmod>2025-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/sign-mca21-documents-dsc-token.html</loc>
+    <lastmod>2025-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/how-to-sign-gem-portal-documents-dsc.html</loc>
+    <lastmod>2025-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/sign-cppp-tender-documents-dsc.html</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/sign-nic-eprocurement-documents-dsc.html</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/high-security-dsc-token-mandatory-india-2023.html</loc>
+    <lastmod>2025-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/nri-sign-indian-documents-abroad-dsc.html</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/msme-dsc-government-tender-india.html</loc>
+    <lastmod>2025-12-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/batch-sign-audit-reports-dsc-ca-firms.html</loc>
+    <lastmod>2026-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/how-to-verify-digital-signature-pdf-india.html</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/digital-signature-validity-unknown-pdf-fix.html</loc>
+    <lastmod>2026-02-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/emudhra-capricorn-signer-digital-comparison.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/best-pdf-signing-software-india-2026.html</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/digitally-sign-gst-invoices-india-dsc.html</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/pades-vs-cades-digital-signatures-india.html</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/digital-signature-valid-after-dsc-expiry.html</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pdfsign.in/blog/rfc-3161-timestamp-pdf-india.html</loc>
+    <lastmod>2026-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
 </urlset>
