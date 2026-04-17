@@ -48,7 +48,7 @@
   "@context":"https://schema.org",
   "@type":"FAQPage",
   "mainEntity":[
-    {"@type":"Question","name":"My HYP2003 token is not showing in PDFSign. What do I do?","acceptedAnswer":{"@type":"Answer","text":"Click Refresh in PDFSign. If still not detected, verify the ePass2003 driver is installed via Device Manager. Reinstall the driver and restart."}},
+    {"@type":"Question","name":"My HYP2003 token is not showing in PDFSign. What do I do?","acceptedAnswer":{"@type":"Answer","text":"Click Refresh in PDFSign. If still not detected, open HYPER_PKI HYP 2003 Token Manager from the Start menu to verify the token is recognised. Reinstall the HyperPKI middleware driver and restart if needed."}},
     {"@type":"Question","name":"Can I use HYP2003 with any CA certificate?","acceptedAnswer":{"@type":"Answer","text":"Yes. HYP2003 stores certificates from any licensed CA. PDFSign supports eMudhra, Capricorn, NSDL, (n)Code, Pentasign, vsign, and Sify."}}
   ]
 }
@@ -127,7 +127,7 @@ tr:nth-child(even) td{background:#f8fafc}
 <p>PDFSign software reads certificates directly from PKCS#11-compatible tokens including the HYP2003, without requiring manual import into Windows.</p>
 
 <h2>Step-by-Step: Sign PDFs with HYP2003</h2>
-<div class="step"><div class="step-title"><span class="step-num">1</span>Download and Install the ePass2003 Driver</div><p>This is mandatory. Without the driver, Windows cannot communicate with your HYP2003 token and no software will detect it. Download the ePass2003 driver from your token vendor's website or from the CD/documentation that came with your token. Install it and restart your computer if prompted.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">1</span>Download and Install the HyperPKI Driver</div><p>This is mandatory. Without the driver, Windows cannot communicate with your HYP2003 token and no software will detect it. Download the official HyperPKI middleware: <a href="https://www.hypersecu.com/_files/archives/5aae8d_02fba2ca3532483c91e6cd958874b1e4.zip?dn=HyperPKI-HYP2003-Middleware-Windows-v1.1.25.731.zip">HyperPKI-HYP2003-Middleware-Windows-v1.1.25.731.zip</a>. Install it and restart your computer if prompted. The driver installs as <strong>HYPER_PKI HYP 2003 Token Manager</strong> in your Start menu.</p></div>
 <div class="step"><div class="step-title"><span class="step-num">2</span>Plug In Your HYP2003 Token</div><p>Insert the token into a USB port. Wait for Windows to detect it — you may see a notification in the system tray. If the device shows an error in Device Manager, the driver installation may need to be repeated.</p></div>
 <div class="step"><div class="step-title"><span class="step-num">3</span>Open PDFSign Software</div><p>Launch PDFSign from your desktop or Start menu.</p></div>
 <div class="step"><div class="step-title"><span class="step-num">4</span>Select Your Certificate</div><p>PDFSign automatically scans connected PKCS#11 tokens and displays your certificate in the dropdown. If multiple certificates are present — for example if you have multiple tokens connected — click <strong>Refresh</strong>. Select your certificate and verify the name matches your expected identity.</p></div>
@@ -143,7 +143,7 @@ tr:nth-child(even) td{background:#f8fafc}
 <h2>Frequently Asked Questions</h2>
 
 <h3>My HYP2003 token is plugged in but not showing in PDFSign. What do I do?</h3>
-<p>Click the Refresh button in PDFSign. If still not detected, check that the ePass2003 driver is installed correctly — open Device Manager and verify the token appears without errors. Reinstall the driver and restart your PC if needed.</p>
+<p>Click the Refresh button in PDFSign. If still not detected, check that the HyperPKI driver is installed correctly — open <strong>HYPER_PKI HYP 2003 Token Manager</strong> from the Start menu and verify the token appears without errors. If not, <a href="https://www.hypersecu.com/_files/archives/5aae8d_02fba2ca3532483c91e6cd958874b1e4.zip?dn=HyperPKI-HYP2003-Middleware-Windows-v1.1.25.731.zip">reinstall the HyperPKI driver</a> and restart your PC.</p>
 
 <h3>Can I use HYP2003 with a certificate from any CA?</h3>
 <p>Yes. The HYP2003 is a hardware token that can store certificates from any licensed CA — eMudhra, Capricorn, NSDL, (n)Code, Pentasign, vsign, or Sify. PDFSign supports all of these.</p>

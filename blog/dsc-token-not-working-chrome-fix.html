@@ -49,8 +49,8 @@
   "@type":"FAQPage",
   "mainEntity":[
     {"@type":"Question","name":"Why doesn't Chrome detect my DSC token?","acceptedAnswer":{"@type":"Answer","text":"Chrome dropped NPAPI plugin support in 2015 and continues to tighten security. DSC signing extensions frequently break after Chrome updates."}},
-    {"@type":"Question","name":"What is the permanent fix for DSC not working in Chrome?","acceptedAnswer":{"@type":"Answer","text":"Sign your document offline with PDFSign software, then upload the signed PDF to the government portal. No browser token detection required."}},
-    {"@type":"Question","name":"Does the offline signing method work on all portals?","acceptedAnswer":{"@type":"Answer","text":"Yes. Signing offline with PDFSign and uploading the signed PDF works on GeM, CPPP, MCA21, and all other Indian government e-procurement portals."}}
+    {"@type":"Question","name":"What can I do when my DSC is not detected in Chrome?","acceptedAnswer":{"@type":"Answer","text":"First ensure the correct token driver is installed (HyperPKI for HYP2003, ProxyKey middleware for Watchdata). Run Chrome as administrator. If the portal supports offline-signed PDFs, use PDFSign to sign the document and upload it. For portals that require browser-based signing, use the portal's own signing utility or contact the portal helpdesk."}},
+    {"@type":"Question","name":"Does offline PDF signing work on all government portals?","acceptedAnswer":{"@type":"Answer","text":"Not on all portals. Some portals require signing within their browser interface. For portals that accept pre-signed PDFs (such as GeM for certain documents, MCA21 filings, and DGFT), offline signing with PDFSign is faster and more reliable."}}
   ]
 }
 </script>
@@ -132,8 +132,8 @@ tr:nth-child(even) td{background:#f8fafc}
 <h3>1. Token Driver Not Installed</h3>
 <p>The most common cause. Your HYP2003 or ProxyKey (Watchdata) token needs its driver installed on Windows before any software — including Chrome — can detect it.</p>
 <ul>
-  <li>For <strong>HYP2003</strong>: Install the ePass2003 driver from your token vendor</li>
-  <li>For <strong>ProxyKey (Watchdata)</strong>: Install the ProxyKey middleware</li>
+  <li>For <strong>HYP2003</strong>: Install the <a href="https://www.hypersecu.com/_files/archives/5aae8d_02fba2ca3532483c91e6cd958874b1e4.zip?dn=HyperPKI-HYP2003-Middleware-Windows-v1.1.25.731.zip">HyperPKI HYP2003 middleware</a> — this installs as <strong>HYPER_PKI HYP 2003 Token Manager</strong></li>
+  <li>For <strong>ProxyKey (Watchdata)</strong>: Install the <a href="https://support.cryptoplanet.in/DownloadFiles/WD_PROXKey_new.zip">ProxyKey middleware</a></li>
 </ul>
 <p>After installation, restart your PC and try again.</p>
 
@@ -146,27 +146,24 @@ tr:nth-child(even) td{background:#f8fafc}
 <h3>4. Outdated Chrome Extension</h3>
 <p>DSC browser extensions often lag behind Chrome updates. Check if there is an updated version of your signing extension. If no update is available, the extension may no longer be supported.</p>
 
-<h2>The Permanent Fix: Sign Offline, Upload Online</h2>
-<p>The most reliable approach — and the one used by experienced GeM and CPPP vendors — is to stop relying on browser-based signing entirely. Sign your document offline with PDFSign software, then upload the signed file to the portal. No browser token detection required.</p>
+<h2>When Offline Signing Works — and When It Does Not</h2>
 
-<h2>Step-by-Step: Offline Sign and Upload Workflow</h2>
-<div class="step"><div class="step-title"><span class="step-num">1</span>Install Your Token Driver</div><p>ePass2003 for HYP2003, ProxyKey middleware for Watchdata tokens. Mandatory before any signing.</p></div>
-<div class="step"><div class="step-title"><span class="step-num">2</span>Plug In Your Token and Open PDFSign</div><p>Launch PDFSign from your desktop.</p></div>
-<div class="step"><div class="step-title"><span class="step-num">3</span>Select Your Certificate</div><p>PDFSign detects it automatically from your token. Click Refresh if multiple certificates are present.</p></div>
-<div class="step"><div class="step-title"><span class="step-num">4</span>Choose Single PDF or Batch Mode</div><p>Single PDF for one document, Batch for multiple documents in one session.</p></div>
-<div class="step"><div class="step-title"><span class="step-num">5</span>Load Document and Place Signature</div><p>Browse to the document downloaded from the government portal. Drag the signature box or enter coordinates. Choose single page or all pages.</p></div>
-<div class="step"><div class="step-title"><span class="step-num">6</span>Click Sign and Enter PIN</div><p>PDFSign applies the signature offline — no browser involved.</p></div>
-<div class="step"><div class="step-title"><span class="step-num">7</span>Upload the Signed PDF to the Portal</div><p>Log in to GeM, CPPP, or MCA21. Upload the already-signed file. Browser token detection is no longer relevant.</p></div>
+<div class="warn"><strong>Important:</strong> Not all portals support the offline sign-and-upload workflow. Many Indian government portals — including some state eProcurement and GSTN systems — require documents to be signed <em>within</em> their browser interface using an approved signing utility. Downloading and re-uploading a pre-signed PDF may not be accepted on those portals. Always check your portal's specific signing instructions before choosing your approach.</div>
 
-<div class="tip"><strong>This approach works on every Indian government portal, every Chrome version, and every Windows version.</strong> It is also faster and more reliable than browser-based signing.</div>
+<p>For portals that <strong>do</strong> support offline-signed PDF upload (such as GeM for certain document types, MCA21 annual filings, and DGFT), the offline workflow using PDFSign is faster and more reliable than browser-based signing:</p>
+
+<div class="step"><div class="step-title"><span class="step-num">1</span>Install Your Token Driver</div><p>HyperPKI driver for HYP2003, ProxyKey middleware for Watchdata tokens — see driver links in the section above. Mandatory before any signing.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">2</span>Plug In Your Token and Open PDFSign</div><p>Launch PDFSign from your desktop. Your certificate will be detected automatically.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">3</span>Load Document and Sign</div><p>Browse to the document downloaded from the portal. Place the signature, click Sign, enter your PIN. The signed PDF is saved instantly.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">4</span>Upload the Signed PDF</div><p>Log in to the portal and upload the signed file where the portal accepts pre-signed PDFs.</p></div>
 
 <h2>Frequently Asked Questions</h2>
 
-<h3>Will browser-based DSC signing ever work reliably again?</h3>
-<p>Unlikely in the near future. Chrome's security model continues to tighten. The offline sign and upload workflow is the recommended long-term solution for Indian government portal users.</p>
+<h3>My portal requires signing inside the browser — what do I do?</h3>
+<p>If the portal's signing utility uses Chrome, ensure your token driver is up to date (see links above). Run Chrome as administrator. If the portal provides a separate signing client or Java application, use that. Contact the portal's technical helpdesk if the signing utility still fails — they often have portal-specific workarounds.</p>
 
 <h3>Does Firefox work better than Chrome for DSC signing?</h3>
-<p>Some older signing plugins work on Firefox, but the same underlying driver dependency issues apply. The offline signing approach works regardless of which browser you use to upload.</p>
+<p>Some older signing plugins work on Firefox, but the same underlying driver dependency issues apply. The best approach is to fix the driver installation so the token is detected correctly by any application.</p>
 
 <div class="cta-box">
   <h2>Try PDFSign Free for 30 Days</h2>

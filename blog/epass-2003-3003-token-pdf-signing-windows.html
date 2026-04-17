@@ -49,7 +49,7 @@
   "@type":"FAQPage",
   "mainEntity":[
     {"@type":"Question","name":"Is ePass 2003 compatible with Windows 11?","acceptedAnswer":{"@type":"Answer","text":"Yes. The ePass2003 Auto driver supports both Windows 10 and Windows 11 (64-bit). Download the latest driver from your CA's support page or Feitian's official website, install it, restart your PC, then plug in the token. PDFSign will detect your certificate automatically."}},
-    {"@type":"Question","name":"Is the driver the same for ePass 2003 and ePass 3003?","acceptedAnswer":{"@type":"Answer","text":"Yes. Both ePass 2003 and ePass 3003 use the same ePass2003 Auto driver and share the same PKCS#11 library. The HYP2003 token also uses this same driver. Installing one version of the driver covers all three models."}},
+    {"@type":"Question","name":"Is the driver the same for ePass 2003 and ePass 3003?","acceptedAnswer":{"@type":"Answer","text":"Yes. Both ePass 2003 and ePass 3003 use the same ePass2003 Auto driver. Note: the HYP2003 token (HS series) uses a separate HyperPKI middleware driver — do not confuse the two."}},
     {"@type":"Question","name":"Can I use my ePass token on multiple PCs?","acceptedAnswer":{"@type":"Answer","text":"Yes. The certificate and private key are stored on the hardware token itself, not on any specific computer. Install the ePass2003 driver on each Windows machine you want to use. Plug in the token and PDFSign will read the certificate from the token on any of those machines."}},
     {"@type":"Question","name":"My ePass PIN is locked — what do I do?","acceptedAnswer":{"@type":"Answer","text":"If your ePass PIN is locked due to too many wrong attempts, contact your Certifying Authority with your token serial number and identity proof. The CA will provide a PUK (PIN Unlock Key) to reset the PIN. Do not attempt to guess the PUK as repeated failures will permanently block the token."}},
     {"@type":"Question","name":"My ePass token has multiple certificates — which one should I select?","acceptedAnswer":{"@type":"Answer","text":"In PDFSign, open the certificate dropdown and look at each certificate's subject name (your name or organisation) and validity period. Select the certificate that matches your current DSC. If you are unsure, check the expiry date — the most recently issued certificate is typically the active one."}},
@@ -125,7 +125,9 @@ tr:nth-child(even) td{background:#f8fafc}
 </div>
 <div class="content">
 
-<p>The ePass 2003 and ePass 3003 are the most widely distributed USB DSC tokens in India. If you have ever obtained a Class 3 Digital Signature Certificate from eMudhra, NSDL e-Governance, SafeScrypt, or any of the major Certifying Authorities, there is a high probability the token in your hands is an ePass model. This guide covers everything you need: understanding which model you have, installing the correct driver on Windows 10 or 11, verifying your certificate, and signing PDFs using PDFSign.</p>
+<div class="warn"><strong>Note for new users (2024 onward):</strong> The ePass 2003 and ePass 3003 are older Feitian-based tokens. The current standard token issued by most Indian CAs today is the <strong>HYP2003 (HyperPKI HS series)</strong>, which meets the CCA's mandatory FIPS 140-2 Level 3 requirement. If you received a new DSC token recently, it is likely an HYP2003 — see our <a href="hyp2003-token-sign-pdf-windows.html">HYP2003 Token Setup Guide</a> instead. This guide is for users who still hold an older ePass 2003 or ePass 3003 token.</div>
+
+<p>The ePass 2003 and ePass 3003 were among the most widely distributed USB DSC tokens in India. If your token came from eMudhra, NSDL e-Governance, SafeScrypt, or a major Certifying Authority prior to 2023, it may be an ePass model. This guide covers installing the correct driver on Windows 10 or 11, verifying your certificate, and signing PDFs using PDFSign.</p>
 
 <h2>What Is the ePass 2003 and ePass 3003?</h2>
 <p>The ePass series is manufactured by <strong>Feitian Technologies</strong>, a Chinese hardware security company with an extensive presence in the Indian market. Feitian supplies the hardware; Indian Certifying Authorities load your Digital Signature Certificate onto the token and issue it to you under their own branding or under the ePass name.</p>
@@ -153,10 +155,10 @@ tr:nth-child(even) td{background:#f8fafc}
   <tr><td>Issued for CCA High Security mandate</td><td>Older issuances</td><td>Current issuances</td></tr>
 </table>
 
-<div class="tip"><strong>Key point:</strong> Both models use the <strong>same driver</strong>. You do not need to know which exact model you have before installing the driver — the ePass2003 Auto driver works for both ePass 2003 and ePass 3003.</div>
+<div class="tip"><strong>Key point:</strong> ePass 2003 and ePass 3003 use the <strong>same driver</strong> — the ePass2003 Auto driver works for both models. (The newer HYP2003 uses a separate HyperPKI driver — see section above.)</div>
 
-<h2>The ePass2003 Driver Also Covers HYP2003</h2>
-<p>An important fact that surprises many users: the <strong>HYP2003 High Security token</strong> (serial numbers beginning with <strong>HS</strong>) also uses the ePass2003 Auto driver and shares the same PKCS#11 library. If you have a HYP2003 token, you install the same ePass2003 driver described in this guide. PDFSign detects all three token types — ePass 2003, ePass 3003, and HYP2003 — using the same interface.</p>
+<h2>HYP2003 Uses a Different Driver</h2>
+<p>Unlike ePass 2003/3003 tokens, the <strong>HYP2003 (HS series)</strong> — the current standard token issued by most Indian CAs — uses the separate <strong>HyperPKI middleware</strong>, which installs as <strong>HYPER_PKI HYP 2003 Token Manager</strong>. If you have an HYP2003 token, do not install the ePass2003 driver — download the <a href="https://www.hypersecu.com/_files/archives/5aae8d_02fba2ca3532483c91e6cd958874b1e4.zip?dn=HyperPKI-HYP2003-Middleware-Windows-v1.1.25.731.zip">HyperPKI HYP2003 middleware</a> instead and follow our <a href="hyp2003-token-sign-pdf-windows.html">HYP2003 setup guide</a>.</p>
 
 <h2>Step 1: Download and Install the ePass2003 Driver</h2>
 <p>The ePass2003 driver (sometimes called the ePass2003 Auto driver or ePass2003 middleware) is the software layer that allows Windows to communicate with your token via the PKCS#11 standard.</p>
@@ -319,7 +321,7 @@ tr:nth-child(even) td{background:#f8fafc}
 <p>Yes. The ePass2003 Auto driver is compatible with both Windows 10 and Windows 11, including the latest 64-bit builds. Download the driver from your CA's support page, install it, restart your PC, then plug in the token. PDFSign will detect your certificate automatically.</p>
 
 <h3>Is the driver the same for ePass 2003 and ePass 3003?</h3>
-<p>Yes — both models use the same ePass2003 Auto driver. The driver also covers the HYP2003 token. You do not need separate drivers for these three token types. Installing one version of the ePass2003 driver covers all of them.</p>
+<p>Yes — both ePass 2003 and ePass 3003 use the same ePass2003 Auto driver. However, the newer HYP2003 token (HS serial series) uses a separate HyperPKI middleware. If you have an HYP2003, download the HyperPKI driver — not the ePass2003 driver.</p>
 
 <h3>Can I use my ePass token on multiple PCs?</h3>
 <p>Yes. The certificate and private key live on the hardware token, not on any specific PC. Install the ePass2003 driver on each Windows machine you want to use. Plug in the token and PDFSign will read the certificate from the token on any of those machines. There is no limit to the number of machines you can use with a single token (as long as the driver is installed on each).</p>

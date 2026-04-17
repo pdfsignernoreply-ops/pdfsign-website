@@ -134,14 +134,14 @@ tr:nth-child(even) td{background:#f8fafc}
 <ul>
   <li>Uploading a scanned signature image instead of a digital signature</li>
   <li>Using an expired DSC certificate</li>
-  <li>Signing with a Class 2 certificate (not accepted for most CPPP tenders)</li>
+  <li>Using an incorrect certificate — always verify the certificate name matches your CPPP-registered identity</li>
   <li>Modifying the document after signing — this breaks the cryptographic seal</li>
 </ul>
 
 <div class="warn"><strong>Important:</strong> Fill in all required fields in the tender document <em>before</em> signing. Any change after signing invalidates the signature.</div>
 
 <h2>Step-by-Step: Sign CPPP Tender Documents</h2>
-<div class="step"><div class="step-title"><span class="step-num">1</span>Install Your Token Driver</div><p>Mandatory first step. For HYP2003 tokens, install the ePass2003 driver. For ProxyKey (Watchdata) tokens, install the ProxyKey middleware. Restart if prompted.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">1</span>Install Your Token Driver</div><p>Mandatory first step. For <strong>HYP2003</strong> tokens, install the <a href="https://www.hypersecu.com/_files/archives/5aae8d_02fba2ca3532483c91e6cd958874b1e4.zip?dn=HyperPKI-HYP2003-Middleware-Windows-v1.1.25.731.zip">HyperPKI middleware</a>. For <strong>ProxyKey (Watchdata)</strong> tokens, install the <a href="https://support.cryptoplanet.in/DownloadFiles/WD_PROXKey_new.zip">ProxyKey middleware</a>. Restart if prompted.</p></div>
 <div class="step"><div class="step-title"><span class="step-num">2</span>Plug In Your DSC Token</div><p>Insert your USB token and wait for Windows to detect it.</p></div>
 <div class="step"><div class="step-title"><span class="step-num">3</span>Open PDFSign Software</div><p>Launch PDFSign from your desktop or Start menu.</p></div>
 <div class="step"><div class="step-title"><span class="step-num">4</span>Select Your Certificate</div><p>PDFSign detects your token automatically and shows your certificate in the dropdown. If multiple certificates are present, click <strong>Refresh</strong> and select your Class 3 certificate. Confirm the name matches your CPPP-registered identity.</p></div>
@@ -154,7 +154,7 @@ tr:nth-child(even) td{background:#f8fafc}
 <h2>Frequently Asked Questions</h2>
 
 <h3>What class of DSC is required for CPPP tenders?</h3>
-<p>Most CPPP tenders require a Class 3 DSC. Class 2 certificates are generally not accepted. Your Class 3 certificate must be issued by a licensed CA — eMudhra, Capricorn, NSDL, (n)Code, Pentasign, vsign, or Sify.</p>
+<p>CPPP tenders require a Class 3 DSC. Your certificate must be issued by a licensed CA — eMudhra, Capricorn, NSDL, (n)Code, Pentasign, vsign, or Sify. Note: Class 2 DSCs are no longer issued in India, so any currently valid DSC is already Class 3.</p>
 
 <h3>Can I sign multiple tender documents at once?</h3>
 <p>Yes. PDFSign supports Batch mode — select all your tender documents and sign them in one operation with the same certificate.</p>

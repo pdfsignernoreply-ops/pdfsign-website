@@ -48,7 +48,7 @@
   "@context":"https://schema.org",
   "@type":"FAQPage",
   "mainEntity":[
-    {"@type":"Question","name":"Why does GeM reject my digital signature?","acceptedAnswer":{"@type":"Answer","text":"GeM requires Class 3 DSC. Using Class 2 or an image signature will be rejected. PDFSign applies a cryptographically valid signature accepted by GeM."}},
+    {"@type":"Question","name":"Why does GeM reject my digital signature?","acceptedAnswer":{"@type":"Answer","text":"The most common reasons are: an expired DSC, a signature applied as an image instead of a cryptographic digital signature, or the wrong certificate selected. GeM requires Class 3 DSC (Class 2 is no longer issued in India). PDFSign applies a cryptographically valid PAdES signature accepted by GeM."}},
     {"@type":"Question","name":"Can I sign multiple GeM documents at once?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use PDFSign Batch mode to sign multiple files in one session."}},
     {"@type":"Question","name":"Which CAs issue valid DSCs for GeM?","acceptedAnswer":{"@type":"Answer","text":"eMudhra, Capricorn, NSDL, (n)Code, Pentasign, vsign, and Sify are all licensed CAs accepted on GeM."}}
   ]
@@ -128,7 +128,7 @@ tr:nth-child(even) td{background:#f8fafc}
 <ul>
   <li>Windows PC with PDFSign software installed (30-day free trial)</li>
   <li>USB DSC token — HYP2003 or ProxyKey (Watchdata)</li>
-  <li>Token driver installed: ePass2003 for HYP2003, ProxyKey middleware for Watchdata tokens</li>
+  <li>Token driver installed — use the driver for your specific token brand (HYP2003, ProxyKey, Gemalto, mToken, etc.)</li>
   <li>Class 3 DSC issued by a licensed CA: eMudhra, Capricorn, NSDL, (n)Code, Pentasign, vsign, or Sify</li>
 </ul>
 
@@ -137,11 +137,11 @@ tr:nth-child(even) td{background:#f8fafc}
   <tr><th>Certificate Type</th><th>Use Case</th></tr>
   <tr><td>Class 3 Individual DSC</td><td>Individual sellers, freelancers</td></tr>
   <tr><td>Class 3 Organisation DSC</td><td>Company/firm registration and bids</td></tr>
-  <tr><td>DGFT DSC</td><td>Import/export related transactions</td></tr>
+
 </table>
 
 <h2>Step-by-Step: Sign GeM Documents</h2>
-<div class="step"><div class="step-title"><span class="step-num">1</span>Install Your Token Driver</div><p>Mandatory before anything else. For HYP2003 tokens, install the ePass2003 driver. For ProxyKey (Watchdata) tokens, install the ProxyKey middleware. Restart if prompted.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">1</span>Install Your Token Driver</div><p>Mandatory before anything else. Install the driver/middleware for whichever token you have — HYP2003 (HyperPKI), ProxyKey (Watchdata), Gemalto, mToken, etc. Download it from your token vendor's website or from your CA's support page. Restart your PC if prompted.</p></div>
 <div class="step"><div class="step-title"><span class="step-num">2</span>Plug In Your DSC Token</div><p>Insert your USB token and wait for Windows to detect it.</p></div>
 <div class="step"><div class="step-title"><span class="step-num">3</span>Open PDFSign Software</div><p>Launch PDFSign from your desktop or Start menu.</p></div>
 <div class="step"><div class="step-title"><span class="step-num">4</span>Select Your Certificate</div><p>PDFSign automatically detects your token and shows your certificate in the dropdown. If you have multiple certificates, click <strong>Refresh</strong> and select your Class 3 certificate. Verify the name matches your GeM-registered identity.</p></div>
@@ -156,7 +156,7 @@ tr:nth-child(even) td{background:#f8fafc}
 <h2>Frequently Asked Questions</h2>
 
 <h3>Why does GeM not accept my signature?</h3>
-<p>The most common reasons are: using a Class 2 certificate (GeM requires Class 3), an expired DSC, or a signature applied as an image rather than a cryptographic digital signature. PDFSign applies a cryptographically valid signature that GeM's verification system accepts.</p>
+<p>The most common reasons are: using an expired DSC, a signature applied as an image rather than a cryptographic digital signature, or the wrong certificate selected during signing. GeM requires Class 3 DSC — PDFSign applies a cryptographically valid PAdES signature that GeM's verification system accepts. Note: Class 2 DSCs are no longer issued in India, so if your token has a valid certificate it is already Class 3.</p>
 
 <h3>Can I sign multiple GeM documents at once?</h3>
 <p>Yes. Use PDFSign's Batch mode to select and sign multiple documents in one session with the same certificate and settings.</p>

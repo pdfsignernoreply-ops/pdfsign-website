@@ -50,7 +50,7 @@
   "mainEntity":[
     {"@type":"Question","name":"Can I get an Indian DSC without visiting India?","acceptedAnswer":{"@type":"Answer","text":"Yes. Several Indian Certifying Authorities (eMudhra, Capricorn, (n)Code) offer remote video KYC for NRI applicants. Your passport serves as identity proof. The DSC token can be shipped internationally or collected during your next India visit."}},
     {"@type":"Question","name":"Is an NRI DSC valid for legal documents in India?","acceptedAnswer":{"@type":"Answer","text":"Yes. A Class 3 Individual DSC issued by a licensed Indian Certifying Authority is legally valid for signing documents under the IT Act 2000, regardless of where you reside. The signature has the same legal standing as a handwritten signature."}},
-    {"@type":"Question","name":"What if my DSC token stops working abroad?","acceptedAnswer":{"@type":"Answer","text":"First, re-install the token driver on your Windows PC. If the token hardware is damaged, you will need to apply for a new DSC. Contact the issuing CA or write to help@pdfsign.in for guidance on next steps."}},
+    {"@type":"Question","name":"What if my DSC token stops working abroad?","acceptedAnswer":{"@type":"Answer","text":"First, re-install the token driver on your Windows PC — driver corruption is a common cause. If the token hardware is damaged or the certificate has expired, apply for a new DSC with your issuing CA. Write to help@pdfsign.in for guidance on next steps."}},
     {"@type":"Question","name":"Does PDFSign work on a Windows PC outside India?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign is a 100% offline Windows application and works on any Windows 10 or 11 (64-bit) PC anywhere in the world. It does not require an internet connection to sign documents."}},
     {"@type":"Question","name":"Do I need to notarise documents that I sign with a DSC?","acceptedAnswer":{"@type":"Answer","text":"In many cases, no. Under the IT Act 2000, a digital signature is legally equivalent to a handwritten signature and is admissible as evidence in Indian courts. However, some specific transactions (e.g., property registration in certain states) may still require physical presence or notarisation. Consult your legal advisor for document-specific requirements."}}
   ]
@@ -177,7 +177,7 @@ tr:nth-child(even) td{background:#f8fafc}
 <p>Complete the video KYC session online with the Certifying Authority's representative. You will need to show your passport and answer identity verification questions during the video call.</p>
 
 <h3>Step 4: Token Delivery</h3>
-<p>Request international shipping of the USB DSC token, or arrange to have it collected by a trusted contact in India during their next visit. The token is a physical USB device (typically an HYP2003, ePass2003, or Proxkey device) that stores your private key securely.</p>
+<p>Request international shipping of the USB DSC token, or arrange to have it collected by a trusted contact in India during their next visit. The token is a physical USB device (typically an HYP2003 or Proxkey device) that stores your private key securely.</p>
 
 <div class="tip"><strong>Tip:</strong> If you plan to visit India within the next few months, you can complete the application online and collect the token in person. This avoids international courier costs and is often faster.</div>
 
@@ -202,7 +202,7 @@ tr:nth-child(even) td{background:#f8fafc}
 
 <h2>Step-by-Step: Signing an Indian Document from Abroad</h2>
 
-<div class="step"><div class="step-title"><span class="step-num">1</span>Install the Token Driver on Your Windows PC</div><p>Download and install the correct driver for your token brand. HYP2003 tokens use the ePass2003 driver. Proxkey and WD-series tokens use the Watchdata ProxKey middleware. This step is required once per PC.</p></div>
+<div class="step"><div class="step-title"><span class="step-num">1</span>Install the Token Driver on Your Windows PC</div><p>Download and install the correct driver for your token brand. <strong>HYP2003</strong> tokens use the <a href="https://www.hypersecu.com/_files/archives/5aae8d_02fba2ca3532483c91e6cd958874b1e4.zip?dn=HyperPKI-HYP2003-Middleware-Windows-v1.1.25.731.zip">HyperPKI middleware</a>. <strong>Proxkey / WD-series</strong> tokens use the <a href="https://support.cryptoplanet.in/DownloadFiles/WD_PROXKey_new.zip">ProxKey middleware</a>. This step is required once per PC.</p></div>
 
 <div class="step"><div class="step-title"><span class="step-num">2</span>Install PDFSign</div><p>Download PDFSign from pdfsign.in and install it on your Windows PC. The 30-day free trial requires no credit card.</p></div>
 
@@ -252,7 +252,7 @@ tr:nth-child(even) td{background:#f8fafc}
 <p>Yes. A Class 3 DSC issued by an Indian Certifying Authority is valid for all legal purposes in India, regardless of whether the holder is a resident or NRI. The certificate contains your name as it appears in your passport and is recognised by all Indian government portals.</p>
 
 <h3>What if my token stops working abroad?</h3>
-<p>First, re-install the token driver on your Windows PC — driver corruption is a common cause of token detection failures. If the physical token is damaged or the certificate has expired, contact the issuing Certifying Authority to apply for a new DSC. You can reach our support team at <a href="https://wa.me/917057413999">WhatsApp +91 70574 13999</a> or <a href="mailto:help@pdfsign.in">help@pdfsign.in</a> for guidance.</p>
+<p>First, re-install the token driver on your Windows PC — driver corruption is a common cause of token detection failures. If the physical token is damaged or the certificate has expired, contact the issuing Certifying Authority to apply for a new DSC. You can also write to <a href="mailto:help@pdfsign.in">help@pdfsign.in</a> for guidance on next steps.</p>
 
 <h3>Does PDFSign need an internet connection to sign documents?</h3>
 <p>No. PDFSign is a fully offline application. Once installed on your Windows PC, it signs documents without any internet connection. Only the RFC 3161 timestamp (embedded in the signature) requires a brief internet connection at the moment of signing — this is optional and can be configured.</p>
