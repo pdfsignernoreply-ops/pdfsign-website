@@ -7,17 +7,11 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
-
-/* ── LOGIN ── */
-#login-page{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
-.login-box{background:#1e293b;border:1px solid #334155;border-radius:16px;padding:40px;width:360px;max-width:100%}
+#login-page{display:flex;align-items:center;justify-content:center;min-height:100vh}
+.login-box{background:#1e293b;border:1px solid #334155;border-radius:16px;padding:40px;width:380px}
 .login-logo{text-align:center;margin-bottom:28px}
 .brand-lg{font-size:24px;font-weight:800;color:#fff}.brand-lg span{color:#16a34a}
 .login-sub{font-size:12px;color:#64748b;margin-top:4px}
-.login-back{text-align:center;margin-top:18px;font-size:12px;color:#64748b}
-.login-back a{color:#4ade80;text-decoration:none}.login-back a:hover{text-decoration:underline}
-
-/* ── FORM ── */
 .fg{margin-bottom:16px}
 .fg label{display:block;font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
 .fg input,.fg select{width:100%;background:#0f172a;border:1px solid #334155;color:#e2e8f0;padding:10px 14px;border-radius:8px;font-size:13px;outline:none;font-family:inherit}
@@ -25,381 +19,327 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f172a;color:#e2e8f
 .btn-p{width:100%;background:#16a34a;color:#fff;border:none;padding:12px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px}
 .btn-p:hover{background:#15803d}.btn-p:disabled{opacity:.5;cursor:not-allowed}
 .login-err{color:#f87171;font-size:13px;margin-top:10px;text-align:center;display:none}
-
-/* ── APP SHELL ── */
 #app{display:none;min-height:100vh;flex-direction:column}
-header{background:#1b2a47;border-bottom:1px solid #334155;padding:13px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+header{background:#1b2a47;border-bottom:1px solid #334155;padding:13px 24px;display:flex;align-items:center;gap:12px}
 .brand{font-size:17px;font-weight:800;color:#fff}.brand span{color:#16a34a}
-.badge{background:#16a34a;color:#fff;font-size:10px;font-weight:700;padding:2px 9px;border-radius:100px}
-.hdr-right{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:12px;color:#94a3b8;flex-wrap:wrap}
+.badge{background:#7c3aed;color:#fff;font-size:10px;font-weight:700;padding:2px 9px;border-radius:100px}
+.hdr-right{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:12px;color:#94a3b8}
 .btn-logout{background:none;border:1px solid #334155;color:#94a3b8;padding:4px 12px;border-radius:6px;font-size:11px;cursor:pointer}
 .btn-logout:hover{border-color:#ef4444;color:#ef4444}
-
-/* ── TABS ── */
-.tabs{background:#1e293b;border-bottom:1px solid #334155;display:flex}
-.tab{padding:11px 22px;font-size:13px;font-weight:600;color:#64748b;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
-.tab:hover{color:#e2e8f0}.tab.active{color:#16a34a;border-bottom-color:#16a34a}
-
-/* ── MAIN ── */
-main{padding:22px;flex:1}
-.section-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px}
-h2{font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.08em}
-
-/* ── STATS ── */
-.stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
-.stat{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:14px 18px;flex:1;min-width:140px}
-.sv{font-size:26px;font-weight:800;color:#fff;line-height:1}
-.sl{font-size:10px;color:#64748b;margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
-
-/* ── TABLE ── */
-.tbl-wrap{overflow-x:auto}
+main{padding:24px;flex:1;max-width:900px;margin:0 auto;width:100%}
+.welcome{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px 24px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between}
+.welcome-text h3{font-size:16px;font-weight:700;color:#fff}
+.welcome-text p{font-size:13px;color:#64748b;margin-top:4px}
+.btn-g{background:#16a34a;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer}
+.btn-g:hover{background:#15803d}
+h2{font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+/* Pricing cards */
+.plan-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:28px}
+.plan-card{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:16px;text-align:center}
+.plan-name{font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.plan-price{font-size:24px;font-weight:800;color:#fff;line-height:1}
+.plan-retail{font-size:10px;color:#475569;margin-top:4px}
+.plan-order{margin-top:12px;width:100%;background:#16a34a;color:#fff;border:none;padding:7px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer}
+.plan-order:hover{background:#15803d}
+.no-price{font-size:11px;color:#475569;margin-top:8px}
+/* Orders table */
 table{width:100%;border-collapse:collapse;font-size:12px}
-th{background:#1e293b;color:#64748b;text-align:left;padding:8px 11px;font-size:10px;text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid #334155;font-weight:700;white-space:nowrap}
+th{background:#1e293b;color:#64748b;text-align:left;padding:8px 11px;font-size:10px;text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid #334155;font-weight:700}
 td{padding:9px 11px;border-bottom:1px solid #1e293b55;vertical-align:middle}
 tr:hover td{background:#1e293b33}
 .key{font-family:'Courier New',monospace;font-size:11px;font-weight:700;color:#93c5fd;letter-spacing:.04em}
-
-/* ── PLAN BADGES ── */
-.pb{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:100px;text-transform:uppercase;letter-spacing:.05em}
+.ts{color:#64748b;font-size:11px}
+.ok{color:#4ade80;font-weight:700}.no{color:#ef4444;font-weight:700}
+.pb{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:100px;text-transform:uppercase}
 .pb-monthly{background:#7c3aed22;color:#a78bfa;border:1px solid #7c3aed44}
 .pb-yearly{background:#0369a122;color:#38bdf8;border:1px solid #0369a144}
 .pb-lifetime{background:#16a34a22;color:#4ade80;border:1px solid #16a34a44}
 .pb-team-yearly{background:#ea580c22;color:#fb923c;border:1px solid #ea580c44}
 .pb-team-lifetime{background:#dc262622;color:#f87171;border:1px solid #dc262644}
-
-/* ── MISC ── */
-.ts{color:#64748b;font-size:11px}
-.empty{text-align:center;padding:48px;color:#475569}
-.tbl-load{text-align:center;padding:48px;color:#64748b}
-.notice{font-size:11px;color:#64748b;margin-top:14px;padding:10px 14px;background:#1e293b;border:1px solid #334155;border-radius:8px}
-.rev{color:#4ade80;font-weight:700}
-.margin-pill{font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;background:#16a34a22;color:#4ade80;border:1px solid #16a34a44}
-
-/* ── RESPONSIVE ── */
-@media(max-width:600px){
-  header{padding:10px 14px}
-  main{padding:14px}
-  .tab{padding:9px 14px;font-size:12px}
-  .stat{min-width:120px}
-  th,td{padding:7px 8px}
-}
+.empty{text-align:center;padding:40px;color:#475569}
+/* Modal */
+.mbg{display:none;position:fixed;inset:0;background:#00000099;z-index:100;align-items:center;justify-content:center}
+.mbg.open{display:flex}
+.mbox{background:#1e293b;border:1px solid #334155;border-radius:14px;padding:26px;width:440px;max-width:95vw}
+.mbox h3{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px}
+.mbox p{font-size:12px;color:#64748b;margin-bottom:18px}
+.mact{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+.btn-cancel{background:none;border:1px solid #334155;color:#94a3b8;padding:8px 16px;border-radius:7px;font-size:12px;cursor:pointer}
+.btn-cancel:hover{border-color:#ef4444;color:#ef4444}
+.mmsg{margin-top:10px;font-size:12px;text-align:center;display:none;padding:8px;border-radius:6px}
+.pay-success{background:#0f172a;border:1px solid #16a34a44;border-radius:10px;padding:16px;margin-top:14px;text-align:center;display:none}
+.pay-success p{color:#4ade80;font-size:13px;font-weight:600;margin-bottom:10px}
+.pay-link{display:inline-block;background:#16a34a;color:#fff;text-decoration:none;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:700}
 </style>
 </head>
 <body>
 
-<!-- ══ LOGIN PAGE ══════════════════════════════════════════════════════════ -->
+<!-- LOGIN -->
 <div id="login-page">
   <div class="login-box">
     <div class="login-logo">
       <div class="brand-lg">PDF<span>Sign</span>.in</div>
       <div class="login-sub">Reseller Portal</div>
     </div>
-    <div class="fg">
-      <label>Email</label>
-      <input type="email" id="le" placeholder="you@example.com" autocomplete="username"/>
-    </div>
-    <div class="fg">
-      <label>Password</label>
-      <input type="password" id="lp" placeholder="••••••••" autocomplete="current-password"/>
-    </div>
+    <div class="fg"><label>Email</label><input type="email" id="le" placeholder="you@example.com" autocomplete="username"/></div>
+    <div class="fg"><label>Password</label><input type="password" id="lp" placeholder="••••••••" autocomplete="current-password"/></div>
     <button class="btn-p" id="lbtn" onclick="doLogin()">Sign In</button>
     <div class="login-err" id="lerr"></div>
-    <div class="login-back">
-      <a href="https://pdfsign.in">← Back to PDFSign.in</a>
-    </div>
   </div>
 </div>
 
-<!-- ══ APP ════════════════════════════════════════════════════════════════ -->
+<!-- APP -->
 <div id="app">
   <header>
     <div class="brand">PDF<span>Sign</span>.in</div>
-    <div class="badge">Reseller Portal</div>
+    <div class="badge">Reseller</div>
     <div class="hdr-right">
-      <span id="hname" style="font-weight:600;color:#e2e8f0">—</span>
+      <span id="hname">—</span>
+      <span id="hcompany" style="color:#64748b"></span>
       <button class="btn-logout" onclick="logout()">Sign out</button>
     </div>
   </header>
 
-  <div class="tabs">
-    <div class="tab active" onclick="showTab('orders',this)">Orders</div>
-    <div class="tab" onclick="showTab('pricing',this)">My Pricing</div>
-  </div>
-
   <main>
-
-    <!-- ── ORDERS TAB ────────────────────────────────────────────────── -->
-    <div id="porders">
-      <div class="section-hdr">
-        <h2>Order History</h2>
-        <button style="background:none;border:1px solid #334155;color:#94a3b8;padding:6px 12px;border-radius:7px;font-size:12px;cursor:pointer" onclick="loadOrders()">&#8635; Refresh</button>
+    <!-- Welcome -->
+    <div class="welcome">
+      <div class="welcome-text">
+        <h3>Welcome, <span id="wname">—</span></h3>
+        <p>Issue a license to your customer — payment goes to you, license is delivered to them.</p>
       </div>
-
-      <div class="stats">
-        <div class="stat">
-          <div class="sv" id="stat-total">—</div>
-          <div class="sl">Total Orders</div>
-        </div>
-        <div class="stat">
-          <div class="sv rev" id="stat-rev">—</div>
-          <div class="sl">Total Revenue (₹)</div>
-        </div>
-      </div>
-
-      <div class="tbl-load" id="orders-load">Loading orders…</div>
-      <div class="tbl-wrap" id="orders-wrap" style="display:none">
-        <table>
-          <thead>
-            <tr>
-              <th>Customer Name</th>
-              <th>Customer Email</th>
-              <th>Plan</th>
-              <th>Amount (₹)</th>
-              <th>License Key</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody id="orders-body"></tbody>
-        </table>
-        <div class="empty" id="orders-empty" style="display:none">No orders yet. Share your PDFSign.in link to start earning!</div>
-      </div>
+      <button class="btn-g" onclick="openOrder(null)">+ New Order</button>
     </div>
 
-    <!-- ── PRICING TAB ───────────────────────────────────────────────── -->
-    <div id="ppricing" style="display:none">
-      <div class="section-hdr">
-        <h2>My Pricing</h2>
-        <button style="background:none;border:1px solid #334155;color:#94a3b8;padding:6px 12px;border-radius:7px;font-size:12px;cursor:pointer" onclick="loadPricing()">&#8635; Refresh</button>
-      </div>
-
-      <div class="tbl-load" id="pricing-load">Loading pricing…</div>
-      <div class="tbl-wrap" id="pricing-wrap" style="display:none">
-        <table>
-          <thead>
-            <tr>
-              <th>Plan</th>
-              <th>Your Price (₹)</th>
-              <th>Retail Price (₹)</th>
-              <th>Your Margin</th>
-            </tr>
-          </thead>
-          <tbody id="pricing-body"></tbody>
-        </table>
-      </div>
-      <div class="notice" id="pricing-notice" style="display:none">
-        Contact your PDFSign.in manager to update your pricing.
-      </div>
+    <!-- Your Pricing -->
+    <h2>Your Wholesale Prices</h2>
+    <div class="plan-grid" id="plan-grid">
+      <div class="empty" style="grid-column:1/-1">Loading prices…</div>
     </div>
 
+    <!-- Recent Orders -->
+    <h2>Recent Orders</h2>
+    <div id="orders-wrap">
+      <div class="empty">Loading…</div>
+    </div>
   </main>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="mbg" id="mOrder">
+  <div class="mbox">
+    <h3>Create Order</h3>
+    <p>Customer pays you → you pay PDFSign.in → license sent to customer automatically.</p>
+    <div class="fg"><label>Customer Name *</label><input type="text" id="ocname" placeholder="Rajesh Sharma"/></div>
+    <div class="fg"><label>Customer Email * <span style="color:#475569;font-size:10px">(license key sent here)</span></label>
+      <input type="email" id="ocemail" placeholder="rajesh@example.com"/></div>
+    <div class="fg"><label>Plan *</label>
+      <select id="oplan" onchange="updateOrderPrice()">
+        <option value="">Select plan…</option>
+        <option value="monthly">1 Month</option>
+        <option value="yearly">1 Year</option>
+        <option value="lifetime">Lifetime</option>
+        <option value="team-yearly">Team — 1 Year (5 seats)</option>
+        <option value="team-lifetime">Team — Lifetime (5 seats)</option>
+      </select>
+    </div>
+    <div id="price-preview" style="display:none;background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px;margin-bottom:4px;font-size:13px">
+      You pay: <strong id="pprice" style="color:#4ade80">—</strong> &nbsp;·&nbsp;
+      License will be emailed to <strong id="pcemail" style="color:#93c5fd">customer</strong>
+    </div>
+    <div class="mmsg" id="omsg"></div>
+    <div class="pay-success" id="pay-success">
+      <p>✓ Payment link created! Open it to pay:</p>
+      <a id="pay-url" href="#" target="_blank" class="pay-link">Open Payment Page →</a>
+      <p style="font-size:11px;color:#64748b;margin-top:10px">After payment, license will be emailed to your customer automatically.</p>
+    </div>
+    <div class="mact">
+      <button class="btn-cancel" onclick="closeOrder()">Close</button>
+      <button class="btn-g" id="obtn" onclick="doCreateOrder()">Generate Payment Link</button>
+    </div>
+  </div>
 </div>
 
 <script>
 var API = 'https://pdfsigner-api.vercel.app/api/reseller';
-var SESSION = null;
+var PLAN_RETAIL = { monthly:99, yearly:999, lifetime:4999, 'team-yearly':3499, 'team-lifetime':13999 };
+var PLAN_LABEL  = { monthly:'1 Month', yearly:'1 Year', lifetime:'Lifetime', 'team-yearly':'Team 1 Year', 'team-lifetime':'Team Lifetime' };
+var S = null, PRICING = {};
 
-// ── RETAIL REFERENCE PRICES ───────────────────────────────────────────────
-var RETAIL = {
-  monthly:       299,
-  yearly:        899,
-  lifetime:      1499,
-  'team-yearly': 3499,
-  'team-lifetime':5999
-};
-var PLAN_LABEL = {
-  monthly:       '1 Month',
-  yearly:        '1 Year',
-  lifetime:      'Lifetime',
-  'team-yearly': 'Team · 1 Year',
-  'team-lifetime':'Team · Lifetime'
-};
-
-// ── INIT ──────────────────────────────────────────────────────────────────
 window.onload = function() {
-  var tok  = sessionStorage.getItem('RS_TOKEN');
-  var name = sessionStorage.getItem('RS_NAME');
-  if (tok) {
-    SESSION = { token: tok, name: name };
-    showApp();
-  } else {
-    showLogin();
-  }
-  document.getElementById('lp').onkeydown = function(e){ if (e.key === 'Enter') doLogin(); };
+  var saved = sessionStorage.getItem('pdfsign_res');
+  if (saved) { try { S = JSON.parse(saved); showApp(); } catch(e) { showLogin(); } }
+  else showLogin();
+  document.getElementById('lp').onkeydown = function(e){ if(e.key==='Enter') doLogin(); };
 };
 
 function showLogin() {
   document.getElementById('login-page').style.display = 'flex';
   document.getElementById('app').style.display = 'none';
 }
-
 function showApp() {
   document.getElementById('login-page').style.display = 'none';
   document.getElementById('app').style.display = 'flex';
-  document.getElementById('hname').textContent = SESSION.name || 'Reseller';
+  document.getElementById('hname').textContent = S.name;
+  document.getElementById('hcompany').textContent = S.company ? '— ' + S.company : '';
+  document.getElementById('wname').textContent = S.name;
+  loadPricing();
   loadOrders();
 }
 
-// ── LOGIN ─────────────────────────────────────────────────────────────────
 async function doLogin() {
   var email = document.getElementById('le').value.trim();
   var pass  = document.getElementById('lp').value;
   var btn   = document.getElementById('lbtn');
   var err   = document.getElementById('lerr');
-  if (!email || !pass) { showErr(err, 'Enter email and password'); return; }
+  if (!email || !pass) { showErrEl(err, 'Enter email and password'); return; }
   btn.disabled = true; btn.textContent = 'Signing in…'; err.style.display = 'none';
   try {
-    var r = await fetch(API + '/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, password: pass })
-    });
+    var r = await fetch(API + '/login', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email, password:pass}) });
     var j = await r.json();
-    if (!r.ok) { showErr(err, j.error || 'Login failed'); return; }
-    SESSION = { token: j.token, name: j.name, resellerId: j.resellerId };
-    sessionStorage.setItem('RS_TOKEN', j.token);
-    sessionStorage.setItem('RS_NAME',  j.name || '');
+    if (!r.ok) { showErrEl(err, j.error || 'Login failed'); return; }
+    S = { token:j.token, name:j.name, email:j.email, company:j.company };
+    sessionStorage.setItem('pdfsign_res', JSON.stringify(S));
     showApp();
-  } catch(e) {
-    showErr(err, 'Network error: ' + e.message);
-  } finally {
-    btn.disabled = false; btn.textContent = 'Sign In';
-  }
+  } catch(e) { showErrEl(err, 'Network error: ' + e.message);
+  } finally { btn.disabled = false; btn.textContent = 'Sign In'; }
 }
 
 function logout() {
-  sessionStorage.removeItem('RS_TOKEN');
-  sessionStorage.removeItem('RS_NAME');
-  SESSION = null;
-  document.getElementById('le').value = '';
-  document.getElementById('lp').value = '';
+  sessionStorage.removeItem('pdfsign_res'); S = null; PRICING = {};
+  document.getElementById('le').value = ''; document.getElementById('lp').value = '';
   showLogin();
 }
 
-// ── TABS ──────────────────────────────────────────────────────────────────
-function showTab(t, el) {
-  document.querySelectorAll('.tab').forEach(function(x){ x.classList.remove('active'); });
-  el.classList.add('active');
-  document.getElementById('porders').style.display  = t === 'orders'  ? 'block' : 'none';
-  document.getElementById('ppricing').style.display = t === 'pricing' ? 'block' : 'none';
-  if (t === 'orders')  loadOrders();
-  if (t === 'pricing') loadPricing();
-}
-
-// ── ORDERS ────────────────────────────────────────────────────────────────
-async function loadOrders() {
-  document.getElementById('orders-load').style.display = 'block';
-  document.getElementById('orders-wrap').style.display = 'none';
-  try {
-    var r = await apicall(API + '/orders', 'GET');
-    if (r.status === 401) { logout(); return; }
-    var j = await r.json();
-    var orders = j.orders || [];
-
-    // Stats
-    var totalRev = orders.reduce(function(sum, o) { return sum + (o.amount_rupees || 0); }, 0);
-    document.getElementById('stat-total').textContent = orders.length;
-    document.getElementById('stat-rev').textContent   = '₹' + totalRev.toLocaleString('en-IN');
-
-    // Table
-    document.getElementById('orders-load').style.display = 'none';
-    document.getElementById('orders-wrap').style.display = 'block';
-
-    if (!orders.length) {
-      document.getElementById('orders-empty').style.display = 'block';
-      document.getElementById('orders-body').innerHTML = '';
-      return;
-    }
-    document.getElementById('orders-empty').style.display = 'none';
-    document.getElementById('orders-body').innerHTML = orders.map(function(o) {
-      var plan = o.plan || '';
-      return '<tr>'
-        + '<td style="font-weight:600">' + esc(o.customer_name || '—') + '</td>'
-        + '<td class="ts">' + esc(o.customer_email || '—') + '</td>'
-        + '<td><span class="pb pb-' + esc(plan.replace(/[^a-z-]/g,'')) + '">' + esc(plan) + '</span></td>'
-        + '<td class="rev">₹' + (o.amount_rupees || 0).toLocaleString('en-IN') + '</td>'
-        + '<td><span class="key">' + esc(o.license_key || '—') + '</span></td>'
-        + '<td class="ts">' + fmtDate(o.created_at) + '</td>'
-        + '</tr>';
-    }).join('');
-  } catch(e) {
-    document.getElementById('orders-load').textContent = 'Error loading orders: ' + e.message;
-  }
-}
-
-// ── PRICING ───────────────────────────────────────────────────────────────
 async function loadPricing() {
-  document.getElementById('pricing-load').style.display  = 'block';
-  document.getElementById('pricing-wrap').style.display  = 'none';
-  document.getElementById('pricing-notice').style.display = 'none';
+  document.getElementById('plan-grid').innerHTML = '<div class="empty" style="grid-column:1/-1">Loading…</div>';
   try {
-    var r = await apicall(API + '/pricing', 'GET');
-    if (r.status === 401) { logout(); return; }
+    var r = await rcall(API + '/pricing');
     var j = await r.json();
-    var pricing = j.pricing || [];
-
-    document.getElementById('pricing-load').style.display = 'none';
-    document.getElementById('pricing-wrap').style.display = 'block';
-    document.getElementById('pricing-notice').style.display = 'block';
-
-    if (!pricing.length) {
-      document.getElementById('pricing-body').innerHTML =
-        '<tr><td colspan="4" class="empty">No pricing configured. Contact your PDFSign.in manager.</td></tr>';
-      return;
-    }
-
-    document.getElementById('pricing-body').innerHTML = pricing.map(function(p) {
-      var plan   = p.plan || '';
-      var myP    = p.price_rupees || 0;
-      var retail = RETAIL[plan] || 0;
-      var label  = PLAN_LABEL[plan] || plan;
-      var margin = retail > 0 ? Math.round((retail - myP) / retail * 100) : 0;
-      return '<tr>'
-        + '<td><span class="pb pb-' + esc(plan.replace(/[^a-z-]/g,'')) + '">' + esc(plan) + '</span>'
-        + '<span style="font-size:11px;color:#94a3b8;margin-left:7px">' + esc(label) + '</span></td>'
-        + '<td style="font-weight:700;color:#fff">₹' + myP.toLocaleString('en-IN') + '</td>'
-        + '<td class="ts">₹' + (retail ? retail.toLocaleString('en-IN') : '—') + '</td>'
-        + '<td>' + (margin > 0
-            ? '<span class="margin-pill">' + margin + '% margin</span>'
-            : '<span style="font-size:11px;color:#64748b">—</span>')
-        + '</td>'
-        + '</tr>';
-    }).join('');
+    PRICING = {};
+    (j.pricing || []).forEach(function(p) { PRICING[p.plan] = p.price_rupees; });
+    renderPricing();
   } catch(e) {
-    document.getElementById('pricing-load').textContent = 'Error loading pricing: ' + e.message;
+    document.getElementById('plan-grid').innerHTML = '<div class="empty" style="grid-column:1/-1">Error loading prices</div>';
   }
 }
 
-// ── HELPERS ───────────────────────────────────────────────────────────────
-function apicall(url, method) {
-  return fetch(url, {
-    method: method || 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + SESSION.token
+function renderPricing() {
+  var plans = ['monthly','yearly','lifetime','team-yearly','team-lifetime'];
+  document.getElementById('plan-grid').innerHTML = plans.map(function(plan) {
+    var price = PRICING[plan];
+    return '<div class="plan-card">'
+      + '<div class="plan-name">' + PLAN_LABEL[plan] + '</div>'
+      + (price
+        ? '<div class="plan-price">₹' + price + '</div>'
+          + '<div class="plan-retail">Retail ₹' + PLAN_RETAIL[plan] + '</div>'
+          + '<button class="plan-order" onclick="openOrder(\'' + plan + '\')">Create Order</button>'
+        : '<div class="plan-price" style="font-size:14px;color:#475569">—</div>'
+          + '<div class="no-price">Not configured</div>')
+      + '</div>';
+  }).join('');
+}
+
+async function loadOrders() {
+  document.getElementById('orders-wrap').innerHTML = '<div class="empty">Loading…</div>';
+  try {
+    var r = await rcall(API + '/orders');
+    var j = await r.json();
+    renderOrders(j.orders || []);
+  } catch(e) {
+    document.getElementById('orders-wrap').innerHTML = '<div class="empty">Error loading orders</div>';
+  }
+}
+
+function renderOrders(orders) {
+  if (!orders.length) {
+    document.getElementById('orders-wrap').innerHTML = '<div class="empty">No orders yet. Create your first order above.</div>';
+    return;
+  }
+  document.getElementById('orders-wrap').innerHTML =
+    '<div style="overflow-x:auto"><table>'
+    + '<thead><tr><th>Date</th><th>Customer</th><th>Plan</th><th>License Key</th><th>Expiry</th><th>Status</th></tr></thead>'
+    + '<tbody>' + orders.map(function(o) {
+      return '<tr>'
+        + '<td class="ts">' + new Date(o.created_at).toLocaleDateString('en-IN') + '</td>'
+        + '<td class="ts">' + esc(o.customer_name || '') + '<br><span style="color:#475569">' + esc(o.customer_email || '') + '</span></td>'
+        + '<td><span class="pb pb-' + (o.plan||'').replace(/[^a-z-]/g,'') + '">' + esc(o.plan) + '</span></td>'
+        + '<td><span class="key">' + esc(o.license_key) + '</span></td>'
+        + '<td class="ts">' + (o.end_date ? new Date(o.end_date).toLocaleDateString('en-IN') : 'Never') + '</td>'
+        + '<td class="' + (o.is_active ? 'ok' : 'no') + '">' + (o.is_active ? 'Active' : 'Inactive') + '</td>'
+        + '</tr>';
+    }).join('') + '</tbody></table></div>';
+}
+
+function openOrder(plan) {
+  document.getElementById('ocname').value = '';
+  document.getElementById('ocemail').value = '';
+  document.getElementById('oplan').value = plan || '';
+  document.getElementById('omsg').style.display = 'none';
+  document.getElementById('pay-success').style.display = 'none';
+  document.getElementById('obtn').style.display = 'inline-block';
+  updateOrderPrice();
+  document.getElementById('mOrder').classList.add('open');
+}
+function closeOrder() {
+  document.getElementById('mOrder').classList.remove('open');
+  loadOrders();
+}
+
+function updateOrderPrice() {
+  var plan  = document.getElementById('oplan').value;
+  var prev  = document.getElementById('price-preview');
+  var email = document.getElementById('ocemail').value.trim();
+  if (plan && PRICING[plan]) {
+    document.getElementById('pprice').textContent = '₹' + PRICING[plan];
+    document.getElementById('pcemail').textContent = email || 'customer';
+    prev.style.display = 'block';
+  } else {
+    prev.style.display = 'none';
+  }
+}
+
+document.addEventListener('input', function(e) {
+  if (e.target.id === 'ocemail') updateOrderPrice();
+});
+
+async function doCreateOrder() {
+  var cname  = document.getElementById('ocname').value.trim();
+  var cemail = document.getElementById('ocemail').value.trim();
+  var plan   = document.getElementById('oplan').value;
+  var msg    = document.getElementById('omsg');
+  var btn    = document.getElementById('obtn');
+
+  if (!cname || !cemail || !plan) { showMsg(msg, 'All fields are required.', '#f87171'); return; }
+  if (!PRICING[plan]) { showMsg(msg, 'No price set for this plan. Contact admin.', '#f87171'); return; }
+
+  btn.disabled = true; btn.textContent = 'Creating…'; showMsg(msg, 'Generating payment link…', '#94a3b8');
+  try {
+    var r = await rcall(API + '/create-order', 'POST', { customerName:cname, customerEmail:cemail, plan });
+    var j = await r.json();
+    if (j.paymentUrl) {
+      msg.style.display = 'none';
+      document.getElementById('pay-url').href = j.paymentUrl;
+      document.getElementById('pay-success').style.display = 'block';
+      btn.style.display = 'none';
+      window.open(j.paymentUrl, '_blank');
+    } else {
+      showMsg(msg, '✗ ' + (j.error || 'Failed'), '#f87171');
+      btn.disabled = false; btn.textContent = 'Generate Payment Link';
     }
-  });
+  } catch(e) {
+    showMsg(msg, '✗ Network error', '#f87171');
+    btn.disabled = false; btn.textContent = 'Generate Payment Link';
+  }
 }
 
-function esc(s) {
-  if (!s) return '';
-  return String(s)
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;');
+function rcall(url, method, body) {
+  var opts = { method: method||'GET', headers: {'Content-Type':'application/json','Authorization':'Bearer '+S.token} };
+  if (body) opts.body = JSON.stringify(body);
+  return fetch(url, opts);
 }
-
-function fmtDate(iso) {
-  if (!iso) return '<span style="color:#475569">—</span>';
-  return new Date(iso).toLocaleDateString('en-IN', {
-    day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata'
-  });
-}
-
-function showErr(el, msg) {
-  el.textContent = msg;
-  el.style.display = 'block';
-}
+function esc(s){ if(!s)return''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function showErrEl(el,m){ el.textContent=m; el.style.display='block'; }
+function showMsg(el,m,c){ el.textContent=m; el.style.color=c; el.style.display='block'; }
 </script>
 </body>
 </html>
