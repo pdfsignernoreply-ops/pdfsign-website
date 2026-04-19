@@ -163,6 +163,7 @@ tr:hover td{background:#1e293b33}
         <div class="stat"><div class="sv" id="d-conv">—</div><div class="sl">Conversions</div></div>
         <div class="stat"><div class="sv" id="d-rev" style="color:#4ade80;">—</div><div class="sl">Revenue (₹)</div></div>
         <div class="stat"><div class="sv" id="d-rate" style="color:#38bdf8;">—</div><div class="sl">Conv. Rate</div></div>
+        <div class="stat"><div class="sv" id="d-downloads" style="color:#a78bfa;">—</div><div class="sl">MSI Downloads</div></div>
       </div>
       <div id="dash-report-msg" class="mmsg" style="display:none;"></div>
       <!-- Recent activity: two columns -->
@@ -413,6 +414,7 @@ function showApp() {
   }
   updateExpiry();
   loadDashboard();
+  loadDownloads();
 }
 
 async function doLogin() {
@@ -446,7 +448,7 @@ function showTab(t, el) {
   document.getElementById('pusr').style.display  = t==='usr'  ? 'block' : 'none';
   document.getElementById('pres').style.display  = t==='res'  ? 'block' : 'none';
   document.getElementById('pcou').style.display  = t==='cou'  ? 'block' : 'none';
-  if (t==='dash') loadDashboard();
+  if (t==='dash') { loadDashboard(); loadDownloads(); }
   if (t==='lic')  loadLicenses();
   if (t==='usr')  loadUsers();
   if (t==='res')  loadResellers();
@@ -495,6 +497,13 @@ function renderDashPeriod() {
   document.getElementById('d-conv').textContent     = DASH.conversions[p] ?? '—';
   document.getElementById('d-rev').textContent      = '₹'+(DASH.revenue[p]||0).toLocaleString('en-IN');
   document.getElementById('d-rate').textContent     = (p==='today' ? '—' : (DASH.conversionRate[p] || '—'));
+}
+async function loadDownloads() {
+  try {
+    var r = await apicall(API + '/downloads-stats', 'GET');
+    var j = await r.json();
+    document.getElementById('d-downloads').textContent = j.total ?? '—';
+  } catch(e) { /* silent — never break the dashboard */ }
 }
 async function sendDailyReport() {
   var btn = document.getElementById('daily-report-btn');
