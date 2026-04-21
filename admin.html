@@ -414,7 +414,6 @@ function showApp() {
   }
   updateExpiry();
   loadDashboard();
-  loadDownloads();
 }
 
 async function doLogin() {
@@ -448,7 +447,7 @@ function showTab(t, el) {
   document.getElementById('pusr').style.display  = t==='usr'  ? 'block' : 'none';
   document.getElementById('pres').style.display  = t==='res'  ? 'block' : 'none';
   document.getElementById('pcou').style.display  = t==='cou'  ? 'block' : 'none';
-  if (t==='dash') { loadDashboard(); loadDownloads(); }
+  if (t==='dash') { loadDashboard(); }
   if (t==='lic')  loadLicenses();
   if (t==='usr')  loadUsers();
   if (t==='res')  loadResellers();
@@ -495,17 +494,11 @@ async function loadDashboard() {
 function renderDashPeriod() {
   if (!DASH) return;
   var p = document.getElementById('dash-period').value;
-  document.getElementById('d-installs').textContent = DASH.installs[p]    ?? '—';
-  document.getElementById('d-conv').textContent     = DASH.conversions[p] ?? '—';
-  document.getElementById('d-rev').textContent      = '₹'+(DASH.revenue[p]||0).toLocaleString('en-IN');
-  document.getElementById('d-rate').textContent     = (p==='today' ? '—' : (DASH.conversionRate[p] || '—'));
-}
-async function loadDownloads() {
-  try {
-    var r = await apicall(API + '/downloads-stats', 'GET');
-    var j = await r.json();
-    document.getElementById('d-downloads').textContent = j.total ?? '—';
-  } catch(e) { /* silent — never break the dashboard */ }
+  document.getElementById('d-installs').textContent  = DASH.installs[p]    ?? '—';
+  document.getElementById('d-conv').textContent      = DASH.conversions[p] ?? '—';
+  document.getElementById('d-rev').textContent       = '₹'+(DASH.revenue[p]||0).toLocaleString('en-IN');
+  document.getElementById('d-rate').textContent      = (p==='today' ? '—' : (DASH.conversionRate[p] || '—'));
+  document.getElementById('d-downloads').textContent = DASH.downloads ? (DASH.downloads[p] ?? '—') : '—';
 }
 async function sendDailyReport() {
   var btn = document.getElementById('daily-report-btn');
