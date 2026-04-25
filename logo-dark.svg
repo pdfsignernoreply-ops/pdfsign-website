@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 72" width="240" height="72">
+  <!-- Dark background (navy) -->
+  <rect width="240" height="72" rx="12" fill="#1B2A47"/>
+
+  <!-- Logo Mark Box -->
+  <rect x="12" y="10" width="52" height="52" rx="10" fill="#243558" stroke="rgba(147,197,253,0.2)" stroke-width="1.2"/>
+
+  <!-- PDF text -->
+  <text x="38" y="31" font-family="Outfit, sans-serif" font-weight="600" font-size="11" letter-spacing="1.2" fill="#FFFFFF" text-anchor="middle">PDF</text>
+
+  <!-- Green divider line -->
+  <rect x="20" y="37" width="36" height="2" rx="1" fill="#16A34A"/>
+
+  <!-- SIGN text -->
+  <text x="38" y="53" font-family="Outfit, sans-serif" font-weight="600" font-size="11" letter-spacing="1.2" fill="#93C5FD" text-anchor="middle">SIGN</text>
+
+  <!-- Logo Name: PDF -->
+  <text x="76" y="46" font-family="DM Serif Display, serif" font-size="26" fill="#FFFFFF" letter-spacing="-0.3">PDF</text>
+
+  <!-- Logo Name: Sign (green) -->
+  <text x="124" y="46" font-family="DM Serif Display, serif" font-size="26" fill="#22C55E" letter-spacing="-0.3">Sign</text>
+
+  <!-- Logo Name: .in -->
+  <text x="169" y="46" font-family="DM Serif Display, serif" font-size="26" fill="#FFFFFF" letter-spacing="-0.3">.in</text>
+</svg>
