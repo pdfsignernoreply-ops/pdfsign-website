@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7E0J9Z32FK"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7E0J9Z32FK');</script>
+<title>How to Digitally Sign PDF Using DSC Token in Windows — Step-by-Step | PDFSign</title>
+<meta name="description" content="Step-by-step guide to signing PDFs using your DSC USB token on Windows. Works with all Class 2 and Class 3 DSC tokens from eMudhra, Sify, Capricorn, and more. Legally valid under IT Act 2000."/>
+<meta name="keywords" content="digitally sign PDF DSC token, sign PDF with USB token Windows, digital signature PDF India, DSC token PDF signing, Class 3 DSC sign PDF, how to sign PDF DSC India"/>
+<meta name="author" content="PDFSign"/>
+<meta name="geo.region" content="IN"/>
+<meta name="geo.country" content="India"/>
+<link rel="canonical" href="https://pdfsign.in/blog/digitally-sign-pdf-dsc-token-step-by-step.html"/>
+<meta property="og:title" content="How to Digitally Sign PDF Using DSC Token in Windows — Step-by-Step"/>
+<meta property="og:description" content="Complete guide to signing PDFs with your DSC USB token using PDFSign. Legally valid under IT Act 2000. Works with all Indian DSC providers."/>
+<meta property="og:url" content="https://pdfsign.in/blog/digitally-sign-pdf-dsc-token-step-by-step.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="PDFSign"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to Digitally Sign PDF Using DSC Token in Windows"/>
+<meta name="twitter:description" content="Sign PDFs with your DSC token in minutes. Works with eMudhra, Sify, Capricorn, ProxKey, and all Class 3 tokens. No Java. No browser plugin."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"Article",
+  "headline":"How to Digitally Sign PDF Using DSC Token in Windows — Step-by-Step",
+  "description":"A complete step-by-step guide to signing PDF documents with a DSC USB token using PDFSign on Windows. Covers certificate selection, reason and location fields, RFC 3161 timestamp, and signing.",
+  "author":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "publisher":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "datePublished":"2026-05-01","dateModified":"2026-05-01",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://pdfsign.in/blog/digitally-sign-pdf-dsc-token-step-by-step.html"},
+  "inLanguage":"en-IN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Which DSC tokens are supported by PDFSign?","acceptedAnswer":{"@type":"Answer","text":"PDFSign supports all standard PKCS#11-compatible DSC USB tokens commonly used in India, including eMudhra, Sify SafeScrypt, Capricorn CA, ProxKey, ePass 2003/3003, HYP 2003, and WD Series tokens. As long as your token's driver is installed and the certificate is visible in Windows, PDFSign will detect it automatically."}},
+    {"@type":"Question","name":"Is a PDF signed with a DSC token legally valid in India?","acceptedAnswer":{"@type":"Answer","text":"Yes. A digital signature applied using a Class 2 or Class 3 DSC issued by a licensed Certifying Authority is legally valid under the Information Technology Act 2000 (IT Act 2000) and the IT Amendment Act 2008. It is accepted on all Indian government portals including GeM, CPPP, MCA21, GST, and NIC eProcurement systems."}},
+    {"@type":"Question","name":"My certificate is not appearing in the dropdown — what should I do?","acceptedAnswer":{"@type":"Answer","text":"First, make sure your DSC USB token is plugged in and its driver is installed correctly. In PDFSign, click the '↻ Refresh' button next to the CERTIFICATE dropdown. If the certificate still does not appear, check that the token middleware is installed (e.g. ePass2003 Token Manager, ProxKey Middleware) and that the certificate is visible in Windows Certificate Manager (certmgr.msc). You may also need to restart PDFSign after plugging in the token."}},
+    {"@type":"Question","name":"What is RFC 3161 timestamp and why should I enable it?","acceptedAnswer":{"@type":"Answer","text":"RFC 3161 is an international standard for trusted timestamping. When enabled in PDFSign, a timestamp from a trusted authority (Sectigo/Comodo) is embedded in the signed PDF at the moment of signing. This timestamp proves the document was signed before a specific date and time, and keeps the digital signature legally valid even after your DSC certificate expires. It is enabled by default in PDFSign and is highly recommended."}},
+    {"@type":"Question","name":"Can I sign multiple PDFs at once using my DSC token?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign supports bulk (Folder mode) signing with DSC tokens. Switch to Folder mode under DOCUMENT, select your source and destination folders, configure your certificate, and click Sign PDF. PDFSign will sign every PDF in the source folder using your DSC token. Keep your token plugged in throughout the process."}}
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+a{color:#16A34A;text-decoration:none}a:hover{text-decoration:underline}
+nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none}
+.nav-links a{color:#93C5FD;margin-left:1.5rem;font-size:.9rem}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.blog-hero{background:linear-gradient(135deg,#1B2A47 0%,#243352 100%);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center}
+.blog-hero .category{background:#16A34A;color:#fff;font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;display:inline-block;margin-bottom:1rem}
+.blog-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);max-width:750px;margin:0 auto .75rem;line-height:1.25}
+.blog-hero .meta{color:#93C5FD;font-size:.85rem}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#1B2A47;margin:2.5rem 0 .75rem;border-left:4px solid #16A34A;padding-left:.75rem}
+.content h3{font-size:1.1rem;font-weight:600;color:#1B2A47;margin:1.75rem 0 .5rem}
+.content p{margin-bottom:1rem;color:#334155}
+.content ul,.content ol{margin:.5rem 0 1rem 1.5rem;color:#334155}
+.content li{margin-bottom:.4rem}
+.content strong{color:#1B2A47}
+.step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin:1rem 0}
+.step-num{background:#1B2A47;color:#fff;font-size:.75rem;font-weight:700;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0}
+.step-title{font-weight:600;color:#1B2A47;display:flex;align-items:center;margin-bottom:.4rem}
+.step p{margin:0;color:#475569;font-size:.95rem}
+.tip{background:#f0fdf4;border-left:4px solid #16A34A;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.tip strong{color:#15803d}
+.warn{background:#fff7ed;border-left:4px solid #f97316;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.warn strong{color:#c2410c}
+.cta-box{background:linear-gradient(135deg,#1B2A47,#243352);color:#fff;border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0}
+.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.75rem;border:none;padding:0;color:#fff}
+.cta-box p{color:#93C5FD;margin-bottom:1.5rem}
+.btn-green{background:#16A34A;color:#fff;padding:.75rem 2rem;border-radius:8px;font-weight:600;display:inline-block;font-size:1rem}
+.btn-green:hover{background:#15803d;text-decoration:none}
+.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1.5rem}
+.breadcrumb a{color:#16A34A}
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin:2rem 0;background:#0f172a}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%}
+footer{background:#1B2A47;color:#93C5FD;text-align:center;padding:2rem;font-size:.85rem;margin-top:3rem}
+footer a{color:#93C5FD}
+.related{background:#f8fafc;border-radius:12px;padding:2rem;margin:2rem 0}
+.related h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1B2A47;margin-bottom:1rem;border:none;padding:0}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.related-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;font-size:.9rem}
+.related-card a{color:#1B2A47;font-weight:500}.related-card a:hover{color:#16A34A}
+@media(max-width:600px){nav{flex-direction:column;gap:.75rem}.nav-links a{margin-left:.75rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="https://pdfsign.in">PDF<span style="color:#16A34A">Sign</span>.in</a>
+  <div class="nav-links">
+    <a href="https://pdfsign.in">Home</a>
+    <a href="https://pdfsign.in/blog/">Blog</a>
+    <a href="https://pdfsign.in/#pricing">Pricing</a>
+    <a href="https://wa.me/917057413999">Support</a>
+  </div>
+</nav>
+
+<div class="blog-hero">
+  <div class="category">Digital Signature Guide</div>
+  <h1>How to Digitally Sign PDF Using DSC Token in Windows — Step-by-Step</h1>
+  <div class="meta">By PDFSign &nbsp;·&nbsp; May 2026 &nbsp;·&nbsp; 6 min read</div>
+</div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="https://pdfsign.in">Home</a> › <a href="https://pdfsign.in/blog/">Blog</a> › How to Digitally Sign PDF Using DSC Token
+  </div>
+
+  <div class="content">
+
+    <p>Your DSC (Digital Signature Certificate) USB token is a powerful tool — but making it work for PDF signing has traditionally required Java, browser plugins, or complex portal-specific tools. Half the time, something breaks, and you end up spending more time troubleshooting than actually signing documents.</p>
+    <p><strong>PDFSign changes that completely.</strong> It reads your DSC certificate directly from your USB token using Windows' built-in cryptographic services — no Java, no browser plugin, no portal dependency. Just plug in your token, open PDFSign, and your certificate appears in seconds. This guide walks you through the exact steps.</p>
+
+    <div class="tip"><strong>✅ Legally valid under IT Act 2000.</strong> A digital signature applied using a Class 2 or Class 3 DSC in PDFSign creates a standard PAdES/PKCS#7 signature that is legally valid across all Indian government portals — GeM, CPPP, MCA21, GST, NIC eProcurement, and more.</div>
+
+    <!-- Replace YOUTUBE_URL_HERE with your YouTube video embed URL (e.g. https://www.youtube.com/embed/VIDEO_ID) once uploaded -->
+    <h2>Watch: How to Sign PDF with DSC Token Using PDFSign</h2>
+    <div class="video-wrap">
+      <iframe src="YOUTUBE_URL_HERE" title="How to Digitally Sign PDF Using DSC Token in Windows — PDFSign Tutorial" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+
+    <h2>What You Need Before You Start</h2>
+    <p>Before you begin, make sure the following are ready:</p>
+    <ul>
+      <li>Your DSC USB token (Class 2 or Class 3) — from eMudhra, Sify SafeScrypt, Capricorn CA, ProxKey, or any licensed Certifying Authority</li>
+      <li>Token driver/middleware installed on your Windows PC (e.g. ePass2003 Token Manager, ProxKey Middleware, HYP2003 PKCS#11 Driver)</li>
+      <li>PDFSign installed — <a href="https://pdfsigner-api.vercel.app/api/download">download the free trial here</a></li>
+      <li>The PDF file you want to sign</li>
+    </ul>
+    <p>Your token PIN (provided by your CA or set by you during token setup) will be required during signing.</p>
+
+    <h2>Step-by-Step: Sign a PDF with Your DSC Token</h2>
+    <p>This is the fastest and most reliable way to apply a legally valid digital signature to any PDF document on Windows — no portal login required, works entirely offline.</p>
+
+    <div class="step"><div class="step-title"><span class="step-num">1</span>Plug In Your DSC USB Token</div><p>Insert your DSC token into a USB port on your Windows computer. Wait a few seconds for Windows to recognise it. If your token middleware software shows a connected status or system tray icon, the token is ready. If the token is new, install its driver from the manufacturer's website or the CD that came with it before proceeding.</p></div>
+
+    <div class="step"><div class="step-title"><span class="step-num">2</span>Open PDFSign and Switch to DSC Mode</div><p>Launch PDFSign from your desktop or Start menu. Under <strong>SIGNING MODE</strong> at the top of the window, click <strong>"✦ Digital Signature (DSC)"</strong>. The panel will update to show the DSC-specific fields: CERTIFICATE dropdown, REASON, LOCATION, and STAMP PREVIEW. This is where you configure your digital signature.</p></div>
+
+    <div class="tip"><strong>⚡ No Java required.</strong> PDFSign reads your DSC certificate directly from the Windows CNG/CSP layer — the same secure mechanism used by Windows itself. No Java runtime, no ActiveX, no browser plugin needed.</div>
+
+    <div class="step"><div class="step-title"><span class="step-num">3</span>Select Your Certificate from the Dropdown</div><p>Under <strong>CERTIFICATE</strong>, your DSC certificate should appear automatically in the dropdown list. PDFSign reads all signing certificates from your connected tokens and the Windows Certificate Store. Look for your name (e.g. "RAUNAK KARNAWAT") or your organisation's name in the list. If more than one certificate appears, select the correct one.</p></div>
+
+    <div class="step"><div class="step-title"><span class="step-num">4</span>Refresh If Certificate Does Not Appear</div><p>If the CERTIFICATE dropdown is empty or your certificate is not listed, click the <strong>"↻ Refresh"</strong> button next to the dropdown. PDFSign will re-scan all connected tokens and the certificate store. This is usually needed if you plugged in the token after PDFSign was already open. After refreshing, your certificate should appear within a few seconds.</p></div>
+
+    <div class="warn"><strong>⚠️ Certificate still missing?</strong> Check that your token middleware is installed and running. Open Windows Certificate Manager (press Win+R → type <code>certmgr.msc</code>) and verify the certificate appears under Personal → Certificates. If it does not, reinstall your token driver.</div>
+
+    <div class="step"><div class="step-title"><span class="step-num">5</span>Verify the Certificate Details</div><p>After selecting a certificate, PDFSign displays the certificate's key details below the dropdown: the holder's <strong>Name</strong>, the <strong>Issuer</strong> (the Certifying Authority), and the <strong>Valid Until</strong> date. Verify this information matches your expected certificate before signing. This is especially important if you have multiple DSC certificates (e.g. personal and organisation certificates).</p></div>
+
+    <div class="step"><div class="step-title"><span class="step-num">6</span>Enter Reason and Location (Optional but Recommended)</div><p>Under <strong>SIGNATURE DETAILS</strong>, fill in the <strong>REASON</strong> field — this is the purpose of signing, such as <em>"Approved"</em>, <em>"Certified by CA"</em>, <em>"Authorised Signatory"</em>, or <em>"Signed for submission"</em>. In the <strong>LOCATION</strong> field, enter your city or address (e.g. <em>"Mumbai, Maharashtra"</em>). These fields are embedded in the digital signature and visible when the PDF is opened in Adobe Reader — adding professionalism and context to your signature.</p></div>
+
+    <div class="tip"><strong>💡 Why fill in Reason and Location?</strong> When recipients open a PDF in Adobe Acrobat or Reader, they can click on the signature and see exactly who signed it, why, where, and when. This adds a layer of transparency that builds trust — especially for government submissions and legal documents.</p></div>
+
+    <div class="step"><div class="step-title"><span class="step-num">7</span>Select Your Input PDF and Set Output Path</div><p>Under <strong>DOCUMENT</strong>, click <strong>Browse</strong> next to <strong>INPUT PDF</strong> and select the PDF you want to sign. PDFSign automatically sets the <strong>OUTPUT PDF</strong> path with <code>_signed</code> appended to the filename (e.g. <code>agreement_signed.pdf</code>). You can change the output path by clicking Browse next to OUTPUT PDF. The original file is never modified — a new signed file is always created.</p></div>
+
+    <div class="step"><div class="step-title"><span class="step-num">8</span>Choose Where the Signature Appears on the Page</div><p>Under <strong>SIGNATURE POSITION</strong>, the <strong>Predefined</strong> option is selected by default. Use the <strong>3×3 grid</strong> to pick where the signature stamp appears — top-left, top-centre, bottom-right, etc. From the <strong>SIGN ON</strong> dropdown, choose <strong>Last Page</strong>, <strong>First Page</strong>, or <strong>All Pages</strong> depending on your document. Adjust <strong>STAMP SIZE W:</strong> and <strong>H:</strong> (default 160×100 pt) and <strong>MARGIN</strong> (default 30 pt) to match your document's layout.</p></div>
+
+    <div class="step"><div class="step-title"><span class="step-num">9</span>Ensure RFC 3161 Timestamp Is Enabled</div><p>Scroll down to the <strong>TIMESTAMP</strong> section. The <strong>"Include RFC 3161 timestamp"</strong> checkbox is checked by default. Leave it enabled — this embeds a cryptographic timestamp from Sectigo/Comodo's trusted authority at the exact moment you sign. The timestamp proves your document was signed before a specific date and time, keeping the signature legally valid even after your DSC certificate expires. This is critical for tender documents and long-lived contracts.</p></div>
+
+    <div class="tip"><strong>🔐 RFC 3161 Timestamp protects you after DSC expiry.</strong> Without a timestamp, a signature can appear "invalid" once the signing certificate expires. With RFC 3161, the signed document remains valid forever — a vital requirement for government tender documents and compliance filings.</div>
+
+    <div class="step"><div class="step-title"><span class="step-num">10</span>Click "✦ Sign PDF" and Enter Your Token PIN</div><p>Click the <strong>"✦ Sign PDF"</strong> button. Your computer will prompt you to enter your <strong>DSC token PIN</strong> — this is the 4–8 digit PIN you set during token provisioning or that your CA provided. Enter the correct PIN and click OK. PDFSign will complete the signing in seconds. A success confirmation appears on screen. Open the output PDF in Adobe Reader to verify — you should see <em>"Signed and all signatures are valid"</em> in the blue banner at the top.</p></div>
+
+    <div class="tip"><strong>✅ What success looks like:</strong> When you open the signed PDF in Adobe Reader, a blue banner reads "Signed and all signatures are valid" with your name, the CA name, and the signing date/time displayed. Clicking the signature panel shows full certificate details and timestamp information.</div>
+
+    <h2>Accepted on All Major Indian Government Portals</h2>
+    <p>PDFs signed with PDFSign using a Class 3 DSC are accepted on every major Indian government portal that requires digital signatures:</p>
+    <ul>
+      <li><strong>GeM Portal</strong> — Government e-Marketplace bid documents and order acceptance</li>
+      <li><strong>CPPP / NIC eProcurement</strong> — Tender documents and bid submissions</li>
+      <li><strong>MCA21</strong> — Company filings, ROC documents, annual returns</li>
+      <li><strong>GST Portal</strong> — Returns, amendments, and compliance filings</li>
+      <li><strong>Income Tax Portal</strong> — ITR filing and audit reports</li>
+      <li><strong>RERA</strong> — Project registrations and compliance documents</li>
+      <li><strong>SEBI / Stock Exchanges</strong> — Disclosures and filings</li>
+    </ul>
+
+    <h2>Why PDFSign Is Better Than Browser-Based Signing Tools</h2>
+    <p>Most government portals have their own signing tool or require a Java applet — and most of them are frustrating to use. PDFSign is different:</p>
+    <ul>
+      <li><strong>100% offline:</strong> Your PDF and DSC key never leave your computer. No cloud upload, no privacy risk</li>
+      <li><strong>No Java required:</strong> PDFSign uses Windows' native cryptography — no Java Runtime Environment to install or maintain</li>
+      <li><strong>No browser plugin:</strong> Works as a standalone Windows application — no Chrome extension, no Firefox add-on</li>
+      <li><strong>Works with all Indian DSC providers:</strong> eMudhra, Sify, Capricorn, ProxKey, ePass 2003/3003, HYP2003, WD Series — all supported</li>
+      <li><strong>Bulk signing:</strong> Sign dozens of documents at once using Folder mode — essential for CA firms and tender participants</li>
+      <li><strong>Signature image overlay:</strong> Optionally display a visual stamp image alongside the digital signature for a professional look</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>Which DSC tokens are supported by PDFSign?</h3>
+    <p>PDFSign supports all standard PKCS#11-compatible DSC USB tokens used in India — eMudhra, Sify SafeScrypt, Capricorn CA, ProxKey, ePass 2003/3003, HYP2003, and WD Series tokens. As long as your token driver is installed and the certificate is visible in Windows, PDFSign will detect it automatically.</p>
+
+    <h3>Is a PDF signed with a DSC token legally valid in India?</h3>
+    <p>Yes. A digital signature applied using a Class 2 or Class 3 DSC from a licensed Certifying Authority is legally valid under the Information Technology Act 2000. It is accepted on all Indian government portals.</p>
+
+    <h3>My certificate is not appearing in the dropdown — what should I do?</h3>
+    <p>Make sure your token is plugged in and its driver is installed. Click "↻ Refresh" in PDFSign. If it still doesn't appear, open Windows Certificate Manager (<code>certmgr.msc</code>) and check that the certificate is listed under Personal → Certificates. Reinstall your token middleware if necessary.</p>
+
+    <h3>What is RFC 3161 timestamp and why should I enable it?</h3>
+    <p>RFC 3161 embeds a trusted timestamp in your signed PDF at the moment of signing. It proves when the document was signed and keeps the signature legally valid even after your DSC certificate expires. It is enabled by default in PDFSign and is highly recommended for all documents.</p>
+
+    <h3>Can I sign multiple PDFs at once using my DSC token?</h3>
+    <p>Yes. PDFSign's Folder mode supports bulk DSC signing. Select your source folder, destination folder, configure your certificate, and click Sign PDF. PDFSign processes every PDF in the folder with your DSC signature. Keep your token plugged in throughout.</p>
+
+    <div class="cta-box">
+      <h2>Sign PDFs with Your DSC Token — No Java, No Plugin</h2>
+      <p>PDFSign works with all Indian DSC tokens right out of the box. Free 30-day trial. Legally valid under IT Act 2000.</p>
+      <a class="btn-green" href="https://pdfsigner-api.vercel.app/api/download">Download PDFSign — Free Trial</a>
+    </div>
+
+    <div class="related">
+      <h2>Related Articles</h2>
+      <div class="related-grid">
+        <div class="related-card"><a href="how-to-sign-pdf-dsc-token-windows.html">DSC Token PDF Signing on Windows — Full Guide</a></div>
+        <div class="related-card"><a href="bulk-sign-multiple-pdf-files-at-once.html">How to Sign Multiple PDFs at Once (Bulk)</a></div>
+        <div class="related-card"><a href="dsc-token-not-detected-windows-11-fix.html">DSC Token Not Detected on Windows 11 — Fix</a></div>
+        <div class="related-card"><a href="rfc-3161-timestamp-pdf-india.html">RFC 3161 Timestamp in PDF — What It Means</a></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 PDFSign.in by Tender Training India &nbsp;|&nbsp; <a href="https://pdfsign.in/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="https://pdfsign.in/terms.html">Terms</a> &nbsp;|&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
+</footer>
+</body>
+</html>
