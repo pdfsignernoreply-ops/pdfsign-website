@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin.html
+Disallow: /demo2.html
+Disallow: /reseller-portal.html
 
 Sitemap: https://pdfsign.in/sitemap.xml
