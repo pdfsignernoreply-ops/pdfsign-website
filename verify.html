@@ -678,14 +678,14 @@ function buildCard(idx, sig, p, hash) {
       : 'Integrity check inconclusive — hash could not be verified';
 
   // ── 5. Card header badge ───────────────────────────────────────
-  const badgeCls = hash.verified === false ? 'badge-bad' : certExpired ? 'badge-warn' : 'badge-ok';
-  const badgeTxt = hash.verified === false ? 'Invalid'   : certExpired ? '⚠️ Expired DSC' : 'Signed';
+  const badgeCls = (hash.verified === false || certExpired) ? 'badge-bad' : 'badge-ok';
+  const badgeTxt = hash.verified === false ? 'Invalid' : certExpired ? '⚠️ Expired DSC' : 'Signed';
 
   // ── 6. Extra info rows ─────────────────────────────────────────
   let extraRows = '';
   if (certExpired) {
-    extraRows += `<div class="info-row ir-warn">
-      ⚠️ Certificate was expired at the time of signing (expired ${to}) — this signature may not be legally valid
+    extraRows += `<div class="info-row ir-invalid">
+      ❌ Certificate was expired at the time of signing (expired ${to}) — this signature is not legally valid
     </div>`;
   }
   if (certNotYetValid) {
