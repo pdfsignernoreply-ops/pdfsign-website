@@ -285,6 +285,17 @@ a { text-decoration: none; color: inherit; }
 }
 .btn-again:hover { background: var(--navy-dark); }
 
+/* ── EXTRA INFO ROWS (warnings / notices below integrity row) ── */
+.info-row {
+  display: flex; align-items: flex-start; gap: 9px;
+  padding: 10px 22px; border-top: 1px solid #F1F5F9;
+  font-size: 13px; line-height: 1.5;
+}
+.info-row.ir-warn { background: #FFFBEB; color: #92400E; font-weight: 600; }
+.info-row.ir-info { background: #EFF6FF; color: #1D4ED8; font-weight: 500; }
+.info-row.ir-ok   { background: #F0FDF4; color: #15803D; font-weight: 500; }
+
+
 /* ── HOW IT WORKS ── */
 .how { padding: 64px 24px; text-align: center; }
 .how h2 { font-family: var(--font-d); font-size: clamp(22px, 3vw, 32px); color: var(--navy); margin-bottom: 8px; }
@@ -554,7 +565,7 @@ async function processFile(file) {
         try { hash  = await verifyHash(sigs[i], pkcs7);  } catch(e) { console.warn('Hash:', e.message); }
         if (hash.verified === false) { allGood = false; anyBad = true; }
         if (hash.verified === null)  { allGood = false; }
-        cardsEl.appendChild(buildCard(i + 1, sigs[i], pkcs7, hash));
+        cardsEl.appendChild(buildCard(i + 1, sigs[i], pkcs7, hash, sigs.length));
       }
 
       const cls  = anyBad ? 's-invalid' : allGood ? 's-valid' : 's-warn';
@@ -584,14 +595,22 @@ async function processFile(file) {
   }
 }
 
+// ── Get effective signing date for cert expiry checks ──────────────
+function getSigDate(sig, p) {
+  if (p?.pkcs7SigningTime) {
+    try { const d = new Date(p.pkcs7SigningTime); if (!isNaN(d)) return d; } catch(e) {}
+  }
+  return parsePdfDate(sig.signingTime);
+}
+
 // ── Build signature card ───────────────────────────────────────────
-function buildCard(idx, sig, p, hash) {
+function buildCard(idx, sig, p, hash, totalSigs) {
   const el  = document.createElement('div');
   el.className = 'sig-card';
 
   const name   = esc(p?.signerName || sig.name || 'Unknown Signer');
   const org    = esc(p?.organization || '—');
-  const issuer = esc(p?.issuerCN || p?.issuerOrg || '—');
+  const issuerTxt = esc(p?.issuerCN || p?.issuerOrg || '—');
   const signed = fmtTime(sig, p);
   const reason = esc(sig.reason || '—');
   const loc    = esc(sig.location || '—');
@@ -601,17 +620,88 @@ function buildCard(idx, sig, p, hash) {
   const serial = p?.serialNumber
     ? esc((p.serialNumber.match(/.{1,2}/g)||[]).join(':').toUpperCase())
     : '—';
-  const sf     = esc(sig.subFilter || 'adbe.pkcs7.detached');
+  const sf = esc(sig.subFilter || 'adbe.pkcs7.detached');
 
-  const badgeCls = hash.verified === false ? 'badge-bad' : 'badge-ok';
-  const badgeTxt = hash.verified === false ? 'Invalid' : 'Signed';
-  const irCls    = hash.verified === true ? 'ir-valid' : hash.verified === false ? 'ir-invalid' : 'ir-unknown';
-  const irIcon   = hash.verified === true ? '✅' : hash.verified === false ? '❌' : '⚠️';
-  const irTxt    = hash.verified === true
+  // ── 1. Certificate validity at signing time ────────────────────
+  const sigDate = getSigDate(sig, p);
+  let certExpired = false, certNotYetValid = false;
+  if (sigDate && p?.validFrom && p?.validTo) {
+    if (sigDate > new Date(p.validTo))   certExpired      = true;
+    if (sigDate < new Date(p.validFrom)) certNotYetValid  = true;
+  }
+
+  // ── 2. ByteRange document coverage ────────────────────────────
+  // For the LAST (or only) signature: should start at byte 0 AND reach
+  // end of file.  For EARLIER signatures in a multi-sig chain the file
+  // was extended by later incremental updates, so a short range is normal.
+  const br = sig.byteRange;
+  const startsAtZero  = br[0] === 0;
+  const reachesEof    = (br[2] + br[3]) === sig.data.length;
+  const isLastSig     = idx === totalSigs;
+  const partialByEarlierSig = !reachesEof && !isLastSig; // expected for intermediate sigs
+
+  // ── 3. Self-signed certificate detection ──────────────────────
+  const isSelfSigned = p && p.subjectDN && p.issuerDN && p.subjectDN === p.issuerDN;
+
+  // ── 4. Integrity row ───────────────────────────────────────────
+  const irCls  = hash.verified === true  ? 'ir-valid'
+               : hash.verified === false ? 'ir-invalid' : 'ir-unknown';
+  const irIcon = hash.verified === true  ? '✅'
+               : hash.verified === false ? '❌' : '⚠️';
+  const irTxt  = hash.verified === true
     ? `Document integrity verified — PDF not modified since signing (${hash.algorithm})`
     : hash.verified === false
       ? 'Signature invalid — document may have been modified after signing'
       : 'Integrity check inconclusive — hash could not be verified';
+
+  // ── 5. Card header badge ───────────────────────────────────────
+  const badgeCls = (hash.verified === false || certExpired) ? 'badge-bad' : 'badge-ok';
+  const badgeTxt = hash.verified === false ? 'Invalid' : certExpired ? '⚠️ Expired DSC' : 'Signed';
+
+  // ── 6. Extra info rows ─────────────────────────────────────────
+  let extraRows = '';
+  if (certExpired) {
+    extraRows += `<div class="info-row ir-invalid">
+      ❌ Certificate was expired at the time of signing (expired ${to}) — this signature is not legally valid
+    </div>`;
+  }
+  if (certNotYetValid) {
+    extraRows += `<div class="info-row ir-warn">
+      ⚠️ Certificate was not yet valid at the time of signing
+    </div>`;
+  }
+  if (!startsAtZero) {
+    extraRows += `<div class="info-row ir-warn">
+      ⚠️ Signature does not start from the beginning of the document — content before the signed range is unverified
+    </div>`;
+  }
+  if (!reachesEof && isLastSig) {
+    extraRows += `<div class="info-row ir-warn">
+      ⚠️ Signature does not cover the entire document — content after the signed range is unverified
+    </div>`;
+  }
+  if (partialByEarlierSig) {
+    extraRows += `<div class="info-row ir-info">
+      ℹ️ This signature covers the document as it existed when signed. Later signers added content via incremental update — this is normal for multi-signature PDFs.
+    </div>`;
+  }
+  if (hash.isSha1) {
+    extraRows += `<div class="info-row ir-warn">
+      ⚠️ Signed with SHA-1 (deprecated algorithm — SHA-256 or higher is recommended)
+    </div>`;
+  }
+  if (isSelfSigned) {
+    extraRows += `<div class="info-row ir-warn">
+      ⚠️ Self-signed certificate — signer identity cannot be independently verified
+    </div>`;
+  }
+  if (p?.tsaTime) {
+    const tsaFmt  = fmtDate(p.tsaTime);
+    const tsaNameE = esc(p.tsaName || 'Unknown TSA');
+    extraRows += `<div class="info-row ir-ok">
+      🕐 RFC&nbsp;3161 Timestamp: signed at ${tsaFmt} by ${tsaNameE}
+    </div>`;
+  }
 
   const cid = `cb${idx}`;
   el.innerHTML = `
@@ -629,7 +719,7 @@ function buildCard(idx, sig, p, hash) {
       </div>
       <div>
         <div class="sig-field-label">Certificate Issuer</div>
-        <div class="sig-field-value">${issuer}</div>
+        <div class="sig-field-value">${issuerTxt}</div>
       </div>
       <div>
         <div class="sig-field-label">Reason</div>
@@ -643,6 +733,7 @@ function buildCard(idx, sig, p, hash) {
     <div class="integrity-row ${irCls}">
       <span>${irIcon}</span><span>${irTxt}</span>
     </div>
+    ${extraRows}
     <div class="cert-section">
       <button class="cert-toggle" onclick="tCert(this,'${cid}')">
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg>
@@ -652,7 +743,7 @@ function buildCard(idx, sig, p, hash) {
         <div class="cert-row"><span class="cert-lbl">Common Name</span><span class="cert-val">${name}</span></div>
         <div class="cert-row"><span class="cert-lbl">Organisation</span><span class="cert-val">${org}</span></div>
         <div class="cert-row"><span class="cert-lbl">Email</span><span class="cert-val">${email}</span></div>
-        <div class="cert-row"><span class="cert-lbl">Issued By</span><span class="cert-val">${issuer}</span></div>
+        <div class="cert-row"><span class="cert-lbl">Issued By</span><span class="cert-val">${issuerTxt}</span></div>
         <div class="cert-row"><span class="cert-lbl">Valid From</span><span class="cert-val">${from}</span></div>
         <div class="cert-row"><span class="cert-lbl">Valid Until</span><span class="cert-val">${to}</span></div>
         <div class="cert-row"><span class="cert-lbl">Serial Number</span><span class="cert-val" style="font-family:monospace;font-size:12px">${serial}</span></div>
@@ -737,55 +828,132 @@ function pdfStr(hex, lit) {
 }
 
 // ── PKCS7 / Certificate parser (forge) ────────────────────────────
+
+// Trim the DER to the exact outer SEQUENCE length, removing zero padding
+function trimDerHex(hex) {
+  if (hex.length < 4) return hex;
+  const b1 = parseInt(hex.slice(2, 4), 16);
+  const nb  = b1 < 0x80 ? 0 : (b1 & 0x7f);
+  const len = b1 < 0x80 ? b1 : parseInt(hex.slice(4, 4 + nb * 2), 16);
+  return hex.slice(0, (1 + 1 + nb + len) * 2);
+}
+
 function parsePKCS7(hex) {
-  const der  = forge.util.hexToBytes(hex);
+  const der  = forge.util.hexToBytes(trimDerHex(hex));
   const asn1 = forge.asn1.fromDer(der, false);
   const p7   = forge.pkcs7.messageFromAsn1(asn1);
 
-  const certs  = p7.certificates || [];
-  const signer = (p7.signers || [])[0];
-  const cert   = certs[0];
-  if (!cert) throw new Error('No certificate');
+  const certs = p7.certificates || [];
+  if (!certs.length) throw new Error('No certificates in PKCS7');
 
-  const gS = (attrs, sn) => attrs.find(a => a.shortName === sn)?.value || null;
+  // Find the signer (leaf/end-entity) cert — the one without cA:true
+  const cert = certs.find(c => {
+    const bc = (c.extensions || []).find(e => e.id === '2.5.29.19');
+    return !bc || !bc.cA;
+  }) || certs[certs.length - 1];
+
+  const gS = (attrs, sn) => (attrs.find(a => a.shortName === sn) || {}).value || null;
   const sub = cert.subject.attributes;
   const iss = cert.issuer.attributes;
 
-  // Extract messageDigest & signingTime from authenticated attributes
-  const authAttrs = signer?.authenticatedAttributes || [];
-  const mdOid     = '1.2.840.113549.1.9.4';
-  const stOid     = '1.2.840.113549.1.9.5';
-  let expectedDigest = null, pkcs7SigningTime = null;
+  // ── Manually navigate ASN.1 tree to extract signerInfo fields ─────
+  // forge's p7.signers may be empty when the signerInfo structure is
+  // non-standard (e.g. iText PKCS7 with embedded timestamp), so we
+  // walk the raw tree instead.
+  let expectedDigest = null, digestAlgorithm = null, pkcs7SigningTime = null;
+  let tsaTime = null, tsaName = null;
+  try {
+    // ContentInfo > [0] EXPLICIT > SignedData SEQUENCE
+    const sdKids      = asn1.value[1].value[0].value;
+    // signerInfos = last SET (type=17) in SignedData
+    const signersNode = sdKids.slice().reverse().find(k => k.type === 17);
+    const si          = signersNode && signersNode.value[0];  // first SignerInfo
+    if (si) {
+      const kids = si.value;
 
-  for (const a of authAttrs) {
-    if (a.type === mdOid) {
+      // digestAlgorithm: SEQUENCE { OID, ... }  at index 2
       try {
-        // value is SET containing OCTET STRING
-        const setVal = a.value;
-        if (setVal && setVal.value && setVal.value[0]) expectedDigest = setVal.value[0].value;
-        else if (typeof setVal.value === 'string') expectedDigest = setVal.value;
+        const daOid = kids[2].value[0].value;
+        digestAlgorithm = forge.asn1.derToOid(daOid);
       } catch(e) {}
-    }
-    if (a.type === stOid) {
+
+      // authenticatedAttributes: tagClass=128 (CONTEXT_SPECIFIC raw), type=0
+      const aa = kids.find(k => k.tagClass === 128 && k.type === 0);
+      if (aa) {
+        const mdOid = '1.2.840.113549.1.9.4';
+        const stOid = '1.2.840.113549.1.9.5';
+        for (const attr of aa.value) {
+          try {
+            const oid = forge.asn1.derToOid(attr.value[0].value);
+            if (oid === mdOid) {
+              // SET > OCTET STRING containing the hash
+              expectedDigest = attr.value[1].value[0].value;
+            }
+            if (oid === stOid) {
+              // SET > GeneralizedTime or UTCTime
+              pkcs7SigningTime = attr.value[1].value[0].value;
+            }
+          } catch(e) {}
+        }
+      }
+
+      // ── RFC 3161 Timestamp (unauthenticatedAttributes, tagClass=128 type=1) ──
       try {
-        const tv = a.value;
-        pkcs7SigningTime = tv?.value?.[0]?.value || tv?.value || null;
-      } catch(e) {}
+        const ua = kids.find(k => k.tagClass === 128 && k.type === 1);
+        if (ua) {
+          const tsOid  = '1.2.840.113549.1.9.16.2.14';
+          const tsAttr = ua.value.find(a => {
+            try { return forge.asn1.derToOid(a.value[0].value) === tsOid; } catch(e) { return false; }
+          });
+          if (tsAttr) {
+            // SET > ContentInfo > [0] > SignedData
+            const tsToken = tsAttr.value[1].value[0];
+            const tsSD    = tsToken.value[1].value[0]; // SignedData SEQUENCE
+            // encapContentInfo SEQUENCE (type=16, has OID child)
+            const eci = tsSD.value.find(k => k.type === 16 && Array.isArray(k.value) &&
+                          k.value.length >= 2 && k.value[0].type === 6);
+            if (eci) {
+              const eWrap = eci.value.find(k => k.tagClass === 128 && k.type === 0);
+              if (eWrap) {
+                // OCTET STRING contains raw TSTInfo DER
+                const tstAsn1 = forge.asn1.fromDer(eWrap.value[0].value, false);
+                const genNode = tstAsn1.value.find(k => k.type === 24); // GeneralizedTime
+                if (genNode) tsaTime = forge.asn1.generalizedTimeToDate(genNode.value);
+              }
+            }
+            // TSA name from ts certificates [0] IMPLICIT
+            const tsCerts = tsSD.value.find(k => k.tagClass === 128 && k.type === 0);
+            if (tsCerts && tsCerts.value.length > 0) {
+              try {
+                const tsaCert = forge.pki.certificateFromAsn1(tsCerts.value[0]);
+                const cnF = tsaCert.subject.getField('CN') || tsaCert.subject.getField('O');
+                tsaName = cnF ? cnF.value : null;
+              } catch(e) {}
+            }
+          }
+        }
+      } catch(e) { console.warn('TSA parse:', e.message); }
     }
+  } catch(e) {
+    console.warn('signerInfo parse:', e.message);
   }
 
   return {
-    signerName:      gS(sub,'CN') || gS(sub,'O'),
-    organization:    gS(sub,'O'),
-    email:           gS(sub,'E') || gS(sub,'emailAddress'),
-    issuerCN:        gS(iss,'CN') || gS(iss,'O'),
-    issuerOrg:       gS(iss,'O'),
+    signerName:      gS(sub, 'CN') || gS(sub, 'O'),
+    organization:    gS(sub, 'O'),
+    email:           gS(sub, 'E') || gS(sub, 'emailAddress'),
+    issuerCN:        gS(iss, 'CN') || gS(iss, 'O'),
+    issuerOrg:       gS(iss, 'O'),
     validFrom:       cert.validity.notBefore,
     validTo:         cert.validity.notAfter,
     serialNumber:    cert.serialNumber,
+    subjectDN:       cert.subject.attributes.map(a => a.shortName + '=' + a.value).join(','),
+    issuerDN:        cert.issuer.attributes.map(a => a.shortName + '=' + a.value).join(','),
     pkcs7SigningTime,
     expectedDigest,
-    digestAlgorithm: signer?.digestAlgorithm,
+    digestAlgorithm,
+    tsaTime,
+    tsaName,
   };
 }
 
@@ -801,13 +969,14 @@ async function verifyHash(sig, p) {
 
     const oid = p.digestAlgorithm || '';
     let alg = 'SHA-256';
-    if (oid === '1.3.14.3.2.26' || oid === '1.2.840.113549.2.5') alg = 'SHA-1';
+    const isSha1 = (oid === '1.3.14.3.2.26' || oid === '1.2.840.113549.2.5');
+    if (isSha1) alg = 'SHA-1';
     else if (oid === '2.16.840.1.101.3.4.2.2') alg = 'SHA-384';
     else if (oid === '2.16.840.1.101.3.4.2.3') alg = 'SHA-512';
 
     const hashBuf    = await crypto.subtle.digest(alg, combined);
     const actualBytes= forge.util.createBuffer(new Uint8Array(hashBuf)).bytes();
-    return { verified: actualBytes === p.expectedDigest, algorithm: alg };
+    return { verified: actualBytes === p.expectedDigest, algorithm: alg, isSha1 };
   } catch(e) { return { verified: null, reason: e.message }; }
 }
 
