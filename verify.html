@@ -580,7 +580,7 @@ async function processFile(file) {
         try { hash  = await verifyHash(sigs[i], pkcs7);  } catch(e) { console.warn('Hash:', e.message); }
         if (hash.verified === false) { allGood = false; anyBad = true; }
         if (hash.verified === null)  { allGood = false; }
-        cardsEl.appendChild(buildCard(i + 1, sigs[i], pkcs7, hash));
+        cardsEl.appendChild(buildCard(i + 1, sigs[i], pkcs7, hash, sigs.length));
       }
 
       const cls  = anyBad ? 's-invalid' : allGood ? 's-valid' : 's-warn';
@@ -626,7 +626,7 @@ function getSigDate(sig, p) {
 }
 
 // ── Build signature card ───────────────────────────────────────────
-function buildCard(idx, sig, p, hash) {
+function buildCard(idx, sig, p, hash, totalSigs) {
   const el  = document.createElement('div');
   el.className = 'sig-card';
 
@@ -653,8 +653,14 @@ function buildCard(idx, sig, p, hash) {
   }
 
   // ── 2. ByteRange document coverage ────────────────────────────
+  // For the LAST (or only) signature: should start at byte 0 AND reach
+  // end of file.  For EARLIER signatures in a multi-sig chain the file
+  // was extended by later incremental updates, so a short range is normal.
   const br = sig.byteRange;
-  const fullCoverage = br[0] === 0 && (br[2] + br[3]) === sig.data.length;
+  const startsAtZero  = br[0] === 0;
+  const reachesEof    = (br[2] + br[3]) === sig.data.length;
+  const isLastSig     = idx === totalSigs;
+  const partialByEarlierSig = !reachesEof && !isLastSig; // expected for intermediate sigs
 
   // ── 3. Known Indian CA trust badge ────────────────────────────
   const issuerLow  = (p?.issuerCN || p?.issuerOrg || '').toLowerCase();
@@ -693,9 +699,19 @@ function buildCard(idx, sig, p, hash) {
       ⚠️ Certificate was not yet valid at the time of signing
     </div>`;
   }
-  if (!fullCoverage) {
+  if (!startsAtZero) {
     extraRows += `<div class="info-row ir-warn">
-      ⚠️ Signature does not cover the entire document — content outside the signed range is unverified
+      ⚠️ Signature does not start from the beginning of the document — content before the signed range is unverified
+    </div>`;
+  }
+  if (!reachesEof && isLastSig) {
+    extraRows += `<div class="info-row ir-warn">
+      ⚠️ Signature does not cover the entire document — content after the signed range is unverified
+    </div>`;
+  }
+  if (partialByEarlierSig) {
+    extraRows += `<div class="info-row ir-info">
+      ℹ️ This signature covers the document as it existed when signed. Later signers added content via incremental update — this is normal for multi-signature PDFs.
     </div>`;
   }
   if (hash.isSha1) {
