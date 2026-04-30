@@ -737,55 +737,90 @@ function pdfStr(hex, lit) {
 }
 
 // ── PKCS7 / Certificate parser (forge) ────────────────────────────
+
+// Trim the DER to the exact outer SEQUENCE length, removing zero padding
+function trimDerHex(hex) {
+  if (hex.length < 4) return hex;
+  const b1 = parseInt(hex.slice(2, 4), 16);
+  const nb  = b1 < 0x80 ? 0 : (b1 & 0x7f);
+  const len = b1 < 0x80 ? b1 : parseInt(hex.slice(4, 4 + nb * 2), 16);
+  return hex.slice(0, (1 + 1 + nb + len) * 2);
+}
+
 function parsePKCS7(hex) {
-  const der  = forge.util.hexToBytes(hex);
+  const der  = forge.util.hexToBytes(trimDerHex(hex));
   const asn1 = forge.asn1.fromDer(der, false);
   const p7   = forge.pkcs7.messageFromAsn1(asn1);
 
-  const certs  = p7.certificates || [];
-  const signer = (p7.signers || [])[0];
-  const cert   = certs[0];
-  if (!cert) throw new Error('No certificate');
+  const certs = p7.certificates || [];
+  if (!certs.length) throw new Error('No certificates in PKCS7');
 
-  const gS = (attrs, sn) => attrs.find(a => a.shortName === sn)?.value || null;
+  // Find the signer (leaf/end-entity) cert — the one without cA:true
+  const cert = certs.find(c => {
+    const bc = (c.extensions || []).find(e => e.id === '2.5.29.19');
+    return !bc || !bc.cA;
+  }) || certs[certs.length - 1];
+
+  const gS = (attrs, sn) => (attrs.find(a => a.shortName === sn) || {}).value || null;
   const sub = cert.subject.attributes;
   const iss = cert.issuer.attributes;
 
-  // Extract messageDigest & signingTime from authenticated attributes
-  const authAttrs = signer?.authenticatedAttributes || [];
-  const mdOid     = '1.2.840.113549.1.9.4';
-  const stOid     = '1.2.840.113549.1.9.5';
-  let expectedDigest = null, pkcs7SigningTime = null;
+  // ── Manually navigate ASN.1 tree to extract signerInfo fields ─────
+  // forge's p7.signers may be empty when the signerInfo structure is
+  // non-standard (e.g. iText PKCS7 with embedded timestamp), so we
+  // walk the raw tree instead.
+  let expectedDigest = null, digestAlgorithm = null, pkcs7SigningTime = null;
+  try {
+    // ContentInfo > [0] EXPLICIT > SignedData SEQUENCE
+    const sdKids      = asn1.value[1].value[0].value;
+    // signerInfos = last SET (type=17) in SignedData
+    const signersNode = sdKids.slice().reverse().find(k => k.type === 17);
+    const si          = signersNode && signersNode.value[0];  // first SignerInfo
+    if (si) {
+      const kids = si.value;
 
-  for (const a of authAttrs) {
-    if (a.type === mdOid) {
+      // digestAlgorithm: SEQUENCE { OID, ... }  at index 2
       try {
-        // value is SET containing OCTET STRING
-        const setVal = a.value;
-        if (setVal && setVal.value && setVal.value[0]) expectedDigest = setVal.value[0].value;
-        else if (typeof setVal.value === 'string') expectedDigest = setVal.value;
+        const daOid = kids[2].value[0].value;
+        digestAlgorithm = forge.asn1.derToOid(daOid);
       } catch(e) {}
+
+      // authenticatedAttributes: tagClass=128 (CONTEXT_SPECIFIC raw), type=0
+      const aa = kids.find(k => k.tagClass === 128 && k.type === 0);
+      if (aa) {
+        const mdOid = '1.2.840.113549.1.9.4';
+        const stOid = '1.2.840.113549.1.9.5';
+        for (const attr of aa.value) {
+          try {
+            const oid = forge.asn1.derToOid(attr.value[0].value);
+            if (oid === mdOid) {
+              // SET > OCTET STRING containing the hash
+              expectedDigest = attr.value[1].value[0].value;
+            }
+            if (oid === stOid) {
+              // SET > GeneralizedTime or UTCTime
+              pkcs7SigningTime = attr.value[1].value[0].value;
+            }
+          } catch(e) {}
+        }
+      }
     }
-    if (a.type === stOid) {
-      try {
-        const tv = a.value;
-        pkcs7SigningTime = tv?.value?.[0]?.value || tv?.value || null;
-      } catch(e) {}
-    }
+  } catch(e) {
+    console.warn('signerInfo parse:', e.message);
   }
 
   return {
-    signerName:      gS(sub,'CN') || gS(sub,'O'),
-    organization:    gS(sub,'O'),
-    email:           gS(sub,'E') || gS(sub,'emailAddress'),
-    issuerCN:        gS(iss,'CN') || gS(iss,'O'),
-    issuerOrg:       gS(iss,'O'),
+    signerName:      gS(sub, 'CN') || gS(sub, 'O'),
+    organization:    gS(sub, 'O'),
+    email:           gS(sub, 'E') || gS(sub, 'emailAddress'),
+    issuerCN:        gS(iss, 'CN') || gS(iss, 'O'),
+    issuerOrg:       gS(iss, 'O'),
     validFrom:       cert.validity.notBefore,
     validTo:         cert.validity.notAfter,
     serialNumber:    cert.serialNumber,
     pkcs7SigningTime,
     expectedDigest,
-    digestAlgorithm: signer?.digestAlgorithm,
+    digestAlgorithm,
   };
 }
 
