@@ -285,6 +285,32 @@ a { text-decoration: none; color: inherit; }
 }
 .btn-again:hover { background: var(--navy-dark); }
 
+/* ── EXTRA INFO ROWS (warnings / notices below integrity row) ── */
+.info-row {
+  display: flex; align-items: flex-start; gap: 9px;
+  padding: 10px 22px; border-top: 1px solid #F1F5F9;
+  font-size: 13px; line-height: 1.5;
+}
+.info-row.ir-warn { background: #FFFBEB; color: #92400E; font-weight: 600; }
+.info-row.ir-info { background: #EFF6FF; color: #1D4ED8; font-weight: 500; }
+.info-row.ir-ok   { background: #F0FDF4; color: #15803D; font-weight: 500; }
+
+/* ── TRUST / CA BADGES ── */
+.trust-badge {
+  display: inline-block; font-size: 10px; font-weight: 700;
+  background: #DCFCE7; color: #15803D;
+  border: 1px solid #BBF7D0;
+  padding: 1px 7px; border-radius: 20px;
+  margin-left: 6px; vertical-align: middle;
+}
+.untrusted-badge {
+  display: inline-block; font-size: 10px; font-weight: 700;
+  background: #FEF9C3; color: #92400E;
+  border: 1px solid #FDE68A;
+  padding: 1px 7px; border-radius: 20px;
+  margin-left: 6px; vertical-align: middle;
+}
+
 /* ── HOW IT WORKS ── */
 .how { padding: 64px 24px; text-align: center; }
 .how h2 { font-family: var(--font-d); font-size: clamp(22px, 3vw, 32px); color: var(--navy); margin-bottom: 8px; }
@@ -584,6 +610,21 @@ async function processFile(file) {
   }
 }
 
+// ── Known Indian CA list (CCA India trust hierarchy) ──────────────
+const TRUSTED_CAS = [
+  'emudhra','e-mudhra','capricorn','sify','ncode','n-code',
+  'cdac','safescrypt','national informatics','nic ','idrbt',
+  'cca india','controller of certifying'
+];
+
+// ── Get effective signing date for cert expiry checks ──────────────
+function getSigDate(sig, p) {
+  if (p?.pkcs7SigningTime) {
+    try { const d = new Date(p.pkcs7SigningTime); if (!isNaN(d)) return d; } catch(e) {}
+  }
+  return parsePdfDate(sig.signingTime);
+}
+
 // ── Build signature card ───────────────────────────────────────────
 function buildCard(idx, sig, p, hash) {
   const el  = document.createElement('div');
@@ -591,7 +632,7 @@ function buildCard(idx, sig, p, hash) {
 
   const name   = esc(p?.signerName || sig.name || 'Unknown Signer');
   const org    = esc(p?.organization || '—');
-  const issuer = esc(p?.issuerCN || p?.issuerOrg || '—');
+  const issuerTxt = esc(p?.issuerCN || p?.issuerOrg || '—');
   const signed = fmtTime(sig, p);
   const reason = esc(sig.reason || '—');
   const loc    = esc(sig.location || '—');
@@ -601,17 +642,79 @@ function buildCard(idx, sig, p, hash) {
   const serial = p?.serialNumber
     ? esc((p.serialNumber.match(/.{1,2}/g)||[]).join(':').toUpperCase())
     : '—';
-  const sf     = esc(sig.subFilter || 'adbe.pkcs7.detached');
+  const sf = esc(sig.subFilter || 'adbe.pkcs7.detached');
 
-  const badgeCls = hash.verified === false ? 'badge-bad' : 'badge-ok';
-  const badgeTxt = hash.verified === false ? 'Invalid' : 'Signed';
-  const irCls    = hash.verified === true ? 'ir-valid' : hash.verified === false ? 'ir-invalid' : 'ir-unknown';
-  const irIcon   = hash.verified === true ? '✅' : hash.verified === false ? '❌' : '⚠️';
-  const irTxt    = hash.verified === true
+  // ── 1. Certificate validity at signing time ────────────────────
+  const sigDate = getSigDate(sig, p);
+  let certExpired = false, certNotYetValid = false;
+  if (sigDate && p?.validFrom && p?.validTo) {
+    if (sigDate > new Date(p.validTo))   certExpired      = true;
+    if (sigDate < new Date(p.validFrom)) certNotYetValid  = true;
+  }
+
+  // ── 2. ByteRange document coverage ────────────────────────────
+  const br = sig.byteRange;
+  const fullCoverage = br[0] === 0 && (br[2] + br[3]) === sig.data.length;
+
+  // ── 3. Known Indian CA trust badge ────────────────────────────
+  const issuerLow  = (p?.issuerCN || p?.issuerOrg || '').toLowerCase();
+  const isTrusted  = TRUSTED_CAS.some(ca => issuerLow.includes(ca));
+  const isSelfSigned = p && p.subjectDN && p.issuerDN && p.subjectDN === p.issuerDN;
+  const trustBadge = isSelfSigned
+    ? '<span class="untrusted-badge">Self-signed</span>'
+    : isTrusted
+      ? '<span class="trust-badge">🏛️ Govt-trusted DSC</span>'
+      : (issuerTxt !== '—' ? '<span class="untrusted-badge">Unrecognised CA</span>' : '');
+
+  // ── 4. Integrity row ───────────────────────────────────────────
+  const irCls  = hash.verified === true  ? 'ir-valid'
+               : hash.verified === false ? 'ir-invalid' : 'ir-unknown';
+  const irIcon = hash.verified === true  ? '✅'
+               : hash.verified === false ? '❌' : '⚠️';
+  const irTxt  = hash.verified === true
     ? `Document integrity verified — PDF not modified since signing (${hash.algorithm})`
     : hash.verified === false
       ? 'Signature invalid — document may have been modified after signing'
       : 'Integrity check inconclusive — hash could not be verified';
+
+  // ── 5. Card header badge ───────────────────────────────────────
+  const badgeCls = hash.verified === false ? 'badge-bad' : certExpired ? 'badge-warn' : 'badge-ok';
+  const badgeTxt = hash.verified === false ? 'Invalid'   : certExpired ? '⚠️ Expired DSC' : 'Signed';
+
+  // ── 6. Extra info rows ─────────────────────────────────────────
+  let extraRows = '';
+  if (certExpired) {
+    extraRows += `<div class="info-row ir-warn">
+      ⚠️ Certificate was expired at the time of signing (expired ${to}) — this signature may not be legally valid
+    </div>`;
+  }
+  if (certNotYetValid) {
+    extraRows += `<div class="info-row ir-warn">
+      ⚠️ Certificate was not yet valid at the time of signing
+    </div>`;
+  }
+  if (!fullCoverage) {
+    extraRows += `<div class="info-row ir-warn">
+      ⚠️ Signature does not cover the entire document — content outside the signed range is unverified
+    </div>`;
+  }
+  if (hash.isSha1) {
+    extraRows += `<div class="info-row ir-warn">
+      ⚠️ Signed with SHA-1 (deprecated algorithm — SHA-256 or higher is recommended)
+    </div>`;
+  }
+  if (isSelfSigned) {
+    extraRows += `<div class="info-row ir-warn">
+      ⚠️ Self-signed certificate — signer identity cannot be independently verified
+    </div>`;
+  }
+  if (p?.tsaTime) {
+    const tsaFmt  = fmtDate(p.tsaTime);
+    const tsaNameE = esc(p.tsaName || 'Unknown TSA');
+    extraRows += `<div class="info-row ir-ok">
+      🕐 RFC&nbsp;3161 Timestamp: signed at ${tsaFmt} by ${tsaNameE}
+    </div>`;
+  }
 
   const cid = `cb${idx}`;
   el.innerHTML = `
@@ -629,7 +732,7 @@ function buildCard(idx, sig, p, hash) {
       </div>
       <div>
         <div class="sig-field-label">Certificate Issuer</div>
-        <div class="sig-field-value">${issuer}</div>
+        <div class="sig-field-value">${issuerTxt}${trustBadge}</div>
       </div>
       <div>
         <div class="sig-field-label">Reason</div>
@@ -643,6 +746,7 @@ function buildCard(idx, sig, p, hash) {
     <div class="integrity-row ${irCls}">
       <span>${irIcon}</span><span>${irTxt}</span>
     </div>
+    ${extraRows}
     <div class="cert-section">
       <button class="cert-toggle" onclick="tCert(this,'${cid}')">
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg>
@@ -652,7 +756,7 @@ function buildCard(idx, sig, p, hash) {
         <div class="cert-row"><span class="cert-lbl">Common Name</span><span class="cert-val">${name}</span></div>
         <div class="cert-row"><span class="cert-lbl">Organisation</span><span class="cert-val">${org}</span></div>
         <div class="cert-row"><span class="cert-lbl">Email</span><span class="cert-val">${email}</span></div>
-        <div class="cert-row"><span class="cert-lbl">Issued By</span><span class="cert-val">${issuer}</span></div>
+        <div class="cert-row"><span class="cert-lbl">Issued By</span><span class="cert-val">${issuerTxt}</span></div>
         <div class="cert-row"><span class="cert-lbl">Valid From</span><span class="cert-val">${from}</span></div>
         <div class="cert-row"><span class="cert-lbl">Valid Until</span><span class="cert-val">${to}</span></div>
         <div class="cert-row"><span class="cert-lbl">Serial Number</span><span class="cert-val" style="font-family:monospace;font-size:12px">${serial}</span></div>
@@ -770,6 +874,7 @@ function parsePKCS7(hex) {
   // non-standard (e.g. iText PKCS7 with embedded timestamp), so we
   // walk the raw tree instead.
   let expectedDigest = null, digestAlgorithm = null, pkcs7SigningTime = null;
+  let tsaTime = null, tsaName = null;
   try {
     // ContentInfo > [0] EXPLICIT > SignedData SEQUENCE
     const sdKids      = asn1.value[1].value[0].value;
@@ -804,6 +909,43 @@ function parsePKCS7(hex) {
           } catch(e) {}
         }
       }
+
+      // ── RFC 3161 Timestamp (unauthenticatedAttributes, tagClass=128 type=1) ──
+      try {
+        const ua = kids.find(k => k.tagClass === 128 && k.type === 1);
+        if (ua) {
+          const tsOid  = '1.2.840.113549.1.9.16.2.14';
+          const tsAttr = ua.value.find(a => {
+            try { return forge.asn1.derToOid(a.value[0].value) === tsOid; } catch(e) { return false; }
+          });
+          if (tsAttr) {
+            // SET > ContentInfo > [0] > SignedData
+            const tsToken = tsAttr.value[1].value[0];
+            const tsSD    = tsToken.value[1].value[0]; // SignedData SEQUENCE
+            // encapContentInfo SEQUENCE (type=16, has OID child)
+            const eci = tsSD.value.find(k => k.type === 16 && Array.isArray(k.value) &&
+                          k.value.length >= 2 && k.value[0].type === 6);
+            if (eci) {
+              const eWrap = eci.value.find(k => k.tagClass === 128 && k.type === 0);
+              if (eWrap) {
+                // OCTET STRING contains raw TSTInfo DER
+                const tstAsn1 = forge.asn1.fromDer(eWrap.value[0].value, false);
+                const genNode = tstAsn1.value.find(k => k.type === 24); // GeneralizedTime
+                if (genNode) tsaTime = forge.asn1.generalizedTimeToDate(genNode.value);
+              }
+            }
+            // TSA name from ts certificates [0] IMPLICIT
+            const tsCerts = tsSD.value.find(k => k.tagClass === 128 && k.type === 0);
+            if (tsCerts && tsCerts.value.length > 0) {
+              try {
+                const tsaCert = forge.pki.certificateFromAsn1(tsCerts.value[0]);
+                const cnF = tsaCert.subject.getField('CN') || tsaCert.subject.getField('O');
+                tsaName = cnF ? cnF.value : null;
+              } catch(e) {}
+            }
+          }
+        }
+      } catch(e) { console.warn('TSA parse:', e.message); }
     }
   } catch(e) {
     console.warn('signerInfo parse:', e.message);
@@ -818,9 +960,13 @@ function parsePKCS7(hex) {
     validFrom:       cert.validity.notBefore,
     validTo:         cert.validity.notAfter,
     serialNumber:    cert.serialNumber,
+    subjectDN:       cert.subject.attributes.map(a => a.shortName + '=' + a.value).join(','),
+    issuerDN:        cert.issuer.attributes.map(a => a.shortName + '=' + a.value).join(','),
     pkcs7SigningTime,
     expectedDigest,
     digestAlgorithm,
+    tsaTime,
+    tsaName,
   };
 }
 
@@ -836,13 +982,14 @@ async function verifyHash(sig, p) {
 
     const oid = p.digestAlgorithm || '';
     let alg = 'SHA-256';
-    if (oid === '1.3.14.3.2.26' || oid === '1.2.840.113549.2.5') alg = 'SHA-1';
+    const isSha1 = (oid === '1.3.14.3.2.26' || oid === '1.2.840.113549.2.5');
+    if (isSha1) alg = 'SHA-1';
     else if (oid === '2.16.840.1.101.3.4.2.2') alg = 'SHA-384';
     else if (oid === '2.16.840.1.101.3.4.2.3') alg = 'SHA-512';
 
     const hashBuf    = await crypto.subtle.digest(alg, combined);
     const actualBytes= forge.util.createBuffer(new Uint8Array(hashBuf)).bytes();
-    return { verified: actualBytes === p.expectedDigest, algorithm: alg };
+    return { verified: actualBytes === p.expectedDigest, algorithm: alg, isSha1 };
   } catch(e) { return { verified: null, reason: e.message }; }
 }
 
