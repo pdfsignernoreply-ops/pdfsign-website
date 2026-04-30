@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Verify PDF Digital Signature Online Free — PDFSign.in</title>
+<meta name="description" content="Free online PDF digital signature verifier. Upload any PDF to instantly check signer name, certificate details, signing date, and document integrity. Works with all Indian DSC signatures from eMudhra, Sify, Capricorn, nCode and more."/>
+<meta name="keywords" content="verify digital signature PDF, check PDF signature valid, verify DSC signature online, PDF signature verifier India, validate digital signature PDF free"/>
+<link rel="canonical" href="https://pdfsign.in/verify.html"/>
+<meta property="og:title" content="Verify PDF Digital Signature — Free Online Tool"/>
+<meta property="og:description" content="Check if a PDF is digitally signed. Get signer name, certificate details, and document integrity status — all in your browser. Free, private, no upload to any server."/>
+<meta property="og:url" content="https://pdfsign.in/verify.html"/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="robots" content="index, follow"/>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7E0J9Z32FK"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7E0J9Z32FK');</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<!-- forge for PKCS7 / certificate parsing -->
+<script src="https://cdn.jsdelivr.net/npm/node-forge@1.3.1/dist/forge.min.js"></script>
+
+<!-- FAQPage JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I verify a digital signature on a PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Upload the PDF using the tool above. It automatically detects digital signatures and shows the signer name, certificate issuer, signing date, and whether the document was modified after signing — all within seconds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my PDF uploaded to any server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All verification runs entirely in your browser using JavaScript. Your PDF never leaves your device — no upload, no server, complete privacy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which digital signatures does this tool support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool supports all standard PDF digital signatures including adbe.pkcs7.detached and ETSI.CAdES.detached formats. This covers all Indian DSC tokens from eMudhra, Sify, Capricorn, nCode, CDAC, HyperPKI, ePass, and Proxkey."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does 'Document integrity verified' mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It means the PDF content has not been changed since it was digitally signed. The tool computes a cryptographic hash of the signed byte ranges and compares it with the hash stored inside the PKCS7 signature envelope — matching hashes confirm the document is intact."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this to sign PDFs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool is for verification only. To sign PDFs with your DSC token on Windows, download PDFSign — it works completely offline, requires no Java or browser plugin, and supports all Indian DSC providers."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #1B2A47;
+  --navy-dark: #0F1E35;
+  --green: #16A34A;
+  --green-lt: #22C55E;
+  --blue: #93C5FD;
+  --font: 'Outfit', sans-serif;
+  --font-d: 'DM Serif Display', serif;
+  --max: 860px;
+}
+body { font-family: var(--font); background: #F8FAFC; color: #1E293B; line-height: 1.5; }
+a { text-decoration: none; color: inherit; }
+
+/* ── NAV ── */
+.nav {
+  background: var(--navy-dark);
+  padding: 0 24px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-mark {
+  background: #243558;
+  border: 1px solid rgba(147,197,253,0.2);
+  border-radius: 8px;
+  width: 38px; height: 38px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.logo-mark .lt { font-weight: 700; font-size: 9px; letter-spacing: 1px; color: #fff; line-height: 1.2; }
+.logo-mark .ls { font-weight: 700; font-size: 9px; letter-spacing: 1px; color: #93C5FD; line-height: 1.2; }
+.logo-mark .ld { width: 22px; height: 1.5px; background: var(--green); margin: 2px 0; }
+.logo-name { font-family: var(--font-d); font-size: 20px; color: #fff; }
+.logo-name em { color: var(--green-lt); font-style: normal; }
+.nav-dl { background: var(--green); color: #fff; font-weight: 600; font-size: 13px; padding: 8px 16px; border-radius: 8px; transition: background .18s; }
+.nav-dl:hover { background: #15803D; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+  padding: 60px 24px 72px;
+  text-align: center;
+}
+.hero-tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em;
+  color: var(--blue);
+  border: 1px solid rgba(147,197,253,0.3);
+  padding: 4px 12px; border-radius: 20px;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--font-d);
+  font-size: clamp(26px, 4.5vw, 48px);
+  color: #fff;
+  margin-bottom: 14px;
+  line-height: 1.15;
+}
+.hero p { font-size: 16px; color: rgba(255,255,255,0.62); max-width: 540px; margin: 0 auto 28px; }
+.privacy-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 13px; color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 6px 16px; border-radius: 20px;
+}
+
+/* ── UPLOAD AREA ── */
+.upload-wrap {
+  max-width: var(--max);
+  margin: -32px auto 0;
+  padding: 0 20px 48px;
+  position: relative;
+  z-index: 10;
+}
+#file-input { display: none; }
+
+.dropzone {
+  background: #fff;
+  border: 2px dashed #CBD5E1;
+  border-radius: 16px;
+  padding: 52px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+  box-shadow: 0 4px 28px rgba(0,0,0,0.09);
+}
+.dropzone:hover, .dropzone.over { border-color: var(--green); background: #F0FDF4; }
+.dz-icon {
+  width: 58px; height: 58px;
+  background: #EFF6FF;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
+.dropzone h2 { font-size: 19px; font-weight: 700; color: #1E293B; margin-bottom: 6px; }
+.dropzone .dz-sub { font-size: 14px; color: #64748B; margin-bottom: 20px; }
+.btn-browse {
+  background: var(--navy);
+  color: #fff; font-weight: 600; font-size: 14px;
+  padding: 11px 26px; border-radius: 9px;
+  border: none; cursor: pointer;
+  transition: background .18s;
+}
+.btn-browse:hover { background: var(--navy-dark); }
+.dz-note { margin-top: 16px; font-size: 12px; color: #94A3B8; }
+
+/* ── LOADING ── */
+.loading { display: none; text-align: center; padding: 56px 24px; background: #fff; border-radius: 16px; box-shadow: 0 4px 28px rgba(0,0,0,0.09); }
+.spinner { width: 42px; height: 42px; border: 3px solid #E2E8F0; border-top-color: var(--green); border-radius: 50%; animation: spin .75s linear infinite; margin: 0 auto 16px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading p { font-size: 15px; color: #64748B; }
+
+/* ── RESULTS ── */
+.results { display: none; }
+
+.status-banner {
+  display: flex; align-items: center; gap: 14px;
+  padding: 18px 22px; border-radius: 12px; margin-bottom: 20px;
+}
+.status-banner.s-valid   { background: #F0FDF4; border: 1px solid #BBF7D0; }
+.status-banner.s-invalid { background: #FEF2F2; border: 1px solid #FECACA; }
+.status-banner.s-warn    { background: #FFFBEB; border: 1px solid #FDE68A; }
+.status-banner.s-none    { background: #F8FAFC; border: 1px solid #E2E8F0; }
+.s-icon { font-size: 26px; flex-shrink: 0; }
+.s-title { font-size: 16px; font-weight: 700; color: #1E293B; margin-bottom: 2px; }
+.s-sub   { font-size: 13px; color: #64748B; }
+
+.sig-card {
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+.sig-head {
+  padding: 18px 22px 14px;
+  border-bottom: 1px solid #F1F5F9;
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 12px;
+}
+.sig-name { font-family: var(--font-d); font-size: 20px; color: #1E293B; }
+.sig-org  { font-size: 13px; color: #64748B; margin-top: 2px; }
+.badge { font-size: 11px; font-weight: 700; padding: 4px 11px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
+.badge-ok  { background: #DCFCE7; color: #15803D; }
+.badge-bad { background: #FEE2E2; color: #DC2626; }
+.badge-warn{ background: #FEF9C3; color: #92400E; }
+
+.sig-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 28px;
+  padding: 16px 22px;
+}
+@media(max-width:560px){ .sig-grid { grid-template-columns: 1fr; } }
+.sig-field-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #94A3B8; margin-bottom: 3px; }
+.sig-field-value { font-size: 14px; color: #334155; font-weight: 500; }
+
+.integrity-row {
+  display: flex; align-items: flex-start; gap: 9px;
+  padding: 13px 22px;
+  border-top: 1px solid #F1F5F9;
+  font-size: 13px; font-weight: 600;
+}
+.ir-valid   { background: #F0FDF4; color: #15803D; }
+.ir-invalid { background: #FEF2F2; color: #DC2626; }
+.ir-unknown { background: #FFFBEB; color: #92400E; }
+.integrity-row span { margin-top: 1px; }
+
+.cert-section { border-top: 1px solid #F1F5F9; background: #F8FAFC; }
+.cert-toggle {
+  width: 100%; background: none; border: none; cursor: pointer;
+  display: flex; align-items: center; gap: 7px;
+  padding: 13px 22px; font-family: var(--font);
+  font-size: 13px; font-weight: 600; color: var(--navy);
+  text-align: left;
+}
+.cert-toggle svg { transition: transform .2s; opacity: .6; }
+.cert-toggle.open svg { transform: rotate(180deg); opacity: 1; }
+.cert-body { display: none; padding: 0 22px 14px; }
+.cert-body.open { display: block; }
+.cert-row {
+  display: flex; gap: 14px; padding: 7px 0;
+  border-bottom: 1px solid #E2E8F0; font-size: 13px;
+}
+.cert-row:last-child { border-bottom: none; }
+.cert-lbl { font-weight: 600; color: #64748B; min-width: 130px; flex-shrink: 0; }
+.cert-val { color: #334155; word-break: break-all; }
+
+.btn-again {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--navy); color: #fff;
+  font-weight: 600; font-size: 14px;
+  padding: 12px 22px; border-radius: 10px;
+  border: none; cursor: pointer; margin-top: 8px;
+  transition: background .18s;
+}
+.btn-again:hover { background: var(--navy-dark); }
+
+/* ── HOW IT WORKS ── */
+.how { padding: 64px 24px; text-align: center; }
+.how h2 { font-family: var(--font-d); font-size: clamp(22px, 3vw, 32px); color: var(--navy); margin-bottom: 8px; }
+.how-sub { font-size: 15px; color: #64748B; margin-bottom: 40px; }
+.how-steps { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; max-width: 680px; margin: 0 auto; }
+.how-step { flex: 1; min-width: 170px; max-width: 200px; }
+.step-num {
+  width: 46px; height: 46px;
+  background: var(--navy); color: #fff;
+  border-radius: 50%; font-weight: 700; font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+}
+.how-step h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.how-step p  { font-size: 13px; color: #64748B; line-height: 1.55; }
+
+/* ── FAQ ── */
+.faq { background: var(--navy-dark); padding: 64px 24px; }
+.faq-inner { max-width: 700px; margin: 0 auto; }
+.faq h2 { font-family: var(--font-d); font-size: clamp(22px, 3vw, 32px); color: #fff; margin-bottom: 32px; text-align: center; }
+.faq-item { border-bottom: 1px solid rgba(255,255,255,0.1); }
+.faq-q {
+  width: 100%; background: none; border: none; cursor: pointer;
+  color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 600;
+  font-family: var(--font); text-align: left;
+  padding: 18px 0; display: flex; justify-content: space-between;
+  align-items: center; gap: 16px;
+}
+.faq-q svg { flex-shrink: 0; transition: transform .2s; opacity: .5; }
+.faq-item.open .faq-q svg { transform: rotate(180deg); opacity: 1; }
+.faq-a { display: none; font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; padding-bottom: 18px; }
+.faq-item.open .faq-a { display: block; }
+
+/* ── CTA ── */
+.cta { background: var(--navy); padding: 64px 24px; text-align: center; }
+.cta h2 { font-family: var(--font-d); font-size: clamp(22px, 3vw, 36px); color: #fff; margin-bottom: 12px; }
+.cta p  { font-size: 15px; color: rgba(255,255,255,0.6); margin-bottom: 28px; }
+.btn-dl {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--green); color: #fff;
+  font-weight: 700; font-size: 15px;
+  padding: 14px 28px; border-radius: 12px;
+  transition: background .18s;
+}
+.btn-dl:hover { background: #15803D; }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--navy-dark);
+  padding: 22px 24px; text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.footer p { font-size: 13px; color: rgba(255,255,255,0.4); }
+.footer a { color: rgba(255,255,255,0.5); }
+.footer a:hover { color: rgba(255,255,255,0.85); }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <a href="/" class="logo">
+    <div class="logo-mark">
+      <span class="lt">PDF</span>
+      <div class="ld"></div>
+      <span class="ls">SIGN</span>
+    </div>
+    <span class="logo-name">PDF<em>Sign</em>.in</span>
+  </a>
+  <a href="https://pdfsigner-api.vercel.app/api/download" class="nav-dl">Download Free</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-tag">Free Tool</div>
+  <h1>Verify PDF Digital Signature</h1>
+  <p>Upload any signed PDF to check the signer's identity, certificate details, and whether the document was modified after signing.</p>
+  <div class="privacy-badge">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Your PDF never leaves your browser
+  </div>
+</section>
+
+<!-- ── UPLOAD AREA ── -->
+<div class="upload-wrap">
+  <input type="file" id="file-input" accept=".pdf,application/pdf"/>
+
+  <!-- Dropzone -->
+  <div class="dropzone" id="dropzone">
+    <div class="dz-icon">
+      <svg width="26" height="26" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17,8 12,3 7,8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+    </div>
+    <h2>Drag &amp; drop your PDF here</h2>
+    <p class="dz-sub">Or click below to select a file from your device</p>
+    <button class="btn-browse" onclick="document.getElementById('file-input').click()">Browse PDF File</button>
+    <p class="dz-note">Supports all digitally signed PDFs · Max 50 MB · Free &amp; private</p>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <p>Reading signature data…</p>
+  </div>
+
+  <!-- Results -->
+  <div class="results" id="results">
+    <div id="status-banner"></div>
+    <div id="sig-cards"></div>
+    <button class="btn-again" onclick="resetTool()">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="1,4 1,10 7,10"/><path d="M3.51 15a9 9 0 1 0 .49-3.85"/></svg>
+      Verify Another PDF
+    </button>
+  </div>
+</div>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="how">
+  <h2>How It Works</h2>
+  <p class="how-sub">Entirely in your browser — no upload, no server</p>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="step-num">1</div>
+      <h4>Upload PDF</h4>
+      <p>Drag &amp; drop or select your digitally signed PDF file.</p>
+    </div>
+    <div class="how-step">
+      <div class="step-num">2</div>
+      <h4>Instant Analysis</h4>
+      <p>Signature data and certificate are read and verified in your browser.</p>
+    </div>
+    <div class="how-step">
+      <div class="step-num">3</div>
+      <h4>See Results</h4>
+      <p>View signer name, certificate issuer, signing time, and integrity status.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="faq">
+  <div class="faq-inner">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="tFaq(this)">How do I verify a digital signature on a PDF?
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg>
+      </button>
+      <div class="faq-a">Upload the PDF using the tool above. It automatically detects digital signatures and shows the signer name, certificate issuer, signing date, and whether the document was modified after signing — all within seconds.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="tFaq(this)">Is my PDF uploaded to any server?
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg>
+      </button>
+      <div class="faq-a">No. All verification runs entirely in your browser using JavaScript. Your PDF never leaves your device — no upload, no server, complete privacy.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="tFaq(this)">Which digital signatures does this tool support?
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg>
+      </button>
+      <div class="faq-a">This tool supports all standard PDF digital signatures — adbe.pkcs7.detached and ETSI.CAdES.detached — which covers all Indian DSC tokens from eMudhra, Sify, Capricorn, nCode, CDAC, HyperPKI, ePass, and Proxkey.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="tFaq(this)">What does "Document integrity verified" mean?
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg>
+      </button>
+      <div class="faq-a">It means the PDF content has not been changed since it was digitally signed. The tool computes a cryptographic hash of the signed byte ranges and compares it with the hash stored inside the signature envelope — matching hashes confirm the document is intact.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="tFaq(this)">Can I use this to sign PDFs?
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg>
+      </button>
+      <div class="faq-a">This tool is for verification only. To sign PDFs with your DSC token on Windows, download PDFSign — it works completely offline, requires no Java or browser plugin, and supports all Indian DSC providers.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta">
+  <h2>Need to sign PDFs with your DSC?</h2>
+  <p>PDFSign works offline, needs no Java or browser plugin, and supports all Indian DSC tokens.</p>
+  <a href="https://pdfsigner-api.vercel.app/api/download" class="btn-dl">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Download Free Trial
+  </a>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <p>
+    © 2026 <a href="/">PDFSign.in</a> &nbsp;·&nbsp;
+    <a href="/privacy.html">Privacy</a> &nbsp;·&nbsp;
+    <a href="/terms.html">Terms</a> &nbsp;·&nbsp;
+    <a href="mailto:help@pdfsign.in">help@pdfsign.in</a>
+  </p>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// PDF Signature Verifier — client-side only
+// forge (CDN) for PKCS7/ASN.1/certificate parsing
+// Web Crypto API for SHA hash verification
+// ═══════════════════════════════════════════════════════════════════
+
+const dropzone  = document.getElementById('dropzone');
+const fileInput = document.getElementById('file-input');
+
+// ── File input & drag/drop ─────────────────────────────────────────
+fileInput.addEventListener('change', e => {
+  if (e.target.files[0]) processFile(e.target.files[0]);
+});
+dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('over'); });
+dropzone.addEventListener('dragleave', () => dropzone.classList.remove('over'));
+dropzone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropzone.classList.remove('over');
+  const f = e.dataTransfer.files[0];
+  if (f && (f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf'))) processFile(f);
+  else showError('Please drop a PDF file.');
+});
+
+function resetTool() {
+  dropzone.style.display = '';
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('results').style.display = 'none';
+  fileInput.value = '';
+}
+
+function showError(msg) {
+  document.getElementById('loading').style.display = 'none';
+  dropzone.style.display = '';
+  alert(msg);
+}
+
+// ── Main processor ─────────────────────────────────────────────────
+async function processFile(file) {
+  dropzone.style.display = 'none';
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('results').style.display = 'none';
+
+  try {
+    const buffer = await file.arrayBuffer();
+    const sigs   = extractSignatures(buffer);
+
+    const bannerEl = document.getElementById('status-banner');
+    const cardsEl  = document.getElementById('sig-cards');
+    cardsEl.innerHTML = '';
+
+    if (sigs.length === 0) {
+      bannerEl.className = 'status-banner s-none';
+      bannerEl.innerHTML = `<div class="s-icon">📄</div>
+        <div><div class="s-title">No Digital Signatures Found</div>
+        <div class="s-sub">This PDF does not contain any digital signature fields.</div></div>`;
+    } else {
+      let allGood = true, anyBad = false;
+
+      for (let i = 0; i < sigs.length; i++) {
+        let pkcs7 = null, hash = { verified: null };
+        try { pkcs7 = parsePKCS7(sigs[i].contentsHex); } catch(e) { console.warn('PKCS7:', e.message); }
+        try { hash  = await verifyHash(sigs[i], pkcs7);  } catch(e) { console.warn('Hash:', e.message); }
+        if (hash.verified === false) { allGood = false; anyBad = true; }
+        if (hash.verified === null)  { allGood = false; }
+        cardsEl.appendChild(buildCard(i + 1, sigs[i], pkcs7, hash));
+      }
+
+      const cls  = anyBad ? 's-invalid' : allGood ? 's-valid' : 's-warn';
+      const icon = anyBad ? '❌' : allGood ? '✅' : '⚠️';
+      const n    = sigs.length;
+      const title = anyBad
+        ? `${n} Signature${n>1?'s':''} — Invalid`
+        : allGood
+          ? `${n} Valid Signature${n>1?'s':''} Found`
+          : `${n} Signature${n>1?'s':''} Found`;
+      const sub = anyBad
+        ? 'This document may have been modified after signing.'
+        : allGood
+          ? 'Document integrity confirmed — PDF has not been modified since signing.'
+          : 'Signature structure found. Hash verification was inconclusive.';
+
+      bannerEl.className = `status-banner ${cls}`;
+      bannerEl.innerHTML = `<div class="s-icon">${icon}</div>
+        <div><div class="s-title">${title}</div><div class="s-sub">${sub}</div></div>`;
+    }
+
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
+  } catch(e) {
+    console.error(e);
+    showError('Could not read this file. Please ensure it is a valid PDF.');
+  }
+}
+
+// ── Build signature card ───────────────────────────────────────────
+function buildCard(idx, sig, p, hash) {
+  const el  = document.createElement('div');
+  el.className = 'sig-card';
+
+  const name   = esc(p?.signerName || sig.name || 'Unknown Signer');
+  const org    = esc(p?.organization || '—');
+  const issuer = esc(p?.issuerCN || p?.issuerOrg || '—');
+  const signed = fmtTime(sig, p);
+  const reason = esc(sig.reason || '—');
+  const loc    = esc(sig.location || '—');
+  const from   = fmtDate(p?.validFrom);
+  const to     = fmtDate(p?.validTo);
+  const email  = esc(p?.email || '—');
+  const serial = p?.serialNumber
+    ? esc((p.serialNumber.match(/.{1,2}/g)||[]).join(':').toUpperCase())
+    : '—';
+  const sf     = esc(sig.subFilter || 'adbe.pkcs7.detached');
+
+  const badgeCls = hash.verified === false ? 'badge-bad' : 'badge-ok';
+  const badgeTxt = hash.verified === false ? 'Invalid' : 'Signed';
+  const irCls    = hash.verified === true ? 'ir-valid' : hash.verified === false ? 'ir-invalid' : 'ir-unknown';
+  const irIcon   = hash.verified === true ? '✅' : hash.verified === false ? '❌' : '⚠️';
+  const irTxt    = hash.verified === true
+    ? `Document integrity verified — PDF not modified since signing (${hash.algorithm})`
+    : hash.verified === false
+      ? 'Signature invalid — document may have been modified after signing'
+      : 'Integrity check inconclusive — hash could not be verified';
+
+  const cid = `cb${idx}`;
+  el.innerHTML = `
+    <div class="sig-head">
+      <div>
+        <div class="sig-name">${name}</div>
+        <div class="sig-org">${org}</div>
+      </div>
+      <span class="badge ${badgeCls}">${badgeTxt}</span>
+    </div>
+    <div class="sig-grid">
+      <div>
+        <div class="sig-field-label">Signed On</div>
+        <div class="sig-field-value">${signed}</div>
+      </div>
+      <div>
+        <div class="sig-field-label">Certificate Issuer</div>
+        <div class="sig-field-value">${issuer}</div>
+      </div>
+      <div>
+        <div class="sig-field-label">Reason</div>
+        <div class="sig-field-value">${reason}</div>
+      </div>
+      <div>
+        <div class="sig-field-label">Location</div>
+        <div class="sig-field-value">${loc}</div>
+      </div>
+    </div>
+    <div class="integrity-row ${irCls}">
+      <span>${irIcon}</span><span>${irTxt}</span>
+    </div>
+    <div class="cert-section">
+      <button class="cert-toggle" onclick="tCert(this,'${cid}')">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg>
+        Certificate Details
+      </button>
+      <div class="cert-body" id="${cid}">
+        <div class="cert-row"><span class="cert-lbl">Common Name</span><span class="cert-val">${name}</span></div>
+        <div class="cert-row"><span class="cert-lbl">Organisation</span><span class="cert-val">${org}</span></div>
+        <div class="cert-row"><span class="cert-lbl">Email</span><span class="cert-val">${email}</span></div>
+        <div class="cert-row"><span class="cert-lbl">Issued By</span><span class="cert-val">${issuer}</span></div>
+        <div class="cert-row"><span class="cert-lbl">Valid From</span><span class="cert-val">${from}</span></div>
+        <div class="cert-row"><span class="cert-lbl">Valid Until</span><span class="cert-val">${to}</span></div>
+        <div class="cert-row"><span class="cert-lbl">Serial Number</span><span class="cert-val" style="font-family:monospace;font-size:12px">${serial}</span></div>
+        <div class="cert-row"><span class="cert-lbl">Signature Type</span><span class="cert-val">${sf}</span></div>
+      </div>
+    </div>`;
+  return el;
+}
+
+// ── PDF Signature Extractor ────────────────────────────────────────
+function extractSignatures(buffer) {
+  const data = new Uint8Array(buffer);
+  const text = new TextDecoder('latin1').decode(data);
+  const sigs = [];
+  let pos = 0;
+
+  while (pos < text.length) {
+    const idx = text.indexOf('/ByteRange', pos);
+    if (idx === -1) break;
+
+    const brStr   = text.slice(idx, idx + 140);
+    const brMatch = brStr.match(/\/ByteRange\s*\[\s*(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s*\]/);
+    if (!brMatch) { pos = idx + 10; continue; }
+
+    const byteRange = [+brMatch[1], +brMatch[2], +brMatch[3], +brMatch[4]];
+    const ctxStart  = Math.max(0, idx - 9000);
+    const ctx       = text.slice(ctxStart, idx + 300);
+
+    const cMatch = ctx.match(/\/Contents\s*<([0-9a-fA-F\s]{40,})>/);
+    if (!cMatch) { pos = idx + 10; continue; }
+    const contentsHex = cMatch[1].replace(/\s/g, '');
+    if (contentsHex.length < 80) { pos = idx + 10; continue; }
+
+    // Avoid duplicates from multiple xref revisions
+    const dup = sigs.some(s => s.byteRange[0] === byteRange[0] && s.byteRange[1] === byteRange[1]);
+    if (!dup) {
+      const sfM  = ctx.match(/\/SubFilter\s*\/(\S+)/);
+      const rM   = ctx.match(/\/Reason\s*(?:<([0-9a-fA-F]+)>|\(([^)]*)\))/);
+      const lM   = ctx.match(/\/Location\s*(?:<([0-9a-fA-F]+)>|\(([^)]*)\))/);
+      const nM   = ctx.match(/\/Name\s*(?:<([0-9a-fA-F]+)>|\(([^)]*)\))/);
+      const tM   = ctx.match(/\/M\s*\(([^)]*)\)/);
+      sigs.push({
+        byteRange,
+        contentsHex,
+        data,
+        subFilter:   sfM?.[1]  || 'adbe.pkcs7.detached',
+        reason:      pdfStr(rM?.[1], rM?.[2]),
+        location:    pdfStr(lM?.[1], lM?.[2]),
+        name:        pdfStr(nM?.[1], nM?.[2]),
+        signingTime: tM?.[1] || null,
+      });
+    }
+    pos = idx + 10;
+  }
+  return sigs;
+}
+
+function pdfStr(hex, lit) {
+  if (lit) return lit;
+  if (!hex) return null;
+  try {
+    const b = hex.match(/.{2}/g).map(h => parseInt(h, 16));
+    if (b.length >= 2 && b[0] === 0xFE && b[1] === 0xFF) {
+      let s = '';
+      for (let i = 2; i + 1 < b.length; i += 2) s += String.fromCharCode((b[i] << 8) | b[i+1]);
+      return s;
+    }
+    return b.map(x => String.fromCharCode(x)).join('');
+  } catch(e) { return null; }
+}
+
+// ── PKCS7 / Certificate parser (forge) ────────────────────────────
+function parsePKCS7(hex) {
+  const der  = forge.util.hexToBytes(hex);
+  const asn1 = forge.asn1.fromDer(der, false);
+  const p7   = forge.pkcs7.messageFromAsn1(asn1);
+
+  const certs  = p7.certificates || [];
+  const signer = (p7.signers || [])[0];
+  const cert   = certs[0];
+  if (!cert) throw new Error('No certificate');
+
+  const gS = (attrs, sn) => attrs.find(a => a.shortName === sn)?.value || null;
+  const sub = cert.subject.attributes;
+  const iss = cert.issuer.attributes;
+
+  // Extract messageDigest & signingTime from authenticated attributes
+  const authAttrs = signer?.authenticatedAttributes || [];
+  const mdOid     = '1.2.840.113549.1.9.4';
+  const stOid     = '1.2.840.113549.1.9.5';
+  let expectedDigest = null, pkcs7SigningTime = null;
+
+  for (const a of authAttrs) {
+    if (a.type === mdOid) {
+      try {
+        // value is SET containing OCTET STRING
+        const setVal = a.value;
+        if (setVal && setVal.value && setVal.value[0]) expectedDigest = setVal.value[0].value;
+        else if (typeof setVal.value === 'string') expectedDigest = setVal.value;
+      } catch(e) {}
+    }
+    if (a.type === stOid) {
+      try {
+        const tv = a.value;
+        pkcs7SigningTime = tv?.value?.[0]?.value || tv?.value || null;
+      } catch(e) {}
+    }
+  }
+
+  return {
+    signerName:      gS(sub,'CN') || gS(sub,'O'),
+    organization:    gS(sub,'O'),
+    email:           gS(sub,'E') || gS(sub,'emailAddress'),
+    issuerCN:        gS(iss,'CN') || gS(iss,'O'),
+    issuerOrg:       gS(iss,'O'),
+    validFrom:       cert.validity.notBefore,
+    validTo:         cert.validity.notAfter,
+    serialNumber:    cert.serialNumber,
+    pkcs7SigningTime,
+    expectedDigest,
+    digestAlgorithm: signer?.digestAlgorithm,
+  };
+}
+
+// ── Hash verifier (Web Crypto) ─────────────────────────────────────
+async function verifyHash(sig, p) {
+  if (!p?.expectedDigest) return { verified: null };
+  try {
+    const r  = sig.byteRange;
+    const p1 = sig.data.slice(r[0], r[0] + r[1]);
+    const p2 = sig.data.slice(r[2], r[2] + r[3]);
+    const combined = new Uint8Array(p1.length + p2.length);
+    combined.set(p1, 0); combined.set(p2, p1.length);
+
+    const oid = p.digestAlgorithm || '';
+    let alg = 'SHA-256';
+    if (oid === '1.3.14.3.2.26' || oid === '1.2.840.113549.2.5') alg = 'SHA-1';
+    else if (oid === '2.16.840.1.101.3.4.2.2') alg = 'SHA-384';
+    else if (oid === '2.16.840.1.101.3.4.2.3') alg = 'SHA-512';
+
+    const hashBuf    = await crypto.subtle.digest(alg, combined);
+    const actualBytes= forge.util.createBuffer(new Uint8Array(hashBuf)).bytes();
+    return { verified: actualBytes === p.expectedDigest, algorithm: alg };
+  } catch(e) { return { verified: null, reason: e.message }; }
+}
+
+// ── Helpers ────────────────────────────────────────────────────────
+function fmtDate(d) {
+  if (!d) return '—';
+  try { return new Date(d).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' }); }
+  catch(e) { return String(d); }
+}
+
+function parsePdfDate(s) {
+  if (!s) return null;
+  const m = s.match(/D:(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})?([+-Z])?(\d{2})?'?(\d{2})?/);
+  if (!m) return null;
+  const [,Y,Mo,D,H,Mi,S,tz,tzH,tzM] = m;
+  const tzStr = (!tz || tz==='Z') ? 'Z' : `${tz}${(tzH||'00')}:${(tzM||'00')}`;
+  try { return new Date(`${Y}-${Mo}-${D}T${H}:${Mi}:${S||'00'}${tzStr}`); } catch(e) { return null; }
+}
+
+function fmtTime(sig, p) {
+  let d = null;
+  if (p?.pkcs7SigningTime) {
+    try { d = new Date(p.pkcs7SigningTime); if (isNaN(d)) d = null; } catch(e){}
+  }
+  if (!d) d = parsePdfDate(sig.signingTime);
+  if (!d) return '—';
+  return d.toLocaleString('en-IN', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', hour12: true });
+}
+
+function esc(s) {
+  if (!s || s === '—') return '—';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function tFaq(btn) {
+  const item   = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+function tCert(btn, id) {
+  btn.classList.toggle('open');
+  document.getElementById(id).classList.toggle('open');
+}
+</script>
+</body>
+</html>
