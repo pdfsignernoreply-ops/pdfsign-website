@@ -673,36 +673,48 @@ function extractSignatures(buffer) {
     const idx = text.indexOf('/ByteRange', pos);
     if (idx === -1) break;
 
-    const brStr   = text.slice(idx, idx + 140);
+    const brStr   = text.slice(idx, idx + 200);
     const brMatch = brStr.match(/\/ByteRange\s*\[\s*(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s*\]/);
     if (!brMatch) { pos = idx + 10; continue; }
 
     const byteRange = [+brMatch[1], +brMatch[2], +brMatch[3], +brMatch[4]];
-    const ctxStart  = Math.max(0, idx - 9000);
-    const ctx       = text.slice(ctxStart, idx + 300);
 
-    const cMatch = ctx.match(/\/Contents\s*<([0-9a-fA-F\s]{40,})>/);
-    if (!cMatch) { pos = idx + 10; continue; }
-    const contentsHex = cMatch[1].replace(/\s/g, '');
+    // ── Extract /Contents directly from the ByteRange gap ─────────────
+    // The gap between the two signed ranges is <HEX_DER_PKCS7_DATA>.
+    // We read it directly from the byte offsets so the size of the hex
+    // (which can be 32 KB+) never limits us.
+    const gapStart = byteRange[0] + byteRange[1];
+    const gapEnd   = byteRange[2];
+    if (gapStart < 0 || gapEnd > text.length || gapStart >= gapEnd) { pos = idx + 10; continue; }
+
+    const contentsHex = text.slice(gapStart, gapEnd).replace(/[<>\s]/g, '');
     if (contentsHex.length < 80) { pos = idx + 10; continue; }
 
-    // Avoid duplicates from multiple xref revisions
+    // ── Avoid duplicates from incremental PDF updates ──────────────────
     const dup = sigs.some(s => s.byteRange[0] === byteRange[0] && s.byteRange[1] === byteRange[1]);
     if (!dup) {
-      const sfM  = ctx.match(/\/SubFilter\s*\/(\S+)/);
-      const rM   = ctx.match(/\/Reason\s*(?:<([0-9a-fA-F]+)>|\(([^)]*)\))/);
-      const lM   = ctx.match(/\/Location\s*(?:<([0-9a-fA-F]+)>|\(([^)]*)\))/);
-      const nM   = ctx.match(/\/Name\s*(?:<([0-9a-fA-F]+)>|\(([^)]*)\))/);
-      const tM   = ctx.match(/\/M\s*\(([^)]*)\)/);
+      // Metadata fields (/Reason, /Location, /M, /SubFilter) live in the
+      // sig dict, which appears both before the ByteRange entry and after
+      // the Contents gap.  Search both windows.
+      const beforeCtx = text.slice(Math.max(0, idx - 9000), idx + 200);
+      const afterCtx  = text.slice(gapEnd, Math.min(text.length, gapEnd + 4000));
+      const fullCtx   = beforeCtx + afterCtx;
+
+      const sfM = fullCtx.match(/\/SubFilter\s*\/([^\s\/<>[\]()]+)/);
+      const rM  = fullCtx.match(/\/Reason\s*(?:<([0-9a-fA-F]+)>|\(([^)]*)\))/);
+      const lM  = fullCtx.match(/\/Location\s*(?:<([0-9a-fA-F]+)>|\(([^)]*)\))/);
+      const nM  = fullCtx.match(/\/Name\s*\(([^)]*)\)/);
+      const tM  = fullCtx.match(/\/M\s*\(([^)]*)\)/);
+
       sigs.push({
         byteRange,
         contentsHex,
         data,
         subFilter:   sfM?.[1]  || 'adbe.pkcs7.detached',
-        reason:      pdfStr(rM?.[1], rM?.[2]),
-        location:    pdfStr(lM?.[1], lM?.[2]),
-        name:        pdfStr(nM?.[1], nM?.[2]),
-        signingTime: tM?.[1] || null,
+        reason:      rM?.[2] || pdfStr(rM?.[1], null) || null,
+        location:    lM?.[2] || pdfStr(lM?.[1], null) || null,
+        name:        nM?.[1]  || null,
+        signingTime: tM?.[1]  || null,
       });
     }
     pos = idx + 10;
