@@ -517,7 +517,7 @@ async function savePricing() {
   var msg = document.getElementById('pricing-msg');
   msg.textContent='Saving…'; msg.style.color='#94a3b8';
   try {
-    var r = await apicall(API+'/pricing','PATCH',JSON.stringify(updates));
+    var r = await apicall(API+'/pricing','PATCH', updates);
     var j = await r.json();
     if (j.success) { msg.textContent='✓ Prices saved.'; msg.style.color='#4ade80'; }
     else           { msg.textContent='✗ '+(j.error||'Unknown error'); msg.style.color='#f87171'; }
