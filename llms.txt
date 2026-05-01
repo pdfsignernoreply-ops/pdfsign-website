@@ -56,4 +56,4 @@ PDFSign.in lets Indian professionals sign any PDF document in under 60 seconds u
 - Website: https://pdfsign.in
 - Email: help@pdfsign.in
 - WhatsApp: +91 70574 13999
-- Download: https://cdn.pdfsign.in/PDFSignSetup.exe
+- Download: https://apps.microsoft.com/detail/9PBCQ9ZM5G2X
