@@ -140,6 +140,7 @@ tr:hover td{background:#1e293b33}
     <div class="tab" onclick="showTab('res',this)">Resellers</div>
     <div class="tab" onclick="showTab('cou',this)">Coupons</div>
     <div class="tab" onclick="showTab('pri',this)">💰 Pricing</div>
+    <div class="tab" onclick="showTab('leads',this)">📋 Leads</div>
   </div>
 
   <main>
@@ -295,6 +296,43 @@ tr:hover td{background:#1e293b33}
         <tbody id="pricing-body"></tbody>
       </table>
       <div id="pricing-msg" style="margin-top:12px;font-size:13px"></div>
+    </div>
+
+    <!-- ── LEADS TAB ── -->
+    <div id="pleads" style="display:none">
+      <div class="section-hdr">
+        <h2>Trial Leads</h2>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <input type="text" id="leads-search" placeholder="Search email, name, machine…"
+                 oninput="renderLeads()"
+                 style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;
+                        padding:7px 11px;border-radius:7px;font-size:12px;outline:none;width:240px;"/>
+          <select id="leads-filter" onchange="renderLeads()"
+                  style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;
+                         padding:7px 11px;border-radius:7px;font-size:12px;outline:none;">
+            <option value="all">All Leads</option>
+            <option value="active">Trial Active</option>
+            <option value="expired">Trial Expired</option>
+            <option value="converted">Converted</option>
+          </select>
+          <button class="btn-r" onclick="loadLeads()">⟳ Refresh</button>
+        </div>
+      </div>
+      <div class="stats" id="leads-stats" style="margin-bottom:18px">
+        <div class="stat"><div class="sv" id="ls-total">—</div><div class="sl">Total Leads</div></div>
+        <div class="stat"><div class="sv" id="ls-active" style="color:#4ade80">—</div><div class="sl">Active Trial</div></div>
+        <div class="stat"><div class="sv" id="ls-expired" style="color:#f87171">—</div><div class="sl">Expired</div></div>
+        <div class="stat"><div class="sv" id="ls-converted" style="color:#38bdf8">—</div><div class="sl">Converted</div></div>
+      </div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead><tr>
+            <th>Email</th><th>Name</th><th>Machine ID</th>
+            <th>Trial End</th><th>Days Left</th><th>Captured</th><th>Status</th>
+          </tr></thead>
+          <tbody id="leads-body"></tbody>
+        </table>
+      </div>
     </div>
   </main>
 </div>
@@ -470,13 +508,62 @@ function showTab(t, el) {
   document.getElementById('pusr').style.display  = t==='usr'  ? 'block' : 'none';
   document.getElementById('pres').style.display  = t==='res'  ? 'block' : 'none';
   document.getElementById('pcou').style.display  = t==='cou'  ? 'block' : 'none';
-  document.getElementById('ppri').style.display  = t==='pri'  ? 'block' : 'none';
+  document.getElementById('ppri').style.display   = t==='pri'   ? 'block' : 'none';
+  document.getElementById('pleads').style.display = t==='leads' ? 'block' : 'none';
   if (t==='dash') { loadDashboard(); }
   if (t==='lic')  loadLicenses();
   if (t==='usr')  loadUsers();
   if (t==='res')  loadResellers();
   if (t==='cou') { loadCoupons(); if(S&&S.role==='admin') document.getElementById('coupon-add-btn').style.display='inline-block'; }
   if (t==='pri')  loadPricing();
+  if (t==='leads') loadLeads();
+}
+
+// ── LEADS ─────────────────────────────────────────────────────────────────
+var LEADS = [];
+async function loadLeads() {
+  document.getElementById('leads-body').innerHTML =
+    '<tr><td colspan="7" style="padding:20px;color:#64748b;text-align:center">Loading…</td></tr>';
+  try {
+    var r = await apicall(API + '/leads', 'GET');
+    if (r.status === 401) { logout(); return; }
+    LEADS = await r.json();
+    document.getElementById('ls-total').textContent    = LEADS.length;
+    document.getElementById('ls-active').textContent   = LEADS.filter(function(l){return l.status==='active';}).length;
+    document.getElementById('ls-expired').textContent  = LEADS.filter(function(l){return l.status==='expired';}).length;
+    document.getElementById('ls-converted').textContent= LEADS.filter(function(l){return l.status==='converted';}).length;
+    renderLeads();
+  } catch(e) {
+    document.getElementById('leads-body').innerHTML =
+      '<tr><td colspan="7" style="padding:20px;color:#f87171;text-align:center">Error: '+e.message+'</td></tr>';
+  }
+}
+function renderLeads() {
+  var q      = ((document.getElementById('leads-search').value)||'').toLowerCase();
+  var filter = document.getElementById('leads-filter').value;
+  var rows   = LEADS.filter(function(l) {
+    if (filter !== 'all' && l.status !== filter) return false;
+    return !q || (l.customer_email||'').toLowerCase().includes(q)
+              || (l.customer_name ||'').toLowerCase().includes(q)
+              || (l.machine_id    ||'').toLowerCase().includes(q);
+  });
+  var sc = {active:'#4ade80', expired:'#f87171', converted:'#38bdf8'};
+  var td = 'padding:9px 11px;border-bottom:1px solid #1e293b55;';
+  document.getElementById('leads-body').innerHTML = rows.length ? rows.map(function(l) {
+    var dl  = l.days_left !== null ? l.days_left : '—';
+    var cap = l.email_captured_at ? new Date(l.email_captured_at).toLocaleDateString('en-IN') : '—';
+    var te  = l.trial_end         ? new Date(l.trial_end).toLocaleDateString('en-IN')         : '—';
+    return '<tr>'
+      +'<td style="'+td+'"><a href="mailto:'+l.customer_email+'" style="color:#93c5fd;text-decoration:none">'+l.customer_email+'</a></td>'
+      +'<td style="'+td+'color:#cbd5e1">'+(l.customer_name||'<span style="color:#475569">—</span>')+'</td>'
+      +'<td style="'+td+'"><code style="color:#64748b;font-size:10px">'+l.machine_id+'</code></td>'
+      +'<td style="'+td+'color:#64748b;font-size:11px">'+te+'</td>'
+      +'<td style="'+td+'text-align:center">'+dl+'</td>'
+      +'<td style="'+td+'color:#64748b;font-size:11px">'+cap+'</td>'
+      +'<td style="'+td+'"><span style="color:'+(sc[l.status]||'#94a3b8')+';font-weight:700;font-size:10px;text-transform:uppercase">'+l.status+'</span></td>'
+      +'</tr>';
+  }).join('')
+  : '<tr><td colspan="7" style="padding:20px;color:#64748b;text-align:center">No leads found.</td></tr>';
 }
 
 // ── PRICING ──────────────────────────────────────────────────────────────
