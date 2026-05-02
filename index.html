@@ -2098,6 +2098,23 @@
   /* ─── PLAN TOGGLE (team/solo) ─── */
   .plan-toggle-row { display: flex; justify-content: center; gap: 0; margin: 0 auto 40px; width: fit-content; border: 1px solid var(--gray-200); border-radius: 999px; overflow: hidden; background: var(--gray-50); position: relative; z-index: 50; }
   .pricing-header { position: relative; z-index: 40; }
+  /* ── Geo-conditional content ── */
+  .intl-only { display:none; }   /* shown only for non-India visitors via JS */
+  .india-only { display:block; } /* hidden for non-India visitors via JS — inline elements use display:inline */
+  /* ── International checkout modal ── */
+  #intlCheckoutModal { display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:9999; align-items:center; justify-content:center; padding:1rem; }
+  #intlCheckoutModal.open { display:flex; }
+  .intl-modal-box { background:#fff; border-radius:20px; padding:2.5rem 2rem; max-width:420px; width:100%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,.25); }
+  .intl-modal-box h3 { font-family:'DM Serif Display',serif; font-size:1.4rem; color:var(--navy); margin-bottom:.5rem; }
+  .intl-modal-box p  { color:#64748b; font-size:.9rem; line-height:1.6; margin-bottom:1.25rem; }
+  .intl-modal-box input { width:100%; padding:.7rem 1rem; border:1px solid var(--gray-200); border-radius:8px; font-size:.95rem; font-family:'Outfit',sans-serif; margin-bottom:.75rem; outline:none; }
+  .intl-modal-box input:focus { border-color:var(--green); }
+  .intl-modal-pay-btn { width:100%; background:var(--green); color:#fff; border:none; padding:.8rem; border-radius:8px; font-weight:700; font-size:1rem; cursor:pointer; font-family:'Outfit',sans-serif; }
+  .intl-modal-pay-btn:hover { background:var(--green-light); }
+  .intl-modal-pay-btn:disabled { opacity:.6; cursor:not-allowed; }
+  .intl-modal-close-link { display:block; margin-top:.75rem; font-size:.82rem; color:#94a3b8; cursor:pointer; }
+  .intl-modal-close-link:hover { color:var(--navy); }
+  .intl-modal-err { color:#ef4444; font-size:.85rem; margin-bottom:.5rem; display:none; }
   .plan-toggle-btn { padding: 8px 22px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; background: none; color: var(--muted); font-family: var(--font-body); transition: all .2s; }
   .plan-toggle-btn.active { background: var(--navy); color: #fff; border-radius: 999px; }
   .plan-seats-note { text-align: center; font-size: 13px; color: var(--muted); margin-top: -28px; margin-bottom: 20px; }
@@ -2317,11 +2334,20 @@
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-badge">For Windows · 30-Day Free Trial</div>
-      <h1>Sign any PDF in seconds.<br /><em>DSC token or stamp image.</em><br />100% offline.</h1>
-      <p class="hero-sub">
+
+      <!-- India hero -->
+      <h1 class="india-only">Sign any PDF in seconds.<br /><em>DSC token or stamp image.</em><br />100% offline.</h1>
+      <p class="hero-sub india-only">
         Open the app, load your PDF, sign. Done in under 60 seconds. Works with your USB DSC token or a signature stamp image — no Java, no browser plugin, no cloud upload.
       </p>
-      <p class="hero-urgency"><em>Never miss a tender deadline again.</em></p>
+      <p class="hero-urgency india-only"><em>Never miss a tender deadline again.</em></p>
+
+      <!-- International hero -->
+      <h1 class="intl-only">Sign PDFs with your<br /><em>USB security token.</em><br />100% offline. Never uploaded.</h1>
+      <p class="hero-sub intl-only">
+        Plug in your token, open the app, sign any PDF — done in under 60 seconds. Works with SafeNet, Thales, HID, Gemalto, Feitian, and any PKCS#11 token. No Java, no browser plugin, no cloud.
+      </p>
+      <p class="hero-urgency intl-only"><em>Your documents never leave your PC. Ever.</em></p>
       <div class="hero-actions">
         <a href="https://pdfsigner-api.vercel.app/api/download" class="btn-primary">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -2349,16 +2375,21 @@
           <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
           7-day refund
         </div>
-        <div class="hero-badge-item">
+        <div class="hero-badge-item india-only">
           <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
           Legal under IT Act 2000
+        </div>
+        <div class="hero-badge-item intl-only">
+          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+          eIDAS &amp; E-SIGN Act compatible
         </div>
       </div>
       <div class="hero-trust">
         <div class="trust-avatars">
           <span>CA</span><span>LW</span><span>GC</span><span>EX</span>
         </div>
-        <p class="trust-text">Trusted by <strong>procurement professionals, CA firms, and company secretaries</strong> across India</p>
+        <p class="trust-text india-only">Trusted by <strong>procurement professionals, CA firms, and company secretaries</strong> across India</p>
+        <p class="trust-text intl-only">Trusted by <strong>lawyers, accountants, compliance teams, and procurement professionals</strong> worldwide</p>
       </div>
     </div>
 
@@ -2372,7 +2403,8 @@
         <div class="pdf-header">
           <div class="pdf-icon">PDF</div>
           <div>
-            <div class="pdf-name">Tender_Document_2025.pdf</div>
+            <div class="pdf-name india-only">Tender_Document_2025.pdf</div>
+            <div class="pdf-name intl-only">Contract_NDA_Signed.pdf</div>
             <div class="pdf-size">2.4 MB · 8 pages</div>
           </div>
         </div>
@@ -2790,7 +2822,7 @@
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>1 Windows device</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Email support</li>
         </ul>
-        <a href="https://rzp.io/rzp/y6KFT3L" class="plan-btn plan-btn-outline" id="btnMonthly">Get Monthly Plan</a>
+        <a href="https://rzp.io/rzp/y6KFT3L" class="plan-btn plan-btn-outline" id="btnMonthly" onclick="return handlePlanClick(event,'monthly')">Get Monthly Plan</a>
         <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:8px;" id="monthlyTeamNote" class="plan-team-note">Solo only — team not available monthly</p>
       </div>
 
@@ -2812,7 +2844,7 @@
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Priority email support</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Free upgrades for 1 year</li>
         </ul>
-        <a href="https://rzp.io/rzp/ZY9vgMXC" class="plan-btn plan-btn-solid" id="btnAnnual">Get Annual Plan</a>
+        <a href="https://rzp.io/rzp/ZY9vgMXC" class="plan-btn plan-btn-solid" id="btnAnnual" onclick="return handlePlanClick(event,'yearly')">Get Annual Plan</a>
       </div>
 
       <!-- Lifetime -->
@@ -2832,26 +2864,51 @@
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Lifetime upgrades</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Priority + WhatsApp support</li>
         </ul>
-        <a href="https://rzp.io/rzp/tXWjHDC" class="plan-btn plan-btn-outline" id="btnLifetime">Get Lifetime Access</a>
+        <a href="https://rzp.io/rzp/tXWjHDC" class="plan-btn plan-btn-outline" id="btnLifetime" onclick="return handlePlanClick(event,'lifetime')">Get Lifetime Access</a>
       </div>
 
     </div>
 
-    <p class="pricing-note">
+    <p class="pricing-note" id="pricingNote">
       All prices are inclusive of GST &nbsp;·&nbsp; 7-day refund policy &nbsp;·&nbsp; Payments via Razorpay (UPI, Cards, Net Banking) &nbsp;·&nbsp; GST invoice sent automatically to your email
     </p>
   </div>
 </section>
 
+<!-- ── International Checkout Modal ── -->
+<div id="intlCheckoutModal" role="dialog" aria-modal="true" aria-labelledby="intlModalTitle">
+  <div class="intl-modal-box">
+    <div style="font-size:2.5rem;margin-bottom:.75rem;">🌍</div>
+    <h3 id="intlModalTitle">International Purchase</h3>
+    <p>Enter your email and we'll send your license key right after payment. No account needed.</p>
+    <div class="intl-modal-err" id="intlErr"></div>
+    <input type="text"  id="intlName"  placeholder="Your name (optional)" autocomplete="name" />
+    <input type="email" id="intlEmail" placeholder="Email address (required)" autocomplete="email" />
+    <button class="intl-modal-pay-btn" id="intlPayBtn" onclick="submitIntlCheckout()">
+      Continue to Payment
+    </button>
+    <a class="intl-modal-close-link" onclick="closeIntlModal()">Cancel</a>
+  </div>
+</div>
+
 <!-- ─── TRUST STRIP ─── -->
 <section class="trust-strip" id="trust">
   <div class="container">
-    <div style="text-align:center;">
+    <!-- India header -->
+    <div style="text-align:center;" class="india-only">
       <div class="section-tag">Built for Indian Professionals</div>
       <h2 class="section-title">What PDFSign.in handles for you</h2>
       <p class="section-sub" style="margin:0 auto;">Every feature is built around real signing workflows in India — tenders, audits, legal filings, GST, and export documents.</p>
     </div>
-    <div class="trust-grid">
+    <!-- International header -->
+    <div style="text-align:center;" class="intl-only">
+      <div class="section-tag">Built for Privacy-Conscious Professionals</div>
+      <h2 class="section-title">What PDFSign.in handles for you</h2>
+      <p class="section-sub" style="margin:0 auto;">Built for professionals who handle sensitive documents — contracts, NDAs, filings, audits — and need legally valid signatures without trusting a cloud server.</p>
+    </div>
+
+    <!-- India trust cards -->
+    <div class="trust-grid india-only">
       <div class="trust-card">
         <div class="trust-icon">🏗️</div>
         <h4>Tender Submissions</h4>
@@ -2883,12 +2940,59 @@
         <p>Sign official orders and certificates. Fully offline — documents never leave your PC.</p>
       </div>
     </div>
-    <div class="trust-capability">
+
+    <!-- International trust cards -->
+    <div class="trust-grid intl-only">
+      <div class="trust-card">
+        <div class="trust-icon">🔒</div>
+        <h4>Privacy &amp; GDPR Compliance</h4>
+        <p>Documents never leave your Windows PC. No cloud upload, no server — fully GDPR-safe for sensitive client files.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">⚖️</div>
+        <h4>Legal &amp; Compliance Filings</h4>
+        <p>Sign contracts, NDAs, court filings, and affidavits. PKI-based signatures are legally valid in EU (eIDAS), US (E-SIGN), and 100+ countries.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">📊</div>
+        <h4>Accounting &amp; Audit Reports</h4>
+        <p>Sign financial statements, audit reports, and tax filings with your USB token. Batch sign entire folders at once.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">🏢</div>
+        <h4>Corporate Agreements</h4>
+        <p>Sign NDAs, vendor contracts, offer letters, and MoUs. Use your USB PKI token or a signature stamp image.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">🛡️</div>
+        <h4>Document Protection</h4>
+        <p>Restrict printing, editing, and copying. Add open passwords. Lock down PDFs before sending to clients or courts.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">🌐</div>
+        <h4>Any PKI Token, Any Country</h4>
+        <p>Works with SafeNet iKey, Thales, HID ActivKey, Gemalto, WD Pro, Feitian, and any standard PKCS#11 token.</p>
+      </div>
+    </div>
+
+    <!-- India trust pills -->
+    <div class="trust-capability india-only">
       <span class="trust-pill"><span class="trust-pill-dot"></span>PAdES &amp; CAdES compliant</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>RFC 3161 trusted timestamp</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>IT Act 2000 legally valid</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>100% offline — no upload</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>All CCA-licensed DSC tokens</span>
+      <span class="trust-pill"><span class="trust-pill-dot"></span>PDF security &amp; permissions</span>
+      <span class="trust-pill"><span class="trust-pill-dot"></span>30-day free trial</span>
+      <span class="trust-pill"><span class="trust-pill-dot"></span>7-day refund policy</span>
+    </div>
+    <!-- International trust pills -->
+    <div class="trust-capability intl-only">
+      <span class="trust-pill"><span class="trust-pill-dot"></span>PAdES &amp; CAdES compliant</span>
+      <span class="trust-pill"><span class="trust-pill-dot"></span>RFC 3161 trusted timestamp</span>
+      <span class="trust-pill"><span class="trust-pill-dot"></span>eIDAS &amp; E-SIGN Act compatible</span>
+      <span class="trust-pill"><span class="trust-pill-dot"></span>100% offline — GDPR-safe</span>
+      <span class="trust-pill"><span class="trust-pill-dot"></span>Any PKCS#11 USB token</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>PDF security &amp; permissions</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>30-day free trial</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>7-day refund policy</span>
@@ -2933,7 +3037,8 @@
         <div class="faq-a-wrap"><p class="faq-a">No. Signing happens 100% on your machine. Your documents never leave your computer. We have no access to your files, your DSC token, or its private key — ever.</p></div>
       </div>
 
-      <div class="faq-item open">
+      <!-- India-specific FAQ: government portal acceptance -->
+      <div class="faq-item open india-only">
         <button class="faq-q" onclick="toggleFaq(this)">
           <span class="faq-q-icon">Q</span>
           <span class="faq-q-text">Will my signed PDFs be accepted on government portals?</span>
@@ -2942,13 +3047,42 @@
         <div class="faq-a-wrap"><p class="faq-a">PDFs signed with a USB DSC token using PDFSign.in are accepted on GeM, CPPP, NIC e-Procurement, MCA21, Income Tax, DGFT, and all major Indian government portals — because the signature uses PAdES (PDF Advanced Electronic Signatures) compliant with IT Act 2000. Note: PDFs signed with only a stamp or handwritten image (without a DSC token) are <em>not</em> digitally signed and may not be accepted on government procurement portals that require a valid Class 2 or Class 3 DSC.</p></div>
       </div>
 
-      <div class="faq-item">
+      <!-- International FAQ: legal validity -->
+      <div class="faq-item open intl-only">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-icon">Q</span>
+          <span class="faq-q-text">Are the digital signatures legally valid outside India?</span>
+          <span class="faq-toggle-icon">+</span>
+        </button>
+        <div class="faq-a-wrap"><p class="faq-a">Yes. PDFSign.in produces PAdES-compliant PKI digital signatures based on your USB token's X.509 certificate. These are legally valid under EU eIDAS Regulation (as Advanced Electronic Signatures), the US E-SIGN Act, UK Electronic Communications Act, and equivalent laws in most countries. For court-admissible qualified signatures in the EU, your token must hold a Qualified Certificate issued by a Qualified Trust Service Provider (QTSP).</p></div>
+      </div>
+
+      <!-- International FAQ: GDPR -->
+      <div class="faq-item open intl-only">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-icon">Q</span>
+          <span class="faq-q-text">Is PDFSign.in GDPR-compliant? Does it upload my documents?</span>
+          <span class="faq-toggle-icon">+</span>
+        </button>
+        <div class="faq-a-wrap"><p class="faq-a">Completely GDPR-safe. All signing happens entirely on your local Windows PC — your PDF is never uploaded to any server. We have zero access to your documents, your private key, or your signing PIN. The only data we collect is optional: your email address (if you enter it during purchase) and anonymous download counts. No document content ever leaves your machine.</p></div>
+      </div>
+
+      <!-- India: DSC token brands | International: USB token brands -->
+      <div class="faq-item india-only">
         <button class="faq-q" onclick="toggleFaq(this)">
           <span class="faq-q-icon">Q</span>
           <span class="faq-q-text">Which DSC token brands are supported?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
         <div class="faq-a-wrap"><p class="faq-a">PDFSign.in works with all major USB DSC tokens used in India — HyperPKI (HYP2003), ePass 2003/3003, Proxkey, Feitian, WD Pro, Watchdata, and any PKCS#11-compatible token issued by a licensed CA under CCA India.</p></div>
+      </div>
+      <div class="faq-item intl-only">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-icon">Q</span>
+          <span class="faq-q-text">Which USB signing tokens are supported?</span>
+          <span class="faq-toggle-icon">+</span>
+        </button>
+        <div class="faq-a-wrap"><p class="faq-a">PDFSign.in works with any standard PKCS#11-compatible USB token — including SafeNet iKey, Thales Luna USB, HID ActivKey, Gemalto IDPrime, Feitian ePass, WD Pro, WatchData, and tokens issued by any trusted CA globally. If your token has a PKCS#11 driver for Windows, PDFSign.in will detect and use it.</p></div>
       </div>
 
       <div class="faq-item">
@@ -3482,13 +3616,79 @@ function toggleNav() {
   nav.classList.toggle('open');
 }
 
-// ── Pricing Solo/Team toggle ──
-function setPlanMode(mode) {
+// ── Pricing & geo state ────────────────────────────────────────────────────
+var _planMode = 'solo';
+var _currency = 'INR';   // set by geo detection on load
+var _isIndia  = true;    // default to India until geo resolves
+var _intlPlan = null;    // plan selected for international checkout modal
+
+// INR links (Razorpay pre-generated, India only)
+var INR_LINKS = {
+  monthly:         'https://rzp.io/rzp/y6KFT3L',
+  yearly:          'https://rzp.io/rzp/ZY9vgMXC',
+  'team-yearly':   'https://rzp.io/rzp/YSKcpKEO',
+  lifetime:        'https://rzp.io/rzp/tXWjHDC',
+  'team-lifetime': 'https://rzp.io/rzp/UBkBSNxI',
+};
+
+// USD display prices (shown automatically to non-India visitors)
+var USD_PRICES = {
+  monthly:         '$1.99',
+  yearly:          '$11.99',
+  'team-yearly':   '$39.99',
+  lifetime:        '$59.99',
+  'team-lifetime': '$159.99',
+};
+
+// ── Geo detection — runs on load, no user interaction needed ───────────────
+(function detectGeo() {
+  fetch('https://pdfsigner-api.vercel.app/api/geo', { cache: 'no-store' })
+    .then(function(r) { return r.ok ? r.json() : { isIndia: true }; })
+    .then(function(j) {
+      _isIndia  = j.isIndia !== false; // default true if any error
+      _currency = _isIndia ? 'INR' : 'USD';
+      applyGeo();
+    })
+    .catch(function() { /* network error — stay on India defaults */ });
+})();
+
+function applyGeo() {
+  // Show/hide geo-conditional blocks
+  var indiaDisplay = _isIndia ? '' : 'none';
+  var intlDisplay  = _isIndia ? 'none' : '';
+  document.querySelectorAll('.india-only').forEach(function(el) { el.style.display = indiaDisplay; });
+  document.querySelectorAll('.intl-only').forEach(function(el)  { el.style.display = intlDisplay; });
+
+  // Update pricing note
+  var note = document.getElementById('pricingNote');
+  if (note) {
+    note.innerHTML = _isIndia
+      ? 'All prices are inclusive of GST &nbsp;·&nbsp; 7-day refund policy &nbsp;·&nbsp; Payments via Razorpay (UPI, Cards, Net Banking) &nbsp;·&nbsp; GST invoice sent automatically to your email'
+      : 'Prices in USD &nbsp;·&nbsp; 7-day refund policy &nbsp;·&nbsp; International card payments via Razorpay &nbsp;·&nbsp; Invoice sent to your email';
+  }
+
+  // Re-render plan prices in correct currency
+  setPlanMode(_planMode, true);
+}
+
+// ── Plan click handler — INR navigates directly, USD opens modal ───────────
+function handlePlanClick(e, planKey) {
+  if (!_isIndia) {
+    e.preventDefault();
+    openIntlModal(planKey);
+    return false;
+  }
+  return true; // India — let href navigate to Razorpay INR link
+}
+
+// ── Solo/Team toggle ────────────────────────────────────────────────────────
+function setPlanMode(mode, forceRedraw) {
+  if (!forceRedraw) _planMode = mode;
+  else mode = _planMode;
   var isSolo = mode === 'solo';
   document.getElementById('btnSolo').classList.toggle('active', isSolo);
   document.getElementById('btnTeam').classList.toggle('active', !isSolo);
 
-  // Hide monthly card for team — no monthly team plan
   var cardMonthly = document.getElementById('cardMonthly');
   var pricingGrid = document.getElementById('pricingGrid');
   if (cardMonthly) cardMonthly.style.display = isSolo ? '' : 'none';
@@ -3498,22 +3698,103 @@ function setPlanMode(mode) {
   if (teamNote) teamNote.classList.toggle('show', !isSolo);
   var monthlyTeamNote = document.getElementById('monthlyTeamNote');
   if (monthlyTeamNote) monthlyTeamNote.classList.toggle('show', !isSolo);
-  // Annual
-  document.getElementById('priceAnnual').textContent = isSolo ? '999' : '3,499';
+
+  var isUSD = (_currency === 'USD');
+
+  // ── Monthly (solo only)
+  document.getElementById('priceMonthly').textContent = isUSD ? '1.99' : '99';
+  document.querySelectorAll('#cardMonthly .plan-currency').forEach(function(el) { el.textContent = isUSD ? '$' : '₹'; });
+  var lnkMonthly = document.getElementById('btnMonthly');
+  if (lnkMonthly) { lnkMonthly.textContent = 'Get Monthly Plan'; lnkMonthly.href = INR_LINKS.monthly; }
+
+  // ── Annual
+  document.getElementById('priceAnnual').textContent = isUSD ? (isSolo ? '11.99' : '39.99') : (isSolo ? '999' : '3,499');
+  document.querySelectorAll('.plan-card.featured .plan-currency').forEach(function(el) { el.textContent = isUSD ? '$' : '₹'; });
   document.getElementById('descAnnual').textContent = isSolo
-    ? 'Save ₹189 vs monthly. Best value for regular signers.'
-    : '5 seats · ₹700 per seat per year. One key for your whole team.';
+    ? (isUSD ? 'Save $0.99 vs monthly. Best value for regular signers.' : 'Save ₹189 vs monthly. Best value for regular signers.')
+    : (isUSD ? '5 seats · $8/seat per year. One key for your whole team.' : '5 seats · ₹700 per seat per year. One key for your whole team.');
   document.getElementById('devicesAnnual').textContent = isSolo ? '1 Windows device' : '5 Windows devices';
-  document.getElementById('btnAnnual').textContent = isSolo ? 'Get Annual Plan' : 'Get Team Annual Plan';
-  document.getElementById('btnAnnual').href = isSolo ? 'https://rzp.io/rzp/ZY9vgMXC' : 'https://rzp.io/rzp/YSKcpKEO';
-  // Lifetime
-  document.getElementById('priceLifetime').textContent = isSolo ? '4,999' : '13,999';
+  var lnkAnnual = document.getElementById('btnAnnual');
+  lnkAnnual.textContent = isSolo ? 'Get Annual Plan' : 'Get Team Annual Plan';
+  lnkAnnual.href = INR_LINKS[isSolo ? 'yearly' : 'team-yearly'];
+
+  // ── Lifetime
+  document.getElementById('priceLifetime').textContent = isUSD ? (isSolo ? '59.99' : '159.99') : (isSolo ? '4,999' : '13,999');
+  document.querySelectorAll('.plan-card:not(.featured) .plan-currency').forEach(function(el) { el.textContent = isUSD ? '$' : '₹'; });
   document.getElementById('descLifetime').textContent = isSolo
-    ? 'Pay once, use forever. Ideal for firms and power users who sign daily.'
-    : '5 seats · ₹2,800 per seat — pay once, use forever for your entire team.';
+    ? (isUSD ? 'Pay once, use forever. One-time purchase, all future updates included.' : 'Pay once, use forever. Ideal for firms and power users who sign daily.')
+    : (isUSD ? '5 seats · $32/seat — pay once, own forever.' : '5 seats · ₹2,800 per seat — pay once, use forever for your entire team.');
   document.getElementById('devicesLifetime').textContent = isSolo ? '1 Windows device' : '5 Windows devices';
-  document.getElementById('btnLifetime').textContent = isSolo ? 'Get Lifetime Access' : 'Get Team Lifetime Access';
-  document.getElementById('btnLifetime').href = isSolo ? 'https://rzp.io/rzp/tXWjHDC' : 'https://rzp.io/rzp/UBkBSNxI';
+  var lnkLifetime = document.getElementById('btnLifetime');
+  lnkLifetime.textContent = isSolo ? 'Get Lifetime Access' : 'Get Team Lifetime Access';
+  lnkLifetime.href = INR_LINKS[isSolo ? 'lifetime' : 'team-lifetime'];
+}
+
+// ── International checkout modal ───────────────────────────────────────────
+function openIntlModal(plan) {
+  _intlPlan = plan;
+  document.getElementById('intlName').value  = '';
+  document.getElementById('intlEmail').value = '';
+  document.getElementById('intlErr').style.display  = 'none';
+  document.getElementById('intlPayBtn').disabled    = false;
+  document.getElementById('intlPayBtn').textContent = 'Continue to Payment — ' + (USD_PRICES[plan] || '');
+  document.getElementById('intlCheckoutModal').classList.add('open');
+  document.getElementById('intlEmail').focus();
+}
+
+function closeIntlModal() {
+  document.getElementById('intlCheckoutModal').classList.remove('open');
+  _intlPlan = null;
+}
+
+// Close on backdrop click
+document.addEventListener('click', function(e) {
+  if (e.target === document.getElementById('intlCheckoutModal')) closeIntlModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeIntlModal();
+});
+
+async function submitIntlCheckout() {
+  var email = (document.getElementById('intlEmail').value || '').trim();
+  var name  = (document.getElementById('intlName').value  || '').trim();
+  var errEl = document.getElementById('intlErr');
+  var btn   = document.getElementById('intlPayBtn');
+  errEl.style.display = 'none';
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errEl.textContent = 'Please enter a valid email address.';
+    errEl.style.display = 'block';
+    return;
+  }
+  if (!_intlPlan) return;
+
+  btn.disabled    = true;
+  btn.textContent = 'Creating payment link…';
+
+  try {
+    var resp = await fetch('https://pdfsigner-api.vercel.app/api/payment/create-link', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({
+        plan:            _intlPlan,
+        customerEmail:   email,
+        customerName:    name || undefined,
+        customerCountry: 'US', // international — triggers USD flow
+      }),
+    });
+    var data = await resp.json();
+    if (!resp.ok || !data.paymentUrl) {
+      throw new Error(data.error || 'Could not create payment link. Please try again.');
+    }
+    closeIntlModal();
+    window.location.href = data.paymentUrl;
+  } catch (err) {
+    errEl.textContent   = err.message;
+    errEl.style.display = 'block';
+    btn.disabled        = false;
+    btn.textContent     = 'Continue to Payment — ' + (USD_PRICES[_intlPlan] || '');
+  }
 }
 
 function openWhatsApp() {

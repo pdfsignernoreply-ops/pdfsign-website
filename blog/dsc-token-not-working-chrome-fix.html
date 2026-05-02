@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-IN">
 <head>
 <meta charset="UTF-8"/>
@@ -98,6 +98,8 @@ table{width:100%;border-collapse:collapse;margin:1.5rem 0}
 th{background:#1B2A47;color:#fff;padding:.6rem 1rem;text-align:left;font-size:.85rem}
 td{padding:.6rem 1rem;border-bottom:1px solid #e2e8f0;font-size:.9rem;color:#334155}
 tr:nth-child(even) td{background:#f8fafc}
+.blog-visual{border:1px solid #e2e8f0;border-radius:16px;margin:1.5rem 0 2rem;overflow:hidden;line-height:0}
+.blog-visual svg{width:100%;height:auto;display:block}
 @media(max-width:600px){nav{flex-direction:column;gap:.75rem}.nav-links a{margin-left:.75rem}}
 </style>
 </head>
@@ -119,6 +121,18 @@ tr:nth-child(even) td{background:#f8fafc}
 <div class="container">
 <div class="breadcrumb">
   <a href="https://pdfsign.in">Home</a> › <a href="https://pdfsign.in/blog/">Blog</a> › DSC Token Not Working in Chrome — Causes and Fix
+</div>
+<div class="blog-visual">
+  <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+    <rect width="320" height="160" fill="#fff1f2"/>
+    <circle cx="145" cy="80" r="45" fill="none" stroke="#e11d48" stroke-width="3" opacity=".3"/>
+    <circle cx="145" cy="80" r="20" fill="#e11d48" opacity=".15"/>
+    <line x1="130" y1="65" x2="160" y2="95" stroke="#e11d48" stroke-width="4" stroke-linecap="round"/>
+    <line x1="160" y1="65" x2="130" y2="95" stroke="#e11d48" stroke-width="4" stroke-linecap="round"/>
+    <rect x="200" y="65" width="60" height="35" rx="6" fill="#1B2A47" opacity=".2"/>
+    <text x="230" y="87" text-anchor="middle" fill="#1B2A47" font-family="sans-serif" font-size="9" opacity=".7">USB DSC</text>
+    <text x="160" y="148" text-anchor="middle" fill="#e11d48" font-family="sans-serif" font-size="10" font-weight="bold">Chrome Not Detecting Token</text>
+  </svg>
 </div>
 <div class="content">
 <p>You plug in your DSC token, open the government portal in Chrome, and nothing happens. The browser does not detect your certificate. The sign button stays greyed out.</p>
