@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7E0J9Z32FK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7E0J9Z32FK');
+</script>
+<title>PDF Digital Signature Not Working? 7 Common Problems Fixed | PDFSign</title>
+<meta name="description" content="Certificate not detected, signature shows invalid, timestamp error — the 7 most common PDF digital signature problems and exactly how to fix each one."/>
+<meta name="keywords" content="PDF digital signature not working, digital signature certificate not detected, signature validity unknown fix, DSC signing error, timestamp error PDF, token not detected fix"/>
+<meta name="author" content="PDFSign"/>
+<link rel="canonical" href="https://pdfsign.in/blog/pdf-digital-signature-not-working-fix.html"/>
+<meta property="og:title" content="PDF Digital Signature Not Working? 7 Common Problems Fixed"/>
+<meta property="og:description" content="Certificate not detected, invalid signature, timestamp errors — here's exactly how to fix each one."/>
+<meta property="og:url" content="https://pdfsign.in/blog/pdf-digital-signature-not-working-fix.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="PDFSign"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PDF Digital Signature Not Working? 7 Common Problems Fixed"/>
+<meta name="twitter:description" content="Certificate not detected, invalid signature, timestamp errors — here's exactly how to fix each one."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"PDF Digital Signature Not Working? 7 Common Problems Fixed",
+  "description":"Certificate not detected, signature shows invalid, timestamp error — the 7 most common PDF digital signature problems and exactly how to fix each one.",
+  "author":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "publisher":{"@type":"Organization","name":"PDFSign","url":"https://pdfsign.in"},
+  "datePublished":"2026-05-02",
+  "dateModified":"2026-05-02",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://pdfsign.in/blog/pdf-digital-signature-not-working-fix.html"},
+  "inLanguage":"en"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Why does my digital signature appear valid in one PDF reader but invalid in another?","acceptedAnswer":{"@type":"Answer","text":"Different PDF readers maintain different trusted certificate lists. Adobe Acrobat uses the Adobe Approved Trust List (AATL), which does not include some regional Certificate Authorities (e.g., CCA India). If the root certificate of your DSC issuer is not in the reader's trust store, the signature shows as 'Validity Unknown' even though it is cryptographically intact. Fix: add the issuing CA's root certificate to your PDF reader's trust store."}},
+    {"@type":"Question","name":"Can I add a second digital signature to a PDF that already has one?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFs support multiple signature fields — each signer adds their own signature. When a second signer signs, they attest to the document as it existed at the time of their signature. Each signature independently verifiable. However, modifying the document after the first signature will invalidate that signature — so all edits must be complete before signing."}},
+    {"@type":"Question","name":"My DSC certificate has expired — can I still sign new documents?","acceptedAnswer":{"@type":"Answer","text":"No. An expired certificate cannot be used to create new signatures. You need to renew your DSC from your Certificate Authority. However, documents you signed while the certificate was valid (and that carry an RFC 3161 timestamp) remain legally valid indefinitely — the timestamp proves the signature was applied when the cert was active."}}
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+a{color:#16A34A;text-decoration:none}a:hover{text-decoration:underline}
+nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none}
+.nav-links a{color:#93C5FD;margin-left:1.5rem;font-size:.9rem}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.blog-hero{background:linear-gradient(135deg,#1B2A47 0%,#243352 100%);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center}
+.blog-hero .category{background:#7f1d1d;color:#fca5a5;font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;display:inline-block;margin-bottom:1rem}
+.blog-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);max-width:750px;margin:0 auto .75rem;line-height:1.25}
+.blog-hero .meta{color:#93C5FD;font-size:.85rem}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#1B2A47;margin:2.5rem 0 .75rem;border-left:4px solid #16A34A;padding-left:.75rem}
+.content h3{font-size:1.1rem;font-weight:600;color:#1B2A47;margin:1.75rem 0 .5rem}
+.content p{margin-bottom:1rem;color:#334155}
+.content ul,.content ol{margin:.5rem 0 1rem 1.5rem;color:#334155}
+.content li{margin-bottom:.4rem}
+.content strong{color:#1B2A47}
+.tip{background:#f0fdf4;border-left:4px solid #16A34A;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.tip strong{color:#15803d}
+.warn{background:#fff7ed;border-left:4px solid #f97316;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.fix-box{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:1rem 1.25rem;margin:1rem 0}
+.fix-box strong{color:#15803d}
+.problem-num{display:inline-block;background:#1B2A47;color:#93C5FD;font-size:.75rem;font-weight:700;padding:.2rem .6rem;border-radius:4px;margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.05em}
+.cta-box{background:linear-gradient(135deg,#1B2A47,#243352);color:#fff;border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0}
+.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.75rem;border:none;padding:0;color:#fff}
+.cta-box p{color:#93C5FD;margin-bottom:1.5rem}
+.btn-green{background:#16A34A;color:#fff;padding:.75rem 2rem;border-radius:8px;font-weight:600;display:inline-block;font-size:1rem}
+.btn-green:hover{background:#15803d;text-decoration:none}
+.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1.5rem}
+.breadcrumb a{color:#16A34A}
+footer{background:#1B2A47;color:#93C5FD;text-align:center;padding:2rem;font-size:.85rem;margin-top:3rem}
+footer a{color:#93C5FD}
+.related{background:#f8fafc;border-radius:12px;padding:2rem;margin:2rem 0}
+.related h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1B2A47;margin-bottom:1rem;border:none;padding:0}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.related-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;font-size:.9rem}
+.related-card a{color:#1B2A47;font-weight:500}.related-card a:hover{color:#16A34A}
+@media(max-width:600px){nav{flex-direction:column;gap:.75rem}.nav-links a{margin-left:.75rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="https://pdfsign.in">PDF<span style="color:#16A34A">Sign</span>.in</a>
+  <div class="nav-links">
+    <a href="https://pdfsign.in">Home</a>
+    <a href="https://pdfsign.in/blog/">Blog</a>
+    <a href="https://pdfsign.in/#pricing">Pricing</a>
+    <a href="https://wa.me/917057413999">Support</a>
+  </div>
+</nav>
+<div class="blog-hero">
+  <div class="category">Fix</div>
+  <h1>PDF Digital Signature Not Working? 7 Common Problems Fixed</h1>
+  <div class="meta">By PDFSign &nbsp;·&nbsp; May 2026 &nbsp;·&nbsp; 8 min read</div>
+</div>
+<div class="container">
+<div class="breadcrumb">
+  <a href="https://pdfsign.in">Home</a> › <a href="https://pdfsign.in/blog/">Blog</a> › PDF Digital Signature Not Working
+</div>
+<div class="content">
+
+<p>Digital signature issues tend to cluster around a handful of well-known failure points: driver problems, certificate detection, PIN errors, Adobe trust settings, timestamp configuration, document tampering, and batch signing edge cases. Each has a clear fix.</p>
+<p>Here are the 7 most common reasons a PDF digital signature stops working — and exactly what to do about each one.</p>
+
+<h2>Problem 1 — DSC Token Not Detected</h2>
+<div class="problem-num">Most Common</div>
+<p>Your signing software opens, but no token or certificate is visible. The USB device isn't being recognised by Windows or the application.</p>
+
+<h3>Why it happens</h3>
+<ul>
+  <li>Token driver not installed or outdated</li>
+  <li>Token inserted into a USB hub or faulty port</li>
+  <li>Wrong driver for the token model (e.g., ePass2003 driver used for a WD-series ProxyKey)</li>
+  <li>Windows hasn't finished enumerating the device (plug-in timing)</li>
+</ul>
+
+<div class="fix-box">
+  <strong>Fix:</strong>
+  <ol style="margin:.5rem 0 0 1.25rem;color:#334155">
+    <li>Unplug the token. Open <strong>Device Manager</strong> (Win+X → Device Manager). Look for any unknown devices or yellow warning icons under "Smart card readers" or "Other devices".</li>
+    <li>Download and install the driver specific to your token brand: <strong>ePass2003/HYP2003</strong> → SafeNet Authentication Client; <strong>ProxyKey/WD series</strong> → Watchdata driver; <strong>Capricorn</strong> → Capricorn middleware.</li>
+    <li>Plug the token directly into a USB port on the computer chassis — not a hub or extension.</li>
+    <li>Restart the signing application after inserting the token.</li>
+  </ol>
+</div>
+
+<h2>Problem 2 — Certificate Doesn't Appear in the Certificate List</h2>
+<p>The token is detected (the light is on) but no certificate shows up in the signing software's certificate selector.</p>
+
+<h3>Why it happens</h3>
+<ul>
+  <li>Application was launched before the token was inserted</li>
+  <li>PKCS#11 middleware not installed or not registered</li>
+  <li>Certificate expired (expired certs are hidden by some applications)</li>
+  <li>The signing software is reading from the Windows Certificate Store instead of the token directly</li>
+</ul>
+
+<div class="fix-box">
+  <strong>Fix:</strong>
+  <ol style="margin:.5rem 0 0 1.25rem;color:#334155">
+    <li>Close the signing application, insert the token, wait 5 seconds, then relaunch the application.</li>
+    <li>Verify the certificate is present using your token's management software (SafeNet Authentication Client, ProxyKey Manager, etc.). If it's not visible there, the token may need to be re-issued by your CA.</li>
+    <li>Check the certificate expiry date. If it has expired, you will need a new DSC from your Certificate Authority — an expired cert cannot be renewed, only replaced.</li>
+    <li>Ensure the PKCS#11 library path is correctly configured in your signing software settings.</li>
+  </ol>
+</div>
+
+<h2>Problem 3 — PIN Error or Token Locked</h2>
+<p>The signing software prompts for a PIN, but the entry is rejected, or the token is locked after multiple failed attempts.</p>
+
+<h3>Why it happens</h3>
+<ul>
+  <li>Incorrect PIN (factory defaults vary: common defaults are <code>1234</code>, <code>12345678</code>, or token-specific)</li>
+  <li>PIN changed by the CA or during issuance and not communicated clearly</li>
+  <li>Too many incorrect attempts triggered the lockout (typically 5–10 failed attempts)</li>
+</ul>
+
+<div class="fix-box">
+  <strong>Fix:</strong>
+  <ol style="margin:.5rem 0 0 1.25rem;color:#334155">
+    <li>Try common default PINs for your token brand. If you received a PIN mailer from your CA, use that PIN.</li>
+    <li>If locked, open the token's management software. Look for an "Unlock token" or "Change PIN using PUK" option. You'll need the PUK (PIN Unblocking Key) from your CA.</li>
+    <li>If you don't have the PUK, contact your CA's support. Some CAs can remotely reset the PIN; others require in-person verification.</li>
+    <li>If the token is permanently locked (usually after 15–20 failed PUK attempts), it must be replaced.</li>
+  </ol>
+</div>
+
+<div class="warn"><strong>Do not guess the PIN repeatedly.</strong> Most tokens lock after 5–10 wrong attempts. If you're unsure, contact your CA before trying.</div>
+
+<h2>Problem 4 — "Signature Validity Unknown" in Adobe Acrobat</h2>
+<p>You open a signed PDF in Adobe Acrobat Reader and see an amber warning: <em>"Signature validity is unknown"</em> or <em>"At least one signature has problems."</em> The document may look perfectly signed but Adobe won't confirm it.</p>
+
+<h3>Why it happens</h3>
+<p>Adobe Acrobat uses its own trusted certificate list called the Adobe Approved Trust List (AATL). Certificate Authorities that are not on the AATL — including several regional CAs — will show as untrusted in Acrobat even if the signature is cryptographically valid.</p>
+<p>This is a display/trust configuration issue, not a problem with your signature itself.</p>
+
+<div class="fix-box">
+  <strong>Fix (for CCA India root certificates):</strong>
+  <ol style="margin:.5rem 0 0 1.25rem;color:#334155">
+    <li>Download the CCA India root certificate from the <a href="https://cca.gov.in" target="_blank" rel="noopener">CCA India website</a>.</li>
+    <li>In Adobe Acrobat Reader: Edit → Preferences → Signatures → Verification → More → Windows Integration → check "Validating Signatures".</li>
+    <li>Alternatively, import the root cert: Edit → Preferences → Trust Manager → Load Trusted Certificates from Adobe Server (updates AATL) or manually import the downloaded CCA root.</li>
+    <li>Restart Acrobat and reopen the PDF — the signature should now show as valid.</li>
+  </ol>
+</div>
+
+<div class="tip"><strong>Shortcut:</strong> PDFSign's free <a href="https://pdfsign.in/verify.html">verification tool</a> validates Indian DSC signatures with full CCA India root trust — no Adobe configuration needed.</div>
+
+<h2>Problem 5 — RFC 3161 Timestamp Error ("TSA Unreachable")</h2>
+<p>When you try to sign with a timestamp, the operation fails with an error like "Timestamp server unavailable," "TSA error," or "Connection timed out."</p>
+
+<h3>Why it happens</h3>
+<ul>
+  <li>Firewall or antivirus is blocking the outbound HTTP request to the TSA server</li>
+  <li>The TSA URL is incorrect in the application settings</li>
+  <li>The TSA service is temporarily down</li>
+  <li>No internet connection is available</li>
+</ul>
+
+<div class="fix-box">
+  <strong>Fix:</strong>
+  <ol style="margin:.5rem 0 0 1.25rem;color:#334155">
+    <li>Verify the TSA URL. Common free TSA servers: <code>http://timestamp.sectigo.com</code>, <code>http://timestamp.digicert.com</code>, <code>http://timestamp.globalsign.com/tsa/r6advanced1</code>.</li>
+    <li>Check whether your firewall or corporate proxy is blocking outbound HTTP requests to port 80 or 443 for the TSA domain. Temporarily disable the firewall and retry to isolate.</li>
+    <li>If you're on a restricted network, try a different TSA URL or switch to a network without restrictions.</li>
+    <li>If internet is not available: sign without a timestamp for now. You can always re-sign with a timestamp once connectivity is restored. A signature without a timestamp is still cryptographically valid — it just lacks a trusted time proof.</li>
+  </ol>
+</div>
+
+<h2>Problem 6 — Signature Immediately Shows as Invalid</h2>
+<p>You sign a PDF, open it, and the signature immediately shows as invalid — even though you just created it seconds ago.</p>
+
+<h3>Why it happens</h3>
+<p>This almost always means the document was modified after signing. The digital signature locks the document content at the moment of signing. Any change — even an invisible metadata update, a PDF viewer saving annotations, or a printer driver modifying the file — will invalidate the signature.</p>
+<p>This is the signature working correctly, not a bug.</p>
+
+<div class="fix-box">
+  <strong>Fix:</strong>
+  <ol style="margin:.5rem 0 0 1.25rem;color:#334155">
+    <li>Do not open the signed PDF in any application that might auto-save (some PDF readers add annotations or update metadata on open).</li>
+    <li>If you need to make any changes to the document, make them <em>before</em> signing, then sign the final version.</li>
+    <li>If you accidentally modified the signed file, go back to your pre-signature original and sign it again.</li>
+    <li>Verify by checking the signature panel in your PDF reader — it will show exactly which revision was signed and whether anything changed after.</li>
+  </ol>
+</div>
+
+<div class="warn"><strong>Note:</strong> If a signed PDF is emailed and the recipient's email client converts it (e.g., inline preview, format conversion), this can also invalidate the signature. Always send signed PDFs as plain attachments.</div>
+
+<h2>Problem 7 — Batch Signing Fails Mid-Way</h2>
+<p>You start batch signing a folder of PDFs. The operation signs some files, then stops or skips others without explanation.</p>
+
+<h3>Why it happens</h3>
+<ul>
+  <li>One or more PDFs in the folder are password-protected (owner or user password)</li>
+  <li>A PDF file is corrupt or not a valid PDF</li>
+  <li>A file is open in another application, causing a file lock conflict</li>
+  <li>A PDF has document restrictions that prevent signing</li>
+</ul>
+
+<div class="fix-box">
+  <strong>Fix:</strong>
+  <ol style="margin:.5rem 0 0 1.25rem;color:#334155">
+    <li>Before batch signing, identify password-protected files. Open each suspected file in Adobe Acrobat Reader — it will prompt for a password if one exists.</li>
+    <li>Remove passwords from protected PDFs using Adobe Acrobat (if you know the owner password) before including them in the batch.</li>
+    <li>Close any other applications that may have the PDF files open.</li>
+    <li>Remove corrupt files: try opening each file individually to confirm it opens cleanly.</li>
+    <li>If only a few files are problematic, move them out of the batch folder, process the clean files, then handle the problematic ones separately.</li>
+  </ol>
+</div>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Why does my digital signature appear valid in one PDF reader but invalid in another?</h3>
+<p>Different PDF readers maintain different trusted certificate lists. Adobe Acrobat uses the AATL, which does not include some regional Certificate Authorities. If the root certificate of your DSC issuer isn't in the reader's trust store, the signature shows as "Validity Unknown" even though it is cryptographically intact. Fix: add the issuing CA's root certificate to your PDF reader's trust store, or use a reader that already trusts your CA.</p>
+
+<h3>Can I add a second digital signature to a PDF that already has one?</h3>
+<p>Yes. PDFs support multiple signature fields — each signer adds their own signature independently. When a second signer signs, they attest to the document as it existed at the time of their signature. However, modifying the document content (not just adding a new signature) after the first signature will invalidate that first signature. All edits must be complete before the first signer signs.</p>
+
+<h3>My DSC certificate has expired — can I still sign new documents?</h3>
+<p>No. An expired certificate cannot be used to create new valid signatures. You need to obtain a new DSC from your Certificate Authority. Documents you signed while the certificate was valid — and that carry an RFC 3161 timestamp — remain legally valid indefinitely. The timestamp proves the signature was applied when the certificate was still active.</p>
+
+<div class="cta-box">
+  <h2>Need a Signing Tool That Just Works?</h2>
+  <p>PDFSign handles all token brands, certificate types, and batch operations. Works completely offline. Free 30-day trial.</p>
+  <a class="btn-green" href="https://pdfsigner-api.vercel.app/api/download">Download PDF Signer — Free Trial</a>
+</div>
+
+<div class="related">
+  <h2>Related Articles</h2>
+  <div class="related-grid">
+    <div class="related-card"><a href="digital-signature-vs-electronic-signature.html">Digital Signature vs Electronic Signature: What's the Legal Difference?</a></div>
+    <div class="related-card"><a href="sign-pdf-offline-without-cloud.html">Why Your Documents Should Never Touch the Cloud</a></div>
+    <div class="related-card"><a href="digital-signature-validity-unknown-pdf-fix.html">Fix "Signature Validity Unknown" in Adobe</a></div>
+    <div class="related-card"><a href="dsc-token-not-detected-windows-11-fix.html">DSC Token Not Detected on Windows 11</a></div>
+    <div class="related-card"><a href="dsc-token-not-working-chrome-fix.html">DSC Token Not Working in Chrome</a></div>
+    <div class="related-card"><a href="rfc-3161-timestamp-pdf-india.html">RFC 3161 Timestamps Explained</a></div>
+  </div>
+</div>
+</div>
+</div>
+<footer>
+  <p>© 2026 PDFSign.in by Tender Training India &nbsp;|&nbsp; <a href="https://pdfsign.in/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="https://pdfsign.in/terms.html">Terms</a> &nbsp;|&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
+</footer>
+</body>
+</html>
