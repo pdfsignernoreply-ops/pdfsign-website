@@ -165,7 +165,8 @@ tr:hover td{background:#1e293b33}
         <div class="stat"><div class="sv" id="d-conv">—</div><div class="sl">Conversions</div></div>
         <div class="stat"><div class="sv" id="d-rev" style="color:#4ade80;">—</div><div class="sl">Revenue (₹)</div></div>
         <div class="stat"><div class="sv" id="d-rate" style="color:#38bdf8;">—</div><div class="sl">Conv. Rate</div></div>
-        <div class="stat"><div class="sv" id="d-downloads" style="color:#a78bfa;">—</div><div class="sl">MSI Downloads</div></div>
+        <div class="stat"><div class="sv" id="d-win-dl" style="color:#a78bfa;">—</div><div class="sl">Win Downloads</div></div>
+        <div class="stat"><div class="sv" id="d-other-dl" style="color:#fb923c;">—</div><div class="sl">Other Attempts</div></div>
       </div>
       <div id="dash-report-msg" class="mmsg" style="display:none;"></div>
       <!-- Recent activity: two columns -->
@@ -196,6 +197,16 @@ tr:hover td{background:#1e293b33}
           <table id="dash-plan-tbl">
             <thead><tr><th>Plan</th><th>Licenses</th><th>Revenue (₹)</th></tr></thead>
             <tbody id="dash-plan-body"><tr><td colspan="3" style="color:#475569;text-align:center;">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Platform breakdown -->
+      <div style="margin-top:20px;">
+        <h2 style="margin-bottom:10px;">Download Attempts by Platform (All Time)</h2>
+        <div style="overflow-x:auto">
+          <table id="dash-platform-tbl">
+            <thead><tr><th>Platform</th><th>Clicks</th></tr></thead>
+            <tbody id="dash-platform-body"><tr><td colspan="2" style="color:#475569;text-align:center;">Loading…</td></tr></tbody>
           </table>
         </div>
       </div>
@@ -646,6 +657,16 @@ async function loadDashboard() {
             +'<td style="font-weight:700;">'+p.count+'</td>'
             +'<td style="color:#4ade80;font-weight:700;">₹'+(p.revenue||0).toLocaleString('en-IN')+'</td></tr>';
         }).join('');
+    // Platform breakdown
+    var plb = document.getElementById('dash-platform-body');
+    var platformColors = { windows:'#a78bfa', ios:'#38bdf8', android:'#4ade80', mac:'#fb923c', linux:'#fbbf24', other:'#94a3b8', unknown:'#475569' };
+    plb.innerHTML = (j.platformBreakdown||[]).length === 0
+      ? '<tr><td colspan="2" style="color:#475569;text-align:center;">No data</td></tr>'
+      : (j.platformBreakdown||[]).map(function(p){
+          var c = platformColors[p.platform] || '#e2e8f0';
+          return '<tr><td style="color:'+c+';font-weight:600;text-transform:capitalize;">'+esc(p.platform)+'</td>'
+            +'<td style="font-weight:700;">'+p.count+'</td></tr>';
+        }).join('');
   } catch(e) { console.error('Dashboard load error', e); }
 }
 function renderDashPeriod() {
@@ -655,7 +676,8 @@ function renderDashPeriod() {
   document.getElementById('d-conv').textContent      = DASH.conversions[p] ?? '—';
   document.getElementById('d-rev').textContent       = '₹'+(DASH.revenue[p]||0).toLocaleString('en-IN');
   document.getElementById('d-rate').textContent      = (p==='today' ? '—' : (DASH.conversionRate[p] || '—'));
-  document.getElementById('d-downloads').textContent = DASH.downloads ? (DASH.downloads[p] ?? '—') : '—';
+  document.getElementById('d-win-dl').textContent    = DASH.windowsDownloads ? (DASH.windowsDownloads[p] ?? '—') : '—';
+  document.getElementById('d-other-dl').textContent  = DASH.otherAttempts   ? (DASH.otherAttempts[p]    ?? '—') : '—';
 }
 async function sendDailyReport() {
   var btn = document.getElementById('daily-report-btn');
