@@ -7,9 +7,17 @@ export default {
     // Proxy /web and /web/* to the Vercel-deployed Next.js app
     if (url.pathname === '/web' || url.pathname.startsWith('/web/')) {
       const target = new URL(url.pathname + url.search, VERCEL_WEB);
+
+      // Forward original host so Next.js middleware sees 'pdfsign.in' not 'vercel.app'
+      // This ensures X-Robots-Tag: noindex is NOT added for canonical traffic,
+      // and NEXT_PUBLIC_SITE_URL-based redirects work correctly.
+      const proxyHeaders = new Headers(request.headers);
+      proxyHeaders.set('x-forwarded-host', url.hostname);
+      proxyHeaders.set('x-forwarded-proto', url.protocol.replace(':', ''));
+
       return fetch(new Request(target.toString(), {
         method: request.method,
-        headers: request.headers,
+        headers: proxyHeaders,
         body: request.body,
         redirect: 'manual',
       }));
