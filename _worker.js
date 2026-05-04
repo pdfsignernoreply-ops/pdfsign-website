@@ -23,21 +23,22 @@ export default {
       }));
     }
 
-    const response = await env.ASSETS.fetch(request);
-
-    // Inject visitor's country into the main HTML so JS can skip the geo API call
-    if (url.pathname === '/' || url.pathname === '/index.html') {
+    // Geo endpoint — served by the Worker (not a static asset) so request.cf.country is reliable.
+    // The JS boot() on index.html calls /api/cf-geo to get the visitor's country instantly
+    // without relying on the Vercel geo API (which was cached globally and returned IN for all).
+    if (url.pathname === '/api/cf-geo') {
       const country = (request.cf && request.cf.country) ? request.cf.country : 'IN';
-      const html = await response.text();
-      const injected = html.replace(
-        '<head>',
-        '<head><script>window.__GEO_COUNTRY__="' + country + '";</script>'
-      );
-      const headers = new Headers(response.headers);
-      headers.delete('Content-Length'); // body length changed; let the runtime recalculate
-      headers.set('Cache-Control', 'no-store'); // geo is per-visitor — never cache this response
-      return new Response(injected, { status: response.status, headers });
+      return new Response(JSON.stringify({ country, isIndia: country === 'IN' }), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-store',
+          'Access-Control-Allow-Origin': '*',
+        },
+      });
     }
+
+    const response = await env.ASSETS.fetch(request);
 
     if (url.pathname === '/sitemap.xml') {
       const newResponse = new Response(response.body, response);
