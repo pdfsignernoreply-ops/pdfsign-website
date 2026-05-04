@@ -35,6 +35,7 @@ export default {
       );
       const headers = new Headers(response.headers);
       headers.delete('Content-Length'); // body length changed; let the runtime recalculate
+      headers.set('Cache-Control', 'no-store'); // geo is per-visitor — never cache this response
       return new Response(injected, { status: response.status, headers });
     }
 
