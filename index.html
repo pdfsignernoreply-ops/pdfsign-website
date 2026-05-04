@@ -3696,14 +3696,55 @@ function applyGeo() {
   setPlanMode(_planMode, true);
 }
 
-// ── Plan click handler — INR navigates directly, USD opens modal ───────────
-function handlePlanClick(e, planKey) {
-  if (!_isIndia) {
-    e.preventDefault();
-    openIntlModal(planKey);
-    return false;
+// ── Resolve actual plan key (solo/team) from the button's logical planKey ──
+function resolveActualPlan(planKey) {
+  if (_planMode === 'team' && planKey !== 'monthly') {
+    return planKey === 'yearly' ? 'team-yearly' : 'team-lifetime';
   }
-  return true; // India — let href navigate to Razorpay INR link
+  return planKey;
+}
+
+// ── Plan click handler — India generates link dynamically, USD opens modal ─
+function handlePlanClick(e, planKey) {
+  e.preventDefault();
+  var actualPlan = resolveActualPlan(planKey);
+  if (!_isIndia) {
+    openIntlModal(actualPlan);
+  } else {
+    var btnId = planKey === 'monthly' ? 'btnMonthly' : planKey === 'yearly' ? 'btnAnnual' : 'btnLifetime';
+    generateINRPaymentLink(actualPlan, btnId);
+  }
+  return false;
+}
+
+// ── India: generate a fresh Razorpay payment link with the live DB price ───
+async function generateINRPaymentLink(plan, btnId) {
+  var btn     = document.getElementById(btnId);
+  var origTxt = btn ? btn.textContent : '';
+  if (btn) { btn.textContent = 'Creating link…'; btn.style.pointerEvents = 'none'; btn.style.opacity = '0.7'; }
+
+  try {
+    var resp = await fetch('https://pdfsigner-api.vercel.app/api/payment/create-link', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ plan: plan, customerCountry: 'IN' }),
+    });
+    var data = await resp.json();
+    if (!resp.ok || !data.paymentUrl) throw new Error(data.error || 'Could not create payment link.');
+    window.location.href = data.paymentUrl;
+  } catch (err) {
+    if (btn) { btn.textContent = origTxt; btn.style.pointerEvents = ''; btn.style.opacity = ''; }
+    var errDiv = document.createElement('p');
+    errDiv.style.cssText = 'color:#ef4444;font-size:13px;text-align:center;margin-top:8px';
+    errDiv.textContent = err.message + ' — please try again.';
+    if (btn && btn.parentNode) {
+      var old = btn.parentNode.querySelector('.dyn-link-err');
+      if (old) old.remove();
+      errDiv.className = 'dyn-link-err';
+      btn.parentNode.insertBefore(errDiv, btn.nextSibling);
+      setTimeout(function() { errDiv.remove(); }, 6000);
+    }
+  }
 }
 
 // ── Solo/Team toggle ────────────────────────────────────────────────────────
