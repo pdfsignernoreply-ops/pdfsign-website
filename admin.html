@@ -301,8 +301,8 @@ tr:hover td{background:#1e293b33}
           <th style="padding:8px 12px">Label</th>
           <th style="padding:8px 12px">INR (paise)</th>
           <th style="padding:8px 12px;color:#4ade80">₹ Display</th>
-          <th style="padding:8px 12px;opacity:.5">USD (cents)</th>
-          <th style="padding:8px 12px;opacity:.5">$ Display</th>
+          <th style="padding:8px 12px;color:#38bdf8">USD (cents)</th>
+          <th style="padding:8px 12px;color:#38bdf8">$ Display</th>
         </tr></thead>
         <tbody id="pricing-body"></tbody>
       </table>
@@ -592,8 +592,8 @@ async function loadPricing() {
         '<td style="'+td+'color:#cbd5e1">'+p.label+'</td>' +
         '<td style="'+td+'"><input type="number" id="inr_'+p.plan+'" value="'+p.price_inr+'" oninput="updDisp(\'inr\',\''+p.plan+'\')" style="width:90px;background:#0f172a;border:1px solid #334155;color:#e2e8f0;padding:5px 8px;border-radius:6px;font-size:12px"/></td>' +
         '<td style="'+td+'color:#4ade80;font-weight:600" id="disp_inr_'+p.plan+'">₹'+Math.round(p.price_inr/100)+'</td>' +
-        '<td style="'+td+'opacity:.5"><input type="number" id="usd_'+p.plan+'" value="'+p.price_usd+'" oninput="updDisp(\'usd\',\''+p.plan+'\')" style="width:90px;background:#0f172a;border:1px solid #334155;color:#94a3b8;padding:5px 8px;border-radius:6px;font-size:12px"/></td>' +
-        '<td style="'+td+'opacity:.5" id="disp_usd_'+p.plan+'">$'+(p.price_usd/100).toFixed(2)+'</td>' +
+        '<td style="'+td+'"><input type="number" id="usd_'+p.plan+'" value="'+p.price_usd+'" oninput="updDisp(\'usd\',\''+p.plan+'\')" style="width:90px;background:#0f172a;border:1px solid #334155;color:#e2e8f0;padding:5px 8px;border-radius:6px;font-size:12px"/></td>' +
+        '<td style="'+td+'color:#38bdf8;font-weight:600" id="disp_usd_'+p.plan+'">$'+(p.price_usd/100).toFixed(2)+'</td>' +
         '</tr>';
     }).join('');
   } catch(e) {

@@ -3620,12 +3620,13 @@ function toggleNav() {
 }
 
 // ── Pricing & geo state ────────────────────────────────────────────────────
-var _planMode = 'solo';
-var _currency = 'INR';   // set by geo detection on load
-var _isIndia  = true;    // default to India until geo resolves
-var _intlPlan = null;    // plan selected for international checkout modal
+var _planMode   = 'solo';
+var _currency   = 'INR';   // set by geo detection on load
+var _isIndia    = true;    // default to India until geo resolves
+var _intlPlan   = null;    // plan selected for international checkout modal
+var _livePrices = null;    // keyed by plan, set after /api/pricing responds
 
-// INR links (Razorpay pre-generated, India only)
+// INR links (Razorpay pre-generated static links, India only)
 var INR_LINKS = {
   monthly:         'https://rzp.io/rzp/y6KFT3L',
   yearly:          'https://rzp.io/rzp/ZY9vgMXC',
@@ -3634,25 +3635,38 @@ var INR_LINKS = {
   'team-lifetime': 'https://rzp.io/rzp/UBkBSNxI',
 };
 
-// USD display prices (shown automatically to non-India visitors)
-var USD_PRICES = {
-  monthly:         '$1.99',
-  yearly:          '$11.99',
-  'team-yearly':   '$39.99',
-  lifetime:        '$59.99',
-  'team-lifetime': '$159.99',
-};
+// Fallback prices in paise (INR) and cents (USD) — used until API responds
+var FALLBACK_INR = { monthly: 9900, yearly: 99900, 'team-yearly': 349900, lifetime: 499900, 'team-lifetime': 1399900 };
+var FALLBACK_USD = { monthly: 199,  yearly: 1199,  'team-yearly': 3999,   lifetime: 5999,   'team-lifetime': 15999  };
 
-// ── Geo detection — runs on load, no user interaction needed ───────────────
-(function detectGeo() {
-  fetch('https://pdfsigner-api.vercel.app/api/geo', { cache: 'no-store' })
-    .then(function(r) { return r.ok ? r.json() : { isIndia: true }; })
-    .then(function(j) {
-      _isIndia  = j.isIndia !== false; // default true if any error
-      _currency = _isIndia ? 'INR' : 'USD';
-      applyGeo();
-    })
-    .catch(function() { /* network error — stay on India defaults */ });
+// ── Price helpers ─────────────────────────────────────────────────────────
+function getInr(plan) { return (_livePrices && _livePrices[plan]) ? _livePrices[plan].price_inr : (FALLBACK_INR[plan] || 0); }
+function getUsd(plan) { return (_livePrices && _livePrices[plan]) ? _livePrices[plan].price_usd : (FALLBACK_USD[plan] || 0); }
+function fmtInr(paise) { return Math.round(paise / 100).toLocaleString('en-IN'); }
+function fmtUsd(cents) { return (cents / 100).toFixed(2); }
+// Returns "$X.XX" string for modal button labels
+function dispUsd(plan) { return '$' + fmtUsd(getUsd(plan)); }
+
+// ── Boot: fetch geo + live prices in parallel, then render ────────────────
+(function boot() {
+  Promise.all([
+    fetch('https://pdfsigner-api.vercel.app/api/geo', { cache: 'no-store' })
+      .then(function(r) { return r.ok ? r.json() : { isIndia: true }; })
+      .catch(function()  { return { isIndia: true }; }),
+    fetch('https://pdfsigner-api.vercel.app/api/pricing', { cache: 'no-store' })
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .catch(function()  { return null; })
+  ]).then(function(results) {
+    var geo    = results[0];
+    var prices = results[1];
+    _isIndia  = geo.isIndia !== false;
+    _currency = _isIndia ? 'INR' : 'USD';
+    if (prices && Array.isArray(prices) && prices.length) {
+      _livePrices = {};
+      prices.forEach(function(p) { _livePrices[p.plan] = p; });
+    }
+    applyGeo();
+  });
 })();
 
 function applyGeo() {
@@ -3704,33 +3718,59 @@ function setPlanMode(mode, forceRedraw) {
 
   var isUSD = (_currency === 'USD');
 
-  // ── Monthly (solo only)
-  document.getElementById('priceMonthly').textContent = isUSD ? '1.99' : '99';
+  // ── Monthly (solo only) ────────────────────────────────────────────────
+  document.getElementById('priceMonthly').textContent =
+    isUSD ? fmtUsd(getUsd('monthly')) : fmtInr(getInr('monthly'));
   document.querySelectorAll('#cardMonthly .plan-currency').forEach(function(el) { el.textContent = isUSD ? '$' : '₹'; });
   var lnkMonthly = document.getElementById('btnMonthly');
   if (lnkMonthly) { lnkMonthly.textContent = 'Get Monthly Plan'; lnkMonthly.href = INR_LINKS.monthly; }
 
-  // ── Annual
-  document.getElementById('priceAnnual').textContent = isUSD ? (isSolo ? '11.99' : '39.99') : (isSolo ? '999' : '3,499');
+  // ── Annual ────────────────────────────────────────────────────────────
+  var annualPlan = isSolo ? 'yearly' : 'team-yearly';
+  document.getElementById('priceAnnual').textContent =
+    isUSD ? fmtUsd(getUsd(annualPlan)) : fmtInr(getInr(annualPlan));
   document.querySelectorAll('.plan-card.featured .plan-currency').forEach(function(el) { el.textContent = isUSD ? '$' : '₹'; });
-  document.getElementById('descAnnual').textContent = isSolo
-    ? (isUSD ? 'Save $0.99 vs monthly. Best value for regular signers.' : 'Save ₹189 vs monthly. Best value for regular signers.')
-    : (isUSD ? '5 seats · $8/seat per year. One key for your whole team.' : '5 seats · ₹700 per seat per year. One key for your whole team.');
+
+  // Savings line — computed dynamically from live prices
+  if (isSolo) {
+    var savInr = Math.round((getInr('monthly') * 12 - getInr('yearly')) / 100);
+    var savUsd = fmtUsd(getUsd('monthly') * 12 - getUsd('yearly'));
+    document.getElementById('descAnnual').textContent = isUSD
+      ? 'Save $' + savUsd + ' vs monthly. Best value for regular signers.'
+      : 'Save ₹' + savInr.toLocaleString('en-IN') + ' vs monthly. Best value for regular signers.';
+  } else {
+    var perSeatInr = Math.round(getInr('team-yearly') / 100 / 5);
+    var perSeatUsd = fmtUsd(getUsd('team-yearly') / 5);
+    document.getElementById('descAnnual').textContent = isUSD
+      ? '5 seats · $' + perSeatUsd + '/seat per year. One key for your whole team.'
+      : '5 seats · ₹' + perSeatInr.toLocaleString('en-IN') + ' per seat per year. One key for your whole team.';
+  }
   document.getElementById('devicesAnnual').textContent = isSolo ? '1 Windows device' : '5 Windows devices';
   var lnkAnnual = document.getElementById('btnAnnual');
   lnkAnnual.textContent = isSolo ? 'Get Annual Plan' : 'Get Team Annual Plan';
-  lnkAnnual.href = INR_LINKS[isSolo ? 'yearly' : 'team-yearly'];
+  lnkAnnual.href = INR_LINKS[annualPlan];
 
-  // ── Lifetime
-  document.getElementById('priceLifetime').textContent = isUSD ? (isSolo ? '59.99' : '159.99') : (isSolo ? '4,999' : '13,999');
+  // ── Lifetime ──────────────────────────────────────────────────────────
+  var lifetimePlan = isSolo ? 'lifetime' : 'team-lifetime';
+  document.getElementById('priceLifetime').textContent =
+    isUSD ? fmtUsd(getUsd(lifetimePlan)) : fmtInr(getInr(lifetimePlan));
   document.querySelectorAll('.plan-card:not(.featured) .plan-currency').forEach(function(el) { el.textContent = isUSD ? '$' : '₹'; });
-  document.getElementById('descLifetime').textContent = isSolo
-    ? (isUSD ? 'Pay once, use forever. One-time purchase, all future updates included.' : 'Pay once, use forever. Ideal for firms and power users who sign daily.')
-    : (isUSD ? '5 seats · $32/seat — pay once, own forever.' : '5 seats · ₹2,800 per seat — pay once, use forever for your entire team.');
+
+  if (isSolo) {
+    document.getElementById('descLifetime').textContent = isUSD
+      ? 'Pay once, use forever. One-time purchase, all future updates included.'
+      : 'Pay once, use forever. Ideal for firms and power users who sign daily.';
+  } else {
+    var ltSeatInr = Math.round(getInr('team-lifetime') / 100 / 5);
+    var ltSeatUsd = fmtUsd(getUsd('team-lifetime') / 5);
+    document.getElementById('descLifetime').textContent = isUSD
+      ? '5 seats · $' + ltSeatUsd + '/seat — pay once, own forever.'
+      : '5 seats · ₹' + ltSeatInr.toLocaleString('en-IN') + ' per seat — pay once, use forever for your entire team.';
+  }
   document.getElementById('devicesLifetime').textContent = isSolo ? '1 Windows device' : '5 Windows devices';
   var lnkLifetime = document.getElementById('btnLifetime');
   lnkLifetime.textContent = isSolo ? 'Get Lifetime Access' : 'Get Team Lifetime Access';
-  lnkLifetime.href = INR_LINKS[isSolo ? 'lifetime' : 'team-lifetime'];
+  lnkLifetime.href = INR_LINKS[lifetimePlan];
 }
 
 // ── International checkout modal ───────────────────────────────────────────
@@ -3740,7 +3780,7 @@ function openIntlModal(plan) {
   document.getElementById('intlEmail').value = '';
   document.getElementById('intlErr').style.display  = 'none';
   document.getElementById('intlPayBtn').disabled    = false;
-  document.getElementById('intlPayBtn').textContent = 'Continue to Payment — ' + (USD_PRICES[plan] || '');
+  document.getElementById('intlPayBtn').textContent = 'Continue to Payment — ' + (dispUsd(plan));
   document.getElementById('intlCheckoutModal').classList.add('open');
   document.getElementById('intlEmail').focus();
 }
@@ -3796,7 +3836,7 @@ async function submitIntlCheckout() {
     errEl.textContent   = err.message;
     errEl.style.display = 'block';
     btn.disabled        = false;
-    btn.textContent     = 'Continue to Payment — ' + (USD_PRICES[_intlPlan] || '');
+    btn.textContent     = 'Continue to Payment — ' + (dispUsd(_intlPlan));
   }
 }
 
