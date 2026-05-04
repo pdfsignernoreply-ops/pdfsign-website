@@ -25,6 +25,19 @@ export default {
 
     const response = await env.ASSETS.fetch(request);
 
+    // Inject visitor's country into the main HTML so JS can skip the geo API call
+    if (url.pathname === '/' || url.pathname === '/index.html') {
+      const country = (request.cf && request.cf.country) ? request.cf.country : 'IN';
+      const html = await response.text();
+      const injected = html.replace(
+        '<head>',
+        '<head><script>window.__GEO_COUNTRY__="' + country + '";</script>'
+      );
+      const headers = new Headers(response.headers);
+      headers.delete('Content-Length'); // body length changed; let the runtime recalculate
+      return new Response(injected, { status: response.status, headers });
+    }
+
     if (url.pathname === '/sitemap.xml') {
       const newResponse = new Response(response.body, response);
       newResponse.headers.set('Content-Type', 'application/xml; charset=utf-8');

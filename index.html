@@ -3650,9 +3650,13 @@ function dispUsd(plan) { return '$' + fmtUsd(getUsd(plan)); }
 // ── Boot: fetch geo + live prices in parallel, then render ────────────────
 (function boot() {
   Promise.all([
-    fetch('https://pdfsigner-api.vercel.app/api/geo', { cache: 'no-store' })
-      .then(function(r) { return r.ok ? r.json() : { isIndia: true }; })
-      .catch(function()  { return { isIndia: true }; }),
+    // Cloudflare injects window.__GEO_COUNTRY__ at the edge — use it instantly.
+    // Fall back to the geo API only when not served via Cloudflare (e.g. local dev).
+    window.__GEO_COUNTRY__
+      ? Promise.resolve({ isIndia: window.__GEO_COUNTRY__ === 'IN' })
+      : fetch('https://pdfsigner-api.vercel.app/api/geo', { cache: 'no-store' })
+          .then(function(r) { return r.ok ? r.json() : { isIndia: true }; })
+          .catch(function()  { return { isIndia: true }; }),
     fetch('https://pdfsigner-api.vercel.app/api/pricing', { cache: 'no-store' })
       .then(function(r) { return r.ok ? r.json() : null; })
       .catch(function()  { return null; })
