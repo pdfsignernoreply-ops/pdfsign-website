@@ -4317,26 +4317,41 @@ async function generateIntlPaymentLink(plan, btnId) {
   // Show spinner immediately — instant feedback + prevents double-click
   if (btn) { btn.classList.add('plan-btn-loading'); btn.textContent = ''; }
 
+  // 25-second client timeout — resets button with a clear message if server is slow
+  var controller = new AbortController();
+  var timeoutId  = setTimeout(function() { controller.abort(); }, 25000);
+
   try {
     var resp = await fetch('https://pdfsigner-api.vercel.app/api/payment/create-link', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body:    JSON.stringify({ plan: plan, customerCountry: 'INTL' }),
+      signal:  controller.signal,
     });
-    var data = await resp.json();
-    if (!resp.ok || !data.paymentUrl) throw new Error(data.error || 'Could not create payment link.');
+    clearTimeout(timeoutId);
+
+    var data;
+    try { data = await resp.json(); } catch (e) { data = {}; }
+
+    if (!resp.ok || !data.paymentUrl) {
+      throw new Error(data.error || ('Server error ' + resp.status + ' — please try again or contact support.'));
+    }
     window.location.href = data.paymentUrl;
   } catch (err) {
+    clearTimeout(timeoutId);
     if (btn) { btn.classList.remove('plan-btn-loading'); btn.textContent = origTxt; }
+    var msg = err.name === 'AbortError'
+      ? 'Request timed out — please try again.'
+      : (err.message || 'Could not open payment page — please try again.');
     var errDiv = document.createElement('p');
     errDiv.style.cssText = 'color:#ef4444;font-size:13px;text-align:center;margin-top:8px';
-    errDiv.textContent = 'Could not open payment page — please try again.';
+    errDiv.textContent = msg;
     if (btn && btn.parentNode) {
       var old = btn.parentNode.querySelector('.dyn-link-err');
       if (old) old.remove();
       errDiv.className = 'dyn-link-err';
       btn.parentNode.insertBefore(errDiv, btn.nextSibling);
-      setTimeout(function() { errDiv.remove(); }, 6000);
+      setTimeout(function() { errDiv.remove(); }, 8000);
     }
   }
 }
