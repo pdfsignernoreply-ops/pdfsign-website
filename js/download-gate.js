@@ -85,6 +85,36 @@
   function handleDownloadClick(e) {
     e.preventDefault();
 
+    /* Prevent double-click: the Store opens externally so the page stays
+       visible — without feedback the user clicks again 3-5s later.
+       Mark the anchor immediately; reset after 8s so retry is possible. */
+    var anchor = e.target.closest('a');
+    if (anchor) {
+      if (anchor.dataset.downloading) return;   // already in-flight — ignore
+      anchor.dataset.downloading = '1';
+      anchor.style.pointerEvents = 'none';
+      anchor.style.opacity = '0.7';
+
+      /* Update just the text node(s) inside the anchor, preserving any SVG icon */
+      var savedNodes = [];
+      var nodes = anchor.childNodes;
+      for (var i = 0; i < nodes.length; i++) {
+        if (nodes[i].nodeType === 3 && nodes[i].textContent.trim()) {
+          savedNodes.push({ node: nodes[i], orig: nodes[i].textContent });
+          nodes[i].textContent = nodes[i].textContent.replace(/\S.*/, 'Opening Store…');
+        }
+      }
+
+      setTimeout(function () {
+        anchor.dataset.downloading = '';
+        anchor.style.pointerEvents = '';
+        anchor.style.opacity = '';
+        for (var j = 0; j < savedNodes.length; j++) {
+          savedNodes[j].node.textContent = savedNodes[j].orig;
+        }
+      }, 8000);
+    }
+
     /* Always log — fire and forget, never block the UX */
     try { fetch(DOWNLOAD_API); } catch (_) {}
 
