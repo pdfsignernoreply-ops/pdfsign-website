@@ -988,6 +988,24 @@
 
   .plan-btn-white:hover { background: var(--blue-pale); }
 
+  /* Payment link spinner — shown while generating link on click */
+  .plan-btn-loading { pointer-events: none !important; opacity: 0.85; }
+  .plan-btn-loading::after {
+    content: '';
+    display: inline-block;
+    width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,0.45);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: btn-spin .65s linear infinite;
+    vertical-align: middle;
+  }
+  .plan-btn-outline.plan-btn-loading::after {
+    border-color: rgba(0,0,0,0.2);
+    border-top-color: currentColor;
+  }
+  @keyframes btn-spin { to { transform: rotate(360deg); } }
+
   .pricing-note {
     text-align: center;
     margin-top: 32px;
@@ -3694,6 +3712,18 @@ function applyGeo() {
 
   // Re-render plan prices in correct currency
   setPlanMode(_planMode, true);
+
+  // Wire hover-prefetch on plan buttons so Indian users get instant redirect on click
+  if (_isIndia) {
+    ['btnMonthly', 'btnAnnual', 'btnLifetime'].forEach(function(id) {
+      var btn = document.getElementById(id);
+      if (!btn) return;
+      btn.addEventListener('mouseenter', function() {
+        var planKey = id === 'btnMonthly' ? 'monthly' : id === 'btnAnnual' ? 'yearly' : 'lifetime';
+        prefetchINRLink(resolveActualPlan(planKey));
+      });
+    });
+  }
 }
 
 // ── Resolve actual plan key (solo/team) from the button's logical planKey ──
@@ -3717,11 +3747,35 @@ function handlePlanClick(e, planKey) {
   return false;
 }
 
-// ── India: generate a fresh Razorpay payment link with the live DB price ───
+// ── Prefetch cache: plan → Promise<paymentUrl|null> ──────────────────────────
+var _prefetchCache = {};
+
+function prefetchINRLink(plan) {
+  if (_prefetchCache[plan]) return; // already in-flight or done
+  _prefetchCache[plan] = fetch('https://pdfsigner-api.vercel.app/api/payment/create-link', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify({ plan: plan, customerCountry: 'IN' }),
+  })
+  .then(function(r) { return r.ok ? r.json() : null; })
+  .then(function(d) { return (d && d.paymentUrl) ? d.paymentUrl : null; })
+  .catch(function()  { return null; });
+}
+
+// ── India: redirect to Razorpay — instant if hover-prefetch completed ────────
 async function generateINRPaymentLink(plan, btnId) {
   var btn     = document.getElementById(btnId);
   var origTxt = btn ? btn.textContent : '';
-  if (btn) { btn.textContent = 'Creating link…'; btn.style.pointerEvents = 'none'; btn.style.opacity = '0.7'; }
+
+  // If prefetch already resolved, redirect instantly — no loading state shown
+  if (_prefetchCache[plan]) {
+    var url = await _prefetchCache[plan];
+    delete _prefetchCache[plan]; // consume; next hover pre-fetches fresh link
+    if (url) { window.location.href = url; return; }
+  }
+
+  // Prefetch missed — show a spinner on the button (no text change) while we wait
+  if (btn) { btn.classList.add('plan-btn-loading'); btn.textContent = ''; }
 
   try {
     var resp = await fetch('https://pdfsigner-api.vercel.app/api/payment/create-link', {
@@ -3733,10 +3787,10 @@ async function generateINRPaymentLink(plan, btnId) {
     if (!resp.ok || !data.paymentUrl) throw new Error(data.error || 'Could not create payment link.');
     window.location.href = data.paymentUrl;
   } catch (err) {
-    if (btn) { btn.textContent = origTxt; btn.style.pointerEvents = ''; btn.style.opacity = ''; }
+    if (btn) { btn.classList.remove('plan-btn-loading'); btn.textContent = origTxt; }
     var errDiv = document.createElement('p');
     errDiv.style.cssText = 'color:#ef4444;font-size:13px;text-align:center;margin-top:8px';
-    errDiv.textContent = err.message + ' — please try again.';
+    errDiv.textContent = 'Could not open payment page — please try again.';
     if (btn && btn.parentNode) {
       var old = btn.parentNode.querySelector('.dyn-link-err');
       if (old) old.remove();
