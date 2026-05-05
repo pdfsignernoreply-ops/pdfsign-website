@@ -38,6 +38,15 @@ export default {
       });
     }
 
+    // 301-redirect clean URLs → .html to prevent duplicate content.
+    // Cloudflare Pages transparently serves /foo.html for /foo, but the canonical in every
+    // page is the .html URL. Without this redirect, Google sees both URLs as serving the same
+    // content and flags the clean URL as "Alternative page with proper canonical tag".
+    const pathSegment = url.pathname.split('/').pop(); // last segment, e.g. "how-to-sign-pdf-dsc-token-windows"
+    if (pathSegment && !pathSegment.includes('.') && !url.pathname.endsWith('/')) {
+      return Response.redirect(`${url.origin}${url.pathname}.html${url.search}`, 301);
+    }
+
     const response = await env.ASSETS.fetch(request);
 
     // Inject country code into the main page so boot() can detect geo without an extra HTTP round-trip.
