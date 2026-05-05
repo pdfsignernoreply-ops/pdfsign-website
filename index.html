@@ -3767,39 +3767,55 @@ async function generateINRPaymentLink(plan, btnId) {
   var btn     = document.getElementById(btnId);
   var origTxt = btn ? btn.textContent : '';
 
-  // If prefetch already resolved, redirect instantly — no loading state shown
-  if (_prefetchCache[plan]) {
-    var url = await _prefetchCache[plan];
-    delete _prefetchCache[plan]; // consume; next hover pre-fetches fresh link
-    if (url) { window.location.href = url; return; }
-  }
-
-  // Prefetch missed — show a spinner on the button (no text change) while we wait
+  // Show spinner IMMEDIATELY — instant feedback + prevents double-click via pointer-events:none
   if (btn) { btn.classList.add('plan-btn-loading'); btn.textContent = ''; }
 
-  try {
-    var resp = await fetch('https://pdfsigner-api.vercel.app/api/payment/create-link', {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ plan: plan, customerCountry: 'IN' }),
-    });
-    var data = await resp.json();
-    if (!resp.ok || !data.paymentUrl) throw new Error(data.error || 'Could not create payment link.');
-    window.location.href = data.paymentUrl;
-  } catch (err) {
-    if (btn) { btn.classList.remove('plan-btn-loading'); btn.textContent = origTxt; }
-    var errDiv = document.createElement('p');
-    errDiv.style.cssText = 'color:#ef4444;font-size:13px;text-align:center;margin-top:8px';
-    errDiv.textContent = 'Could not open payment page — please try again.';
-    if (btn && btn.parentNode) {
-      var old = btn.parentNode.querySelector('.dyn-link-err');
-      if (old) old.remove();
-      errDiv.className = 'dyn-link-err';
-      btn.parentNode.insertBefore(errDiv, btn.nextSibling);
-      setTimeout(function() { errDiv.remove(); }, 6000);
+  var url = null;
+  if (_prefetchCache[plan]) {
+    url = await _prefetchCache[plan];
+    delete _prefetchCache[plan]; // consume; next hover pre-fetches fresh link
+  }
+
+  if (!url) {
+    try {
+      var resp = await fetch('https://pdfsigner-api.vercel.app/api/payment/create-link', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ plan: plan, customerCountry: 'IN' }),
+      });
+      var data = await resp.json();
+      if (!resp.ok || !data.paymentUrl) throw new Error(data.error || 'Could not create payment link.');
+      url = data.paymentUrl;
+    } catch (err) {
+      if (btn) { btn.classList.remove('plan-btn-loading'); btn.textContent = origTxt; }
+      var errDiv = document.createElement('p');
+      errDiv.style.cssText = 'color:#ef4444;font-size:13px;text-align:center;margin-top:8px';
+      errDiv.textContent = 'Could not open payment page — please try again.';
+      if (btn && btn.parentNode) {
+        var old = btn.parentNode.querySelector('.dyn-link-err');
+        if (old) old.remove();
+        errDiv.className = 'dyn-link-err';
+        btn.parentNode.insertBefore(errDiv, btn.nextSibling);
+        setTimeout(function() { errDiv.remove(); }, 6000);
+      }
+      return;
     }
   }
+
+  if (url) window.location.href = url;
 }
+
+// Reset loading states when page is restored from bfcache (e.g. after pressing Back from Razorpay).
+// Without this: a second concurrent async call (from a double-click) resumes mid-await and
+// fires window.location.href again, auto-redirecting the user back to Razorpay.
+window.addEventListener('pageshow', function(e) {
+  if (!e.persisted) return; // normal page load — do nothing
+  _prefetchCache = {};      // discard any in-flight or resolved prefetch promise
+  document.querySelectorAll('.plan-btn-loading').forEach(function(el) {
+    el.classList.remove('plan-btn-loading'); // restore button text via setPlanMode below
+  });
+  setPlanMode(_planMode, true); // redraw button labels to their correct text
+});
 
 // ── Solo/Team toggle ────────────────────────────────────────────────────────
 function setPlanMode(mode, forceRedraw) {
