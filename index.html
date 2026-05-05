@@ -3668,17 +3668,17 @@ function dispUsd(plan) { return '$' + fmtUsd(getUsd(plan)); }
 // ── Boot: fetch geo + live prices in parallel, then render ────────────────
 (function boot() {
   Promise.all([
-    // Primary: /api/cf-geo is served by the Cloudflare Worker — reliable request.cf.country.
-    // Fallback: Vercel geo API (used in local dev / non-Cloudflare environments).
-    fetch('/api/cf-geo', { cache: 'no-store' })
-      .then(function(r) { return r.ok ? r.json() : null; })
-      .then(function(d) {
-        if (d && typeof d.isIndia === 'boolean') return d;
-        return fetch('https://pdfsigner-api.vercel.app/api/geo', { cache: 'no-store' })
-          .then(function(r) { return r.ok ? r.json() : { isIndia: true }; })
-          .catch(function() { return { isIndia: true }; });
-      })
-      .catch(function() { return { isIndia: true }; }),
+    // Cloudflare Worker injects window.__GEO_COUNTRY__ (2-letter code) into the HTML at the edge.
+    // When present, use it synchronously — zero extra HTTP round-trip.
+    // Fallback: call /api/cf-geo (also served by Worker, reliable request.cf.country).
+    // Local dev fallback: defaults to India (conservative — avoids showing USD to Indian devs).
+    (window.__GEO_COUNTRY__ !== undefined
+      ? Promise.resolve({ isIndia: window.__GEO_COUNTRY__ === 'IN' })
+      : fetch('/api/cf-geo', { cache: 'no-store' })
+          .then(function(r) { return r.ok ? r.json() : null; })
+          .then(function(d) { return (d && typeof d.isIndia === 'boolean') ? d : { isIndia: true }; })
+          .catch(function() { return { isIndia: true }; })
+    ),
     fetch('https://pdfsigner-api.vercel.app/api/pricing', { cache: 'no-store' })
       .then(function(r) { return r.ok ? r.json() : null; })
       .catch(function()  { return null; })
@@ -3698,9 +3698,15 @@ function dispUsd(plan) { return '$' + fmtUsd(getUsd(plan)); }
 function applyGeo() {
   // Show/hide geo-conditional blocks
   var indiaDisplay = _isIndia ? '' : 'none';
-  var intlDisplay  = _isIndia ? 'none' : '';
   document.querySelectorAll('.india-only').forEach(function(el) { el.style.display = indiaDisplay; });
-  document.querySelectorAll('.intl-only').forEach(function(el)  { el.style.display = intlDisplay; });
+  // Must set an explicit value (not '') to override the CSS class rule '.intl-only { display:none }'.
+  // Trust-grid is display:grid and trust-capability is display:flex; everything else is display:block.
+  document.querySelectorAll('.intl-only').forEach(function(el) {
+    el.style.display = _isIndia ? 'none'
+      : el.classList.contains('trust-grid') ? 'grid'
+      : el.classList.contains('trust-capability') ? 'flex'
+      : 'block';
+  });
 
   // Update pricing note
   var note = document.getElementById('pricingNote');

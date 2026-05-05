@@ -40,6 +40,19 @@ export default {
 
     const response = await env.ASSETS.fetch(request);
 
+    // Inject country code into the main page so boot() can detect geo without an extra HTTP round-trip.
+    // The inline script runs synchronously before any other JS, making geo detection instant.
+    if (url.pathname === '/' || url.pathname === '/index.html') {
+      const raw     = request.cf?.country ?? '';
+      const country = /^[A-Z]{2}$/.test(raw) ? raw : 'IN';  // validate: 2 uppercase letters
+      const html     = await response.text();
+      const injected = html.replace('<head>', `<head><script>window.__GEO_COUNTRY__="${country}";</script>`);
+      const headers  = new Headers(response.headers);
+      headers.set('Cache-Control', 'private, no-store');     // each visitor gets their own country
+      headers.set('Content-Type', 'text/html; charset=utf-8');
+      return new Response(injected, { status: response.status, headers });
+    }
+
     if (url.pathname === '/sitemap.xml') {
       const newResponse = new Response(response.body, response);
       newResponse.headers.set('Content-Type', 'application/xml; charset=utf-8');
