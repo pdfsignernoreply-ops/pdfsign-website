@@ -4120,8 +4120,17 @@ function dispUsd(plan) { return '$' + fmtUsd(getUsd(plan)); }
 
 function applyGeo() {
   // Show/hide geo-conditional blocks
-  var indiaDisplay = _isIndia ? '' : 'none';
-  document.querySelectorAll('.india-only').forEach(function(el) { el.style.display = indiaDisplay; });
+  document.querySelectorAll('.india-only').forEach(function(el) {
+    // When hiding: always 'none'. When showing: must match the CSS display type of
+    // each element — '.india-only { display:block }' would override 'display:grid/flex'
+    // if we just set display='' and let CSS take over.
+    el.style.display = _isIndia ? '' : 'none';
+    if (_isIndia) {
+      if      (el.classList.contains('trust-grid'))      el.style.display = 'grid';
+      else if (el.classList.contains('trust-capability')) el.style.display = 'flex';
+      // everything else: display='' → CSS .india-only{display:block} applies correctly
+    }
+  });
   // Must set an explicit value (not '') to override the CSS class rule '.intl-only { display:none }'.
   // Trust-grid is display:grid and trust-capability is display:flex; everything else is display:block.
   document.querySelectorAll('.intl-only').forEach(function(el) {
