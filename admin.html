@@ -168,6 +168,7 @@ tr:hover td{background:#1e293b33}
         <div class="stat"><div class="sv" id="d-rate" style="color:#38bdf8;">—</div><div class="sl">Conv. Rate</div></div>
         <div class="stat"><div class="sv" id="d-win-dl" style="color:#a78bfa;">—</div><div class="sl">Win Downloads</div></div>
         <div class="stat"><div class="sv" id="d-other-dl" style="color:#fb923c;">—</div><div class="sl">Other Attempts</div></div>
+        <div class="stat"><div class="sv" id="d-files-signed" style="color:#34d399;">—</div><div class="sl">Files Signed</div></div>
       </div>
       <div id="dash-report-msg" class="mmsg" style="display:none;"></div>
       <!-- Recent activity: two columns -->
@@ -677,7 +678,8 @@ function renderDashPeriod() {
   document.getElementById('d-rev').textContent       = '₹'+(DASH.revenue[p]||0).toLocaleString('en-IN');
   document.getElementById('d-rate').textContent      = (p==='today' ? '—' : (DASH.conversionRate[p] || '—'));
   document.getElementById('d-win-dl').textContent    = DASH.windowsDownloads ? (DASH.windowsDownloads[p] ?? '—') : '—';
-  document.getElementById('d-other-dl').textContent  = DASH.otherAttempts   ? (DASH.otherAttempts[p]    ?? '—') : '—';
+  document.getElementById('d-other-dl').textContent    = DASH.otherAttempts ? (DASH.otherAttempts[p]   ?? '—') : '—';
+  document.getElementById('d-files-signed').textContent = DASH.filesSigned  ? (DASH.filesSigned[p]?.total ?? '—') : '—';
 }
 async function sendDailyReport() {
   var btn = document.getElementById('daily-report-btn');
