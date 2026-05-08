@@ -14,6 +14,11 @@ export default {
       const proxyHeaders = new Headers(request.headers);
       proxyHeaders.set('x-forwarded-host', url.hostname);
       proxyHeaders.set('x-forwarded-proto', url.protocol.replace(':', ''));
+      // Pass authoritative Cloudflare country to the Next.js app so it can
+      // serve geo-specific content (e.g. India vs international modal copy).
+      const cfCountry = (request.cf && /^[A-Z]{2}$/.test(request.cf.country ?? ''))
+        ? request.cf.country : 'IN';
+      proxyHeaders.set('x-cf-country', cfCountry);
 
       return fetch(new Request(target.toString(), {
         method: request.method,
