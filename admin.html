@@ -103,6 +103,16 @@ tr:hover td{background:#1e293b33}
 .b-outline{background:none;border:1px solid #334155;color:#94a3b8}
 .b-outline:hover{border-color:#16a34a;color:#4ade80}
 .you-tag{font-size:9px;background:#16a34a22;color:#4ade80;border:1px solid #16a34a44;padding:1px 6px;border-radius:100px;margin-left:5px}
+/* Usage tab */
+.pb-trial{background:#f59e0b22;color:#fbbf24;border:1px solid #f59e0b44}
+.pb-licensed{background:#16a34a22;color:#4ade80;border:1px solid #16a34a44}
+.pb-expired{background:#ef444422;color:#f87171;border:1px solid #ef444444}
+.pb-offline{background:#64748b22;color:#94a3b8;border:1px solid #64748b44}
+.usage-regular td:first-child{border-left:3px solid #16a34a}
+.sortable{cursor:pointer;user-select:none}
+.sortable:hover{color:#e2e8f0}
+.sort-asc::after{content:' ↑'}
+.sort-desc::after{content:' ↓'}
 </style>
 </head>
 <body>
@@ -142,6 +152,7 @@ tr:hover td{background:#1e293b33}
     <div class="tab" onclick="showTab('cou',this)">Coupons</div>
     <div class="tab" onclick="showTab('pri',this)">💰 Pricing</div>
     <div class="tab" onclick="showTab('leads',this)">📋 Leads</div>
+    <div class="tab" onclick="showTab('use',this)">📊 Usage</div>
   </div>
 
   <main>
@@ -346,6 +357,53 @@ tr:hover td{background:#1e293b33}
         </table>
       </div>
     </div>
+
+    <!-- Usage Report -->
+    <div id="puse" style="display:none">
+      <div class="section-hdr">
+        <h2>Usage Report</h2>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <select id="udays" onchange="loadUsage()" style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:7px 11px;border-radius:7px;font-size:12px;outline:none;">
+            <option value="30">Last 30 days</option>
+            <option value="60">Last 60 days</option>
+            <option value="90">Last 90 days</option>
+            <option value="0">All time</option>
+          </select>
+          <select id="uplan" onchange="renderUsage()" style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:7px 11px;border-radius:7px;font-size:12px;outline:none;">
+            <option value="">All Plans</option>
+            <option value="trial">Trial</option>
+            <option value="monthly">Monthly</option>
+            <option value="yearly">Yearly</option>
+            <option value="lifetime">Lifetime</option>
+            <option value="team">Team</option>
+          </select>
+          <button class="btn-r" onclick="loadUsage()">⟳ Refresh</button>
+        </div>
+      </div>
+      <div class="stats" style="margin-bottom:24px">
+        <div class="stat"><div class="sv" id="us-machines">—</div><div class="sl">Unique Machines</div></div>
+        <div class="stat"><div class="sv" id="us-files">—</div><div class="sl">Total Files Signed</div></div>
+        <div class="stat"><div class="sv" id="us-regular">—</div><div class="sl">Regular Users (≥5 days)</div></div>
+        <div class="stat"><div class="sv" id="us-avgdays">—</div><div class="sl">Avg Days Active</div></div>
+      </div>
+      <div id="usage-load" style="text-align:center;padding:48px;color:#64748b">Loading…</div>
+      <div id="usage-wrap" style="display:none;overflow-x:auto">
+        <table id="usage-tbl">
+          <thead><tr>
+            <th class="sortable" onclick="usageSort('machine_id')">Machine ID</th>
+            <th class="sortable" onclick="usageSort('current_plan')">Plan</th>
+            <th class="sortable" onclick="usageSort('current_status')">Status</th>
+            <th class="sortable" onclick="usageSort('days_active')">Days Active</th>
+            <th class="sortable" onclick="usageSort('total_files')">Files Signed</th>
+            <th class="sortable" onclick="usageSort('total_sessions')">Sessions</th>
+            <th class="sortable" onclick="usageSort('first_seen')">First Seen</th>
+            <th class="sortable" onclick="usageSort('last_seen')">Last Seen</th>
+          </tr></thead>
+          <tbody id="usage-tbody"></tbody>
+        </table>
+        <div id="usage-empty" class="empty" style="display:none">No usage data for this period.</div>
+      </div>
+    </div>
   </main>
 </div>
 
@@ -522,6 +580,7 @@ function showTab(t, el) {
   document.getElementById('pcou').style.display  = t==='cou'  ? 'block' : 'none';
   document.getElementById('ppri').style.display   = t==='pri'   ? 'block' : 'none';
   document.getElementById('pleads').style.display = t==='leads' ? 'block' : 'none';
+  document.getElementById('puse').style.display   = t==='use'   ? 'block' : 'none';
   if (t==='dash') { loadDashboard(); }
   if (t==='lic')  loadLicenses();
   if (t==='usr')  loadUsers();
@@ -529,6 +588,7 @@ function showTab(t, el) {
   if (t==='cou') { loadCoupons(); if(S&&S.role==='admin') document.getElementById('coupon-add-btn').style.display='inline-block'; }
   if (t==='pri')  loadPricing();
   if (t==='leads') loadLeads();
+  if (t==='use')   loadUsage();
 }
 
 // ── LEADS ─────────────────────────────────────────────────────────────────
@@ -906,6 +966,90 @@ function showErrEl(el,m){el.textContent=m;el.style.display='block';}
 function showMsg(el,m,c){el.textContent=m;el.style.color=c;el.style.display='block';}
 
 setInterval(function(){ if(S && document.getElementById('plic').style.display!=='none') loadLicenses(); }, 60000);
+
+// ── Usage Report ──────────────────────────────────────────────────────────
+var USAGE_ALL  = [];
+var USAGE_SORT = { col: 'days_active', dir: 'desc' };
+
+async function loadUsage() {
+  var days = document.getElementById('udays').value;
+  document.getElementById('usage-load').style.display = 'block';
+  document.getElementById('usage-wrap').style.display = 'none';
+  document.getElementById('usage-load').textContent   = 'Loading…';
+  try {
+    var r = await apicall('/api/admin/usage-report?days=' + days);
+    if (r.status === 401) { logout(); return; }
+    var j = await r.json();
+    if (!r.ok) throw new Error(j.error || 'Request failed');
+    USAGE_ALL = j.report || [];
+    var s = j.summary || {};
+    document.getElementById('us-machines').textContent = s.unique_machines ?? '—';
+    document.getElementById('us-files').textContent    = (s.total_files ?? 0).toLocaleString('en-IN');
+    document.getElementById('us-regular').textContent  = s.regular_users  ?? '—';
+    document.getElementById('us-avgdays').textContent  = s.avg_days_active ?? '—';
+    renderUsage();
+  } catch(e) {
+    document.getElementById('usage-load').textContent = 'Error: ' + e.message;
+  }
+}
+
+function renderUsage() {
+  var fp = document.getElementById('uplan').value;
+  var rows = USAGE_ALL.filter(function(r) {
+    if (!fp) return true;
+    var plan = (r.current_plan || '').toLowerCase();
+    return fp === 'team' ? plan.startsWith('team') : plan === fp;
+  });
+  var col = USAGE_SORT.col, dir = USAGE_SORT.dir;
+  rows = rows.slice().sort(function(a, b) {
+    var av = a[col], bv = b[col];
+    if (['days_active','total_files','total_sessions'].indexOf(col) > -1) {
+      av = Number(av)||0; bv = Number(bv)||0;
+    } else if (['first_seen','last_seen'].indexOf(col) > -1) {
+      av = av ? new Date(av).getTime() : 0;
+      bv = bv ? new Date(bv).getTime() : 0;
+    } else {
+      av = (av||'').toLowerCase(); bv = (bv||'').toLowerCase();
+    }
+    return av < bv ? (dir==='asc'?-1:1) : av > bv ? (dir==='asc'?1:-1) : 0;
+  });
+  document.querySelectorAll('#usage-tbl th').forEach(function(th){ th.classList.remove('sort-asc','sort-desc'); });
+  var cols = ['machine_id','current_plan','current_status','days_active','total_files','total_sessions','first_seen','last_seen'];
+  var ths  = document.querySelectorAll('#usage-tbl th');
+  var thIdx = cols.indexOf(col);
+  if (ths[thIdx]) ths[thIdx].classList.add(dir==='asc'?'sort-asc':'sort-desc');
+  document.getElementById('usage-load').style.display  = 'none';
+  document.getElementById('usage-wrap').style.display  = 'block';
+  document.getElementById('usage-empty').style.display = rows.length ? 'none' : 'block';
+  var REGULAR = 5;
+  document.getElementById('usage-tbody').innerHTML = rows.map(function(r) {
+    var mid   = r.machine_id || '';
+    var short = mid.slice(0,8) + (mid.length>8 ? '…' : '');
+    var days  = Number(r.days_active) || 0;
+    var reg   = days >= REGULAR;
+    var pSlug = (r.current_plan   ||'').replace(/[^a-z-]/g,'');
+    var sSlug = (r.current_status ||'').replace(/[^a-z-]/g,'');
+    return '<tr class="'+(reg?'usage-regular':'')+'">'
+      +'<td><span class="key" title="'+esc(mid)+'">'+esc(short)+'</span></td>'
+      +'<td><span class="pb pb-'+esc(pSlug)+'">'+esc(r.current_plan||'—')+'</span></td>'
+      +'<td><span class="pb pb-'+esc(sSlug)+'">'+esc(r.current_status||'—')+'</span></td>'
+      +'<td style="font-weight:700;color:'+(reg?'#4ade80':'#e2e8f0')+'">'+days+'</td>'
+      +'<td>'+(Number(r.total_files)||0).toLocaleString('en-IN')+'</td>'
+      +'<td class="ts">'+(Number(r.total_sessions)||0)+'</td>'
+      +'<td class="ts">'+fmtDate(r.first_seen)+'</td>'
+      +'<td class="ts">'+fmtDate(r.last_seen)+'</td>'
+      +'</tr>';
+  }).join('');
+}
+
+function usageSort(col) {
+  var strCols = ['machine_id','current_plan','current_status'];
+  USAGE_SORT.dir = USAGE_SORT.col===col
+    ? (USAGE_SORT.dir==='asc'?'desc':'asc')
+    : (strCols.indexOf(col)>-1 ? 'asc' : 'desc');
+  USAGE_SORT.col = col;
+  renderUsage();
+}
 
 async function sendRenewals() {
   var btn = document.getElementById('renewal-btn');
