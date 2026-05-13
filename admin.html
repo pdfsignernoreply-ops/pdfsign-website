@@ -977,7 +977,7 @@ async function loadUsage() {
   document.getElementById('usage-wrap').style.display = 'none';
   document.getElementById('usage-load').textContent   = 'Loading…';
   try {
-    var r = await apicall('/api/admin/usage-report?days=' + days);
+    var r = await apicall(API + '/usage-report?days=' + days);
     if (r.status === 401) { logout(); return; }
     var j = await r.json();
     if (!r.ok) throw new Error(j.error || 'Request failed');
