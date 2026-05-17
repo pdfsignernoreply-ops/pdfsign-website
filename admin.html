@@ -113,6 +113,8 @@ tr:hover td{background:#1e293b33}
 .sortable:hover{color:#e2e8f0}
 .sort-asc::after{content:' ↑'}
 .sort-desc::after{content:' ↓'}
+/* Web tab */
+.web-active td:first-child{border-left:3px solid #2563eb}
 </style>
 </head>
 <body>
@@ -153,6 +155,7 @@ tr:hover td{background:#1e293b33}
     <div class="tab" onclick="showTab('pri',this)">💰 Pricing</div>
     <div class="tab" onclick="showTab('leads',this)">📋 Leads</div>
     <div class="tab" onclick="showTab('use',this)">📊 Usage</div>
+    <div class="tab" onclick="showTab('web',this)">🌐 Web</div>
   </div>
 
   <main>
@@ -404,6 +407,43 @@ tr:hover td{background:#1e293b33}
         <div id="usage-empty" class="empty" style="display:none">No usage data for this period.</div>
       </div>
     </div>
+
+    <!-- Web Tool Usage -->
+    <div id="pweb" style="display:none">
+      <div class="section-hdr">
+        <h2>Web Tool Usage</h2>
+        <div style="display:flex;gap:8px;align-items:center">
+          <select id="wdays" onchange="loadWebStats()" style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:7px 11px;border-radius:7px;font-size:12px;outline:none">
+            <option value="7">Last 7 days</option>
+            <option value="30" selected>Last 30 days</option>
+            <option value="60">Last 60 days</option>
+            <option value="90">Last 90 days</option>
+            <option value="0">All time</option>
+          </select>
+          <button class="btn-r" onclick="loadWebStats()">⟳ Refresh</button>
+        </div>
+      </div>
+      <div class="stats" style="margin-bottom:24px">
+        <div class="stat"><div class="sv" id="ws-users">—</div><div class="sl">Unique Users</div></div>
+        <div class="stat"><div class="sv" id="ws-files">—</div><div class="sl">Files Signed</div></div>
+        <div class="stat"><div class="sv" id="ws-today-files">—</div><div class="sl">Signed Today</div></div>
+        <div class="stat"><div class="sv" id="ws-today-users">—</div><div class="sl">Active Today</div></div>
+      </div>
+      <div id="web-load" style="text-align:center;padding:48px;color:#64748b">Loading…</div>
+      <div id="web-wrap" style="display:none;overflow-x:auto">
+        <table id="web-tbl">
+          <thead><tr>
+            <th class="sortable" onclick="webSort('user_email')">Email</th>
+            <th class="sortable" onclick="webSort('total_files')">Files Signed</th>
+            <th class="sortable" onclick="webSort('active_days')">Active Days</th>
+            <th class="sortable" onclick="webSort('first_seen')">First Seen</th>
+            <th class="sortable" onclick="webSort('last_seen')">Last Seen</th>
+          </tr></thead>
+          <tbody id="web-tbody"></tbody>
+        </table>
+        <div id="web-empty" class="empty" style="display:none">No web usage data for this period.</div>
+      </div>
+    </div>
   </main>
 </div>
 
@@ -581,6 +621,7 @@ function showTab(t, el) {
   document.getElementById('ppri').style.display   = t==='pri'   ? 'block' : 'none';
   document.getElementById('pleads').style.display = t==='leads' ? 'block' : 'none';
   document.getElementById('puse').style.display   = t==='use'   ? 'block' : 'none';
+  document.getElementById('pweb').style.display   = t==='web'   ? 'block' : 'none';
   if (t==='dash') { loadDashboard(); }
   if (t==='lic')  loadLicenses();
   if (t==='usr')  loadUsers();
@@ -589,6 +630,7 @@ function showTab(t, el) {
   if (t==='pri')  loadPricing();
   if (t==='leads') loadLeads();
   if (t==='use')   loadUsage();
+  if (t==='web')   loadWebStats();
 }
 
 // ── LEADS ─────────────────────────────────────────────────────────────────
@@ -1249,6 +1291,68 @@ async function doAddCoupon() {
     else showMsg(msg,'✗ '+(j.error||'Failed'),'#f87171');
   } catch(e) { showMsg(msg,'✗ Network error','#f87171'); }
   finally { btn.disabled=false; btn.textContent='Create Coupon'; }
+}
+
+// ── Web Tool Usage ────────────────────────────────────────────────────────
+var WEB_ALL  = [];
+var WEB_SORT = { col: 'total_files', dir: 'desc' };
+
+async function loadWebStats() {
+  var days = document.getElementById('wdays').value;
+  document.getElementById('web-load').style.display = 'block';
+  document.getElementById('web-wrap').style.display = 'none';
+  document.getElementById('web-load').textContent   = 'Loading…';
+  try {
+    var r = await apicall(API + '/web-stats?days=' + days);
+    if (r.status === 401) { logout(); return; }
+    var j = await r.json();
+    if (!r.ok) throw new Error(j.error || 'Request failed');
+    WEB_ALL = j.report || [];
+    var s = j.summary || {};
+    document.getElementById('ws-users').textContent       = s.unique_users  ?? '—';
+    document.getElementById('ws-files').textContent       = (Number(s.total_files  )||0).toLocaleString('en-IN');
+    document.getElementById('ws-today-files').textContent = (Number(s.today_files  )||0).toLocaleString('en-IN');
+    document.getElementById('ws-today-users').textContent = s.today_users ?? '—';
+    renderWebStats();
+  } catch(e) {
+    document.getElementById('web-load').textContent = 'Error: ' + e.message;
+  }
+}
+
+function renderWebStats() {
+  var col = WEB_SORT.col, dir = WEB_SORT.dir;
+  var rows = WEB_ALL.slice().sort(function(a, b) {
+    var av = a[col], bv = b[col];
+    if (['total_files','active_days'].includes(col)) { av=Number(av)||0; bv=Number(bv)||0; }
+    else if (['first_seen','last_seen'].includes(col)) { av=av?new Date(av).getTime():0; bv=bv?new Date(bv).getTime():0; }
+    else { av=(av||'').toLowerCase(); bv=(bv||'').toLowerCase(); }
+    return av<bv?(dir==='asc'?-1:1):av>bv?(dir==='asc'?1:-1):0;
+  });
+  document.querySelectorAll('#web-tbl th').forEach(function(th){ th.classList.remove('sort-asc','sort-desc'); });
+  var cols = ['user_email','total_files','active_days','first_seen','last_seen'];
+  var ths  = document.querySelectorAll('#web-tbl th');
+  var idx  = cols.indexOf(col);
+  if (ths[idx]) ths[idx].classList.add(dir==='asc'?'sort-asc':'sort-desc');
+  document.getElementById('web-load').style.display  = 'none';
+  document.getElementById('web-wrap').style.display  = 'block';
+  document.getElementById('web-empty').style.display = rows.length ? 'none' : 'block';
+  document.getElementById('web-tbody').innerHTML = rows.map(function(r) {
+    var days = Number(r.active_days)||0;
+    return '<tr class="'+(days>=3?'web-active':'')+'">'
+      +'<td>'+esc(r.user_email||'—')+'</td>'
+      +'<td style="font-weight:700">'+(Number(r.total_files)||0).toLocaleString('en-IN')+'</td>'
+      +'<td>'+days+'</td>'
+      +'<td class="ts">'+fmtDate(r.first_seen)+'</td>'
+      +'<td class="ts">'+fmtDate(r.last_seen)+'</td>'
+      +'</tr>';
+  }).join('');
+}
+
+function webSort(col) {
+  WEB_SORT.dir = WEB_SORT.col===col?(WEB_SORT.dir==='asc'?'desc':'asc')
+    :(col==='user_email'?'asc':'desc');
+  WEB_SORT.col = col;
+  renderWebStats();
 }
 </script>
 </body>
