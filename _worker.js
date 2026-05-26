@@ -29,8 +29,6 @@ export default {
     }
 
     // Geo endpoint — served by the Worker (not a static asset) so request.cf.country is reliable.
-    // The JS boot() on index.html calls /api/cf-geo to get the visitor's country instantly
-    // without relying on the Vercel geo API (which was cached globally and returned IN for all).
     if (url.pathname === '/api/cf-geo') {
       const country = (request.cf && request.cf.country) ? request.cf.country : 'IN';
       return new Response(JSON.stringify({ country, isIndia: country === 'IN' }), {
@@ -43,11 +41,51 @@ export default {
       });
     }
 
-    // 301-redirect clean URLs → .html to prevent duplicate content.
-    // Cloudflare Pages transparently serves /foo.html for /foo, but the canonical in every
-    // page is the .html URL. Without this redirect, Google sees both URLs as serving the same
-    // content and flags the clean URL as "Alternative page with proper canonical tag".
-    const pathSegment = url.pathname.split('/').pop(); // last segment, e.g. "how-to-sign-pdf-dsc-token-windows"
+    // Blog post .html URLs → 301 redirect to clean URL.
+    // The clean URL is the canonical; .html is just an alias that must redirect.
+    // e.g. /blog/how-to-sign-gem-portal-documents-dsc.html
+    //   → /blog/how-to-sign-gem-portal-documents-dsc
+    if (
+      url.pathname.startsWith('/blog/') &&
+      url.pathname.endsWith('.html') &&
+      url.pathname !== '/blog/index.html'
+    ) {
+      const cleanPath = url.pathname.slice(0, -5); // strip .html
+      return Response.redirect(`${url.origin}${cleanPath}${url.search}`, 301);
+    }
+
+    // Blog post clean URLs → serve the underlying .html file but rewrite
+    // canonical + og:url to the clean URL so Google indexes the clean form.
+    const lastSegment = url.pathname.split('/').pop();
+    const isBlogPostCleanUrl =
+      url.pathname.startsWith('/blog/') &&
+      lastSegment &&
+      !lastSegment.includes('.') &&
+      !url.pathname.endsWith('/');
+
+    if (isBlogPostCleanUrl) {
+      const htmlUrl = `${url.origin}${url.pathname}.html`;
+      const htmlResponse = await env.ASSETS.fetch(new Request(htmlUrl));
+      if (htmlResponse.ok) {
+        const cleanUrl = `${url.origin}${url.pathname}`;
+        const html = await htmlResponse.text();
+        const rewritten = html
+          .replace(/(<link rel="canonical" href=")[^"]*/,  `$1${cleanUrl}`)
+          .replace(/(<meta property="og:url" content=")[^"]*/,  `$1${cleanUrl}`);
+        return new Response(rewritten, {
+          status: 200,
+          headers: {
+            'Content-Type': 'text/html; charset=utf-8',
+            'Cache-Control': 'public, max-age=3600',
+          },
+        });
+      }
+    }
+
+    // Non-blog clean URLs → 301 redirect to .html to prevent duplicate content.
+    // (Cloudflare Pages transparently serves /foo.html for /foo, but the canonical
+    // in these pages is the .html URL, so we enforce that with a redirect.)
+    const pathSegment = url.pathname.split('/').pop();
     if (pathSegment && !pathSegment.includes('.') && !url.pathname.endsWith('/')) {
       return Response.redirect(`${url.origin}${url.pathname}.html${url.search}`, 301);
     }
@@ -55,7 +93,6 @@ export default {
     const response = await env.ASSETS.fetch(request);
 
     // Inject country code into the main page so boot() can detect geo without an extra HTTP round-trip.
-    // The inline script runs synchronously before any other JS, making geo detection instant.
     if (url.pathname === '/' || url.pathname === '/index.html') {
       const raw     = request.cf?.country ?? '';
       const country = /^[A-Z]{2}$/.test(raw) ? raw : 'IN';  // validate: 2 uppercase letters
