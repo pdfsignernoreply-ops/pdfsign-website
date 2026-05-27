@@ -192,8 +192,8 @@ tr:hover td{background:#1e293b33}
           <h2 style="margin-bottom:10px;">Recent Installs</h2>
           <div style="overflow-x:auto">
             <table id="dash-installs-tbl">
-              <thead><tr><th>Machine ID</th><th>Email</th><th>Date</th></tr></thead>
-              <tbody id="dash-installs-body"><tr><td colspan="3" style="color:#475569;text-align:center;">Loading…</td></tr></tbody>
+              <thead><tr><th>Machine ID</th><th>Email</th><th>Location</th><th>Date</th></tr></thead>
+              <tbody id="dash-installs-body"><tr><td colspan="4" style="color:#475569;text-align:center;">Loading…</td></tr></tbody>
             </table>
           </div>
         </div>
@@ -743,15 +743,20 @@ async function loadDashboard() {
     // Recent installs
     var ib = document.getElementById('dash-installs-body');
     ib.innerHTML = (j.recentInstalls||[]).length === 0
-      ? '<tr><td colspan="3" style="color:#475569;text-align:center;">No installs yet</td></tr>'
+      ? '<tr><td colspan="4" style="color:#475569;text-align:center;">No installs yet</td></tr>'
       : (j.recentInstalls||[]).map(function(m){
           var emailCell = m.customer_email
             ? '<a href="mailto:'+esc(m.customer_email)+'" style="color:#93c5fd;text-decoration:none;font-size:11px;">'+esc(m.customer_email)+'</a>'
               +(m.customer_name ? '<div style="color:#475569;font-size:10px;">'+esc(m.customer_name)+'</div>' : '')
             : '<span style="color:#475569;font-size:11px;">—</span>';
+          var locParts = [m.city, m.country].filter(Boolean);
+          var locCell  = locParts.length
+            ? '<span style="font-size:11px;color:#94a3b8;">'+esc(locParts.join(', '))+'</span>'
+            : '<span style="color:#475569;font-size:11px;">—</span>';
           return '<tr>'
             +'<td><span class="key" title="'+esc(m.machine_id)+'">'+esc(m.machine_id.substring(0,14))+'…</span></td>'
             +'<td>'+emailCell+'</td>'
+            +'<td>'+locCell+'</td>'
             +'<td style="color:#64748b;font-size:11px;">'+fmtDate(m.created_at)+'</td>'
             +'</tr>';
         }).join('');
