@@ -74,6 +74,15 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" /></noscript>
+<!-- Geo class applied at <head> parse time — intl LCP element visible from first paint.
+     Eliminates the ~2.8s render delay on slow 4G caused by waiting for bottom-of-body JS. -->
+<script>
+(function(){
+  if (window.__GEO_COUNTRY__ !== undefined && window.__GEO_COUNTRY__ !== 'IN') {
+    document.documentElement.classList.add('intl-user');
+  }
+})();
+</script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -2174,6 +2183,13 @@
   /* ── Geo-conditional content ── */
   .intl-only { display:none; }   /* shown only for non-India visitors via JS */
   .india-only { display:block; } /* hidden for non-India visitors via JS — inline elements use display:inline */
+  /* Immediate geo switching — applied before body renders via inline <head> script.
+     Prevents 5.4s mobile LCP caused by intl content being hidden until JS runs at
+     the bottom of a 198KB page on slow 4G connections. */
+  html.intl-user .india-only  { display: none !important; }
+  html.intl-user .intl-only   { display: block; }
+  html.intl-user .intl-only.trust-grid        { display: grid !important; }
+  html.intl-user .intl-only.trust-capability  { display: flex !important; }
   /* ── International checkout modal ── */
   #intlCheckoutModal { display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:9999; align-items:center; justify-content:center; padding:1rem; }
   #intlCheckoutModal.open { display:flex; }
