@@ -2275,10 +2275,18 @@
   "downloadUrl": "https://apps.microsoft.com/detail/9PBCQ9ZM5G2X",
   "softwareVersion": "3.0.0",
   "screenshot": "https://pdfsign.in/screenshot.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pdfsign.in/"
+  },
   "author": {
     "@type": "Organization",
-    "name": "TenderTraining",
+    "name": "PDFSign.in",
     "url": "https://pdfsign.in"
+  },
+  "brand": {
+    "@type": "Brand",
+    "name": "PDFSign"
   }
 }
 </script>
@@ -2325,12 +2333,47 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://pdfsign.in/"},
-    {"@type": "ListItem", "position": 2, "name": "Pricing", "item": "https://pdfsign.in/#pricing"},
-    {"@type": "ListItem", "position": 3, "name": "Download", "item": "https://apps.microsoft.com/detail/9PBCQ9ZM5G2X"}
-  ]
+  "@type": "WebSite",
+  "name": "PDFSign.in",
+  "alternateName": "PDFSign",
+  "url": "https://pdfsign.in",
+  "description": "Sign PDFs with USB DSC token or signature stamp. 100% offline Windows app. Accepted on GeM, CPPP, and all Indian government portals.",
+  "inLanguage": "en-IN",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://pdfsign.in/blog/?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "PDFSign.in",
+  "alternateName": ["PDFSign", "PDFSign India"],
+  "url": "https://pdfsign.in",
+  "logo": "https://pdfsign.in/favicon-32.png",
+  "email": "help@pdfsign.in",
+  "telephone": "+917057413999",
+  "foundingDate": "2023",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "IN"
+  },
+  "sameAs": [
+    "https://apps.microsoft.com/detail/9PBCQ9ZM5G2X",
+    "https://pdfsign.in"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "help@pdfsign.in",
+    "availableLanguage": ["English", "Hindi"]
+  }
 }
 </script>
 </head>
