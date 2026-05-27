@@ -70,6 +70,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+<link rel="preconnect" href="https://pdfsigner-api.vercel.app" />
 <!-- Non-blocking font load: print→all swap prevents render-blocking on slow connections -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
@@ -4170,42 +4172,50 @@ function fmtUsd(cents) { return (cents / 100).toFixed(2); }
 // Returns "$X.XX" string for modal button labels
 function dispUsd(plan) { return '$' + fmtUsd(getUsd(plan)); }
 
-// ── Boot: fetch geo + live prices in parallel, then render ────────────────
+// ── Boot: geo and pricing run in parallel but are applied independently ────
+// KEY PERF RULE: geo content visibility must NEVER wait for the pricing API.
+// Pricing is applied in a separate .then() so a slow Vercel cold-start
+// (~3s) cannot push LCP past 2.5s.
 (function boot() {
-  // ── Fast-path: Cloudflare already injected the country code into the HTML.
-  //    Apply geo IMMEDIATELY — before any async work — so intl users never see
-  //    the India-only layout (DSC token / GeM portal content) flash for 0.5-2s.
+  // ── Fast-path: Cloudflare Worker injects window.__GEO_COUNTRY__ into HTML.
+  //    Apply geo IMMEDIATELY — zero async work — before body finishes parsing.
   if (window.__GEO_COUNTRY__ !== undefined) {
     _isIndia  = (window.__GEO_COUNTRY__ === 'IN');
     _currency = _isIndia ? 'INR' : 'USD';
     applyGeo();
   }
 
-  Promise.all([
-    // Cloudflare Worker injects window.__GEO_COUNTRY__ (2-letter code) into the HTML at the edge.
-    // When present, use it synchronously — zero extra HTTP round-trip.
-    // Fallback: call /api/cf-geo (also served by Worker, reliable request.cf.country).
-    // Local dev fallback: defaults to India (conservative — avoids showing USD to Indian devs).
-    (window.__GEO_COUNTRY__ !== undefined
-      ? Promise.resolve({ isIndia: window.__GEO_COUNTRY__ === 'IN' })
-      : fetch('/api/cf-geo', { cache: 'no-store' })
-          .then(function(r) { return r.ok ? r.json() : null; })
-          .then(function(d) { return (d && typeof d.isIndia === 'boolean') ? d : { isIndia: true }; })
-          .catch(function() { return { isIndia: true }; })
-    ),
-    fetch('https://pdfsigner-api.vercel.app/api/pricing', { cache: 'no-store' })
-      .then(function(r) { return r.ok ? r.json() : null; })
-      .catch(function()  { return null; })
-  ]).then(function(results) {
-    var geo    = results[0];
-    var prices = results[1];
+  // ── Geo promise: resolves as soon as country is known ──
+  //    If CF injected __GEO_COUNTRY__, this resolves synchronously (via
+  //    Promise.resolve) — applyGeo() fires on the next microtask tick.
+  //    Otherwise falls back to /api/cf-geo (~300-400ms round-trip).
+  var geoPromise = (window.__GEO_COUNTRY__ !== undefined)
+    ? Promise.resolve({ isIndia: window.__GEO_COUNTRY__ === 'IN' })
+    : fetch('/api/cf-geo', { cache: 'no-store' })
+        .then(function(r) { return r.ok ? r.json() : null; })
+        .then(function(d) { return (d && typeof d.isIndia === 'boolean') ? d : { isIndia: true }; })
+        .catch(function() { return { isIndia: true }; });
+
+  // ── Pricing promise: runs in parallel, applied separately ──
+  //    A slow cold-start here CANNOT delay geo content display.
+  var pricingPromise = fetch('https://pdfsigner-api.vercel.app/api/pricing', { cache: 'no-store' })
+    .then(function(r) { return r.ok ? r.json() : null; })
+    .catch(function()  { return null; });
+
+  // Apply geo content as soon as the country is known — never blocked by pricing
+  geoPromise.then(function(geo) {
     _isIndia  = geo.isIndia !== false;
     _currency = _isIndia ? 'INR' : 'USD';
+    applyGeo();
+  });
+
+  // Apply live prices separately — only updates price numbers, never hides/shows content
+  pricingPromise.then(function(prices) {
     if (prices && Array.isArray(prices) && prices.length) {
       _livePrices = {};
       prices.forEach(function(p) { _livePrices[p.plan] = p; });
+      setPlanMode(_planMode, true); // re-render price display with live values
     }
-    applyGeo(); // re-run after prices load to update price display
   });
 })();
 
