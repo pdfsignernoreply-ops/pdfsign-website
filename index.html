@@ -1553,6 +1553,38 @@
   .tutorial-title { font-weight: 600; font-size: 14px; color: var(--navy-dark); margin-bottom: 6px; }
   .tutorial-meta { font-size: 12px; color: var(--text-muted); }
 
+  /* ── YouTube facade — zero YouTube JS until user clicks play ── */
+  .yt-facade {
+    position: absolute; inset: 0;
+    cursor: pointer;
+    background: #0e1828;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .yt-facade img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.3s;
+  }
+  .yt-facade:hover img { transform: scale(1.02); }
+  .yt-facade-play {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(10,18,35,0.45);
+    transition: background 0.2s;
+  }
+  .yt-facade:hover .yt-facade-play { background: rgba(10,18,35,0.25); }
+  .yt-facade-btn {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: #16A34A;
+    display: flex; align-items: center; justify-content: center;
+    padding-left: 5px;
+    box-shadow: 0 4px 24px rgba(22,163,74,0.5);
+    transition: transform 0.2s;
+  }
+  .yt-facade:hover .yt-facade-btn { transform: scale(1.12); }
+
   .roadmap { background: var(--gray-50); padding: 88px 24px; }
 
   .roadmap-grid {
@@ -2558,7 +2590,14 @@
         </div>
         <div class="tutorial-card" style="cursor:default;">
           <div style="position:relative;width:100%;aspect-ratio:16/9;">
-            <iframe loading="lazy" src="https://www.youtube.com/embed/0wBNYxzgqWU?si=Oa38T0DRhPwtSI1E" title="How to sign PDF with stamp or signature image — PDFSign.in" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"></iframe>
+            <div class="yt-facade" onclick="loadYT(this,'0wBNYxzgqWU','?si=Oa38T0DRhPwtSI1E')" role="button" aria-label="Play: How to sign PDF with stamp or signature image">
+              <img src="https://i.ytimg.com/vi/0wBNYxzgqWU/hqdefault.jpg" alt="How to sign PDF with stamp or signature image — PDFSign.in" loading="lazy" width="480" height="360" />
+              <div class="yt-facade-play">
+                <div class="yt-facade-btn">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="tutorial-body">
             <div class="tutorial-title">How to sign PDF with a signature or stamp image</div>
@@ -2572,7 +2611,14 @@
         </div>
         <div class="tutorial-card" style="cursor:default;">
           <div style="position:relative;width:100%;aspect-ratio:16/9;">
-            <iframe loading="lazy" src="https://www.youtube.com/embed/_AdgghQ95M0?si=ntz_9s8nFfSot-3H" title="How to digitally sign PDF with USB DSC token — PDFSign.in" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"></iframe>
+            <div class="yt-facade" onclick="loadYT(this,'_AdgghQ95M0','?si=ntz_9s8nFfSot-3H')" role="button" aria-label="Play: How to digitally sign PDF with USB DSC token">
+              <img src="https://i.ytimg.com/vi/_AdgghQ95M0/hqdefault.jpg" alt="How to digitally sign PDF with USB DSC token — PDFSign.in" loading="lazy" width="480" height="360" />
+              <div class="yt-facade-play">
+                <div class="yt-facade-btn">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="tutorial-body">
             <div class="tutorial-title">How to digitally sign PDF with USB DSC token (HYP2003, ePass)</div>
@@ -4492,6 +4538,19 @@ window.addEventListener("scroll", function() {
     }
   });
 });
+
+// ── YouTube facade: load real iframe only on click (saves ~1MB of YouTube JS on page load) ──
+function loadYT(el, videoId, params) {
+  var iframe = document.createElement('iframe');
+  iframe.src = 'https://www.youtube.com/embed/' + videoId + (params || '') + '&autoplay=1';
+  iframe.title = el.getAttribute('aria-label') || 'YouTube video player';
+  iframe.frameBorder = '0';
+  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+  iframe.allowFullscreen = true;
+  iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+  iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border-radius:8px;';
+  el.parentNode.replaceChild(iframe, el);
+}
 
 // ── Scroll entrance animations ──
 var observer = new IntersectionObserver(function(entries) {
