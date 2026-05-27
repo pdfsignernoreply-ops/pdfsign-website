@@ -165,8 +165,9 @@ tr:hover td{background:#1e293b33}
         <h2>Funnel Overview</h2>
         <div style="display:flex;gap:8px;align-items:center;">
           <select id="dash-period" onchange="renderDashPeriod()" style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:6px 10px;border-radius:7px;font-size:12px;outline:none;">
-            <option value="today">Today</option>
-            <option value="week" selected>Last 7 Days</option>
+            <option value="today" selected>Today</option>
+            <option value="yesterday">Yesterday</option>
+            <option value="week">Last 7 Days</option>
             <option value="month">Last 30 Days</option>
             <option value="allTime">All Time</option>
           </select>
@@ -191,8 +192,8 @@ tr:hover td{background:#1e293b33}
           <h2 style="margin-bottom:10px;">Recent Installs</h2>
           <div style="overflow-x:auto">
             <table id="dash-installs-tbl">
-              <thead><tr><th>Machine ID</th><th>Date</th></tr></thead>
-              <tbody id="dash-installs-body"><tr><td colspan="2" style="color:#475569;text-align:center;">Loading…</td></tr></tbody>
+              <thead><tr><th>Machine ID</th><th>Email</th><th>Date</th></tr></thead>
+              <tbody id="dash-installs-body"><tr><td colspan="3" style="color:#475569;text-align:center;">Loading…</td></tr></tbody>
             </table>
           </div>
         </div>
@@ -367,6 +368,8 @@ tr:hover td{background:#1e293b33}
         <h2>Usage Report</h2>
         <div style="display:flex;gap:8px;align-items:center;">
           <select id="udays" onchange="loadUsage()" style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:7px 11px;border-radius:7px;font-size:12px;outline:none;">
+            <option value="today" selected>Today</option>
+            <option value="yesterday">Yesterday</option>
             <option value="30">Last 30 days</option>
             <option value="60">Last 60 days</option>
             <option value="90">Last 90 days</option>
@@ -428,6 +431,9 @@ tr:hover td{background:#1e293b33}
         <div class="stat"><div class="sv" id="ws-files">—</div><div class="sl">Files Signed</div></div>
         <div class="stat"><div class="sv" id="ws-today-files">—</div><div class="sl">Signed Today</div></div>
         <div class="stat"><div class="sv" id="ws-today-users">—</div><div class="sl">Active Today</div></div>
+      </div>
+      <div id="web-anon-note" style="display:none;background:#1e293b;border:1px solid #f59e0b44;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:12px;color:#fbbf24;">
+        ⚠️ <strong>No data recorded.</strong> Web usage is only tracked for logged-in users. If the web tool was updated to allow anonymous signing, sessions won't appear here until you restore auth tracking (call <code>increment_web_usage()</code> with a valid <code>user_id</code> on each signed download).
       </div>
       <div id="web-load" style="text-align:center;padding:48px;color:#64748b">Loading…</div>
       <div id="web-wrap" style="display:none;overflow-x:auto">
@@ -737,9 +743,17 @@ async function loadDashboard() {
     // Recent installs
     var ib = document.getElementById('dash-installs-body');
     ib.innerHTML = (j.recentInstalls||[]).length === 0
-      ? '<tr><td colspan="2" style="color:#475569;text-align:center;">No installs yet</td></tr>'
+      ? '<tr><td colspan="3" style="color:#475569;text-align:center;">No installs yet</td></tr>'
       : (j.recentInstalls||[]).map(function(m){
-          return '<tr><td class="key">'+esc(m.machine_id.substring(0,20))+'…</td><td style="color:#64748b;font-size:11px;">'+fmtDate(m.created_at)+'</td></tr>';
+          var emailCell = m.customer_email
+            ? '<a href="mailto:'+esc(m.customer_email)+'" style="color:#93c5fd;text-decoration:none;font-size:11px;">'+esc(m.customer_email)+'</a>'
+              +(m.customer_name ? '<div style="color:#475569;font-size:10px;">'+esc(m.customer_name)+'</div>' : '')
+            : '<span style="color:#475569;font-size:11px;">—</span>';
+          return '<tr>'
+            +'<td><span class="key" title="'+esc(m.machine_id)+'">'+esc(m.machine_id.substring(0,14))+'…</span></td>'
+            +'<td>'+emailCell+'</td>'
+            +'<td style="color:#64748b;font-size:11px;">'+fmtDate(m.created_at)+'</td>'
+            +'</tr>';
         }).join('');
     // Recent conversions
     var cb = document.getElementById('dash-conv-body');
@@ -760,28 +774,29 @@ async function loadDashboard() {
             +'<td style="font-weight:700;">'+p.count+'</td>'
             +'<td style="color:#4ade80;font-weight:700;">₹'+(p.revenue||0).toLocaleString('en-IN')+'</td></tr>';
         }).join('');
-    // Platform breakdown
-    var plb = document.getElementById('dash-platform-body');
-    var platformColors = { windows:'#a78bfa', ios:'#38bdf8', android:'#4ade80', mac:'#fb923c', linux:'#fbbf24', other:'#94a3b8', unknown:'#475569' };
-    plb.innerHTML = (j.platformBreakdown||[]).length === 0
-      ? '<tr><td colspan="2" style="color:#475569;text-align:center;">No data</td></tr>'
-      : (j.platformBreakdown||[]).map(function(p){
-          var c = platformColors[p.platform] || '#e2e8f0';
-          return '<tr><td style="color:'+c+';font-weight:600;text-transform:capitalize;">'+esc(p.platform)+'</td>'
-            +'<td style="font-weight:700;">'+p.count+'</td></tr>';
-        }).join('');
+    // Platform breakdown rendered by renderDashPeriod() on period change
   } catch(e) { console.error('Dashboard load error', e); }
 }
 function renderDashPeriod() {
   if (!DASH) return;
   var p = document.getElementById('dash-period').value;
-  document.getElementById('d-installs').textContent  = DASH.installs[p]    ?? '—';
-  document.getElementById('d-conv').textContent      = DASH.conversions[p] ?? '—';
-  document.getElementById('d-rev').textContent       = '₹'+(DASH.revenue[p]||0).toLocaleString('en-IN');
-  document.getElementById('d-rate').textContent      = (p==='today' ? '—' : (DASH.conversionRate[p] || '—'));
-  document.getElementById('d-win-dl').textContent    = DASH.windowsDownloads ? (DASH.windowsDownloads[p] ?? '—') : '—';
-  document.getElementById('d-other-dl').textContent    = DASH.otherAttempts ? (DASH.otherAttempts[p]   ?? '—') : '—';
-  document.getElementById('d-files-signed').textContent = DASH.filesSigned  ? (DASH.filesSigned[p]?.total ?? '—') : '—';
+  document.getElementById('d-installs').textContent     = DASH.installs[p]    ?? '—';
+  document.getElementById('d-conv').textContent         = DASH.conversions[p] ?? '—';
+  document.getElementById('d-rev').textContent          = '₹'+(DASH.revenue[p]||0).toLocaleString('en-IN');
+  document.getElementById('d-rate').textContent         = (p==='today'||p==='yesterday') ? '—' : (DASH.conversionRate[p] || '—');
+  document.getElementById('d-win-dl').textContent       = DASH.windowsDownloads ? (DASH.windowsDownloads[p] ?? '—') : '—';
+  document.getElementById('d-other-dl').textContent     = DASH.otherAttempts   ? (DASH.otherAttempts[p]    ?? '—') : '—';
+  document.getElementById('d-files-signed').textContent = DASH.filesSigned     ? (DASH.filesSigned[p]?.total ?? '—') : '—';
+  // Platform breakdown — re-render for selected period
+  var platformColors = { windows:'#a78bfa', ios:'#38bdf8', android:'#4ade80', mac:'#fb923c', linux:'#fbbf24', other:'#94a3b8', unknown:'#475569' };
+  var pbData = (DASH.platformByPeriod && DASH.platformByPeriod[p]) || [];
+  document.getElementById('dash-platform-body').innerHTML = pbData.length === 0
+    ? '<tr><td colspan="2" style="color:#475569;text-align:center;">No data</td></tr>'
+    : pbData.map(function(pt) {
+        var c = platformColors[pt.platform] || '#e2e8f0';
+        return '<tr><td style="color:'+c+';font-weight:600;text-transform:capitalize;">'+esc(pt.platform)+'</td>'
+          +'<td style="font-weight:700;">'+pt.count+'</td></tr>';
+      }).join('');
 }
 async function sendDailyReport() {
   var btn = document.getElementById('daily-report-btn');
@@ -1011,7 +1026,7 @@ setInterval(function(){ if(S && document.getElementById('plic').style.display!==
 
 // ── Usage Report ──────────────────────────────────────────────────────────
 var USAGE_ALL  = [];
-var USAGE_SORT = { col: 'days_active', dir: 'desc' };
+var USAGE_SORT = { col: 'last_seen', dir: 'desc' };
 
 async function loadUsage() {
   var days = document.getElementById('udays').value;
@@ -1035,6 +1050,17 @@ async function loadUsage() {
   }
 }
 
+function usageCmpVal(r, col) {
+  var v = r[col];
+  if (['days_active','total_files','total_sessions'].indexOf(col) > -1) return Number(v)||0;
+  if (['first_seen','last_seen'].indexOf(col) > -1) return v ? new Date(v).getTime() : 0;
+  return (v||'').toLowerCase();
+}
+function usageCmp(a, b, col, dir) {
+  var av = usageCmpVal(a,col), bv = usageCmpVal(b,col);
+  return av < bv ? (dir==='asc'?-1:1) : av > bv ? (dir==='asc'?1:-1) : 0;
+}
+
 function renderUsage() {
   var fp = document.getElementById('uplan').value;
   var rows = USAGE_ALL.filter(function(r) {
@@ -1044,16 +1070,14 @@ function renderUsage() {
   });
   var col = USAGE_SORT.col, dir = USAGE_SORT.dir;
   rows = rows.slice().sort(function(a, b) {
-    var av = a[col], bv = b[col];
-    if (['days_active','total_files','total_sessions'].indexOf(col) > -1) {
-      av = Number(av)||0; bv = Number(bv)||0;
-    } else if (['first_seen','last_seen'].indexOf(col) > -1) {
-      av = av ? new Date(av).getTime() : 0;
-      bv = bv ? new Date(bv).getTime() : 0;
-    } else {
-      av = (av||'').toLowerCase(); bv = (bv||'').toLowerCase();
-    }
-    return av < bv ? (dir==='asc'?-1:1) : av > bv ? (dir==='asc'?1:-1) : 0;
+    // Primary sort by selected column
+    var res = usageCmp(a, b, col, dir);
+    if (res !== 0) return res;
+    // Tie-break: last_seen → days_active → total_files (always desc)
+    if (col !== 'last_seen')   { res = usageCmp(a, b, 'last_seen',   'desc'); if (res !== 0) return res; }
+    if (col !== 'days_active') { res = usageCmp(a, b, 'days_active', 'desc'); if (res !== 0) return res; }
+    if (col !== 'total_files') { res = usageCmp(a, b, 'total_files', 'desc'); if (res !== 0) return res; }
+    return 0;
   });
   document.querySelectorAll('#usage-tbl th').forEach(function(th){ th.classList.remove('sort-asc','sort-desc'); });
   var cols = ['machine_id','current_plan','current_status','days_active','total_files','total_sessions','first_seen','last_seen'];
@@ -1313,6 +1337,7 @@ async function loadWebStats() {
     document.getElementById('ws-files').textContent       = (Number(s.total_files  )||0).toLocaleString('en-IN');
     document.getElementById('ws-today-files').textContent = (Number(s.today_files  )||0).toLocaleString('en-IN');
     document.getElementById('ws-today-users').textContent = s.today_users ?? '—';
+    document.getElementById('web-anon-note').style.display = WEB_ALL.length === 0 ? 'block' : 'none';
     renderWebStats();
   } catch(e) {
     document.getElementById('web-load').textContent = 'Error: ' + e.message;
