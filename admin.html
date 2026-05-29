@@ -426,14 +426,16 @@ tr:hover td{background:#1e293b33}
           <button class="btn-r" onclick="loadWebStats()">⟳ Refresh</button>
         </div>
       </div>
-      <div class="stats" style="margin-bottom:24px">
-        <div class="stat"><div class="sv" id="ws-users">—</div><div class="sl">Unique Users</div></div>
-        <div class="stat"><div class="sv" id="ws-files">—</div><div class="sl">Files Signed</div></div>
-        <div class="stat"><div class="sv" id="ws-today-files">—</div><div class="sl">Signed Today</div></div>
+      <div class="stats" style="margin-bottom:8px">
+        <div class="stat"><div class="sv" id="ws-users">—</div><div class="sl">Logged-in Users</div></div>
+        <div class="stat"><div class="sv" id="ws-files">—</div><div class="sl">Total Files Signed</div></div>
+        <div class="stat"><div class="sv" id="ws-today-files">—</div><div class="sl">Total Today</div></div>
         <div class="stat"><div class="sv" id="ws-today-users">—</div><div class="sl">Active Today</div></div>
       </div>
-      <div id="web-anon-note" style="display:none;background:#1e293b;border:1px solid #f59e0b44;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:12px;color:#fbbf24;">
-        ⚠️ <strong>No data recorded.</strong> Web usage is only tracked for logged-in users. If the web tool was updated to allow anonymous signing, sessions won't appear here until you restore auth tracking (call <code>increment_web_usage()</code> with a valid <code>user_id</code> on each signed download).
+      <div style="font-size:11px;color:#64748b;margin-bottom:20px;padding:0 2px">
+        Logged-in: <span id="ws-auth-files" style="color:#4ade80;font-weight:700">—</span> files &nbsp;·&nbsp;
+        Anonymous: <span id="ws-anon-files" style="color:#94a3b8;font-weight:700">—</span> files &nbsp;·&nbsp;
+        Anon today: <span id="ws-anon-today" style="color:#94a3b8;font-weight:700">—</span>
       </div>
       <div id="web-load" style="text-align:center;padding:48px;color:#64748b">Loading…</div>
       <div id="web-wrap" style="display:none;overflow-x:auto">
@@ -1338,11 +1340,17 @@ async function loadWebStats() {
     if (!r.ok) throw new Error(j.error || 'Request failed');
     WEB_ALL = j.report || [];
     var s = j.summary || {};
-    document.getElementById('ws-users').textContent       = s.unique_users  ?? '—';
-    document.getElementById('ws-files').textContent       = (Number(s.total_files  )||0).toLocaleString('en-IN');
-    document.getElementById('ws-today-files').textContent = (Number(s.today_files  )||0).toLocaleString('en-IN');
+    var authFiles = Number(s.total_files) || 0;
+    var anonFiles = Number(s.anon_files)  || 0;
+    var anonToday = Number(s.anon_today)  || 0;
+    var authToday = Number(s.today_files) || 0;
+    document.getElementById('ws-users').textContent       = s.unique_users ?? '—';
+    document.getElementById('ws-files').textContent       = (authFiles + anonFiles).toLocaleString('en-IN');
+    document.getElementById('ws-today-files').textContent = (authToday + anonToday).toLocaleString('en-IN');
     document.getElementById('ws-today-users').textContent = s.today_users ?? '—';
-    document.getElementById('web-anon-note').style.display = WEB_ALL.length === 0 ? 'block' : 'none';
+    document.getElementById('ws-auth-files').textContent  = authFiles.toLocaleString('en-IN');
+    document.getElementById('ws-anon-files').textContent  = anonFiles.toLocaleString('en-IN');
+    document.getElementById('ws-anon-today').textContent  = anonToday.toLocaleString('en-IN');
     renderWebStats();
   } catch(e) {
     document.getElementById('web-load').textContent = 'Error: ' + e.message;
