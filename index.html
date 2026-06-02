@@ -2213,7 +2213,21 @@
   .plan-team-note.show { display: block; }
   .plan-card.featured { position: relative; }
 
-</style>
+
+/* ─── LIVE STATS STRIP ─── */
+.stats-strip { background:#0F172A; border-top:1px solid rgba(255,255,255,0.06); border-bottom:1px solid rgba(255,255,255,0.06); padding:28px 0; }
+.stats-strip-inner { max-width:900px; margin:0 auto; padding:0 24px; display:flex; flex-direction:column; align-items:center; gap:12px; }
+.stats-live-badge { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; color:#94A3B8; letter-spacing:0.06em; text-transform:uppercase; }
+.stats-live-dot { width:7px; height:7px; border-radius:50%; background:#22C55E; animation:pulse-dot 2s ease-in-out infinite; flex-shrink:0; }
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+.stats-counters { display:flex; gap:48px; align-items:center; justify-content:center; flex-wrap:wrap; }
+.stats-counter { text-align:center; }
+.stats-counter-val { font-size:2.6rem; font-weight:800; color:#F1F5F9; letter-spacing:-0.02em; line-height:1; font-variant-numeric:tabular-nums; min-width:80px; display:inline-block; }
+.stats-counter-label { font-size:12px; color:#64748B; margin-top:5px; font-weight:500; }
+.stats-divider { width:1px; height:48px; background:rgba(255,255,255,0.1); }
+.stats-totals { font-size:12px; color:#475569; text-align:center; }
+.stats-totals strong { color:#94A3B8; }
+@media(max-width:480px){ .stats-counters{gap:24px} .stats-counter-val{font-size:2rem} .stats-divider{display:none} }</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -2584,6 +2598,25 @@
   </div>
 </section>
 
+
+<!-- ─── LIVE STATS STRIP ─── -->
+<div class="stats-strip">
+  <div class="stats-strip-inner">
+    <div class="stats-live-badge"><span class="stats-live-dot"></span>Live &nbsp;·&nbsp; Updated in real time</div>
+    <div class="stats-counters">
+      <div class="stats-counter">
+        <div class="stats-counter-val" id="stat-dl-today">—</div>
+        <div class="stats-counter-label">📥 Downloads today</div>
+      </div>
+      <div class="stats-divider"></div>
+      <div class="stats-counter">
+        <div class="stats-counter-val" id="stat-sg-today">—</div>
+        <div class="stats-counter-label">✍️ Files signed today</div>
+      </div>
+    </div>
+    <div class="stats-totals" id="stat-totals"></div>
+  </div>
+</div>
 <!-- ─── LOGOS STRIP ─── -->
 <div class="logos-strip">
   <div class="logos-strip-inner">
@@ -4631,6 +4664,67 @@ document.querySelectorAll(".feature-card,.how-step,.plan-card,.testimonial").for
 });
 
 </script>
+
+// ── Live stats counter ────────────────────────────────────────────────────────
+(function() {
+  var STATS_API = 'https://pdfsigner-api.vercel.app/api/stats';
+  var _dlBase = 0, _sgBase = 0, _optimistic = 0;
+
+  function fmt(n) { return Number(n).toLocaleString('en-IN'); }
+
+  function animateCount(el, from, to, dur) {
+    if (!el || from === to) { if (el) el.textContent = fmt(to); return; }
+    var start = null;
+    (function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var e = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(Math.round(from + (to - from) * e));
+      if (p < 1) requestAnimationFrame(step);
+    })(performance.now());
+  }
+
+  function renderStats(dl, sg, totalDl, totalSg, animate) {
+    var dlEl  = document.getElementById('stat-dl-today');
+    var sgEl  = document.getElementById('stat-sg-today');
+    var totEl = document.getElementById('stat-totals');
+    if (!dlEl) return;
+    var showDl = dl + _optimistic;
+    if (animate) {
+      animateCount(dlEl, Math.max(0, showDl - 18), showDl, 1400);
+      animateCount(sgEl, Math.max(0, sg - 70),     sg,     1400);
+    } else {
+      dlEl.textContent = fmt(showDl);
+      sgEl.textContent = fmt(sg);
+    }
+    if (totEl && totalDl > 0) {
+      totEl.innerHTML = '<strong>' + fmt(totalDl) + '+</strong> total downloads &nbsp;&middot;&nbsp; <strong>' + fmt(totalSg) + '+</strong> files signed';
+    }
+  }
+
+  function fetchStats(animate) {
+    fetch(STATS_API)
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if (!d) return;
+        _dlBase = d.downloads_today    || 0;
+        _sgBase = d.files_signed_today || 0;
+        renderStats(_dlBase, _sgBase, d.total_downloads, d.total_files_signed, animate);
+      })
+      .catch(function(){});
+  }
+
+  fetchStats(true);
+  setInterval(function(){ fetchStats(false); }, 60000);
+
+  // Optimistic increment on download click
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('a[href*="/api/download"]')) return;
+    _optimistic++;
+    var el = document.getElementById('stat-dl-today');
+    if (el) { var cur = parseInt(el.textContent.replace(/[^0-9]/g,''))||0; animateCount(el, cur, cur+1, 500); }
+  });
+})();
 <script src="/js/download-gate.js" defer></script>
 <script src="js/ms-modal.js" defer></script>
 </body>
