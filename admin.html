@@ -156,6 +156,7 @@ tr:hover td{background:#1e293b33}
     <div class="tab" onclick="showTab('leads',this)">📋 Leads</div>
     <div class="tab" onclick="showTab('use',this)">📊 Usage</div>
     <div class="tab" onclick="showTab('web',this)">🌐 Web</div>
+    <div class="tab" onclick="showTab('ret',this)">📉 Retention</div>
   </div>
 
   <main>
@@ -452,6 +453,49 @@ tr:hover td{background:#1e293b33}
         <div id="web-empty" class="empty" style="display:none">No web usage data for this period.</div>
       </div>
     </div>
+
+    <!-- ── RETENTION TAB ── -->
+    <div id="pret" style="display:none">
+      <div class="section-hdr">
+        <h2>Retention &amp; Churn</h2>
+        <div style="display:flex;gap:8px;align-items:center">
+          <select id="ret-days" onchange="loadRetention()" style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:7px 11px;border-radius:7px;font-size:12px;outline:none">
+            <option value="7">Last 7 days</option>
+            <option value="30" selected>Last 30 days</option>
+            <option value="60">Last 60 days</option>
+            <option value="90">Last 90 days</option>
+            <option value="0">All time</option>
+          </select>
+          <button class="btn-r" onclick="loadRetention()">⟳ Refresh</button>
+        </div>
+      </div>
+
+      <!-- Summary cards -->
+      <div class="stats" style="margin-bottom:24px">
+        <div class="stat"><div class="sv" id="ret-total">—</div><div class="sl">Total Installs</div></div>
+        <div class="stat"><div class="sv" style="color:#22c55e" id="ret-active">—</div><div class="sl">Active (≤7 days)</div></div>
+        <div class="stat"><div class="sv" style="color:#f59e0b" id="ret-atrisk">—</div><div class="sl">At-risk (8–30 days)</div></div>
+        <div class="stat"><div class="sv" style="color:#f87171" id="ret-churned">—</div><div class="sl">Likely Uninstalled (30+ days)</div></div>
+        <div class="stat"><div class="sv" style="color:#a78bfa" id="ret-confirmed">—</div><div class="sl">Confirmed Uninstalls</div></div>
+      </div>
+
+      <div id="ret-load" style="text-align:center;padding:48px;color:#64748b">Loading…</div>
+      <div id="ret-wrap" style="display:none;overflow-x:auto">
+        <table id="ret-tbl">
+          <thead><tr>
+            <th class="sortable" onclick="retSort('machine_id')">Machine ID</th>
+            <th class="sortable" onclick="retSort('country')">Country</th>
+            <th class="sortable" onclick="retSort('customer_email')">Email</th>
+            <th class="sortable" onclick="retSort('trial_start')">Installed</th>
+            <th class="sortable" onclick="retSort('last_seen_at')">Last Seen</th>
+            <th class="sortable" onclick="retSort('status')">Status</th>
+            <th class="sortable" onclick="retSort('uninstalled_at')">Uninstalled</th>
+          </tr></thead>
+          <tbody id="ret-tbody"></tbody>
+        </table>
+        <div id="ret-empty" class="empty" style="display:none">No data for this period.</div>
+      </div>
+    </div>
   </main>
 </div>
 
@@ -630,6 +674,7 @@ function showTab(t, el) {
   document.getElementById('pleads').style.display = t==='leads' ? 'block' : 'none';
   document.getElementById('puse').style.display   = t==='use'   ? 'block' : 'none';
   document.getElementById('pweb').style.display   = t==='web'   ? 'block' : 'none';
+  document.getElementById('pret').style.display   = t==='ret'   ? 'block' : 'none';
   if (t==='dash') { loadDashboard(); }
   if (t==='lic')  loadLicenses();
   if (t==='usr')  loadUsers();
@@ -639,6 +684,7 @@ function showTab(t, el) {
   if (t==='leads') loadLeads();
   if (t==='use')   loadUsage();
   if (t==='web')   loadWebStats();
+  if (t==='ret')   loadRetention();
 }
 
 // ── LEADS ─────────────────────────────────────────────────────────────────
@@ -1391,6 +1437,89 @@ function webSort(col) {
     :(col==='user_email'?'asc':'desc');
   WEB_SORT.col = col;
   renderWebStats();
+}
+
+// ── Retention & Churn ─────────────────────────────────────────────────────
+var RET_ALL  = [];
+var RET_SORT = { col: 'last_seen_at', dir: 'asc' }; // oldest first = highest churn risk
+
+async function loadRetention() {
+  var days = document.getElementById('ret-days').value;
+  document.getElementById('ret-load').style.display = 'block';
+  document.getElementById('ret-wrap').style.display = 'none';
+  document.getElementById('ret-load').textContent   = 'Loading…';
+  try {
+    var r = await apicall(API + '/retention?days=' + days);
+    if (r.status === 401) { logout(); return; }
+    var j = await r.json();
+    if (!r.ok) throw new Error(j.error || 'Request failed');
+    RET_ALL = j.machines || [];
+    var s   = j.summary  || {};
+    document.getElementById('ret-total').textContent     = Number(s.total)     || 0;
+    document.getElementById('ret-active').textContent    = Number(s.active)    || 0;
+    document.getElementById('ret-atrisk').textContent    = Number(s.at_risk)   || 0;
+    document.getElementById('ret-churned').textContent   = Number(s.churned)   || 0;
+    document.getElementById('ret-confirmed').textContent = Number(s.confirmed_uninstalls) || 0;
+    renderRetention();
+  } catch(e) {
+    document.getElementById('ret-load').textContent = 'Error: ' + e.message;
+  }
+}
+
+function retStatus(m) {
+  var now = Date.now();
+  if (m.uninstalled_at) return { label: '🗑 Uninstalled', color: '#a78bfa' };
+  if (!m.last_seen_at)  return { label: '❓ Never seen',  color: '#64748b' };
+  var days = (now - new Date(m.last_seen_at).getTime()) / 86400000;
+  if (days <= 7)  return { label: '🟢 Active',         color: '#22c55e' };
+  if (days <= 30) return { label: '🟡 At-risk',        color: '#f59e0b' };
+  return               { label: '🔴 Likely churned',   color: '#f87171' };
+}
+
+function renderRetention() {
+  var col = RET_SORT.col, dir = RET_SORT.dir;
+  var rows = RET_ALL.slice().sort(function(a, b) {
+    var av = a[col], bv = b[col];
+    if (col === 'status') {
+      var order = { '🟢 Active': 0, '🟡 At-risk': 1, '🔴 Likely churned': 2, '❓ Never seen': 3, '🗑 Uninstalled': 4 };
+      av = order[retStatus(a).label] ?? 5;
+      bv = order[retStatus(b).label] ?? 5;
+    } else if (['trial_start','last_seen_at','uninstalled_at'].includes(col)) {
+      av = av ? new Date(av).getTime() : 0;
+      bv = bv ? new Date(bv).getTime() : 0;
+    } else {
+      av = (av || '').toString().toLowerCase();
+      bv = (bv || '').toString().toLowerCase();
+    }
+    return av < bv ? (dir === 'asc' ? -1 : 1) : av > bv ? (dir === 'asc' ? 1 : -1) : 0;
+  });
+  document.querySelectorAll('#ret-tbl th').forEach(function(th){ th.classList.remove('sort-asc','sort-desc'); });
+  var cols = ['machine_id','country','customer_email','trial_start','last_seen_at','status','uninstalled_at'];
+  var ths  = document.querySelectorAll('#ret-tbl th');
+  var idx  = cols.indexOf(col === 'status' ? 'status' : col);
+  if (ths[idx]) ths[idx].classList.add(dir === 'asc' ? 'sort-asc' : 'sort-desc');
+  document.getElementById('ret-load').style.display  = 'none';
+  document.getElementById('ret-wrap').style.display  = 'block';
+  document.getElementById('ret-empty').style.display = rows.length ? 'none' : 'block';
+  document.getElementById('ret-tbody').innerHTML = rows.map(function(m) {
+    var st = retStatus(m);
+    return '<tr>'
+      + '<td style="font-family:monospace;font-size:11px">' + esc((m.machine_id||'').substring(0,12)+'…') + '</td>'
+      + '<td>' + esc(m.country || '—') + '</td>'
+      + '<td>' + esc(m.customer_email || '—') + '</td>'
+      + '<td class="ts">' + fmtDate(m.trial_start) + '</td>'
+      + '<td class="ts">' + (m.last_seen_at ? fmtDate(m.last_seen_at) : '—') + '</td>'
+      + '<td style="color:' + st.color + ';font-weight:700">' + st.label + '</td>'
+      + '<td class="ts">' + (m.uninstalled_at ? fmtDate(m.uninstalled_at) : '—') + '</td>'
+      + '</tr>';
+  }).join('');
+}
+
+function retSort(col) {
+  RET_SORT.dir = RET_SORT.col === col ? (RET_SORT.dir === 'asc' ? 'desc' : 'asc')
+    : (['trial_start','last_seen_at','uninstalled_at'].includes(col) ? 'asc' : 'asc');
+  RET_SORT.col = col;
+  renderRetention();
 }
 </script>
 </body>
