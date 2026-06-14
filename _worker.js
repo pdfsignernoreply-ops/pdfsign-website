@@ -69,9 +69,12 @@ export default {
       if (htmlResponse.ok) {
         const cleanUrl = `${url.origin}${url.pathname}`;
         const html = await htmlResponse.text();
+        // Self-healing: force all three self-referencing signals to the clean URL,
+        // so a post authored with a stale ".html" canonical can never be served wrong.
         const rewritten = html
           .replace(/(<link rel="canonical" href=")[^"]*/,  `$1${cleanUrl}`)
-          .replace(/(<meta property="og:url" content=")[^"]*/,  `$1${cleanUrl}`);
+          .replace(/(<meta property="og:url" content=")[^"]*/,  `$1${cleanUrl}`)
+          .replace(/("mainEntityOfPage":\{"@type":"WebPage","@id":")[^"]*/, `$1${cleanUrl}`);
         return new Response(rewritten, {
           status: 200,
           headers: {
