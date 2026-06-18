@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&amp;family=DM+Serif+Display&amp;display=swap');
+    </style>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1B2A47"/>
+      <stop offset="100%" stop-color="#0F1E35"/>
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2D4169"/>
+      <stop offset="100%" stop-color="#1E3055"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+
+  <!-- Subtle grid dots background -->
+  <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+    <circle cx="20" cy="20" r="1.2" fill="rgba(147,197,253,0.08)"/>
+  </pattern>
+  <rect width="1080" height="1080" fill="url(#dots)"/>
+
+  <!-- Outer glow ring behind logo box -->
+  <rect x="295" y="215" width="490" height="490" rx="80" fill="rgba(22,163,74,0.08)"/>
+
+  <!-- Logo mark box -->
+  <rect x="315" y="235" width="450" height="450" rx="70" fill="url(#boxGrad)" stroke="rgba(147,197,253,0.25)" stroke-width="3"/>
+
+  <!-- PDF text in box -->
+  <text x="540" y="405" font-family="Outfit, sans-serif" font-weight="600" font-size="90" letter-spacing="14" fill="#FFFFFF" text-anchor="middle">PDF</text>
+
+  <!-- Green divider line -->
+  <rect x="370" y="450" width="340" height="10" rx="5" fill="#16A34A"/>
+
+  <!-- SIGN text in box -->
+  <text x="540" y="580" font-family="Outfit, sans-serif" font-weight="600" font-size="90" letter-spacing="14" fill="#93C5FD" text-anchor="middle">SIGN</text>
+
+  <!-- PDFSign.in wordmark -->
+  <text x="540" y="800" font-family="DM Serif Display, serif" font-size="80" fill="#FFFFFF" letter-spacing="-1" text-anchor="middle">PDFSign<tspan fill="#22C55E">.in</tspan></text>
+
+  <!-- Tagline -->
+  <text x="540" y="870" font-family="Outfit, sans-serif" font-weight="400" font-size="30" fill="rgba(147,197,253,0.85)" text-anchor="middle" letter-spacing="0.5">Sign PDFs with your DSC Token</text>
+
+  <!-- Bottom badge strip -->
+  <rect x="340" y="930" width="400" height="52" rx="26" fill="rgba(22,163,74,0.15)" stroke="rgba(22,163,74,0.4)" stroke-width="1.5"/>
+  <text x="540" y="963" font-family="Outfit, sans-serif" font-weight="600" font-size="22" fill="#4ADE80" text-anchor="middle" letter-spacing="1">100% OFFLINE · LEGALLY VALID</text>
+</svg>
