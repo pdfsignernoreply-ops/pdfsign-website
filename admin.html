@@ -385,6 +385,8 @@ tr:hover td{background:#1e293b33}
             <option value="team">Team</option>
           </select>
           <button class="btn-r" onclick="loadUsage()">⟳ Refresh</button>
+          <button class="btn-r" onclick="exportUsageCSV()" title="Download as Excel/CSV">⬇ Excel</button>
+          <button class="btn-r" onclick="exportUsagePDF()" title="Export as PDF (print)">⬇ PDF</button>
         </div>
       </div>
       <div class="stats" style="margin-bottom:24px">
@@ -402,7 +404,9 @@ tr:hover td{background:#1e293b33}
             <th class="sortable" onclick="usageSort('current_status')">Status</th>
             <th class="sortable" onclick="usageSort('days_active')">Days Active</th>
             <th class="sortable" onclick="usageSort('total_files')">Files Signed</th>
+            <th class="sortable" onclick="usageSort('dsc_files')" title="DSC token / Signature stamp">DSC / Stamp</th>
             <th class="sortable" onclick="usageSort('total_sessions')">Sessions</th>
+            <th class="sortable" onclick="usageSort('batch_sessions')" title="Batch (folder) / Single-file sessions">Batch / Single</th>
             <th class="sortable" onclick="usageSort('first_seen')">First Seen</th>
             <th class="sortable" onclick="usageSort('last_seen')">Last Seen</th>
           </tr></thead>
@@ -1079,6 +1083,7 @@ setInterval(function(){ if(S && document.getElementById('plic').style.display!==
 
 // ── Usage Report ──────────────────────────────────────────────────────────
 var USAGE_ALL  = [];
+var USAGE_VIEW = [];   // currently filtered + sorted rows (what's on screen) — used by export
 var USAGE_SORT = { col: 'last_seen', dir: 'desc' };
 
 async function loadUsage() {
@@ -1105,7 +1110,7 @@ async function loadUsage() {
 
 function usageCmpVal(r, col) {
   var v = r[col];
-  if (['days_active','total_files','total_sessions'].indexOf(col) > -1) return Number(v)||0;
+  if (['days_active','total_files','total_sessions','dsc_files','wet_files','batch_sessions','single_sessions'].indexOf(col) > -1) return Number(v)||0;
   if (['first_seen','last_seen'].indexOf(col) > -1) return v ? new Date(v).getTime() : 0;
   return (v||'').toLowerCase();
 }
@@ -1133,13 +1138,14 @@ function renderUsage() {
     return 0;
   });
   document.querySelectorAll('#usage-tbl th').forEach(function(th){ th.classList.remove('sort-asc','sort-desc'); });
-  var cols = ['machine_id','current_plan','current_status','days_active','total_files','total_sessions','first_seen','last_seen'];
+  var cols = ['machine_id','current_plan','current_status','days_active','total_files','dsc_files','total_sessions','batch_sessions','first_seen','last_seen'];
   var ths  = document.querySelectorAll('#usage-tbl th');
   var thIdx = cols.indexOf(col);
   if (ths[thIdx]) ths[thIdx].classList.add(dir==='asc'?'sort-asc':'sort-desc');
   document.getElementById('usage-load').style.display  = 'none';
   document.getElementById('usage-wrap').style.display  = 'block';
   document.getElementById('usage-empty').style.display = rows.length ? 'none' : 'block';
+  USAGE_VIEW = rows;   // remember the filtered + sorted rows for export
   var REGULAR = 5;
   document.getElementById('usage-tbody').innerHTML = rows.map(function(r) {
     var mid   = r.machine_id || '';
@@ -1148,13 +1154,17 @@ function renderUsage() {
     var reg   = days >= REGULAR;
     var pSlug = (r.current_plan   ||'').replace(/[^a-z-]/g,'');
     var sSlug = (r.current_status ||'').replace(/[^a-z-]/g,'');
+    var dsc   = Number(r.dsc_files)||0, wet = Number(r.wet_files)||0;
+    var bat   = Number(r.batch_sessions)||0, sng = Number(r.single_sessions)||0;
     return '<tr class="'+(reg?'usage-regular':'')+'">'
       +'<td><span class="key" title="'+esc(mid)+'">'+esc(short)+'</span></td>'
       +'<td><span class="pb pb-'+esc(pSlug)+'">'+esc(r.current_plan||'—')+'</span></td>'
       +'<td><span class="pb pb-'+esc(sSlug)+'">'+esc(r.current_status||'—')+'</span></td>'
       +'<td style="font-weight:700;color:'+(reg?'#4ade80':'#e2e8f0')+'">'+days+'</td>'
       +'<td>'+(Number(r.total_files)||0).toLocaleString('en-IN')+'</td>'
+      +'<td class="ts"><span style="color:#60a5fa">'+dsc+'</span> / <span style="color:#f59e0b">'+wet+'</span></td>'
       +'<td class="ts">'+(Number(r.total_sessions)||0)+'</td>'
+      +'<td class="ts"><span style="color:#a78bfa">'+bat+'</span> / <span style="color:#94a3b8">'+sng+'</span></td>'
       +'<td class="ts">'+fmtDate(r.first_seen)+'</td>'
       +'<td class="ts">'+fmtDate(r.last_seen)+'</td>'
       +'</tr>';
@@ -1168,6 +1178,68 @@ function usageSort(col) {
     : (strCols.indexOf(col)>-1 ? 'asc' : 'desc');
   USAGE_SORT.col = col;
   renderUsage();
+}
+
+// ── Export (Excel/CSV + PDF) — exports the rows currently shown ─────────────
+function usageExportRows() {
+  var hdr = ['Machine ID','Plan','Status','Days Active','Files Signed',
+             'DSC Files','Stamp Files','Sessions','Batch Sessions','Single Sessions',
+             'First Seen','Last Seen'];
+  var body = (USAGE_VIEW||[]).map(function(r){
+    return [
+      r.machine_id||'', r.current_plan||'', r.current_status||'',
+      Number(r.days_active)||0, Number(r.total_files)||0,
+      Number(r.dsc_files)||0, Number(r.wet_files)||0,
+      Number(r.total_sessions)||0, Number(r.batch_sessions)||0, Number(r.single_sessions)||0,
+      fmtDate(r.first_seen), fmtDate(r.last_seen)
+    ];
+  });
+  return { hdr: hdr, body: body };
+}
+
+function exportUsageCSV() {
+  var d = usageExportRows();
+  if (!d.body.length) { alert('Nothing to export for this view.'); return; }
+  var esc = function(v){ v = String(v==null?'':v); return /[",\n]/.test(v) ? '"'+v.replace(/"/g,'""')+'"' : v; };
+  var lines = [d.hdr.map(esc).join(',')].concat(d.body.map(function(row){ return row.map(esc).join(','); }));
+  var csv = String.fromCharCode(0xFEFF) + lines.join('\r\n');   // BOM so Excel reads UTF-8
+  var stamp = new Date().toISOString().slice(0,10);
+  var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'pdfsign-usage-' + (document.getElementById('udays').value) + '-' + stamp + '.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+}
+
+function exportUsagePDF() {
+  var d = usageExportRows();
+  if (!d.body.length) { alert('Nothing to export for this view.'); return; }
+  var period = document.getElementById('udays').options[document.getElementById('udays').selectedIndex].text;
+  var plan   = document.getElementById('uplan').options[document.getElementById('uplan').selectedIndex].text;
+  var pesc = function(v){ return String(v==null?'':v).replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); };
+  var rowsHtml = d.body.map(function(row){
+    return '<tr>' + row.map(function(c,i){
+      return '<td class="'+(i>=3 && i<=9 ? 'num':'')+'">'+pesc(c)+'</td>';
+    }).join('') + '</tr>';
+  }).join('');
+  var html = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>PDFSign Usage Report</title>'
+    + '<style>body{font-family:Arial,sans-serif;margin:24px;color:#1e293b}'
+    + 'h1{font-size:18px;margin:0 0 4px}.meta{color:#64748b;font-size:12px;margin-bottom:16px}'
+    + 'table{border-collapse:collapse;width:100%;font-size:11px}'
+    + 'th,td{border:1px solid #cbd5e1;padding:5px 7px;text-align:left}'
+    + 'th{background:#f1f5f9;font-size:10px;text-transform:uppercase;letter-spacing:.04em}'
+    + 'td.num{text-align:right}tr:nth-child(even){background:#f8fafc}'
+    + '@media print{@page{size:landscape;margin:12mm}}</style></head><body>'
+    + '<h1>PDFSign — Usage Report</h1>'
+    + '<div class="meta">Period: '+pesc(period)+' &middot; Plan: '+pesc(plan)+' &middot; '
+    + d.body.length+' machines &middot; Generated '+new Date().toLocaleString('en-IN')+'</div>'
+    + '<table><thead><tr>'+d.hdr.map(function(h){return '<th>'+pesc(h)+'</th>';}).join('')+'</tr></thead>'
+    + '<tbody>'+rowsHtml+'</tbody></table></body></html>';
+  var w = window.open('', '_blank');
+  if (!w) { alert('Pop-up blocked — allow pop-ups to export PDF.'); return; }
+  w.document.open(); w.document.write(html); w.document.close();
+  w.onload = function(){ w.focus(); w.print(); };   // user picks "Save as PDF"
 }
 
 async function sendRenewals() {
