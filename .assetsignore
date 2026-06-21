@@ -1,1 +1,13 @@
+# Paths here are NOT uploaded as Worker static assets.
+# IMPORTANT: providing this file DISABLES Wrangler's built-in default ignores,
+# so .git must be listed explicitly. Otherwise `wrangler deploy` fails with
+# "Asset too large" once .git/objects/pack/*.pack grows past 25 MiB.
+.git
+.github
+.gitattributes
+.assetsignore
 _worker.js
+wrangler.toml
+*.md
+*.log
+node_modules
