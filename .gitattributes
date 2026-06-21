@@ -1,0 +1,17 @@
+# Ensure binary/media assets are never line-ending normalized or diffed.
+# (repo has core.autocrlf=true; without these rules a mis-detected asset
+#  could be corrupted on checkout, which breaks image deploys.)
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.ico   binary
+*.pdf   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.eot   binary
+*.otf   binary
+*.mp4   binary
+*.zip   binary
