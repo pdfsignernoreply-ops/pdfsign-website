@@ -186,6 +186,17 @@ tr:hover td{background:#1e293b33}
         <div class="stat"><div class="sv" id="d-other-dl" style="color:#fb923c;">—</div><div class="sl">Other Attempts</div></div>
         <div class="stat"><div class="sv" id="d-files-signed" style="color:#34d399;">—</div><div class="sl">Files Signed</div></div>
       </div>
+      <!-- Daily trend chart -->
+      <div style="margin-top:18px;background:#0f172a;border:1px solid #1e293b;border-radius:12px;padding:16px 18px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+          <h2 style="margin:0;font-size:15px;">Daily Installs &amp; Files Signed <span style="color:#64748b;font-weight:400;font-size:12px;">· last 30 days</span></h2>
+          <div style="display:flex;gap:16px;font-size:11px;color:#94a3b8;">
+            <span><span style="display:inline-block;width:10px;height:10px;background:#a78bfa;border-radius:2px;vertical-align:middle;margin-right:5px;"></span>Installs</span>
+            <span><span style="display:inline-block;width:14px;height:3px;background:#34d399;border-radius:2px;vertical-align:middle;margin-right:5px;"></span>Files Signed</span>
+          </div>
+        </div>
+        <div style="position:relative;height:240px;"><canvas id="daily-chart"></canvas></div>
+      </div>
       <div id="dash-report-msg" class="mmsg" style="display:none;"></div>
       <!-- Recent activity: two columns -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;">
@@ -614,6 +625,7 @@ tr:hover td{background:#1e293b33}
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
 var API = 'https://pdfsigner-api.vercel.app/api/admin';
 var S = null, ALL = [];
@@ -785,12 +797,55 @@ async function savePricing() {
 
 // ── DASHBOARD ────────────────────────────────────────────────────────────
 var DASH = null;
+var dailyChart = null;
+function renderDailyChart(daily) {
+  daily = daily || [];
+  var el = document.getElementById('daily-chart');
+  if (!el || typeof Chart === 'undefined') return; // Chart.js CDN unavailable → skip silently
+  var labels   = daily.map(function(d){ return d.date.slice(5); });   // MM-DD
+  var installs = daily.map(function(d){ return d.installs; });
+  var signed   = daily.map(function(d){ return d.signed; });
+  if (dailyChart) dailyChart.destroy();
+  dailyChart = new Chart(el.getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        { type:'bar',  label:'Installs',     data:installs, yAxisID:'y',
+          backgroundColor:'#a78bfa', borderRadius:3, barPercentage:0.7, categoryPercentage:0.85, order:2 },
+        { type:'line', label:'Files Signed', data:signed,   yAxisID:'y1',
+          borderColor:'#34d399', backgroundColor:'rgba(52,211,153,0.10)', borderWidth:2,
+          pointRadius:2, pointHoverRadius:4, tension:0.3, fill:true, order:1 }
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      interaction:{ mode:'index', intersect:false },
+      plugins:{
+        legend:{ display:false },
+        tooltip:{ backgroundColor:'#1e293b', borderColor:'#334155', borderWidth:1,
+                  titleColor:'#e2e8f0', bodyColor:'#cbd5e1', padding:10, displayColors:true }
+      },
+      scales:{
+        x:{ grid:{ color:'rgba(148,163,184,0.07)' },
+            ticks:{ color:'#64748b', font:{size:10}, maxRotation:0, autoSkip:true, maxTicksLimit:10 } },
+        y:{ position:'left', beginAtZero:true, grid:{ color:'rgba(148,163,184,0.07)' },
+            ticks:{ color:'#a78bfa', font:{size:10}, precision:0 },
+            title:{ display:true, text:'Installs', color:'#a78bfa', font:{size:10} } },
+        y1:{ position:'right', beginAtZero:true, grid:{ drawOnChartArea:false },
+             ticks:{ color:'#34d399', font:{size:10}, precision:0 },
+             title:{ display:true, text:'Files Signed', color:'#34d399', font:{size:10} } }
+      }
+    }
+  });
+}
 async function loadDashboard() {
   try {
     var r = await apicall(API+'/dashboard','GET');
     if (!r.ok) throw new Error('HTTP ' + r.status);
     var j = await r.json();
     DASH = j;
+    renderDailyChart(j.daily);
     renderDashPeriod();
     // Recent installs
     var ib = document.getElementById('dash-installs-body');
