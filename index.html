@@ -3162,7 +3162,7 @@
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>1 Windows device</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Email support</li>
         </ul>
-        <a href="https://rzp.io/rzp/y6KFT3L" class="plan-btn plan-btn-outline" id="btnMonthly" onclick="return handlePlanClick(event,'monthly')">Get Monthly Plan</a>
+        <a href="#pricing" class="plan-btn plan-btn-outline" id="btnMonthly" onclick="return handlePlanClick(event,'monthly')">Get Monthly Plan</a>
         <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:8px;" id="monthlyTeamNote" class="plan-team-note">Solo only — team not available monthly</p>
       </div>
 
@@ -3184,7 +3184,7 @@
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Priority email support</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Free upgrades for 1 year</li>
         </ul>
-        <a href="https://rzp.io/rzp/ZY9vgMXC" class="plan-btn plan-btn-solid" id="btnAnnual" onclick="return handlePlanClick(event,'yearly')">Get Annual Plan</a>
+        <a href="#pricing" class="plan-btn plan-btn-solid" id="btnAnnual" onclick="return handlePlanClick(event,'yearly')">Get Annual Plan</a>
       </div>
 
       <!-- Lifetime -->
@@ -3204,7 +3204,7 @@
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Lifetime upgrades</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Priority + WhatsApp support</li>
         </ul>
-        <a href="https://rzp.io/rzp/tXWjHDC" class="plan-btn plan-btn-outline" id="btnLifetime" onclick="return handlePlanClick(event,'lifetime')">Get Lifetime Access</a>
+        <a href="#pricing" class="plan-btn plan-btn-outline" id="btnLifetime" onclick="return handlePlanClick(event,'lifetime')">Get Lifetime Access</a>
       </div>
 
     </div>
@@ -4233,13 +4233,19 @@ var _isIndia    = true;    // default to India until geo resolves
 var _intlPlan   = null;    // plan selected for international checkout modal
 var _livePrices = null;    // keyed by plan, set after /api/pricing responds
 
-// INR links (Razorpay pre-generated static links, India only)
+// Button href fallbacks. These used to be static Razorpay Payment-Page links
+// (rzp.io/rzp/…), but those bypass create-link.js — they carry no plan/machineId
+// notes and fire only `payment.captured`, so a payment through them could be
+// taken with NO license/email issued. Every purchase now goes through the
+// dynamic create-link path in handlePlanClick(); these hrefs are just a safe
+// no-JS fallback that keeps the user on the pricing section (never an untracked
+// Razorpay page).
 var INR_LINKS = {
-  monthly:         'https://rzp.io/rzp/y6KFT3L',
-  yearly:          'https://rzp.io/rzp/ZY9vgMXC',
-  'team-yearly':   'https://rzp.io/rzp/YSKcpKEO',
-  lifetime:        'https://rzp.io/rzp/tXWjHDC',
-  'team-lifetime': 'https://rzp.io/rzp/UBkBSNxI',
+  monthly:         '#pricing',
+  yearly:          '#pricing',
+  'team-yearly':   '#pricing',
+  lifetime:        '#pricing',
+  'team-lifetime': '#pricing',
 };
 
 // Fallback prices in paise (INR) and cents (USD) — used until API responds
