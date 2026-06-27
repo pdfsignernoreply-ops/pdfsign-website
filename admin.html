@@ -155,6 +155,7 @@ tr:hover td{background:#1e293b33}
     <div class="tab" onclick="showTab('pri',this)">💰 Pricing</div>
     <div class="tab" onclick="showTab('leads',this)">📋 Leads</div>
     <div class="tab" onclick="showTab('use',this)">📊 Usage</div>
+    <div class="tab" onclick="showTab('cty',this)">🌍 Countries</div>
     <div class="tab" onclick="showTab('web',this)">🌐 Web</div>
     <div class="tab" onclick="showTab('ret',this)">📉 Retention</div>
   </div>
@@ -427,6 +428,43 @@ tr:hover td{background:#1e293b33}
       </div>
     </div>
 
+    <!-- Country Report -->
+    <div id="pcty" style="display:none">
+      <div class="section-hdr">
+        <h2>Country Report</h2>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <label style="font-size:12px;color:#94a3b8">From</label>
+          <input type="date" id="cfrom" style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:6px 9px;border-radius:7px;font-size:12px;outline:none"/>
+          <label style="font-size:12px;color:#94a3b8">To</label>
+          <input type="date" id="cto" style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:6px 9px;border-radius:7px;font-size:12px;outline:none"/>
+          <button class="btn-r" onclick="loadCountry()">Apply</button>
+          <button class="btn-r" onclick="countryPreset(0)">All time</button>
+          <button class="btn-r" onclick="countryCsv()" title="Download as CSV">⬇ CSV</button>
+        </div>
+      </div>
+      <div class="stats" style="margin-bottom:24px">
+        <div class="stat"><div class="sv" id="cy-countries">—</div><div class="sl">Countries</div></div>
+        <div class="stat"><div class="sv" id="cy-installs">—</div><div class="sl">Installs</div></div>
+        <div class="stat"><div class="sv" id="cy-files">—</div><div class="sl">Files Signed</div></div>
+        <div class="stat"><div class="sv" id="cy-sessions">—</div><div class="sl">Signing Sessions</div></div>
+      </div>
+      <div id="cty-load" style="text-align:center;padding:48px;color:#64748b">Loading…</div>
+      <div id="cty-wrap" style="display:none;overflow-x:auto">
+        <table id="cty-tbl">
+          <thead><tr>
+            <th class="sortable" onclick="countrySort('country')">Country</th>
+            <th class="sortable" onclick="countrySort('installs')">Installs</th>
+            <th class="sortable" onclick="countrySort('files_signed')">Files Signed</th>
+            <th class="sortable" onclick="countrySort('sessions')">Sessions</th>
+            <th class="sortable" onclick="countrySort('dsc_files')">DSC</th>
+            <th class="sortable" onclick="countrySort('wet_files')">Stamp</th>
+          </tr></thead>
+          <tbody id="cty-tbody"></tbody>
+        </table>
+        <div id="cty-empty" class="empty" style="display:none">No data for this range.</div>
+      </div>
+    </div>
+
     <!-- Web Tool Usage -->
     <div id="pweb" style="display:none">
       <div class="section-hdr">
@@ -689,6 +727,7 @@ function showTab(t, el) {
   document.getElementById('ppri').style.display   = t==='pri'   ? 'block' : 'none';
   document.getElementById('pleads').style.display = t==='leads' ? 'block' : 'none';
   document.getElementById('puse').style.display   = t==='use'   ? 'block' : 'none';
+  document.getElementById('pcty').style.display   = t==='cty'   ? 'block' : 'none';
   document.getElementById('pweb').style.display   = t==='web'   ? 'block' : 'none';
   document.getElementById('pret').style.display   = t==='ret'   ? 'block' : 'none';
   if (t==='dash') { loadDashboard(); }
@@ -699,6 +738,7 @@ function showTab(t, el) {
   if (t==='pri')  loadPricing();
   if (t==='leads') loadLeads();
   if (t==='use')   loadUsage();
+  if (t==='cty') { if (!CTY_INIT) { countryDefaults(); CTY_INIT = true; } loadCountry(); }
   if (t==='web')   loadWebStats();
   if (t==='ret')   loadRetention();
 }
