@@ -1577,7 +1577,7 @@ async function loadCountry(){
   document.getElementById('cty-wrap').style.display = 'none';
   document.getElementById('cty-load').textContent   = 'Loading…';
   try {
-    var r = await apicall('/api/admin/country-report' + qs);
+    var r = await apicall(API + '/country-report' + qs);
     if (r.status === 401) { logout(); return; }
     var j = await r.json();
     if (!r.ok) throw new Error(j.error || 'Request failed');
