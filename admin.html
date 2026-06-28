@@ -842,7 +842,10 @@ function renderDailyChart(daily) {
   daily = daily || [];
   var el = document.getElementById('daily-chart');
   if (!el || typeof Chart === 'undefined') return; // Chart.js CDN unavailable → skip silently
-  var labels   = daily.map(function(d){ return d.date.slice(5); });   // MM-DD
+  var WL = ['S','M','T','W','T','F','S'];
+  // weekday for each IST calendar date (UTC-parsed YYYY-MM-DD is timezone-stable)
+  var wdays = daily.map(function(d){ return new Date(d.date + 'T00:00:00Z').getUTCDay(); });
+  var labels   = daily.map(function(d,i){ return [d.date.slice(5), WL[wdays[i]]]; }); // [MM-DD, weekday]
   var installs = daily.map(function(d){ return d.installs; });
   var signed   = daily.map(function(d){ return d.signed; });
   if (dailyChart) dailyChart.destroy();
@@ -868,7 +871,9 @@ function renderDailyChart(daily) {
       },
       scales:{
         x:{ grid:{ color:'rgba(148,163,184,0.07)' },
-            ticks:{ color:'#64748b', font:{size:10}, maxRotation:0, autoSkip:true, maxTicksLimit:10 } },
+            ticks:{ font:{size:9}, maxRotation:0, autoSkip:false,
+                    // weekends (Sun/Sat) tinted amber so dips are read as "weekend" not "issue"
+                    color:function(ctx){ var w=wdays[ctx.index]; return (w===0||w===6)?'#f59e0b':'#64748b'; } } },
         y:{ position:'left', beginAtZero:true, grid:{ color:'rgba(148,163,184,0.07)' },
             ticks:{ color:'#a78bfa', font:{size:10}, precision:0 },
             title:{ display:true, text:'Installs', color:'#a78bfa', font:{size:10} } },
@@ -1171,6 +1176,10 @@ function apicall(url,method,body){
 }
 function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function fmtDate(s){if(!s)return'<span style="color:#475569">Never</span>';return new Date(s).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});}
+function istTime(s){return new Date(s).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Kolkata'});}
+function istDate(s){return new Date(s).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Kolkata'});}
+function fmtDateTime(s){if(!s)return'<span style="color:#475569">Never</span>';return istDate(s)+' <span style="color:#64748b;font-size:11px">'+istTime(s)+'</span>';}
+function fmtDateTimePlain(s){if(!s)return'';return istDate(s)+' '+istTime(s);}
 function showErrEl(el,m){el.textContent=m;el.style.display='block';}
 function showMsg(el,m,c){el.textContent=m;el.style.color=c;el.style.display='block';}
 
@@ -1260,8 +1269,8 @@ function renderUsage() {
       +'<td class="ts"><span style="color:#60a5fa">'+dsc+'</span> / <span style="color:#f59e0b">'+wet+'</span></td>'
       +'<td class="ts">'+(Number(r.total_sessions)||0)+'</td>'
       +'<td class="ts"><span style="color:#a78bfa">'+bat+'</span> / <span style="color:#94a3b8">'+sng+'</span></td>'
-      +'<td class="ts">'+fmtDate(r.first_seen)+'</td>'
-      +'<td class="ts">'+fmtDate(r.last_seen)+'</td>'
+      +'<td class="ts">'+fmtDateTime(r.first_seen)+'</td>'
+      +'<td class="ts">'+fmtDateTime(r.last_seen)+'</td>'
       +'</tr>';
   }).join('');
 }
@@ -1286,7 +1295,7 @@ function usageExportRows() {
       Number(r.days_active)||0, Number(r.total_files)||0,
       Number(r.dsc_files)||0, Number(r.wet_files)||0,
       Number(r.total_sessions)||0, Number(r.batch_sessions)||0, Number(r.single_sessions)||0,
-      fmtDate(r.first_seen), fmtDate(r.last_seen)
+      fmtDateTimePlain(r.first_seen), fmtDateTimePlain(r.last_seen)
     ];
   });
   return { hdr: hdr, body: body };
