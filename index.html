@@ -2610,18 +2610,8 @@
       </div>
       <div class="stats-divider"></div>
       <div class="stats-counter">
-        <div class="stats-counter-val" id="stat-sg-today">—</div>
-        <div class="stats-counter-label">✍️ Files signed today</div>
-      </div>
-      <div class="stats-divider"></div>
-      <div class="stats-counter">
         <div class="stats-counter-val" id="stat-dl-total">—</div>
         <div class="stats-counter-label">🔢 Total downloads</div>
-      </div>
-      <div class="stats-divider"></div>
-      <div class="stats-counter">
-        <div class="stats-counter-val" id="stat-sg-total">—</div>
-        <div class="stats-counter-label">📄 Total files signed</div>
       </div>
     </div>
   </div>
@@ -4684,7 +4674,7 @@ document.querySelectorAll(".feature-card,.how-step,.plan-card,.testimonial").for
 // ── Live stats counter ────────────────────────────────────────────────────────
 (function() {
   var STATS_API = 'https://pdfsigner-api.vercel.app/api/stats';
-  var _dlBase = 0, _sgBase = 0, _optimistic = 0;
+  var _dlBase = 0, _optimistic = 0;
 
   function fmt(n) { return Number(n).toLocaleString('en-IN'); }
 
@@ -4700,27 +4690,17 @@ document.querySelectorAll(".feature-card,.how-step,.plan-card,.testimonial").for
     })(performance.now());
   }
 
-  function renderStats(dl, sg, totalDl, totalSg, animate) {
-    var dlEl  = document.getElementById('stat-dl-today');
-    var sgEl  = document.getElementById('stat-sg-today');
-    var totEl = document.getElementById('stat-totals');
+  function renderStats(dl, totalDl, animate) {
+    var dlEl = document.getElementById('stat-dl-today');
     if (!dlEl) return;
-    var showDl = dl + _optimistic;
+    var showDl  = dl + _optimistic;
+    var dlTotEl = document.getElementById('stat-dl-total');
     if (animate) {
       animateCount(dlEl, Math.max(0, showDl - 18), showDl, 1400);
-      animateCount(sgEl, Math.max(0, sg - 70),     sg,     1400);
+      if (dlTotEl) animateCount(dlTotEl, Math.max(0, totalDl - 200), totalDl, 1800);
     } else {
       dlEl.textContent = fmt(showDl);
-      sgEl.textContent = fmt(sg);
-    }
-    var dlTotEl = document.getElementById('stat-dl-total');
-    var sgTotEl = document.getElementById('stat-sg-total');
-    if (animate) {
-      animateCount(dlTotEl, Math.max(0, totalDl - 200), totalDl, 1800);
-      animateCount(sgTotEl, Math.max(0, totalSg - 800), totalSg, 1800);
-    } else {
       if (dlTotEl) dlTotEl.textContent = fmt(totalDl) + '+';
-      if (sgTotEl) sgTotEl.textContent = fmt(totalSg) + '+';
     }
   }
 
@@ -4729,9 +4709,8 @@ document.querySelectorAll(".feature-card,.how-step,.plan-card,.testimonial").for
       .then(function(r){ return r.ok ? r.json() : null; })
       .then(function(d){
         if (!d) return;
-        _dlBase = d.downloads_today    || 0;
-        _sgBase = d.files_signed_today || 0;
-        renderStats(_dlBase, _sgBase, d.total_downloads, d.total_files_signed, animate);
+        _dlBase = d.downloads_today || 0;
+        renderStats(_dlBase, d.total_downloads, animate);
       })
       .catch(function(){});
   }
