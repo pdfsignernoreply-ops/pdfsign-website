@@ -51,9 +51,17 @@ PDFSign.in lets Indian professionals sign any PDF document in under 60 seconds u
 - Accepted by: GeM, CPPP, NIC, MCA21, Income Tax Department, DGFT, and all major Indian government portals
 - No Aadhaar OTP required — uses physical DSC token
 
+## Key pages
+
+- [Download PDFSign for Windows](https://pdfsign.in/) — free 30-day trial, no credit card
+- [Global / International edition](https://pdfsign.in/global) — USD pricing, worldwide DSC token support
+- [Verify a PDF signature online](https://pdfsign.in/verify.html) — free, runs entirely in the browser
+- [Blog & how-to guides](https://pdfsign.in/blog/) — DSC token setup and GeM, CPPP, NIC, MCA21 signing tutorials
+- [Privacy Policy](https://pdfsign.in/privacy.html) · [Terms & Conditions](https://pdfsign.in/terms.html) · [Refund Policy](https://pdfsign.in/refund.html)
+
 ## Contact
 
-- Website: https://pdfsign.in
-- Email: help@pdfsign.in
+- Website: [pdfsign.in](https://pdfsign.in/)
+- Email: [help@pdfsign.in](mailto:help@pdfsign.in)
 - WhatsApp: +91 70574 13999
-- Download: https://apps.microsoft.com/detail/9PBCQ9ZM5G2X
+- Download: [Microsoft Store](https://apps.microsoft.com/detail/9PBCQ9ZM5G2X)
