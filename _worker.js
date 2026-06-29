@@ -1,10 +1,10 @@
 const VERCEL_WEB = 'https://pdfsign-web.vercel.app';
 
 // Proxy a request to the Vercel-deployed Next.js app at the given /web path.
-// Forwards the original host so Next.js middleware sees 'pdfsign.in' (keeps the
-// canonical, avoids a noindex X-Robots-Tag) and passes the Cloudflare country
-// through so the app can serve geo-specific content.
-function proxyToWeb(request, url, webPath) {
+// Passes the Cloudflare country through so the app can serve geo-specific
+// content, and strips the origin's X-Robots-Tag so the canonical pdfsign.in
+// pages stay indexable (see below).
+async function proxyToWeb(request, url, webPath) {
   const target = new URL(webPath + url.search, VERCEL_WEB);
   const proxyHeaders = new Headers(request.headers);
   proxyHeaders.set('x-forwarded-host', url.hostname);
@@ -12,12 +12,21 @@ function proxyToWeb(request, url, webPath) {
   const cfCountry = (request.cf && /^[A-Z]{2}$/.test(request.cf.country ?? ''))
     ? request.cf.country : 'IN';
   proxyHeaders.set('x-cf-country', cfCountry);
-  return fetch(new Request(target.toString(), {
+  const resp = await fetch(new Request(target.toString(), {
     method: request.method,
     headers: proxyHeaders,
     body: request.body,
     redirect: 'manual',
   }));
+  // The Vercel origin tags every *.vercel.app response with
+  // `X-Robots-Tag: noindex, nofollow` to keep the preview domain out of search.
+  // Vercel overwrites our x-forwarded-host, so the app's middleware can't tell
+  // canonical traffic apart and adds it even here. Strip it on this canonical
+  // (pdfsign.in) path so /global and the indexable /web tool pages can rank.
+  // Direct *.vercel.app access (which bypasses this Worker) keeps its noindex.
+  const headers = new Headers(resp.headers);
+  headers.delete('x-robots-tag');
+  return new Response(resp.body, { status: resp.status, statusText: resp.statusText, headers });
 }
 
 export default {
