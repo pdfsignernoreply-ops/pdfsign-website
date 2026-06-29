@@ -61,7 +61,7 @@
 body{font-family:'Outfit',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
 a{color:#16A34A;text-decoration:none}a:hover{text-decoration:underline}
 nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
-.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none}
+.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem}
 .nav-links a{color:#93C5FD;margin-left:1.5rem;font-size:.9rem}
 .nav-links a:hover{color:#fff;text-decoration:none}
 .blog-hero{background:linear-gradient(135deg,#1B2A47 0%,#243352 100%);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center}
@@ -107,7 +107,7 @@ tr:nth-child(even) td{background:#f8fafc}
 </head>
 <body>
 <nav>
-  <a class="nav-brand" href="https://pdfsign.in">PDF<span style="color:#16A34A">Sign</span>.in</a>
+  <a class="nav-brand" href="https://pdfsign.in"><svg class="nav-brand-mark" width="30" height="30" viewBox="0 0 48 48" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M24 3.5l15 5.2v11.1c0 9.7-6.4 16.3-15 19.2-8.6-2.9-15-9.5-15-19.2V8.7L24 3.5z" fill="#16a34a"/><path d="M17.6 12.6h7.5l4.9 4.9V28.3a1.7 1.7 0 0 1-1.7 1.7H17.6A1.7 1.7 0 0 1 15.9 28.3V14.3A1.7 1.7 0 0 1 17.6 12.6z" fill="#ffffff"/><path d="M25.1 12.6v4.9h4.9z" fill="#cdd5df"/><path d="M19 21h7M19 24h7M19 27h4.5" stroke="#9aa7b4" stroke-width="1.5" stroke-linecap="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#ffffff" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#16a34a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>PDF<span style="color:#16A34A">Sign</span></a>
   <div class="nav-links">
     <a href="https://pdfsign.in">Home</a>
     <a href="https://pdfsign.in/blog/">Blog</a>
@@ -157,9 +157,9 @@ tr:nth-child(even) td{background:#f8fafc}
   <li><strong>Pricing in INR:</strong> Tools priced in USD with international payment requirements are impractical for small businesses and individual professionals in India.</li>
 </ul>
 
-<h2>Tool 1: PDFSign.in</h2>
+<h2>Tool 1: PDFSign</h2>
 
-<p>PDFSign.in is a dedicated offline Windows application built specifically for Indian DSC token users. It runs entirely on your PC — no browser plugin, no cloud upload, no Java installation required.</p>
+<p>PDFSign is a dedicated offline Windows application built specifically for Indian DSC token users. It runs entirely on your PC — no browser plugin, no cloud upload, no Java installation required.</p>
 
 <h3>Token Support</h3>
 <p>PDFSign supports all major USB DSC tokens used across India:</p>
@@ -232,7 +232,7 @@ tr:nth-child(even) td{background:#f8fafc}
 <h3>Adobe Acrobat Pro (Desktop)</h3>
 <p>Adobe Acrobat Pro can technically sign PDFs using PKCS#11 tokens if configured correctly. It does support PAdES signatures and can work with USB tokens through Windows' certificate store. However:</p>
 <ul>
-  <li>Subscription price is approximately ₹1,400–₹1,600 per month — many times higher than PDFSign.in</li>
+  <li>Subscription price is approximately ₹1,400–₹1,600 per month — many times higher than PDFSign</li>
   <li>Configuration for Indian DSC tokens requires manually setting up PKCS#11 modules, which is non-trivial for non-technical users</li>
   <li>Adobe's updates occasionally break token detection settings</li>
   <li>Batch signing requires scripting or additional plugins</li>
@@ -260,7 +260,7 @@ tr:nth-child(even) td{background:#f8fafc}
 <table>
   <tr>
     <th>Feature</th>
-    <th>PDFSign.in</th>
+    <th>PDFSign</th>
     <th>eMudhra Client</th>
     <th>Capricorn Signer</th>
     <th>Adobe Acrobat Pro</th>
@@ -338,7 +338,7 @@ tr:nth-child(even) td{background:#f8fafc}
 
 <p>Java has had a persistent history of critical security vulnerabilities. The US-CERT and India's CERT-In have repeatedly advised organisations to keep Java uninstalled unless specifically required. Installing Java just to run an outdated signing plugin exposes your entire PC to risk.</p>
 
-<p>Any signing software that still requires Java in 2026 is built on an outdated foundation. PDFSign.in uses Windows-native PKCS#11 token access and requires no Java runtime whatsoever.</p>
+<p>Any signing software that still requires Java in 2026 is built on an outdated foundation. PDFSign uses Windows-native PKCS#11 token access and requires no Java runtime whatsoever.</p>
 
 <h2>Why Cloud Upload Is a Risk for Sensitive Indian Documents</h2>
 
@@ -351,20 +351,20 @@ tr:nth-child(even) td{background:#f8fafc}
   <li><strong>No audit trail:</strong> You cannot verify that the cloud service has deleted your document after processing.</li>
 </ul>
 
-<p>PDFSign.in processes everything on your local Windows PC. Your document never leaves your computer during the signing process. The only outbound network call is a brief contact with the RFC 3161 TSA server to obtain a timestamp — and even then, only the document hash (not the document itself) is transmitted.</p>
+<p>PDFSign processes everything on your local Windows PC. Your document never leaves your computer during the signing process. The only outbound network call is a brief contact with the RFC 3161 TSA server to obtain a timestamp — and even then, only the document hash (not the document itself) is transmitted.</p>
 
 <h2>Our Recommendation</h2>
 
-<p>For any Indian professional who regularly signs PDFs for government portals, legal purposes, or business use, <strong>PDFSign.in is the most practical and cost-effective choice in 2026</strong>. It works with all major USB DSC tokens regardless of which CA issued your certificate, requires no Java, signs documents entirely offline, supports batch signing, includes RFC 3161 timestamps automatically, and is accepted on every major Indian government portal.</p>
+<p>For any Indian professional who regularly signs PDFs for government portals, legal purposes, or business use, <strong>PDFSign is the most practical and cost-effective choice in 2026</strong>. It works with all major USB DSC tokens regardless of which CA issued your certificate, requires no Java, signs documents entirely offline, supports batch signing, includes RFC 3161 timestamps automatically, and is accepted on every major Indian government portal.</p>
 
 <p>CA-specific tools (eMudhra client, Capricorn Signer) are adequate if you hold only that CA's DSC and only need to sign one document at a time. But they fail the moment you switch CAs, need batch signing, or need to sign on behalf of colleagues with different tokens.</p>
 
-<p>Adobe Acrobat is a premium product with many excellent features, but at ₹1,500 per month per seat, it is difficult to justify when PDFSign.in covers all Indian government signing requirements at a fraction of the cost.</p>
+<p>Adobe Acrobat is a premium product with many excellent features, but at ₹1,500 per month per seat, it is difficult to justify when PDFSign covers all Indian government signing requirements at a fraction of the cost.</p>
 
 <h2>Frequently Asked Questions</h2>
 
 <h3>Is Adobe Sign accepted on GeM portal?</h3>
-<p>No. Adobe Sign produces cloud-based e-signatures that are not equivalent to the Class 3 DSC-based digital signatures required on GeM. GeM requires a cryptographically signed PDF using a valid DSC. PDFSign.in or similar DSC-based signing software is required.</p>
+<p>No. Adobe Sign produces cloud-based e-signatures that are not equivalent to the Class 3 DSC-based digital signatures required on GeM. GeM requires a cryptographically signed PDF using a valid DSC. PDFSign or similar DSC-based signing software is required.</p>
 
 <h3>Can I use free online tools like ILovePDF or Smallpdf to sign government documents?</h3>
 <p>No. These tools add image-based signatures with no cryptographic validity. They do not support USB DSC tokens. Signatures from these tools will be rejected on GeM, CPPP, MCA21, and all other Indian government portals that verify digital signatures.</p>
@@ -373,13 +373,13 @@ tr:nth-child(even) td{background:#f8fafc}
 <p>Zoho Sign is a cloud-based e-signature service suitable for business agreements and internal approvals. It does not support USB DSC tokens and is not accepted as a Class 3 DSC digital signature on Indian government procurement or filing portals.</p>
 
 <h3>Which software works with all USB DSC tokens?</h3>
-<p>PDFSign.in is designed to work with all major tokens: HYP2003, ePass 2003/3003, Proxkey, Feitian, Watchdata, and WD Pro. It is the only tool in this comparison that supports every common Indian USB DSC token regardless of the issuing CA.</p>
+<p>PDFSign is designed to work with all major tokens: HYP2003, ePass 2003/3003, Proxkey, Feitian, Watchdata, and WD Pro. It is the only tool in this comparison that supports every common Indian USB DSC token regardless of the issuing CA.</p>
 
 <h3>Do I need a separate software for each DSC token brand?</h3>
-<p>Not with PDFSign.in. CA-specific tools like eMudhra client and Capricorn Signer only work with their respective CA's tokens. PDFSign.in works with all of them, making it the practical choice for organisations where different employees may hold tokens from different CAs.</p>
+<p>Not with PDFSign. CA-specific tools like eMudhra client and Capricorn Signer only work with their respective CA's tokens. PDFSign works with all of them, making it the practical choice for organisations where different employees may hold tokens from different CAs.</p>
 
 <div class="cta-box">
-  <h2>Try PDFSign.in Free for 30 Days</h2>
+  <h2>Try PDFSign Free for 30 Days</h2>
   <p>Works with all USB DSC tokens. 100% offline. Accepted on GeM, CPPP, MCA21 and more. No Java required.</p>
   <a class="btn-green" href="https://pdfsigner-api.vercel.app/api/download">Download PDFSign — Free Trial</a>
 </div>
@@ -401,7 +401,7 @@ tr:nth-child(even) td{background:#f8fafc}
 </div>
 </div>
 <footer>
-  <p>© 2026 PDFSign.in by Tender Training India &nbsp;|&nbsp; <a href="https://pdfsign.in/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="https://pdfsign.in/terms.html">Terms</a> &nbsp;|&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
+  <p>© 2026 PDFSign by Tender Training India &nbsp;|&nbsp; <a href="https://pdfsign.in/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="https://pdfsign.in/terms.html">Terms</a> &nbsp;|&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
 </footer>
 <script src="/js/download-gate.js"></script>
 <script src="../js/ms-modal.js"></script>

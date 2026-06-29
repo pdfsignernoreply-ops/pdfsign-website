@@ -1,31 +1,39 @@
 const VERCEL_WEB = 'https://pdfsign-web.vercel.app';
 
+// Proxy a request to the Vercel-deployed Next.js app at the given /web path.
+// Forwards the original host so Next.js middleware sees 'pdfsign.in' (keeps the
+// canonical, avoids a noindex X-Robots-Tag) and passes the Cloudflare country
+// through so the app can serve geo-specific content.
+function proxyToWeb(request, url, webPath) {
+  const target = new URL(webPath + url.search, VERCEL_WEB);
+  const proxyHeaders = new Headers(request.headers);
+  proxyHeaders.set('x-forwarded-host', url.hostname);
+  proxyHeaders.set('x-forwarded-proto', url.protocol.replace(':', ''));
+  const cfCountry = (request.cf && /^[A-Z]{2}$/.test(request.cf.country ?? ''))
+    ? request.cf.country : 'IN';
+  proxyHeaders.set('x-cf-country', cfCountry);
+  return fetch(new Request(target.toString(), {
+    method: request.method,
+    headers: proxyHeaders,
+    body: request.body,
+    redirect: 'manual',
+  }));
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
     // Proxy /web and /web/* to the Vercel-deployed Next.js app
     if (url.pathname === '/web' || url.pathname.startsWith('/web/')) {
-      const target = new URL(url.pathname + url.search, VERCEL_WEB);
+      return proxyToWeb(request, url, url.pathname);
+    }
 
-      // Forward original host so Next.js middleware sees 'pdfsign.in' not 'vercel.app'
-      // This ensures X-Robots-Tag: noindex is NOT added for canonical traffic,
-      // and NEXT_PUBLIC_SITE_URL-based redirects work correctly.
-      const proxyHeaders = new Headers(request.headers);
-      proxyHeaders.set('x-forwarded-host', url.hostname);
-      proxyHeaders.set('x-forwarded-proto', url.protocol.replace(':', ''));
-      // Pass authoritative Cloudflare country to the Next.js app so it can
-      // serve geo-specific content (e.g. India vs international modal copy).
-      const cfCountry = (request.cf && /^[A-Z]{2}$/.test(request.cf.country ?? ''))
-        ? request.cf.country : 'IN';
-      proxyHeaders.set('x-cf-country', cfCountry);
-
-      return fetch(new Request(target.toString(), {
-        method: request.method,
-        headers: proxyHeaders,
-        body: request.body,
-        redirect: 'manual',
-      }));
+    // Public global landing page: /global → Next.js app at /web/global.
+    // Keeps the canonical (https://pdfsign.in/global) resolving; must run before
+    // the non-blog clean-URL → .html redirect below, which would otherwise 404.
+    if (url.pathname === '/global' || url.pathname === '/global/') {
+      return proxyToWeb(request, url, '/web/global');
     }
 
     // Geo endpoint — served by the Worker (not a static asset) so request.cf.country is reliable.

@@ -9,13 +9,29 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en-in" href="https://pdfsign.in/"/>
-    <xhtml:link rel="alternate" hreflang="en-us" href="https://pdfsign.in/"/>
-    <xhtml:link rel="alternate" hreflang="en-gb" href="https://pdfsign.in/"/>
-    <xhtml:link rel="alternate" hreflang="en-ae" href="https://pdfsign.in/"/>
-    <xhtml:link rel="alternate" hreflang="en-au" href="https://pdfsign.in/"/>
-    <xhtml:link rel="alternate" hreflang="en-ca" href="https://pdfsign.in/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://pdfsign.in/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfsign.in/"/>
+    <xhtml:link rel="alternate" hreflang="en-us" href="https://pdfsign.in/global"/>
+    <xhtml:link rel="alternate" hreflang="en-gb" href="https://pdfsign.in/global"/>
+    <xhtml:link rel="alternate" hreflang="en-ae" href="https://pdfsign.in/global"/>
+    <xhtml:link rel="alternate" hreflang="en-au" href="https://pdfsign.in/global"/>
+    <xhtml:link rel="alternate" hreflang="en-ca" href="https://pdfsign.in/global"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfsign.in/global"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfsign.in/global"/>
+  </url>
+
+  <!-- International / global landing page -->
+  <url>
+    <loc>https://pdfsign.in/global</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-in" href="https://pdfsign.in/"/>
+    <xhtml:link rel="alternate" hreflang="en-us" href="https://pdfsign.in/global"/>
+    <xhtml:link rel="alternate" hreflang="en-gb" href="https://pdfsign.in/global"/>
+    <xhtml:link rel="alternate" hreflang="en-ae" href="https://pdfsign.in/global"/>
+    <xhtml:link rel="alternate" hreflang="en-au" href="https://pdfsign.in/global"/>
+    <xhtml:link rel="alternate" hreflang="en-ca" href="https://pdfsign.in/global"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pdfsign.in/global"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pdfsign.in/global"/>
   </url>
 
   <url>

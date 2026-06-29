@@ -176,7 +176,7 @@
 body{font-family:'Outfit',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
 a{color:#16A34A;text-decoration:none}a:hover{text-decoration:underline}
 nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
-.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none}
+.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem}
 .nav-links a{color:#93C5FD;margin-left:1.5rem;font-size:.9rem}
 .nav-links a:hover{color:#fff;text-decoration:none}
 .blog-hero{background:linear-gradient(135deg,#1B2A47 0%,#243352 100%);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center}
@@ -237,7 +237,7 @@ footer a{color:#93C5FD}
 <body>
 
 <nav>
-  <a class="nav-brand" href="https://pdfsign.in">PDF<span style="color:#16A34A">Sign</span>.in</a>
+  <a class="nav-brand" href="https://pdfsign.in"><svg class="nav-brand-mark" width="30" height="30" viewBox="0 0 48 48" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M24 3.5l15 5.2v11.1c0 9.7-6.4 16.3-15 19.2-8.6-2.9-15-9.5-15-19.2V8.7L24 3.5z" fill="#16a34a"/><path d="M17.6 12.6h7.5l4.9 4.9V28.3a1.7 1.7 0 0 1-1.7 1.7H17.6A1.7 1.7 0 0 1 15.9 28.3V14.3A1.7 1.7 0 0 1 17.6 12.6z" fill="#ffffff"/><path d="M25.1 12.6v4.9h4.9z" fill="#cdd5df"/><path d="M19 21h7M19 24h7M19 27h4.5" stroke="#9aa7b4" stroke-width="1.5" stroke-linecap="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#ffffff" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#16a34a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>PDF<span style="color:#16A34A">Sign</span></a>
   <div class="nav-links">
     <a href="https://pdfsign.in">Home</a>
     <a href="https://pdfsign.in/blog/">Blog</a>
@@ -249,7 +249,7 @@ footer a{color:#93C5FD}
 <div class="blog-hero">
   <div class="category">DSC Signing Guide</div>
   <h1>How to Digitally Sign PDF Using DSC — Without Adobe Acrobat [2026]</h1>
-  <div class="meta">By PDFSign.in &nbsp;·&nbsp; May 2026 &nbsp;·&nbsp; 7 min read</div>
+  <div class="meta">By PDFSign &nbsp;·&nbsp; May 2026 &nbsp;·&nbsp; 7 min read</div>
 </div>
 
 <div class="container">
@@ -265,10 +265,10 @@ footer a{color:#93C5FD}
 
     <p>Google will tell you to use Adobe Acrobat to digitally sign a PDF with your DSC token. The AI Overview explains Adobe's workflow. Most YouTube tutorials show Adobe. But here's the problem: <strong>Adobe Acrobat costs ₹1,300–₹1,800 per month</strong>, requires complex DSC configuration, and frequently breaks when tokens or Windows updates change.</p>
 
-    <p>There is a simpler, faster, and much cheaper way. <strong>PDFSign.in</strong> is dedicated PDF digital signature software built specifically for Indian DSC token holders — use it to digitally sign a PDF in India with any Class 3 DSC. Plug in your token, open the app, sign — most users finish in under a minute once the token is connected. No Acrobat subscription. No Java. No browser plugin. Fully offline.</p>
+    <p>There is a simpler, faster, and much cheaper way. <strong>PDFSign</strong> is dedicated PDF digital signature software built specifically for Indian DSC token holders — use it to digitally sign a PDF in India with any Class 3 DSC. Plug in your token, open the app, sign — most users finish in under a minute once the token is connected. No Acrobat subscription. No Java. No browser plugin. Fully offline.</p>
 
     <div class="tip">
-      <strong>✅ Legally valid on all Indian government portals.</strong> PDFs signed with PDFSign.in using a Class 2 or Class 3 DSC create PAdES-compliant digital signatures accepted on GeM, CPPP, MCA21, GST, NIC eProcurement, Income Tax, and all major government portals under the IT Act 2000.
+      <strong>✅ Legally valid on all Indian government portals.</strong> PDFs signed with PDFSign using a Class 2 or Class 3 DSC create PAdES-compliant digital signatures accepted on GeM, CPPP, MCA21, GST, NIC eProcurement, Income Tax, and all major government portals under the IT Act 2000.
     </div>
 
     <div class="quick-answer">
@@ -296,7 +296,7 @@ footer a{color:#93C5FD}
       <li><strong>Company agreements</strong> — contracts, NDAs and board resolutions</li>
     </ul>
 
-    <h2>Adobe Acrobat vs PDFSign.in for DSC Signing</h2>
+    <h2>Adobe Acrobat vs PDFSign for DSC Signing</h2>
     <p>Before the steps, here's an honest comparison of both approaches:</p>
 
     <table class="compare-table">
@@ -304,7 +304,7 @@ footer a{color:#93C5FD}
         <tr>
           <th>Feature</th>
           <th>Adobe Acrobat</th>
-          <th>PDFSign.in</th>
+          <th>PDFSign</th>
         </tr>
       </thead>
       <tbody>
@@ -355,7 +355,7 @@ footer a{color:#93C5FD}
     <ul>
       <li><strong>A DSC USB token</strong> — Class 2 or Class 3, from any licensed CA: eMudhra, Capricorn, Sify SafeScrypt, ProxKey, HyperPKI, ePass, WD Pro, Feitian, Watchdata</li>
       <li><strong>Token middleware installed</strong> — the driver software for your specific token (ePass2003 Token Manager, ProxKey Middleware, HYP2003 PKCS#11, etc.)</li>
-      <li><strong>PDFSign.in</strong> — <a href="https://pdfsigner-api.vercel.app/api/download">download the free trial for Windows here</a></li>
+      <li><strong>PDFSign</strong> — <a href="https://pdfsigner-api.vercel.app/api/download">download the free trial for Windows here</a></li>
       <li><strong>The PDF file</strong> you want to sign</li>
       <li><strong>Your token PIN</strong> — set during provisioning or provided by your CA</li>
     </ul>
@@ -367,7 +367,7 @@ footer a{color:#93C5FD}
     <h2>How to Digitally Sign a PDF Using DSC — Step by Step</h2>
 
     <div class="step">
-      <div class="step-title"><span class="step-num">1</span>Install PDFSign.in and launch it</div>
+      <div class="step-title"><span class="step-num">1</span>Install PDFSign and launch it</div>
       <p>Download PDFSign from the <a href="https://apps.microsoft.com/detail/9PBCQ9ZM5G2X">Microsoft Store</a> or <a href="https://pdfsigner-api.vercel.app/api/download">direct download</a>. Install and open it. No account creation or login required.</p>
     </div>
 
@@ -425,7 +425,7 @@ footer a{color:#93C5FD}
     <h2>Why Avoid Adobe Acrobat for DSC Signing?</h2>
     <p>Adobe Acrobat can sign PDFs with DSC tokens, but there are four practical problems:</p>
     <ol>
-      <li><strong>High cost:</strong> Acrobat Standard or Pro costs ₹1,300–₹1,800/month just to access PDF signing features. PDFSign.in starts at ₹99/month.</li>
+      <li><strong>High cost:</strong> Acrobat Standard or Pro costs ₹1,300–₹1,800/month just to access PDF signing features. PDFSign starts at ₹99/month.</li>
       <li><strong>Complex DSC setup:</strong> Acrobat requires you to manually configure a "Digital ID" — locating your token's PKCS#11 library file (.dll), pointing Acrobat to it, and setting it as the default. This breaks across Acrobat and Windows updates.</li>
       <li><strong>No batch signing in standard plans:</strong> Signing a folder of 50 PDFs in Acrobat requires Acrobat DC plus Action Wizard or scripting. PDFSign does this natively in 2 clicks.</li>
       <li><strong>No built-in RFC 3161 timestamp:</strong> Acrobat's timestamp support requires manual TSA server configuration. PDFSign includes Sectigo/Comodo RFC 3161 timestamp by default, at no extra cost.</li>
@@ -442,7 +442,7 @@ footer a{color:#93C5FD}
     <p>PDFSign sidesteps all of this. You <strong>sign locally</strong>, you <strong>sign offline</strong>, and it <strong>works with your DSC token</strong> directly through Windows — no Java, no browser, no applet. Sign the PDF on your own PC first, then simply upload the finished file to the portal. If your token isn't showing up, our <a href="dsc-token-not-detected-windows-11-fix.html">DSC token not detected fix</a> walks through it.</p>
 
     <h2>Accepted on All Major Indian Government Portals</h2>
-    <p>PDFs digitally signed using PDFSign.in with a Class 3 DSC are accepted on:</p>
+    <p>PDFs digitally signed using PDFSign with a Class 3 DSC are accepted on:</p>
     <ul>
       <li><strong>GeM Portal</strong> (Government e-Marketplace)</li>
       <li><strong>CPPP</strong> (Central Public Procurement Portal)</li>
@@ -470,7 +470,7 @@ footer a{color:#93C5FD}
     <div class="cta-box">
       <h2>Sign PDFs with Your DSC Token — No Adobe, No Java</h2>
       <p>Free trial · No credit card · Works with all Indian DSC tokens · 100% offline</p>
-      <a class="btn-green" href="https://pdfsigner-api.vercel.app/api/download">Download PDFSign.in Free</a>
+      <a class="btn-green" href="https://pdfsigner-api.vercel.app/api/download">Download PDFSign Free</a>
       &nbsp;&nbsp;
       <a style="color:#93C5FD;font-size:.9rem" href="https://pdfsign.in/#pricing">View Pricing →</a>
     </div>
@@ -481,32 +481,32 @@ footer a{color:#93C5FD}
 
       <details class="faq-item">
         <summary class="faq-q">How to digitally sign on PDF with DSC?</summary>
-        <div class="faq-a">Install PDFSign.in on Windows, plug in your DSC USB token, select Digital Signature (DSC) mode, choose your certificate from the dropdown, select your PDF, and click Sign. Enter your token PIN when prompted. Most users can sign a PDF in under a minute once their DSC token is connected, with no Adobe Acrobat, Java, or browser plugin. Supported tokens include eMudhra, Capricorn, ProxKey, ePass 2003/3003, HyperPKI HYP2003, and all PKCS#11-compatible DSC tokens.</div>
+        <div class="faq-a">Install PDFSign on Windows, plug in your DSC USB token, select Digital Signature (DSC) mode, choose your certificate from the dropdown, select your PDF, and click Sign. Enter your token PIN when prompted. Most users can sign a PDF in under a minute once their DSC token is connected, with no Adobe Acrobat, Java, or browser plugin. Supported tokens include eMudhra, Capricorn, ProxKey, ePass 2003/3003, HyperPKI HYP2003, and all PKCS#11-compatible DSC tokens.</div>
       </details>
 
       <details class="faq-item">
         <summary class="faq-q">Can I digitally sign a PDF using DSC without Adobe Acrobat?</summary>
-        <div class="faq-a">Yes — PDFSign.in is specifically built for this. It reads your certificate directly from the Windows cryptographic layer (CNG/CSP), no Adobe required. It creates PAdES-compliant digital signatures accepted on all Indian government portals. Starting at ₹99/month, it is also significantly cheaper than Adobe Acrobat.</div>
+        <div class="faq-a">Yes — PDFSign is specifically built for this. It reads your certificate directly from the Windows cryptographic layer (CNG/CSP), no Adobe required. It creates PAdES-compliant digital signatures accepted on all Indian government portals. Starting at ₹99/month, it is also significantly cheaper than Adobe Acrobat.</div>
       </details>
 
       <details class="faq-item">
         <summary class="faq-q">How do I create my digital signature in a PDF using DSC?</summary>
-        <div class="faq-a">A digital signature using DSC is not drawn or typed — it is cryptographically created from your Class 2 or Class 3 DSC certificate stored on your USB token. PDFSign.in reads the certificate from the token and creates a tamper-evident digital signature block in the PDF containing your name, issuing CA, date/time, and RFC 3161 timestamp.</div>
+        <div class="faq-a">A digital signature using DSC is not drawn or typed — it is cryptographically created from your Class 2 or Class 3 DSC certificate stored on your USB token. PDFSign reads the certificate from the token and creates a tamper-evident digital signature block in the PDF containing your name, issuing CA, date/time, and RFC 3161 timestamp.</div>
       </details>
 
       <details class="faq-item">
-        <summary class="faq-q">Which DSC tokens work with PDFSign.in?</summary>
+        <summary class="faq-q">Which DSC tokens work with PDFSign?</summary>
         <div class="faq-a">All PKCS#11-compatible USB DSC tokens used in India: eMudhra (ePass 2003, ePass 3003), HyperPKI HYP2003, Capricorn CA, ProxKey, Feitian, WD Pro, Watchdata, SafeNet. Any Class 2 or Class 3 DSC issued by a licensed Certifying Authority under CCA India is supported.</div>
       </details>
 
       <details class="faq-item">
         <summary class="faq-q">Is a PDF digitally signed with DSC legally valid in India?</summary>
-        <div class="faq-a">Yes. A digital signature applied using a Class 2 or Class 3 DSC is legally valid under the IT Act 2000 and IT Amendment Act 2008. PDFSign.in creates PAdES-compliant signatures accepted on GeM, CPPP, NIC eProcurement, MCA21, GST portal, and all major Indian government portals.</div>
+        <div class="faq-a">Yes. A digital signature applied using a Class 2 or Class 3 DSC is legally valid under the IT Act 2000 and IT Amendment Act 2008. PDFSign creates PAdES-compliant signatures accepted on GeM, CPPP, NIC eProcurement, MCA21, GST portal, and all major Indian government portals.</div>
       </details>
 
       <details class="faq-item">
         <summary class="faq-q">What is RFC 3161 timestamp and do I need it?</summary>
-        <div class="faq-a">RFC 3161 embeds a cryptographic proof of the signing time from a trusted authority (Sectigo/Comodo). It keeps your digital signature legally valid even after your DSC certificate expires. PDFSign.in includes this by default at no extra cost. It is strongly recommended for tender documents, legal contracts, and compliance filings.</div>
+        <div class="faq-a">RFC 3161 embeds a cryptographic proof of the signing time from a trusted authority (Sectigo/Comodo). It keeps your digital signature legally valid even after your DSC certificate expires. PDFSign includes this by default at no extra cost. It is strongly recommended for tender documents, legal contracts, and compliance filings.</div>
       </details>
     </div>
 
@@ -536,8 +536,8 @@ footer a{color:#93C5FD}
 </div><!-- /container -->
 
 <footer>
-  <p><a href="https://pdfsign.in">PDFSign.in</a> &nbsp;·&nbsp; <a href="https://pdfsign.in/blog/">Blog</a> &nbsp;·&nbsp; <a href="https://pdfsign.in/#pricing">Pricing</a> &nbsp;·&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
-  <p style="margin-top:.5rem">© 2026 PDFSign.in — Digitally Sign PDF with DSC Token on Windows</p>
+  <p><a href="https://pdfsign.in">PDFSign</a> &nbsp;·&nbsp; <a href="https://pdfsign.in/blog/">Blog</a> &nbsp;·&nbsp; <a href="https://pdfsign.in/#pricing">Pricing</a> &nbsp;·&nbsp; <a href="mailto:help@pdfsign.in">help@pdfsign.in</a></p>
+  <p style="margin-top:.5rem">© 2026 PDFSign — Digitally Sign PDF with DSC Token on Windows</p>
 </footer>
 
 </body>

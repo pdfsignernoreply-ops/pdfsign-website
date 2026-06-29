@@ -7,6 +7,14 @@
 <meta name="description" content="Free online PDF digital signature verifier. Upload any PDF to instantly check signer name, certificate details, signing date, and document integrity. Works with all Indian DSC signatures from eMudhra, Sify, Capricorn, nCode and more."/>
 <meta name="keywords" content="verify digital signature PDF, check PDF signature valid, verify DSC signature online, PDF signature verifier India, validate digital signature PDF free"/>
 <link rel="canonical" href="https://pdfsign.in/verify.html"/>
+<!-- Favicon -->
+<link rel="icon" href="/favicon.ico" sizes="any"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+<link rel="manifest" href="/site.webmanifest"/>
+<meta name="theme-color" content="#1b2a47"/>
 <meta property="og:title" content="Verify PDF Digital Signature — Free Online Tool"/>
 <meta property="og:description" content="Check if a PDF is digitally signed. Get signer name, certificate details, and document integrity status — all in your browser. Free, private, no upload to any server."/>
 <meta property="og:url" content="https://pdfsign.in/verify.html"/>
@@ -106,12 +114,8 @@ a { text-decoration: none; color: inherit; }
 }
 .logo { display: flex; align-items: center; gap: 10px; }
 .logo-mark {
-  background: #243558;
-  border: 1px solid rgba(147,197,253,0.2);
-  border-radius: 8px;
-  width: 38px; height: 38px;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
+  width: 38px; height: 38px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
 }
 .logo-mark .lt { font-weight: 700; font-size: 9px; letter-spacing: 1px; color: #fff; line-height: 1.2; }
 .logo-mark .ls { font-weight: 700; font-size: 9px; letter-spacing: 1px; color: #93C5FD; line-height: 1.2; }
@@ -358,12 +362,8 @@ a { text-decoration: none; color: inherit; }
 <!-- ── NAV ── -->
 <nav class="nav">
   <a href="/" class="logo">
-    <div class="logo-mark">
-      <span class="lt">PDF</span>
-      <div class="ld"></div>
-      <span class="ls">SIGN</span>
-    </div>
-    <span class="logo-name">PDF<em>Sign</em>.in</span>
+    <svg class="logo-mark" width="38" height="38" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 3.5l15 5.2v11.1c0 9.7-6.4 16.3-15 19.2-8.6-2.9-15-9.5-15-19.2V8.7L24 3.5z" fill="#16a34a"/><path d="M17.6 12.6h7.5l4.9 4.9V28.3a1.7 1.7 0 0 1-1.7 1.7H17.6A1.7 1.7 0 0 1 15.9 28.3V14.3A1.7 1.7 0 0 1 17.6 12.6z" fill="#ffffff"/><path d="M25.1 12.6v4.9h4.9z" fill="#cdd5df"/><path d="M19 21h7M19 24h7M19 27h4.5" stroke="#9aa7b4" stroke-width="1.5" stroke-linecap="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#ffffff" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#16a34a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="logo-name">PDF<em>Sign</em></span>
   </a>
   <a href="https://apps.microsoft.com/detail/9PBCQ9ZM5G2X" onclick="fetch('https://pdfsigner-api.vercel.app/api/download');window.location='ms-windows-store://pdp/?ProductId=9PBCQ9ZM5G2X';return false;" class="nav-dl">Download Free</a>
 </nav>
@@ -493,7 +493,7 @@ a { text-decoration: none; color: inherit; }
 <!-- ── FOOTER ── -->
 <footer class="footer">
   <p>
-    © 2026 <a href="/">PDFSign.in</a> &nbsp;·&nbsp;
+    © 2026 <a href="/">PDFSign</a> &nbsp;·&nbsp;
     <a href="/privacy.html">Privacy</a> &nbsp;·&nbsp;
     <a href="/terms.html">Terms</a> &nbsp;·&nbsp;
     <a href="mailto:help@pdfsign.in">help@pdfsign.in</a>

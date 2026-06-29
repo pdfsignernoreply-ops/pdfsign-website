@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 168" width="220" height="168">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&amp;display=swap');</style>
+    <linearGradient id="sh" x1="24" y1="3" x2="24" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22c55e"/><stop offset="1" stop-color="#16a34a"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield, centered -->
+  <g transform="translate(86,6) scale(1.0)">
+    <path d="M24 3.5l15 5.2v11.1c0 9.7-6.4 16.3-15 19.2-8.6-2.9-15-9.5-15-19.2V8.7L24 3.5z" fill="url(#sh)"/>
+    <path d="M17.6 12.6h7.5l4.9 4.9V28.3a1.7 1.7 0 0 1-1.7 1.7H17.6A1.7 1.7 0 0 1 15.9 28.3V14.3A1.7 1.7 0 0 1 17.6 12.6z" fill="#ffffff"/>
+    <path d="M25.1 12.6v4.9h4.9z" fill="#cdd5df"/>
+    <path d="M19 21h7M19 24h7M19 27h4.5" stroke="#9aa7b4" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#ffffff" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#16a34a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="110" y="108" text-anchor="middle" font-family="Outfit, 'Segoe UI', Arial, sans-serif" font-weight="700" font-size="34" letter-spacing="-0.5">
+    <tspan fill="#1b2a47">PDF</tspan><tspan fill="#16a34a">Sign</tspan>
+  </text>
+  <!-- Tagline -->
+  <text x="110" y="132" text-anchor="middle" font-family="Outfit, 'Segoe UI', Arial, sans-serif" font-weight="600" font-size="10.5" letter-spacing="3">
+    <tspan fill="#475569">PRIVATE. SECURE. </tspan><tspan fill="#16a34a">SIGNED.</tspan>
+  </text>
+</svg>

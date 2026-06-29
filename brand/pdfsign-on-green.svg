@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 64" width="264" height="64">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&amp;display=swap');</style>
+  </defs>
+  <!-- Intended for placement on a green (#16a34a) surface; all-white treatment -->
+  <g transform="translate(3,2) scale(1.21)">
+    <path d="M24 3.5l15 5.2v11.1c0 9.7-6.4 16.3-15 19.2-8.6-2.9-15-9.5-15-19.2V8.7L24 3.5z" fill="rgba(255,255,255,0.16)" stroke="#ffffff" stroke-width="2.4" stroke-linejoin="round"/>
+    <path d="M17.6 12.6h7.5l4.9 4.9V28.3a1.7 1.7 0 0 1-1.7 1.7H17.6A1.7 1.7 0 0 1 15.9 28.3V14.3A1.7 1.7 0 0 1 17.6 12.6z" fill="#ffffff"/>
+    <path d="M25.1 12.6v4.9h4.9z" fill="#bbf7d0"/>
+    <path d="M19 21h7M19 24h7M19 27h4.5" stroke="#86d7a3" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#16a34a" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="72" y="43" font-family="Outfit, 'Segoe UI', Arial, sans-serif" font-weight="700" font-size="38" letter-spacing="-0.5" fill="#ffffff">PDFSign</text>
+</svg>

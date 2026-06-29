@@ -38,13 +38,13 @@
 
 <!-- hreflang — India + diaspora -->
 <link rel="alternate" hreflang="en-in" href="https://pdfsign.in/" />
-<link rel="alternate" hreflang="en-us" href="https://pdfsign.in/" />
-<link rel="alternate" hreflang="en-gb" href="https://pdfsign.in/" />
-<link rel="alternate" hreflang="en-ae" href="https://pdfsign.in/" />
-<link rel="alternate" hreflang="en-au" href="https://pdfsign.in/" />
-<link rel="alternate" hreflang="en-ca" href="https://pdfsign.in/" />
-<link rel="alternate" hreflang="en" href="https://pdfsign.in/" />
-<link rel="alternate" hreflang="x-default" href="https://pdfsign.in/" />
+<link rel="alternate" hreflang="en-us" href="https://pdfsign.in/global" />
+<link rel="alternate" hreflang="en-gb" href="https://pdfsign.in/global" />
+<link rel="alternate" hreflang="en-ae" href="https://pdfsign.in/global" />
+<link rel="alternate" hreflang="en-au" href="https://pdfsign.in/global" />
+<link rel="alternate" hreflang="en-ca" href="https://pdfsign.in/global" />
+<link rel="alternate" hreflang="en" href="https://pdfsign.in/global" />
+<link rel="alternate" hreflang="x-default" href="https://pdfsign.in/global" />
 <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css" media="print" onload="this.media='all'" />
 <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css" /></noscript>
@@ -65,9 +65,13 @@
 <meta name="twitter:image" content="https://pdfsign.in/og-image.png" />
 
 <!-- Favicon -->
+<link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="shortcut icon" href="/favicon.svg" />
-<link rel="apple-touch-icon" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#1b2a47" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://www.google-analytics.com" />
@@ -157,13 +161,9 @@
     width: 38px;
     height: 38px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: var(--navy-light);
-    border: 1px solid rgba(147,197,253,0.2);
-    border-radius: 8px;
-    overflow: hidden;
+    flex-shrink: 0;
   }
 
   .logo-mark span {
@@ -2397,12 +2397,8 @@
 <nav>
   <div class="nav-inner">
     <a href="#" class="logo">
-      <div class="logo-mark">
-        <span>PDF</span>
-        <div class="divider-line"></div>
-        <span class="sign-text">SIGN</span>
-      </div>
-      <span class="logo-name">PDF<em>Sign</em>.in</span>
+      <svg class="logo-mark" width="38" height="38" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 3.5l15 5.2v11.1c0 9.7-6.4 16.3-15 19.2-8.6-2.9-15-9.5-15-19.2V8.7L24 3.5z" fill="#16a34a"/><path d="M17.6 12.6h7.5l4.9 4.9V28.3a1.7 1.7 0 0 1-1.7 1.7H17.6A1.7 1.7 0 0 1 15.9 28.3V14.3A1.7 1.7 0 0 1 17.6 12.6z" fill="#ffffff"/><path d="M25.1 12.6v4.9h4.9z" fill="#cdd5df"/><path d="M19 21h7M19 24h7M19 27h4.5" stroke="#9aa7b4" stroke-width="1.5" stroke-linecap="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#ffffff" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#16a34a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-name">PDF<em>Sign</em></span>
     </a>
     <div class="made-in-india">
       <svg width="28" height="18" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
@@ -2644,7 +2640,7 @@
       <div class="how-step">
         <div class="step-num">1</div>
         <h4>Open PDFSign</h4>
-        <p>Install and open PDFSign.in for Windows 10 or 11. No Java, no extra setup needed.</p>
+        <p>Install and open PDFSign for Windows 10 or 11. No Java, no extra setup needed.</p>
       </div>
       <div class="how-step">
         <div class="step-num">2</div>
@@ -2691,7 +2687,7 @@
           </div>
           <div class="tutorial-body">
             <div class="tutorial-title">How to sign PDF with a signature or stamp image</div>
-            <div class="tutorial-meta">YouTube · PDFSign.in</div>
+            <div class="tutorial-meta">YouTube · PDFSign</div>
           </div>
         </div>
       </div>
@@ -2712,7 +2708,7 @@
           </div>
           <div class="tutorial-body">
             <div class="tutorial-title">How to digitally sign PDF with USB DSC token (HYP2003, ePass)</div>
-            <div class="tutorial-meta">YouTube · PDFSign.in</div>
+            <div class="tutorial-meta">YouTube · PDFSign</div>
           </div>
         </div>
       </div>
@@ -2753,7 +2749,7 @@
         <div class="pain-vs">VS</div>
       </div>
       <div class="pain-col pain-new">
-        <div class="pain-col-label pain-label-good">The PDFSign.in way</div>
+        <div class="pain-col-label pain-label-good">The PDFSign way</div>
         <ul class="pain-list">
           <li><span class="pain-check">✓</span> Open app → load PDF → sign. Done in 10 seconds</li>
           <li><span class="pain-check">✓</span> 100% offline — your files never leave your PC</li>
@@ -2790,7 +2786,7 @@
         <div class="pain-vs">VS</div>
       </div>
       <div class="pain-col pain-new">
-        <div class="pain-col-label pain-label-good">The PDFSign.in way</div>
+        <div class="pain-col-label pain-label-good">The PDFSign way</div>
         <ul class="pain-list">
           <li><span class="pain-check">✓</span> 100% offline — your documents never leave your PC. Ever.</li>
           <li><span class="pain-check">✓</span> Real PKI digital signature — cryptographically verifiable</li>
@@ -2808,7 +2804,7 @@
 <section class="features" id="features">
   <div class="container">
     <div style="text-align:center;">
-      <div class="section-tag">Why PDFSign.in</div>
+      <div class="section-tag">Why PDFSign</div>
       <h2 class="section-title">Built for real-world DSC signing<br />(not theory)</h2>
       <p class="section-sub" style="margin:0 auto;">Built for Indian professionals — CA firms, lawyers, contractors, exporters, and businesses — who need legally valid, fast, and compliant digital signatures on any document.</p>
     </div>
@@ -2896,7 +2892,7 @@
         <thead>
           <tr>
             <th>Feature</th>
-            <th class="our-col">PDFSign.in</th>
+            <th class="our-col">PDFSign</th>
             <th>SignFiles.com</th>
             <th>eMudhra SignX</th>
             <th>Online tools<br/><small style="font-weight:400;font-size:11px;">(DocuSign, SmallPDF etc.)</small></th>
@@ -3021,7 +3017,7 @@
         <thead>
           <tr>
             <th>Feature</th>
-            <th class="our-col">PDFSign.in</th>
+            <th class="our-col">PDFSign</th>
             <th>DocuSign</th>
             <th>Adobe Acrobat</th>
             <th>Smallpdf / Online tools</th>
@@ -3227,13 +3223,13 @@
     <!-- India header -->
     <div style="text-align:center;" class="india-only">
       <div class="section-tag">Built for Indian Professionals</div>
-      <h2 class="section-title">What PDFSign.in handles for you</h2>
+      <h2 class="section-title">What PDFSign handles for you</h2>
       <p class="section-sub" style="margin:0 auto;">Every feature is built around real signing workflows in India — tenders, audits, legal filings, GST, and export documents.</p>
     </div>
     <!-- International header -->
     <div style="text-align:center;" class="intl-only">
       <div class="section-tag">Built for Privacy-Conscious Professionals</div>
-      <h2 class="section-title">What PDFSign.in handles for you</h2>
+      <h2 class="section-title">What PDFSign handles for you</h2>
       <p class="section-sub" style="margin:0 auto;">Built for professionals who handle sensitive documents — contracts, NDAs, filings, audits — and need legally valid signatures without trusting a cloud server.</p>
     </div>
 
@@ -3379,7 +3375,7 @@
           <span class="faq-q-text">Which Windows versions are supported?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">PDFSign.in runs on Windows 10 and Windows 11 (64-bit). It requires .NET 10 Runtime, which the installer downloads automatically if not already present on your machine.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">PDFSign runs on Windows 10 and Windows 11 (64-bit). It requires .NET 10 Runtime, which the installer downloads automatically if not already present on your machine.</p></div>
       </div>
 
       <div class="faq-item open">
@@ -3398,7 +3394,7 @@
           <span class="faq-q-text">Will my signed PDFs be accepted on government portals?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">PDFs signed with a USB DSC token using PDFSign.in are accepted on GeM, CPPP, NIC e-Procurement, MCA21, Income Tax, DGFT, and all major Indian government portals — because the signature uses PAdES (PDF Advanced Electronic Signatures) compliant with IT Act 2000. Note: PDFs signed with only a stamp or handwritten image (without a DSC token) are <em>not</em> digitally signed and may not be accepted on government procurement portals that require a valid Class 2 or Class 3 DSC.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">PDFs signed with a USB DSC token using PDFSign are accepted on GeM, CPPP, NIC e-Procurement, MCA21, Income Tax, DGFT, and all major Indian government portals — because the signature uses PAdES (PDF Advanced Electronic Signatures) compliant with IT Act 2000. Note: PDFs signed with only a stamp or handwritten image (without a DSC token) are <em>not</em> digitally signed and may not be accepted on government procurement portals that require a valid Class 2 or Class 3 DSC.</p></div>
       </div>
 
       <!-- International FAQ: legal validity -->
@@ -3408,14 +3404,14 @@
           <span class="faq-q-text">Are the digital signatures legally valid outside India?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">Yes. PDFSign.in produces PAdES-compliant PKI digital signatures based on your USB token's X.509 certificate. These are legally valid under EU eIDAS Regulation (as Advanced Electronic Signatures), the US E-SIGN Act, UK Electronic Communications Act, and equivalent laws in most countries. For court-admissible qualified signatures in the EU, your token must hold a Qualified Certificate issued by a Qualified Trust Service Provider (QTSP).</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">Yes. PDFSign produces PAdES-compliant PKI digital signatures based on your USB token's X.509 certificate. These are legally valid under EU eIDAS Regulation (as Advanced Electronic Signatures), the US E-SIGN Act, UK Electronic Communications Act, and equivalent laws in most countries. For court-admissible qualified signatures in the EU, your token must hold a Qualified Certificate issued by a Qualified Trust Service Provider (QTSP).</p></div>
       </div>
 
       <!-- International FAQ: GDPR -->
       <div class="faq-item open intl-only">
         <button class="faq-q" onclick="toggleFaq(this)">
           <span class="faq-q-icon">Q</span>
-          <span class="faq-q-text">Is PDFSign.in GDPR-compliant? Does it upload my documents?</span>
+          <span class="faq-q-text">Is PDFSign GDPR-compliant? Does it upload my documents?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
         <div class="faq-a-wrap"><p class="faq-a">Completely GDPR-safe. All signing happens entirely on your local Windows PC — your PDF is never uploaded to any server. We have zero access to your documents, your private key, or your signing PIN. The only data we collect is optional: your email address (if you enter it during purchase) and anonymous download counts. No document content ever leaves your machine.</p></div>
@@ -3428,7 +3424,7 @@
           <span class="faq-q-text">Which DSC token brands are supported?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">PDFSign.in works with all major USB DSC tokens used in India — HyperPKI (HYP2003), ePass 2003/3003, Proxkey, Feitian, WD Pro, Watchdata, and any PKCS#11-compatible token issued by a licensed CA under CCA India.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">PDFSign works with all major USB DSC tokens used in India — HyperPKI (HYP2003), ePass 2003/3003, Proxkey, Feitian, WD Pro, Watchdata, and any PKCS#11-compatible token issued by a licensed CA under CCA India.</p></div>
       </div>
       <div class="faq-item intl-only">
         <button class="faq-q" onclick="toggleFaq(this)">
@@ -3436,7 +3432,7 @@
           <span class="faq-q-text">Which USB signing tokens are supported?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">PDFSign.in works with any standard PKCS#11-compatible USB token — including SafeNet iKey, Thales Luna USB, HID ActivKey, Gemalto IDPrime, Feitian ePass, WD Pro, WatchData, and tokens issued by any trusted CA globally. If your token has a PKCS#11 driver for Windows, PDFSign.in will detect and use it.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">PDFSign works with any standard PKCS#11-compatible USB token — including SafeNet iKey, Thales Luna USB, HID ActivKey, Gemalto IDPrime, Feitian ePass, WD Pro, WatchData, and tokens issued by any trusted CA globally. If your token has a PKCS#11 driver for Windows, PDFSign will detect and use it.</p></div>
       </div>
 
       <div class="faq-item">
@@ -3445,7 +3441,7 @@
           <span class="faq-q-text">Do I need Java or browser plugins to use it?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">No. PDFSign.in is a native Windows desktop app. It requires no Java, no browser plugin, no admin rights, and no internet connection to sign PDFs.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">No. PDFSign is a native Windows desktop app. It requires no Java, no browser plugin, no admin rights, and no internet connection to sign PDFs.</p></div>
       </div>
 
       <div class="faq-item">
@@ -3454,7 +3450,7 @@
           <span class="faq-q-text">Can I sign on behalf of a company (organisation certificate)?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">Yes. If your DSC token has an organisation certificate, PDFSign.in shows it as a signing option alongside your personal certificate. The visible signature stamp on the PDF page shows your name and signing date. The organisation name is visible inside the signature certificate details — anyone who opens the Signatures panel in Adobe Acrobat Reader will see your name, organisation, and issuing CA in the validation panel.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">Yes. If your DSC token has an organisation certificate, PDFSign shows it as a signing option alongside your personal certificate. The visible signature stamp on the PDF page shows your name and signing date. The organisation name is visible inside the signature certificate details — anyone who opens the Signatures panel in Adobe Acrobat Reader will see your name, organisation, and issuing CA in the validation panel.</p></div>
       </div>
 
       <div class="faq-item">
@@ -3463,7 +3459,7 @@
           <span class="faq-q-text">Can I sign PDFs without a DSC token (just a stamp or signature image)?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">Yes. PDFSign.in includes a Signature &amp; Stamp Image mode. You can upload a PNG/JPG of your handwritten signature or company rubber stamp and embed it visually on any PDF page — no USB token required for this mode.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">Yes. PDFSign includes a Signature &amp; Stamp Image mode. You can upload a PNG/JPG of your handwritten signature or company rubber stamp and embed it visually on any PDF page — no USB token required for this mode.</p></div>
       </div>
 
       <div class="faq-item">
@@ -3472,7 +3468,7 @@
           <span class="faq-q-text">How does bulk signing work?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">Point PDFSign.in at a folder, enter your PIN once, and it signs every PDF in that folder automatically — applying the same certificate, signature position, and settings to all files. Signed copies are saved to your chosen output folder.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">Point PDFSign at a folder, enter your PIN once, and it signs every PDF in that folder automatically — applying the same certificate, signature position, and settings to all files. Signed copies are saved to your chosen output folder.</p></div>
       </div>
 
       <div class="faq-item">
@@ -3481,7 +3477,7 @@
           <span class="faq-q-text">Can I restrict printing, editing, or copying of the signed PDF?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">Yes. PDFSign.in lets you set PDF permissions — restrict printing, editing, and content copying — and optionally add a document open password. These restrictions are enforced by Adobe Acrobat and compatible viewers.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">Yes. PDFSign lets you set PDF permissions — restrict printing, editing, and content copying — and optionally add a document open password. These restrictions are enforced by Adobe Acrobat and compatible viewers.</p></div>
       </div>
 
       <div class="faq-item">
@@ -3499,7 +3495,7 @@
           <span class="faq-q-text">Can I choose exactly where the signature appears on the PDF?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">Yes. PDFSign.in offers two placement modes: a 9-position grid (top-left to bottom-right) or click-anywhere on the PDF page preview to drop the signature stamp at a precise location.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">Yes. PDFSign offers two placement modes: a 9-position grid (top-left to bottom-right) or click-anywhere on the PDF page preview to drop the signature stamp at a precise location.</p></div>
       </div>
 
       <div class="faq-item">
@@ -3535,16 +3531,16 @@
           <span class="faq-q-text">What happens when my DSC token certificate expires?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">PDFSign.in warns you before you sign if your certificate has expired, so you're never caught off guard. If you had RFC 3161 timestamps on previously signed documents, those signatures remain valid. You'll need to renew your DSC from your CA to sign new documents.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">PDFSign warns you before you sign if your certificate has expired, so you're never caught off guard. If you had RFC 3161 timestamps on previously signed documents, those signatures remain valid. You'll need to renew your DSC from your CA to sign new documents.</p></div>
       </div>
 
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
           <span class="faq-q-icon">Q</span>
-          <span class="faq-q-text">Can I use PDFSign.in if I live outside India?</span>
+          <span class="faq-q-text">Can I use PDFSign if I live outside India?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">Yes. PDFSign.in works on any Windows PC worldwide. If you hold an Indian DSC token issued by a CCA-licensed CA, you can sign Indian government documents from anywhere — UAE, UK, USA, Canada, Australia, or any other country. The software has no geo-restriction.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">Yes. PDFSign works on any Windows PC worldwide. If you hold an Indian DSC token issued by a CCA-licensed CA, you can sign Indian government documents from anywhere — UAE, UK, USA, Canada, Australia, or any other country. The software has no geo-restriction.</p></div>
       </div>
 
       <div class="faq-item">
@@ -3553,7 +3549,7 @@
           <span class="faq-q-text">How do I verify a digitally signed PDF?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">PDFSign.in has a built-in Verify function. You can also open the PDF in Adobe Acrobat Reader and check the Signatures panel — it will show the certificate chain, signing time, and validity status. Signed PDFs also display a blue ribbon in Adobe when the signature is valid.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">PDFSign has a built-in Verify function. You can also open the PDF in Adobe Acrobat Reader and check the Signatures panel — it will show the certificate chain, signing time, and validity status. Signed PDFs also display a blue ribbon in Adobe when the signature is valid.</p></div>
       </div>
 
       <div class="faq-item">
@@ -3738,7 +3734,7 @@
     <div style="text-align:center;">
       <div class="section-tag">For Indians Abroad</div>
       <h2 class="section-title">Sign Indian documents from anywhere in the world</h2>
-      <p class="section-sub" style="margin:0 auto;">If you hold an Indian DSC token, PDFSign.in works on your Windows PC — no matter which country you're in. Sign tender submissions, legal agreements, CA filings, and government documents from your office abroad.</p>
+      <p class="section-sub" style="margin:0 auto;">If you hold an Indian DSC token, PDFSign works on your Windows PC — no matter which country you're in. Sign tender submissions, legal agreements, CA filings, and government documents from your office abroad.</p>
     </div>
     <div class="intl-grid">
       <div class="intl-card">
@@ -3769,10 +3765,10 @@
       <div class="intl-card">
         <div class="intl-flag"><span class="intl-flag-globe">🌍</span></div>
         <h4>Anywhere Else</h4>
-        <p>PDFSign.in has no geo-restriction. If Windows runs on your PC, it works — fully offline.</p>
+        <p>PDFSign has no geo-restriction. If Windows runs on your PC, it works — fully offline.</p>
       </div>
     </div>
-    <p class="intl-note">Your DSC token was issued in India — <strong>PDFSign.in makes it work wherever you are.</strong></p>
+    <p class="intl-note">Your DSC token was issued in India — <strong>PDFSign makes it work wherever you are.</strong></p>
   </div>
 </section>
 
@@ -3855,7 +3851,7 @@
         <div class="roadmap-icon-wrap">🤝</div>
         <div class="roadmap-text">
           <h4>DSC Reseller &amp; Affiliate Programme</h4>
-          <p>DSC token sellers, CA consultants, and IT professionals — partner with PDFSign.in and earn on every licence you refer. <a href="/reseller.html" style="color:var(--green);text-decoration:underline;">Enquire now →</a></p>
+          <p>DSC token sellers, CA consultants, and IT professionals — partner with PDFSign and earn on every licence you refer. <a href="/reseller.html" style="color:var(--green);text-decoration:underline;">Enquire now →</a></p>
         </div>
       </div>
 
@@ -3942,7 +3938,7 @@
         <div class="roadmap-icon-wrap">🤝</div>
         <div class="roadmap-text">
           <h4>Global Reseller Programme</h4>
-          <p>Token resellers and IT consultants worldwide — partner with PDFSign.in and earn on every licence you refer. <a href="/reseller.html" style="color:var(--green);text-decoration:underline;">Enquire now →</a></p>
+          <p>Token resellers and IT consultants worldwide — partner with PDFSign and earn on every licence you refer. <a href="/reseller.html" style="color:var(--green);text-decoration:underline;">Enquire now →</a></p>
         </div>
       </div>
 
@@ -4043,7 +4039,7 @@
       <a href="/blog/best-pdf-signing-software-india-2026.html" style="text-decoration:none;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .2s;" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'" onmouseout="this.style.boxShadow='none'">
         <span style="font-size:11px;font-weight:700;color:#0891B2;text-transform:uppercase;letter-spacing:.5px;">Comparison</span>
         <span style="font-size:1rem;font-weight:700;color:#1B2A47;line-height:1.4;">Best PDF Signing Software in India 2026</span>
-        <span style="font-size:.875rem;color:#64748b;line-height:1.5;">Honest comparison of eMudhra Signer, Capricorn, Adobe, and PDFSign.in — features, cost, and compliance.</span>
+        <span style="font-size:.875rem;color:#64748b;line-height:1.5;">Honest comparison of eMudhra Signer, Capricorn, Adobe, and PDFSign — features, cost, and compliance.</span>
         <span style="font-size:.8rem;color:#16A34A;font-weight:600;margin-top:auto;">Read guide →</span>
       </a>
 
@@ -4130,12 +4126,8 @@
     <div class="footer-top">
       <div class="footer-brand">
         <a href="#" class="logo">
-          <div class="logo-mark">
-            <span>PDF</span>
-            <div class="divider-line"></div>
-            <span class="sign-text">SIGN</span>
-          </div>
-          <span class="logo-name">PDF<em>Sign</em>.in</span>
+          <svg class="logo-mark" width="38" height="38" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 3.5l15 5.2v11.1c0 9.7-6.4 16.3-15 19.2-8.6-2.9-15-9.5-15-19.2V8.7L24 3.5z" fill="#16a34a"/><path d="M17.6 12.6h7.5l4.9 4.9V28.3a1.7 1.7 0 0 1-1.7 1.7H17.6A1.7 1.7 0 0 1 15.9 28.3V14.3A1.7 1.7 0 0 1 17.6 12.6z" fill="#ffffff"/><path d="M25.1 12.6v4.9h4.9z" fill="#cdd5df"/><path d="M19 21h7M19 24h7M19 27h4.5" stroke="#9aa7b4" stroke-width="1.5" stroke-linecap="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#ffffff" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#16a34a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="logo-name">PDF<em>Sign</em></span>
         </a>
         <p>Sign PDFs with your DSC token. Offline, private, and accepted everywhere in India.</p>
       </div>
@@ -4175,8 +4167,9 @@
     </div>
 
     <div class="footer-bottom">
-      <p>© 2026 PDFSign.in &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; 🦁 Made in India &nbsp;·&nbsp; 🇮🇳 Proud to be Indian</p>
+      <p>© 2026 PDFSign &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; 🦁 Made in India &nbsp;·&nbsp; 🇮🇳 Proud to be Indian</p>
       <div class="footer-bottom-links">
+        <a href="/global">🌐 Global Site</a>
         <a href="/privacy.html">Privacy</a>
         <a href="/terms.html">Terms</a>
         <a href="/cdn-cgi/l/email-protection#137b767f6353637775607a747d3d7a7d"><span class="__cf_email__" data-cfemail="c7afa2abb787b7a3a1b4aea0a9e9aea9">[email&#160;protected]</span></a>
