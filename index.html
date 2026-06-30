@@ -4714,6 +4714,7 @@ document.querySelectorAll(".feature-card,.how-step,.plan-card,.testimonial").for
   // Optimistic increment on download click
   document.addEventListener('click', function(e) {
     if (!e.target.closest('a[href*="/api/download"]')) return;
+    if (window.gtag) window.gtag('event', 'trial_download', { source: 'india' });
     _optimistic++;
     var el = document.getElementById('stat-dl-today');
     if (el) { var cur = parseInt(el.textContent.replace(/[^0-9]/g,''))||0; animateCount(el, cur, cur+1, 500); }
