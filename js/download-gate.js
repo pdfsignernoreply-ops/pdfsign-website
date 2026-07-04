@@ -12,7 +12,10 @@
   'use strict';
 
   var DOWNLOAD_API = 'https://pdfsigner-api.vercel.app/api/download';
-  var STORE_URL    = 'ms-windows-store://pdp/?ProductId=9PBCQ9ZM5G2X';
+  /* Microsoft's official Store-installer endpoint (plain https — no protocol
+     prompt, no interstitial). Same mechanism WhatsApp Desktop uses; the stub
+     installs PDFSign FROM the Store, so Store updates/ratings are preserved. */
+  var STORE_URL    = 'https://get.microsoft.com/installer/download/9PBCQ9ZM5G2X';
   var MODAL_ID     = 'pdfsignNotWindowsModal';
 
   /* ── Inject modal once ── */
@@ -101,7 +104,7 @@
       for (var i = 0; i < nodes.length; i++) {
         if (nodes[i].nodeType === 3 && nodes[i].textContent.trim()) {
           savedNodes.push({ node: nodes[i], orig: nodes[i].textContent });
-          nodes[i].textContent = nodes[i].textContent.replace(/\S.*/, 'Opening Store…');
+          nodes[i].textContent = nodes[i].textContent.replace(/\S.*/, 'Starting download…');
         }
       }
 
