@@ -61,6 +61,8 @@ tr:hover td{background:#1e293b33}
 .pb-team-lifetime{background:#dc262622;color:#f87171;border:1px solid #dc262644}
 .pb-enterprise-yearly{background:#eab30822;color:#fbbf24;border:1px solid #eab30844}
 .pb-enterprise-trial{background:#eab30822;color:#fde68a;border:1px dashed #eab30866}
+.rp-btn{background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:11px;padding:5px 10px;border-radius:7px;cursor:pointer}
+.rp-btn.rp-on{background:#16a34a22;border-color:#16a34a66;color:#4ade80;font-weight:700}
 .ok{color:#4ade80;font-weight:700}.no{color:#ef4444;font-weight:700}
 .solo{background:#33415544;color:#94a3b8;border:1px solid #33415566;display:inline-block;font-size:9px;font-weight:700;padding:2px 6px;border-radius:100px;text-transform:uppercase}
 .ts{color:#64748b;font-size:11px}
@@ -220,6 +222,23 @@ tr:hover td{background:#1e293b33}
           </div>
         </div>
         <div style="position:relative;height:240px;"><canvas id="daily-chart"></canvas></div>
+      </div>
+      <!-- Revenue & conversions chart -->
+      <div style="margin-top:18px;background:#0f172a;border:1px solid #1e293b;border-radius:12px;padding:16px 18px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+          <h2 style="margin:0;font-size:15px;">Revenue &amp; Conversions</h2>
+          <div style="display:flex;gap:6px;" id="rev-period">
+            <button class="rp-btn rp-on" data-p="M" onclick="setRevPeriod('M')">Monthly</button>
+            <button class="rp-btn" data-p="Q" onclick="setRevPeriod('Q')">Quarterly</button>
+            <button class="rp-btn" data-p="H" onclick="setRevPeriod('H')">Half-yearly</button>
+            <button class="rp-btn" data-p="Y" onclick="setRevPeriod('Y')">Yearly</button>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;font-size:11px;color:#94a3b8;margin-bottom:8px;">
+          <span><span style="display:inline-block;width:10px;height:10px;background:#fbbf24;border-radius:2px;vertical-align:middle;margin-right:5px;"></span>Revenue (₹)</span>
+          <span><span style="display:inline-block;width:14px;height:3px;background:#38bdf8;border-radius:2px;vertical-align:middle;margin-right:5px;"></span>Conversions</span>
+        </div>
+        <div style="position:relative;height:240px;"><canvas id="rev-chart"></canvas></div>
       </div>
       <div id="dash-report-msg" class="mmsg" style="display:none;"></div>
       <!-- Recent activity: two columns -->
@@ -465,6 +484,7 @@ tr:hover td{background:#1e293b33}
             <th class="sortable" onclick="usageSort('total_sessions')">Sessions</th>
             <th class="sortable" onclick="usageSort('batch_sessions')" title="Batch (folder) / Single-file sessions">Batch / Single</th>
             <th class="sortable" onclick="usageSort('toolbox')" title="PDFToolbox tools this user has run in the selected period">PDF Toolbox</th>
+            <th class="sortable" onclick="usageSort('app_version')" title="Last PDFSign version this machine reported (from signing/tool events)">Version</th>
             <th class="sortable" onclick="usageSort('installed_at')" title="Machine registration date &amp; time (IST)">Installed</th>
             <th class="sortable" onclick="usageSort('purchased_at')" title="License purchase date (if any)">Purchased</th>
             <th class="sortable" onclick="usageSort('last_seen')">Last Seen</th>
@@ -1020,6 +1040,85 @@ async function savePricing() {
 
 // ── DASHBOARD ────────────────────────────────────────────────────────────
 var DASH = null;
+// ── Revenue & Conversions chart ─────────────────────────────────────────
+// Server returns MONTHLY paid revenue + conversion counts (IST months);
+// grouping into quarter / half-year / year happens here — one fetch.
+var revChart = null, revMonths = [], revPeriod = 'M';
+function setRevPeriod(p) {
+  revPeriod = p;
+  var btns = document.querySelectorAll('#rev-period .rp-btn');
+  for (var i = 0; i < btns.length; i++) btns[i].classList.toggle('rp-on', btns[i].getAttribute('data-p') === p);
+  renderRevChart();
+}
+function groupRev(months, p) {
+  if (p === 'M') return months.map(function(m){
+    return { label: m.ym, revenue: m.revenue, conversions: m.conversions };
+  });
+  var out = [], map = {};
+  months.forEach(function(m) {
+    var y = m.ym.slice(0, 4), mo = parseInt(m.ym.slice(5, 7), 10);
+    var key = p === 'Q' ? y + ' Q' + Math.ceil(mo / 3)
+            : p === 'H' ? y + ' H' + (mo <= 6 ? 1 : 2)
+            : y;
+    if (!map[key]) { map[key] = { label: key, revenue: 0, conversions: 0 }; out.push(map[key]); }
+    map[key].revenue     += m.revenue;
+    map[key].conversions += m.conversions;
+  });
+  return out;
+}
+function renderRevChart() {
+  var el = document.getElementById('rev-chart');
+  if (!el || typeof Chart === 'undefined') return;
+  var rows   = groupRev(revMonths, revPeriod);
+  var labels = rows.map(function(r){ return r.label; });
+  var rev    = rows.map(function(r){ return r.revenue; });
+  var conv   = rows.map(function(r){ return r.conversions; });
+  if (revChart) revChart.destroy();
+  revChart = new Chart(el.getContext('2d'), {
+    type: 'bar',
+    data: { labels: labels, datasets: [
+      { type:'bar',  label:'Revenue (₹)', data:rev, yAxisID:'y',
+        backgroundColor:'#fbbf24', borderRadius:3, barPercentage:0.6, categoryPercentage:0.8, order:2 },
+      { type:'line', label:'Conversions', data:conv, yAxisID:'y1',
+        borderColor:'#38bdf8', backgroundColor:'rgba(56,189,248,0.10)', borderWidth:2,
+        pointRadius:3, pointHoverRadius:5, tension:0.3, fill:false, order:1 }
+    ]},
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      interaction:{ mode:'index', intersect:false },
+      plugins:{
+        legend:{ display:false },
+        tooltip:{ backgroundColor:'#1e293b', borderColor:'#334155', borderWidth:1,
+                  titleColor:'#e2e8f0', bodyColor:'#cbd5e1', padding:10, displayColors:true,
+                  callbacks:{ label:function(ctx){
+                    return ctx.dataset.label === 'Revenue (₹)'
+                      ? ' Revenue: ₹' + (ctx.parsed.y||0).toLocaleString('en-IN')
+                      : ' Conversions: ' + ctx.parsed.y;
+                  } } }
+      },
+      scales:{
+        x:{ grid:{ color:'rgba(148,163,184,0.07)' }, ticks:{ color:'#64748b', font:{size:10}, maxRotation:0 } },
+        y:{ position:'left', beginAtZero:true, grid:{ color:'rgba(148,163,184,0.07)' },
+            ticks:{ color:'#fbbf24', font:{size:10},
+                    callback:function(v){ return '₹' + Number(v).toLocaleString('en-IN'); } },
+            title:{ display:true, text:'Revenue', color:'#fbbf24', font:{size:10} } },
+        y1:{ position:'right', beginAtZero:true, grid:{ drawOnChartArea:false },
+             ticks:{ color:'#38bdf8', font:{size:10}, precision:0 },
+             title:{ display:true, text:'Conversions', color:'#38bdf8', font:{size:10} } }
+      }
+    }
+  });
+}
+async function loadRevenue() {
+  try {
+    var r = await apicall(API + '/revenue-series');
+    if (!r.ok) return;
+    var j = await r.json();
+    revMonths = j.months || [];
+    renderRevChart();
+  } catch (e) { /* chart is optional — never break the dashboard */ }
+}
+
 var dailyChart = null;
 function renderDailyChart(daily) {
   daily = daily || [];
@@ -1125,6 +1224,7 @@ async function loadDashboard() {
     var j = await r.json();
     DASH = j;
     renderDailyChart(j.daily);
+    loadRevenue();
     renderDashPeriod();
     // Recent installs
     var ib = document.getElementById('dash-installs-body');
@@ -1577,6 +1677,7 @@ function renderUsage() {
       +'<td class="ts">'+(Number(r.total_sessions)||0)+'</td>'
       +'<td class="ts"><span style="color:#a78bfa">'+bat+'</span> / <span style="color:#94a3b8">'+sng+'</span></td>'
       +'<td style="max-width:220px;white-space:normal">'+tbxCell(r.toolbox_tools)+'</td>'
+      +'<td class="ts">'+(r.app_version ? '<span style="color:#5eead4">v'+esc(String(r.app_version).replace(/^v/i,''))+'</span>' : '<span style="color:#475569">—</span>')+'</td>'
       +'<td class="ts">'+fmtDateTime(r.installed_at)+'</td>'
       +'<td class="ts">'+(r.purchased_at ? fmtDateTime(r.purchased_at) : '<span style="color:#475569">—</span>')+'</td>'
       +'<td class="ts">'+fmtDateTime(r.last_seen)+'</td>'
@@ -1585,7 +1686,7 @@ function renderUsage() {
 }
 
 function usageSort(col) {
-  var strCols = ['machine_id','email','location','current_plan','current_status'];
+  var strCols = ['machine_id','email','location','current_plan','current_status','app_version'];
   USAGE_SORT.dir = USAGE_SORT.col===col
     ? (USAGE_SORT.dir==='asc'?'desc':'asc')
     : (strCols.indexOf(col)>-1 ? 'asc' : 'desc');
@@ -1597,7 +1698,7 @@ function usageSort(col) {
 function usageExportRows() {
   var hdr = ['Machine ID','Email','Purchase Email','Location','Plan','Status','Days Active','Files Signed',
              'DSC Files','Stamp Files','Sessions','Batch Sessions','Single Sessions',
-             'PDF Toolbox Tools','Installed','Purchased','Last Seen'];
+             'PDF Toolbox Tools','App Version','Installed','Purchased','Last Seen'];
   var body = (USAGE_VIEW||[]).map(function(r){
     return [
       r.machine_id||'', r.email||'', r.purchase_email||'', r.location||'',
@@ -1606,6 +1707,7 @@ function usageExportRows() {
       Number(r.dsc_files)||0, Number(r.wet_files)||0,
       Number(r.total_sessions)||0, Number(r.batch_sessions)||0, Number(r.single_sessions)||0,
       (r.toolbox_tools||[]).map(tbxLabel).join('; '),
+      r.app_version||'',
       fmtDateTimePlain(r.installed_at), r.purchased_at ? fmtDateTimePlain(r.purchased_at) : '',
       fmtDateTimePlain(r.last_seen)
     ];
