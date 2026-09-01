@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="robots" content="noindex"/>
 <title>Payment Successful — PDFSign.in</title>
-<link rel="canonical" href="https://pdfsign.in/payment-success.html"/>
+<link rel="canonical" href="https://pdfsign.in/payment-success"/>
 <style>
   :root{ --navy:#1B2A47; --green:#16A34A; --green2:#4ADE80; --ink:#1E293B; --muted:#475569; --line:#E2E8F0; --bg:#F8FAFC; }
   *{ box-sizing:border-box; }
@@ -48,19 +48,35 @@
         <p class="lead" id="lead">Thank you! Your <strong>license key</strong> is on its way to your email.</p>
         <p class="pid" id="pid"></p>
 
-        <div class="note">
-          📧 <strong>Check your inbox</strong> (and the spam/junk folder) for your license key and tax invoice from
-          <strong>noreply@pdfsign.in</strong>. It usually arrives within a minute. Keep that email safe — you'll need the key to activate.
+        <!-- IN-APP purchase (?src=app): keyless — PDFSign unlocks itself -->
+        <div id="app-flow" style="display:none">
+          <div class="note" style="background:#F0FDF4;border-left-color:#16A34A;color:#166534">
+            ✅ <strong>No license key needed.</strong> Your copy of PDFSign activates itself automatically.
+          </div>
+          <hr class="hr"/>
+          <p style="text-align:left;font-weight:700;font-size:14px;margin:0 0 14px;">What happens next:</p>
+          <div class="steps">
+            <div class="step"><div class="num">1</div><p><strong>Return to PDFSign</strong> on your PC — the window you bought from.</p></div>
+            <div class="step"><div class="num">2</div><p>Within a few seconds it detects your payment and <strong>unlocks automatically</strong>. Still waiting? Click <strong>"I've paid"</strong> or restart the app.</p></div>
+            <div class="step"><div class="num">3</div><p>Your <strong>tax invoice</strong> (and a backup license key) is emailed to you from <strong>noreply@pdfsign.in</strong> — keep it for your records.</p></div>
+          </div>
         </div>
 
-        <hr class="hr"/>
-        <p style="text-align:left;font-weight:700;font-size:14px;margin:0 0 14px;">Activate in 3 steps:</p>
-        <div class="steps">
-          <div class="step"><div class="num">1</div><p><strong>Download PDFSign</strong> from the Microsoft Store and install it on your Windows PC.</p></div>
-          <div class="step"><div class="num">2</div><p>Open PDFSign and click <strong>"Enter License Key"</strong>.</p></div>
-          <div class="step"><div class="num">3</div><p>Paste your key and click <strong>"Activate"</strong> — done in under a minute.</p></div>
+        <!-- WEBSITE purchase: key emailed, classic 3-step activation -->
+        <div id="web-flow">
+          <div class="note">
+            📧 <strong>Check your inbox</strong> (and the spam/junk folder) for your license key and tax invoice from
+            <strong>noreply@pdfsign.in</strong>. It usually arrives within a minute. Keep that email safe — you'll need the key to activate.
+          </div>
+          <hr class="hr"/>
+          <p style="text-align:left;font-weight:700;font-size:14px;margin:0 0 14px;">Activate in 3 steps:</p>
+          <div class="steps">
+            <div class="step"><div class="num">1</div><p><strong>Download PDFSign</strong> from the Microsoft Store and install it on your Windows PC.</p></div>
+            <div class="step"><div class="num">2</div><p>Open PDFSign and click <strong>"Enter License Key"</strong> — or use <strong>"Bought already? Restore by email"</strong> with the email you paid with.</p></div>
+            <div class="step"><div class="num">3</div><p>Paste your key and click <strong>"Activate"</strong> — done in under a minute.</p></div>
+          </div>
+          <a class="cta" href="https://api.pdfsign.in/api/download">Download PDFSign →</a>
         </div>
-        <a class="cta" href="https://pdfsigner-api.vercel.app/api/download">Download PDFSign →</a>
 
         <hr class="hr"/>
         <p class="help">
@@ -78,10 +94,20 @@
       var pid = q.get('razorpay_payment_id');
       var status = (q.get('razorpay_payment_link_status') || '').toLowerCase();
       if (pid) document.getElementById('pid').textContent = 'Payment ID: ' + pid;
+      // In-app purchases (?src=app) are keyless — swap in the "return to PDFSign,
+      // it unlocks automatically" flow instead of the enter-your-key steps (T27).
+      var fromApp = q.get('src') === 'app';
+      if (fromApp) {
+        document.getElementById('app-flow').style.display = 'block';
+        document.getElementById('web-flow').style.display = 'none';
+        document.getElementById('lead').innerHTML = 'Thank you! <strong>Return to PDFSign</strong> — it unlocks automatically.';
+      }
       // Razorpay only redirects here after a completed payment, but be graceful if status says otherwise.
       if (status && status !== 'paid') {
         document.getElementById('title').textContent = 'Payment Received';
-        document.getElementById('lead').innerHTML = 'Thanks! We’re confirming your payment. Your license key will be emailed as soon as it’s verified.';
+        document.getElementById('lead').innerHTML = fromApp
+          ? 'Thanks! We’re confirming your payment. PDFSign will unlock automatically as soon as it’s verified.'
+          : 'Thanks! We’re confirming your payment. Your license key will be emailed as soon as it’s verified.';
       }
     })();
   </script>

@@ -18,9 +18,26 @@
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "wxqctfoy9c");
+    // Session tags + download-conversion mirror for Clarity filtering.
+    // Route-derived screen name only — never file names or query strings.
+    (function(){
+      try{
+        var p = location.pathname.replace(/^\/+|\/+$/g,'').replace(/\.html$/,'');
+        clarity('set','screen', p ? p.replace(/[^a-z0-9/-]/gi,'').replace(/\//g,'-') : 'home');
+        clarity('set','surface','website');
+      }catch(_){}
+      document.addEventListener('click', function(e){
+        var el = e.target && e.target.closest ? e.target.closest('a') : null;
+        if (!el) return;
+        var h = el.getAttribute('href')||'';
+        if (h.indexOf('/api/download')>-1 || h.indexOf('apps.microsoft.com')>-1){
+          try{ clarity('event','trial_download'); }catch(_){}
+        }
+      }, true);
+    })();
 </script>
 <title>PDFSign.in — Sign PDF with DSC Token, 100% Offline | India</title>
-<meta name="description" content="Digitally sign any PDF with your USB DSC token or signature stamp image. Bulk sign multiple PDFs in one click — 100+ PDFs in 60 seconds, 100% offline, no Java, no cloud uploads. Free to download with a free 30-day trial. PDF security, RFC 3161 timestamp. Accepted on GeM, CPPP, and all Indian government portals." />
+<meta name="description" content="Digitally sign any PDF with your USB DSC token or signature stamp image. Bulk sign multiple PDFs in one click — 100+ PDFs in 60 seconds, 100% offline, no Java, no cloud uploads. Free to download with a free evaluation — up to 30 days or 100 signed PDFs. PDF security, RFC 3161 timestamp. Accepted on GeM, CPPP, and all Indian government portals." />
 <meta name="keywords" content="digitally sign PDF, sign PDF online, digital signature PDF, PDF digital signature, sign PDF with DSC token, digital signature online, electronic signature PDF, DSC token PDF signer, sign PDF Windows, digital signature software India, PDF signer India, HyperPKI PDF signer, ePass PDF signing, Proxkey PDF sign, bulk PDF signing, sign multiple PDFs, batch PDF signing, batch PDF signer, bulk sign PDFs, sign PDF in bulk, sign hundreds of PDFs, automated PDF signing, free PDF signer, free bulk PDF signer, free PDF digital sign, sign PDF without Java, offline PDF signer, GeM portal digital signature, CPPP PDF signing, e-procurement PDF signer India, Class 3 DSC PDF, signature stamp PDF, wet signature PDF, PDF security restrict print, RFC 3161 timestamp PDF" />
 <meta name="robots" content="index, follow" />
 <meta name="author" content="PDFSign.in" />
@@ -75,7 +92,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://www.google-analytics.com" />
-<link rel="preconnect" href="https://pdfsigner-api.vercel.app" />
+<link rel="preconnect" href="https://api.pdfsign.in" />
 <!-- Non-blocking font load: print→all swap prevents render-blocking on slow connections -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
@@ -275,8 +292,8 @@
 
   .hero-badges {
     display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
+    flex-wrap: nowrap;
+    gap: 14px;
     margin-top: 22px;
     margin-bottom: 20px;
   }
@@ -284,8 +301,13 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    font-size: 13px;
+    font-size: 12px;
     color: rgba(255,255,255,0.65);
+    white-space: nowrap;
+  }
+  .hero-badge-item svg { flex-shrink: 0; }
+  @media (max-width: 900px) {
+    .hero-badges { flex-wrap: wrap; }   /* single line on desktop only */
   }
 
   /* ─── HERO ─── */
@@ -486,6 +508,103 @@
     padding-top: 24px;
   }
 
+  /* Layered hero proof — signed PDF (outcome) in front, app render behind */
+  .hero-stack { position: relative; padding: 12px 0 0 0; }
+
+  .hero-app-behind {
+    position: absolute;
+    top: 0;
+    right: -20px;
+    width: 74%;
+    overflow: hidden;
+    border-radius: var(--r-lg);
+    border: 1px solid rgba(147,197,253,0.18);
+    transform: rotate(2deg);
+    box-shadow: 0 24px 48px -24px rgba(0,0,0,0.5);
+    opacity: 0.92;
+    background: #1E2E4A;
+  }
+  .hero-app-behind img { display: block; width: 100%; height: auto; }
+
+  .pdf-proof {
+    position: relative;
+    z-index: 2;
+    width: 88%;
+    margin-top: 72px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 32px 64px -24px rgba(0,0,0,0.55), 0 10px 24px -12px rgba(0,0,0,0.35);
+  }
+  .pdf-proof-banner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #E8F1FD;
+    color: #1E3A5F;
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-bottom: 1px solid #D6E4F7;
+  }
+  .pdf-proof-page { padding: 26px 30px 30px; }
+  .pp-line {
+    height: 7px;
+    background: #E5E7EB;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .pp-line.full { width: 100%; }
+  .pp-line.med { width: 82%; }
+  .pp-line.short { width: 62%; }
+  .pp-line.xs { width: 40%; }
+  .pp-gap { height: 10px; }
+
+  .dsc-stamp {
+    position: relative;
+    margin: 18px 0 0 auto;
+    width: fit-content;
+    max-width: 100%;
+    background: #fff;
+    border: 1px solid #CBD5E1;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  .dsc-stamp-title {
+    color: #16A34A;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .dsc-stamp-line {
+    font-size: 11.5px;
+    color: #1F2937;
+    line-height: 1.55;
+    white-space: nowrap;
+  }
+  .dsc-stamp-line strong { font-weight: 700; }
+  .dsc-stamp-check {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-46%);
+    pointer-events: none;
+  }
+  @media (max-width: 900px) {
+    .pdf-proof { width: 88%; }
+    .hero-app-behind { right: 0; width: 58%; }
+    /* Sit the token widget below the card so it never covers the stamp */
+    .token-widget { left: 0; bottom: -42px; }
+    .hero-stack { margin-bottom: 42px; }
+  }
+
+  /* Region spans inside the stamp are inline, not block (geo JS sets inline
+     styles — beat the intl 'block' with !important, scope-limited here). */
+  .dsc-stamp .india-only { display: inline; }
+  .dsc-stamp .intl-only  { display: none; }
+  html.intl-user .dsc-stamp .india-only { display: none !important; }
+  html.intl-user .dsc-stamp .intl-only  { display: inline !important; }
+
   .pdf-card {
     background: #1E2E4A;
     border: 1px solid rgba(147,197,253,0.15);
@@ -591,6 +710,7 @@
   /* Token widget */
   .token-widget {
     position: absolute;
+    z-index: 3;
     bottom: -24px;
     left: -32px;
     background: #243558;
@@ -2319,7 +2439,10 @@
     {"@type":"Question","name":"What is RFC 3161 timestamp and why does it matter?","acceptedAnswer":{"@type":"Answer","text":"An RFC 3161 timestamp embeds cryptographic proof of when the document was signed from a trusted Timestamp Authority server. The signature remains legally valid even after your DSC certificate expires."}},
     {"@type":"Question","name":"Can I use PDFSign.in from outside India?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign.in works on any Windows PC worldwide with no geo-restriction. Indian DSC token holders in UAE, UK, USA, Canada, Australia, or anywhere can sign Indian government documents remotely."}},
     {"@type":"Question","name":"What is the team plan?","acceptedAnswer":{"@type":"Answer","text":"The team plan covers 5 Windows PCs under one shared licence key. Annual team plan is Rs. 3,499 per year; Lifetime team plan is Rs. 13,999 one-time. Ideal for CA firms, law offices, and tender-filing teams."}},
-    {"@type":"Question","name":"What is your refund policy?","acceptedAnswer":{"@type":"Answer","text":"PDFSign includes a 30-day free trial so you can fully evaluate it before buying. Because of that, all licence purchases are final and non-refundable, except where required by applicable law. See our Refund Policy for details."}}
+    {"@type":"Question","name":"Is PDFSign free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every download includes a free evaluation. You can evaluate PDFSign for up to 30 days or 100 signed PDFs (whichever comes first) before choosing a subscription."}},
+    {"@type":"Question","name":"Why is the evaluation limited?","acceptedAnswer":{"@type":"Answer","text":"The purpose of the free evaluation is to let you verify that PDFSign works perfectly with your USB DSC token, PDF documents and signing workflow. If you regularly sign large numbers of PDFs, you can continue without interruption by upgrading to a paid plan."}},
+    {"@type":"Question","name":"What happens when my evaluation ends?","acceptedAnswer":{"@type":"Answer","text":"Your documents, settings, saved signatures and templates remain safely stored on your computer. Only new PDF signing requires an active subscription."}},
+    {"@type":"Question","name":"What is your refund policy?","acceptedAnswer":{"@type":"Answer","text":"PDFSign includes a free evaluation — up to 30 days or 100 signed PDFs — so you can fully evaluate it before buying. Because of that, all licence purchases are final and non-refundable, except where required by applicable law. See our Refund Policy for details."}}
   ]
 }
 </script>
@@ -2397,7 +2520,7 @@
 <nav>
   <div class="nav-inner">
     <a href="#" class="logo">
-      <svg class="logo-mark" width="38" height="38" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 3.5l15 5.2v11.1c0 9.7-6.4 16.3-15 19.2-8.6-2.9-15-9.5-15-19.2V8.7L24 3.5z" fill="#16a34a"/><path d="M17.6 12.6h7.5l4.9 4.9V28.3a1.7 1.7 0 0 1-1.7 1.7H17.6A1.7 1.7 0 0 1 15.9 28.3V14.3A1.7 1.7 0 0 1 17.6 12.6z" fill="#ffffff"/><path d="M25.1 12.6v4.9h4.9z" fill="#cdd5df"/><path d="M19 21h7M19 24h7M19 27h4.5" stroke="#9aa7b4" stroke-width="1.5" stroke-linecap="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#ffffff" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#16a34a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="logo-mark" width="38" height="38" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#243558"/><text x="32" y="23" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="14" letter-spacing="1.5" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle">PDF</text><rect x="10" y="31" width="44" height="2.5" rx="1.25" fill="#16A34A"/><text x="32" y="46" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="12" letter-spacing="1.5" fill="#93C5FD" text-anchor="middle" dominant-baseline="middle">SIGN</text></svg>
       <span class="logo-name">PDF<em>Sign</em></span>
     </a>
     <div class="made-in-india">
@@ -2467,7 +2590,7 @@
       <li><a href="#faq">FAQ</a></li>
       <li><a href="/blog/">Blog</a></li>
       <li class="intl-only"><a href="/web">Sign Online — Free</a></li>
-      <li><a href="https://pdfsigner-api.vercel.app/api/download" class="nav-cta">Download Now</a></li>
+      <li><a href="https://api.pdfsign.in/api/download" class="nav-cta">Download Now</a></li>
     </ul>
   </div>
 </nav>
@@ -2479,7 +2602,7 @@
   </div>
   <div class="hero-inner">
     <div class="hero-content">
-      <div class="hero-badge">For Windows · 30-Day Free Trial</div>
+      <div class="hero-badge">For Windows · Free Evaluation · No Credit Card Required</div>
 
       <!-- India hero -->
       <h1 class="india-only">Sign any PDF in seconds.<br /><em>DSC token or stamp image.</em><br />100% offline.</h1>
@@ -2496,23 +2619,25 @@
       </p>
       <p class="hero-urgency intl-only"><em>Your documents stay on your device — always.</em></p>
       <div class="hero-actions">
-        <a href="https://pdfsigner-api.vercel.app/api/download" class="btn-primary">
+        <a href="https://api.pdfsign.in/api/download" class="btn-primary">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Free — 30 Day Trial
+          Download Free Evaluation
         </a>
         <!-- International: prominent secondary CTA to no-install web tool -->
         <a href="/web" class="btn-ghost intl-only" style="font-size:14px;opacity:0.85;">
           ✏️ Or sign free online
         </a>
       </div>
-      <!-- India: soft nudge for image-signature-only use case -->
-      <p class="india-only" style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:6px;">
-        Just need an image signature? <a href="/web" style="color:rgba(255,255,255,0.55);text-decoration:underline;text-underline-offset:3px;">Sign free online →</a>
+      <p style="font-size:13px;color:rgba(255,255,255,0.65);margin-top:10px;">
+        Verify that PDFSign works with your USB DSC token, PDFs and workflow before you buy.
+      </p>
+      <p style="font-size:11.5px;color:rgba(255,255,255,0.45);margin-top:4px;">
+        Includes up to 30 days or 100 signed PDFs (whichever comes first).
       </p>
       <div class="hero-badges">
         <div class="hero-badge-item">
           <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-          30-day free trial
+          Free evaluation
         </div>
         <div class="hero-badge-item">
           <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
@@ -2540,44 +2665,44 @@
       </div>
     </div>
 
-    <!-- PDF Mockup -->
+    <!-- Layered proof: signed PDF (outcome) in front, real app render behind -->
     <div class="hero-visual">
       <div class="step-badge">
         <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
         Signed &amp; Verified
       </div>
-      <div class="pdf-card">
-        <div class="pdf-header">
-          <div class="pdf-icon">PDF</div>
-          <div>
-            <div class="pdf-name india-only">Tender_Document_2025.pdf</div>
-            <div class="pdf-name intl-only">Contract_NDA_Signed.pdf</div>
-            <div class="pdf-size">2.4 MB · 8 pages</div>
-          </div>
+      <div class="hero-stack">
+        <div class="hero-app-behind">
+          <img src="/img/hero-app.png" alt="The PDFSign desktop app signing a PDF with a digital certificate — fully offline on Windows" width="1272" height="1158" loading="eager" fetchpriority="high" />
         </div>
-        <div class="pdf-lines">
-          <div class="pdf-line full"></div>
-          <div class="pdf-line med"></div>
-          <div class="pdf-line full"></div>
-          <div class="pdf-line short"></div>
-          <div class="pdf-line full"></div>
-          <div class="pdf-line med"></div>
-          <div class="pdf-line xs"></div>
-        </div>
-        <div class="pdf-sig-area">
-          <div class="sig-stamp">
-            <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="rgba(22,163,74,0.3)" stroke="#16A34A" stroke-width="1.5"/>
-              <path d="M9 12l2 2 4-4" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+        <div class="pdf-proof" aria-label="A digitally signed PDF verified as valid">
+          <div class="pdf-proof-banner">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#16A34A"/><polyline points="17,9 10.5,15.5 7,12" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Signed and all signatures are valid.
           </div>
-          <div class="sig-info">
-            <div class="sig-name">Rajesh Kumar</div>
-            <div class="sig-meta">Signed · 28 Mar 2025, 14:32 IST</div>
-          </div>
-          <div class="sig-verified">
-            <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-            Valid
+          <div class="pdf-proof-page">
+            <div class="pp-line full"></div>
+            <div class="pp-line full"></div>
+            <div class="pp-line med"></div>
+            <div class="pp-gap"></div>
+            <div class="pp-line full"></div>
+            <div class="pp-line full"></div>
+            <div class="pp-line short"></div>
+            <div class="pp-gap"></div>
+            <div class="pp-line med"></div>
+            <div class="pp-line xs"></div>
+            <div class="dsc-stamp">
+              <div class="dsc-stamp-title">Signature valid</div>
+              <div class="dsc-stamp-line">Digitally signed by <strong class="india-only">RAJESH KUMAR</strong><strong class="intl-only">DAVID MILLER</strong></div>
+              <div class="dsc-stamp-line">Date: 2026.07.18 14:32 IST</div>
+              <div class="dsc-stamp-line">Designation: <span class="india-only">Proprietor</span><span class="intl-only">Authorised Signatory</span></div>
+              <div class="dsc-stamp-line">Reason: <span class="india-only">Tender</span><span class="intl-only">Contract</span></div>
+              <div class="dsc-stamp-line">Location: <span class="india-only">Pune</span><span class="intl-only">London</span></div>
+              <svg class="dsc-stamp-check" width="52" height="52" viewBox="0 0 24 24" fill="none">
+                <path d="M20 6 9 17l-5-5" stroke="#0F172A" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M20 6 9 17l-5-5" stroke="#16A34A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
@@ -2984,8 +3109,8 @@
             <td><span class="cmp-no">✕ USD only</span></td>
           </tr>
           <tr>
-            <td>Free trial</td>
-            <td class="our-col"><span class="cmp-yes">30 days</span></td>
+            <td>Free evaluation</td>
+            <td class="our-col"><span class="cmp-yes">Yes</span></td>
             <td><span class="cmp-yes">30 days</span></td>
             <td><span class="cmp-part">Limited</span></td>
             <td><span class="cmp-yes">Free tier</span></td>
@@ -3095,8 +3220,8 @@
             <td><span class="cmp-yes">✓</span></td>
           </tr>
           <tr>
-            <td>Free trial</td>
-            <td class="our-col"><span class="cmp-yes">30 days</span></td>
+            <td>Free evaluation</td>
+            <td class="our-col"><span class="cmp-yes">Yes</span></td>
             <td><span class="cmp-yes">30 days</span></td>
             <td><span class="cmp-yes">7 days</span></td>
             <td><span class="cmp-yes">Free tier</span></td>
@@ -3196,7 +3321,7 @@
     </div>
 
     <p class="pricing-note" id="pricingNote">
-      All prices are inclusive of GST &nbsp;·&nbsp; 30-day free trial &nbsp;·&nbsp; Payments via Razorpay (UPI, Cards, Net Banking) &nbsp;·&nbsp; GST invoice sent automatically to your email
+      All prices are inclusive of GST &nbsp;·&nbsp; Free evaluation included &nbsp;·&nbsp; Payments via Razorpay (UPI, Cards, Net Banking) &nbsp;·&nbsp; GST invoice sent automatically to your email
     </p>
   </div>
 </section>
@@ -3206,10 +3331,11 @@
   <div class="intl-modal-box">
     <div style="font-size:2.5rem;margin-bottom:.75rem;">🌍</div>
     <h3 id="intlModalTitle">International Purchase</h3>
-    <p>Enter your email and we'll send your license key right after payment. No account needed.</p>
+    <p>Enter your details and we'll send your license key right after payment. No account needed.</p>
     <div class="intl-modal-err" id="intlErr"></div>
     <input type="text"  id="intlName"  placeholder="Your name (optional)" autocomplete="name" />
     <input type="email" id="intlEmail" placeholder="Email address (required)" autocomplete="email" />
+    <input type="tel"   id="intlPhone" placeholder="Mobile with country code, e.g. +1 415 555 0123 (required)" autocomplete="tel" />
     <button class="intl-modal-pay-btn" id="intlPayBtn" onclick="submitIntlCheckout()">
       Continue to Payment
     </button>
@@ -3333,7 +3459,7 @@
       <span class="trust-pill"><span class="trust-pill-dot"></span>100% offline — no upload</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>All CCA-licensed DSC tokens</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>PDF security &amp; permissions</span>
-      <span class="trust-pill"><span class="trust-pill-dot"></span>30-day free trial</span>
+      <span class="trust-pill"><span class="trust-pill-dot"></span>Free evaluation</span>
     </div>
     <!-- International trust pills -->
     <div class="trust-capability intl-only">
@@ -3343,7 +3469,7 @@
       <span class="trust-pill"><span class="trust-pill-dot"></span>100% offline — GDPR-safe</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>Any PKCS#11 USB token</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>PDF security &amp; permissions</span>
-      <span class="trust-pill"><span class="trust-pill-dot"></span>30-day free trial</span>
+      <span class="trust-pill"><span class="trust-pill-dot"></span>Free evaluation</span>
     </div>
   </div>
 </section>
@@ -3553,10 +3679,37 @@
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
           <span class="faq-q-icon">Q</span>
+          <span class="faq-q-text">Is PDFSign free?</span>
+          <span class="faq-toggle-icon">+</span>
+        </button>
+        <div class="faq-a-wrap"><p class="faq-a">Yes. Every download includes a free evaluation. You can evaluate PDFSign for up to 30 days or 100 signed PDFs (whichever comes first) before choosing a subscription.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-icon">Q</span>
+          <span class="faq-q-text">Why is the evaluation limited?</span>
+          <span class="faq-toggle-icon">+</span>
+        </button>
+        <div class="faq-a-wrap"><p class="faq-a">The purpose of the free evaluation is to let you verify that PDFSign works perfectly with your USB DSC token, PDF documents and signing workflow. If you regularly sign large numbers of PDFs, you can continue without interruption by upgrading to a paid plan.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-icon">Q</span>
+          <span class="faq-q-text">What happens when my evaluation ends?</span>
+          <span class="faq-toggle-icon">+</span>
+        </button>
+        <div class="faq-a-wrap"><p class="faq-a">Your documents, settings, saved signatures and templates remain safely stored on your computer. Only new PDF signing requires an active subscription.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-icon">Q</span>
           <span class="faq-q-text">What is your refund policy?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">PDFSign includes a 30-day free trial so you can fully evaluate it before buying. Because of that, all licence purchases are final and non-refundable, except where required by applicable law. See our <a href="/refund.html">Refund Policy</a> for details.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">PDFSign includes a free evaluation — up to 30 days or 100 signed PDFs — so you can fully evaluate it before buying. Because of that, all licence purchases are final and non-refundable, except where required by applicable law. See our <a href="/refund">Refund Policy</a> for details.</p></div>
       </div>
 
     </div>
@@ -3849,7 +4002,7 @@
         <div class="roadmap-icon-wrap">🤝</div>
         <div class="roadmap-text">
           <h4>DSC Reseller &amp; Affiliate Programme</h4>
-          <p>DSC token sellers, CA consultants, and IT professionals — partner with PDFSign and earn on every licence you refer. <a href="/reseller.html" style="color:var(--green);text-decoration:underline;">Enquire now →</a></p>
+          <p>DSC token sellers, CA consultants, and IT professionals — partner with PDFSign and earn on every licence you refer. <a href="/reseller-portal" style="color:var(--green);text-decoration:underline;">Enquire now →</a></p>
         </div>
       </div>
 
@@ -3936,7 +4089,7 @@
         <div class="roadmap-icon-wrap">🤝</div>
         <div class="roadmap-text">
           <h4>Global Reseller Programme</h4>
-          <p>Token resellers and IT consultants worldwide — partner with PDFSign and earn on every licence you refer. <a href="/reseller.html" style="color:var(--green);text-decoration:underline;">Enquire now →</a></p>
+          <p>Token resellers and IT consultants worldwide — partner with PDFSign and earn on every licence you refer. <a href="/reseller-portal" style="color:var(--green);text-decoration:underline;">Enquire now →</a></p>
         </div>
       </div>
 
@@ -3950,13 +4103,13 @@
     <h2>Stop struggling with DSC errors.<br>Start signing in seconds.</h2>
     <p>Download now and sign your first PDF in under 1 minute. No credit card required. Works with the DSC token you already have.</p>
     <div class="cta-actions">
-      <a href="https://pdfsigner-api.vercel.app/api/download" class="btn-primary-lg">
+      <a href="https://api.pdfsign.in/api/download" class="btn-primary-lg">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download Now
       </a>
       <a href="/cdn-cgi/l/email-protection#e38b868f93a3938785908a848dcd8a8d" style="color:#ffffff;font-size:15px;font-weight:500;text-decoration:underline;opacity:0.9;"><span class="__cf_email__" data-cfemail="95fdf0f9e5d5e5f1f3e6fcf2fbbbfcfb">[email&#160;protected]</span></a>
     </div>
-    <p class="cta-footnote">For Windows 10 &amp; 11 · 30-day free trial · No credit card needed</p>
+    <p class="cta-footnote">For Windows 10 &amp; 11 · Free evaluation — up to 30 days or 100 signed PDFs · No credit card needed</p>
   </div>
 </section>
 
@@ -3966,13 +4119,13 @@
     <h2>Stop uploading confidential documents<br>to cloud servers.</h2>
     <p>Sign any PDF offline, in seconds. Your documents never leave your computer. Works with any USB security token worldwide.</p>
     <div class="cta-actions">
-      <a href="https://pdfsigner-api.vercel.app/api/download" class="btn-primary-lg">
+      <a href="https://api.pdfsign.in/api/download" class="btn-primary-lg">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download Free Trial
+        Download Free Evaluation
       </a>
       <a href="mailto:support@pdfsign.in" style="color:#ffffff;font-size:15px;font-weight:500;text-decoration:underline;opacity:0.9;">support@pdfsign.in</a>
     </div>
-    <p class="cta-footnote">For Windows 10 &amp; 11 · 30-day free trial · No credit card needed</p>
+    <p class="cta-footnote">For Windows 10 &amp; 11 · Free evaluation — up to 30 days or 100 signed PDFs · No credit card needed</p>
   </div>
 </section>
 
@@ -4124,7 +4277,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <a href="#" class="logo">
-          <svg class="logo-mark" width="38" height="38" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 3.5l15 5.2v11.1c0 9.7-6.4 16.3-15 19.2-8.6-2.9-15-9.5-15-19.2V8.7L24 3.5z" fill="#16a34a"/><path d="M17.6 12.6h7.5l4.9 4.9V28.3a1.7 1.7 0 0 1-1.7 1.7H17.6A1.7 1.7 0 0 1 15.9 28.3V14.3A1.7 1.7 0 0 1 17.6 12.6z" fill="#ffffff"/><path d="M25.1 12.6v4.9h4.9z" fill="#cdd5df"/><path d="M19 21h7M19 24h7M19 27h4.5" stroke="#9aa7b4" stroke-width="1.5" stroke-linecap="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#ffffff" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#16a34a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="logo-mark" width="38" height="38" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#243558"/><text x="32" y="23" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="14" letter-spacing="1.5" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle">PDF</text><rect x="10" y="31" width="44" height="2.5" rx="1.25" fill="#16A34A"/><text x="32" y="46" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="12" letter-spacing="1.5" fill="#93C5FD" text-anchor="middle" dominant-baseline="middle">SIGN</text></svg>
           <span class="logo-name">PDF<em>Sign</em></span>
         </a>
         <p>Sign PDFs with your DSC token. Offline, private, and accepted everywhere in India.</p>
@@ -4136,10 +4289,12 @@
           <li><a href="#features">Features</a></li>
           <li><a href="#how">How it works</a></li>
           <li><a href="#pricing">Pricing</a></li>
-          <li><a href="https://pdfsigner-api.vercel.app/api/download">Download</a></li>
+          <li><a href="https://api.pdfsign.in/api/download">Download</a></li>
           <li><a href="https://pdfsign.in/changelog">Changelog</a></li>
-          <li><a href="/reseller.html">Reseller Programme</a></li>
+          <li><a href="/reseller-portal">Reseller Programme</a></li>
           <li><a href="/web">Sign Online — Free</a></li>
+          <li><a href="/bulk-pdf-signing">Bulk PDF Signing</a></li>
+          <li><a href="/repair-pdf">Repair PDF for GeM</a></li>
         </ul>
       </div>
 
@@ -4150,17 +4305,19 @@
           <li><a href="/cdn-cgi/l/email-protection#9df5f8f1edddedf9fbeef4faf3b3f4f3"><span class="__cf_email__" data-cfemail="82eae7eef2c2f2e6e4f1ebe5ecacebec">[email&#160;protected]</span></a></li>
           <li><a href="https://wa.me/917057413999">WhatsApp Support</a></li>
           <li><a href="https://wa.me/917057413999?text=Feedback%20for%20PDFSign%3A%20" target="_blank" rel="noopener">Share Feedback</a></li>
-          <li><a href="/verify.html">Verify PDF Signature</a></li>
+          <li><a href="/verify">Verify PDF Signature</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h5>Legal</h5>
         <ul>
-          <li><a href="/privacy.html">Privacy Policy</a></li>
-          <li><a href="/terms.html">Terms of Service</a></li>
-          <li><a href="/refund.html">Refund Policy</a></li>
-          <li><a href="/eula.html">Software License Agreement</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/refund">Refund &amp; Cancellation</a></li>
+          <li><a href="/shipping">Shipping &amp; Delivery</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+          <li><a href="/eula">Software License Agreement</a></li>
         </ul>
       </div>
     </div>
@@ -4169,8 +4326,8 @@
       <p>© 2026 PDFSign &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; 🦁 Made in India &nbsp;·&nbsp; 🇮🇳 Proud to be Indian</p>
       <div class="footer-bottom-links">
         <a href="/global">🌐 Global Site</a>
-        <a href="/privacy.html">Privacy</a>
-        <a href="/terms.html">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
         <a href="/cdn-cgi/l/email-protection#137b767f6353637775607a747d3d7a7d"><span class="__cf_email__" data-cfemail="c7afa2abb787b7a3a1b4aea0a9e9aea9">[email&#160;protected]</span></a>
       </div>
     </div>
@@ -4268,7 +4425,7 @@ function dispUsd(plan) { return '$' + fmtUsd(getUsd(plan)); }
 
   // ── Pricing promise: runs in parallel, applied separately ──
   //    A slow cold-start here CANNOT delay geo content display.
-  var pricingPromise = fetch('https://pdfsigner-api.vercel.app/api/pricing', { cache: 'no-store' })
+  var pricingPromise = fetch('https://api.pdfsign.in/api/pricing', { cache: 'no-store' })
     .then(function(r) { return r.ok ? r.json() : null; })
     .catch(function()  { return null; });
 
@@ -4315,8 +4472,8 @@ function applyGeo() {
   var note = document.getElementById('pricingNote');
   if (note) {
     note.innerHTML = _isIndia
-      ? 'All prices are inclusive of GST &nbsp;·&nbsp; 30-day free trial &nbsp;·&nbsp; Payments via Razorpay (UPI, Cards, Net Banking) &nbsp;·&nbsp; GST invoice sent automatically to your email'
-      : 'Prices in USD &nbsp;·&nbsp; 30-day free trial &nbsp;·&nbsp; International card payments via Razorpay &nbsp;·&nbsp; Invoice sent to your email';
+      ? 'All prices are inclusive of GST &nbsp;·&nbsp; Free evaluation included &nbsp;·&nbsp; Payments via Razorpay (UPI, Cards, Net Banking) &nbsp;·&nbsp; GST invoice sent automatically to your email'
+      : 'Prices in USD &nbsp;·&nbsp; Free evaluation included &nbsp;·&nbsp; International card payments via Razorpay &nbsp;·&nbsp; Invoice sent to your email';
   }
 
   // Re-render plan prices in correct currency
@@ -4343,13 +4500,19 @@ function resolveActualPlan(planKey) {
   return planKey;
 }
 
-// ── Plan click handler — both flows go straight to Razorpay (no modal) ─────
+// ── Plan click handler ─────────────────────────────────────────────────────
+// India: straight to Razorpay (INR links accept a partial/omitted customer).
+// International: open the details modal FIRST — Razorpay's USD links REQUIRE a
+// customer with name/email/CONTACT up front, otherwise the hosted page dead-ends
+// with "customer details are required, please fill them in to continue". Going
+// straight to Razorpay (the old generateIntlPaymentLink path) is exactly what
+// caused that wall, so international now always collects details via the modal.
 function handlePlanClick(e, planKey) {
   e.preventDefault();
   var actualPlan = resolveActualPlan(planKey);
   var btnId = planKey === 'monthly' ? 'btnMonthly' : planKey === 'yearly' ? 'btnAnnual' : 'btnLifetime';
   if (!_isIndia) {
-    generateIntlPaymentLink(actualPlan, btnId);
+    openIntlModal(actualPlan);
   } else {
     generateINRPaymentLink(actualPlan, btnId);
   }
@@ -4361,7 +4524,7 @@ var _prefetchCache = {};
 
 function prefetchINRLink(plan) {
   if (_prefetchCache[plan]) return; // already in-flight or done
-  _prefetchCache[plan] = fetch('https://pdfsigner-api.vercel.app/api/payment/create-link', {
+  _prefetchCache[plan] = fetch('https://api.pdfsign.in/api/payment/create-link', {
     method:  'POST',
     headers: { 'Content-Type': 'application/json' },
     body:    JSON.stringify({ plan: plan, customerCountry: 'IN' }),
@@ -4387,7 +4550,7 @@ async function generateINRPaymentLink(plan, btnId) {
 
   if (!url) {
     try {
-      var resp = await fetch('https://pdfsigner-api.vercel.app/api/payment/create-link', {
+      var resp = await fetch('https://api.pdfsign.in/api/payment/create-link', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify({ plan: plan, customerCountry: 'IN' }),
@@ -4506,6 +4669,7 @@ function openIntlModal(plan) {
   _intlPlan = plan;
   document.getElementById('intlName').value  = '';
   document.getElementById('intlEmail').value = '';
+  document.getElementById('intlPhone').value = '';
   document.getElementById('intlErr').style.display  = 'none';
   document.getElementById('intlPayBtn').disabled    = false;
   document.getElementById('intlPayBtn').textContent = 'Continue to Payment — ' + (dispUsd(plan));
@@ -4532,7 +4696,7 @@ async function generateIntlPaymentLink(plan, btnId) {
   var timeoutId  = setTimeout(function() { controller.abort(); }, 25000);
 
   try {
-    var resp = await fetch('https://pdfsigner-api.vercel.app/api/payment/create-link', {
+    var resp = await fetch('https://api.pdfsign.in/api/payment/create-link', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body:    JSON.stringify({ plan: plan, customerCountry: 'INTL' }),
@@ -4577,6 +4741,7 @@ document.addEventListener('keydown', function(e) {
 async function submitIntlCheckout() {
   var email = (document.getElementById('intlEmail').value || '').trim();
   var name  = (document.getElementById('intlName').value  || '').trim();
+  var phone = (document.getElementById('intlPhone').value || '').trim();
   var errEl = document.getElementById('intlErr');
   var btn   = document.getElementById('intlPayBtn');
   errEl.style.display = 'none';
@@ -4586,19 +4751,29 @@ async function submitIntlCheckout() {
     errEl.style.display = 'block';
     return;
   }
+  // Razorpay REQUIRES a contact number on international (non-INR) links, or the
+  // hosted page dead-ends with "customer details are required". Collect it here so
+  // the link is created with full customer details.
+  var phoneDigits = phone.replace(/[^\d]/g, '');
+  if (phoneDigits.length < 8) {
+    errEl.textContent = 'Please enter your mobile number with country code (required for international cards).';
+    errEl.style.display = 'block';
+    return;
+  }
   if (!_intlPlan) return;
 
   btn.disabled    = true;
   btn.textContent = 'Creating payment link…';
 
   try {
-    var resp = await fetch('https://pdfsigner-api.vercel.app/api/payment/create-link', {
+    var resp = await fetch('https://api.pdfsign.in/api/payment/create-link', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body:    JSON.stringify({
         plan:            _intlPlan,
         customerEmail:   email,
         customerName:    name || undefined,
+        customerContact: phone,                 // required for USD links (see above)
         customerCountry: 'US', // international — triggers USD flow
       }),
     });
@@ -4665,7 +4840,7 @@ document.querySelectorAll(".feature-card,.how-step,.plan-card,.testimonial").for
 <script>
 // ── Live stats counter ────────────────────────────────────────────────────────
 (function() {
-  var STATS_API = 'https://pdfsigner-api.vercel.app/api/stats';
+  var STATS_API = 'https://api.pdfsign.in/api/stats';
   var _dlBase = 0, _optimistic = 0;
 
   function fmt(n) { return Number(n).toLocaleString('en-IN'); }

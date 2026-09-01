@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7E0J9Z32FK"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7E0J9Z32FK');</script>
+<title>How to Validate a Digital Signature in Adobe Acrobat Reader (Green Tick Guide) | PDFSign</title>
+<meta name="description" content="Step-by-step guide to validate a digitally signed PDF in Adobe Acrobat Reader — see the green tick, check the Signature Panel, trust CCA India certificates, and fix documents where images or signatures don't display."/>
+<meta name="keywords" content="validate digital signature Acrobat Reader, green tick PDF signature, verify DSC signature Adobe, signature panel Acrobat, check digital signature PDF India"/>
+<meta name="author" content="PDFSign.in"/>
+<meta name="geo.region" content="IN"/>
+<meta name="geo.country" content="India"/>
+<link rel="canonical" href="https://pdfsign.in/blog/validate-digital-signature-adobe-acrobat-reader"/>
+<meta property="og:title" content="How to Validate a Digital Signature in Adobe Acrobat Reader"/>
+<meta property="og:description" content="See the green tick and verify who signed a PDF, step by step — including the one-time CCA India trust setup."/>
+<meta property="og:url" content="https://pdfsign.in/blog/validate-digital-signature-adobe-acrobat-reader"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="PDFSign.in"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Validate a Digital Signature in Acrobat Reader"/>
+<meta name="twitter:description" content="Green tick guide: verify DSC-signed PDFs in Adobe Acrobat Reader, step by step."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"How to Validate a Digital Signature in Adobe Acrobat Reader","description":"Step-by-step guide to validate a digitally signed PDF in Adobe Acrobat Reader, including CCA India trust setup.","author":{"@type":"Organization","name":"PDFSign.in","url":"https://pdfsign.in"},"publisher":{"@type":"Organization","name":"PDFSign.in","url":"https://pdfsign.in"},"datePublished": "2026-09-01","dateModified": "2026-09-01","mainEntityOfPage":{"@type":"WebPage","@id":"https://pdfsign.in/blog/validate-digital-signature-adobe-acrobat-reader"},"inLanguage":"en-IN"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"Validate a digital signature in Adobe Acrobat Reader","step":[{"@type":"HowToStep","name":"Open the signed PDF in Adobe Acrobat Reader","text":"Right-click the PDF and choose Open with → Adobe Acrobat Reader. Browsers like Chrome and Edge display the file but do not verify signatures."},{"@type":"HowToStep","name":"Look at the blue signature bar","text":"Acrobat shows a bar at the top: 'Signed and all signatures are valid' with a green tick means the document verified successfully."},{"@type":"HowToStep","name":"Open the Signature Panel","text":"Click Signature Panel on that bar to see every signature, who signed, when, and whether the document changed after signing."},{"@type":"HowToStep","name":"Check the signer's certificate","text":"Right-click the signature → Show Signature Properties → Show Signer's Certificate to confirm the name and issuing authority."},{"@type":"HowToStep","name":"If it shows 'Validity Unknown', trust CCA India once","text":"Edit → Preferences → Trust Manager → Update AATL now. This one-time update makes all Indian DSC signatures verify with a green tick."}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why don't I see the green tick in Chrome or Edge?","acceptedAnswer":{"@type":"Answer","text":"Browser PDF viewers display documents but do not verify digital signatures. Open the PDF in Adobe Acrobat Reader to see the validation result — the signature is there either way."}},{"@type":"Question","name":"The signature shows a question mark (Validity Unknown). Is the document fake?","acceptedAnswer":{"@type":"Answer","text":"No. It means Acrobat has not yet been told to trust the Indian certificate authority chain (CCA India). Update Adobe's trust list once (Edit → Preferences → Trust Manager → Update AATL) and it turns into a green tick."}},{"@type":"Question","name":"An image or signature stamp in the PDF doesn't display in Acrobat. What should I do?","acceptedAnswer":{"@type":"Answer","text":"First update Adobe Acrobat Reader to the latest version — old versions can fail to render images in modern PDFs. Also check Edit → Preferences → Page Display → 'Show large images' is ticked."}},{"@type":"Question","name":"What does a red X on the signature mean?","acceptedAnswer":{"@type":"Answer","text":"A red X means the document was modified after it was signed, or the certificate is revoked. Treat the document as untrusted and request a freshly signed copy."}}]}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+a{color:#16A34A;text-decoration:none}a:hover{text-decoration:underline}
+nav{background:#1B2A47;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem}
+.nav-links a{color:#93C5FD;margin-left:1.5rem;font-size:.9rem}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.blog-hero{background:linear-gradient(135deg,#1B2A47 0%,#243352 100%);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center}
+.blog-hero .category{background:#16A34A;color:#fff;font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;display:inline-block;margin-bottom:1rem}
+.blog-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);max-width:750px;margin:0 auto .75rem;line-height:1.25}
+.blog-hero .meta{color:#93C5FD;font-size:.85rem}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#1B2A47;margin:2.5rem 0 .75rem;border-left:4px solid #16A34A;padding-left:.75rem}
+.content h3{font-size:1.1rem;font-weight:600;color:#1B2A47;margin:1.75rem 0 .5rem}
+.content p{margin-bottom:1rem;color:#334155}
+.content ul,.content ol{margin:.5rem 0 1rem 1.5rem;color:#334155}
+.content li{margin-bottom:.4rem}
+.content strong{color:#1B2A47}
+.step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin:1rem 0}
+.step-num{background:#1B2A47;color:#fff;font-size:.75rem;font-weight:700;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0}
+.step-title{font-weight:600;color:#1B2A47;display:flex;align-items:center;margin-bottom:.4rem}
+.step p{margin:0;color:#475569;font-size:.95rem}
+.tip{background:#f0fdf4;border-left:4px solid #16A34A;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.tip strong{color:#15803d}
+.warn{background:#fff7ed;border-left:4px solid #f97316;padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.cta-box{background:linear-gradient(135deg,#1B2A47,#243352);color:#fff;border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0}
+.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.75rem;border:none;padding:0;color:#fff}
+.cta-box p{color:#93C5FD;margin-bottom:1.5rem}
+.btn-green{background:#16A34A;color:#fff;padding:.75rem 2rem;border-radius:8px;font-weight:600;display:inline-block;font-size:1rem}
+.btn-green:hover{background:#15803d;text-decoration:none}
+.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1.5rem}
+.breadcrumb a{color:#16A34A}
+footer{background:#1B2A47;color:#93C5FD;text-align:center;padding:2rem;font-size:.85rem;margin-top:3rem}
+footer a{color:#93C5FD}
+.related{background:#f8fafc;border-radius:12px;padding:2rem;margin:2rem 0}
+.related h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1B2A47;margin-bottom:1rem;border:none;padding:0}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.related-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;font-size:.9rem}
+.related-card a{color:#1B2A47;font-weight:500}.related-card a:hover{color:#16A34A}
+.status-row{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0}
+.status-item{flex:1;min-width:170px;border-radius:10px;padding:1rem;display:flex;align-items:flex-start;gap:.6rem}
+.s-green{background:#f0fdf4;border:1px solid #86efac}
+.s-amber{background:#fffbeb;border:1px solid #fcd34d}
+.s-red{background:#fef2f2;border:1px solid #fca5a5}
+.s-icon{font-size:1.3rem;line-height:1}
+.s-text{font-size:.88rem;color:#334155}
+.s-text strong{display:block;font-size:.92rem;margin-bottom:.2rem;color:#1B2A47}
+.blog-visual{border:1px solid #e2e8f0;border-radius:16px;margin:1.5rem 0 2rem;overflow:hidden;line-height:0}
+.blog-visual svg{width:100%;height:auto;display:block}
+@media(max-width:600px){nav{flex-direction:column;gap:.75rem}.nav-links a{margin-left:.75rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="https://pdfsign.in"><svg class="nav-brand-mark" width="30" height="30" style="flex-shrink:0" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#243558"/><text x="32" y="23" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="14" letter-spacing="1.5" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle">PDF</text><rect x="10" y="31" width="44" height="2.5" rx="1.25" fill="#16A34A"/><text x="32" y="46" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="12" letter-spacing="1.5" fill="#93C5FD" text-anchor="middle" dominant-baseline="middle">SIGN</text></svg>PDF<span style="color:#16A34A">Sign</span></a>
+  <div class="nav-links">
+    <a href="https://pdfsign.in">Home</a>
+    <a href="https://pdfsign.in/blog/">Blog</a>
+    <a href="https://pdfsign.in/#pricing">Pricing</a>
+    <a href="https://wa.me/917057413999">Support</a>
+  </div>
+</nav>
+
+<div class="blog-hero">
+  <div class="category">How-To Guide</div>
+  <h1>How to Validate a Digital Signature in Adobe Acrobat Reader</h1>
+  <div class="meta">By PDFSign &nbsp;·&nbsp; Sep 2026 &nbsp;·&nbsp; 5 min read</div>
+</div>
+
+<div class="container">
+<div class="breadcrumb">
+  <a href="https://pdfsign.in">Home</a> › <a href="https://pdfsign.in/blog/">Blog</a> › Validate Signature in Acrobat Reader
+</div>
+<div class="blog-visual">
+  <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+    <rect width="320" height="160" fill="#f0fdf4"/>
+    <rect x="60" y="30" width="120" height="18" rx="4" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
+    <text x="120" y="43" text-anchor="middle" fill="#1e40af" font-family="sans-serif" font-size="8">Signed and all signatures are valid</text>
+    <rect x="60" y="55" width="120" height="80" rx="6" fill="#fff" stroke="#e2e8f0" stroke-width="2"/>
+    <rect x="70" y="66" width="80" height="6" rx="3" fill="#e2e8f0"/>
+    <rect x="70" y="80" width="100" height="6" rx="3" fill="#eef2f7"/>
+    <rect x="70" y="94" width="60" height="6" rx="3" fill="#eef2f7"/>
+    <rect x="112" y="108" width="58" height="20" rx="4" fill="#f0fdf4" stroke="#16A34A" stroke-width="1.5"/>
+    <text x="141" y="121" text-anchor="middle" fill="#15803d" font-family="sans-serif" font-size="7">✓ Digitally signed</text>
+    <circle cx="235" cy="80" r="34" fill="#16A34A"/>
+    <path d="M220 80 l10 10 l20 -22" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div>
+
+<div class="content">
+<p>You received (or sent) a digitally signed PDF — a tender document, an invoice, a verification certificate — and now you need to <strong>prove the signature is genuine</strong>. The green tick in Adobe Acrobat Reader is that proof. This guide shows exactly where to find it, what each status means, and how to fix the two most common problems along the way.</p>
+
+<div class="tip"><strong>Why Acrobat Reader?</strong> Chrome, Edge and most phone viewers <em>display</em> a signed PDF but do not <em>verify</em> it. Adobe Acrobat Reader is the free, universally accepted validator — it checks the signature mathematically and against the certificate authority.</div>
+
+<h2>Validate a signature in 5 steps</h2>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">1</span>Open the PDF in Adobe Acrobat Reader</div>
+  <p>Right-click the file → <strong>Open with → Adobe Acrobat Reader</strong>. If you don't have it, download the free Reader from adobe.com. Make sure it's a recent version — old versions can fail to display images and signatures in modern PDFs.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">2</span>Read the blue bar at the top</div>
+  <p>Acrobat immediately verifies every signature and shows the verdict in a bar across the top: <strong>"Signed and all signatures are valid"</strong> with a green tick ✓ is the result you want.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">3</span>Open the Signature Panel</div>
+  <p>Click <strong>Signature Panel</strong> on that bar (or View → Show/Hide → Navigation Panes → Signatures). It lists every signature with the signer's name, signing time, and — critically — whether the document has been <strong>modified since it was signed</strong>.</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">4</span>Check who signed</div>
+  <p>Right-click the signature (on the page or in the panel) → <strong>Show Signature Properties → Show Signer's Certificate</strong>. Confirm the signer's name and that the certificate was issued by a licensed Indian CA (eMudhra, Capricorn, VSign, PantaSign etc. under CCA India).</p>
+</div>
+
+<div class="step">
+  <div class="step-title"><span class="step-num">5</span>Trust CCA India — once</div>
+  <p>If the signature shows <strong>"Validity Unknown"</strong> with a question mark, Acrobat simply hasn't loaded India's certificate chain yet. Go to <strong>Edit → Preferences → Trust Manager</strong> and click <strong>Update Now</strong> under "Automatic Adobe Approved Trust List (AATL) updates". Reopen the PDF — the question mark becomes a green tick, permanently, for all Indian DSC-signed documents.</p>
+</div>
+
+<h2>What each status means</h2>
+<div class="status-row">
+  <div class="status-item s-green"><span class="s-icon">✅</span><div class="s-text"><strong>Green tick — Valid</strong>Signature verified, certificate trusted, document unchanged since signing. Safe to rely on.</div></div>
+  <div class="status-item s-amber"><span class="s-icon">❓</span><div class="s-text"><strong>Question mark — Validity Unknown</strong>The signature is intact but the viewer doesn't trust the CA chain yet. Fix with the AATL update in Step 5.</div></div>
+  <div class="status-item s-red"><span class="s-icon">❌</span><div class="s-text"><strong>Red X — Invalid</strong>The document was altered after signing, or the certificate is revoked. Do not rely on it — request a fresh signed copy.</div></div>
+</div>
+
+<h2>Images or the signature stamp not showing?</h2>
+<p>Occasionally a signed PDF opens in Acrobat with a photo, seal, or stamp <strong>missing from the page</strong> — while the same file looks fine in Edge or Chrome. This is almost always the viewer, not the document:</p>
+<ul>
+  <li><strong>Update Acrobat Reader</strong> — Help → Check for Updates. Outdated versions can't render images in PDFs produced by modern tools and portals. This fixes the vast majority of cases.</li>
+  <li><strong>Check "Show large images"</strong> — Edit → Preferences → Page Display → make sure <em>Show large images</em> is ticked. When off, Acrobat silently hides photos and scans.</li>
+</ul>
+
+<div class="warn"><strong>Good to know:</strong> a signature that verifies with a green tick is legally valid under the IT Act 2000 even if a viewer has display quirks — the cryptographic verification is about the document's bytes, not how a particular app draws the page.</div>
+
+<h2>Validating PDFs signed with PDFSign</h2>
+<p>Every DSC signature applied by <a href="https://pdfsign.in">PDFSign</a> is built for exactly this check: PAdES standard (accepted by GeM and government portals), an embedded <a href="https://pdfsign.in/blog/digital-signature-valid-after-dsc-expiry">RFC 3161 trusted timestamp</a> so the signature stays verifiable even after your DSC expires, and the full certificate chain embedded so Acrobat can verify offline. Open any PDFSign-signed document in Acrobat Reader and you should see the green tick after the one-time AATL update.</p>
+
+<div class="cta-box">
+  <h2>Sign PDFs that verify with a green tick</h2>
+  <p>PDFSign signs with your DSC token — PAdES standard, trusted timestamp, GeM-accepted. 100% offline on your Windows PC.</p>
+  <a class="btn-green" href="https://api.pdfsign.in/api/download">Download PDFSign Free →</a>
+</div>
+
+<div class="related">
+  <h2>Related Articles</h2>
+  <div class="related-grid">
+    <div class="related-card"><a href="https://pdfsign.in/blog/digital-signature-validity-unknown-pdf-fix">Fix "Validity Unknown" on a DSC-signed PDF</a></div>
+    <div class="related-card"><a href="https://pdfsign.in/blog/how-to-verify-digital-signature-pdf-india">Complete Guide: Verify a Digital Signature in India</a></div>
+    <div class="related-card"><a href="https://pdfsign.in/blog/how-to-digitally-sign-pdf-using-dsc">How to Digitally Sign a PDF Using DSC</a></div>
+  </div>
+</div>
+</div>
+</div>
+
+<footer>
+  © 2026 PDFSign.in · <a href="https://pdfsign.in">Home</a> · <a href="https://pdfsign.in/blog/">Blog</a> · <a href="mailto:help@pdfsign.in">help@pdfsign.in</a>
+</footer>
+</body>
+</html>

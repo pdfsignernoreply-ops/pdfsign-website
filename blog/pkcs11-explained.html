@@ -144,7 +144,7 @@ tr:nth-child(even) td{background:#f8fafc}
 </head>
 <body>
 <nav>
-  <a class="nav-brand" href="https://pdfsign.in"><svg class="nav-brand-mark" width="30" height="30" viewBox="0 0 48 48" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M24 3.5l15 5.2v11.1c0 9.7-6.4 16.3-15 19.2-8.6-2.9-15-9.5-15-19.2V8.7L24 3.5z" fill="#16a34a"/><path d="M17.6 12.6h7.5l4.9 4.9V28.3a1.7 1.7 0 0 1-1.7 1.7H17.6A1.7 1.7 0 0 1 15.9 28.3V14.3A1.7 1.7 0 0 1 17.6 12.6z" fill="#ffffff"/><path d="M25.1 12.6v4.9h4.9z" fill="#cdd5df"/><path d="M19 21h7M19 24h7M19 27h4.5" stroke="#9aa7b4" stroke-width="1.5" stroke-linecap="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#ffffff" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#16a34a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>PDF<span style="color:#16A34A">Sign</span></a>
+  <a class="nav-brand" href="https://pdfsign.in"><svg class="nav-brand-mark" width="30" height="30" style="flex-shrink:0" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#243558"/><text x="32" y="23" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="14" letter-spacing="1.5" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle">PDF</text><rect x="10" y="31" width="44" height="2.5" rx="1.25" fill="#16A34A"/><text x="32" y="46" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="12" letter-spacing="1.5" fill="#93C5FD" text-anchor="middle" dominant-baseline="middle">SIGN</text></svg>PDF<span style="color:#16A34A">Sign</span></a>
   <div class="nav-links">
     <a href="https://pdfsign.in">Home</a>
     <a href="https://pdfsign.in/blog/">Blog</a>
@@ -245,7 +245,7 @@ tr:nth-child(even) td{background:#f8fafc}
 </div>
 
 <h2 id="components">Components of a PKCS#11 Workflow</h2>
-<p><strong>1. The signing application.</strong> This is what starts the request — a desktop tool that supports hardware tokens, such as <a href="https://pdfsign.in">PDFSign</a> (a free local app you can <a href="https://pdfsigner-api.vercel.app/api/download">download here</a>). It never sees the key; it only asks for a signature.</p>
+<p><strong>1. The signing application.</strong> This is what starts the request — a desktop tool that supports hardware tokens, such as <a href="https://pdfsign.in">PDFSign</a> (a free local app you can <a href="https://api.pdfsign.in/api/download">download here</a>). It never sees the key; it only asks for a signature.</p>
 <p><strong>2. The PKCS#11 library.</strong> A platform-specific file shipped by the token vendor — <code>.dll</code> on Windows, <code>.so</code> on Linux, <code>.dylib</code> on macOS. Whatever the hardware inside, this library exposes the same standard interface, which is why one application can work with tokens from many different makers.</p>
 <p><strong>3. The hardware token.</strong> The physical device — a <a href="usb-token-pdf-signing.html">USB security token</a>, smart card, or HSM — that securely holds the private key and certificate and performs the cryptographic operations on-chip.</p>
 <p><strong>4. The digital certificate.</strong> Stored on the token, this identifies the signer and is what recipients use to <a href="how-to-verify-digital-signature-pdf-india.html">verify the signature</a>.</p>
@@ -299,7 +299,7 @@ tr:nth-child(even) td{background:#f8fafc}
     <li>✓ Private key stays on the token</li>
     <li>✓ 100% offline — nothing uploaded</li>
   </ul>
-  <div><a class="btn-green" href="https://pdfsigner-api.vercel.app/api/download">Try PDFSign Free</a></div>
+  <div><a class="btn-green" href="https://api.pdfsign.in/api/download">Try PDFSign Free</a></div>
 </div>
 
 <h2 id="errors">Common PKCS#11 Errors</h2>
@@ -377,10 +377,10 @@ tr:nth-child(even) td{background:#f8fafc}
 </div>
 
 <div class="cta-box">
-  <h2>Sign PDFs With Your PKCS#11 Token — Free Trial</h2>
+  <h2>Sign PDFs With Your PKCS#11 Token — Free Evaluation</h2>
   <p>A local application that works with any PKCS#11-compatible hardware token. Your document never leaves your device.</p>
-  <a class="btn-green" href="https://pdfsigner-api.vercel.app/api/download">Download PDFSign Free</a>
-  <div class="cta-trust"><span>✓ 30-day free trial</span><span>✓ No account required</span><span>✓ Documents never leave your computer</span></div>
+  <a class="btn-green" href="https://api.pdfsign.in/api/download">Download PDFSign Free</a>
+  <div class="cta-trust"><span>✓ free evaluation</span><span>✓ No account required</span><span>✓ Documents never leave your computer</span></div>
 </div>
 
 <div class="related">

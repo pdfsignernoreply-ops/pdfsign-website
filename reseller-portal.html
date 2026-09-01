@@ -102,6 +102,7 @@ tr:hover td{background:#1e293b33}
   </header>
 
   <main>
+  <div id="markupMain">
     <!-- Welcome -->
     <div class="welcome">
       <div class="welcome-text">
@@ -122,6 +123,23 @@ tr:hover td{background:#1e293b33}
     <div id="orders-wrap">
       <div class="empty">Loading…</div>
     </div>
+  </div><!-- /markupMain -->
+
+  <!-- PARTNER (commission) view -->
+  <div id="partnerMain" style="display:none">
+    <div class="welcome">
+      <div class="welcome-text">
+        <h3>Welcome, <span id="pwname">—</span></h3>
+        <p>Invite customers to PDFSign and earn recurring commission on every subscription they buy.</p>
+      </div>
+      <button class="btn-g" onclick="openInvite()">+ Invite Customer</button>
+    </div>
+    <div class="plan-grid" id="pstats"><div class="empty" style="grid-column:1/-1">Loading…</div></div>
+    <h2>Your Customers</h2>
+    <div id="pcust-wrap"><div class="empty">Loading…</div></div>
+    <h2>Commission History</h2>
+    <div id="pcomm-wrap"><div class="empty">Loading…</div></div>
+  </div>
   </main>
 </div>
 
@@ -160,8 +178,23 @@ tr:hover td{background:#1e293b33}
   </div>
 </div>
 
+<!-- INVITE CUSTOMER MODAL (partner) -->
+<div class="mbg" id="mInvite">
+  <div class="mbox">
+    <h3>Invite a Customer</h3>
+    <p>We'll email them an invitation. When they register PDFSign with that email, they're linked to you — and they get an extra free month, courtesy of you.</p>
+    <div class="fg"><label>Customer Name</label><input type="text" id="icname" placeholder="Rajesh Sharma"/></div>
+    <div class="fg"><label>Customer Email *</label><input type="email" id="icemail" placeholder="rajesh@example.com"/></div>
+    <div class="mmsg" id="imsg"></div>
+    <div class="mact">
+      <button class="btn-cancel" onclick="closeInvite()">Cancel</button>
+      <button class="btn-g" id="ibtn" onclick="doInvite()">Send Invitation</button>
+    </div>
+  </div>
+</div>
+
 <script>
-var API = 'https://pdfsigner-api.vercel.app/api/reseller';
+var API = 'https://api.pdfsign.in/api/reseller';
 var PLAN_RETAIL = { monthly:99, yearly:999, lifetime:4999, 'team-yearly':3499, 'team-lifetime':13999 };
 var PLAN_LABEL  = { monthly:'1 Month', yearly:'1 Year', lifetime:'Lifetime', 'team-yearly':'Team 1 Year', 'team-lifetime':'Team Lifetime' };
 var S = null, PRICING = {};
@@ -182,9 +215,92 @@ function showApp() {
   document.getElementById('app').style.display = 'flex';
   document.getElementById('hname').textContent = S.name;
   document.getElementById('hcompany').textContent = S.company ? '— ' + S.company : '';
-  document.getElementById('wname').textContent = S.name;
-  loadPricing();
-  loadOrders();
+
+  var isPartner = S.mode === 'commission';
+  document.getElementById('markupMain').style.display  = isPartner ? 'none' : 'block';
+  document.getElementById('partnerMain').style.display = isPartner ? 'block' : 'none';
+  document.querySelector('.badge').textContent = isPartner ? 'Partner' : 'Reseller';
+
+  if (isPartner) {
+    document.getElementById('pwname').textContent = S.name;
+    loadPartnerDashboard(); loadPartnerCustomers(); loadPartnerCommissions();
+  } else {
+    document.getElementById('wname').textContent = S.name;
+    loadPricing(); loadOrders();
+  }
+}
+
+// ── Partner (commission) view ──────────────────────────────────
+function pauth(){ return { headers:{ 'Authorization':'Bearer '+S.token } }; }
+function inr(n){ return '₹' + Math.round(Number(n||0)).toLocaleString('en-IN'); }
+
+async function loadPartnerDashboard(){
+  try {
+    var r = await fetch(API+'/partner-dashboard', pauth());
+    if(r.status===401){ logout(); return; }
+    var d = await r.json();
+    var cards = [
+      ['Invited', d.invited], ['Registered', d.registered], ['Paying', d.paid], ['Customers', d.customers],
+      ['Lifetime Revenue', inr(d.lifetimeRevenue)], ['Pending Commission', inr(d.pendingCommission)], ['Paid Commission', inr(d.paidCommission)]
+    ];
+    document.getElementById('pstats').innerHTML = cards.map(function(c){
+      return '<div style="background:#0f172a;border:1px solid #1e293b;border-radius:10px;padding:16px">'
+        +'<div style="font-size:22px;font-weight:700;color:#4ade80">'+c[1]+'</div>'
+        +'<div style="font-size:12px;color:#94a3b8;margin-top:4px">'+c[0]+'</div></div>';
+    }).join('');
+  } catch(e){ document.getElementById('pstats').innerHTML='<div class="empty" style="grid-column:1/-1">Could not load.</div>'; }
+}
+async function loadPartnerCustomers(){
+  var w = document.getElementById('pcust-wrap');
+  try {
+    var r = await fetch(API+'/partner-customers', pauth()); if(r.status===401){logout();return;}
+    var rows = (await r.json()).customers||[];
+    if(!rows.length){ w.innerHTML='<div class="empty">No customers yet. Invite one to get started.</div>'; return; }
+    var td='padding:9px 12px;border-bottom:1px solid #1e293b;color:#cbd5e1;font-size:13px';
+    w.innerHTML='<table style="width:100%;border-collapse:collapse"><thead><tr style="text-align:left;color:#64748b;font-size:12px"><th style="padding:9px 12px">Customer</th><th>Plan</th><th>Revenue</th><th>Your Commission</th><th>Since</th></tr></thead><tbody>'
+      + rows.map(function(c){ return '<tr>'
+        +'<td style="'+td+'">'+(c.customer_email||'—')+'</td>'
+        +'<td style="'+td+'">'+(c.current_plan||'—')+'</td>'
+        +'<td style="'+td+'">'+inr(c.lifetime_revenue_rupees)+'</td>'
+        +'<td style="'+td+'color:#4ade80">'+inr(c.commission_earned_rupees)+'</td>'
+        +'<td style="'+td+'">'+(c.linked_at?c.linked_at.slice(0,10):'—')+'</td></tr>';
+      }).join('') + '</tbody></table>';
+  } catch(e){ w.innerHTML='<div class="empty">Could not load.</div>'; }
+}
+async function loadPartnerCommissions(){
+  var w = document.getElementById('pcomm-wrap');
+  try {
+    var r = await fetch(API+'/partner-commissions', pauth()); if(r.status===401){logout();return;}
+    var rows = (await r.json()).commissions||[];
+    if(!rows.length){ w.innerHTML='<div class="empty">No commissions yet.</div>'; return; }
+    var td='padding:9px 12px;border-bottom:1px solid #1e293b;color:#cbd5e1;font-size:13px';
+    var badge = { pending:'#fbbf24', approved:'#60a5fa', paid:'#4ade80', void:'#64748b' };
+    w.innerHTML='<table style="width:100%;border-collapse:collapse"><thead><tr style="text-align:left;color:#64748b;font-size:12px"><th style="padding:9px 12px">Date</th><th>Plan</th><th>Sale</th><th>%</th><th>Commission</th><th>Status</th></tr></thead><tbody>'
+      + rows.map(function(c){ return '<tr>'
+        +'<td style="'+td+'">'+(c.created_at?c.created_at.slice(0,10):'—')+'</td>'
+        +'<td style="'+td+'">'+(c.plan||'—')+'</td>'
+        +'<td style="'+td+'">'+inr(c.amount_rupees)+'</td>'
+        +'<td style="'+td+'">'+c.pct_at_time+'%</td>'
+        +'<td style="'+td+'color:#4ade80">'+inr(c.commission_rupees)+'</td>'
+        +'<td style="'+td+'"><span style="color:'+(badge[c.status]||'#cbd5e1')+'">'+c.status+'</span></td></tr>';
+      }).join('') + '</tbody></table>';
+  } catch(e){ w.innerHTML='<div class="empty">Could not load.</div>'; }
+}
+function openInvite(){ document.getElementById('mInvite').style.display='flex'; document.getElementById('imsg').textContent=''; }
+function closeInvite(){ document.getElementById('mInvite').style.display='none'; }
+async function doInvite(){
+  var name=document.getElementById('icname').value.trim();
+  var email=document.getElementById('icemail').value.trim();
+  var msg=document.getElementById('imsg'), btn=document.getElementById('ibtn');
+  if(!email || email.indexOf('@')<0){ msg.style.color='#f87171'; msg.textContent='Enter a valid customer email.'; return; }
+  btn.disabled=true; btn.textContent='Sending…';
+  try {
+    var r=await fetch(API+'/partner-invite',{ method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+S.token}, body:JSON.stringify({customerName:name,customerEmail:email}) });
+    var j=await r.json();
+    if(r.ok){ msg.style.color='#4ade80'; msg.textContent='Invitation sent to '+email+'.'; document.getElementById('icname').value=''; document.getElementById('icemail').value=''; loadPartnerDashboard(); loadPartnerCustomers(); setTimeout(closeInvite,1200); }
+    else { msg.style.color='#f87171'; msg.textContent=j.error||'Could not send.'; }
+  } catch(e){ msg.style.color='#f87171'; msg.textContent='Network error.'; }
+  btn.disabled=false; btn.textContent='Send Invitation';
 }
 
 async function doLogin() {
