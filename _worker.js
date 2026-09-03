@@ -116,6 +116,24 @@ export default {
       }
     }
 
+    // Non-blog .html URLs → 301 to the clean URL.
+    // Workers Assets already redirects /foo.html → /foo, but it uses a 307
+    // (TEMPORARY), which tells Google to KEEP the .html URL indexed. The result
+    // is two indexed URLs competing for the same query: /verify sat at position
+    // 32.2 and /verify.html at 26.5 in Search Console (Sep 2026), splitting the
+    // ranking signal instead of consolidating it. A 301 tells Google the move is
+    // permanent so the clean URL inherits the equity. Blog .html is handled by
+    // its own 301 above; this covers every other page.
+    if (
+      url.pathname.endsWith('.html') &&
+      !url.pathname.startsWith('/blog/')
+    ) {
+      const cleanPath = url.pathname === '/index.html'
+        ? '/'
+        : url.pathname.slice(0, -5);   // strip .html
+      return Response.redirect(`${url.origin}${cleanPath}${url.search}`, 301);
+    }
+
     // NOTE: the old "clean URL → .html 301" rule was REMOVED (GSC fix, 2026-08-08).
     // Clean URLs are now the canonical form site-wide (links, canonicals, sitemap all use
     // them), and Cloudflare Workers Assets serves /foo from foo.html (200) and auto-redirects

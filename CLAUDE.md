@@ -29,4 +29,17 @@ cd blog && for f in *.html; do [ "$f" = index.html ] && continue; s="${f%.html}"
 ```
 
 ## Non-blog pages
-Non-blog pages (index, privacy, etc.) use the **opposite** convention: their canonical IS the `.html` URL, and the worker 301-redirects clean → `.html`. Don't change this.
+Non-blog pages (index, privacy, verify, etc.) follow the **same** convention as blog posts:
+the **clean URL is canonical**, and `/<page>.html` 301-redirects to `/<page>` (`/index.html` → `/`).
+
+> This section previously said the opposite — that non-blog canonicals were the `.html` form.
+> That stopped being true on 2026-08-08 when the clean→`.html` rule was removed from
+> `_worker.js`. Corrected 2026-09-03.
+
+Cloudflare Workers Assets serves `/foo` from `foo.html` and *auto*-redirects `/foo.html` → `/foo`,
+but it does so with a **307 (temporary)**, which tells Google to keep the `.html` URL indexed.
+`_worker.js` therefore issues an explicit **301** for non-blog `.html` URLs. Don't remove it:
+without it, both forms get indexed and split the ranking signal (this cost `/verify` real
+positions — `/verify` at 32.2 and `/verify.html` at 26.5 in Search Console, Sep 2026).
+
+So for a non-blog page, canonical + og:url must both use the clean URL (no `.html`).
