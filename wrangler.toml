@@ -4,3 +4,14 @@ compatibility_date = "2024-01-01"
 
 [assets]
 directory = "."
+# Run the Worker BEFORE static-asset serving for .html URLs only.
+# Without this, Workers Assets answers /foo.html itself with a 307 (temporary)
+# redirect to /foo and the Worker never runs — so our explicit 301 in
+# _worker.js was dead code. Google keeps 307'd URLs indexed, which left
+# /verify and /verify.html both ranking and splitting the signal.
+# Scoped to *.html so ordinary assets (images, css, js) still bypass the
+# Worker and are served directly by Assets.
+# NOTE: do NOT add "/" here. Doing so makes env.ASSETS.fetch("/") throw inside
+# the Worker (it re-enters the worker-first path), the catch-all turns that
+# into a 404, and the homepage goes down. Verified live 2026-09-03.
+run_worker_first = ["/*.html", "/*/*.html"]
