@@ -4883,7 +4883,19 @@ document.querySelectorAll(".feature-card,.how-step,.plan-card,.testimonial").for
   }
 
   fetchStats(true);
-  setInterval(function(){ fetchStats(false); }, 60000);
+  // Poll only while the tab is actually visible. This used to run every 60s
+  // forever in every open tab, including backgrounded ones — 117k calls to
+  // /api/stats, whose get_live_stats() full-scans two tables, which ate the
+  // project's Supabase Disk IO budget (Sep 2026). Interval also relaxed to
+  // 120s: it's a slow-moving counter, not a live feed.
+  setInterval(function(){
+    if (document.hidden) return;
+    fetchStats(false);
+  }, 120000);
+  // Refresh once on return to the tab so a re-focused page isn't stale.
+  document.addEventListener('visibilitychange', function(){
+    if (!document.hidden) fetchStats(false);
+  });
 
   // Optimistic increment on download click
   document.addEventListener('click', function(e) {
