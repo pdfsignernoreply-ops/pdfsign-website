@@ -112,6 +112,9 @@ tr:hover td{background:#1e293b33}
 .pb-licensed{background:#16a34a22;color:#4ade80;border:1px solid #16a34a44}
 .pb-expired{background:#ef444422;color:#f87171;border:1px solid #ef444444}
 .pb-never-used{background:#ef444422;color:#f87171;border:1px solid #ef444444}
+/* Toolbox-only = used the app, just hasn't signed yet. Deliberately NOT red:
+   red reads as a failure state, and these are engaged users. */
+.pb-toolbox-only{background:#8b5cf622;color:#a78bfa;border:1px solid #8b5cf644}
 .pb-offline{background:#64748b22;color:#94a3b8;border:1px solid #64748b44}
 .usage-regular td:first-child{border-left:3px solid #16a34a}
 .sortable{cursor:pointer;user-select:none}
@@ -1658,9 +1661,12 @@ function renderUsage() {
     // Toolbox-only = never signed but ran a PDFToolbox tool. Their "Days Active"
     // counts tool-use days and shows in red (they never signed anything).
     var tbxOnly = (r.current_status==='never-used') && (Number(r.total_files)||0)===0 && (r.toolbox_tools||[]).length>0;
-    var daysCell = tbxOnly
-      ? '<td style="font-weight:700;color:#f87171" title="Days a PDFToolbox tool was used (never signed)">'+(Number(r.toolbox_days)||0)+'</td>'
-      : '<td style="font-weight:700;color:'+(reg?'#4ade80':'#e2e8f0')+'">'+days+'</td>';
+    // Days Active now means "days this person used PDFSign" — signing OR toolbox,
+    // unioned server-side. Toolbox-only users are active users, so they get the
+    // same colours as everyone else rather than a red one-off.
+    var daysTitle = tbxOnly ? 'Days a PDFToolbox tool was used (has not signed yet)'
+                            : 'Days with signing or toolbox activity';
+    var daysCell = '<td style="font-weight:700;color:'+(reg?'#4ade80':'#e2e8f0')+'" title="'+daysTitle+'">'+days+'</td>';
     return '<tr class="'+(reg?'usage-regular':'')+'">'
       +'<td class="ts" style="text-align:right;color:#64748b">'+(i+1)+'</td>'
       +'<td><span class="key" title="'+esc(mid)+'">'+esc(short)+'</span></td>'
@@ -1668,8 +1674,8 @@ function renderUsage() {
         +(r.purchase_email ? '<div style="color:#4ade80;font-size:10px;white-space:nowrap" title="Email used at checkout">paid as: '+esc(r.purchase_email)+'</div>' : '')+'</td>'
       +'<td class="ts">'+(r.location ? esc(r.location) : '<span style="color:#475569">—</span>')+'</td>'
       +'<td><span class="pb pb-'+esc(pSlug)+'">'+esc(r.current_plan||'—')+'</span></td>'
-      +'<td><span class="pb pb-'+esc(sSlug)+'">'+esc(
-           (r.current_status==='never-used' && (r.toolbox_tools||[]).length>0) ? 'Toolbox only'
+      +'<td><span class="pb pb-'+esc(tbxOnly ? 'toolbox-only' : sSlug)+'">'+esc(
+           tbxOnly ? 'Toolbox only'
              : (r.current_status==='never-used' ? 'Never Used' : (r.current_status||'—')))+'</span></td>'
       +daysCell
       +'<td>'+(Number(r.total_files)||0).toLocaleString('en-IN')+'</td>'
