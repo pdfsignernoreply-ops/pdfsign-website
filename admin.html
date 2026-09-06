@@ -1571,20 +1571,14 @@ async function loadUsage() {
       var br = pw.by_reason || {};
       var bk = Object.keys(br).sort(function(a,b){ return (br[b].shown||0)-(br[a].shown||0); });
       if (pwStat) pwStat.title = shown
-        ? 'Paywall funnel (3.8.3+):
-'
-          + '• ' + shown + ' impressions to ' + (pw.machines||0) + ' people
-'
-          + '• ' + up + ' clicked Upgrade (' + pct + '%)
-'
-          + '• ' + (pw.dismissed||0) + ' dismissed
-'
-          + (pw.queue_capped ? '• ' + pw.queue_capped + ' batches trimmed to the trial cap
-' : '')
+        ? 'Paywall funnel (3.8.3+):\n'
+          + '• ' + shown + ' impressions to ' + (pw.machines||0) + ' people\n'
+          + '• ' + up + ' clicked Upgrade (' + pct + '%)\n'
+          + '• ' + (pw.dismissed||0) + ' dismissed\n'
+          + (pw.queue_capped ? '• ' + pw.queue_capped + ' batches trimmed to the trial cap\n' : '')
           + bk.map(function(k){
               return '  – ' + (PLBL[k]||k) + ': ' + (br[k].shown||0) + ' shown, ' + (br[k].upgrade||0) + ' upgraded';
-            }).join('
-')
+            }).join('\n')
         : 'Paywall impressions → Upgrade clicks. Populates once 3.8.3+ apps report.';
       var pls = pwStat ? pwStat.querySelector('.sl') : null;
       if (pls) pls.textContent = pct === null ? 'Paywall → Upgrade' : 'Paywall → Upgrade (' + pct + '%)';
