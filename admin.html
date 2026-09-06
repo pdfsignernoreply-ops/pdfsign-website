@@ -463,6 +463,7 @@ tr:hover td{background:#1e293b33}
         <div class="stat" id="stat-signfail" title="Sign attempts that errored (v3.7.1+ apps). Hover for reasons."><div class="sv" id="us-signfail" style="color:#f59e0b">—</div><div class="sl">Sign Failures</div></div>
         <div class="stat" title="Distinct machines that ran any PDFToolbox tool (v3.7.2+)"><div class="sv" id="us-tbxusers" style="color:#a78bfa">—</div><div class="sl">PDFToolbox Users</div></div>
         <div class="stat" title="Right-click 'with PDFSign' launches — runs (distinct machines) (v3.7.2+)"><div class="sv" id="us-ctxmenu" style="color:#34d399">—</div><div class="sl">Right-click Uses</div></div>
+        <div class="stat" id="stat-paywall" title="Paywall impressions → Upgrade clicks. Hover for the split by wall type."><div class="sv" id="us-paywall" style="color:#fbbf24">—</div><div class="sl">Paywall → Upgrade</div></div>
       </div>
 
       <!-- PDFToolbox per-tool usage (v3.7.2+) -->
@@ -1556,6 +1557,38 @@ async function loadUsage() {
       : 'Sign attempts that errored. Reason breakdown appears once v3.7.2+ apps report.';
     var slf = sfStat ? sfStat.querySelector('.sl') : null;
     if (slf) slf.textContent = rk.length ? 'Sign Failures — ' + (RLBL[rk[0]]||rk[0]) : 'Sign Failures';
+
+    // Paywall funnel: impressions → upgrade clicks, split by which wall fired.
+    // Populates once 3.8.3+ apps report; shows an em dash until then.
+    var pw = s.paywall || {};
+    var pwEl = document.getElementById('us-paywall');
+    var pwStat = document.getElementById('stat-paywall');
+    if (pwEl) {
+      var shown = pw.shown || 0, up = pw.upgrade || 0;
+      pwEl.textContent = shown ? (shown + ' → ' + up) : '—';
+      var pct = shown ? Math.round(100 * up / shown) : null;
+      var PLBL = { files:'Hit the 100-file cap', days:'30-day trial ended', plan_expired:'Paid plan lapsed', unknown:'Unknown' };
+      var br = pw.by_reason || {};
+      var bk = Object.keys(br).sort(function(a,b){ return (br[b].shown||0)-(br[a].shown||0); });
+      if (pwStat) pwStat.title = shown
+        ? 'Paywall funnel (3.8.3+):
+'
+          + '• ' + shown + ' impressions to ' + (pw.machines||0) + ' people
+'
+          + '• ' + up + ' clicked Upgrade (' + pct + '%)
+'
+          + '• ' + (pw.dismissed||0) + ' dismissed
+'
+          + (pw.queue_capped ? '• ' + pw.queue_capped + ' batches trimmed to the trial cap
+' : '')
+          + bk.map(function(k){
+              return '  – ' + (PLBL[k]||k) + ': ' + (br[k].shown||0) + ' shown, ' + (br[k].upgrade||0) + ' upgraded';
+            }).join('
+')
+        : 'Paywall impressions → Upgrade clicks. Populates once 3.8.3+ apps report.';
+      var pls = pwStat ? pwStat.querySelector('.sl') : null;
+      if (pls) pls.textContent = pct === null ? 'Paywall → Upgrade' : 'Paywall → Upgrade (' + pct + '%)';
+    }
     document.getElementById('us-files').textContent    = (s.total_files ?? 0).toLocaleString('en-IN');
     document.getElementById('us-regular').textContent  = s.regular_users  ?? '—';
     document.getElementById('us-avgdays').textContent  = s.avg_days_active ?? '—';
