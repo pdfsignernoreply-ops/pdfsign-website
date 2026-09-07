@@ -15,7 +15,8 @@ PDFSign.in lets Indian professionals sign any PDF document in under 60 seconds u
 - **Pick Position on PDF** — Click anywhere on the PDF preview to place signature exactly
 - **RFC 3161 Timestamp** — Trusted timestamp from TSA server; signature valid even after cert expiry
 - **100% Offline** — No internet required after licence activation; files never leave the user's PC
-- **Government Compliant** — PAdES/CAdES signatures accepted on GeM, CPPP, NIC e-Procurement, MCA21, Income Tax, DGFT
+- **Government Compliant** — PAdES/CAdES signatures accepted on GeM, CPPP, NIC e-Procurement, MCA21, Income Tax, DGFT; eIDAS & E-SIGN compatible worldwide
+- **PDFToolbox** — 20+ built-in offline PDF tools: edit text, merge, split, compress, reorder pages, page numbers, watermark, header/footer, protect (AES-256), fill & flatten forms, Bates numbering, repair, PDF ⇄ Word/image conversion
 
 ## Pricing (INR, inclusive of GST)
 
@@ -54,7 +55,6 @@ PDFSign.in lets Indian professionals sign any PDF document in under 60 seconds u
 ## Key pages
 
 - [Download PDFSign for Windows](https://pdfsign.in/) — free 30-day trial, no credit card
-- [Global / International edition](https://pdfsign.in/global) — USD pricing, worldwide DSC token support
 - [Verify a PDF signature online](https://pdfsign.in/verify.html) — free, runs entirely in the browser
 - [Blog & how-to guides](https://pdfsign.in/blog/) — DSC token setup and GeM, CPPP, NIC, MCA21 signing tutorials
 - [Privacy Policy](https://pdfsign.in/privacy.html) · [Terms & Conditions](https://pdfsign.in/terms.html) · [Refund Policy](https://pdfsign.in/refund.html)

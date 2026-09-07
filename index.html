@@ -19,32 +19,17 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "wxqctfoy9c");
 </script>
-<title>PDFSign.in — Sign PDF with DSC Token, 100% Offline | India</title>
-<meta name="description" content="Digitally sign any PDF with your USB DSC token or signature stamp image. Bulk sign multiple PDFs in one click — 100+ PDFs in 60 seconds, 100% offline, no Java, no cloud uploads. Free to download with a free 30-day trial. PDF security, RFC 3161 timestamp. Accepted on GeM, CPPP, and all Indian government portals." />
+<title>PDFSign — Sign PDF with DSC / USB Token &amp; Stamp, 100% Offline</title>
+<meta name="description" content="Digitally sign any PDF with your DSC / USB security token or signature stamp image — 100% offline, no Java, no cloud uploads. Bulk sign 100+ PDFs in 60 seconds, plus 20+ built-in PDF tools: edit, merge, compress and more. Free 30-day trial. Accepted on GeM, CPPP, and government portals; eIDAS & E-SIGN compatible worldwide." />
 <meta name="keywords" content="digitally sign PDF, sign PDF online, digital signature PDF, PDF digital signature, sign PDF with DSC token, digital signature online, electronic signature PDF, DSC token PDF signer, sign PDF Windows, digital signature software India, PDF signer India, HyperPKI PDF signer, ePass PDF signing, Proxkey PDF sign, bulk PDF signing, sign multiple PDFs, batch PDF signing, batch PDF signer, bulk sign PDFs, sign PDF in bulk, sign hundreds of PDFs, automated PDF signing, free PDF signer, free bulk PDF signer, free PDF digital sign, sign PDF without Java, offline PDF signer, GeM portal digital signature, CPPP PDF signing, e-procurement PDF signer India, Class 3 DSC PDF, signature stamp PDF, wet signature PDF, PDF security restrict print, RFC 3161 timestamp PDF" />
 <meta name="robots" content="index, follow" />
 <meta name="author" content="PDFSign.in" />
 <link rel="canonical" href="https://pdfsign.in/" />
 <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
-<!-- Geo targeting — India -->
-<meta name="geo.region" content="IN" />
-<meta name="geo.country" content="India" />
-<meta name="language" content="en-IN" />
+<meta name="language" content="en" />
 <meta name="target" content="all" />
 <meta name="audience" content="all" />
-<meta name="coverage" content="India" />
-<meta name="distribution" content="India" />
-
-<!-- hreflang — India + diaspora -->
-<link rel="alternate" hreflang="en-in" href="https://pdfsign.in/" />
-<link rel="alternate" hreflang="en-us" href="https://pdfsign.in/global" />
-<link rel="alternate" hreflang="en-gb" href="https://pdfsign.in/global" />
-<link rel="alternate" hreflang="en-ae" href="https://pdfsign.in/global" />
-<link rel="alternate" hreflang="en-au" href="https://pdfsign.in/global" />
-<link rel="alternate" hreflang="en-ca" href="https://pdfsign.in/global" />
-<link rel="alternate" hreflang="en" href="https://pdfsign.in/global" />
-<link rel="alternate" hreflang="x-default" href="https://pdfsign.in/global" />
 <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css" media="print" onload="this.media='all'" />
 <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css" /></noscript>
@@ -53,15 +38,14 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="PDFSign.in" />
 <meta property="og:url" content="https://pdfsign.in/" />
-<meta property="og:title" content="PDFSign.in — Sign PDFs with Your DSC Token" />
-<meta property="og:description" content="Digitally sign PDFs on Windows using your USB DSC token. Offline, private, and accepted on all Indian government portals." />
+<meta property="og:title" content="PDFSign — Sign PDF with DSC / USB Token &amp; Stamp, 100% Offline" />
+<meta property="og:description" content="Sign PDFs with your DSC / USB security token or signature stamp — 100% offline on Windows, plus 20+ built-in PDF tools. Your documents never leave your PC." />
 <meta property="og:image" content="https://pdfsign.in/og-image.png" />
-<meta property="og:locale" content="en_IN" />
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="PDFSign.in — Sign PDFs with Your DSC Token" />
-<meta name="twitter:description" content="Sign PDFs on Windows using your USB DSC token. Accepted on GeM, CPPP, and all Indian government portals." />
+<meta name="twitter:title" content="PDFSign — Sign PDF with DSC / USB Token &amp; Stamp, 100% Offline" />
+<meta name="twitter:description" content="Sign PDFs with your DSC / USB token or signature stamp — 100% offline on Windows, plus 20+ built-in PDF tools." />
 <meta name="twitter:image" content="https://pdfsign.in/og-image.png" />
 
 <!-- Favicon -->
@@ -2192,6 +2176,80 @@
   html.intl-user .intl-only   { display: block; }
   html.intl-user .intl-only.trust-grid        { display: grid !important; }
   html.intl-user .intl-only.trust-capability  { display: flex !important; }
+  /* Word-level geo swaps inside a sentence: .geo-inline keeps the shown element inline */
+  .india-only.geo-inline { display:inline; }
+  .india-only.geo-flex   { display:flex; }
+  html.intl-user .intl-only.geo-inline { display:inline !important; }
+  html.intl-user .intl-only.geo-flex   { display:flex !important; }
+
+  /* ─── TWO WAYS TO SIGN ─── */
+  .signmodes { background: var(--off-white); padding: 90px 0; }
+  .signmodes-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:48px; }
+  .signmode-card { background:#fff; border:1px solid var(--gray-200); border-radius:16px; padding:36px 32px; position:relative; }
+  .signmode-card.popular { border-color:var(--green); box-shadow:0 12px 40px rgba(22,163,74,0.10); }
+  .signmode-pop { position:absolute; top:-12px; left:32px; background:var(--green); color:#fff; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:4px 12px; border-radius:999px; }
+  .signmode-icon { width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:18px; }
+  .signmode-card h3 { font-family:'DM Serif Display',serif; font-size:1.45rem; color:var(--navy); margin-bottom:4px; }
+  .signmode-tag { font-size:.85rem; font-weight:600; color:var(--green); margin-bottom:12px; }
+  .signmode-card > p { color:var(--gray-600); font-size:.95rem; line-height:1.6; margin-bottom:18px; }
+  .signmode-list { list-style:none; }
+  .signmode-list li { display:flex; gap:10px; align-items:flex-start; font-size:.92rem; color:var(--gray-600); padding:5px 0; }
+  .signmode-list svg { flex-shrink:0; margin-top:3px; }
+  .signmode-strip { display:flex; gap:28px; flex-wrap:wrap; justify-content:center; margin-top:44px; }
+  .signmode-strip-item { display:flex; gap:10px; align-items:center; font-size:.9rem; color:var(--gray-600); }
+  .signmode-strip-item strong { color:var(--navy); font-weight:600; }
+  @media(max-width:820px){ .signmodes-grid { grid-template-columns:1fr; } }
+
+  /* ─── PRIVACY FLOW ─── */
+  .privacy-flow { background:#fff; padding:90px 0; }
+  .privacy-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:48px; }
+  .privacy-col { border-radius:16px; padding:30px 28px; border:1px solid var(--gray-200); }
+  .privacy-col.cloud { background:var(--gray-50); position:relative; }
+  .privacy-col.local { background:var(--green-pale); border-color:rgba(22,163,74,0.35); }
+  .privacy-col h4 { font-size:1.05rem; color:var(--navy); margin-bottom:18px; display:flex; align-items:center; gap:8px; }
+  .privacy-col.cloud h4 { color:#B91C1C; }
+  .privacy-step { display:flex; gap:12px; align-items:flex-start; padding:9px 0; font-size:.92rem; color:var(--gray-600); }
+  .privacy-step .n { width:24px; height:24px; border-radius:50%; background:var(--gray-200); color:var(--gray-600); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0; }
+  .privacy-col.local .privacy-step .n { background:var(--green); color:#fff; }
+  .privacy-step strong { color:var(--navy); display:block; }
+  .privacy-foot { margin-top:14px; font-size:.85rem; font-weight:600; }
+  .privacy-col.cloud .privacy-foot { color:#B91C1C; }
+  .privacy-col.local .privacy-foot { color:var(--green); }
+  .privacy-honest { margin:36px auto 0; max-width:720px; text-align:center; font-size:.88rem; color:var(--gray-400); line-height:1.6; }
+  @media(max-width:820px){ .privacy-grid { grid-template-columns:1fr; } }
+
+  /* ─── TOOLBOX ─── */
+  .toolbox { background:var(--navy); padding:90px 0; }
+  .toolbox .section-title, .toolbox h2 { color:#fff; }
+  .toolbox .section-sub { color:rgba(255,255,255,0.6); }
+  .toolbox-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:48px; }
+  .tool-card { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:18px 18px 16px; }
+  .tool-card h4 { color:#fff; font-size:.95rem; font-weight:600; margin-bottom:5px; display:flex; align-items:center; gap:8px; }
+  .tool-card h4 .t-ico { font-size:1rem; }
+  .tool-card p { color:rgba(255,255,255,0.55); font-size:.82rem; line-height:1.5; }
+  .toolbox-more { text-align:center; margin-top:28px; color:rgba(255,255,255,0.65); font-size:.92rem; }
+  .toolbox-more strong { color:#fff; }
+  @media(max-width:1000px){ .toolbox-grid{grid-template-columns:repeat(3,1fr);} }
+  @media(max-width:760px){ .toolbox-grid{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:480px){ .toolbox-grid{grid-template-columns:1fr;} }
+
+  /* ─── BULK BAND ─── */
+  .bulk-band { background:var(--off-white); padding:90px 0; }
+  .bulk-inner { display:grid; grid-template-columns:1.05fr 1fr; gap:48px; align-items:center; }
+  .bulk-inner img { width:100%; border-radius:16px; border:1px solid var(--gray-200); box-shadow:0 20px 50px rgba(15,23,42,0.10); }
+  .bulk-copy h2 { font-family:'DM Serif Display',serif; font-size:2rem; color:var(--navy); line-height:1.2; margin-bottom:14px; }
+  .bulk-copy p { color:var(--gray-600); font-size:1rem; line-height:1.65; margin-bottom:18px; }
+  .bulk-stats { display:flex; gap:36px; margin-bottom:22px; }
+  .bulk-stat b { display:block; font-size:1.7rem; color:var(--green); font-weight:700; }
+  .bulk-stat span { font-size:.82rem; color:var(--gray-400); }
+  @media(max-width:860px){ .bulk-inner{grid-template-columns:1fr;} }
+
+  /* ─── TOKEN WALL ─── */
+  .tokenwall { background:#fff; padding:90px 0; }
+  .tokenwall-grid { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:40px; }
+  .token-pill { border:1px solid var(--gray-200); border-radius:999px; padding:9px 20px; font-size:.9rem; font-weight:500; color:var(--navy); background:var(--gray-50); }
+  .tokenwall-note { text-align:center; margin-top:26px; font-size:.9rem; color:var(--gray-600); }
+  .tokenwall-legal { text-align:center; margin-top:14px; font-size:.75rem; color:var(--gray-400); max-width:620px; margin-left:auto; margin-right:auto; }
   /* ── International checkout modal ── */
   #intlCheckoutModal { display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:9999; align-items:center; justify-content:center; padding:1rem; }
   #intlCheckoutModal.open { display:flex; }
@@ -2235,11 +2293,12 @@
   "name": "PDFSign.in",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "BusinessApplication",
-  "description": "Digitally sign any PDF with your USB DSC token or signature stamp image. 100% offline, no Java, no browser plugins. Bulk signing, PDF security, RFC 3161 timestamp. Accepted on GeM, CPPP, and all Indian government portals.",
+  "description": "Digitally sign any PDF with your DSC / USB security token or signature stamp image. 100% offline, no Java, no browser plugins. Bulk signing, 20+ built-in PDF tools (edit, merge, compress), PDF security, RFC 3161 timestamp. Accepted on GeM, CPPP, and Indian government portals; eIDAS and E-SIGN compatible worldwide.",
   "featureList": [
-    "USB DSC token signing (HyperPKI, ePass, Proxkey, Feitian, WD Pro, Watchdata)",
+    "USB DSC / security token signing (HyperPKI, ePass, Proxkey, Feitian, WD Pro, Watchdata, SafeNet, Gemalto)",
     "Signature and stamp image embedding",
     "Batch PDF signing",
+    "PDFToolbox — 20+ built-in tools: edit, merge, split, compress, reorder, page numbers, watermark, protect, fill forms, Bates numbering, repair, PDF to Word",
     "PDF security — restrict print, edit, copy",
     "Click-to-place signature position on PDF",
     "RFC 3161 trusted timestamp",
@@ -2319,7 +2378,9 @@
     {"@type":"Question","name":"What is RFC 3161 timestamp and why does it matter?","acceptedAnswer":{"@type":"Answer","text":"An RFC 3161 timestamp embeds cryptographic proof of when the document was signed from a trusted Timestamp Authority server. The signature remains legally valid even after your DSC certificate expires."}},
     {"@type":"Question","name":"Can I use PDFSign.in from outside India?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign.in works on any Windows PC worldwide with no geo-restriction. Indian DSC token holders in UAE, UK, USA, Canada, Australia, or anywhere can sign Indian government documents remotely."}},
     {"@type":"Question","name":"What is the team plan?","acceptedAnswer":{"@type":"Answer","text":"The team plan covers 5 Windows PCs under one shared licence key. Annual team plan is Rs. 3,499 per year; Lifetime team plan is Rs. 13,999 one-time. Ideal for CA firms, law offices, and tender-filing teams."}},
-    {"@type":"Question","name":"What is your refund policy?","acceptedAnswer":{"@type":"Answer","text":"PDFSign includes a 30-day free trial so you can fully evaluate it before buying. Because of that, all licence purchases are final and non-refundable, except where required by applicable law. See our Refund Policy for details."}}
+    {"@type":"Question","name":"What is your refund policy?","acceptedAnswer":{"@type":"Answer","text":"PDFSign includes a 30-day free trial so you can fully evaluate it before buying. Because of that, all licence purchases are final and non-refundable, except where required by applicable law. See our Refund Policy for details."}},
+    {"@type":"Question","name":"Can PDFSign merge, compress, or edit PDFs too?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign includes PDFToolbox — 20+ built-in PDF tools: edit text, merge, split, compress, reorder pages, page numbers, watermark, header/footer, password protect (AES-256), fill and flatten forms, Bates numbering, repair damaged PDFs, and convert PDF to and from Word and images. Everything runs 100% offline on your PC."}},
+    {"@type":"Question","name":"Are PDFSign signatures legally valid outside India?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign produces PAdES-compliant PKI digital signatures based on your USB token's X.509 certificate. These are legally valid under the EU eIDAS Regulation, the US E-SIGN Act, the UK Electronic Communications Act, and equivalent laws in most countries."}}
   ]
 }
 </script>
@@ -2461,12 +2522,12 @@
     </button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#features">Features</a></li>
+      <li><a href="#toolbox">Toolbox</a></li>
       <li><a href="#how">How it works</a></li>
-      <li><a href="#compare">Compare</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="/blog/">Blog</a></li>
-      <li class="intl-only"><a href="/web">Sign Online — Free</a></li>
+      <li><a href="/web">Sign Online — Free</a></li>
       <li><a href="https://pdfsigner-api.vercel.app/api/download" class="nav-cta">Download Now</a></li>
     </ul>
   </div>
@@ -2486,7 +2547,7 @@
       <p class="hero-sub india-only">
         Open the app, load your PDF, sign. Done in under 60 seconds. Works with your USB DSC token or a signature stamp image — no Java, no browser plugin, no cloud upload.
       </p>
-      <p class="hero-urgency india-only"><em>Never miss a tender deadline again.</em></p>
+      <p class="hero-urgency india-only"><em>Never miss a deadline again.</em></p>
 
       <!-- International hero -->
       <h2 class="intl-only hero-alt-h1">Sign PDFs with your USB token, signature, or company stamp.</h2>
@@ -2530,6 +2591,10 @@
           <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
           eIDAS &amp; E-SIGN Act compatible
         </div>
+        <a href="https://pdfsigner-api.vercel.app/api/download" class="hero-badge-item" style="text-decoration:none;" aria-label="Available on Microsoft Store">
+          <svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="9" height="9" fill="#F25022"/><rect x="13" y="2" width="9" height="9" fill="#7FBA00"/><rect x="2" y="13" width="9" height="9" fill="#00A4EF"/><rect x="13" y="13" width="9" height="9" fill="#FFB900"/></svg>
+          Available on Microsoft Store
+        </a>
       </div>
       <div class="hero-trust">
         <div class="trust-avatars">
@@ -2572,8 +2637,9 @@
             </svg>
           </div>
           <div class="sig-info">
-            <div class="sig-name">Rajesh Kumar</div>
-            <div class="sig-meta">Signed · 28 Mar 2025, 14:32 IST</div>
+            <div class="sig-name india-only">Rajesh Kumar</div>
+            <div class="sig-name intl-only">John Smith</div>
+            <div class="sig-meta">Signed · 28 Mar 2025, 14:32</div>
           </div>
           <div class="sig-verified">
             <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
@@ -2586,8 +2652,10 @@
           <svg width="18" height="18" fill="none" stroke="#93C5FD" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="11" width="20" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         </div>
         <div>
-          <div class="token-label">DSC Token Connected</div>
-          <div class="token-value">HyperPKI HYP2003 · Ready</div>
+          <div class="token-label india-only">DSC Token Connected</div>
+          <div class="token-label intl-only">USB Token Connected</div>
+          <div class="token-value india-only">HyperPKI HYP2003 · Ready</div>
+          <div class="token-value intl-only">SafeNet eToken · Ready</div>
         </div>
       </div>
     </div>
@@ -2616,7 +2684,7 @@
 <div class="logos-strip">
   <div class="logos-strip-inner">
     <span class="logos-label">Trusted by</span>
-    <div class="logos-items">
+    <div class="logos-items india-only geo-flex">
       <span class="logo-pill">CA Firms</span>
       <span class="logo-pill">Law Offices</span>
       <span class="logo-pill">Govt. Contractors</span>
@@ -2624,8 +2692,64 @@
       <span class="logo-pill">Tender Filers</span>
       <span class="logo-pill">Chartered Engineers</span>
     </div>
+    <div class="logos-items intl-only geo-flex">
+      <span class="logo-pill">Law Firms</span>
+      <span class="logo-pill">CPA &amp; Accounting Firms</span>
+      <span class="logo-pill">Compliance Teams</span>
+      <span class="logo-pill">Procurement</span>
+      <span class="logo-pill">Healthcare</span>
+      <span class="logo-pill">IT &amp; Security</span>
+    </div>
   </div>
 </div>
+
+<!-- ─── TWO WAYS TO SIGN ─── -->
+<section class="signmodes" id="sign-modes">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-tag">Flexible Signing Options</div>
+      <h2 class="section-title">One application. Two powerful ways to sign.</h2>
+      <p class="section-sub" style="margin:0 auto;">Whether you need legally valid digital signatures or fast document approvals with signatures and stamps, PDFSign adapts to the way you work.</p>
+    </div>
+    <div class="signmodes-grid">
+      <div class="signmode-card popular">
+        <div class="signmode-pop">Most Popular</div>
+        <div class="signmode-icon" style="background:var(--green-pale);">
+          <svg width="26" height="26" fill="none" stroke="#16A34A" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="11" width="20" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3><span class="india-only geo-inline">Digital Signature (DSC)</span><span class="intl-only geo-inline">Digital Signature (USB Token)</span></h3>
+        <div class="signmode-tag">Secure. Compliant. Legally Valid.</div>
+        <p><span class="india-only geo-inline">Sign PDFs using your Class&nbsp;3 DSC stored in a USB token or the Windows certificate store.</span><span class="intl-only geo-inline">Sign PDFs using the digital certificate stored in your USB security token or the Windows certificate store.</span></p>
+        <ul class="signmode-list">
+          <li><svg width="15" height="15" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Legally valid digital signatures</li>
+          <li><svg width="15" height="15" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Works with USB tokens &amp; certificate stores</li>
+          <li><svg width="15" height="15" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>100% offline signing</li>
+          <li><svg width="15" height="15" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span class="india-only geo-inline">Accepted on GeM, CPPP, MCA21 &amp; all portals</span><span class="intl-only geo-inline">RFC 3161 trusted timestamps included</span></li>
+        </ul>
+      </div>
+      <div class="signmode-card">
+        <div class="signmode-icon" style="background:var(--blue-pale);">
+          <svg width="26" height="26" fill="none" stroke="#2563EB" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+        </div>
+        <h3>Sign &amp; Stamp</h3>
+        <div class="signmode-tag" style="color:#2563EB;">Fast. Flexible. Professional.</div>
+        <p>Add a signature image, company stamp, or both to any PDF — ideal for approvals, invoices, and everyday paperwork. No token needed.</p>
+        <ul class="signmode-list">
+          <li><svg width="15" height="15" fill="none" stroke="#2563EB" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Use signature images (PNG/JPG)</li>
+          <li><svg width="15" height="15" fill="none" stroke="#2563EB" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Add company stamps &amp; seals</li>
+          <li><svg width="15" height="15" fill="none" stroke="#2563EB" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Drag, resize &amp; place anywhere on the page</li>
+          <li><svg width="15" height="15" fill="none" stroke="#2563EB" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Perfect for fast approvals</li>
+        </ul>
+      </div>
+    </div>
+    <div class="signmode-strip">
+      <div class="signmode-strip-item"><strong>Documents stay private</strong> — never uploaded</div>
+      <div class="signmode-strip-item"><strong>Secure by design</strong> — local processing only</div>
+      <div class="signmode-strip-item"><strong>Legally valid</strong> — compliant signatures</div>
+      <div class="signmode-strip-item"><strong>Windows native</strong> — fast and stable</div>
+    </div>
+  </div>
+</section>
 
 <!-- ─── HOW IT WORKS ─── -->
 <section class="how" id="how">
@@ -2633,7 +2757,7 @@
     <div style="text-align:center;">
       <div class="section-tag">Simple Process</div>
       <h2 class="section-title">From PDF to signed document in under 60 seconds</h2>
-      <p class="section-sub" style="margin:0 auto;">Designed to be as fast as possible, with no learning curve for existing DSC users.</p>
+      <p class="section-sub" style="margin:0 auto;">Designed to be as fast as possible, with no learning curve <span class="india-only geo-inline">for existing DSC users</span><span class="intl-only geo-inline">if you have ever used a signing token</span>.</p>
     </div>
 
     <div class="how-steps">
@@ -2649,8 +2773,8 @@
       </div>
       <div class="how-step">
         <div class="step-num">3</div>
-        <h4>Choose DSC token or stamp image</h4>
-        <p>Insert your USB DSC token or upload a signature/stamp image — whichever you have.</p>
+        <h4>Choose <span class="india-only geo-inline">DSC token</span><span class="intl-only geo-inline">USB token</span> or stamp image</h4>
+        <p>Insert your <span class="india-only geo-inline">USB DSC token</span><span class="intl-only geo-inline">USB security token</span> or upload a signature/stamp image — whichever you have.</p>
       </div>
       <div class="how-step">
         <div class="step-num">4</div>
@@ -2727,6 +2851,116 @@
 </section>
 
 <!-- ─── PAIN SECTION ─── -->
+<!-- ─── PRIVACY — LOCAL PROCESSING ─── -->
+<section class="privacy-flow" id="privacy">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-tag">Privacy by Design</div>
+      <h2 class="section-title">Local processing. Better control.</h2>
+      <p class="section-sub" style="margin:0 auto;">Most PDF tools upload your files to the cloud before you can sign. PDFSign does it all on your own machine instead.</p>
+    </div>
+    <div class="privacy-grid">
+      <div class="privacy-col cloud">
+        <h4>✕ Typical cloud workflow</h4>
+        <div class="privacy-step"><span class="n">1</span><span><strong>Upload PDF</strong> Your file is uploaded to the cloud.</span></div>
+        <div class="privacy-step"><span class="n">2</span><span><strong>Cloud processing</strong> Your file is processed on remote servers.</span></div>
+        <div class="privacy-step"><span class="n">3</span><span><strong>Download again</strong> Download the signed file back to your device.</span></div>
+        <div class="privacy-foot">Your confidential document sat on someone else's server.</div>
+      </div>
+      <div class="privacy-col local">
+        <h4>✓ The PDFSign workflow</h4>
+        <div class="privacy-step"><span class="n">1</span><span><strong>On your computer</strong> The file stays on your device.</span></div>
+        <div class="privacy-step"><span class="n">2</span><span><strong>Sign locally</strong> Processed and signed securely on your PC — no waiting, no uploading.</span></div>
+        <div class="privacy-step"><span class="n">3</span><span><strong>Signed &amp; saved</strong> Instantly saved on your computer.</span></div>
+        <div class="privacy-foot">Nothing is uploaded. Nothing leaves your control.</div>
+      </div>
+    </div>
+    <p class="privacy-honest">Being honest: PDFSign talks to a server exactly once — to activate your license. Your documents, your token, and your PIN never do. <span class="intl-only geo-inline">Fully GDPR-friendly by design.</span></p>
+  </div>
+</section>
+
+<!-- ─── TOOLBOX ─── -->
+<section class="toolbox" id="toolbox">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-tag">PDFToolbox — Built In</div>
+      <h2 class="section-title">20+ PDF tools. One offline app.</h2>
+      <p class="section-sub" style="margin:0 auto;">Edit, merge, compress, convert and more — built into the same app you sign with. No upload websites, no per-tool subscriptions, and your files never leave your PC.</p>
+    </div>
+    <div class="toolbox-grid">
+      <div class="tool-card"><h4><span class="t-ico">📝</span>Edit PDF</h4><p>Edit text right inside the PDF — fix typos, update values, redact, add images.</p></div>
+      <div class="tool-card"><h4><span class="t-ico">📄</span>PDF to Word</h4><p>Open a PDF in Word to fill or edit it — with a scanned-page check first.</p></div>
+      <div class="tool-card"><h4><span class="t-ico">🧩</span>Merge PDFs</h4><p>Combine many PDFs into one file, in the order you choose.</p></div>
+      <div class="tool-card"><h4><span class="t-ico">🗜️</span>Compress</h4><p>Shrink big PDFs for email &amp; portal uploads — you pick the quality.</p></div>
+      <div class="tool-card"><h4><span class="t-ico">✂️</span>Split</h4><p>Break one PDF into several — by count, ranges, or pages.</p></div>
+      <div class="tool-card"><h4><span class="t-ico">🔀</span>Reorder Pages</h4><p>Drag page thumbnails to rearrange. Rotate or delete pages.</p></div>
+      <div class="tool-card"><h4><span class="t-ico">🔢</span>Page Numbers</h4><p>Add page numbers with your choice of position and format.</p></div>
+      <div class="tool-card"><h4><span class="t-ico">🔒</span>Protect PDF</h4><p>Lock a PDF with a password — AES-256 encrypted, fully offline.</p></div>
+      <div class="tool-card"><h4><span class="t-ico">💧</span>Watermark</h4><p>Stamp CONFIDENTIAL, DRAFT or your own text across every page.</p></div>
+      <div class="tool-card"><h4><span class="t-ico">📋</span>Fill Form</h4><p>Type into a PDF's form fields, then flatten so the answers are locked in.</p></div>
+      <div class="tool-card"><h4><span class="t-ico">🏷️</span>Bates Numbering</h4><p>Stamp a unique running ID on every page — for legal &amp; tender packets.</p></div>
+      <div class="tool-card"><h4><span class="t-ico">🛠️</span>Repair PDF</h4><p>Rebuild a damaged or portal-rejected PDF into a clean file that uploads cleanly.</p></div>
+    </div>
+    <p class="toolbox-more">Plus <strong>Header / Footer · Image ⇄ PDF · Word / Excel to PDF · Flatten · Crop / Trim · Remove Blank Pages · Remove Signature · Export</strong> — all offline, all included.</p>
+  </div>
+</section>
+
+<!-- ─── BULK SIGNING ─── -->
+<section class="bulk-band" id="bulk">
+  <div class="container">
+    <div class="bulk-inner">
+      <div class="bulk-copy">
+        <div class="section-tag">Bulk Signing</div>
+        <h2>Sign hundreds of PDFs in one click.</h2>
+        <p>Point PDFSign at a folder, enter your PIN once, and every PDF inside is signed automatically — same certificate, same placement, saved to your output folder. Perfect for <span class="india-only geo-inline">tender submissions, GST invoices, and audit reports</span><span class="intl-only geo-inline">audit reports, invoices, and compliance batches</span>.</p>
+        <div class="bulk-stats">
+          <div class="bulk-stat"><b>100+</b><span>PDFs in 60 seconds</span></div>
+          <div class="bulk-stat"><b>1×</b><span>PIN entry per batch</span></div>
+          <div class="bulk-stat"><b>0</b><span>uploads, ever</span></div>
+        </div>
+        <a href="/bulk-pdf-signing.html" style="color:var(--green);font-weight:600;text-decoration:none;">Learn about bulk PDF signing →</a>
+      </div>
+      <img src="bulk-signing-hero.png" alt="PDFSign batch signing a folder of PDF files at once on Windows" loading="lazy" width="900" height="473" />
+    </div>
+  </div>
+</section>
+
+<!-- ─── TOKEN COMPATIBILITY ─── -->
+<section class="tokenwall" id="tokens">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-tag">USB Token Compatibility</div>
+      <h2 class="section-title">Works with the USB tokens you already own</h2>
+      <p class="section-sub" style="margin:0 auto;">Compatible with the industry's most widely used PKCS#11 security tokens — no additional hardware required. Windows certificate store supported too.</p>
+    </div>
+    <div class="tokenwall-grid india-only geo-flex">
+      <span class="token-pill">HyperPKI HYP2003</span>
+      <span class="token-pill">ePass 2003 / 3003</span>
+      <span class="token-pill">Proxkey</span>
+      <span class="token-pill">WD Pro</span>
+      <span class="token-pill">Watchdata</span>
+      <span class="token-pill">FEITIAN</span>
+      <span class="token-pill">TrustKey</span>
+      <span class="token-pill">SafeNet</span>
+      <span class="token-pill">Gemalto</span>
+    </div>
+    <div class="tokenwall-grid intl-only geo-flex">
+      <span class="token-pill">THALES SafeNet</span>
+      <span class="token-pill">Gemalto IDPrime</span>
+      <span class="token-pill">HID ActivKey</span>
+      <span class="token-pill">FEITIAN</span>
+      <span class="token-pill">WatchData</span>
+      <span class="token-pill">ePass 2003 / 3003</span>
+      <span class="token-pill">HyperPKI HYP2003</span>
+      <span class="token-pill">TrustKey</span>
+      <span class="token-pill">ProxKey</span>
+    </div>
+    <p class="tokenwall-note"><span class="india-only geo-inline">Supports Class 3 DSC certificates — Individual &amp; Organization — from every CCA-licensed CA (eMudhra, Capricorn, NSDL, (n)Code, Pantasign, Vsign, Sify).</span><span class="intl-only geo-inline">Supports X.509 signing certificates — individual &amp; organization — issued by any trusted CA.</span></p>
+    <p class="tokenwall-note" style="margin-top:8px;">Don't see your token? PDFSign supports most PKCS#11-compatible USB security tokens.</p>
+    <p class="tokenwall-legal">SafeNet®, Gemalto®, FEITIAN®, WatchData® and other trademarks belong to their respective owners. Names are displayed solely to indicate compatibility.</p>
+  </div>
+</section>
+
 <section class="pain india-only" id="pain">
   <div class="container">
     <div style="text-align:center;margin-bottom:32px;">
@@ -2805,8 +3039,8 @@
   <div class="container">
     <div style="text-align:center;">
       <div class="section-tag">Why PDFSign</div>
-      <h2 class="section-title">Built for real-world DSC signing<br />(not theory)</h2>
-      <p class="section-sub" style="margin:0 auto;">Built for Indian professionals — CA firms, lawyers, contractors, exporters, and businesses — who need legally valid, fast, and compliant digital signatures on any document.</p>
+      <h2 class="section-title">Built for real-world <span class="india-only geo-inline">DSC</span><span class="intl-only geo-inline">token</span> signing<br />(not theory)</h2>
+      <p class="section-sub" style="margin:0 auto;">Built for <span class="india-only geo-inline">Indian professionals — CA firms, lawyers, contractors, exporters, and businesses —</span><span class="intl-only geo-inline">professionals worldwide — legal, accounting, compliance, and procurement teams —</span> who need legally valid, fast, and compliant digital signatures on any document.</p>
     </div>
 
     <div class="features-grid">
@@ -2815,16 +3049,16 @@
         <div class="feature-icon">
           <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="11" width="20" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         </div>
-        <h3>All DSC Tokens Supported</h3>
-        <p>Works with HyperPKI HYP2003, ePass 2003/3003, Proxkey, WD Pro, Feitian, Watchdata — any PKCS#11 token from a CCA-licensed CA.</p>
+        <h3>All <span class="india-only geo-inline">DSC</span><span class="intl-only geo-inline">USB</span> Tokens Supported</h3>
+        <p><span class="india-only geo-inline">Works with HyperPKI HYP2003, ePass 2003/3003, Proxkey, WD Pro, Feitian, Watchdata — any PKCS#11 token from a CCA-licensed CA.</span><span class="intl-only geo-inline">Works with SafeNet, Thales, Gemalto, HID, Feitian, WatchData — any standard PKCS#11 token from a trusted CA.</span></p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon">
           <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M12 8v8"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
-        <h3>Sign without DSC using stamp image</h3>
-        <p>Upload your handwritten signature or company stamp as an image and embed it visually on any PDF — no DSC token required for this mode.</p>
+        <h3>Sign without <span class="india-only geo-inline">DSC</span><span class="intl-only geo-inline">a token</span> using stamp image</h3>
+        <p>Upload your handwritten signature or company stamp as an image and embed it visually on any PDF — no <span class="india-only geo-inline">DSC</span><span class="intl-only geo-inline">USB</span> token required for this mode.</p>
       </div>
 
       <div class="feature-card">
@@ -2832,7 +3066,7 @@
           <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
         </div>
         <h3>Bulk PDF Signing</h3>
-        <p>Sign multiple PDFs at once — sign hundreds of PDFs in one click. Perfect for tender submissions, GST invoices, certificates, and bulk document workflows. <a href="/bulk-pdf-signing" style="color:#16A34A;font-weight:600;">Learn about bulk PDF signing →</a></p>
+        <p>Sign multiple PDFs at once — sign hundreds of PDFs in one click. Perfect for <span class="india-only geo-inline">tender submissions, GST invoices, certificates,</span><span class="intl-only geo-inline">audit reports, invoices, certificates,</span> and bulk document workflows. <a href="/bulk-pdf-signing" style="color:#16A34A;font-weight:600;">Learn about bulk PDF signing →</a></p>
       </div>
 
       <div class="feature-card">
@@ -2871,8 +3105,8 @@
         <div class="feature-icon">
           <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
-        <h3>Government Compliant</h3>
-        <p>PAdES signatures accepted on GeM, CPPP, NIC e-Procurement, MCA21, Income Tax, DGFT, and all major Indian government portals.</p>
+        <h3><span class="india-only geo-inline">Government Compliant</span><span class="intl-only geo-inline">Legally Recognised Worldwide</span></h3>
+        <p><span class="india-only geo-inline">PAdES signatures accepted on GeM, CPPP, NIC e-Procurement, MCA21, Income Tax, DGFT, and all major Indian government portals.</span><span class="intl-only geo-inline">PAdES &amp; CAdES-compliant signatures recognised under the EU eIDAS Regulation, the US E-SIGN Act, and equivalent laws in 100+ countries.</span></p>
       </div>
 
     </div>
@@ -2947,6 +3181,13 @@
             <td><span class="cmp-no">✕</span></td>
             <td><span class="cmp-yes">✓</span></td>
             <td><span class="cmp-part">Some plans</span></td>
+          </tr>
+          <tr>
+            <td>20+ built-in PDF tools (edit, merge, compress — offline)</td>
+            <td class="our-col"><span class="cmp-yes">✓</span></td>
+            <td><span class="cmp-no">✕</span></td>
+            <td><span class="cmp-no">✕</span></td>
+            <td><span class="cmp-part">Cloud only</span></td>
           </tr>
           <tr>
             <td>No Java / no browser plugin</td>
@@ -3088,6 +3329,13 @@
             <td><span class="cmp-yes">✓</span></td>
           </tr>
           <tr>
+            <td>20+ built-in PDF tools (edit, merge, compress — offline)</td>
+            <td class="our-col"><span class="cmp-yes">✓</span></td>
+            <td><span class="cmp-no">✕</span></td>
+            <td><span class="cmp-yes">✓</span></td>
+            <td><span class="cmp-part">Cloud only</span></td>
+          </tr>
+          <tr>
             <td>No Java / no browser plugin</td>
             <td class="our-col"><span class="cmp-yes">✓</span></td>
             <td><span class="cmp-yes">✓</span></td>
@@ -3197,6 +3445,9 @@
 
     <p class="pricing-note" id="pricingNote">
       All prices are inclusive of GST &nbsp;·&nbsp; 30-day free trial &nbsp;·&nbsp; Payments via Razorpay (UPI, Cards, Net Banking) &nbsp;·&nbsp; GST invoice sent automatically to your email
+    </p>
+    <p class="pricing-note" style="margin-top:10px;">
+      Prefer to buy in the app? Purchase directly inside PDFSign — your license activates instantly.
     </p>
   </div>
 </section>
@@ -3472,6 +3723,15 @@
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
           <span class="faq-q-icon">Q</span>
+          <span class="faq-q-text">Can PDFSign merge, compress, or edit PDFs too?</span>
+          <span class="faq-toggle-icon">+</span>
+        </button>
+        <div class="faq-a-wrap"><p class="faq-a">Yes. PDFSign includes PDFToolbox — 20+ built-in PDF tools: edit text, merge, split, compress, reorder pages, page numbers, watermark, header/footer, protect with a password (AES-256), fill &amp; flatten forms, Bates numbering, repair damaged PDFs, convert PDF ⇄ Word/images, and more. Everything runs 100% offline on your PC — unlike online tools, your files are never uploaded anywhere.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-icon">Q</span>
           <span class="faq-q-text">Can I restrict printing, editing, or copying of the signed PDF?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
@@ -3727,224 +3987,6 @@
 </section>
 
 <!-- ─── INTERNATIONAL / DIASPORA ─── -->
-<section class="intl india-only" id="international">
-  <div class="container">
-    <div style="text-align:center;">
-      <div class="section-tag">For Indians Abroad</div>
-      <h2 class="section-title">Sign Indian documents from anywhere in the world</h2>
-      <p class="section-sub" style="margin:0 auto;">If you hold an Indian DSC token, PDFSign works on your Windows PC — no matter which country you're in. Sign tender submissions, legal agreements, CA filings, and government documents from your office abroad.</p>
-    </div>
-    <div class="intl-grid">
-      <div class="intl-card">
-        <div class="intl-flag"><span class="fi fi-ae"></span></div>
-        <h4>UAE &amp; Gulf Region</h4>
-        <p>NRI professionals filing documents for Indian property, business, or government portals.</p>
-      </div>
-      <div class="intl-card">
-        <div class="intl-flag"><span class="fi fi-gb"></span></div>
-        <h4>United Kingdom</h4>
-        <p>Indian diaspora submitting GeM bids, MCA filings, or legal documents back home.</p>
-      </div>
-      <div class="intl-card">
-        <div class="intl-flag"><span class="fi fi-us"></span></div>
-        <h4>United States</h4>
-        <p>Indian business owners and CA firms managing Indian corporate filings remotely.</p>
-      </div>
-      <div class="intl-card">
-        <div class="intl-flag"><span class="fi fi-ca"></span></div>
-        <h4>Canada</h4>
-        <p>NRI entrepreneurs and exporters who need to sign Indian trade and compliance documents.</p>
-      </div>
-      <div class="intl-card">
-        <div class="intl-flag"><span class="fi fi-au"></span></div>
-        <h4>Australia</h4>
-        <p>Indian professionals signing property, income tax, and business documents for India.</p>
-      </div>
-      <div class="intl-card">
-        <div class="intl-flag"><span class="intl-flag-globe">🌍</span></div>
-        <h4>Anywhere Else</h4>
-        <p>PDFSign has no geo-restriction. If Windows runs on your PC, it works — fully offline.</p>
-      </div>
-    </div>
-    <p class="intl-note">Your DSC token was issued in India — <strong>PDFSign makes it work wherever you are.</strong></p>
-  </div>
-</section>
-
-<!-- ─── ROADMAP ─── -->
-<section class="roadmap india-only" id="roadmap">
-  <div class="container">
-    <div style="text-align:center; margin-bottom: 48px;">
-      <div class="section-tag">What's Coming</div>
-      <h2 class="section-title">Built for India. Growing with India.</h2>
-      <p class="section-sub" style="margin: 0 auto; text-align: center;">We're on a mission to make digital signing accessible to every Indian professional. Here's what's live and what's coming.</p>
-    </div>
-
-    <div class="roadmap-grid">
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">🔏</div>
-        <div class="roadmap-text">
-          <h4>Single &amp; Batch PDF Signing</h4>
-          <p>Sign one PDF or hundreds in a single click. Fully offline, PAdES compliant, accepted everywhere.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">🔌</div>
-        <div class="roadmap-text">
-          <h4>All Major DSC Tokens Supported</h4>
-          <p>HyperPKI, ePass, Proxkey, Feitian, WD Pro, Watchdata — plug in and sign instantly.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item soon">
-        <span class="roadmap-badge badge-soon">Coming Soon</span>
-        <div class="roadmap-icon-wrap">🇮🇳</div>
-        <div class="roadmap-text">
-          <h4>Hindi &amp; Regional Language UI</h4>
-          <p>Full Hindi interface for tier-2 and tier-3 city users. Marathi, Bengali, Tamil support planned.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">🖼️</div>
-        <div class="roadmap-text">
-          <h4>Signature &amp; Stamp Image</h4>
-          <p>Upload your handwritten signature or company rubber stamp image — embedded directly on any PDF page without a DSC token.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">👥</div>
-        <div class="roadmap-text">
-          <h4>Team Licences for Firms</h4>
-          <p>5-seat team licences available for CA firms, law offices, and tender-filing teams — Annual ₹3,499 or Lifetime ₹13,999.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item soon">
-        <span class="roadmap-badge badge-soon">Coming Soon</span>
-        <div class="roadmap-icon-wrap">💬</div>
-        <div class="roadmap-text">
-          <h4>WhatsApp Licence Delivery</h4>
-          <p>Get your licence key and renewal reminders directly on WhatsApp — no email needed.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">📦</div>
-        <div class="roadmap-text">
-          <h4>Complete Offline Installer</h4>
-          <p>Single .exe installer — download once, install anywhere, no internet required. Available at cdn.pdfsign.in.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">🤝</div>
-        <div class="roadmap-text">
-          <h4>DSC Reseller &amp; Affiliate Programme</h4>
-          <p>DSC token sellers, CA consultants, and IT professionals — partner with PDFSign and earn on every licence you refer. <a href="/reseller.html" style="color:var(--green);text-decoration:underline;">Enquire now →</a></p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ─── ROADMAP (INTL) ─── -->
-<section class="roadmap intl-only" id="roadmap-intl">
-  <div class="container">
-    <div style="text-align:center; margin-bottom: 48px;">
-      <div class="section-tag">What's Coming</div>
-      <h2 class="section-title">Built for privacy. Growing globally.</h2>
-      <p class="section-sub" style="margin: 0 auto; text-align: center;">We're on a mission to make offline digital signing accessible to every professional worldwide. Here's what's live and what's coming.</p>
-    </div>
-
-    <div class="roadmap-grid">
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">🔏</div>
-        <div class="roadmap-text">
-          <h4>Single &amp; Batch PDF Signing</h4>
-          <p>Sign one PDF or hundreds in a single click. Fully offline, PAdES &amp; CAdES compliant, accepted everywhere.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">🔌</div>
-        <div class="roadmap-text">
-          <h4>Any PKCS#11 USB Token Supported</h4>
-          <p>HyperPKI, ePass, Feitian, SafeNet, Gemalto, Yubikey — plug in any hardware token and sign instantly.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item soon">
-        <span class="roadmap-badge badge-soon">Coming Soon</span>
-        <div class="roadmap-icon-wrap">🌍</div>
-        <div class="roadmap-text">
-          <h4>Multi-language UI</h4>
-          <p>German, French, Spanish, and Portuguese interface planned. Localised for European and global markets.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">🖼️</div>
-        <div class="roadmap-text">
-          <h4>Signature &amp; Stamp Image</h4>
-          <p>Upload your handwritten signature or company seal image — embedded directly on any PDF page without a hardware token.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">👥</div>
-        <div class="roadmap-text">
-          <h4>Team Licences for Firms</h4>
-          <p>5-seat team licences for law firms, accounting practices, and compliance teams — billed annually or lifetime.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item soon">
-        <span class="roadmap-badge badge-soon">Coming Soon</span>
-        <div class="roadmap-icon-wrap">🍎</div>
-        <div class="roadmap-text">
-          <h4>macOS Support</h4>
-          <p>Native macOS app in development. Sign PDFs with your hardware token on Mac — fully offline, no cloud.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">📦</div>
-        <div class="roadmap-text">
-          <h4>Complete Offline Installer</h4>
-          <p>Single .exe installer — download once, install anywhere, no internet required. Available at cdn.pdfsign.in.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">🤝</div>
-        <div class="roadmap-text">
-          <h4>Global Reseller Programme</h4>
-          <p>Token resellers and IT consultants worldwide — partner with PDFSign and earn on every licence you refer. <a href="/reseller.html" style="color:var(--green);text-decoration:underline;">Enquire now →</a></p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ─── CTA BAND ─── -->
 <section class="cta-band india-only">
   <div class="cta-band-inner">
     <h2>Stop struggling with DSC errors.<br>Start signing in seconds.</h2>
@@ -3956,7 +3998,7 @@
       </a>
       <a href="/cdn-cgi/l/email-protection#e38b868f93a3938785908a848dcd8a8d" style="color:#ffffff;font-size:15px;font-weight:500;text-decoration:underline;opacity:0.9;"><span class="__cf_email__" data-cfemail="95fdf0f9e5d5e5f1f3e6fcf2fbbbfcfb">[email&#160;protected]</span></a>
     </div>
-    <p class="cta-footnote">For Windows 10 &amp; 11 · 30-day free trial · No credit card needed</p>
+    <p class="cta-footnote">For Windows 10 &amp; 11 · 30-day free trial · No credit card needed · Trusted by professionals in 40+ countries</p>
   </div>
 </section>
 
@@ -3972,7 +4014,7 @@
       </a>
       <a href="mailto:support@pdfsign.in" style="color:#ffffff;font-size:15px;font-weight:500;text-decoration:underline;opacity:0.9;">support@pdfsign.in</a>
     </div>
-    <p class="cta-footnote">For Windows 10 &amp; 11 · 30-day free trial · No credit card needed</p>
+    <p class="cta-footnote">For Windows 10 &amp; 11 · 30-day free trial · No credit card needed · Trusted by professionals in 40+ countries</p>
   </div>
 </section>
 
@@ -4127,7 +4169,7 @@
           <svg class="logo-mark" width="38" height="38" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 3.5l15 5.2v11.1c0 9.7-6.4 16.3-15 19.2-8.6-2.9-15-9.5-15-19.2V8.7L24 3.5z" fill="#16a34a"/><path d="M17.6 12.6h7.5l4.9 4.9V28.3a1.7 1.7 0 0 1-1.7 1.7H17.6A1.7 1.7 0 0 1 15.9 28.3V14.3A1.7 1.7 0 0 1 17.6 12.6z" fill="#ffffff"/><path d="M25.1 12.6v4.9h4.9z" fill="#cdd5df"/><path d="M19 21h7M19 24h7M19 27h4.5" stroke="#9aa7b4" stroke-width="1.5" stroke-linecap="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#ffffff" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#16a34a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <span class="logo-name">PDF<em>Sign</em></span>
         </a>
-        <p>Sign PDFs with your DSC token. Offline, private, and accepted everywhere in India.</p>
+        <p>Sign PDFs with your <span class="india-only geo-inline">DSC token</span><span class="intl-only geo-inline">USB token</span>. Offline, private, and <span class="india-only geo-inline">accepted everywhere in India</span><span class="intl-only geo-inline">legally valid worldwide</span>. Plus 20+ built-in PDF tools.</p>
       </div>
 
       <div class="footer-col">
@@ -4168,7 +4210,6 @@
     <div class="footer-bottom">
       <p>© 2026 PDFSign &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; 🦁 Made in India &nbsp;·&nbsp; 🇮🇳 Proud to be Indian</p>
       <div class="footer-bottom-links">
-        <a href="/global">🌐 Global Site</a>
         <a href="/privacy.html">Privacy</a>
         <a href="/terms.html">Terms</a>
         <a href="/cdn-cgi/l/email-protection#137b767f6353637775607a747d3d7a7d"><span class="__cf_email__" data-cfemail="c7afa2abb787b7a3a1b4aea0a9e9aea9">[email&#160;protected]</span></a>
@@ -4299,6 +4340,8 @@ function applyGeo() {
     if (_isIndia) {
       if      (el.classList.contains('trust-grid'))      el.style.display = 'grid';
       else if (el.classList.contains('trust-capability')) el.style.display = 'flex';
+      else if (el.classList.contains('geo-inline'))       el.style.display = 'inline';
+      else if (el.classList.contains('geo-flex'))         el.style.display = 'flex';
       // everything else: display='' → CSS .india-only{display:block} applies correctly
     }
   });
@@ -4308,6 +4351,8 @@ function applyGeo() {
     el.style.display = _isIndia ? 'none'
       : el.classList.contains('trust-grid') ? 'grid'
       : el.classList.contains('trust-capability') ? 'flex'
+      : el.classList.contains('geo-inline') ? 'inline'
+      : el.classList.contains('geo-flex') ? 'flex'
       : 'block';
   });
 
