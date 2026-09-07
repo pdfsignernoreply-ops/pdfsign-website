@@ -119,9 +119,9 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(27, 42, 71, 0.97);
+    background: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(147, 197, 253, 0.1);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
   }
 
   .nav-inner {
@@ -173,13 +173,13 @@
   .logo-name {
     font-family: var(--font-display);
     font-size: 20px;
-    color: var(--white);
+    color: var(--navy);
     letter-spacing: -0.01em;
   }
 
   .logo-name em {
     font-style: normal;
-    color: var(--green-light);
+    color: var(--green);
   }
 
   .nav-links {
@@ -191,13 +191,13 @@
 
   .nav-links a {
     text-decoration: none;
-    color: rgba(255,255,255,0.75);
+    color: var(--gray-600);
     font-size: 14px;
     font-weight: 400;
     transition: color 0.2s;
   }
 
-  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover { color: var(--navy); }
 
   .nav-cta {
     background: var(--green);
@@ -224,7 +224,7 @@
     display: block;
     width: 22px;
     height: 2px;
-    background: rgba(255,255,255,0.8);
+    background: var(--navy);
     border-radius: 2px;
     transition: all 0.25s;
   }
@@ -243,15 +243,15 @@
       position: absolute;
       top: 64px;
       left: 0; right: 0;
-      background: rgba(17,28,48,0.98);
+      background: rgba(255,255,255,0.98);
       backdrop-filter: blur(12px);
       padding: 16px 24px 24px;
-      border-bottom: 1px solid rgba(147,197,253,0.12);
+      border-bottom: 1px solid rgba(15,23,42,0.08);
       z-index: 200;
     }
     .nav-links.open { display: flex; }
     .nav-links li { width: 100%; }
-    .nav-links a { display: block; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 15px; }
+    .nav-links a { display: block; padding: 12px 0; border-bottom: 1px solid rgba(15,23,42,0.06); font-size: 15px; }
     .nav-links li:last-child a { border-bottom: none; }
     .nav-cta { margin-top: 8px; display: inline-block; }
   }
@@ -1401,14 +1401,14 @@
     align-items: center;
     gap: 6px;
     padding: 5px 12px;
-    border: 1px solid rgba(255,255,255,0.15);
+    border: 1px solid var(--gray-200);
     border-radius: 100px;
-    background: rgba(255,255,255,0.05);
+    background: var(--gray-50);
   }
   .made-in-india span {
     font-size: 11px;
     font-weight: 600;
-    color: rgba(255,255,255,0.75);
+    color: var(--gray-600);
     letter-spacing: 0.05em;
     white-space: nowrap;
   }
@@ -2182,6 +2182,66 @@
   html.intl-user .intl-only.geo-inline { display:inline !important; }
   html.intl-user .intl-only.geo-flex   { display:flex !important; }
 
+  /* ─── LIGHT HERO (global-page look) ─── */
+  .heroG {
+    background:
+      linear-gradient(rgba(15,23,42,0.032) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.032) 1px, transparent 1px),
+      #FDFEFE;
+    background-size: 44px 44px, 44px 44px, auto;
+    padding: 64px 0 56px;
+  }
+  .heroG-inner { max-width: var(--max); margin:0 auto; padding:0 24px; display:grid; grid-template-columns: 1.02fr 1fr; gap:56px; align-items:center; }
+  .heroG-eyebrow { font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--gray-600); }
+  .heroG-eyebrow b { color:var(--green); font-weight:600; padding:0 2px; }
+  .heroG h1, .heroG .hero-alt-h1 { font-family:'Outfit',sans-serif; font-weight:700; font-size:clamp(2.1rem,3.6vw,3.15rem); line-height:1.1; letter-spacing:-0.02em; color:#0F172A; margin:16px 0 18px; }
+  .heroG h1 .grn, .heroG .hero-alt-h1 .grn { color:var(--green); }
+  .heroG-sub { color:var(--gray-600); font-size:1.02rem; line-height:1.65; max-width:34em; margin-bottom:8px; }
+  .heroG-sub em { color:var(--navy); font-style:italic; }
+  .heroG-urgency { color:var(--green); font-weight:500; font-style:italic; margin-bottom:20px; }
+  .heroG-actions { display:flex; flex-direction:column; gap:10px; align-items:flex-start; margin-bottom:6px; }
+  .heroG-store { display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:500; color:var(--gray-600); text-decoration:none; }
+  .heroG-store:hover { color:var(--navy); }
+  .heroG-weblink { font-size:13px; color:var(--gray-600); }
+  .heroG-weblink a { color:var(--green); font-weight:600; text-decoration:none; }
+  .heroG-checks { display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:16px; }
+  .heroG-check { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--gray-600); }
+  .heroG-trust { display:flex; align-items:center; gap:12px; margin-top:22px; }
+  .heroG-trust .trust-text { font-size:13px; color:var(--gray-600); margin:0; }
+  .heroG-trust .trust-text strong { color:var(--navy); }
+  .heroG-visual { position:relative; perspective:2200px; padding:30px 20px 40px; }
+  .heroG-app { border-radius:14px; border:1px solid var(--gray-200); overflow:hidden; background:#fff;
+    transform: rotateY(-6deg) rotateX(1.5deg);
+    box-shadow: 0 32px 64px -28px rgba(15,23,42,0.30), 0 12px 24px -16px rgba(15,23,42,0.12); }
+  .heroG-app img { display:block; width:100%; height:auto; }
+  .float-card { position:absolute; z-index:3; background:#fff; border:1px solid var(--gray-200); border-radius:12px; padding:10px 14px; box-shadow:0 14px 34px rgba(15,23,42,0.14); display:flex; align-items:center; gap:9px; font-size:13px; font-weight:600; color:var(--navy); white-space:nowrap; }
+  .fc-tl { top:6px; left:0; }
+  .fc-tr { top:6px; right:0; }
+  .fc-bl { bottom:2px; left:0; }
+  .fc-br { bottom:2px; right:0; }
+  .fc-stat b { display:block; font-size:15px; line-height:1.2; color:var(--navy); }
+  .fc-stat small { display:block; font-weight:400; font-size:11px; color:var(--gray-400); }
+  .fc-ok { display:inline-flex; width:26px; height:26px; border-radius:50%; background:var(--green-pale); color:var(--green); align-items:center; justify-content:center; flex-shrink:0; }
+  .sigv-card { position:absolute; z-index:2; right:6%; bottom:18%; width:236px; background:#fff; border:1px solid var(--gray-200); border-radius:10px; padding:12px 14px; box-shadow:0 18px 44px rgba(15,23,42,0.18); }
+  .sigv-card h5 { color:var(--green); font-size:.92rem; font-weight:700; margin:0 0 5px; font-family:'Outfit',sans-serif; }
+  .sigv-card p { font-size:11px; color:var(--gray-600); line-height:1.55; margin:0; }
+  .sigv-card strong { color:var(--navy); }
+  .sigv-check { position:absolute; right:10px; bottom:10px; }
+  .tokchip { position:absolute; z-index:3; left:0; bottom:24%; background:var(--navy); border-radius:12px; padding:10px 14px; display:flex; align-items:center; gap:10px; box-shadow:0 14px 34px rgba(15,23,42,0.30); }
+  .tokchip .tk-ico { width:34px; height:34px; border-radius:9px; background:rgba(147,197,253,0.12); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .tokchip .tk-label { font-size:10.5px; color:rgba(255,255,255,0.55); }
+  .tokchip .tk-value { font-size:12.5px; font-weight:600; color:#93C5FD; }
+  @media(max-width:960px){
+    .heroG-inner { grid-template-columns:1fr; gap:30px; }
+    .heroG-visual { padding:24px 8px 36px; }
+    .sigv-card { right:2%; width:210px; }
+  }
+  @media(max-width:520px){
+    .float-card { padding:7px 10px; font-size:11.5px; }
+    .fc-stat b { font-size:13px; }
+    .sigv-card { display:none; }
+  }
+
   /* ─── TWO WAYS TO SIGN ─── */
   .signmodes { background: var(--off-white); padding: 90px 0; }
   .signmodes-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:48px; }
@@ -2273,16 +2333,16 @@
 
 
 /* ─── LIVE STATS STRIP ─── */
-.stats-strip { background:#0F172A; border-top:1px solid rgba(255,255,255,0.06); border-bottom:1px solid rgba(255,255,255,0.06); padding:28px 0; }
+.stats-strip { background:var(--off-white); border-top:1px solid var(--gray-200); border-bottom:1px solid var(--gray-200); padding:28px 0; }
 .stats-strip-inner { max-width:900px; margin:0 auto; padding:0 24px; display:flex; flex-direction:column; align-items:center; gap:12px; }
 .stats-live-badge { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; color:#94A3B8; letter-spacing:0.06em; text-transform:uppercase; }
 .stats-live-dot { width:7px; height:7px; border-radius:50%; background:#22C55E; animation:pulse-dot 2s ease-in-out infinite; flex-shrink:0; }
 @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
 .stats-counters { display:flex; gap:48px; align-items:center; justify-content:center; flex-wrap:wrap; }
 .stats-counter { text-align:center; }
-.stats-counter-val { font-size:2.6rem; font-weight:800; color:#F1F5F9; letter-spacing:-0.02em; line-height:1; font-variant-numeric:tabular-nums; min-width:80px; display:inline-block; }
+.stats-counter-val { font-size:2.6rem; font-weight:800; color:var(--navy); letter-spacing:-0.02em; line-height:1; font-variant-numeric:tabular-nums; min-width:80px; display:inline-block; }
 .stats-counter-label { font-size:12px; color:#64748B; margin-top:5px; font-weight:500; }
-.stats-divider { width:1px; height:48px; background:rgba(255,255,255,0.1); }
+.stats-divider { width:1px; height:48px; background:var(--gray-200); }
 .stats-totals { font-size:12px; color:#475569; text-align:center; }
 .stats-totals strong { color:#94A3B8; }
 @media(max-width:480px){ .stats-counters{gap:24px} .stats-counter-val{font-size:2rem} .stats-divider{display:none} }</style>
@@ -2534,129 +2594,93 @@
 </nav>
 
 <!-- ─── HERO ─── -->
-<section class="hero">
-  <div class="hero-bg">
-    <div class="hero-glow2"></div>
-  </div>
-  <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-badge">For Windows · 30-Day Free Trial</div>
+<section class="heroG">
+  <div class="heroG-inner">
+    <div class="heroG-content">
+      <div class="heroG-eyebrow">Offline <b>•</b> Private <b>•</b> Trusted</div>
 
       <!-- India hero -->
-      <h1 class="india-only">Sign any PDF in seconds.<br /><em>DSC token or stamp image.</em><br />100% offline.</h1>
-      <p class="hero-sub india-only">
+      <h1 class="india-only">Sign any PDF in seconds.<br /><span class="grn">DSC token or stamp image.</span><br />100% offline.</h1>
+      <p class="heroG-sub india-only">
         Open the app, load your PDF, sign. Done in under 60 seconds. Works with your USB DSC token or a signature stamp image — no Java, no browser plugin, no cloud upload.
       </p>
-      <p class="hero-urgency india-only"><em>Never miss a deadline again.</em></p>
+      <p class="heroG-urgency india-only"><em>Never miss a deadline again.</em></p>
 
       <!-- International hero -->
-      <h2 class="intl-only hero-alt-h1">Sign PDFs with your USB token, signature, or company stamp.</h2>
-      <p class="hero-sub intl-only"><em>Fully offline. Nothing uploaded.</em></p>
-      <p class="hero-sub intl-only">
+      <h2 class="intl-only hero-alt-h1">Sign PDFs with your <span class="grn">USB token, signature, or company stamp.</span></h2>
+      <p class="heroG-sub intl-only"><em>Fully offline. Nothing uploaded.</em></p>
+      <p class="heroG-sub intl-only">
         Add a digital signature, handwritten signature, or company stamp to any PDF in under 60 seconds. Compatible with SafeNet, Thales, HID, Gemalto, Feitian, and all PKCS#11 tokens. No Java. No browser plugins. No cloud.
       </p>
-      <p class="hero-urgency intl-only"><em>Your documents stay on your device — always.</em></p>
-      <div class="hero-actions">
+      <p class="heroG-urgency intl-only"><em>Your documents stay on your device — always.</em></p>
+
+      <div class="heroG-actions">
         <a href="https://pdfsigner-api.vercel.app/api/download" class="btn-primary">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download Free — 30 Day Trial
         </a>
-        <!-- International: prominent secondary CTA to no-install web tool -->
-        <a href="/web" class="btn-ghost intl-only" style="font-size:14px;opacity:0.85;">
-          ✏️ Or sign free online
-        </a>
-      </div>
-      <!-- India: soft nudge for image-signature-only use case -->
-      <p class="india-only" style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:6px;">
-        Just need an image signature? <a href="/web" style="color:rgba(255,255,255,0.55);text-decoration:underline;text-underline-offset:3px;">Sign free online →</a>
-      </p>
-      <div class="hero-badges">
-        <div class="hero-badge-item">
-          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-          30-day free trial
-        </div>
-        <div class="hero-badge-item">
-          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-          No credit card needed
-        </div>
-        <div class="hero-badge-item">
-          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-          Works offline
-        </div>
-        <div class="hero-badge-item india-only">
-          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-          Legal under IT Act 2000
-        </div>
-        <div class="hero-badge-item intl-only">
-          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-          eIDAS &amp; E-SIGN Act compatible
-        </div>
-        <a href="https://pdfsigner-api.vercel.app/api/download" class="hero-badge-item" style="text-decoration:none;" aria-label="Available on Microsoft Store">
+        <a href="https://pdfsigner-api.vercel.app/api/download" class="heroG-store" aria-label="Available on Microsoft Store">
           <svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="9" height="9" fill="#F25022"/><rect x="13" y="2" width="9" height="9" fill="#7FBA00"/><rect x="2" y="13" width="9" height="9" fill="#00A4EF"/><rect x="13" y="13" width="9" height="9" fill="#FFB900"/></svg>
           Available on Microsoft Store
         </a>
+        <p class="heroG-weblink india-only">Just need an image signature? <a href="/web">Sign free online →</a></p>
+        <p class="heroG-weblink intl-only">✏️ Or <a href="/web">sign free online</a></p>
       </div>
-      <div class="hero-trust">
-        <div class="trust-avatars">
-          <span>CA</span><span>LW</span><span>GC</span><span>EX</span>
-        </div>
+
+      <div class="heroG-checks">
+        <div class="heroG-check"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>30-day free trial</div>
+        <div class="heroG-check"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>No credit card needed</div>
+        <div class="heroG-check"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Works offline</div>
+        <div class="heroG-check india-only geo-flex"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Legal under IT Act 2000</div>
+        <div class="heroG-check intl-only geo-flex"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>eIDAS &amp; E-SIGN Act compatible</div>
+      </div>
+
+      <div class="heroG-trust">
         <p class="trust-text india-only">Trusted by <strong>procurement professionals, CA firms, and company secretaries</strong> across India</p>
         <p class="trust-text intl-only">Trusted by <strong>lawyers, accountants, compliance teams, and procurement professionals</strong> worldwide</p>
       </div>
     </div>
 
-    <!-- PDF Mockup -->
-    <div class="hero-visual">
-      <div class="step-badge">
-        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-        Signed &amp; Verified
+    <!-- App screenshot with floating value cards (global-page treatment) -->
+    <div class="heroG-visual">
+      <div class="heroG-app">
+        <img src="hero-app.png" alt="The PDFSign desktop app signing a PDF with a digital certificate — fully offline on Windows" width="2544" height="2316" fetchpriority="high" />
       </div>
-      <div class="pdf-card">
-        <div class="pdf-header">
-          <div class="pdf-icon">PDF</div>
-          <div>
-            <div class="pdf-name india-only">Tender_Document_2025.pdf</div>
-            <div class="pdf-name intl-only">Contract_NDA_Signed.pdf</div>
-            <div class="pdf-size">2.4 MB · 8 pages</div>
-          </div>
-        </div>
-        <div class="pdf-lines">
-          <div class="pdf-line full"></div>
-          <div class="pdf-line med"></div>
-          <div class="pdf-line full"></div>
-          <div class="pdf-line short"></div>
-          <div class="pdf-line full"></div>
-          <div class="pdf-line med"></div>
-          <div class="pdf-line xs"></div>
-        </div>
-        <div class="pdf-sig-area">
-          <div class="sig-stamp">
-            <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="rgba(22,163,74,0.3)" stroke="#16A34A" stroke-width="1.5"/>
-              <path d="M9 12l2 2 4-4" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="sig-info">
-            <div class="sig-name india-only">Rajesh Kumar</div>
-            <div class="sig-name intl-only">John Smith</div>
-            <div class="sig-meta">Signed · 28 Mar 2025, 14:32</div>
-          </div>
-          <div class="sig-verified">
-            <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-            Valid
-          </div>
-        </div>
+
+      <div class="float-card fc-tl">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="rgba(22,163,74,0.15)" stroke="#16A34A" stroke-width="1.6"/><path d="M9 12l2 2 4-4" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        100% Offline
       </div>
-      <div class="token-widget">
-        <div class="token-icon">
-          <svg width="18" height="18" fill="none" stroke="#93C5FD" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="11" width="20" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        </div>
-        <div>
-          <div class="token-label india-only">DSC Token Connected</div>
-          <div class="token-label intl-only">USB Token Connected</div>
-          <div class="token-value india-only">HyperPKI HYP2003 · Ready</div>
-          <div class="token-value intl-only">SafeNet eToken · Ready</div>
-        </div>
+      <div class="float-card fc-tr">
+        <span class="fc-ok"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>
+        PDF Signed Successfully
+      </div>
+      <div class="float-card fc-bl">
+        <svg width="16" height="16" fill="none" stroke="#1B2A47" stroke-width="2" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg>
+        <span class="fc-stat"><b>31 hours saved</b><small>vs. manual signing</small></span>
+      </div>
+      <div class="float-card fc-br">
+        <svg width="16" height="16" fill="none" stroke="#1B2A47" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+        <span class="fc-stat"><b>128 PDFs</b><small>batch signed</small></span>
+      </div>
+
+      <!-- Signature-valid stamp preview -->
+      <div class="sigv-card">
+        <h5>Signature valid</h5>
+        <p class="india-only">Digitally signed by <strong>RAJESH KUMAR</strong><br />Date: 2026.07.18 14:32 IST<br />Designation: Proprietor<br />Reason: Tender<br />Location: Pune</p>
+        <p class="intl-only">Digitally signed by <strong>JOHN SMITH</strong><br />Date: 2026.07.18 14:32 GMT<br />Designation: Authorized Signatory<br />Reason: Invoice<br />Location: London, United Kingdom</p>
+        <svg class="sigv-check" width="34" height="34" fill="none" viewBox="0 0 24 24"><path d="M4.5 13.5l4.5 4.5L20 6.5" stroke="#15803D" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+
+      <!-- Token connected chip -->
+      <div class="tokchip">
+        <span class="tk-ico"><svg width="17" height="17" fill="none" stroke="#93C5FD" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="11" width="20" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+        <span>
+          <span class="tk-label india-only">DSC Token Connected</span>
+          <span class="tk-label intl-only">USB Token Connected</span>
+          <span class="tk-value india-only">HyperPKI HYP2003 · Ready</span>
+          <span class="tk-value intl-only">SafeNet eToken · Ready</span>
+        </span>
       </div>
     </div>
   </div>
