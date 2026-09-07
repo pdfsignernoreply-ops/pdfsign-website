@@ -95,8 +95,9 @@
     --gray-800: #1E293B;
     --text: #1E293B;
     --muted: #64748B;
-    --font-display: 'DM Serif Display', serif;
-    --font-body: 'Outfit', sans-serif;
+    --font-display: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-body: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-serif: 'DM Serif Display', Georgia, serif;
     --max: 1140px;
     --r: 10px;
     --r-lg: 16px;
@@ -131,6 +132,7 @@
     height: 64px;
     display: flex;
     align-items: center;
+    gap: 14px;
     justify-content: space-between;
   }
 
@@ -171,7 +173,8 @@
   }
 
   .logo-name {
-    font-family: var(--font-display);
+    font-family: var(--font-body);
+    font-weight: 700;
     font-size: 20px;
     color: var(--navy);
     letter-spacing: -0.01em;
@@ -185,14 +188,15 @@
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 22px;
     list-style: none;
   }
 
   .nav-links a {
     text-decoration: none;
     color: var(--gray-600);
-    font-size: 14px;
+    white-space: nowrap;
+    font-size: 13.5px;
     font-weight: 400;
     transition: color 0.2s;
   }
@@ -629,7 +633,7 @@
     margin-bottom: 12px;
   }
 
-  .section-title {
+  .section-title { font-weight:800; letter-spacing:-0.02em;
     font-family: var(--font-display);
     font-size: clamp(28px, 3.5vw, 40px);
     line-height: 1.15;
@@ -2190,19 +2194,20 @@
       linear-gradient(90deg, rgba(147,197,253,0.045) 1px, transparent 1px),
       linear-gradient(180deg, #111C30, #16233F 60%, #1B2A47);
     background-size: 44px 44px, 44px 44px, auto;
-    padding: 64px 0 56px;
+    padding: 64px 0 100px;
   }
   .heroG-inner { max-width: var(--max); margin:0 auto; padding:0 24px; display:grid; grid-template-columns: 0.95fr 1.05fr; gap:44px; align-items:center; }
   .heroG-eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; white-space:nowrap; color:#4ADE80; border:1px solid rgba(74,222,128,0.35); background:rgba(22,163,74,0.10); border-radius:999px; padding:7px 15px; }
   @media(max-width:560px){ .heroG-eyebrow { white-space:normal; } }
   .heroG-eyebrow b { width:6px; height:6px; border-radius:50%; background:#4ADE80; padding:0; }
-  .heroG h1, .heroG .hero-alt-h1 { font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:clamp(1.85rem,2.75vw,2.55rem); line-height:1.22; letter-spacing:0; color:#fff; margin:20px 0 18px; white-space:nowrap; }
+  .heroG h1, .heroG .hero-alt-h1 { font-family:var(--font-serif); font-weight:400; font-size:clamp(1.85rem,2.75vw,2.55rem); line-height:1.22; letter-spacing:0; color:#fff; margin:20px 0 18px; white-space:nowrap; }
   @media(max-width:1100px){ .heroG h1, .heroG .hero-alt-h1 { white-space:normal; } }
   .heroG h1 .grn, .heroG .hero-alt-h1 .grn { color:#93C5FD; font-style:italic; }
   .heroG-sub { color:rgba(255,255,255,0.75); font-size:1.02rem; line-height:1.7; max-width:34em; margin-bottom:8px; }
   .heroG-sub em { color:#fff; font-style:italic; }
   .heroG-urgency { color:#4ADE80; font-weight:500; font-style:italic; margin-bottom:20px; }
-  .heroG-verify { color:rgba(255,255,255,0.8); font-size:.92rem; margin:2px 0 0; }
+  .heroG-verify { color:rgba(255,255,255,0.8); font-size:.88rem; margin:2px 0 0; white-space:nowrap; }
+  @media(max-width:1100px){ .heroG-verify { white-space:normal; } }
   .heroG-verify.small { color:rgba(255,255,255,0.45); font-size:.78rem; }
   .heroG-actions { display:flex; flex-direction:column; gap:10px; align-items:flex-start; margin-bottom:6px; }
   .heroG-store { display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:500; color:rgba(255,255,255,0.6); text-decoration:none; }
@@ -2229,7 +2234,7 @@
   .fc-stat small { display:block; font-weight:400; font-size:11px; color:var(--gray-400); }
   .fc-ok { display:inline-flex; width:26px; height:26px; border-radius:50%; background:var(--green-pale); color:var(--green); align-items:center; justify-content:center; flex-shrink:0; }
   .sigv-card { position:absolute; z-index:2; right:6%; bottom:18%; width:236px; background:#fff; border:1px solid var(--gray-200); border-radius:10px; padding:12px 14px; box-shadow:0 18px 44px rgba(15,23,42,0.18); }
-  .sigv-card h5 { color:var(--green); font-size:.92rem; font-weight:700; margin:0 0 5px; font-family:'Outfit',sans-serif; }
+  .sigv-card h5 { color:var(--green); font-size:.92rem; font-weight:700; margin:0 0 5px; font-family:var(--font-body); }
   .sigv-card p { font-size:11px; color:var(--gray-600); line-height:1.55; margin:0; }
   .sigv-card strong { color:var(--navy); }
   .sigv-check { position:absolute; right:10px; bottom:10px; }
@@ -2255,7 +2260,7 @@
   .signmode-card.popular { border-color:var(--green); box-shadow:0 12px 40px rgba(22,163,74,0.10); }
   .signmode-pop { position:absolute; top:-12px; left:32px; background:var(--green); color:#fff; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:4px 12px; border-radius:999px; }
   .signmode-icon { width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:18px; }
-  .signmode-card h3 { font-family:'DM Serif Display',serif; font-size:1.45rem; color:var(--navy); margin-bottom:4px; }
+  .signmode-card h3 { font-family:var(--font-body); font-weight:800; font-size:1.45rem; color:var(--navy); margin-bottom:4px; }
   .signmode-tag { font-size:.85rem; font-weight:600; color:var(--green); margin-bottom:12px; }
   .signmode-card > p { color:var(--gray-600); font-size:.95rem; line-height:1.6; margin-bottom:18px; }
   .signmode-list { list-style:none; }
@@ -2287,9 +2292,10 @@
   /* ─── TOOLBOX (product-capability redesign) ─── */
   .toolbox { background:#172847; padding:84px 0 64px; position:relative; overflow:hidden; }
   .toolbox::before { content:""; position:absolute; left:50%; top:-140px; transform:translateX(-50%); width:760px; height:420px; background:radial-gradient(ellipse at center, rgba(74,222,128,0.14), transparent 65%); pointer-events:none; }
-  .tbx-head { position:relative; text-align:center; max-width:720px; margin:0 auto 40px; }
+  .tbx-head { position:relative; text-align:center; max-width:860px; margin:0 auto 40px; }
   .tbx-kicker { display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#4ADE80; border:1px solid rgba(74,222,128,0.35); background:rgba(22,163,74,0.10); border-radius:999px; padding:7px 15px; margin-bottom:20px; }
-  .tbx-head h2 { font-family:'Outfit',sans-serif; font-weight:700; font-size:clamp(1.9rem,3vw,2.6rem); line-height:1.12; letter-spacing:-0.02em; color:#fff; margin:0 0 14px; }
+  .tbx-head h2 { font-family:var(--font-body); font-weight:800; font-size:clamp(1.7rem,2.5vw,2.3rem); line-height:1.12; letter-spacing:-0.02em; color:#fff; margin:0 0 14px; white-space:nowrap; }
+  @media(max-width:900px){ .tbx-head h2 { white-space:normal; } }
   .tbx-head h2 .grn2 { color:#4ADE80; }
   .tbx-head p { color:rgba(255,255,255,0.65); font-size:1.02rem; line-height:1.65; margin:0 0 18px; }
   .tbx-pill { display:inline-flex; align-items:center; gap:8px; font-size:.85rem; font-weight:600; color:#A7F3D0; background:rgba(22,163,74,0.12); border:1px solid rgba(74,222,128,0.25); border-radius:999px; padding:8px 18px; }
@@ -2297,7 +2303,7 @@
   .tbx-card { background:#263957; border:1px solid rgba(255,255,255,0.12); border-radius:16px; padding:24px 22px; transition:background .2s, transform .2s, border-color .2s; }
   .tbx-card:hover { background:#304565; transform:translateY(-4px); border-color:rgba(255,255,255,0.2); }
   .tbx-card .ti { display:inline-flex; width:42px; height:42px; border-radius:11px; background:rgba(74,222,128,0.14); color:#4ADE80; align-items:center; justify-content:center; margin-bottom:14px; }
-  .tbx-card h4 { color:#fff; font-family:'Outfit',sans-serif; font-size:1.12rem; font-weight:700; margin:0 0 6px; }
+  .tbx-card h4 { color:#fff; font-family:var(--font-body); font-size:1.12rem; font-weight:700; margin:0 0 6px; }
   .tbx-card p { color:rgba(255,255,255,0.55); font-size:.85rem; line-height:1.55; margin:0; }
   .tbx-cats { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:18px; }
   .tbx-cat { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:14px; padding:16px 18px; }
@@ -2323,7 +2329,7 @@
   .tokenwall { background:#fff; padding:48px 0 90px; }
   .tw2-head { display:grid; grid-template-columns:1.15fr 1fr; gap:48px; align-items:center; margin-bottom:40px; }
   .tw2-badge { display:inline-flex; align-items:center; gap:7px; border:1px solid rgba(22,163,74,0.3); background:var(--green-pale); color:#116B33; font-size:11.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; border-radius:999px; padding:6px 14px; margin-bottom:18px; }
-  .tw2-head h2 { font-family:'Outfit',sans-serif; font-weight:700; font-size:clamp(1.9rem,3vw,2.6rem); line-height:1.12; letter-spacing:-0.02em; color:#0F172A; margin:0 0 14px; }
+  .tw2-head h2 { font-family:var(--font-body); font-weight:700; font-size:clamp(1.9rem,3vw,2.6rem); line-height:1.12; letter-spacing:-0.02em; color:#0F172A; margin:0 0 14px; }
   .tw2-head h2 .grn { color:var(--green); }
   .tw2-head p { color:var(--gray-600); font-size:1.02rem; line-height:1.65; max-width:46em; margin:0; }
   .tw2-photos { position:relative; margin:0 auto; width:100%; max-width:460px; height:240px; }
@@ -2364,11 +2370,11 @@
   #intlCheckoutModal { display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:9999; align-items:center; justify-content:center; padding:1rem; }
   #intlCheckoutModal.open { display:flex; }
   .intl-modal-box { background:#fff; border-radius:20px; padding:2.5rem 2rem; max-width:420px; width:100%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,.25); }
-  .intl-modal-box h3 { font-family:'DM Serif Display',serif; font-size:1.4rem; color:var(--navy); margin-bottom:.5rem; }
+  .intl-modal-box h3 { font-family:var(--font-body); font-weight:800; font-size:1.4rem; color:var(--navy); margin-bottom:.5rem; }
   .intl-modal-box p  { color:#64748b; font-size:.9rem; line-height:1.6; margin-bottom:1.25rem; }
-  .intl-modal-box input { width:100%; padding:.7rem 1rem; border:1px solid var(--gray-200); border-radius:8px; font-size:.95rem; font-family:'Outfit',sans-serif; margin-bottom:.75rem; outline:none; }
+  .intl-modal-box input { width:100%; padding:.7rem 1rem; border:1px solid var(--gray-200); border-radius:8px; font-size:.95rem; font-family:var(--font-body); margin-bottom:.75rem; outline:none; }
   .intl-modal-box input:focus { border-color:var(--green); }
-  .intl-modal-pay-btn { width:100%; background:var(--green); color:#fff; border:none; padding:.8rem; border-radius:8px; font-weight:700; font-size:1rem; cursor:pointer; font-family:'Outfit',sans-serif; }
+  .intl-modal-pay-btn { width:100%; background:var(--green); color:#fff; border:none; padding:.8rem; border-radius:8px; font-weight:700; font-size:1rem; cursor:pointer; font-family:var(--font-body); }
   .intl-modal-pay-btn:hover { background:var(--green-light); }
   .intl-modal-pay-btn:disabled { opacity:.6; cursor:not-allowed; }
   .intl-modal-close-link { display:block; margin-top:.75rem; font-size:.82rem; color:#94a3b8; cursor:pointer; }
@@ -2384,20 +2390,20 @@
 /* ─── HERO VISUAL v2 — layered doc-over-app composition ─── */
 .heroV { position:relative; width:100%; max-width:660px; margin-left:auto; aspect-ratio: 1.08 / 1; perspective:2200px; }
 .heroV-pill { position:absolute; z-index:4; top:4%; left:0; display:inline-flex; align-items:center; gap:7px; background:var(--green); color:#fff; font-size:13px; font-weight:600; padding:8px 16px; border-radius:999px; box-shadow:0 10px 24px rgba(22,163,74,0.35); }
-.heroV-app { position:absolute; z-index:1; top:8%; right:0; width:88%; transform:rotateY(-6deg) rotateX(1.5deg); border-radius:10px; border:1px solid var(--gray-200); overflow:hidden; background:#fff; box-shadow:0 24px 60px -20px rgba(15,23,42,0.28); }
+.heroV-app { position:absolute; z-index:1; top:8%; right:0; width:88%; transform:rotateY(-10deg) rotateX(2deg); border-radius:10px; border:1px solid var(--gray-200); overflow:hidden; background:#fff; box-shadow:0 24px 60px -20px rgba(15,23,42,0.28); }
 .heroV-app img { display:block; width:100%; height:auto; }
-.heroV-doc { position:absolute; z-index:3; left:0; top:26%; width:62%; background:#fff; border-radius:12px; box-shadow:0 30px 70px -18px rgba(15,23,42,0.35); overflow:hidden; }
-.heroV-doc-banner { display:flex; align-items:center; gap:8px; background:#EFF6FF; padding:11px 16px; font-size:12.5px; font-weight:600; color:var(--navy); }
+.heroV-doc { position:absolute; z-index:3; left:0; top:24%; width:67%; background:#fff; border-radius:12px; box-shadow:0 30px 70px -18px rgba(15,23,42,0.35); overflow:hidden; }
+.heroV-doc-banner { display:flex; align-items:center; gap:8px; background:#EFF6FF; padding:11px 16px; font-size:12px; font-weight:600; color:var(--navy); white-space:nowrap; }
 .heroV-doc-banner .b-ok { display:inline-flex; width:18px; height:18px; border-radius:50%; background:var(--green); color:#fff; align-items:center; justify-content:center; flex-shrink:0; }
-.heroV-doc-body { padding:18px 18px 20px; }
+.heroV-doc-body { padding:18px 18px 62px; }
 .heroV-line { height:7px; border-radius:999px; background:var(--gray-200); margin-bottom:10px; opacity:0.75; }
 .heroV-line.w1{width:92%} .heroV-line.w2{width:78%} .heroV-line.w3{width:96%} .heroV-line.w4{width:60%} .heroV-line.w5{width:84%} .heroV-line.w6{width:40%}
-.heroV-sig { position:relative; margin:16px 0 0 auto; width:84%; max-width:238px; border:1px solid var(--gray-200); border-radius:8px; padding:12px 14px; background:#fff; }
-.heroV-sig h5 { color:var(--green); font-size:.95rem; font-weight:700; margin:0 0 6px; font-family:'Outfit',sans-serif; }
-.heroV-sig p { font-size:11px; color:var(--gray-600); line-height:1.6; margin:0; padding-right:42px; }
+.heroV-sig { position:relative; margin:16px 0 0 auto; width:94%; max-width:300px; border:1px solid var(--gray-200); border-radius:8px; padding:12px 14px; background:#fff; }
+.heroV-sig h5 { color:var(--green); font-size:.98rem; font-weight:800; margin:0 0 6px; font-family:var(--font-body); }
+.heroV-sig p { font-size:11px; color:var(--gray-600); line-height:1.6; margin:0; padding-right:6px; }
 .heroV-sig strong { color:var(--navy); }
-.heroV-sig .big-check { position:absolute; right:10px; bottom:10px; width:44px; height:auto; filter:drop-shadow(0 4px 8px rgba(21,128,61,0.3)); transform:rotate(-4deg); }
-.heroV .tokchip { position:absolute; z-index:5; left:-8px; bottom:-1%; top:auto; }
+.heroV-sig .big-check { position:absolute; right:10px; bottom:30px; width:52px; height:auto; filter:drop-shadow(0 4px 8px rgba(21,128,61,0.3)); transform:rotate(-4deg); }
+.heroV-doc .tokchip { position:absolute; z-index:5; left:-14px; bottom:-18px; top:auto; }
 .heroV-stat { position:absolute; z-index:4; background:#fff; border:1px solid var(--gray-200); border-radius:12px; padding:10px 14px; box-shadow:0 14px 34px rgba(15,23,42,0.14); display:flex; align-items:center; gap:9px; white-space:nowrap; }
 .heroV-stat b { display:block; font-size:14px; line-height:1.2; color:var(--navy); }
 .heroV-stat small { display:block; font-weight:400; font-size:10.5px; color:var(--gray-400); }
@@ -2414,7 +2420,7 @@
 .sm2-head { display:flex; align-items:flex-start; gap:16px; padding-right:96px; }
 .sm2-ico { display:inline-flex; width:56px; height:56px; border-radius:16px; align-items:center; justify-content:center; flex-shrink:0; }
 .sm2-ico.g { background:var(--green-pale); color:var(--green); } .sm2-ico.v { background:#F3E8FF; color:#7C3AED; }
-.sm2-head h3 { font-family:'Outfit',sans-serif; font-weight:700; font-size:1.35rem; color:#0F172A; margin:0; }
+.sm2-head h3 { font-family:var(--font-body); font-weight:700; font-size:1.35rem; color:#0F172A; margin:0; }
 .sm2-tag { font-size:.92rem; font-weight:600; } .sm2-tag.g { color:var(--green); } .sm2-tag.v { color:#7C3AED; }
 .sm2-desc { margin-top:8px; font-size:.92rem; color:var(--gray-600); line-height:1.55; min-height:3.2em; }
 .sm2-render { position:relative; }
@@ -2459,7 +2465,7 @@
 .pd-panel { background:#fff; border:1px solid var(--gray-200); border-radius:24px; padding:40px; box-shadow:0 10px 34px rgba(15,23,42,0.07); }
 .pd-grid { display:grid; grid-template-columns:0.95fr 1.45fr 0.8fr; gap:32px; align-items:start; }
 .pd-copy { display:flex; flex-direction:column; justify-content:center; gap:18px; align-self:center; }
-.pd-copy h2 { font-family:'Outfit',sans-serif; font-weight:700; font-size:clamp(1.9rem,3vw,2.6rem); line-height:1.12; letter-spacing:-0.02em; color:#0F172A; margin:0; }
+.pd-copy h2 { font-family:var(--font-body); font-weight:700; font-size:clamp(1.9rem,3vw,2.6rem); line-height:1.12; letter-spacing:-0.02em; color:#0F172A; margin:0; }
 .pd-copy h2 .grn { color:var(--green); }
 .pd-copy p { font-size:1.08rem; color:var(--gray-600); line-height:1.6; margin:0; }
 .pd-flow { display:flex; flex-direction:column; align-items:center; }
@@ -2523,17 +2529,17 @@
 .pr2-grid { display:grid; grid-template-columns:0.78fr 2.22fr; gap:40px; align-items:start; }
 .pr2-rail { position:sticky; top:90px; text-align:left; }
 .pr2-rail .section-tag { display:inline-block; }
-.pr2-title { font-family:'Outfit',sans-serif; font-weight:700; font-size:clamp(1.8rem,2.8vw,2.5rem); line-height:1.12; letter-spacing:-0.02em; color:#0F172A; margin:14px 0 16px; }
+.pr2-title { font-family:var(--font-body); font-weight:700; font-size:clamp(1.8rem,2.8vw,2.5rem); line-height:1.12; letter-spacing:-0.02em; color:#0F172A; margin:14px 0 16px; }
 .pr2-title .grn { color:var(--green); }
 .pr2-sub { color:var(--gray-600); font-size:.98rem; line-height:1.65; margin:0 0 20px; }
 .pr2-secure { display:inline-flex; align-items:center; gap:10px; border:1px solid var(--gray-200); background:#fff; border-radius:12px; padding:12px 18px; font-size:.92rem; font-weight:700; color:#116B33; }
 .pr2-secure .sh { display:inline-flex; width:30px; height:30px; border-radius:50%; background:var(--green); color:#fff; align-items:center; justify-content:center; }
 .pricing .plan-card { background:#fff; border:1px solid var(--gray-200); border-radius:20px; box-shadow:0 4px 14px rgba(15,23,42,0.05); display:flex; flex-direction:column; }
 .pricing .plan-card .plan-features { flex:1; }
-.pricing .plan-name { font-family:'Outfit',sans-serif; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gray-600); }
-.pricing .plan-price, .pricing .plan-amount { font-family:'Outfit',sans-serif; }
+.pricing .plan-name { font-family:var(--font-body); font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gray-600); }
+.pricing .plan-price, .pricing .plan-amount { font-family:var(--font-body); }
 .pricing .plan-amount { font-weight:800; letter-spacing:-0.02em; }
-.pricing .plan-desc { font-family:'Outfit',sans-serif; }
+.pricing .plan-desc { font-family:var(--font-body); }
 .pricing .plan-card.featured { background:#fff; border:2px solid var(--green); box-shadow:0 14px 40px rgba(22,163,74,0.12); }
 .pricing .plan-card.featured .plan-name { color:var(--muted, #64748B); }
 .pricing .plan-card.featured .plan-currency, .pricing .plan-card.featured .plan-amount { color:#0F172A; }
@@ -2559,7 +2565,7 @@
 .fcta { background:var(--off-white); padding:90px 0 50px; }
 .fcta-panel { display:grid; grid-template-columns:1fr 1.05fr; gap:48px; align-items:center; background:#fff; border:1px solid var(--gray-200); border-radius:24px; padding:48px 52px; box-shadow:0 10px 34px rgba(15,23,42,0.07); }
 .fcta-pill { display:inline-flex; align-items:center; gap:7px; border:1px solid rgba(22,163,74,0.3); background:var(--green-pale); color:#116B33; font-size:11.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; border-radius:999px; padding:7px 14px; margin-bottom:20px; }
-.fcta-copy h2 { font-family:'Outfit',sans-serif; font-weight:700; font-size:clamp(1.9rem,3vw,2.6rem); line-height:1.12; letter-spacing:-0.02em; color:#0F172A; margin:0 0 16px; }
+.fcta-copy h2 { font-family:var(--font-body); font-weight:700; font-size:clamp(1.9rem,3vw,2.6rem); line-height:1.12; letter-spacing:-0.02em; color:#0F172A; margin:0 0 16px; }
 .fcta-copy h2 .grn { color:var(--green); }
 .fcta-sub { color:var(--gray-600); font-size:1.05rem; line-height:1.6; margin:0 0 22px; max-width:32em; }
 .fcta-feats { display:flex; flex-wrap:wrap; gap:14px 28px; margin-bottom:24px; }
@@ -2635,17 +2641,17 @@
     },
     {
       "@type": "Offer",
-      "name": "Lifetime Solo Plan",
+      "name": "Perpetual License — Solo",
       "price": "4999",
       "priceCurrency": "INR",
-      "description": "Lifetime solo licence — 1 Windows device"
+      "description": "Perpetual (one-time) solo licence — 1 Windows device"
     },
     {
       "@type": "Offer",
-      "name": "Lifetime Team Plan",
+      "name": "Perpetual License — Team",
       "price": "13999",
       "priceCurrency": "INR",
-      "description": "Lifetime team licence — 5 Windows devices"
+      "description": "Perpetual (one-time) team licence — 5 Windows devices"
     }
   ],
   "url": "https://pdfsign.in",
@@ -2681,7 +2687,7 @@
     {"@type":"Question","name":"Can I restrict printing, editing, or copying of the signed PDF?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign.in lets you set PDF permissions to restrict printing, editing, and content copying, with an optional document open password. Enforced by Adobe Acrobat and compatible viewers."}},
     {"@type":"Question","name":"What is RFC 3161 timestamp and why does it matter?","acceptedAnswer":{"@type":"Answer","text":"An RFC 3161 timestamp embeds cryptographic proof of when the document was signed from a trusted Timestamp Authority server. The signature remains legally valid even after your DSC certificate expires."}},
     {"@type":"Question","name":"Can I use PDFSign.in from outside India?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign.in works on any Windows PC worldwide with no geo-restriction. Indian DSC token holders in UAE, UK, USA, Canada, Australia, or anywhere can sign Indian government documents remotely."}},
-    {"@type":"Question","name":"What is the team plan?","acceptedAnswer":{"@type":"Answer","text":"The team plan covers 5 Windows PCs under one shared licence key. Annual team plan is Rs. 3,499 per year; Lifetime team plan is Rs. 13,999 one-time. Ideal for CA firms, law offices, and tender-filing teams."}},
+    {"@type":"Question","name":"What is the team plan?","acceptedAnswer":{"@type":"Answer","text":"The team plan covers 5 Windows PCs under one shared licence key. Annual team plan is Rs. 3,499 per year; Perpetual team licence is Rs. 13,999 one-time. Ideal for CA firms, law offices, and tender-filing teams."}},
     {"@type":"Question","name":"What is your refund policy?","acceptedAnswer":{"@type":"Answer","text":"PDFSign includes a 30-day free trial so you can fully evaluate it before buying. Because of that, all licence purchases are final and non-refundable, except where required by applicable law. See our Refund Policy for details."}},
     {"@type":"Question","name":"Can PDFSign merge, compress, or edit PDFs too?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign includes PDFToolbox — 20+ built-in PDF tools: edit text, merge, split, compress, reorder pages, page numbers, watermark, header/footer, password protect (AES-256), fill and flatten forms, Bates numbering, repair damaged PDFs, and convert PDF to and from Word and images. Everything runs 100% offline on your PC."}},
     {"@type":"Question","name":"Are PDFSign signatures legally valid outside India?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign produces PAdES-compliant PKI digital signatures based on your USB token's X.509 certificate. These are legally valid under the EU eIDAS Regulation, the US E-SIGN Act, the UK Electronic Communications Act, and equivalent laws in most countries."}}
@@ -2848,7 +2854,6 @@
       <p class="heroG-sub india-only">
         Open the app, load your PDF, sign. Done in under 60 seconds. Works with your USB DSC token or a signature stamp image — no Java, no browser plugin, no cloud upload.
       </p>
-      <p class="heroG-urgency india-only"><em>Never miss a deadline again.</em></p>
 
       <!-- International hero -->
       <h2 class="intl-only hero-alt-h1">Sign PDFs with your <span class="grn">USB token, signature, or company stamp.</span></h2>
@@ -2904,6 +2909,8 @@
           <div class="heroV-line w5"></div>
           <div class="heroV-line w2"></div>
           <div class="heroV-line w6"></div>
+          <div class="heroV-line w1"></div>
+          <div class="heroV-line w4"></div>
           <div class="heroV-sig">
             <h5>Signature valid</h5>
             <p class="india-only">Digitally signed by <strong>RAJESH KUMAR</strong><br />Date: 2026.07.18 14:32 IST<br />Designation: Proprietor<br />Reason: Tender Document<br />Location: Mumbai</p>
@@ -2911,8 +2918,6 @@
             <svg class="big-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.5 13.5l4.5 4.5L20 6.5" stroke="#15803D" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </div>
-      </div>
-
       <div class="tokchip">
         <span class="tk-ico"><svg width="17" height="17" fill="none" stroke="#93C5FD" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="11" width="20" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
         <span>
@@ -2922,6 +2927,8 @@
           <span class="tk-value intl-only">SafeNet eToken · Ready</span>
         </span>
       </div>
+      </div>
+
 
     </div>
   </div>
@@ -3470,11 +3477,11 @@
           <div style="display:flex; align-items:center; gap:8px; font-size:14px; font-weight:700; color:#0F172A; margin-bottom:16px;"><i data-lucide="pen-line" style="color:#2563EB; font-size:16px;"></i>Signature Details</div>
           <!-- reason + location -->
           <div style="display:flex; gap:12px; margin-bottom:13px;">
-            <div style="flex:1;"><div style="font-size:10px; color:#64748B; margin-bottom:5px;">Reason</div><div style="border:1px solid #E2E8F0; border-radius:8px; padding:9px 11px; font-size:12px; color:#0F172A;">Contract</div></div>
-            <div style="flex:1;"><div style="font-size:10px; color:#64748B; margin-bottom:5px;">Location</div><div style="border:1px solid #E2E8F0; border-radius:8px; padding:9px 11px; font-size:12px; color:#0F172A;">London</div></div>
+            <div style="flex:1;"><div style="font-size:10px; color:#64748B; margin-bottom:5px;">Reason</div><div style="border:1px solid #E2E8F0; border-radius:8px; padding:9px 11px; font-size:12px; color:#0F172A;"><span class="india-only geo-inline">Tender Document</span><span class="intl-only geo-inline">Contract</span></div></div>
+            <div style="flex:1;"><div style="font-size:10px; color:#64748B; margin-bottom:5px;">Location</div><div style="border:1px solid #E2E8F0; border-radius:8px; padding:9px 11px; font-size:12px; color:#0F172A;"><span class="india-only geo-inline">Mumbai</span><span class="intl-only geo-inline">London</span></div></div>
           </div>
           <!-- designation -->
-          <div style="margin-bottom:14px;"><div style="font-size:10px; color:#64748B; margin-bottom:5px;">Designation (optional)</div><div style="border:1px solid #E2E8F0; border-radius:8px; padding:9px 11px; font-size:12px; color:#0F172A;">Authorised Signatory</div></div>
+          <div style="margin-bottom:14px;"><div style="font-size:10px; color:#64748B; margin-bottom:5px;">Designation (optional)</div><div style="border:1px solid #E2E8F0; border-radius:8px; padding:9px 11px; font-size:12px; color:#0F172A;"><span class="india-only geo-inline">Proprietor</span><span class="intl-only geo-inline">Authorised Signatory</span></div></div>
           <!-- toggle (renamed) -->
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
             <span id="f6-track" style="width:38px; height:21px; border-radius:999px; background:#CBD5E1; position:relative; flex-shrink:0; transition:background 0.4s ease;"><span id="f6-knob" style="position:absolute; top:2px; left:2px; width:17px; height:17px; border-radius:999px; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,0.2); transition:left 0.4s cubic-bezier(0.22,1,0.36,1);"></span></span>
@@ -3498,9 +3505,9 @@
               <span style="width:38px; height:38px; border-radius:999px; background:#16A34A; color:#fff; display:flex; align-items:center; justify-content:center; font-size:19px; flex-shrink:0;"><i data-lucide="check"></i></span>
               <div>
                 <div style="font-size:11px; font-weight:800; color:#16A34A;">Signature valid</div>
-                <div style="font-size:13.5px; font-weight:800; color:#0F172A; margin-top:1px;">John Smith</div>
-                <div style="font-size:10.5px; color:#475569;">Authorised Signatory</div>
-                <div style="font-size:10.5px; color:#94A3B8;">Contract · London</div>
+                <div style="font-size:13.5px; font-weight:800; color:#0F172A; margin-top:1px;"><span class="india-only geo-inline">Rajesh Kumar</span><span class="intl-only geo-inline">John Smith</span></div>
+                <div style="font-size:10.5px; color:#475569;"><span class="india-only geo-inline">Proprietor</span><span class="intl-only geo-inline">Authorised Signatory</span></div>
+                <div style="font-size:10.5px; color:#94A3B8;"><span class="india-only geo-inline">Tender Document · Mumbai</span><span class="intl-only geo-inline">Contract · London</span></div>
               </div>
             </div>
           </div>
@@ -3971,7 +3978,7 @@
       <!-- Lifetime -->
       <div class="plan-card">
         <span class="plan-ico" style="background:#F3E8FF;color:#7C3AED;"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18.5 8.5c2 0 3.5 1.6 3.5 3.5s-1.5 3.5-3.5 3.5c-3.5 0-6-7-9-7C7.5 8.5 6 10.1 6 12s1.5 3.5 3.5 3.5c3 0 5.5-7 9-7z" transform="translate(-1.8,0)"/></svg></span>
-        <div class="plan-name">Lifetime</div>
+        <div class="plan-name">Perpetual License</div>
         <div class="plan-price">
           <span class="plan-currency">₹</span>
           <span class="plan-amount" id="priceLifetime">4,999</span>
@@ -3984,10 +3991,10 @@
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Complete PDF Toolbox included</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>All DSC tokens supported</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span><span id="devicesLifetime">1 Windows device</span></li>
-          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Lifetime upgrades</li>
+          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Perpetual upgrades included</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Priority support</li>
         </ul>
-        <a href="#pricing" class="plan-btn plan-btn-outline" id="btnLifetime" onclick="return handlePlanClick(event,'lifetime')">Get Lifetime Access</a>
+        <a href="#pricing" class="plan-btn plan-btn-outline" id="btnLifetime" onclick="return handlePlanClick(event,'lifetime')">Get Perpetual License</a>
       </div>
 
     </div>
@@ -4323,7 +4330,7 @@
           <span class="faq-q-text">Is the licence tied to one computer?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">Solo licences (Monthly, Annual, Lifetime) are for 1 Windows device. Team licences cover 5 PCs — ideal for CA firms, law offices, and corporate teams. You can transfer a solo licence to a new PC by contacting support.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">Solo licences (Monthly, Annual, Perpetual) are for 1 Windows device. Team licences cover 5 PCs — ideal for CA firms, law offices, and corporate teams. You can transfer a solo licence to a new PC by contacting support.</p></div>
       </div>
 
       <div class="faq-item">
@@ -4332,7 +4339,7 @@
           <span class="faq-q-text">What is the team plan and how does it work?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">The team plan (Annual ₹3,499/yr or Lifetime ₹13,999) covers 5 Windows PCs under one shared licence key. Each user in your firm gets their own copy of the app, activated with the same key. Ideal for CA firms, law offices, and tender-filing teams.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">The team plan (Annual ₹3,499/yr or Perpetual ₹13,999 one-time) covers 5 Windows PCs under one shared licence key. Each user in your firm gets their own copy of the app, activated with the same key. Ideal for CA firms, law offices, and tender-filing teams.</p></div>
       </div>
 
       <div class="faq-item">
@@ -5098,7 +5105,7 @@ function setPlanMode(mode, forceRedraw) {
   }
   document.getElementById('devicesLifetime').textContent = isSolo ? '1 Windows device' : '5 Windows devices';
   var lnkLifetime = document.getElementById('btnLifetime');
-  lnkLifetime.textContent = isSolo ? 'Get Lifetime Access' : 'Get Team Lifetime Access';
+  lnkLifetime.textContent = isSolo ? 'Get Perpetual License' : 'Get Team Perpetual License';
   lnkLifetime.href = INR_LINKS[lifetimePlan];
 }
 
@@ -5230,7 +5237,7 @@ window.addEventListener("scroll", function() {
   sections.forEach(function(sec) {
     if (sec.offsetTop <= scrollY && sec.offsetTop + sec.offsetHeight > scrollY) {
       navLinks.forEach(function(a) {
-        a.style.color = a.getAttribute("href") === "#" + sec.id ? "#fff" : "rgba(255,255,255,0.65)";
+        a.style.color = a.getAttribute("href") === "#" + sec.id ? "#16A34A" : "#475569";
       });
     }
   });
