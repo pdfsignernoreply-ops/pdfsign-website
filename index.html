@@ -2185,30 +2185,32 @@
   /* ─── LIGHT HERO (global-page look) ─── */
   .heroG {
     background:
-      linear-gradient(rgba(15,23,42,0.032) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(15,23,42,0.032) 1px, transparent 1px),
-      #FDFEFE;
+      linear-gradient(rgba(147,197,253,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(147,197,253,0.045) 1px, transparent 1px),
+      linear-gradient(180deg, #111C30, #16233F 60%, #1B2A47);
     background-size: 44px 44px, 44px 44px, auto;
     padding: 64px 0 56px;
   }
   .heroG-inner { max-width: var(--max); margin:0 auto; padding:0 24px; display:grid; grid-template-columns: 1.02fr 1fr; gap:56px; align-items:center; }
-  .heroG-eyebrow { font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--gray-600); }
-  .heroG-eyebrow b { color:var(--green); font-weight:600; padding:0 2px; }
-  .heroG h1, .heroG .hero-alt-h1 { font-family:'Outfit',sans-serif; font-weight:700; font-size:clamp(2.1rem,3.6vw,3.15rem); line-height:1.1; letter-spacing:-0.02em; color:#0F172A; margin:16px 0 18px; }
-  .heroG h1 .grn, .heroG .hero-alt-h1 .grn { color:var(--green); }
-  .heroG-sub { color:var(--gray-600); font-size:1.02rem; line-height:1.65; max-width:34em; margin-bottom:8px; }
-  .heroG-sub em { color:var(--navy); font-style:italic; }
-  .heroG-urgency { color:var(--green); font-weight:500; font-style:italic; margin-bottom:20px; }
+  .heroG-eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:11.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#4ADE80; border:1px solid rgba(74,222,128,0.35); background:rgba(22,163,74,0.10); border-radius:999px; padding:7px 16px; }
+  .heroG-eyebrow b { width:6px; height:6px; border-radius:50%; background:#4ADE80; padding:0; }
+  .heroG h1, .heroG .hero-alt-h1 { font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:clamp(2.1rem,3.5vw,3.05rem); line-height:1.14; letter-spacing:0; color:#fff; margin:20px 0 18px; }
+  .heroG h1 .grn, .heroG .hero-alt-h1 .grn { color:#93C5FD; font-style:italic; }
+  .heroG-sub { color:rgba(255,255,255,0.75); font-size:1.02rem; line-height:1.7; max-width:34em; margin-bottom:8px; }
+  .heroG-sub em { color:#fff; font-style:italic; }
+  .heroG-urgency { color:#4ADE80; font-weight:500; font-style:italic; margin-bottom:20px; }
+  .heroG-verify { color:rgba(255,255,255,0.8); font-size:.92rem; margin:2px 0 0; }
+  .heroG-verify.small { color:rgba(255,255,255,0.45); font-size:.78rem; }
   .heroG-actions { display:flex; flex-direction:column; gap:10px; align-items:flex-start; margin-bottom:6px; }
-  .heroG-store { display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:500; color:var(--gray-600); text-decoration:none; }
-  .heroG-store:hover { color:var(--navy); }
+  .heroG-store { display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:500; color:rgba(255,255,255,0.6); text-decoration:none; }
+  .heroG-store:hover { color:#fff; }
   .heroG-weblink { font-size:13px; color:var(--gray-600); }
   .heroG-weblink a { color:var(--green); font-weight:600; text-decoration:none; }
   .heroG-checks { display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:16px; }
-  .heroG-check { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--gray-600); }
+  .heroG-check { display:flex; align-items:center; gap:6px; font-size:13px; color:rgba(255,255,255,0.75); }
   .heroG-trust { display:flex; align-items:center; gap:12px; margin-top:22px; }
-  .heroG-trust .trust-text { font-size:13px; color:var(--gray-600); margin:0; }
-  .heroG-trust .trust-text strong { color:var(--navy); }
+  .heroG-trust .trust-text { font-size:13px; color:rgba(255,255,255,0.6); margin:0; }
+  .heroG-trust .trust-text strong { color:#fff; }
   .heroG-visual { position:relative; perspective:2200px; padding:30px 20px 40px; }
   .heroG-app { border-radius:14px; border:1px solid var(--gray-200); overflow:hidden; background:#fff;
     transform: rotateY(-6deg) rotateX(1.5deg);
@@ -2315,16 +2317,24 @@
   .tw2-shield { position:relative; z-index:2; display:flex; align-items:center; justify-content:center; }
   .tw2-shield .ring { position:absolute; width:150px; height:150px; border-radius:50%; border:1px solid rgba(22,163,74,0.25); background:radial-gradient(circle, rgba(22,163,74,0.10), transparent 65%); }
   .tw2-photos img { position:relative; z-index:1; height:auto; object-fit:contain; }
-  .tw2-photos .p1 { width:150px; transform:rotate(-8deg); margin-right:-16px; mix-blend-mode:multiply; }
-  .tw2-photos .p2 { width:140px; transform:rotate(6deg); margin-left:-10px; z-index:3; mix-blend-mode:multiply; }
-  .tw2-photos .p3 { width:96px; transform:rotate(14deg); margin-left:-4px; mix-blend-mode:multiply; }
-  .tw2-plus { position:absolute; color:var(--green); font-size:20px; font-weight:600; opacity:.7; }
+  .tw2-photos .p1 { width:150px; transform:rotate(-8deg); margin-right:14px; mix-blend-mode:multiply; }
+  .tw2-photos .p2 { width:140px; transform:rotate(6deg); margin-left:0; z-index:3; mix-blend-mode:multiply; }
+  .tw2-photos .p3 { width:96px; transform:rotate(14deg); margin-left:8px; mix-blend-mode:multiply; }
+  .tw2-plus { position:absolute; color:var(--green); font-size:20px; font-weight:600; opacity:.7; animation:tw-spark 2.6s ease-in-out infinite; }
+  @keyframes tw-shield-breathe { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+  @keyframes tw-ring-pulse { 0%,100%{opacity:.4; transform:scale(.97)} 50%{opacity:.9; transform:scale(1.05)} }
+  @keyframes tw-spark { 0%,100%{opacity:.3} 50%{opacity:1} }
+  .tw2-shield svg { transform-origin:center; animation:tw-shield-breathe 3.2s ease-in-out infinite; filter:drop-shadow(0 16px 22px rgba(22,163,74,0.28)); }
+  .tw2-shield .ring { animation:tw-ring-pulse 3.2s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce){ .tw2-shield svg, .tw2-shield .ring, .tw2-plus { animation:none; } }
   .tw2-wall { border:1px solid var(--gray-200); border-radius:18px; background:#fff; box-shadow:0 6px 20px rgba(15,23,42,0.05); padding:28px 32px; }
   .tw2-wall h3 { text-align:center; font-size:.95rem; font-weight:700; color:#0F172A; margin:0 0 22px; position:relative; }
   .tw2-wall h3::before, .tw2-wall h3::after { content:""; position:absolute; top:50%; width:18%; height:1px; background:var(--gray-200); }
   .tw2-wall h3::before { left:0; } .tw2-wall h3::after { right:0; }
   .tw2-logos { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:20px 36px; }
-  .tw2-logos img { height:26px; width:auto; object-fit:contain; filter:grayscale(0); }
+  .tw2-logos img { width:auto; object-fit:contain; box-sizing:content-box; }
+  .tw2-logos > * { border-radius:12px; padding:8px 10px; transition:transform .2s, box-shadow .2s, background .2s; }
+  .tw2-logos > *:hover { transform:translateY(-4px); background:#fff; box-shadow:0 10px 24px rgba(15,23,42,0.10); }
   .tw2-pkcs { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:#0F172A; line-height:1.15; }
   .tw2-tm { text-align:center; margin:18px auto 0; font-size:.72rem; color:var(--gray-400); max-width:640px; }
   .tw2-caps { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; border:1px solid var(--gray-200); border-radius:18px; background:#fff; box-shadow:0 6px 20px rgba(15,23,42,0.05); padding:26px 20px; margin-top:28px; }
@@ -2476,7 +2486,12 @@
 .pr2-sub { color:var(--gray-600); font-size:.98rem; line-height:1.65; margin:0 0 20px; }
 .pr2-secure { display:inline-flex; align-items:center; gap:10px; border:1px solid var(--gray-200); background:#fff; border-radius:12px; padding:12px 18px; font-size:.92rem; font-weight:700; color:#116B33; }
 .pr2-secure .sh { display:inline-flex; width:30px; height:30px; border-radius:50%; background:var(--green); color:#fff; align-items:center; justify-content:center; }
-.pricing .plan-card { background:#fff; border:1px solid var(--gray-200); border-radius:20px; box-shadow:0 4px 14px rgba(15,23,42,0.05); }
+.pricing .plan-card { background:#fff; border:1px solid var(--gray-200); border-radius:20px; box-shadow:0 4px 14px rgba(15,23,42,0.05); display:flex; flex-direction:column; }
+.pricing .plan-card .plan-features { flex:1; }
+.pricing .plan-name { font-family:'Outfit',sans-serif; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gray-600); }
+.pricing .plan-price, .pricing .plan-amount { font-family:'Outfit',sans-serif; }
+.pricing .plan-amount { font-weight:800; letter-spacing:-0.02em; }
+.pricing .plan-desc { font-family:'Outfit',sans-serif; }
 .pricing .plan-card.featured { background:#fff; border:2px solid var(--green); box-shadow:0 14px 40px rgba(22,163,74,0.12); }
 .pricing .plan-card.featured .plan-name { color:var(--muted, #64748B); }
 .pricing .plan-card.featured .plan-currency, .pricing .plan-card.featured .plan-amount { color:#0F172A; }
@@ -2516,7 +2531,9 @@
 @media(max-width:900px){ .fcta-panel { grid-template-columns:1fr; padding:32px 24px; } }
 
 /* ─── LIVE STATS STRIP ─── */
-.stats-strip { background:var(--off-white); border-top:1px solid var(--gray-200); border-bottom:1px solid var(--gray-200); padding:28px 0; }
+.stats-strip { background:var(--off-white); border-top:1px solid var(--gray-200); border-bottom:1px solid var(--gray-200); padding:34px 0; }
+.stats-card { background:#fff; border:1px solid var(--gray-200); border-radius:18px; box-shadow:0 4px 14px rgba(15,23,42,0.05); padding:18px 34px 16px; display:flex; flex-direction:column; align-items:center; gap:10px; }
+.stats-ico { display:inline-flex; width:36px; height:36px; border-radius:50%; background:var(--green-pale); color:#116B33; align-items:center; justify-content:center; margin-bottom:6px; }
 .stats-strip-inner { max-width:900px; margin:0 auto; padding:0 24px; display:flex; flex-direction:column; align-items:center; gap:12px; }
 .stats-live-badge { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; color:#94A3B8; letter-spacing:0.06em; text-transform:uppercase; }
 .stats-live-dot { width:7px; height:7px; border-radius:50%; background:#22C55E; animation:pulse-dot 2s ease-in-out infinite; flex-shrink:0; }
@@ -2701,7 +2718,7 @@
 <nav>
   <div class="nav-inner">
     <a href="#" class="logo">
-      <svg class="logo-mark" width="38" height="38" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 3.5l15 5.2v11.1c0 9.7-6.4 16.3-15 19.2-8.6-2.9-15-9.5-15-19.2V8.7L24 3.5z" fill="#16a34a"/><path d="M17.6 12.6h7.5l4.9 4.9V28.3a1.7 1.7 0 0 1-1.7 1.7H17.6A1.7 1.7 0 0 1 15.9 28.3V14.3A1.7 1.7 0 0 1 17.6 12.6z" fill="#ffffff"/><path d="M25.1 12.6v4.9h4.9z" fill="#cdd5df"/><path d="M19 21h7M19 24h7M19 27h4.5" stroke="#9aa7b4" stroke-width="1.5" stroke-linecap="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#ffffff" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#16a34a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="logo-mark" width="38" height="38" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#243558"/><text x="32" y="23" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="14" letter-spacing="1.5" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle">PDF</text><rect x="10" y="31" width="44" height="2.5" rx="1.25" fill="#16A34A"/><text x="32" y="46" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="12" letter-spacing="1.5" fill="#93C5FD" text-anchor="middle" dominant-baseline="middle">SIGN</text></svg>
       <span class="logo-name">PDF<em>Sign</em></span>
     </a>
     <div class="made-in-india">
@@ -2780,7 +2797,7 @@
 <section class="heroG">
   <div class="heroG-inner">
     <div class="heroG-content">
-      <div class="heroG-eyebrow">Offline <b>•</b> Private <b>•</b> Trusted</div>
+      <div class="heroG-eyebrow"><b></b>For Windows · Free Evaluation · No Credit Card Required</div>
 
       <!-- India hero -->
       <h1 class="india-only">Sign any PDF in seconds.<br /><span class="grn">DSC token or stamp image.</span><br />100% offline.</h1>
@@ -2800,8 +2817,10 @@
       <div class="heroG-actions">
         <a href="https://pdfsigner-api.vercel.app/api/download" class="btn-primary">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Free — 30 Day Trial
+          Download Free Evaluation
         </a>
+        <p class="heroG-verify">Verify that PDFSign works with your <span class="india-only geo-inline">USB DSC token</span><span class="intl-only geo-inline">USB security token</span>, PDFs and workflow before you buy.</p>
+        <p class="heroG-verify small">Includes up to 30 days or 100 signed PDFs (whichever comes first).</p>
         <a href="https://pdfsigner-api.vercel.app/api/download" class="heroG-store" aria-label="Available on Microsoft Store">
           <svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="9" height="9" fill="#F25022"/><rect x="13" y="2" width="9" height="9" fill="#7FBA00"/><rect x="2" y="13" width="9" height="9" fill="#00A4EF"/><rect x="13" y="13" width="9" height="9" fill="#FFB900"/></svg>
           Available on Microsoft Store
@@ -2809,7 +2828,7 @@
       </div>
 
       <div class="heroG-checks">
-        <div class="heroG-check"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>30-day free trial</div>
+        <div class="heroG-check"><svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Free evaluation</div>
         <div class="heroG-check"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>No credit card needed</div>
         <div class="heroG-check"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Works offline</div>
         <div class="heroG-check india-only geo-flex"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Legal under IT Act 2000</div>
@@ -2817,6 +2836,7 @@
       </div>
 
       <div class="heroG-trust">
+        <div class="trust-avatars"><span>CA</span><span>LW</span><span>GC</span><span>EX</span></div>
         <p class="trust-text india-only">Trusted by <strong>procurement professionals, CA firms, and company secretaries</strong> across India</p>
         <p class="trust-text intl-only">Trusted by <strong>lawyers, accountants, compliance teams, and procurement professionals</strong> worldwide</p>
       </div>
@@ -2842,8 +2862,8 @@
           <div class="heroV-line w6"></div>
           <div class="heroV-sig">
             <h5>Signature valid</h5>
-            <p class="india-only">Digitally signed by <strong>RAJESH KUMAR</strong><br />Date: 2026.07.18 14:32 IST<br />Designation: Proprietor<br />Reason: Tender<br />Location: Pune</p>
-            <p class="intl-only">Digitally signed by <strong>JOHN SMITH</strong><br />Date: 2026.07.18 14:32 GMT<br />Designation: Authorized Signatory<br />Reason: Invoice<br />Location: London, United Kingdom</p>
+            <p class="india-only">Digitally signed by <strong>RAJESH KUMAR</strong><br />Date: 2026.07.18 14:32 IST<br />Designation: Proprietor<br />Reason: Tender Document<br />Location: Mumbai</p>
+            <p class="intl-only">Digitally signed by <strong>JOHN SMITH</strong><br />Date: 2026.07.18 14:32 GMT<br />Designation: Director<br />Reason: Contract_Document.pdf<br />Location: New York</p>
             <svg class="big-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.5 13.5l4.5 4.5L20 6.5" stroke="#15803D" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </div>
@@ -2859,14 +2879,6 @@
         </span>
       </div>
 
-      <div class="heroV-stat hv-s3">
-        <svg width="15" height="15" fill="none" stroke="#1B2A47" stroke-width="2" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg>
-        <span><b>31 hours saved</b><small>vs. manual signing</small></span>
-      </div>
-      <div class="heroV-stat hv-s1">
-        <svg width="15" height="15" fill="none" stroke="#1B2A47" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
-        <span><b>128 PDFs</b><small>batch signed</small></span>
-      </div>
     </div>
   </div>
 </section>
@@ -2876,16 +2888,26 @@
 <div class="stats-strip">
   <div class="stats-strip-inner">
     <div class="stats-live-badge"><span class="stats-live-dot"></span>Live &nbsp;·&nbsp; Updated in real time</div>
+    <div class="stats-card">
     <div class="stats-counters">
       <div class="stats-counter">
+        <span class="stats-ico"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
         <div class="stats-counter-val" id="stat-dl-today">—</div>
-        <div class="stats-counter-label">📥 Downloads today</div>
+        <div class="stats-counter-label">New Downloads Today</div>
       </div>
       <div class="stats-divider"></div>
       <div class="stats-counter">
+        <span class="stats-ico"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.9 5.7 3.9 9S14.5 18.4 12 21c-2.5-2.6-3.9-5.7-3.9-9S9.5 5.6 12 3z"/></svg></span>
         <div class="stats-counter-val" id="stat-dl-total">—</div>
-        <div class="stats-counter-label">🔢 Total downloads</div>
+        <div class="stats-counter-label">Total Downloads</div>
       </div>
+      <div class="stats-divider"></div>
+      <div class="stats-counter">
+        <span class="stats-ico"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <div class="stats-counter-val">50+</div>
+        <div class="stats-counter-label">Countries — Trusted Worldwide</div>
+      </div>
+    </div>
     </div>
   </div>
 </div>
@@ -3275,10 +3297,10 @@
                     <div style="font-size:6px; line-height:1.4; color:#1E3A8A; white-space:nowrap;">
                       <div style="font-weight:700; color:#16A34A;">Signature valid</div>
                       <div>Digitally signed by JOHN SMITH</div>
-                      <div>Date: 2026.06.28 16:37 IST</div>
-                      <div>Designation: Proprietor</div>
-                      <div>Reason: Tender</div>
-                      <div>Location: Pune</div>
+                      <div>Date: 2026.06.28 16:37 GMT</div>
+                      <div>Designation: Director</div>
+                      <div>Reason: Contract Document</div>
+                      <div>Location: New York</div>
                     </div>
                     <i data-lucide="check" style="color:#16A34A; font-size:24px; stroke-width:3;"></i>
                   </div>
@@ -3402,10 +3424,10 @@
               <div style="font-size:11px; font-weight:800; color:#16A34A; margin-bottom:3px;">Signature valid</div>
               <div style="font-size:10px; color:#334155; line-height:1.7;">
                 <div>Digitally signed by <strong style="color:#0F172A;">JOHN SMITH</strong></div>
-                <div>Date: 2026.06.28&nbsp; 16:54:24 IST</div>
-                <div>Designation: Authorised Signatory</div>
-                <div>Reason: Contract</div>
-                <div>Location: London</div>
+                <div>Date: 2026.06.28&nbsp; 16:54:24 GMT</div>
+                <div>Designation: Director</div>
+                <div>Reason: Contract Document</div>
+                <div>Location: New York</div>
               </div>
               <span style="position:absolute; right:20px; top:50%; width:54px; height:54px; display:flex; align-items:center; justify-content:center; color:#16A34A; transform:translate(0,-50%);"><i data-lucide="check" style="font-size:54px; stroke-width:4;"></i></span>
             </div>
@@ -3471,13 +3493,13 @@
     <div class="tw2-wall">
       <h3>Compatible with major USB security tokens</h3>
       <div class="tw2-logos">
-        <img src="logos/safenet.png" alt="Thales SafeNet" loading="lazy" />
-        <img src="logos/gemalto.png" alt="Gemalto" loading="lazy" />
-        <img src="logos/hyp2003.png" alt="HYP2003" loading="lazy" />
-        <img src="logos/watchdata.png" alt="WatchData" loading="lazy" />
-        <img src="logos/feitian.png" alt="FEITIAN" loading="lazy" />
-        <img src="logos/proxkey.png" alt="ProxKey" loading="lazy" />
-        <img src="logos/trustkey.png" alt="TrustKey" loading="lazy" />
+        <img src="logos/safenet.png" style="height:42px;" alt="Thales SafeNet" loading="lazy" />
+        <img src="logos/gemalto.png" style="height:38px;" alt="Gemalto" loading="lazy" />
+        <img src="logos/hyp2003.png" style="height:24px;" alt="HYP2003" loading="lazy" />
+        <img src="logos/watchdata.png" style="height:20px;" alt="WatchData" loading="lazy" />
+        <img src="logos/feitian.png" style="height:38px;" alt="FEITIAN" loading="lazy" />
+        <img src="logos/proxkey.png" style="height:24px;" alt="ProxKey" loading="lazy" />
+        <img src="logos/trustkey.png" style="height:24px;" alt="TrustKey" loading="lazy" />
         <span class="tw2-pkcs"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>PKCS#11<br/>Compatible</span>
       </div>
     </div>
@@ -3586,7 +3608,7 @@
             <th>Feature</th>
             <th class="our-col">PDFSign</th>
             <th>SignFiles.com</th>
-            <th>eMudhra SignX</th>
+            <th>eMudhra Document Signer</th>
             <th>Online tools<br/><small style="font-weight:400;font-size:11px;">(DocuSign, SmallPDF etc.)</small></th>
           </tr>
         </thead>
@@ -3884,7 +3906,7 @@
 
       <!-- Lifetime -->
       <div class="plan-card">
-        <span class="plan-ico" style="background:#F3E8FF;color:#7C3AED;"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18.2 12a3.5 3.5 0 1 0 0-.01M5.8 12a3.5 3.5 0 1 0 0-.01"/><path d="M9.3 12c1-2.2 4.4-2.2 5.4 0-1 2.2-4.4 2.2-5.4 0z"/></svg></span>
+        <span class="plan-ico" style="background:#F3E8FF;color:#7C3AED;"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18.5 8.5c2 0 3.5 1.6 3.5 3.5s-1.5 3.5-3.5 3.5c-3.5 0-6-7-9-7C7.5 8.5 6 10.1 6 12s1.5 3.5 3.5 3.5c3 0 5.5-7 9-7z" transform="translate(-1.8,0)"/></svg></span>
         <div class="plan-name">Lifetime</div>
         <div class="plan-price">
           <span class="plan-currency">₹</span>
@@ -3908,11 +3930,11 @@
 
     <div class="pr2-includes">
       <div class="pr2-inc-lead"><svg width="20" height="20" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg><b>Every plan includes everything you need</b></div>
-      <div class="pr2-inc-item"><svg width="17" height="17" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><rect x="8" y="9" width="8" height="13" rx="1.5"/><path d="M10 9V5h4v4M12 2v3"/></svg><span class="india-only geo-inline">USB DSC Support</span><span class="intl-only geo-inline">USB Token Support</span></div>
       <div class="pr2-inc-item"><svg width="17" height="17" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>100% Local Processing</div>
       <div class="pr2-inc-item"><svg width="17" height="17" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Batch Signing</div>
       <div class="pr2-inc-item"><svg width="17" height="17" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Signatures &amp; Stamps</div>
       <div class="pr2-inc-item"><svg width="17" height="17" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Unlimited PDF Signing</div>
+      <div class="pr2-inc-item"><svg width="17" height="17" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>PDF Toolbox — 20+ Tools</div>
       <div class="pr2-inc-item"><svg width="17" height="17" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><polyline points="23,4 23,10 17,10"/><path d="M20.5 15a9 9 0 1 1-2-9.4L23 10"/></svg>Free Updates</div>
     </div>
     <p class="pr2-activation"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.6" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><b>Works instantly after activation.</b>&nbsp;No account required for licensed users.</p>
@@ -4484,7 +4506,7 @@
         <img src="hero-app.png" alt="The PDFSign desktop app signing a PDF with a digital certificate — fully offline on Windows" width="2544" height="2316" loading="lazy" />
       </div>
     </div>
-    <p class="fcta-trust"><svg width="15" height="15" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>Trusted by professionals in <b>40+ countries</b> for secure and reliable PDF signing.</p>
+    <p class="fcta-trust"><svg width="15" height="15" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>Trusted by professionals in <b>50+ countries</b> for secure and reliable PDF signing.</p>
   </div>
 </section>
 
@@ -4635,7 +4657,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <a href="#" class="logo">
-          <svg class="logo-mark" width="38" height="38" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 3.5l15 5.2v11.1c0 9.7-6.4 16.3-15 19.2-8.6-2.9-15-9.5-15-19.2V8.7L24 3.5z" fill="#16a34a"/><path d="M17.6 12.6h7.5l4.9 4.9V28.3a1.7 1.7 0 0 1-1.7 1.7H17.6A1.7 1.7 0 0 1 15.9 28.3V14.3A1.7 1.7 0 0 1 17.6 12.6z" fill="#ffffff"/><path d="M25.1 12.6v4.9h4.9z" fill="#cdd5df"/><path d="M19 21h7M19 24h7M19 27h4.5" stroke="#9aa7b4" stroke-width="1.5" stroke-linecap="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#ffffff" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.4 30.3l4 4L32.2 23.2" fill="none" stroke="#16a34a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="logo-mark" width="38" height="38" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#243558"/><text x="32" y="23" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="14" letter-spacing="1.5" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle">PDF</text><rect x="10" y="31" width="44" height="2.5" rx="1.25" fill="#16A34A"/><text x="32" y="46" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="12" letter-spacing="1.5" fill="#93C5FD" text-anchor="middle" dominant-baseline="middle">SIGN</text></svg>
           <span class="logo-name">PDF<em>Sign</em></span>
         </a>
         <p>Sign PDFs with your <span class="india-only geo-inline">DSC token</span><span class="intl-only geo-inline">USB token</span>. Offline, private, and <span class="india-only geo-inline">accepted everywhere in India</span><span class="intl-only geo-inline">legally valid worldwide</span>. Plus 20+ built-in PDF tools.</p>
