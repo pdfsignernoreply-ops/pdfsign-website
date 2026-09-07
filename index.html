@@ -2191,10 +2191,12 @@
     background-size: 44px 44px, 44px 44px, auto;
     padding: 64px 0 56px;
   }
-  .heroG-inner { max-width: var(--max); margin:0 auto; padding:0 24px; display:grid; grid-template-columns: 1.02fr 1fr; gap:56px; align-items:center; }
-  .heroG-eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:11.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#4ADE80; border:1px solid rgba(74,222,128,0.35); background:rgba(22,163,74,0.10); border-radius:999px; padding:7px 16px; }
+  .heroG-inner { max-width: var(--max); margin:0 auto; padding:0 24px; display:grid; grid-template-columns: 0.95fr 1.05fr; gap:44px; align-items:center; }
+  .heroG-eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; white-space:nowrap; color:#4ADE80; border:1px solid rgba(74,222,128,0.35); background:rgba(22,163,74,0.10); border-radius:999px; padding:7px 15px; }
+  @media(max-width:560px){ .heroG-eyebrow { white-space:normal; } }
   .heroG-eyebrow b { width:6px; height:6px; border-radius:50%; background:#4ADE80; padding:0; }
-  .heroG h1, .heroG .hero-alt-h1 { font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:clamp(2.1rem,3.5vw,3.05rem); line-height:1.14; letter-spacing:0; color:#fff; margin:20px 0 18px; }
+  .heroG h1, .heroG .hero-alt-h1 { font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:clamp(1.85rem,2.75vw,2.55rem); line-height:1.22; letter-spacing:0; color:#fff; margin:20px 0 18px; white-space:nowrap; }
+  @media(max-width:1100px){ .heroG h1, .heroG .hero-alt-h1 { white-space:normal; } }
   .heroG h1 .grn, .heroG .hero-alt-h1 .grn { color:#93C5FD; font-style:italic; }
   .heroG-sub { color:rgba(255,255,255,0.75); font-size:1.02rem; line-height:1.7; max-width:34em; margin-bottom:8px; }
   .heroG-sub em { color:#fff; font-style:italic; }
@@ -2367,11 +2369,11 @@
   .plan-card.featured { position: relative; }
 
 /* ─── HERO VISUAL v2 — layered doc-over-app composition ─── */
-.heroV { position:relative; width:100%; max-width:560px; margin-left:auto; aspect-ratio: 0.95 / 1; }
+.heroV { position:relative; width:100%; max-width:660px; margin-left:auto; aspect-ratio: 1.08 / 1; }
 .heroV-pill { position:absolute; z-index:4; top:4%; left:0; display:inline-flex; align-items:center; gap:7px; background:var(--green); color:#fff; font-size:13px; font-weight:600; padding:8px 16px; border-radius:999px; box-shadow:0 10px 24px rgba(22,163,74,0.35); }
-.heroV-app { position:absolute; z-index:1; top:11%; right:0; width:78%; border-radius:10px; border:1px solid var(--gray-200); overflow:hidden; background:#fff; box-shadow:0 24px 60px -20px rgba(15,23,42,0.28); }
+.heroV-app { position:absolute; z-index:1; top:8%; right:0; width:88%; border-radius:10px; border:1px solid var(--gray-200); overflow:hidden; background:#fff; box-shadow:0 24px 60px -20px rgba(15,23,42,0.28); }
 .heroV-app img { display:block; width:100%; height:auto; }
-.heroV-doc { position:absolute; z-index:3; left:2%; top:27%; width:62%; background:#fff; border-radius:12px; box-shadow:0 30px 70px -18px rgba(15,23,42,0.35); overflow:hidden; }
+.heroV-doc { position:absolute; z-index:3; left:0; top:26%; width:56%; background:#fff; border-radius:12px; box-shadow:0 30px 70px -18px rgba(15,23,42,0.35); overflow:hidden; }
 .heroV-doc-banner { display:flex; align-items:center; gap:8px; background:#EFF6FF; padding:11px 16px; font-size:12.5px; font-weight:600; color:var(--navy); }
 .heroV-doc-banner .b-ok { display:inline-flex; width:18px; height:18px; border-radius:50%; background:var(--green); color:#fff; align-items:center; justify-content:center; flex-shrink:0; }
 .heroV-doc-body { padding:18px 18px 20px; }
@@ -2450,8 +2452,35 @@
 .pd-flow { display:flex; flex-direction:column; align-items:center; }
 .pd-file { display:flex; align-items:center; gap:12px; font-weight:600; color:#0F172A; font-size:1rem; }
 .pd-conn { width:4px; height:34px; border-radius:999px; background:var(--gray-200); margin:6px 0; position:relative; overflow:hidden; }
-.pd-conn i { position:absolute; left:0; width:4px; height:18px; border-radius:999px; background:var(--green); box-shadow:0 0 12px rgba(22,163,74,0.65); animation:pd-drop 2.6s linear infinite; }
-@keyframes pd-drop { 0%{top:-20px} 100%{top:36px} }
+.pd-conn i { position:absolute; left:0; top:-22px; width:4px; height:18px; border-radius:999px; background:var(--green); box-shadow:0 0 12px rgba(22,163,74,0.65); opacity:0; }
+/* ONE deliberate 5s sequential loop: Invoice · flow→PC · flow→PDFSign (glow+✓) · flow→Signed (pulse) */
+@keyframes pd-flow1 { 0%,18%{top:-22px;opacity:0} 19%{opacity:1} 27%{top:100%;opacity:1} 28%,100%{top:100%;opacity:0} }
+@keyframes pd-flow2 { 0%,42%{top:-22px;opacity:0} 43%{opacity:1} 51%{top:100%;opacity:1} 52%,100%{top:100%;opacity:0} }
+@keyframes pd-flow3 { 0%,70%{top:-22px;opacity:0} 71%{opacity:1} 79%{top:100%;opacity:1} 80%,100%{top:100%;opacity:0} }
+@keyframes pd-light1 { 0%{opacity:.4;transform:translateY(6px) scale(.98)} 8%,92%{opacity:1;transform:translateY(0) scale(1)} 100%{opacity:.4;transform:translateY(6px) scale(.98)} }
+@keyframes pd-light2 { 0%,27%{opacity:.4;transform:scale(1)} 31%{opacity:1;transform:scale(1.03)} 35%,92%{opacity:1;transform:scale(1)} 100%{opacity:.4} }
+@keyframes pd-light3 { 0%,51%{opacity:.4;transform:scale(1)} 55%{opacity:1;transform:scale(1.03)} 59%,92%{opacity:1;transform:scale(1)} 100%{opacity:.4} }
+@keyframes pd-light4 { 0%,79%{opacity:0;transform:translateY(13px) scale(.96)} 84%{opacity:1;transform:translateY(-2px) scale(1.05)} 88%,94%{opacity:1;transform:translateY(0) scale(1)} 100%{opacity:0;transform:translateY(13px) scale(.96)} }
+@keyframes pd-shieldk { 0%,50%,64%,100%{transform:scale(1)} 56%{transform:scale(1.1)} }
+@keyframes pd-glowk { 0%,49%,66%,100%{opacity:0} 56%{opacity:.7} }
+@keyframes pd-successk { 0%,56%{opacity:0;transform:translateY(2px)} 62%,92%{opacity:1;transform:translateY(0)} 100%{opacity:0} }
+@keyframes pd-sgnglowk { 0%,79%,100%{opacity:0;transform:scale(.85)} 85%{opacity:.6;transform:scale(1.15)} 92%{opacity:0;transform:scale(1.3)} }
+.pd-s1 { opacity:.4; animation:pd-light1 5s ease-in-out infinite; }
+.pd-s2 { opacity:.4; animation:pd-light2 5s ease-in-out infinite; }
+.pd-s3 { opacity:.4; animation:pd-light3 5s ease-in-out infinite; }
+.pd-s4 { opacity:0; animation:pd-light4 5s ease-in-out infinite; }
+.pd-conn i.pk1 { animation:pd-flow1 5s linear infinite; }
+.pd-conn i.pk2 { animation:pd-flow2 5s linear infinite; }
+.pd-conn i.pk3 { animation:pd-flow3 5s linear infinite; }
+.pd-shield-anim { transform-origin:center; animation:pd-shieldk 5s ease-in-out infinite; }
+.pd-glow { position:absolute; inset:-6px; border-radius:50%; background:rgba(22,163,74,0.4); filter:blur(14px); opacity:0; animation:pd-glowk 5s ease-in-out infinite; pointer-events:none; }
+.pd-success-anim { opacity:0; animation:pd-successk 5s ease-in-out infinite; }
+.pd-sgnglow { position:absolute; inset:-8px; border-radius:50%; background:rgba(22,163,74,0.35); filter:blur(10px); opacity:0; animation:pd-sgnglowk 5s ease-in-out infinite; pointer-events:none; }
+@media (prefers-reduced-motion: reduce){
+  .pd-s1,.pd-s2,.pd-s3,.pd-s4,.pd-success-anim { animation:none; opacity:1; transform:none; }
+  .pd-shield-anim { animation:none; }
+  .pd-glow,.pd-sgnglow,.pd-conn i.pk1,.pd-conn i.pk2,.pd-conn i.pk3 { animation:none; opacity:0; }
+}
 .pd-box { display:flex; align-items:center; gap:16px; width:100%; max-width:340px; background:#fff; border:1px solid var(--gray-200); border-radius:16px; padding:16px 20px; box-shadow:0 4px 14px rgba(15,23,42,0.06); }
 .pd-box.hero { border-color:rgba(22,163,74,0.45); background:rgba(220,252,231,0.5); box-shadow:0 8px 24px rgba(22,163,74,0.12); }
 .pd-box .t1 { display:block; font-size:1rem; font-weight:600; color:#0F172A; }
@@ -2533,7 +2562,8 @@
 /* ─── LIVE STATS STRIP ─── */
 .stats-strip { background:var(--off-white); border-top:1px solid var(--gray-200); border-bottom:1px solid var(--gray-200); padding:34px 0; }
 .stats-card { background:#fff; border:1px solid var(--gray-200); border-radius:18px; box-shadow:0 4px 14px rgba(15,23,42,0.05); padding:18px 34px 16px; display:flex; flex-direction:column; align-items:center; gap:10px; }
-.stats-ico { display:inline-flex; width:36px; height:36px; border-radius:50%; background:var(--green-pale); color:#116B33; align-items:center; justify-content:center; margin-bottom:6px; }
+.stats-ico { display:inline-flex; width:36px; height:36px; border-radius:50%; background:var(--green-pale); color:#116B33; align-items:center; justify-content:center; }
+.stats-card .stats-counter { display:flex; flex-direction:column; align-items:center; gap:5px; }
 .stats-strip-inner { max-width:900px; margin:0 auto; padding:0 24px; display:flex; flex-direction:column; align-items:center; gap:12px; }
 .stats-live-badge { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; color:#94A3B8; letter-spacing:0.06em; text-transform:uppercase; }
 .stats-live-dot { width:7px; height:7px; border-radius:50%; background:#22C55E; animation:pulse-dot 2s ease-in-out infinite; flex-shrink:0; }
@@ -3100,14 +3130,14 @@
           <p>Every PDF is signed locally on your Windows PC. PDFSign processes documents on your device—not on our servers.</p>
         </div>
         <div class="pd-flow">
-          <div class="pd-file"><svg viewBox="0 0 60 70" width="46" height="54" role="img" aria-label="PDF file"><path d="M11 3h26l13 13v48a3 3 0 0 1-3 3H11a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3z" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/><path d="M37 3v13h13z" fill="#e2e8f0"/><rect x="13" y="24" width="25" height="13" rx="2.5" fill="#e11d48"/><text x="25.5" y="33.5" text-anchor="middle" font-size="8.5" font-weight="700" font-family="ui-sans-serif,system-ui,sans-serif" fill="#ffffff">PDF</text><line x1="14" y1="48" x2="46" y2="48" stroke="#e2e8f0" stroke-width="2.5" stroke-linecap="round"/><line x1="14" y1="55" x2="46" y2="55" stroke="#e2e8f0" stroke-width="2.5" stroke-linecap="round"/><line x1="14" y1="62" x2="34" y2="62" stroke="#e2e8f0" stroke-width="2.5" stroke-linecap="round"/></svg><span>Invoice.pdf</span></div>
-          <div class="pd-conn"><i></i></div>
-          <div class="pd-box"><svg viewBox="0 0 96 66" width="70" height="48" role="img" aria-label="Your Windows PC"><rect x="18" y="4" width="60" height="41" rx="3" fill="#1e293b"/><rect x="21" y="7" width="54" height="32" rx="1" fill="#ffffff"/><g transform="translate(38,15)" fill="#2563EB"><rect x="0" y="0" width="8" height="8" rx="0.5"/><rect x="10" y="0" width="8" height="8" rx="0.5"/><rect x="0" y="10" width="8" height="8" rx="0.5"/><rect x="10" y="10" width="8" height="8" rx="0.5"/></g><path d="M6 49h84l5 9a3 3 0 0 1-3 4H4a3 3 0 0 1-3-4z" fill="#cbd5e1"/><rect x="40" y="49" width="16" height="3" rx="1.5" fill="#94a3b8"/></svg><div><span class="t1">Your Windows PC</span><span class="t2">File stays on your computer</span></div></div>
-          <div class="pd-conn" style="height:22px;"><i></i></div>
+          <div class="pd-file pd-s1"><svg viewBox="0 0 60 70" width="46" height="54" role="img" aria-label="PDF file"><path d="M11 3h26l13 13v48a3 3 0 0 1-3 3H11a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3z" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/><path d="M37 3v13h13z" fill="#e2e8f0"/><rect x="13" y="24" width="25" height="13" rx="2.5" fill="#e11d48"/><text x="25.5" y="33.5" text-anchor="middle" font-size="8.5" font-weight="700" font-family="ui-sans-serif,system-ui,sans-serif" fill="#ffffff">PDF</text><line x1="14" y1="48" x2="46" y2="48" stroke="#e2e8f0" stroke-width="2.5" stroke-linecap="round"/><line x1="14" y1="55" x2="46" y2="55" stroke="#e2e8f0" stroke-width="2.5" stroke-linecap="round"/><line x1="14" y1="62" x2="34" y2="62" stroke="#e2e8f0" stroke-width="2.5" stroke-linecap="round"/></svg><span>Invoice.pdf</span></div>
+          <div class="pd-conn"><i class="pk1"></i></div>
+          <div class="pd-box pd-s2"><svg viewBox="0 0 96 66" width="70" height="48" role="img" aria-label="Your Windows PC"><rect x="18" y="4" width="60" height="41" rx="3" fill="#1e293b"/><rect x="21" y="7" width="54" height="32" rx="1" fill="#ffffff"/><g transform="translate(38,15)" fill="#2563EB"><rect x="0" y="0" width="8" height="8" rx="0.5"/><rect x="10" y="0" width="8" height="8" rx="0.5"/><rect x="0" y="10" width="8" height="8" rx="0.5"/><rect x="10" y="10" width="8" height="8" rx="0.5"/></g><path d="M6 49h84l5 9a3 3 0 0 1-3 4H4a3 3 0 0 1-3-4z" fill="#cbd5e1"/><rect x="40" y="49" width="16" height="3" rx="1.5" fill="#94a3b8"/></svg><div><span class="t1">Your Windows PC</span><span class="t2">File stays on your computer</span></div></div>
+          <div class="pd-conn" style="height:22px;"><i class="pk2"></i></div>
           <span class="pd-lpp"><i></i>Local PDF Processing</span>
-          <div class="pd-box hero"><svg viewBox="0 0 56 64" width="52" height="60" role="img" aria-label="PDFSign"><defs><linearGradient id="pd-shield" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#15803d"/></linearGradient></defs><path d="M28 3 51 11v18c0 15-10 25-23 31C15 54 5 44 5 29V11z" fill="url(#pd-shield)"/><path d="M28 9 45 15v14c0 11-7 19-17 24V9z" fill="#ffffff" opacity="0.12"/><path d="M18 31l6.5 6.5L40 22" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><span class="brand"><span class="n">PDF</span><span class="g">Sign</span></span><span class="t2">Local processing engine</span><span class="ok"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Digital Signature Applied</span></div></div>
-          <div class="pd-conn"><i></i></div>
-          <div class="pd-file"><svg viewBox="0 0 60 70" width="46" height="54" role="img" aria-label="Signed PDF"><path d="M11 3h26l13 13v48a3 3 0 0 1-3 3H11a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3z" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/><path d="M37 3v13h13z" fill="#e2e8f0"/><rect x="13" y="24" width="25" height="13" rx="2.5" fill="#16a34a"/><text x="25.5" y="33.5" text-anchor="middle" font-size="8.5" font-weight="700" font-family="ui-sans-serif,system-ui,sans-serif" fill="#ffffff">PDF</text><path d="M14 52c4-5 6 3 10-1s5-4 8-2" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round"/><circle cx="44" cy="54" r="9" fill="#16a34a"/><path d="M40 54l3 3 5-6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Invoice_signed.pdf</span></div>
+          <div class="pd-box hero pd-s3"><span style="position:relative;display:inline-flex;flex-shrink:0;"><span class="pd-glow"></span><svg viewBox="0 0 56 64" width="52" height="60" class="pd-shield-anim" style="position:relative;" role="img" aria-label="PDFSign"><defs><linearGradient id="pd-shield" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#15803d"/></linearGradient></defs><path d="M28 3 51 11v18c0 15-10 25-23 31C15 54 5 44 5 29V11z" fill="url(#pd-shield)"/><path d="M28 9 45 15v14c0 11-7 19-17 24V9z" fill="#ffffff" opacity="0.12"/><path d="M18 31l6.5 6.5L40 22" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><span class="brand"><span class="n">PDF</span><span class="g">Sign</span></span><span class="t2">Local processing engine</span><span class="ok pd-success-anim"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Digital Signature Applied</span></div></div>
+          <div class="pd-conn"><i class="pk3"></i></div>
+          <div class="pd-file pd-s4"><span style="position:relative;display:inline-flex;flex-shrink:0;"><span class="pd-sgnglow"></span><svg viewBox="0 0 60 70" width="46" height="54" style="position:relative;" role="img" aria-label="Signed PDF"><path d="M11 3h26l13 13v48a3 3 0 0 1-3 3H11a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3z" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/><path d="M37 3v13h13z" fill="#e2e8f0"/><rect x="13" y="24" width="25" height="13" rx="2.5" fill="#16a34a"/><text x="25.5" y="33.5" text-anchor="middle" font-size="8.5" font-weight="700" font-family="ui-sans-serif,system-ui,sans-serif" fill="#ffffff">PDF</text><path d="M14 52c4-5 6 3 10-1s5-4 8-2" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round"/><circle cx="44" cy="54" r="9" fill="#16a34a"/><path d="M40 54l3 3 5-6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Invoice_signed.pdf</span></div>
         </div>
         <div class="pd-cloud">
           <svg viewBox="0 0 150 116" width="96" role="img" aria-label="Cloud servers — not used"><path d="M44 96c-15 0-27-11-27-25 0-13 9-23 22-25 4-15 18-26 34-26 18 0 33 13 35 31 12 1 21 11 21 23 0 13-11 22-24 22z" fill="#edf1f6"/><g fill="#d2dae5"><rect x="52" y="44" width="46" height="13" rx="2.5"/><rect x="52" y="61" width="46" height="13" rx="2.5"/></g><g fill="#f3f6fa"><circle cx="59" cy="50.5" r="1.7"/><circle cx="66" cy="50.5" r="1.7"/><circle cx="59" cy="67.5" r="1.7"/><circle cx="66" cy="67.5" r="1.7"/></g><path d="M50 38 100 88M100 38 50 88" stroke="#fda4af" stroke-width="5.5" stroke-linecap="round" opacity="0.75"/></svg>
@@ -3296,11 +3326,8 @@
                   <div style="display:flex; align-items:center; gap:7px;">
                     <div style="font-size:6px; line-height:1.4; color:#1E3A8A; white-space:nowrap;">
                       <div style="font-weight:700; color:#16A34A;">Signature valid</div>
-                      <div>Digitally signed by JOHN SMITH</div>
-                      <div>Date: 2026.06.28 16:37 GMT</div>
-                      <div>Designation: Director</div>
-                      <div>Reason: Contract Document</div>
-                      <div>Location: New York</div>
+                      <div class="india-only"><div>Digitally signed by RAJESH KUMAR</div><div>Date: 2026.06.28 16:37 IST</div><div>Designation: Proprietor</div><div>Reason: Tender Document</div><div>Location: Mumbai</div></div>
+                      <div class="intl-only"><div>Digitally signed by JOHN SMITH</div><div>Date: 2026.06.28 16:37 GMT</div><div>Designation: Director</div><div>Reason: Contract Document</div><div>Location: New York</div></div>
                     </div>
                     <i data-lucide="check" style="color:#16A34A; font-size:24px; stroke-width:3;"></i>
                   </div>
@@ -3423,11 +3450,8 @@
             <div id="f6-classic" style="border:1.5px solid #E2E8F0; border-radius:9px; padding:13px 15px; position:relative; overflow:hidden; background:#fff; opacity:0; transition:opacity 0.5s ease;">
               <div style="font-size:11px; font-weight:800; color:#16A34A; margin-bottom:3px;">Signature valid</div>
               <div style="font-size:10px; color:#334155; line-height:1.7;">
-                <div>Digitally signed by <strong style="color:#0F172A;">JOHN SMITH</strong></div>
-                <div>Date: 2026.06.28&nbsp; 16:54:24 GMT</div>
-                <div>Designation: Director</div>
-                <div>Reason: Contract Document</div>
-                <div>Location: New York</div>
+                <div class="india-only"><div>Digitally signed by <strong style="color:#0F172A;">RAJESH KUMAR</strong></div><div>Date: 2026.06.28&nbsp; 16:54:24 IST</div><div>Designation: Proprietor</div><div>Reason: Tender Document</div><div>Location: Mumbai</div></div>
+                <div class="intl-only"><div>Digitally signed by <strong style="color:#0F172A;">JOHN SMITH</strong></div><div>Date: 2026.06.28&nbsp; 16:54:24 GMT</div><div>Designation: Director</div><div>Reason: Contract Document</div><div>Location: New York</div></div>
               </div>
               <span style="position:absolute; right:20px; top:50%; width:54px; height:54px; display:flex; align-items:center; justify-content:center; color:#16A34A; transform:translate(0,-50%);"><i data-lucide="check" style="font-size:54px; stroke-width:4;"></i></span>
             </div>
