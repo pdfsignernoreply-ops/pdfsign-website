@@ -2314,14 +2314,14 @@
   .tw2-badge { display:inline-flex; align-items:center; gap:7px; border:1px solid rgba(22,163,74,0.3); background:var(--green-pale); color:#116B33; font-size:11.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; border-radius:999px; padding:6px 14px; margin-bottom:18px; }
   .tw2-head h2 { font-family:'Outfit',sans-serif; font-weight:700; font-size:clamp(1.9rem,3vw,2.6rem); line-height:1.12; letter-spacing:-0.02em; color:#0F172A; margin:0 0 14px; }
   .tw2-head h2 .grn { color:var(--green); }
-  .tw2-head p { color:var(--gray-600); font-size:1.02rem; line-height:1.65; max-width:34em; margin:0; }
-  .tw2-photos { position:relative; display:flex; align-items:center; justify-content:center; min-height:230px; }
-  .tw2-shield { position:relative; z-index:2; display:flex; align-items:center; justify-content:center; }
-  .tw2-shield .ring { position:absolute; width:150px; height:150px; border-radius:50%; border:1px solid rgba(22,163,74,0.25); background:radial-gradient(circle, rgba(22,163,74,0.10), transparent 65%); }
-  .tw2-photos img { position:relative; z-index:1; height:auto; object-fit:contain; }
-  .tw2-photos .p1 { width:150px; transform:rotate(-8deg); margin-right:14px; mix-blend-mode:multiply; }
-  .tw2-photos .p2 { width:140px; transform:rotate(6deg); margin-left:0; z-index:3; mix-blend-mode:multiply; }
-  .tw2-photos .p3 { width:96px; transform:rotate(14deg); margin-left:8px; mix-blend-mode:multiply; }
+  .tw2-head p { color:var(--gray-600); font-size:1.02rem; line-height:1.65; max-width:46em; margin:0; }
+  .tw2-photos { position:relative; margin:0 auto; width:100%; max-width:460px; height:240px; }
+  .tw2-shield { position:absolute; left:50%; top:0; transform:translateX(-50%); z-index:2; display:flex; align-items:center; justify-content:center; width:120px; height:120px; }
+  .tw2-shield .ring { position:absolute; left:50%; top:50%; margin-left:-78px; margin-top:-78px; width:156px; height:156px; border-radius:50%; border:1px solid rgba(22,163,74,0.25); background:radial-gradient(circle, rgba(22,163,74,0.10), transparent 65%); }
+  .tw2-photos img { position:absolute; z-index:1; height:auto; object-fit:contain; }
+  .tw2-photos .p1 { width:140px; left:4px; bottom:0; transform:rotate(-6deg); z-index:3; mix-blend-mode:multiply; }
+  .tw2-photos .p2 { width:150px; left:50%; bottom:10px; transform:translateX(-50%); mix-blend-mode:multiply; }
+  .tw2-photos .p3 { width:78px; right:20px; bottom:6px; transform:rotate(10deg); z-index:3; mix-blend-mode:multiply; }
   .tw2-plus { position:absolute; color:var(--green); font-size:20px; font-weight:600; opacity:.7; animation:tw-spark 2.6s ease-in-out infinite; }
   @keyframes tw-shield-breathe { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
   @keyframes tw-ring-pulse { 0%,100%{opacity:.4; transform:scale(.97)} 50%{opacity:.9; transform:scale(1.05)} }
@@ -2333,15 +2333,17 @@
   .tw2-wall h3 { text-align:center; font-size:.95rem; font-weight:700; color:#0F172A; margin:0 0 22px; position:relative; }
   .tw2-wall h3::before, .tw2-wall h3::after { content:""; position:absolute; top:50%; width:18%; height:1px; background:var(--gray-200); }
   .tw2-wall h3::before { left:0; } .tw2-wall h3::after { right:0; }
-  .tw2-logos { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:20px 36px; }
+  .tw2-logos { display:flex; flex-wrap:nowrap; align-items:center; justify-content:space-between; gap:10px; }
+  @media(max-width:1000px){ .tw2-logos { flex-wrap:wrap; justify-content:center; gap:16px 28px; } }
   .tw2-logos img { width:auto; object-fit:contain; box-sizing:content-box; }
-  .tw2-logos > * { border-radius:12px; padding:8px 10px; transition:transform .2s, box-shadow .2s, background .2s; }
+  .tw2-logos > * { border-radius:12px; padding:8px 6px; transition:transform .2s, box-shadow .2s, background .2s; flex-shrink:1; min-width:0; }
   .tw2-logos > *:hover { transform:translateY(-4px); background:#fff; box-shadow:0 10px 24px rgba(15,23,42,0.10); }
   .tw2-pkcs { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:#0F172A; line-height:1.15; }
   .tw2-tm { text-align:center; margin:18px auto 0; font-size:.72rem; color:var(--gray-400); max-width:640px; }
   .tw2-caps { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; border:1px solid var(--gray-200); border-radius:18px; background:#fff; box-shadow:0 6px 20px rgba(15,23,42,0.05); padding:26px 20px; margin-top:28px; }
   .tw2-cap { display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; }
-  .tw2-cap span.ci2 { display:inline-flex; width:52px; height:52px; border-radius:50%; background:var(--green-pale); color:var(--green); align-items:center; justify-content:center; }
+  .tw2-cap span.ci2 { display:inline-flex; width:64px; height:64px; border-radius:50%; background:var(--green-pale); color:var(--green); align-items:center; justify-content:center; }
+  .tw2-cap span.ci2 svg { width:30px; height:30px; }
   .tw2-cap h4 { font-size:.88rem; font-weight:700; color:#0F172A; margin:0; }
   .tw2-cap p { font-size:.76rem; color:var(--gray-600); margin:0; line-height:1.45; }
   .tokenwall-note { text-align:center; margin-top:26px; font-size:.9rem; color:var(--gray-600); }
@@ -2534,9 +2536,10 @@
 .pricing .plan-btn-solid { background:var(--green); border-radius:10px; }
 .pricing .plan-btn-outline { border:1px solid var(--green); color:var(--green); border-radius:10px; background:#fff; }
 .pricing .plan-btn-outline:hover { background:var(--green-pale); }
-.pr2-includes { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:14px 30px; border:1px solid var(--gray-200); border-radius:16px; background:var(--gray-50); padding:20px 26px; margin-top:40px; }
-.pr2-inc-lead { display:flex; align-items:center; gap:9px; font-size:.95rem; color:#0F172A; }
-.pr2-inc-item { display:flex; align-items:center; gap:7px; font-size:.88rem; font-weight:500; color:#0F172A; }
+.pr2-includes { display:flex; flex-wrap:nowrap; align-items:center; justify-content:space-between; gap:10px; border:1px solid var(--gray-200); border-radius:16px; background:var(--gray-50); padding:18px 22px; margin-top:40px; }
+.pr2-inc-lead { display:flex; align-items:center; gap:8px; font-size:.88rem; color:#0F172A; white-space:nowrap; flex-shrink:0; }
+.pr2-inc-item { display:flex; align-items:center; gap:6px; font-size:.82rem; font-weight:500; color:#0F172A; white-space:nowrap; }
+@media(max-width:1120px){ .pr2-includes { flex-wrap:wrap; justify-content:center; gap:12px 22px; } }
 .pr2-activation { display:flex; align-items:center; justify-content:center; gap:7px; margin-top:22px; font-size:.9rem; color:var(--gray-600); }
 .pr2-activation b { color:#0F172A; }
 @media(max-width:1000px){ .pr2-grid{grid-template-columns:1fr;} .pr2-rail{position:static;} }
@@ -3508,22 +3511,22 @@
         <img class="p1" src="usb-token.png" alt="SafeNet USB security token" width="1170" height="945" loading="lazy" />
         <img class="p2" src="tokens/gemalto.png" alt="Gemalto USB security token" loading="lazy" />
         <img class="p3" src="tokens/hyp2003.jpeg" alt="HYP2003 USB security token" loading="lazy" />
-        <span class="tw2-plus" style="top:6%; left:38%;">+</span>
-        <span class="tw2-plus" style="top:14%; right:8%;">+</span>
-        <span class="tw2-plus" style="bottom:12%; left:12%;">+</span>
+        <span class="tw2-plus" style="top:0; left:24%;">+</span>
+        <span class="tw2-plus" style="top:10%; right:6%;">+</span>
+        <span class="tw2-plus" style="bottom:34%; left:4%;">+</span>
       </div>
     </div>
 
     <div class="tw2-wall">
       <h3>Compatible with major USB security tokens</h3>
       <div class="tw2-logos">
-        <img src="logos/safenet.png" style="height:42px;" alt="Thales SafeNet" loading="lazy" />
-        <img src="logos/gemalto.png" style="height:38px;" alt="Gemalto" loading="lazy" />
-        <img src="logos/hyp2003.png" style="height:24px;" alt="HYP2003" loading="lazy" />
-        <img src="logos/watchdata.png" style="height:20px;" alt="WatchData" loading="lazy" />
-        <img src="logos/feitian.png" style="height:38px;" alt="FEITIAN" loading="lazy" />
-        <img src="logos/proxkey.png" style="height:24px;" alt="ProxKey" loading="lazy" />
-        <img src="logos/trustkey.png" style="height:24px;" alt="TrustKey" loading="lazy" />
+        <img src="logos/safenet.png" style="height:38px;" alt="Thales SafeNet" loading="lazy" />
+        <img src="logos/gemalto.png" style="height:34px;" alt="Gemalto" loading="lazy" />
+        <img src="logos/hyp2003.png" style="height:22px;" alt="HYP2003" loading="lazy" />
+        <img src="logos/watchdata.png" style="height:18px;" alt="WatchData" loading="lazy" />
+        <img src="logos/feitian.png" style="height:34px;" alt="FEITIAN" loading="lazy" />
+        <img src="logos/proxkey.png" style="height:22px;" alt="ProxKey" loading="lazy" />
+        <img src="logos/trustkey.png" style="height:22px;" alt="TrustKey" loading="lazy" />
         <span class="tw2-pkcs"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>PKCS#11<br/>Compatible</span>
       </div>
     </div>
