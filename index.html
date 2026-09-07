@@ -904,6 +904,7 @@
     color: var(--muted);
     align-self: end;
     padding-bottom: 4px;
+    white-space: nowrap;
   }
 
   .plan-card.featured .plan-period { color: rgba(255,255,255,0.5); }
@@ -1493,7 +1494,7 @@
 
   /* ─── ROADMAP ─── */
   /* ─── TUTORIALS ─── */
-  .tutorials { background: var(--gray-50); padding: 88px 24px; }
+  .tutorials { background: var(--gray-50); padding: 56px 24px 88px; }
   .tutorials-header { text-align: center; margin-bottom: 48px; }
   .tutorials-grid {
     display: grid;
@@ -2208,8 +2209,9 @@
   .heroG-store:hover { color:#fff; }
   .heroG-weblink { font-size:13px; color:var(--gray-600); }
   .heroG-weblink a { color:var(--green); font-weight:600; text-decoration:none; }
-  .heroG-checks { display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:16px; }
-  .heroG-check { display:flex; align-items:center; gap:6px; font-size:13px; color:rgba(255,255,255,0.75); }
+  .heroG-checks { display:flex; flex-wrap:nowrap; gap:8px 14px; margin-top:16px; }
+  @media(max-width:1100px){ .heroG-checks { flex-wrap:wrap; } }
+  .heroG-check { display:flex; align-items:center; gap:5px; font-size:12.5px; white-space:nowrap; color:rgba(255,255,255,0.75); }
   .heroG-trust { display:flex; align-items:center; gap:12px; margin-top:22px; }
   .heroG-trust .trust-text { font-size:13px; color:rgba(255,255,255,0.6); margin:0; }
   .heroG-trust .trust-text strong { color:#fff; }
@@ -2247,7 +2249,7 @@
   }
 
   /* ─── TWO WAYS TO SIGN ─── */
-  .signmodes { background: var(--off-white); padding: 90px 0; }
+  .signmodes { background: var(--off-white); padding: 90px 0 48px; }
   .signmodes-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:48px; }
   .signmode-card { background:#fff; border:1px solid var(--gray-200); border-radius:16px; padding:36px 32px; position:relative; }
   .signmode-card.popular { border-color:var(--green); box-shadow:0 12px 40px rgba(22,163,74,0.10); }
@@ -2282,20 +2284,29 @@
   .privacy-honest { margin:36px auto 0; max-width:720px; text-align:center; font-size:.88rem; color:var(--gray-400); line-height:1.6; }
   @media(max-width:820px){ .privacy-grid { grid-template-columns:1fr; } }
 
-  /* ─── TOOLBOX ─── */
-  .toolbox { background:var(--navy); padding:90px 0; }
-  .toolbox .section-title, .toolbox h2 { color:#fff; }
-  .toolbox .section-sub { color:rgba(255,255,255,0.6); }
-  .toolbox-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:48px; }
-  .tool-card { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:18px 18px 16px; }
-  .tool-card h4 { color:#fff; font-size:.95rem; font-weight:600; margin-bottom:5px; display:flex; align-items:center; gap:8px; }
-  .tool-card h4 .t-ico { font-size:1rem; }
-  .tool-card p { color:rgba(255,255,255,0.55); font-size:.82rem; line-height:1.5; }
-  .toolbox-more { text-align:center; margin-top:28px; color:rgba(255,255,255,0.65); font-size:.92rem; }
-  .toolbox-more strong { color:#fff; }
-  @media(max-width:1000px){ .toolbox-grid{grid-template-columns:repeat(3,1fr);} }
-  @media(max-width:760px){ .toolbox-grid{grid-template-columns:repeat(2,1fr);} }
-  @media(max-width:480px){ .toolbox-grid{grid-template-columns:1fr;} }
+  /* ─── TOOLBOX (product-capability redesign) ─── */
+  .toolbox { background:#172847; padding:84px 0 64px; position:relative; overflow:hidden; }
+  .toolbox::before { content:""; position:absolute; left:50%; top:-140px; transform:translateX(-50%); width:760px; height:420px; background:radial-gradient(ellipse at center, rgba(74,222,128,0.14), transparent 65%); pointer-events:none; }
+  .tbx-head { position:relative; text-align:center; max-width:720px; margin:0 auto 40px; }
+  .tbx-kicker { display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#4ADE80; border:1px solid rgba(74,222,128,0.35); background:rgba(22,163,74,0.10); border-radius:999px; padding:7px 15px; margin-bottom:20px; }
+  .tbx-head h2 { font-family:'Outfit',sans-serif; font-weight:700; font-size:clamp(1.9rem,3vw,2.6rem); line-height:1.12; letter-spacing:-0.02em; color:#fff; margin:0 0 14px; }
+  .tbx-head h2 .grn2 { color:#4ADE80; }
+  .tbx-head p { color:rgba(255,255,255,0.65); font-size:1.02rem; line-height:1.65; margin:0 0 18px; }
+  .tbx-pill { display:inline-flex; align-items:center; gap:8px; font-size:.85rem; font-weight:600; color:#A7F3D0; background:rgba(22,163,74,0.12); border:1px solid rgba(74,222,128,0.25); border-radius:999px; padding:8px 18px; }
+  .tbx-primary { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .tbx-card { background:#263957; border:1px solid rgba(255,255,255,0.12); border-radius:16px; padding:24px 22px; transition:background .2s, transform .2s, border-color .2s; }
+  .tbx-card:hover { background:#304565; transform:translateY(-4px); border-color:rgba(255,255,255,0.2); }
+  .tbx-card .ti { display:inline-flex; width:42px; height:42px; border-radius:11px; background:rgba(74,222,128,0.14); color:#4ADE80; align-items:center; justify-content:center; margin-bottom:14px; }
+  .tbx-card h4 { color:#fff; font-family:'Outfit',sans-serif; font-size:1.12rem; font-weight:700; margin:0 0 6px; }
+  .tbx-card p { color:rgba(255,255,255,0.55); font-size:.85rem; line-height:1.55; margin:0; }
+  .tbx-cats { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:18px; }
+  .tbx-cat { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:14px; padding:16px 18px; }
+  .tbx-cat h5 { font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#4ADE80; margin:0 0 9px; }
+  .tbx-cat p { color:rgba(255,255,255,0.6); font-size:.85rem; line-height:1.8; margin:0; }
+  .tbx-cta { text-align:center; margin-top:34px; }
+  .tbx-cta .note { display:block; margin-top:12px; font-size:.82rem; color:rgba(255,255,255,0.45); }
+  @media(max-width:1000px){ .tbx-primary, .tbx-cats { grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:520px){ .tbx-primary, .tbx-cats { grid-template-columns:1fr; } }
 
   /* ─── BULK BAND ─── */
   .bulk-band { background:var(--off-white); padding:90px 0; }
@@ -2309,7 +2320,7 @@
   @media(max-width:860px){ .bulk-inner{grid-template-columns:1fr;} }
 
   /* ─── TOKEN WALL v2 (global port) ─── */
-  .tokenwall { background:#fff; padding:90px 0; }
+  .tokenwall { background:#fff; padding:48px 0 90px; }
   .tw2-head { display:grid; grid-template-columns:1.15fr 1fr; gap:48px; align-items:center; margin-bottom:40px; }
   .tw2-badge { display:inline-flex; align-items:center; gap:7px; border:1px solid rgba(22,163,74,0.3); background:var(--green-pale); color:#116B33; font-size:11.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; border-radius:999px; padding:6px 14px; margin-bottom:18px; }
   .tw2-head h2 { font-family:'Outfit',sans-serif; font-weight:700; font-size:clamp(1.9rem,3vw,2.6rem); line-height:1.12; letter-spacing:-0.02em; color:#0F172A; margin:0 0 14px; }
@@ -2371,22 +2382,22 @@
   .plan-card.featured { position: relative; }
 
 /* ─── HERO VISUAL v2 — layered doc-over-app composition ─── */
-.heroV { position:relative; width:100%; max-width:660px; margin-left:auto; aspect-ratio: 1.08 / 1; }
+.heroV { position:relative; width:100%; max-width:660px; margin-left:auto; aspect-ratio: 1.08 / 1; perspective:2200px; }
 .heroV-pill { position:absolute; z-index:4; top:4%; left:0; display:inline-flex; align-items:center; gap:7px; background:var(--green); color:#fff; font-size:13px; font-weight:600; padding:8px 16px; border-radius:999px; box-shadow:0 10px 24px rgba(22,163,74,0.35); }
-.heroV-app { position:absolute; z-index:1; top:8%; right:0; width:88%; border-radius:10px; border:1px solid var(--gray-200); overflow:hidden; background:#fff; box-shadow:0 24px 60px -20px rgba(15,23,42,0.28); }
+.heroV-app { position:absolute; z-index:1; top:8%; right:0; width:88%; transform:rotateY(-6deg) rotateX(1.5deg); border-radius:10px; border:1px solid var(--gray-200); overflow:hidden; background:#fff; box-shadow:0 24px 60px -20px rgba(15,23,42,0.28); }
 .heroV-app img { display:block; width:100%; height:auto; }
-.heroV-doc { position:absolute; z-index:3; left:0; top:26%; width:56%; background:#fff; border-radius:12px; box-shadow:0 30px 70px -18px rgba(15,23,42,0.35); overflow:hidden; }
+.heroV-doc { position:absolute; z-index:3; left:0; top:26%; width:62%; background:#fff; border-radius:12px; box-shadow:0 30px 70px -18px rgba(15,23,42,0.35); overflow:hidden; }
 .heroV-doc-banner { display:flex; align-items:center; gap:8px; background:#EFF6FF; padding:11px 16px; font-size:12.5px; font-weight:600; color:var(--navy); }
 .heroV-doc-banner .b-ok { display:inline-flex; width:18px; height:18px; border-radius:50%; background:var(--green); color:#fff; align-items:center; justify-content:center; flex-shrink:0; }
 .heroV-doc-body { padding:18px 18px 20px; }
 .heroV-line { height:7px; border-radius:999px; background:var(--gray-200); margin-bottom:10px; opacity:0.75; }
 .heroV-line.w1{width:92%} .heroV-line.w2{width:78%} .heroV-line.w3{width:96%} .heroV-line.w4{width:60%} .heroV-line.w5{width:84%} .heroV-line.w6{width:40%}
-.heroV-sig { position:relative; margin:16px 0 0 auto; width:88%; max-width:250px; border:1px solid var(--gray-200); border-radius:8px; padding:12px 14px; background:#fff; }
+.heroV-sig { position:relative; margin:16px 0 0 auto; width:84%; max-width:238px; border:1px solid var(--gray-200); border-radius:8px; padding:12px 14px; background:#fff; }
 .heroV-sig h5 { color:var(--green); font-size:.95rem; font-weight:700; margin:0 0 6px; font-family:'Outfit',sans-serif; }
-.heroV-sig p { font-size:11px; color:var(--gray-600); line-height:1.6; margin:0; }
+.heroV-sig p { font-size:11px; color:var(--gray-600); line-height:1.6; margin:0; padding-right:42px; }
 .heroV-sig strong { color:var(--navy); }
-.heroV-sig .big-check { position:absolute; right:-14px; bottom:34%; width:56px; height:auto; filter:drop-shadow(0 4px 8px rgba(21,128,61,0.3)); transform:rotate(-4deg); }
-.heroV .tokchip { position:absolute; z-index:5; left:0; bottom:2%; top:auto; }
+.heroV-sig .big-check { position:absolute; right:10px; bottom:10px; width:44px; height:auto; filter:drop-shadow(0 4px 8px rgba(21,128,61,0.3)); transform:rotate(-4deg); }
+.heroV .tokchip { position:absolute; z-index:5; left:-8px; bottom:-1%; top:auto; }
 .heroV-stat { position:absolute; z-index:4; background:#fff; border:1px solid var(--gray-200); border-radius:12px; padding:10px 14px; box-shadow:0 14px 34px rgba(15,23,42,0.14); display:flex; align-items:center; gap:9px; white-space:nowrap; }
 .heroV-stat b { display:block; font-size:14px; line-height:1.2; color:var(--navy); }
 .heroV-stat small { display:block; font-weight:400; font-size:10.5px; color:var(--gray-400); }
@@ -2924,19 +2935,19 @@
     <div class="stats-card">
     <div class="stats-counters">
       <div class="stats-counter">
-        <span class="stats-ico"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
+        <span class="stats-ico"><svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.6c.58 0 1.05.47 1.05 1.05v7.3l2.13-2.13a1.05 1.05 0 1 1 1.49 1.49l-3.93 3.93a1.05 1.05 0 0 1-1.48 0L7.33 10.3a1.05 1.05 0 1 1 1.49-1.48l2.13 2.12v-7.3c0-.58.47-1.05 1.05-1.05z"/><path fill="currentColor" opacity="0.55" d="M4.1 14.9c.58 0 1.05.47 1.05 1.05v2a1.8 1.8 0 0 0 1.8 1.8h10.1a1.8 1.8 0 0 0 1.8-1.8v-2a1.05 1.05 0 1 1 2.1 0v2a3.9 3.9 0 0 1-3.9 3.9H6.95a3.9 3.9 0 0 1-3.9-3.9v-2c0-.58.47-1.05 1.05-1.05z"/></svg></span>
         <div class="stats-counter-val" id="stat-dl-today">—</div>
         <div class="stats-counter-label">New Downloads Today</div>
       </div>
       <div class="stats-divider"></div>
       <div class="stats-counter">
-        <span class="stats-ico"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.9 5.7 3.9 9S14.5 18.4 12 21c-2.5-2.6-3.9-5.7-3.9-9S9.5 5.6 12 3z"/></svg></span>
+        <span class="stats-ico"><svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.4" fill="currentColor"/><g fill="none" stroke="#DCFCE7" stroke-width="1.5"><path d="M2.6 12h18.8"/><ellipse cx="12" cy="12" rx="4.2" ry="9.4"/><path d="M4.2 7.2c2 1.4 4.8 2.2 7.8 2.2s5.8-.8 7.8-2.2M4.2 16.8c2-1.4 4.8-2.2 7.8-2.2s5.8.8 7.8 2.2" opacity="0.7"/></g></svg></span>
         <div class="stats-counter-val" id="stat-dl-total">—</div>
         <div class="stats-counter-label">Total Downloads</div>
       </div>
       <div class="stats-divider"></div>
       <div class="stats-counter">
-        <span class="stats-ico"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <span class="stats-ico"><svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M8.6 12l2.3 2.3 4.6-4.8" fill="none" stroke="#DCFCE7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         <div class="stats-counter-val">50+</div>
         <div class="stats-counter-label">Countries — Trusted Worldwide</div>
       </div>
@@ -3165,26 +3176,50 @@
 <!-- ─── TOOLBOX ─── -->
 <section class="toolbox" id="toolbox">
   <div class="container">
-    <div style="text-align:center;">
-      <div class="section-tag">PDFToolbox — Built In</div>
-      <h2 class="section-title">20+ PDF tools. One offline app.</h2>
-      <p class="section-sub" style="margin:0 auto;">Edit, merge, compress, convert and more — built into the same app you sign with. No upload websites, no per-tool subscriptions, and your files never leave your PC.</p>
+    <div class="tbx-head">
+      <span class="tbx-kicker">PDF Tools — Built into PDFSign · 20+ tools</span>
+      <h2>Your complete PDF toolbox. <span class="grn2">Built right in.</span></h2>
+      <p>Edit, merge, split, compress, convert and protect PDFs — without uploading your files. Everything runs locally on your PC.</p>
+      <span class="tbx-pill"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>100% offline processing · No uploads · No per-tool subscriptions</span>
     </div>
-    <div class="toolbox-grid">
-      <div class="tool-card"><h4><span class="t-ico">📝</span>Edit PDF</h4><p>Edit text right inside the PDF — fix typos, update values, redact, add images.</p></div>
-      <div class="tool-card"><h4><span class="t-ico">📄</span>PDF to Word</h4><p>Open a PDF in Word to fill or edit it — with a scanned-page check first.</p></div>
-      <div class="tool-card"><h4><span class="t-ico">🧩</span>Merge PDFs</h4><p>Combine many PDFs into one file, in the order you choose.</p></div>
-      <div class="tool-card"><h4><span class="t-ico">🗜️</span>Compress</h4><p>Shrink big PDFs for email &amp; portal uploads — you pick the quality.</p></div>
-      <div class="tool-card"><h4><span class="t-ico">✂️</span>Split</h4><p>Break one PDF into several — by count, ranges, or pages.</p></div>
-      <div class="tool-card"><h4><span class="t-ico">🔀</span>Reorder Pages</h4><p>Drag page thumbnails to rearrange. Rotate or delete pages.</p></div>
-      <div class="tool-card"><h4><span class="t-ico">🔢</span>Page Numbers</h4><p>Add page numbers with your choice of position and format.</p></div>
-      <div class="tool-card"><h4><span class="t-ico">🔒</span>Protect PDF</h4><p>Lock a PDF with a password — AES-256 encrypted, fully offline.</p></div>
-      <div class="tool-card"><h4><span class="t-ico">💧</span>Watermark</h4><p>Stamp CONFIDENTIAL, DRAFT or your own text across every page.</p></div>
-      <div class="tool-card"><h4><span class="t-ico">📋</span>Fill Form</h4><p>Type into a PDF's form fields, then flatten so the answers are locked in.</p></div>
-      <div class="tool-card"><h4><span class="t-ico">🏷️</span>Bates Numbering</h4><p>Stamp a unique running ID on every page — for legal &amp; tender packets.</p></div>
-      <div class="tool-card"><h4><span class="t-ico">🛠️</span>Repair PDF</h4><p>Rebuild a damaged or portal-rejected PDF into a clean file that uploads cleanly.</p></div>
+
+    <div class="tbx-primary">
+      <div class="tbx-card">
+        <span class="ti"><svg width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><path d="M10.5 17.5l6-6-2-2-6 6-.7 2.7z"/></svg></span>
+        <h4>Edit PDF</h4>
+        <p>Edit text, images and content directly inside your PDFs — fix typos, update values, redact.</p>
+      </div>
+      <div class="tbx-card">
+        <span class="ti"><svg width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><path d="M8 13l1.5 5L12 13l2.5 5L16 13"/></svg></span>
+        <h4>PDF to Word</h4>
+        <p>Turn PDFs into editable Word documents — with a scanned-page check first.</p>
+      </div>
+      <div class="tbx-card">
+        <span class="ti"><svg width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path d="M8 7V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><rect x="3" y="7" width="14" height="14" rx="2"/><path d="M8 14h6M11 11l3 3-3 3"/></svg></span>
+        <h4>Merge PDFs</h4>
+        <p>Combine multiple PDFs into one file, in the order you choose.</p>
+      </div>
+      <div class="tbx-card">
+        <span class="ti"><svg width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><path d="M12 11v7M12 11l-2.5 2.5M12 11l2.5 2.5M9 18.5h6"/></svg></span>
+        <h4>Compress PDF</h4>
+        <p>Reduce file size for email, portals and sharing — you pick the quality.</p>
+      </div>
     </div>
-    <p class="toolbox-more">Plus <strong>Header / Footer · Image ⇄ PDF · Word / Excel to PDF · Flatten · Crop / Trim · Remove Blank Pages · Remove Signature · Export</strong> — all offline, all included.</p>
+
+    <div class="tbx-cats">
+      <div class="tbx-cat"><h5>Edit</h5><p>Edit PDF · Fill Form · Remove Signature · Crop / Trim</p></div>
+      <div class="tbx-cat"><h5>Organize</h5><p>Merge · Split · Reorder Pages · Page Numbers · Bates Numbering · Remove Blank Pages</p></div>
+      <div class="tbx-cat"><h5>Convert</h5><p>PDF → Word · Word / Excel → PDF · Image → PDF · PDF → Image · Export</p></div>
+      <div class="tbx-cat"><h5>Protect</h5><p>Protect (AES-256) · Watermark · Header / Footer · Flatten · Repair</p></div>
+    </div>
+
+    <div class="tbx-cta">
+      <a href="https://pdfsigner-api.vercel.app/api/download" class="btn-primary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Get PDFSign — all 20+ tools included
+      </a>
+      <span class="note">Every tool is included in every plan. Free evaluation — no credit card required.</span>
+    </div>
   </div>
 </section>
 
@@ -3192,7 +3227,7 @@
 <section id="real-work" aria-label="Built for real work">
 <style>
 #bfrw-root [data-lucide], #bfrw-root .lucide { width:1em; height:1em; display:inline-block; vertical-align:middle; stroke-width:2; flex-shrink:0; }
-#bfrw-root { overflow:hidden; background:#ffffff !important; }
+#bfrw-root { overflow:hidden; background:#ffffff !important; padding:64px 24px 56px !important; }
 @media (max-width: 880px) {
   #bfrw-root { padding:56px 16px 64px !important; }
   #bfrw-root h2 { font-size:34px !important; }
@@ -3901,6 +3936,7 @@
         <div class="plan-divider"></div>
         <ul class="plan-features">
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Unlimited PDF signings</li>
+          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Complete PDF Toolbox included</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>All DSC tokens supported</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>1 Windows device</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Email support</li>
@@ -3923,6 +3959,7 @@
         <div class="plan-divider"></div>
         <ul class="plan-features">
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Unlimited PDF signings</li>
+          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Complete PDF Toolbox included</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>All DSC tokens supported</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span><span id="devicesAnnual">1 Windows device</span></li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Priority email support</li>
@@ -3940,14 +3977,15 @@
           <span class="plan-amount" id="priceLifetime">4,999</span>
           <span class="plan-period">one-time</span>
         </div>
-        <p class="plan-desc" id="descLifetime">Pay once, use forever. Ideal for firms and power users who sign daily.</p>
+        <p class="plan-desc" id="descLifetime">Pay once, use forever. Ideal for firms and power users.</p>
         <div class="plan-divider"></div>
         <ul class="plan-features">
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Unlimited PDF signings</li>
+          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Complete PDF Toolbox included</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>All DSC tokens supported</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span><span id="devicesLifetime">1 Windows device</span></li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Lifetime upgrades</li>
-          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Priority + WhatsApp support</li>
+          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Priority support</li>
         </ul>
         <a href="#pricing" class="plan-btn plan-btn-outline" id="btnLifetime" onclick="return handlePlanClick(event,'lifetime')">Get Lifetime Access</a>
       </div>
@@ -5050,7 +5088,7 @@ function setPlanMode(mode, forceRedraw) {
   if (isSolo) {
     document.getElementById('descLifetime').textContent = isUSD
       ? 'Pay once, use forever. One-time purchase, all future updates included.'
-      : 'Pay once, use forever. Ideal for firms and power users who sign daily.';
+      : 'Pay once, use forever. Ideal for firms and power users.';
   } else {
     var ltSeatInr = Math.round(getInr('team-lifetime') / 100 / 5);
     var ltSeatUsd = fmtUsd(getUsd('team-lifetime') / 5);
