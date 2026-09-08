@@ -472,6 +472,17 @@ tr:hover td{background:#1e293b33}
         <div id="tbx-bars" style="display:flex;flex-wrap:wrap;gap:8px"></div>
       </div>
 
+      <!-- Same email on more than one machine. Usually a Team-plan lead, not abuse:
+           keyless adoption only matches a VERIFIED email, so a colleague on a second
+           PC gets handed a trial instead of the licence the company already owns. -->
+      <div id="multi-machine" style="display:none;margin-bottom:24px">
+        <div style="font-size:13px;color:#94a3b8;margin-bottom:8px">
+          Same email, multiple machines
+          <span style="color:#64748b">— paid accounts here are Team-plan leads, not abuse</span>
+        </div>
+        <div id="mm-rows" style="display:flex;flex-direction:column;gap:6px"></div>
+      </div>
+
       <div id="usage-load" style="text-align:center;padding:48px;color:#64748b">Loading…</div>
       <div id="usage-wrap" style="display:none;overflow-x:auto">
         <table id="usage-tbl">
@@ -1587,6 +1598,7 @@ async function loadUsage() {
     document.getElementById('us-regular').textContent  = s.regular_users  ?? '—';
     document.getElementById('us-avgdays').textContent  = s.avg_days_active ?? '—';
     renderToolbox(s.toolbox || {});
+    renderMultiMachine(s.multi_machine);
     renderUsage();
   } catch(e) {
     document.getElementById('usage-load').textContent = 'Error: ' + e.message;
@@ -1610,6 +1622,31 @@ function tbxCell(list){
       + esc(tbxLabel(k)) + '</span>';
   }).join('');
 }
+// Same email across several machines. Paid rows are Team-plan leads; unpaid rows
+// with several trials are the ones worth a second look.
+function renderMultiMachine(list) {
+  var wrap = document.getElementById('multi-machine');
+  var host = document.getElementById('mm-rows');
+  if (!wrap || !host) return;
+  list = list || [];
+  if (!list.length) { wrap.style.display = 'none'; return; }
+  host.innerHTML = list.map(function(g) {
+    var lead = g.paid;
+    var tag  = lead
+      ? '<span style="background:#16a34a22;color:#4ade80;border:1px solid #16a34a44;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600">TEAM LEAD</span>'
+      : '<span style="background:#f59e0b22;color:#fbbf24;border:1px solid #f59e0b44;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600">' + g.machines + ' TRIALS</span>';
+    return '<div style="display:flex;align-items:center;gap:12px;background:#1e293b;border:1px solid #334155;'
+      + 'border-left:3px solid ' + (lead ? '#16a34a' : '#f59e0b') + ';border-radius:8px;padding:8px 12px">'
+      + '<span style="flex:1;font-size:12px;color:#e2e8f0">' + esc(g.email) + '</span>'
+      + '<span style="font-size:12px;color:#94a3b8">' + g.machines + ' machines</span>'
+      + '<span style="font-size:12px;color:#94a3b8">' + (Number(g.files)||0).toLocaleString('en-IN') + ' files</span>'
+      + '<span style="font-size:11px;color:#64748b">' + (g.last_seen ? esc(String(g.last_seen).slice(0,10)) : '—') + '</span>'
+      + tag
+      + '</div>';
+  }).join('');
+  wrap.style.display = 'block';
+}
+
 function renderToolbox(t) {
   document.getElementById('us-tbxusers').textContent = t.users ?? 0;
   document.getElementById('us-ctxmenu').textContent  =
