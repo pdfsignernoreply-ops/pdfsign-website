@@ -11,7 +11,7 @@
 (function () {
   'use strict';
 
-  var DOWNLOAD_API = 'https://pdfsigner-api.vercel.app/api/download';
+  var DOWNLOAD_API = 'https://api.pdfsign.in/api/download';
   /* Microsoft's official Store-installer endpoint (plain https — no protocol
      prompt, no interstitial). Same mechanism WhatsApp Desktop uses; the stub
      installs PDFSign FROM the Store, so Store updates/ratings are preserved. */
@@ -46,7 +46,7 @@
         '<div style="background:#f8fafc;border-radius:10px;padding:1rem 1.25rem;text-align:left;',
           'margin-bottom:1.5rem;font-size:.88rem;color:#475569;line-height:1.6;">',
           '<div style="margin-bottom:.4rem;">① Open <strong>pdfsign.in</strong> on your Windows PC</div>',
-          '<div style="margin-bottom:.4rem;">② Click <strong>Download Free Trial</strong></div>',
+          '<div style="margin-bottom:.4rem;">② Click <strong>Download Free Evaluation</strong></div>',
           '<div>③ Install from the <strong>Microsoft Store</strong> — free, no card needed</div>',
         '</div>',
         '<button id="pdfsignModalClose" style="background:#16A34A;color:#fff;border:none;',
@@ -133,7 +133,7 @@
     var anchor = e.target.closest('a');
     if (!anchor) return;
     var href = anchor.getAttribute('href') || '';
-    if (href.indexOf('pdfsigner-api.vercel.app/api/download') !== -1) {
+    if (href.indexOf('api.pdfsign.in/api/download') !== -1) {
       handleDownloadClick(e);
     }
   });

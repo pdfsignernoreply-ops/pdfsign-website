@@ -31,6 +31,7 @@ async function proxyToWeb(request, url, webPath) {
 
 export default {
   async fetch(request, env) {
+   try {
     const url = new URL(request.url);
 
     // Proxy /web and /web/* to the Vercel-deployed Next.js app
@@ -55,6 +56,19 @@ export default {
           'Access-Control-Allow-Origin': '*',
         },
       });
+    }
+
+    // Legacy/dead top-level URLs that map to the web tool. Redirect them to the
+    // real page with a clean 301 — otherwise the generic clean-URL→.html rule
+    // below sends them to a non-existent .html, which threw a Worker exception
+    // (Cloudflare 1101 → HTTP 500) and showed up as "Server error (5xx)" in
+    // Google Search Console.
+    const DEAD_REDIRECTS = {
+      '/editor': '/web', '/editor.html': '/web',
+      '/draw':   '/web/draw', '/draw.html': '/web/draw',
+    };
+    if (DEAD_REDIRECTS[url.pathname]) {
+      return Response.redirect(`${url.origin}${DEAD_REDIRECTS[url.pathname]}`, 301);
     }
 
     // Blog post .html URLs → 301 redirect to clean URL.
@@ -101,13 +115,30 @@ export default {
       }
     }
 
-    // Non-blog clean URLs → 301 redirect to .html to prevent duplicate content.
-    // (Cloudflare Pages transparently serves /foo.html for /foo, but the canonical
-    // in these pages is the .html URL, so we enforce that with a redirect.)
-    const pathSegment = url.pathname.split('/').pop();
-    if (pathSegment && !pathSegment.includes('.') && !url.pathname.endsWith('/')) {
-      return Response.redirect(`${url.origin}${url.pathname}.html${url.search}`, 301);
+    // Non-blog .html URLs → 301 to the clean URL.
+    // Workers Assets already redirects /foo.html → /foo, but it uses a 307
+    // (TEMPORARY), which tells Google to KEEP the .html URL indexed. The result
+    // is two indexed URLs competing for the same query: /verify sat at position
+    // 32.2 and /verify.html at 26.5 in Search Console (Sep 2026), splitting the
+    // ranking signal instead of consolidating it. A 301 tells Google the move is
+    // permanent so the clean URL inherits the equity. Blog .html is handled by
+    // its own 301 above; this covers every other page.
+    if (
+      url.pathname.endsWith('.html') &&
+      !url.pathname.startsWith('/blog/')
+    ) {
+      const cleanPath = url.pathname === '/index.html'
+        ? '/'
+        : url.pathname.slice(0, -5);   // strip .html
+      return Response.redirect(`${url.origin}${cleanPath}${url.search}`, 301);
     }
+
+    // NOTE: the old "clean URL → .html 301" rule was REMOVED (GSC fix, 2026-08-08).
+    // Clean URLs are now the canonical form site-wide (links, canonicals, sitemap all use
+    // them), and Cloudflare Workers Assets serves /foo from foo.html (200) and auto-redirects
+    // /foo.html → /foo. The old rule only fired for clean URLs with NO .html asset, redirecting
+    // them to a non-existent .html → a Worker exception (Cloudflare 1101 → 5xx) that showed up
+    // as "Server error (5xx)" and "Page with redirect" in Search Console.
 
     const response = await env.ASSETS.fetch(request);
 
@@ -130,5 +161,16 @@ export default {
     }
 
     return response;
+   } catch (err) {
+    // Never surface a 5xx to crawlers for a missing/broken asset. A thrown
+    // exception (e.g. env.ASSETS.fetch on a non-existent .html → Cloudflare 1101)
+    // is turned into a clean 404 so Search Console sees "Not found", not
+    // "Server error (5xx)".
+    console.error('[worker] error serving', request.url, err && (err.stack || err.message));
+    return new Response('Not found', {
+      status: 404,
+      headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' },
+    });
+   }
   }
 };

@@ -12,7 +12,7 @@
 (function () {
   'use strict';
 
-  var DOWNLOAD_URL = 'https://pdfsigner-api.vercel.app/api/download';
+  var DOWNLOAD_URL = 'https://api.pdfsign.in/api/download';
 
   /* ─── CSS ─────────────────────────────────────────────────────────────── */
   var CSS = [
