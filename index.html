@@ -36,32 +36,17 @@
       }, true);
     })();
 </script>
-<title>PDFSign.in — Sign PDF with DSC Token, 100% Offline | India</title>
-<meta name="description" content="Digitally sign any PDF with your USB DSC token or signature stamp image. Bulk sign multiple PDFs in one click — 100+ PDFs in 60 seconds, 100% offline, no Java, no cloud uploads. Free to download with a free evaluation — up to 30 days or 100 signed PDFs. PDF security, RFC 3161 timestamp. Accepted on GeM, CPPP, and all Indian government portals." />
+<title>PDFSign — Sign PDF with DSC / USB Token &amp; Stamp, 100% Offline</title>
+<meta name="description" content="Digitally sign any PDF with your DSC / USB security token or signature stamp image — 100% offline, no Java, no cloud uploads. Bulk sign 100+ PDFs in 60 seconds, plus 20+ built-in PDF tools: edit, merge, compress and more. Free evaluation — up to 30 days or 100 signed PDFs. Accepted on GeM, CPPP, and government portals; eIDAS & E-SIGN compatible worldwide." />
 <meta name="keywords" content="digitally sign PDF, sign PDF online, digital signature PDF, PDF digital signature, sign PDF with DSC token, digital signature online, electronic signature PDF, DSC token PDF signer, sign PDF Windows, digital signature software India, PDF signer India, HyperPKI PDF signer, ePass PDF signing, Proxkey PDF sign, bulk PDF signing, sign multiple PDFs, batch PDF signing, batch PDF signer, bulk sign PDFs, sign PDF in bulk, sign hundreds of PDFs, automated PDF signing, free PDF signer, free bulk PDF signer, free PDF digital sign, sign PDF without Java, offline PDF signer, GeM portal digital signature, CPPP PDF signing, e-procurement PDF signer India, Class 3 DSC PDF, signature stamp PDF, wet signature PDF, PDF security restrict print, RFC 3161 timestamp PDF" />
 <meta name="robots" content="index, follow" />
 <meta name="author" content="PDFSign.in" />
 <link rel="canonical" href="https://pdfsign.in/" />
 <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
-<!-- Geo targeting — India -->
-<meta name="geo.region" content="IN" />
-<meta name="geo.country" content="India" />
-<meta name="language" content="en-IN" />
+<meta name="language" content="en" />
 <meta name="target" content="all" />
 <meta name="audience" content="all" />
-<meta name="coverage" content="India" />
-<meta name="distribution" content="India" />
-
-<!-- hreflang — India + diaspora -->
-<link rel="alternate" hreflang="en-in" href="https://pdfsign.in/" />
-<link rel="alternate" hreflang="en-us" href="https://pdfsign.in/global" />
-<link rel="alternate" hreflang="en-gb" href="https://pdfsign.in/global" />
-<link rel="alternate" hreflang="en-ae" href="https://pdfsign.in/global" />
-<link rel="alternate" hreflang="en-au" href="https://pdfsign.in/global" />
-<link rel="alternate" hreflang="en-ca" href="https://pdfsign.in/global" />
-<link rel="alternate" hreflang="en" href="https://pdfsign.in/global" />
-<link rel="alternate" hreflang="x-default" href="https://pdfsign.in/global" />
 <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css" media="print" onload="this.media='all'" />
 <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css" /></noscript>
@@ -70,15 +55,14 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="PDFSign.in" />
 <meta property="og:url" content="https://pdfsign.in/" />
-<meta property="og:title" content="PDFSign.in — Sign PDFs with Your DSC Token" />
-<meta property="og:description" content="Digitally sign PDFs on Windows using your USB DSC token. Offline, private, and accepted on all Indian government portals." />
+<meta property="og:title" content="PDFSign — Sign PDF with DSC / USB Token &amp; Stamp, 100% Offline" />
+<meta property="og:description" content="Sign PDFs with your DSC / USB security token or signature stamp — 100% offline on Windows, plus 20+ built-in PDF tools. Your documents never leave your PC." />
 <meta property="og:image" content="https://pdfsign.in/og-image.png" />
-<meta property="og:locale" content="en_IN" />
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="PDFSign.in — Sign PDFs with Your DSC Token" />
-<meta name="twitter:description" content="Sign PDFs on Windows using your USB DSC token. Accepted on GeM, CPPP, and all Indian government portals." />
+<meta name="twitter:title" content="PDFSign — Sign PDF with DSC / USB Token &amp; Stamp, 100% Offline" />
+<meta name="twitter:description" content="Sign PDFs with your DSC / USB token or signature stamp — 100% offline on Windows, plus 20+ built-in PDF tools." />
 <meta name="twitter:image" content="https://pdfsign.in/og-image.png" />
 
 <!-- Favicon -->
@@ -128,8 +112,9 @@
     --gray-800: #1E293B;
     --text: #1E293B;
     --muted: #64748B;
-    --font-display: 'DM Serif Display', serif;
-    --font-body: 'Outfit', sans-serif;
+    --font-display: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-body: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-serif: 'DM Serif Display', Georgia, serif;
     --max: 1140px;
     --r: 10px;
     --r-lg: 16px;
@@ -152,9 +137,9 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(27, 42, 71, 0.97);
+    background: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(147, 197, 253, 0.1);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
   }
 
   .nav-inner {
@@ -164,6 +149,7 @@
     height: 64px;
     display: flex;
     align-items: center;
+    gap: 14px;
     justify-content: space-between;
   }
 
@@ -204,33 +190,35 @@
   }
 
   .logo-name {
-    font-family: var(--font-display);
+    font-family: var(--font-body);
+    font-weight: 700;
     font-size: 20px;
-    color: var(--white);
+    color: var(--navy);
     letter-spacing: -0.01em;
   }
 
   .logo-name em {
     font-style: normal;
-    color: var(--green-light);
+    color: var(--green);
   }
 
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 22px;
     list-style: none;
   }
 
   .nav-links a {
     text-decoration: none;
-    color: rgba(255,255,255,0.75);
-    font-size: 14px;
+    color: var(--gray-600);
+    white-space: nowrap;
+    font-size: 13.5px;
     font-weight: 400;
     transition: color 0.2s;
   }
 
-  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover { color: var(--navy); }
 
   .nav-cta {
     background: var(--green);
@@ -257,7 +245,7 @@
     display: block;
     width: 22px;
     height: 2px;
-    background: rgba(255,255,255,0.8);
+    background: var(--navy);
     border-radius: 2px;
     transition: all 0.25s;
   }
@@ -276,15 +264,15 @@
       position: absolute;
       top: 64px;
       left: 0; right: 0;
-      background: rgba(17,28,48,0.98);
+      background: rgba(255,255,255,0.98);
       backdrop-filter: blur(12px);
       padding: 16px 24px 24px;
-      border-bottom: 1px solid rgba(147,197,253,0.12);
+      border-bottom: 1px solid rgba(15,23,42,0.08);
       z-index: 200;
     }
     .nav-links.open { display: flex; }
     .nav-links li { width: 100%; }
-    .nav-links a { display: block; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 15px; }
+    .nav-links a { display: block; padding: 12px 0; border-bottom: 1px solid rgba(15,23,42,0.06); font-size: 15px; }
     .nav-links li:last-child a { border-bottom: none; }
     .nav-cta { margin-top: 8px; display: inline-block; }
   }
@@ -767,10 +755,11 @@
 
   .section-title {
     font-family: var(--font-display);
-    font-size: clamp(28px, 3.5vw, 40px);
-    line-height: 1.15;
+    font-weight: 700;
+    font-size: clamp(1.875rem, 1.4rem + 2.2vw, 2.75rem);
+    line-height: 1.12;
     letter-spacing: -0.02em;
-    color: var(--navy);
+    color: #0F172A;
     margin-bottom: 16px;
   }
 
@@ -1040,6 +1029,7 @@
     color: var(--muted);
     align-self: end;
     padding-bottom: 4px;
+    white-space: nowrap;
   }
 
   .plan-card.featured .plan-period { color: rgba(255,255,255,0.5); }
@@ -1537,14 +1527,14 @@
     align-items: center;
     gap: 6px;
     padding: 5px 12px;
-    border: 1px solid rgba(255,255,255,0.15);
+    border: 1px solid var(--gray-200);
     border-radius: 100px;
-    background: rgba(255,255,255,0.05);
+    background: var(--gray-50);
   }
   .made-in-india span {
     font-size: 11px;
     font-weight: 600;
-    color: rgba(255,255,255,0.75);
+    color: var(--gray-600);
     letter-spacing: 0.05em;
     white-space: nowrap;
   }
@@ -1629,7 +1619,7 @@
 
   /* ─── ROADMAP ─── */
   /* ─── TUTORIALS ─── */
-  .tutorials { background: var(--gray-50); padding: 88px 24px; }
+  .tutorials { background: var(--gray-50); padding: 56px 24px 88px; }
   .tutorials-header { text-align: center; margin-bottom: 48px; }
   .tutorials-grid {
     display: grid;
@@ -2312,15 +2302,201 @@
   html.intl-user .intl-only   { display: block; }
   html.intl-user .intl-only.trust-grid        { display: grid !important; }
   html.intl-user .intl-only.trust-capability  { display: flex !important; }
+  /* Word-level geo swaps inside a sentence: .geo-inline keeps the shown element inline */
+  .india-only.geo-inline { display:inline; }
+  .india-only.geo-flex   { display:flex; }
+  html.intl-user .intl-only.geo-inline { display:inline !important; }
+  html.intl-user .intl-only.geo-flex   { display:flex !important; }
+
+  /* ─── LIGHT HERO (global-page look) ─── */
+  .heroG {
+    background:
+      linear-gradient(rgba(147,197,253,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(147,197,253,0.045) 1px, transparent 1px),
+      linear-gradient(180deg, #111C30, #16233F 60%, #1B2A47);
+    background-size: 44px 44px, 44px 44px, auto;
+    padding: 64px 0 100px;
+  }
+  .heroG-inner { max-width: var(--max); margin:0 auto; padding:0 24px; display:grid; grid-template-columns: 0.95fr 1.05fr; gap:44px; align-items:center; }
+  .heroG-eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; white-space:nowrap; color:#4ADE80; border:1px solid rgba(74,222,128,0.35); background:rgba(22,163,74,0.10); border-radius:999px; padding:7px 15px; }
+  @media(max-width:560px){ .heroG-eyebrow { white-space:normal; } }
+  .heroG-eyebrow b { width:6px; height:6px; border-radius:50%; background:#4ADE80; padding:0; }
+  .heroG h1, .heroG .hero-alt-h1 { font-family:var(--font-serif); font-weight:400; font-size:clamp(1.85rem,2.75vw,2.55rem); line-height:1.22; letter-spacing:0; color:#fff; margin:20px 0 18px; white-space:nowrap; }
+  @media(max-width:1100px){ .heroG h1, .heroG .hero-alt-h1 { white-space:normal; } }
+  .heroG h1 .grn, .heroG .hero-alt-h1 .grn { color:#93C5FD; font-style:italic; }
+  .heroG-sub { color:rgba(255,255,255,0.75); font-size:1.02rem; line-height:1.7; max-width:34em; margin-bottom:8px; }
+  .heroG-sub em { color:#fff; font-style:italic; }
+  .heroG-urgency { color:#4ADE80; font-weight:500; font-style:italic; margin-bottom:20px; }
+  .heroG-verify { color:rgba(255,255,255,0.8); font-size:.88rem; margin:2px 0 0; white-space:nowrap; }
+  @media(max-width:1100px){ .heroG-verify { white-space:normal; } }
+  .heroG-verify.small { color:rgba(255,255,255,0.45); font-size:.78rem; }
+  .heroG-actions { display:flex; flex-direction:column; gap:10px; align-items:flex-start; margin-bottom:6px; }
+  .heroG-store { display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:500; color:rgba(255,255,255,0.6); text-decoration:none; }
+  .heroG-store:hover { color:#fff; }
+  .heroG-weblink { font-size:13px; color:var(--gray-600); }
+  .heroG-weblink a { color:var(--green); font-weight:600; text-decoration:none; }
+  .heroG-checks { display:flex; flex-wrap:nowrap; gap:8px 14px; margin-top:16px; }
+  @media(max-width:1100px){ .heroG-checks { flex-wrap:wrap; } }
+  .heroG-check { display:flex; align-items:center; gap:5px; font-size:12.5px; white-space:nowrap; color:rgba(255,255,255,0.75); }
+  .heroG-trust { display:flex; align-items:center; gap:12px; margin-top:22px; }
+  .heroG-trust .trust-text { font-size:13px; color:rgba(255,255,255,0.6); margin:0; }
+  .heroG-trust .trust-text strong { color:#fff; }
+  .heroG-visual { position:relative; perspective:2200px; padding:30px 20px 40px; }
+  .heroG-app { border-radius:14px; border:1px solid var(--gray-200); overflow:hidden; background:#fff;
+    transform: rotateY(-6deg) rotateX(1.5deg);
+    box-shadow: 0 32px 64px -28px rgba(15,23,42,0.30), 0 12px 24px -16px rgba(15,23,42,0.12); }
+  .heroG-app img { display:block; width:100%; height:auto; }
+  .float-card { position:absolute; z-index:3; background:#fff; border:1px solid var(--gray-200); border-radius:12px; padding:10px 14px; box-shadow:0 14px 34px rgba(15,23,42,0.14); display:flex; align-items:center; gap:9px; font-size:13px; font-weight:600; color:var(--navy); white-space:nowrap; }
+  .fc-tl { top:6px; left:0; }
+  .fc-tr { top:6px; right:0; }
+  .fc-bl { bottom:2px; left:0; }
+  .fc-br { bottom:2px; right:0; }
+  .fc-stat b { display:block; font-size:15px; line-height:1.2; color:var(--navy); }
+  .fc-stat small { display:block; font-weight:400; font-size:11px; color:var(--gray-400); }
+  .fc-ok { display:inline-flex; width:26px; height:26px; border-radius:50%; background:var(--green-pale); color:var(--green); align-items:center; justify-content:center; flex-shrink:0; }
+  .sigv-card { position:absolute; z-index:2; right:6%; bottom:18%; width:236px; background:#fff; border:1px solid var(--gray-200); border-radius:10px; padding:12px 14px; box-shadow:0 18px 44px rgba(15,23,42,0.18); }
+  .sigv-card h5 { color:var(--green); font-size:.92rem; font-weight:700; margin:0 0 5px; font-family:var(--font-body); }
+  .sigv-card p { font-size:11px; color:var(--gray-600); line-height:1.55; margin:0; }
+  .sigv-card strong { color:var(--navy); }
+  .sigv-check { position:absolute; right:10px; bottom:10px; }
+  .tokchip { position:absolute; z-index:3; left:0; bottom:24%; background:var(--navy); border-radius:12px; padding:10px 14px; display:flex; align-items:center; gap:10px; box-shadow:0 14px 34px rgba(15,23,42,0.30); }
+  .tokchip .tk-ico { width:34px; height:34px; border-radius:9px; background:rgba(147,197,253,0.12); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .tokchip .tk-label { font-size:10.5px; color:rgba(255,255,255,0.55); }
+  .tokchip .tk-value { font-size:12.5px; font-weight:600; color:#93C5FD; }
+  @media(max-width:960px){
+    .heroG-inner { grid-template-columns:1fr; gap:30px; }
+    .heroG-visual { padding:24px 8px 36px; }
+    .sigv-card { right:2%; width:210px; }
+  }
+  @media(max-width:520px){
+    .float-card { padding:7px 10px; font-size:11.5px; }
+    .fc-stat b { font-size:13px; }
+    .sigv-card { display:none; }
+  }
+
+  /* ─── TWO WAYS TO SIGN ─── */
+  .signmodes { background: var(--off-white); padding: 90px 0 48px; }
+  .signmodes-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:48px; }
+  .signmode-card { background:#fff; border:1px solid var(--gray-200); border-radius:16px; padding:36px 32px; position:relative; }
+  .signmode-card.popular { border-color:var(--green); box-shadow:0 12px 40px rgba(22,163,74,0.10); }
+  .signmode-pop { position:absolute; top:-12px; left:32px; background:var(--green); color:#fff; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:4px 12px; border-radius:999px; }
+  .signmode-icon { width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:18px; }
+  .signmode-card h3 { font-family:var(--font-body); font-weight:700; font-size:1.45rem; color:var(--navy); margin-bottom:4px; }
+  .signmode-tag { font-size:.85rem; font-weight:600; color:var(--green); margin-bottom:12px; }
+  .signmode-card > p { color:var(--gray-600); font-size:.95rem; line-height:1.6; margin-bottom:18px; }
+  .signmode-list { list-style:none; }
+  .signmode-list li { display:flex; gap:10px; align-items:flex-start; font-size:.92rem; color:var(--gray-600); padding:5px 0; }
+  .signmode-list svg { flex-shrink:0; margin-top:3px; }
+  .signmode-strip { display:flex; gap:28px; flex-wrap:wrap; justify-content:center; margin-top:44px; }
+  .signmode-strip-item { display:flex; gap:10px; align-items:center; font-size:.9rem; color:var(--gray-600); }
+  .signmode-strip-item strong { color:var(--navy); font-weight:600; }
+  @media(max-width:820px){ .signmodes-grid { grid-template-columns:1fr; } }
+
+  /* ─── PRIVACY FLOW ─── */
+  .privacy-flow { background:#fff; padding:90px 0; }
+  .privacy-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:48px; }
+  .privacy-col { border-radius:16px; padding:30px 28px; border:1px solid var(--gray-200); }
+  .privacy-col.cloud { background:var(--gray-50); position:relative; }
+  .privacy-col.local { background:var(--green-pale); border-color:rgba(22,163,74,0.35); }
+  .privacy-col h4 { font-size:1.05rem; color:var(--navy); margin-bottom:18px; display:flex; align-items:center; gap:8px; }
+  .privacy-col.cloud h4 { color:#B91C1C; }
+  .privacy-step { display:flex; gap:12px; align-items:flex-start; padding:9px 0; font-size:.92rem; color:var(--gray-600); }
+  .privacy-step .n { width:24px; height:24px; border-radius:50%; background:var(--gray-200); color:var(--gray-600); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0; }
+  .privacy-col.local .privacy-step .n { background:var(--green); color:#fff; }
+  .privacy-step strong { color:var(--navy); display:block; }
+  .privacy-foot { margin-top:14px; font-size:.85rem; font-weight:600; }
+  .privacy-col.cloud .privacy-foot { color:#B91C1C; }
+  .privacy-col.local .privacy-foot { color:var(--green); }
+  .privacy-honest { margin:36px auto 0; max-width:720px; text-align:center; font-size:.88rem; color:var(--gray-400); line-height:1.6; }
+  @media(max-width:820px){ .privacy-grid { grid-template-columns:1fr; } }
+
+  /* ─── TOOLBOX (product-capability redesign) ─── */
+  .toolbox { background:#172847; padding:84px 0 64px; position:relative; overflow:hidden; }
+  .toolbox::before { content:""; position:absolute; left:50%; top:-140px; transform:translateX(-50%); width:760px; height:420px; background:radial-gradient(ellipse at center, rgba(74,222,128,0.14), transparent 65%); pointer-events:none; }
+  .tbx-head { position:relative; text-align:center; max-width:860px; margin:0 auto 40px; }
+  .tbx-kicker { display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#4ADE80; border:1px solid rgba(74,222,128,0.35); background:rgba(22,163,74,0.10); border-radius:999px; padding:7px 15px; margin-bottom:20px; }
+  .tbx-head h2 { font-family:var(--font-body); font-weight:700; font-size:clamp(1.7rem,2.5vw,2.3rem); line-height:1.12; letter-spacing:-0.02em; color:#fff; margin:0 0 14px; white-space:nowrap; }
+  @media(max-width:900px){ .tbx-head h2 { white-space:normal; } }
+  .tbx-head h2 .grn2 { color:#4ADE80; }
+  .tbx-head p { color:rgba(255,255,255,0.65); font-size:1.02rem; line-height:1.65; margin:0 0 18px; }
+  .tbx-pill { display:inline-flex; align-items:center; gap:8px; font-size:.85rem; font-weight:600; color:#A7F3D0; background:rgba(22,163,74,0.12); border:1px solid rgba(74,222,128,0.25); border-radius:999px; padding:8px 18px; }
+  .tbx-primary { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .tbx-card { background:#263957; border:1px solid rgba(255,255,255,0.12); border-radius:16px; padding:24px 22px; transition:background .2s, transform .2s, border-color .2s; }
+  .tbx-card:hover { background:#304565; transform:translateY(-4px); border-color:rgba(255,255,255,0.2); }
+  .tbx-card .ti { display:inline-flex; width:42px; height:42px; border-radius:11px; background:rgba(74,222,128,0.14); color:#4ADE80; align-items:center; justify-content:center; margin-bottom:14px; }
+  .tbx-card h4 { color:#fff; font-family:var(--font-body); font-size:1.12rem; font-weight:700; margin:0 0 6px; }
+  .tbx-card p { color:rgba(255,255,255,0.55); font-size:.85rem; line-height:1.55; margin:0; }
+  .tbx-cats { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:18px; }
+  .tbx-cat { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:14px; padding:16px 18px; }
+  .tbx-cat h5 { font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#4ADE80; margin:0 0 9px; }
+  .tbx-cat p { color:rgba(255,255,255,0.6); font-size:.85rem; line-height:1.8; margin:0; }
+  .tbx-cta { text-align:center; margin-top:34px; }
+  .tbx-cta .note { display:block; margin-top:12px; font-size:.82rem; color:rgba(255,255,255,0.45); }
+  @media(max-width:1000px){ .tbx-primary, .tbx-cats { grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:520px){ .tbx-primary, .tbx-cats { grid-template-columns:1fr; } }
+
+  /* ─── BULK BAND ─── */
+  .bulk-band { background:var(--off-white); padding:90px 0; }
+  .bulk-inner { display:grid; grid-template-columns:1.05fr 1fr; gap:48px; align-items:center; }
+  .bulk-inner img { width:100%; border-radius:16px; border:1px solid var(--gray-200); box-shadow:0 20px 50px rgba(15,23,42,0.10); }
+  .bulk-copy h2 { font-family:'DM Serif Display',serif; font-size:2rem; color:var(--navy); line-height:1.2; margin-bottom:14px; }
+  .bulk-copy p { color:var(--gray-600); font-size:1rem; line-height:1.65; margin-bottom:18px; }
+  .bulk-stats { display:flex; gap:36px; margin-bottom:22px; }
+  .bulk-stat b { display:block; font-size:1.7rem; color:var(--green); font-weight:700; }
+  .bulk-stat span { font-size:.82rem; color:var(--gray-400); }
+  @media(max-width:860px){ .bulk-inner{grid-template-columns:1fr;} }
+
+  /* ─── TOKEN WALL v2 (global port) ─── */
+  .tokenwall { background:#fff; padding:48px 0 90px; }
+  .tw2-head { display:grid; grid-template-columns:1.15fr 1fr; gap:48px; align-items:center; margin-bottom:40px; }
+  .tw2-badge { display:inline-flex; align-items:center; gap:7px; border:1px solid rgba(22,163,74,0.3); background:var(--green-pale); color:#116B33; font-size:11.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; border-radius:999px; padding:6px 14px; margin-bottom:18px; }
+  .tw2-head h2 { font-family:var(--font-body); font-weight:700; font-size:clamp(1.9rem,3vw,2.6rem); line-height:1.12; letter-spacing:-0.02em; color:#0F172A; margin:0 0 14px; }
+  .tw2-head h2 .grn { color:var(--green); }
+  .tw2-head p { color:var(--gray-600); font-size:1.02rem; line-height:1.65; max-width:46em; margin:0; }
+  .tw2-photos { position:relative; margin:0 auto; width:100%; max-width:460px; height:240px; }
+  .tw2-shield { position:absolute; left:50%; top:0; transform:translateX(-50%); z-index:2; display:flex; align-items:center; justify-content:center; width:120px; height:120px; }
+  .tw2-shield .ring { position:absolute; left:50%; top:50%; margin-left:-78px; margin-top:-78px; width:156px; height:156px; border-radius:50%; border:1px solid rgba(22,163,74,0.25); background:radial-gradient(circle, rgba(22,163,74,0.10), transparent 65%); }
+  .tw2-photos img { position:absolute; z-index:1; height:auto; object-fit:contain; }
+  .tw2-photos .p1 { width:140px; left:4px; bottom:0; transform:rotate(-6deg); z-index:3; mix-blend-mode:multiply; }
+  .tw2-photos .p2 { width:150px; left:50%; bottom:10px; transform:translateX(-50%); mix-blend-mode:multiply; }
+  .tw2-photos .p3 { width:78px; right:20px; bottom:6px; transform:rotate(10deg); z-index:3; mix-blend-mode:multiply; }
+  .tw2-plus { position:absolute; color:var(--green); font-size:20px; font-weight:600; opacity:.7; animation:tw-spark 2.6s ease-in-out infinite; }
+  @keyframes tw-shield-breathe { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+  @keyframes tw-ring-pulse { 0%,100%{opacity:.4; transform:scale(.97)} 50%{opacity:.9; transform:scale(1.05)} }
+  @keyframes tw-spark { 0%,100%{opacity:.3} 50%{opacity:1} }
+  .tw2-shield svg { transform-origin:center; animation:tw-shield-breathe 3.2s ease-in-out infinite; filter:drop-shadow(0 16px 22px rgba(22,163,74,0.28)); }
+  .tw2-shield .ring { animation:tw-ring-pulse 3.2s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce){ .tw2-shield svg, .tw2-shield .ring, .tw2-plus { animation:none; } }
+  .tw2-wall { border:1px solid var(--gray-200); border-radius:18px; background:#fff; box-shadow:0 6px 20px rgba(15,23,42,0.05); padding:28px 32px; }
+  .tw2-wall h3 { text-align:center; font-size:.95rem; font-weight:700; color:#0F172A; margin:0 0 22px; position:relative; }
+  .tw2-wall h3::before, .tw2-wall h3::after { content:""; position:absolute; top:50%; width:18%; height:1px; background:var(--gray-200); }
+  .tw2-wall h3::before { left:0; } .tw2-wall h3::after { right:0; }
+  .tw2-logos { display:flex; flex-wrap:nowrap; align-items:center; justify-content:space-between; gap:10px; }
+  @media(max-width:1000px){ .tw2-logos { flex-wrap:wrap; justify-content:center; gap:16px 28px; } }
+  .tw2-logos img { width:auto; object-fit:contain; box-sizing:content-box; }
+  .tw2-logos > * { border-radius:12px; padding:8px 6px; transition:transform .2s, box-shadow .2s, background .2s; flex-shrink:1; min-width:0; }
+  .tw2-logos > *:hover { transform:translateY(-4px); background:#fff; box-shadow:0 10px 24px rgba(15,23,42,0.10); }
+  .tw2-pkcs { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:#0F172A; line-height:1.15; }
+  .tw2-tm { text-align:center; margin:18px auto 0; font-size:.72rem; color:var(--gray-400); max-width:none; white-space:nowrap; }
+  @media(max-width:1050px){ .tw2-tm { white-space:normal; } }
+  .tw2-caps { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; border:1px solid var(--gray-200); border-radius:18px; background:#fff; box-shadow:0 6px 20px rgba(15,23,42,0.05); padding:26px 20px; margin-top:28px; }
+  .tw2-cap { display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; }
+  .tw2-cap span.ci2 { display:inline-flex; width:64px; height:64px; border-radius:50%; background:var(--green-pale); color:var(--green); align-items:center; justify-content:center; }
+  .tw2-cap span.ci2 svg { width:30px; height:30px; }
+  .tw2-cap h4 { font-size:.88rem; font-weight:700; color:#0F172A; margin:0; }
+  .tw2-cap p { font-size:.76rem; color:var(--gray-600); margin:0; line-height:1.45; }
+  .tokenwall-note { text-align:center; margin-top:26px; font-size:.9rem; color:var(--gray-600); }
+  @media(max-width:900px){ .tw2-head{grid-template-columns:1fr;} .tw2-caps{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:520px){ .tw2-caps{grid-template-columns:1fr;} .tw2-photos .p1{width:110px} .tw2-photos .p2{width:104px} .tw2-photos .p3{width:70px} }
   /* ── International checkout modal ── */
   #intlCheckoutModal { display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:9999; align-items:center; justify-content:center; padding:1rem; }
   #intlCheckoutModal.open { display:flex; }
   .intl-modal-box { background:#fff; border-radius:20px; padding:2.5rem 2rem; max-width:420px; width:100%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,.25); }
-  .intl-modal-box h3 { font-family:'DM Serif Display',serif; font-size:1.4rem; color:var(--navy); margin-bottom:.5rem; }
+  .intl-modal-box h3 { font-family:var(--font-body); font-weight:700; font-size:1.4rem; color:var(--navy); margin-bottom:.5rem; }
   .intl-modal-box p  { color:#64748b; font-size:.9rem; line-height:1.6; margin-bottom:1.25rem; }
-  .intl-modal-box input { width:100%; padding:.7rem 1rem; border:1px solid var(--gray-200); border-radius:8px; font-size:.95rem; font-family:'Outfit',sans-serif; margin-bottom:.75rem; outline:none; }
+  .intl-modal-box input { width:100%; padding:.7rem 1rem; border:1px solid var(--gray-200); border-radius:8px; font-size:.95rem; font-family:var(--font-body); margin-bottom:.75rem; outline:none; }
   .intl-modal-box input:focus { border-color:var(--green); }
-  .intl-modal-pay-btn { width:100%; background:var(--green); color:#fff; border:none; padding:.8rem; border-radius:8px; font-weight:700; font-size:1rem; cursor:pointer; font-family:'Outfit',sans-serif; }
+  .intl-modal-pay-btn { width:100%; background:var(--green); color:#fff; border:none; padding:.8rem; border-radius:8px; font-weight:700; font-size:1rem; cursor:pointer; font-family:var(--font-body); }
   .intl-modal-pay-btn:hover { background:var(--green-light); }
   .intl-modal-pay-btn:disabled { opacity:.6; cursor:not-allowed; }
   .intl-modal-close-link { display:block; margin-top:.75rem; font-size:.82rem; color:#94a3b8; cursor:pointer; }
@@ -2333,18 +2509,212 @@
   .plan-team-note.show { display: block; }
   .plan-card.featured { position: relative; }
 
+/* ─── HERO VISUAL v2 — layered doc-over-app composition ─── */
+.heroV { position:relative; width:100%; max-width:660px; margin-left:auto; aspect-ratio: 1.08 / 1; perspective:2200px; }
+.heroV-pill { position:absolute; z-index:4; top:4%; left:0; display:inline-flex; align-items:center; gap:7px; background:var(--green); color:#fff; font-size:13px; font-weight:600; padding:8px 16px; border-radius:999px; box-shadow:0 10px 24px rgba(22,163,74,0.35); }
+.heroV-app { position:absolute; z-index:1; top:2%; right:-2%; width:74%; transform:rotateY(-20deg) rotateX(2deg); border-radius:10px; border:1px solid var(--gray-200); overflow:hidden; background:#fff; box-shadow:0 24px 60px -20px rgba(15,23,42,0.28); }
+.heroV-app img { display:block; width:100%; height:auto; }
+.heroV-doc { position:absolute; z-index:3; left:0; top:20%; width:95%; background:#fff; border-radius:12px; box-shadow:0 30px 70px -18px rgba(15,23,42,0.35); }
+.heroV-doc-banner { display:flex; align-items:center; gap:8px; background:#EFF6FF; border-radius:12px 12px 0 0; padding:11px 16px; font-size:12px; font-weight:600; color:var(--navy); white-space:nowrap; }
+.heroV-doc-banner .b-ok { display:inline-flex; width:18px; height:18px; border-radius:50%; background:var(--green); color:#fff; align-items:center; justify-content:center; flex-shrink:0; }
+.heroV-doc-body { padding:18px 18px 62px; }
+.heroV-line { height:7px; border-radius:999px; background:var(--gray-200); margin-bottom:10px; opacity:0.75; }
+.heroV-line.w1{width:92%} .heroV-line.w2{width:78%} .heroV-line.w3{width:96%} .heroV-line.w4{width:60%} .heroV-line.w5{width:84%} .heroV-line.w6{width:40%}
+.heroV-sig { position:relative; margin:16px 0 0 auto; width:64%; max-width:340px; border:1px solid var(--gray-200); border-radius:8px; padding:12px 14px; background:#fff; }
+.heroV-sig h5 { color:var(--green); font-size:.98rem; font-weight:700; margin:0 0 6px; font-family:var(--font-body); }
+.heroV-sig p { font-size:11px; color:var(--gray-600); line-height:1.6; margin:0; padding-right:6px; }
+.heroV-sig strong { color:var(--navy); }
+.heroV-sig .big-check { position:absolute; right:10px; bottom:30px; width:52px; height:auto; filter:drop-shadow(0 4px 8px rgba(21,128,61,0.3)); transform:rotate(-4deg); }
+.heroV-doc .tokchip { position:absolute; z-index:5; left:-14px; bottom:16px; top:auto; }
+.heroV-stat { position:absolute; z-index:4; background:#fff; border:1px solid var(--gray-200); border-radius:12px; padding:10px 14px; box-shadow:0 14px 34px rgba(15,23,42,0.14); display:flex; align-items:center; gap:9px; white-space:nowrap; }
+.heroV-stat b { display:block; font-size:14px; line-height:1.2; color:var(--navy); }
+.heroV-stat small { display:block; font-weight:400; font-size:10.5px; color:var(--gray-400); }
+.hv-s1 { right:0; bottom:2%; }
+.hv-s3 { right:0; top:2%; }
+@media(max-width:960px){ .heroV { margin:0 auto; } }
+
+/* ─── TWO WAYS v2 — rich mode cards (global port) ─── */
+.sm2-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:48px; }
+.sm2-card { position:relative; display:flex; flex-direction:column; gap:22px; background:#fff; border:1px solid var(--gray-200); border-radius:24px; padding:30px 28px; box-shadow:0 4px 14px rgba(15,23,42,0.05); transition:transform .3s, box-shadow .3s; }
+.sm2-card:hover { transform:translateY(-5px); box-shadow:0 18px 44px rgba(15,23,42,0.12); }
+.sm2-badge { position:absolute; right:20px; top:20px; border-radius:999px; padding:5px 13px; font-size:11px; font-weight:600; color:#fff; box-shadow:0 2px 8px rgba(15,23,42,0.15); }
+.sm2-badge.g { background:var(--green); } .sm2-badge.v { background:#7C3AED; }
+.sm2-head { display:flex; align-items:flex-start; gap:16px; padding-right:96px; }
+.sm2-ico { display:inline-flex; width:56px; height:56px; border-radius:16px; align-items:center; justify-content:center; flex-shrink:0; }
+.sm2-ico.g { background:var(--green-pale); color:var(--green); } .sm2-ico.v { background:#F3E8FF; color:#7C3AED; }
+.sm2-head h3 { font-family:var(--font-body); font-weight:700; font-size:1.25rem; letter-spacing:-0.01em; color:#0F172A; margin:0; }
+.sm2-tag { font-size:.92rem; font-weight:600; } .sm2-tag.g { color:var(--green); } .sm2-tag.v { color:#7C3AED; }
+.sm2-desc { margin-top:8px; font-size:.92rem; color:var(--gray-600); line-height:1.55; min-height:3.2em; }
+.sm2-render { position:relative; }
+.pdfwin { border:1px solid var(--gray-200); border-radius:12px; background:#fff; box-shadow:0 12px 30px rgba(15,23,42,0.10); overflow:hidden; }
+.pdfwin-bar { display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--gray-200); padding:9px 16px; }
+.pdfwin-chip { background:#e11d48; color:#fff; font-size:10px; font-weight:700; letter-spacing:.04em; border-radius:4px; padding:2px 8px; }
+.pdfwin-icons { display:flex; gap:12px; color:var(--gray-400); }
+.pdfwin-body { position:relative; min-height:170px; padding:14px 20px 20px; }
+.pdfwin-body h4 { font-size:13px; font-weight:700; color:#0F172A; margin:0 0 12px; }
+.pdfwin-line { height:8px; border-radius:999px; background:var(--gray-100); margin-bottom:10px; }
+.pw1{width:80%} .pw2{width:60%} .pw3{width:66%} .pw4{width:50%} .pw5{width:40%}
+.dsig-seal { position:absolute; right:14px; bottom:14px; display:flex; align-items:center; gap:10px; border:1px solid rgba(22,163,74,0.4); background:rgba(220,252,231,0.65); border-radius:8px; padding:8px 12px; box-shadow:0 8px 18px -8px rgba(22,163,74,0.45); backdrop-filter:blur(1px); }
+.dsig-seal .t1 { font-size:11px; font-weight:700; color:#0F172A; }
+.dsig-seal .t2 { font-size:9px; color:var(--gray-600); }
+.usb-photo { position:absolute; left:-26px; bottom:-10px; width:11rem; height:auto; transform:rotate(-2deg); mix-blend-mode:multiply; }
+.usb-shadow { position:absolute; left:-8px; bottom:0; height:16px; width:10rem; border-radius:50%; background:rgba(0,0,0,0.25); filter:blur(12px); }
+.stamp-box { position:absolute; right:16px; bottom:12px; filter:drop-shadow(0 10px 16px rgba(59,91,219,0.22)); }
+.stamp-box-inner { position:relative; display:flex; align-items:center; gap:12px; border:1.5px dashed #3b5bdb; border-radius:3px; background:rgba(255,255,255,0.4); padding:8px 12px; backdrop-filter:blur(1px); }
+.stamp-handle { position:absolute; width:8px; height:8px; border:1px solid #fff; background:#3b5bdb; border-radius:1px; box-shadow:0 1px 2px rgba(0,0,0,0.2); }
+.sh-tl{left:-4px;top:-4px} .sh-tr{right:-4px;top:-4px} .sh-bl{left:-4px;bottom:-4px} .sh-br{right:-4px;bottom:-4px}
+.sh-tc{left:50%;top:-4px;transform:translateX(-50%)} .sh-bc{left:50%;bottom:-4px;transform:translateX(-50%)}
+.stamp-rot { position:absolute; top:-26px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; }
+.stamp-rot i { width:10px; height:10px; border-radius:50%; border:2px solid #3b5bdb; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,0.15); }
+.stamp-rot s { width:1px; height:15px; background:#3b5bdb; }
+.stamp-sig { display:flex; flex-direction:column; align-items:center; }
+.stamp-sig .sig-cap { margin-top:2px; font-size:10px; font-weight:500; color:var(--gray-600); border-top:1px dotted var(--gray-400); padding:2px 18px 0; }
+.sm2-feats { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; border-radius:16px; padding:12px; }
+.sm2-feats.g { background:rgba(220,252,231,0.6); } .sm2-feats.v { background:rgba(243,232,255,0.5); }
+.sm2-feat { display:flex; flex-direction:column; align-items:center; gap:8px; background:rgba(255,255,255,0.7); border-radius:12px; padding:12px 8px; text-align:center; }
+.sm2-feat span.fi { display:inline-flex; width:36px; height:36px; border-radius:10px; align-items:center; justify-content:center; }
+.sm2-feat.g span.fi { background:var(--green-pale); color:var(--green); } .sm2-feat.v span.fi { background:#F3E8FF; color:#7C3AED; }
+.sm2-feat label { font-size:12px; font-weight:500; color:#0F172A; line-height:1.3; }
+.sm2-proof { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; border-top:1px solid var(--gray-200); margin-top:44px; padding-top:32px; }
+.sm2-proof-item { display:flex; align-items:flex-start; gap:12px; padding:0 8px; }
+.sm2-proof-item svg { flex-shrink:0; margin-top:2px; }
+.sm2-proof-item h5 { font-size:.92rem; font-weight:600; color:#0F172A; margin:0 0 3px; }
+.sm2-proof-item p { font-size:.8rem; color:var(--gray-600); margin:0; line-height:1.5; }
+@media(max-width:900px){ .sm2-grid{grid-template-columns:1fr;} .sm2-proof{grid-template-columns:1fr 1fr; gap:18px;} }
+@media(max-width:520px){ .sm2-proof{grid-template-columns:1fr;} .usb-photo{width:8.5rem;left:-14px;} }
+
+/* ─── PRIVACY DIAGRAM (global port) ─── */
+.pd-panel { background:#fff; border:1px solid var(--gray-200); border-radius:24px; padding:40px; box-shadow:0 10px 34px rgba(15,23,42,0.07); }
+.pd-grid { display:grid; grid-template-columns:0.95fr 1.45fr 0.8fr; gap:32px; align-items:start; }
+.pd-copy { display:flex; flex-direction:column; justify-content:center; gap:18px; align-self:center; }
+.pd-copy h2 { font-family:var(--font-body); font-weight:700; font-size:clamp(1.9rem,3vw,2.6rem); line-height:1.12; letter-spacing:-0.02em; color:#0F172A; margin:0; }
+.pd-copy h2 .grn { color:var(--green); }
+.pd-copy p { font-size:1.08rem; color:var(--gray-600); line-height:1.6; margin:0; }
+.pd-flow { display:flex; flex-direction:column; align-items:center; }
+.pd-file { display:flex; align-items:center; gap:12px; font-weight:600; color:#0F172A; font-size:1rem; }
+.pd-conn { width:4px; height:34px; border-radius:999px; background:var(--gray-200); margin:6px 0; position:relative; overflow:hidden; }
+.pd-conn i { position:absolute; left:0; top:-22px; width:4px; height:18px; border-radius:999px; background:var(--green); box-shadow:0 0 12px rgba(22,163,74,0.65); opacity:0; }
+/* ONE deliberate 5s sequential loop: Invoice · flow→PC · flow→PDFSign (glow+✓) · flow→Signed (pulse) */
+@keyframes pd-flow1 { 0%,18%{top:-22px;opacity:0} 19%{opacity:1} 27%{top:100%;opacity:1} 28%,100%{top:100%;opacity:0} }
+@keyframes pd-flow2 { 0%,42%{top:-22px;opacity:0} 43%{opacity:1} 51%{top:100%;opacity:1} 52%,100%{top:100%;opacity:0} }
+@keyframes pd-flow3 { 0%,70%{top:-22px;opacity:0} 71%{opacity:1} 79%{top:100%;opacity:1} 80%,100%{top:100%;opacity:0} }
+@keyframes pd-light1 { 0%{opacity:.4;transform:translateY(6px) scale(.98)} 8%,92%{opacity:1;transform:translateY(0) scale(1)} 100%{opacity:.4;transform:translateY(6px) scale(.98)} }
+@keyframes pd-light2 { 0%,27%{opacity:.4;transform:scale(1)} 31%{opacity:1;transform:scale(1.03)} 35%,92%{opacity:1;transform:scale(1)} 100%{opacity:.4} }
+@keyframes pd-light3 { 0%,51%{opacity:.4;transform:scale(1)} 55%{opacity:1;transform:scale(1.03)} 59%,92%{opacity:1;transform:scale(1)} 100%{opacity:.4} }
+@keyframes pd-light4 { 0%,79%{opacity:0;transform:translateY(13px) scale(.96)} 84%{opacity:1;transform:translateY(-2px) scale(1.05)} 88%,94%{opacity:1;transform:translateY(0) scale(1)} 100%{opacity:0;transform:translateY(13px) scale(.96)} }
+@keyframes pd-shieldk { 0%,50%,64%,100%{transform:scale(1)} 56%{transform:scale(1.1)} }
+@keyframes pd-glowk { 0%,49%,66%,100%{opacity:0} 56%{opacity:.7} }
+@keyframes pd-successk { 0%,56%{opacity:0;transform:translateY(2px)} 62%,92%{opacity:1;transform:translateY(0)} 100%{opacity:0} }
+@keyframes pd-sgnglowk { 0%,79%,100%{opacity:0;transform:scale(.85)} 85%{opacity:.6;transform:scale(1.15)} 92%{opacity:0;transform:scale(1.3)} }
+.pd-s1 { opacity:.4; animation:pd-light1 5s ease-in-out infinite; }
+.pd-s2 { opacity:.4; animation:pd-light2 5s ease-in-out infinite; }
+.pd-s3 { opacity:.4; animation:pd-light3 5s ease-in-out infinite; }
+.pd-s4 { opacity:0; animation:pd-light4 5s ease-in-out infinite; }
+.pd-conn i.pk1 { animation:pd-flow1 5s linear infinite; }
+.pd-conn i.pk2 { animation:pd-flow2 5s linear infinite; }
+.pd-conn i.pk3 { animation:pd-flow3 5s linear infinite; }
+.pd-shield-anim { transform-origin:center; animation:pd-shieldk 5s ease-in-out infinite; }
+.pd-glow { position:absolute; inset:-6px; border-radius:50%; background:rgba(22,163,74,0.4); filter:blur(14px); opacity:0; animation:pd-glowk 5s ease-in-out infinite; pointer-events:none; }
+.pd-success-anim { opacity:0; animation:pd-successk 5s ease-in-out infinite; }
+.pd-sgnglow { position:absolute; inset:-8px; border-radius:50%; background:rgba(22,163,74,0.35); filter:blur(10px); opacity:0; animation:pd-sgnglowk 5s ease-in-out infinite; pointer-events:none; }
+@media (prefers-reduced-motion: reduce){
+  .pd-s1,.pd-s2,.pd-s3,.pd-s4,.pd-success-anim { animation:none; opacity:1; transform:none; }
+  .pd-shield-anim { animation:none; }
+  .pd-glow,.pd-sgnglow,.pd-conn i.pk1,.pd-conn i.pk2,.pd-conn i.pk3 { animation:none; opacity:0; }
+}
+.pd-box { display:flex; align-items:center; gap:16px; width:100%; max-width:340px; background:#fff; border:1px solid var(--gray-200); border-radius:16px; padding:16px 20px; box-shadow:0 4px 14px rgba(15,23,42,0.06); }
+.pd-box.hero { border-color:rgba(22,163,74,0.45); background:rgba(220,252,231,0.5); box-shadow:0 8px 24px rgba(22,163,74,0.12); }
+.pd-box .t1 { display:block; font-size:1rem; font-weight:600; color:#0F172A; }
+.pd-box .t2 { display:block; font-size:.8rem; color:var(--gray-600); }
+.pd-box .brand { font-size:1.3rem; font-weight:700; letter-spacing:-0.01em; }
+.pd-box .brand .n { color:var(--navy); } .pd-box .brand .g { color:var(--green); }
+.pd-box .ok { display:flex; align-items:center; gap:5px; font-size:.8rem; font-weight:600; color:#116B33; margin-top:2px; }
+.pd-lpp { display:inline-flex; align-items:center; gap:6px; background:var(--green-pale); color:#116B33; font-size:.8rem; font-weight:600; border-radius:999px; padding:4px 12px; margin:4px 0; }
+.pd-lpp i { width:6px; height:6px; border-radius:50%; background:var(--green); }
+.pd-cloud { display:flex; flex-direction:column; align-items:center; gap:18px; border-left:1px dashed var(--gray-200); padding-left:28px; align-self:center; }
+.pd-cloud ul { list-style:none; display:flex; flex-direction:column; gap:12px; margin:0; padding:0; width:100%; max-width:15rem; }
+.pd-cloud li { display:flex; align-items:center; gap:12px; font-size:.85rem; color:var(--gray-600); }
+.pd-cloud .ci { position:relative; display:inline-flex; width:32px; height:32px; border-radius:50%; border:1px solid var(--gray-200); background:#fff; color:var(--gray-400); align-items:center; justify-content:center; flex-shrink:0; }
+.pd-cloud .ci em { position:absolute; width:20px; height:1.5px; background:#fb7185; transform:rotate(45deg); border-radius:2px; }
+.pd-cloud .ci.ok2 { background:var(--green-pale); color:#116B33; border-color:transparent; }
+.pd-strip { margin-top:36px; border:1px solid var(--gray-200); border-radius:16px; background:var(--gray-50); padding:20px 16px; display:grid; grid-template-columns:repeat(4,1fr); }
+.pd-strip > div { display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center; padding:4px 16px; }
+.pd-strip > div + div { border-left:1px solid var(--gray-200); }
+.pd-strip span.si { display:inline-flex; width:46px; height:46px; border-radius:50%; background:var(--green-pale); color:#116B33; align-items:center; justify-content:center; }
+.pd-strip h4 { font-size:.92rem; font-weight:600; color:#0F172A; margin:0; }
+.pd-strip p { font-size:.8rem; color:var(--gray-600); margin:0; }
+.pd-note { margin-top:26px; text-align:center; font-size:.8rem; color:var(--gray-400); }
+@media(max-width:960px){ .pd-grid{grid-template-columns:1fr;} .pd-cloud{border-left:none; padding-left:0; border-top:1px dashed var(--gray-200); padding-top:24px;} .pd-strip{grid-template-columns:1fr 1fr;} .pd-strip > div + div{border-left:none;} .pd-panel{padding:26px 20px;} }
+@media(max-width:520px){ .pd-strip{grid-template-columns:1fr;} }
+
+/* ─── PRICING v2 (global look) ─── */
+.pr2-grid { display:grid; grid-template-columns:0.78fr 2.22fr; gap:40px; align-items:start; }
+.pr2-rail { position:sticky; top:90px; text-align:left; }
+.pr2-rail .section-tag { display:inline-block; }
+.pr2-title { font-family:var(--font-body); font-weight:700; font-size:clamp(1.8rem,2.8vw,2.5rem); line-height:1.12; letter-spacing:-0.02em; color:#0F172A; margin:14px 0 16px; }
+.pr2-title .grn { color:var(--green); }
+.pr2-sub { color:var(--gray-600); font-size:.98rem; line-height:1.65; margin:0 0 20px; }
+.pr2-secure { display:inline-flex; align-items:center; gap:10px; border:1px solid var(--gray-200); background:#fff; border-radius:12px; padding:12px 18px; font-size:.92rem; font-weight:700; color:#116B33; }
+.pr2-secure .sh { display:inline-flex; width:30px; height:30px; border-radius:50%; background:var(--green); color:#fff; align-items:center; justify-content:center; }
+.pricing .plan-card { background:#fff; border:1px solid var(--gray-200); border-radius:20px; box-shadow:0 4px 14px rgba(15,23,42,0.05); display:flex; flex-direction:column; }
+.pricing .plan-card .plan-features { flex:1; }
+.pricing .plan-name { font-family:var(--font-body); font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gray-600); }
+.pricing .plan-price, .pricing .plan-amount { font-family:var(--font-body); }
+.pricing .plan-amount { font-weight:700; letter-spacing:-0.02em; font-size:40px; }
+.pricing .plan-desc { font-family:var(--font-body); }
+.pricing .plan-card.featured { background:#fff; border:2px solid var(--green); box-shadow:0 14px 40px rgba(22,163,74,0.12); }
+.pricing .plan-card.featured .plan-name { color:var(--muted, #64748B); }
+.pricing .plan-card.featured .plan-currency, .pricing .plan-card.featured .plan-amount { color:#0F172A; }
+.pricing .plan-card.featured .plan-period, .pricing .plan-card.featured .plan-desc { color:var(--gray-600); }
+.pricing .plan-card.featured .plan-divider { background:var(--gray-200); }
+.pricing .plan-card.featured .plan-features li { color:var(--gray-600); }
+.pricing .plan-card.featured .check { background:var(--green-pale); }
+.pr2-rail .plan-toggle-row { margin:24px 0 0; }
+.pricing .plan-badge { background:var(--green); color:#fff; border-radius:999px; font-weight:700; letter-spacing:.06em; }
+.plan-ico { display:inline-flex; width:44px; height:44px; border-radius:50%; align-items:center; justify-content:center; margin-bottom:14px; }
+.pricing .plan-btn-solid { background:var(--green); border-radius:10px; }
+.pricing .plan-btn-outline { border:1px solid var(--green); color:var(--green); border-radius:10px; background:#fff; }
+.pricing .plan-btn-outline:hover { background:var(--green-pale); }
+.pr2-includes { display:flex; flex-wrap:nowrap; align-items:center; justify-content:space-between; gap:10px; border:1px solid var(--gray-200); border-radius:16px; background:var(--gray-50); padding:18px 22px; margin-top:40px; }
+.pr2-inc-lead { display:flex; align-items:center; gap:8px; font-size:.88rem; color:#0F172A; white-space:nowrap; flex-shrink:0; }
+.pr2-inc-item { display:flex; align-items:center; gap:6px; font-size:.82rem; font-weight:500; color:#0F172A; white-space:nowrap; }
+@media(max-width:1120px){ .pr2-includes { flex-wrap:wrap; justify-content:center; gap:12px 22px; } }
+.pr2-activation { display:flex; align-items:center; justify-content:center; gap:7px; margin-top:22px; font-size:.9rem; color:var(--gray-600); }
+.pr2-activation b { color:#0F172A; }
+@media(max-width:1000px){ .pr2-grid{grid-template-columns:1fr;} .pr2-rail{position:static;} }
+
+/* ─── FINAL CTA (global port) ─── */
+.fcta { background:var(--off-white); padding:90px 0 50px; }
+.fcta-panel { display:grid; grid-template-columns:1fr 1.05fr; gap:48px; align-items:center; background:#fff; border:1px solid var(--gray-200); border-radius:24px; padding:48px 52px; box-shadow:0 10px 34px rgba(15,23,42,0.07); }
+.fcta-pill { display:inline-flex; align-items:center; gap:7px; border:1px solid rgba(22,163,74,0.3); background:var(--green-pale); color:#116B33; font-size:11.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; border-radius:999px; padding:7px 14px; margin-bottom:20px; }
+.fcta-copy h2 { font-family:var(--font-body); font-weight:700; font-size:clamp(1.9rem,3vw,2.6rem); line-height:1.12; letter-spacing:-0.02em; color:#0F172A; margin:0 0 16px; }
+.fcta-copy h2 .grn { color:var(--green); }
+.fcta-sub { color:var(--gray-600); font-size:1.05rem; line-height:1.6; margin:0 0 22px; max-width:32em; }
+.fcta-feats { display:flex; flex-wrap:wrap; gap:14px 28px; margin-bottom:24px; }
+.fcta-feat { display:flex; align-items:flex-start; gap:8px; }
+.fcta-feat svg { margin-top:2px; flex-shrink:0; }
+.fcta-feat b { display:block; font-size:.9rem; color:#0F172A; }
+.fcta-feat small { display:block; font-size:.8rem; color:var(--gray-600); }
+.fcta-ready { display:flex; align-items:center; gap:7px; margin-top:16px; font-size:.88rem; font-weight:600; color:#116B33; }
+.fcta-shot img { display:block; width:100%; height:auto; border-radius:14px; border:1px solid var(--gray-200); box-shadow:0 24px 60px -20px rgba(15,23,42,0.25); }
+.fcta-trust { display:flex; align-items:center; justify-content:center; gap:8px; margin-top:28px; font-size:.95rem; color:var(--gray-600); }
+.fcta-trust b { color:var(--green); }
+@media(max-width:900px){ .fcta-panel { grid-template-columns:1fr; padding:32px 24px; } }
 
 /* ─── LIVE STATS STRIP ─── */
-.stats-strip { background:#0F172A; border-top:1px solid rgba(255,255,255,0.06); border-bottom:1px solid rgba(255,255,255,0.06); padding:28px 0; }
+.stats-strip { background:var(--off-white); border-top:1px solid var(--gray-200); border-bottom:1px solid var(--gray-200); padding:34px 0; }
+.stats-card { background:#fff; border:1px solid var(--gray-200); border-radius:18px; box-shadow:0 4px 14px rgba(15,23,42,0.05); padding:18px 34px 16px; display:flex; flex-direction:column; align-items:center; gap:10px; }
+.stats-ico { display:inline-flex; width:36px; height:36px; border-radius:50%; background:var(--green-pale); color:#116B33; align-items:center; justify-content:center; }
+.stats-card .stats-counter { display:flex; flex-direction:column; align-items:center; gap:5px; }
 .stats-strip-inner { max-width:900px; margin:0 auto; padding:0 24px; display:flex; flex-direction:column; align-items:center; gap:12px; }
 .stats-live-badge { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; color:#94A3B8; letter-spacing:0.06em; text-transform:uppercase; }
 .stats-live-dot { width:7px; height:7px; border-radius:50%; background:#22C55E; animation:pulse-dot 2s ease-in-out infinite; flex-shrink:0; }
 @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
 .stats-counters { display:flex; gap:48px; align-items:center; justify-content:center; flex-wrap:wrap; }
 .stats-counter { text-align:center; }
-.stats-counter-val { font-size:2.6rem; font-weight:800; color:#F1F5F9; letter-spacing:-0.02em; line-height:1; font-variant-numeric:tabular-nums; min-width:80px; display:inline-block; }
+.stats-counter-val { font-size:1.75rem; font-weight:700; color:#0F172A; letter-spacing:-0.02em; line-height:1.1; font-variant-numeric:tabular-nums; min-width:64px; display:inline-block; }
 .stats-counter-label { font-size:12px; color:#64748B; margin-top:5px; font-weight:500; }
-.stats-divider { width:1px; height:48px; background:rgba(255,255,255,0.1); }
+.stats-divider { width:1px; height:48px; background:var(--gray-200); }
 .stats-totals { font-size:12px; color:#475569; text-align:center; }
 .stats-totals strong { color:#94A3B8; }
 @media(max-width:480px){ .stats-counters{gap:24px} .stats-counter-val{font-size:2rem} .stats-divider{display:none} }</style>
@@ -2355,11 +2725,12 @@
   "name": "PDFSign.in",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "BusinessApplication",
-  "description": "Digitally sign any PDF with your USB DSC token or signature stamp image. 100% offline, no Java, no browser plugins. Bulk signing, PDF security, RFC 3161 timestamp. Accepted on GeM, CPPP, and all Indian government portals.",
+  "description": "Digitally sign any PDF with your DSC / USB security token or signature stamp image. 100% offline, no Java, no browser plugins. Bulk signing, 20+ built-in PDF tools (edit, merge, compress), PDF security, RFC 3161 timestamp. Accepted on GeM, CPPP, and Indian government portals; eIDAS and E-SIGN compatible worldwide.",
   "featureList": [
-    "USB DSC token signing (HyperPKI, ePass, Proxkey, Feitian, WD Pro, Watchdata)",
+    "USB DSC / security token signing (HyperPKI, ePass, Proxkey, Feitian, WD Pro, Watchdata, SafeNet, Gemalto)",
     "Signature and stamp image embedding",
     "Batch PDF signing",
+    "PDFToolbox — 20+ built-in tools: edit, merge, split, compress, reorder, page numbers, watermark, protect, fill forms, Bates numbering, repair, PDF to Word",
     "PDF security — restrict print, edit, copy",
     "Click-to-place signature position on PDF",
     "RFC 3161 trusted timestamp",
@@ -2392,17 +2763,17 @@
     },
     {
       "@type": "Offer",
-      "name": "Lifetime Solo Plan",
+      "name": "Perpetual License — Solo",
       "price": "4999",
       "priceCurrency": "INR",
-      "description": "Lifetime solo licence — 1 Windows device"
+      "description": "Perpetual (one-time) solo licence — 1 Windows device"
     },
     {
       "@type": "Offer",
-      "name": "Lifetime Team Plan",
+      "name": "Perpetual License — Team",
       "price": "13999",
       "priceCurrency": "INR",
-      "description": "Lifetime team licence — 5 Windows devices"
+      "description": "Perpetual (one-time) team licence — 5 Windows devices"
     }
   ],
   "url": "https://pdfsign.in",
@@ -2438,11 +2809,13 @@
     {"@type":"Question","name":"Can I restrict printing, editing, or copying of the signed PDF?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign.in lets you set PDF permissions to restrict printing, editing, and content copying, with an optional document open password. Enforced by Adobe Acrobat and compatible viewers."}},
     {"@type":"Question","name":"What is RFC 3161 timestamp and why does it matter?","acceptedAnswer":{"@type":"Answer","text":"An RFC 3161 timestamp embeds cryptographic proof of when the document was signed from a trusted Timestamp Authority server. The signature remains legally valid even after your DSC certificate expires."}},
     {"@type":"Question","name":"Can I use PDFSign.in from outside India?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign.in works on any Windows PC worldwide with no geo-restriction. Indian DSC token holders in UAE, UK, USA, Canada, Australia, or anywhere can sign Indian government documents remotely."}},
-    {"@type":"Question","name":"What is the team plan?","acceptedAnswer":{"@type":"Answer","text":"The team plan covers 5 Windows PCs under one shared licence key. Annual team plan is Rs. 3,499 per year; Lifetime team plan is Rs. 13,999 one-time. Ideal for CA firms, law offices, and tender-filing teams."}},
+    {"@type":"Question","name":"What is the team plan?","acceptedAnswer":{"@type":"Answer","text":"The team plan covers 5 Windows PCs under one shared licence key. Annual team plan is Rs. 3,499 per year; Perpetual team licence is Rs. 13,999 one-time. Ideal for CA firms, law offices, and tender-filing teams."}},
     {"@type":"Question","name":"Is PDFSign free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every download includes a free evaluation. You can evaluate PDFSign for up to 30 days or 100 signed PDFs (whichever comes first) before choosing a subscription."}},
     {"@type":"Question","name":"Why is the evaluation limited?","acceptedAnswer":{"@type":"Answer","text":"The purpose of the free evaluation is to let you verify that PDFSign works perfectly with your USB DSC token, PDF documents and signing workflow. If you regularly sign large numbers of PDFs, you can continue without interruption by upgrading to a paid plan."}},
     {"@type":"Question","name":"What happens when my evaluation ends?","acceptedAnswer":{"@type":"Answer","text":"Your documents, settings, saved signatures and templates remain safely stored on your computer. Only new PDF signing requires an active subscription."}},
-    {"@type":"Question","name":"What is your refund policy?","acceptedAnswer":{"@type":"Answer","text":"PDFSign includes a free evaluation — up to 30 days or 100 signed PDFs — so you can fully evaluate it before buying. Because of that, all licence purchases are final and non-refundable, except where required by applicable law. See our Refund Policy for details."}}
+    {"@type":"Question","name":"What is your refund policy?","acceptedAnswer":{"@type":"Answer","text":"PDFSign includes a free evaluation — up to 30 days or 100 signed PDFs — so you can fully evaluate it before buying. Because of that, all licence purchases are final and non-refundable, except where required by applicable law. See our Refund Policy for details."}},
+    {"@type":"Question","name":"Can PDFSign merge, compress, or edit PDFs too?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign includes PDFToolbox — 20+ built-in PDF tools: edit text, merge, split, compress, reorder pages, page numbers, watermark, header/footer, password protect (AES-256), fill and flatten forms, Bates numbering, repair damaged PDFs, and convert PDF to and from Word and images. Everything runs 100% offline on your PC."}},
+    {"@type":"Question","name":"Are PDFSign signatures legally valid outside India?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign produces PAdES-compliant PKI digital signatures based on your USB token's X.509 certificate. These are legally valid under the EU eIDAS Regulation, the US E-SIGN Act, the UK Electronic Communications Act, and equivalent laws in most countries."}}
   ]
 }
 </script>
@@ -2583,138 +2956,105 @@
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#features">Features</a></li>
-      <li><a href="#how">How it works</a></li>
-      <li><a href="#compare">Compare</a></li>
+      <li><a href="#real-work">Features</a></li>
+      <li><a href="#toolbox">Toolbox</a></li>
+      <li><a href="#demo">How it works</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="/blog/">Blog</a></li>
-      <li class="intl-only"><a href="/web">Sign Online — Free</a></li>
+      <li><a href="/web">Sign Online — Free</a></li>
       <li><a href="https://api.pdfsign.in/api/download" class="nav-cta">Download Now</a></li>
     </ul>
   </div>
 </nav>
 
 <!-- ─── HERO ─── -->
-<section class="hero">
-  <div class="hero-bg">
-    <div class="hero-glow2"></div>
-  </div>
-  <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-badge">For Windows · Free Evaluation · No Credit Card Required</div>
+<section class="heroG">
+  <div class="heroG-inner">
+    <div class="heroG-content">
+      <div class="heroG-eyebrow"><b></b>For Windows · Free Evaluation · No Credit Card Required</div>
 
       <!-- India hero -->
-      <h1 class="india-only">Sign any PDF in seconds.<br /><em>DSC token or stamp image.</em><br />100% offline.</h1>
-      <p class="hero-sub india-only">
+      <h1 class="india-only">Sign any PDF in seconds.<br /><span class="grn">DSC token or stamp image.</span><br />100% offline.</h1>
+      <p class="heroG-sub india-only">
         Open the app, load your PDF, sign. Done in under 60 seconds. Works with your USB DSC token or a signature stamp image — no Java, no browser plugin, no cloud upload.
       </p>
-      <p class="hero-urgency india-only"><em>Never miss a tender deadline again.</em></p>
 
       <!-- International hero -->
-      <h2 class="intl-only hero-alt-h1">Sign PDFs with your USB token, signature, or company stamp.</h2>
-      <p class="hero-sub intl-only"><em>Fully offline. Nothing uploaded.</em></p>
-      <p class="hero-sub intl-only">
+      <h2 class="intl-only hero-alt-h1">Sign PDFs with your <span class="grn">USB token, signature, or company stamp.</span></h2>
+      <p class="heroG-sub intl-only"><em>Fully offline. Nothing uploaded.</em></p>
+      <p class="heroG-sub intl-only">
         Add a digital signature, handwritten signature, or company stamp to any PDF in under 60 seconds. Compatible with SafeNet, Thales, HID, Gemalto, Feitian, and all PKCS#11 tokens. No Java. No browser plugins. No cloud.
       </p>
-      <p class="hero-urgency intl-only"><em>Your documents stay on your device — always.</em></p>
-      <div class="hero-actions">
+      <p class="heroG-urgency intl-only"><em>Your documents stay on your device — always.</em></p>
+
+      <div class="heroG-actions">
         <a href="https://api.pdfsign.in/api/download" class="btn-primary">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download Free Evaluation
         </a>
-        <!-- International: prominent secondary CTA to no-install web tool -->
-        <a href="/web" class="btn-ghost intl-only" style="font-size:14px;opacity:0.85;">
-          ✏️ Or sign free online
+        <p class="heroG-verify">Verify that PDFSign works with your <span class="india-only geo-inline">USB DSC token</span><span class="intl-only geo-inline">USB security token</span>, PDFs and workflow before you buy.</p>
+        <p class="heroG-verify small">Includes up to 30 days or 100 signed PDFs (whichever comes first).</p>
+        <a href="https://api.pdfsign.in/api/download" class="heroG-store" aria-label="Available on Microsoft Store">
+          <svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="9" height="9" fill="#F25022"/><rect x="13" y="2" width="9" height="9" fill="#7FBA00"/><rect x="2" y="13" width="9" height="9" fill="#00A4EF"/><rect x="13" y="13" width="9" height="9" fill="#FFB900"/></svg>
+          Available on Microsoft Store
         </a>
       </div>
-      <p style="font-size:13px;color:rgba(255,255,255,0.65);margin-top:10px;">
-        Verify that PDFSign works with your USB DSC token, PDFs and workflow before you buy.
-      </p>
-      <p style="font-size:11.5px;color:rgba(255,255,255,0.45);margin-top:4px;">
-        Includes up to 30 days or 100 signed PDFs (whichever comes first).
-      </p>
-      <div class="hero-badges">
-        <div class="hero-badge-item">
-          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-          Free evaluation
-        </div>
-        <div class="hero-badge-item">
-          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-          No credit card needed
-        </div>
-        <div class="hero-badge-item">
-          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-          Works offline
-        </div>
-        <div class="hero-badge-item india-only">
-          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-          Legal under IT Act 2000
-        </div>
-        <div class="hero-badge-item intl-only">
-          <svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-          eIDAS &amp; E-SIGN Act compatible
-        </div>
+
+      <div class="heroG-checks">
+        <div class="heroG-check"><svg width="14" height="14" fill="none" stroke="#4ADE80" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Free evaluation</div>
+        <div class="heroG-check"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>No credit card needed</div>
+        <div class="heroG-check"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Works offline</div>
+        <div class="heroG-check india-only geo-flex"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Legal under IT Act 2000</div>
+        <div class="heroG-check intl-only geo-flex"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>eIDAS &amp; E-SIGN Act compatible</div>
       </div>
-      <div class="hero-trust">
-        <div class="trust-avatars">
-          <span>CA</span><span>LW</span><span>GC</span><span>EX</span>
-        </div>
+
+      <div class="heroG-trust">
+        <div class="trust-avatars"><span>CA</span><span>LW</span><span>GC</span><span>EX</span></div>
         <p class="trust-text india-only">Trusted by <strong>procurement professionals, CA firms, and company secretaries</strong> across India</p>
         <p class="trust-text intl-only">Trusted by <strong>lawyers, accountants, compliance teams, and procurement professionals</strong> worldwide</p>
       </div>
     </div>
 
-    <!-- Layered proof: signed PDF (outcome) in front, real app render behind -->
-    <div class="hero-visual">
-      <div class="step-badge">
-        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-        Signed &amp; Verified
+    <!-- Layered visual: app screenshot behind, signed document in front -->
+    <div class="heroV">
+      <div class="heroV-pill"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Signed &amp; Verified</div>
+
+      <div class="heroV-app">
+        <img src="hero-app.png" alt="The PDFSign desktop app signing a PDF with a digital certificate — fully offline on Windows" width="2544" height="2316" fetchpriority="high" />
       </div>
-      <div class="hero-stack">
-        <div class="hero-app-behind">
-          <img src="/img/hero-app.png" alt="The PDFSign desktop app signing a PDF with a digital certificate — fully offline on Windows" width="1272" height="1158" loading="eager" fetchpriority="high" />
-        </div>
-        <div class="pdf-proof" aria-label="A digitally signed PDF verified as valid">
-          <div class="pdf-proof-banner">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#16A34A"/><polyline points="17,9 10.5,15.5 7,12" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Signed and all signatures are valid.
-          </div>
-          <div class="pdf-proof-page">
-            <div class="pp-line full"></div>
-            <div class="pp-line full"></div>
-            <div class="pp-line med"></div>
-            <div class="pp-gap"></div>
-            <div class="pp-line full"></div>
-            <div class="pp-line full"></div>
-            <div class="pp-line short"></div>
-            <div class="pp-gap"></div>
-            <div class="pp-line med"></div>
-            <div class="pp-line xs"></div>
-            <div class="dsc-stamp">
-              <div class="dsc-stamp-title">Signature valid</div>
-              <div class="dsc-stamp-line">Digitally signed by <strong class="india-only">RAJESH KUMAR</strong><strong class="intl-only">DAVID MILLER</strong></div>
-              <div class="dsc-stamp-line">Date: 2026.07.18 14:32 IST</div>
-              <div class="dsc-stamp-line">Designation: <span class="india-only">Proprietor</span><span class="intl-only">Authorised Signatory</span></div>
-              <div class="dsc-stamp-line">Reason: <span class="india-only">Tender</span><span class="intl-only">Contract</span></div>
-              <div class="dsc-stamp-line">Location: <span class="india-only">Pune</span><span class="intl-only">London</span></div>
-              <svg class="dsc-stamp-check" width="52" height="52" viewBox="0 0 24 24" fill="none">
-                <path d="M20 6 9 17l-5-5" stroke="#0F172A" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M20 6 9 17l-5-5" stroke="#16A34A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
+
+      <div class="heroV-doc">
+        <div class="heroV-doc-banner"><span class="b-ok"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Signed and all signatures are valid.</div>
+        <div class="heroV-doc-body">
+          <div class="heroV-line w1"></div>
+          <div class="heroV-line w2"></div>
+          <div class="heroV-line w3"></div>
+          <div class="heroV-line w4"></div>
+          <div class="heroV-line w5"></div>
+          <div class="heroV-line w2"></div>
+          <div class="heroV-line w6"></div>
+          <div class="heroV-line w1"></div>
+          <div class="heroV-line w4"></div>
+          <div class="heroV-sig">
+            <h5>Signature valid</h5>
+            <p class="india-only">Digitally signed by <strong>RAJESH KUMAR</strong><br />Date: 2026.07.18 14:32 IST<br />Designation: Proprietor<br />Reason: Tender Document<br />Location: Mumbai</p>
+            <p class="intl-only">Digitally signed by <strong>JOHN SMITH</strong><br />Date: 2026.07.18 14:32 GMT<br />Designation: Director<br />Reason: Contract_Document.pdf<br />Location: New York</p>
+            <svg class="big-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.5 13.5l4.5 4.5L20 6.5" stroke="#15803D" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </div>
+      <div class="tokchip">
+        <span class="tk-ico"><svg width="17" height="17" fill="none" stroke="#93C5FD" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="11" width="20" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+        <span>
+          <span class="tk-label india-only">DSC Token Connected</span>
+          <span class="tk-label intl-only">USB Token Connected</span>
+          <span class="tk-value india-only">HyperPKI HYP2003 · Ready</span>
+          <span class="tk-value intl-only">SafeNet eToken · Ready</span>
+        </span>
       </div>
-      <div class="token-widget">
-        <div class="token-icon">
-          <svg width="18" height="18" fill="none" stroke="#93C5FD" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="11" width="20" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        </div>
-        <div>
-          <div class="token-label">DSC Token Connected</div>
-          <div class="token-value">HyperPKI HYP2003 · Ready</div>
-        </div>
       </div>
+
+
     </div>
   </div>
 </section>
@@ -2724,16 +3064,26 @@
 <div class="stats-strip">
   <div class="stats-strip-inner">
     <div class="stats-live-badge"><span class="stats-live-dot"></span>Live &nbsp;·&nbsp; Updated in real time</div>
+    <div class="stats-card">
     <div class="stats-counters">
       <div class="stats-counter">
+        <span class="stats-ico"><svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.6c.58 0 1.05.47 1.05 1.05v7.3l2.13-2.13a1.05 1.05 0 1 1 1.49 1.49l-3.93 3.93a1.05 1.05 0 0 1-1.48 0L7.33 10.3a1.05 1.05 0 1 1 1.49-1.48l2.13 2.12v-7.3c0-.58.47-1.05 1.05-1.05z"/><path fill="currentColor" opacity="0.55" d="M4.1 14.9c.58 0 1.05.47 1.05 1.05v2a1.8 1.8 0 0 0 1.8 1.8h10.1a1.8 1.8 0 0 0 1.8-1.8v-2a1.05 1.05 0 1 1 2.1 0v2a3.9 3.9 0 0 1-3.9 3.9H6.95a3.9 3.9 0 0 1-3.9-3.9v-2c0-.58.47-1.05 1.05-1.05z"/></svg></span>
         <div class="stats-counter-val" id="stat-dl-today">—</div>
-        <div class="stats-counter-label">📥 Downloads today</div>
+        <div class="stats-counter-label">New Downloads Today</div>
       </div>
       <div class="stats-divider"></div>
       <div class="stats-counter">
+        <span class="stats-ico"><svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.4" fill="currentColor"/><g fill="none" stroke="#DCFCE7" stroke-width="1.5"><path d="M2.6 12h18.8"/><ellipse cx="12" cy="12" rx="4.2" ry="9.4"/><path d="M4.2 7.2c2 1.4 4.8 2.2 7.8 2.2s5.8-.8 7.8-2.2M4.2 16.8c2-1.4 4.8-2.2 7.8-2.2s5.8.8 7.8 2.2" opacity="0.7"/></g></svg></span>
         <div class="stats-counter-val" id="stat-dl-total">—</div>
-        <div class="stats-counter-label">🔢 Total downloads</div>
+        <div class="stats-counter-label">Total Downloads</div>
       </div>
+      <div class="stats-divider"></div>
+      <div class="stats-counter">
+        <span class="stats-ico"><svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M8.6 12l2.3 2.3 4.6-4.8" fill="none" stroke="#DCFCE7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="stats-counter-val">50+</div>
+        <div class="stats-counter-label">Countries — Trusted Worldwide</div>
+      </div>
+    </div>
     </div>
   </div>
 </div>
@@ -2741,7 +3091,7 @@
 <div class="logos-strip">
   <div class="logos-strip-inner">
     <span class="logos-label">Trusted by</span>
-    <div class="logos-items">
+    <div class="logos-items india-only geo-flex">
       <span class="logo-pill">CA Firms</span>
       <span class="logo-pill">Law Offices</span>
       <span class="logo-pill">Govt. Contractors</span>
@@ -2749,42 +3099,106 @@
       <span class="logo-pill">Tender Filers</span>
       <span class="logo-pill">Chartered Engineers</span>
     </div>
+    <div class="logos-items intl-only geo-flex">
+      <span class="logo-pill">Law Firms</span>
+      <span class="logo-pill">CPA &amp; Accounting Firms</span>
+      <span class="logo-pill">Compliance Teams</span>
+      <span class="logo-pill">Procurement</span>
+      <span class="logo-pill">Healthcare</span>
+      <span class="logo-pill">IT &amp; Security</span>
+    </div>
   </div>
 </div>
 
-<!-- ─── HOW IT WORKS ─── -->
-<section class="how" id="how">
+<!-- ─── TWO WAYS TO SIGN ─── -->
+<section class="signmodes" id="sign-modes">
   <div class="container">
     <div style="text-align:center;">
-      <div class="section-tag">Simple Process</div>
-      <h2 class="section-title">From PDF to signed document in under 60 seconds</h2>
-      <p class="section-sub" style="margin:0 auto;">Designed to be as fast as possible, with no learning curve for existing DSC users.</p>
+      <div class="section-tag">Flexible Signing Options</div>
+      <h2 class="section-title">One application. <span style="color:var(--green);">Two powerful ways</span> to sign.</h2>
+      <p class="section-sub" style="margin:0 auto;">Whether you need legally valid digital signatures or fast document approvals with signatures and stamps, PDFSign adapts to the way you work.</p>
     </div>
 
-    <div class="how-steps">
-      <div class="how-step">
-        <div class="step-num">1</div>
-        <h4>Open PDFSign</h4>
-        <p>Install and open PDFSign for Windows 10 or 11. No Java, no extra setup needed.</p>
+    <div class="sm2-grid">
+      <!-- Card A — Digital Signature -->
+      <div class="sm2-card">
+        <span class="sm2-badge g">Most Popular</span>
+        <div class="sm2-head">
+          <span class="sm2-ico g"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <div>
+            <h3><span class="india-only geo-inline">Digital Signature (DSC)</span><span class="intl-only geo-inline">Digital Signature (USB Token)</span></h3>
+            <span class="sm2-tag g">Secure. Compliant. Legally Valid.</span>
+            <p class="sm2-desc"><span class="india-only geo-inline">Sign PDFs using your Class 3 DSC stored in a USB token or Windows certificate store.</span><span class="intl-only geo-inline">Sign PDFs using the digital certificate stored in your USB token or Windows certificate store.</span></p>
+          </div>
+        </div>
+        <div class="sm2-render">
+          <div class="pdfwin">
+            <div class="pdfwin-bar"><span class="pdfwin-chip">PDF</span><div class="pdfwin-icons"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="6,9 6,2 18,2 18,9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></div></div>
+            <div class="pdfwin-body">
+              <h4><span class="india-only geo-inline">Tender Document</span><span class="intl-only geo-inline">Contract Agreement</span></h4>
+              <div class="pdfwin-line pw1"></div><div class="pdfwin-line pw2"></div><div class="pdfwin-line pw3"></div><div class="pdfwin-line pw4"></div><div class="pdfwin-line pw5"></div>
+              <div class="dsig-seal">
+                <div><div class="t1">Digitally signed</div><div class="t2">Signed by: <span class="india-only geo-inline">Rajesh Kumar</span><span class="intl-only geo-inline">John Smith</span></div><div class="t2">Date: May 24, 2025 11:30 AM</div></div>
+                <svg viewBox="0 0 48 54" width="44" height="50" aria-hidden="true"><path d="M17 33 L11 51 L17 46.5 L21.5 50.5 L23 35 Z" fill="#15803d"/><path d="M31 33 L37 51 L31 46.5 L26.5 50.5 L25 35 Z" fill="#166534"/><circle cx="24" cy="20" r="17" fill="#16a34a"/><circle cx="24" cy="20" r="17" fill="none" stroke="#ffffff" stroke-opacity="0.55" stroke-width="1.5"/><circle cx="24" cy="20" r="12.5" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1"/><path d="M17 20.5 l4.6 4.6 L31 15" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </div>
+          </div>
+          <span class="usb-shadow"></span>
+          <img class="usb-photo" src="usb-token.png" alt="USB security token" width="1170" height="945" loading="lazy" />
+        </div>
+        <div class="sm2-feats g">
+          <div class="sm2-feat g"><span class="fi"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><label>Legally Valid Digital Signatures</label></div>
+          <div class="sm2-feat g"><span class="fi"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="8" y="9" width="8" height="13" rx="1.5"/><path d="M10 9V5h4v4M12 2v3"/></svg></span><label>Works with USB Tokens &amp; Cert Stores</label></div>
+          <div class="sm2-feat g"><span class="fi"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/><line x1="3" y1="3" x2="21" y2="21"/></svg></span><label>100% Offline Signing</label></div>
+        </div>
       </div>
-      <div class="how-step">
-        <div class="step-num">2</div>
-        <h4>Select your PDF</h4>
-        <p>Drag and drop a PDF or pick from file. For bulk signing, add an entire folder.</p>
+
+      <!-- Card B — Sign & Stamp -->
+      <div class="sm2-card">
+        <span class="sm2-badge v">Perfect for approvals</span>
+        <div class="sm2-head">
+          <span class="sm2-ico v"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 22h14M5 18h14v4H5zM12 18v-4M9 6a3 3 0 1 1 6 0c0 2-1.5 3-1.5 5h-3C10.5 9 9 8 9 6z"/></svg></span>
+          <div>
+            <h3>Sign &amp; Stamp</h3>
+            <span class="sm2-tag v">Fast. Flexible. Professional.</span>
+            <p class="sm2-desc">Add a signature image, company stamp, or both to any PDF — ideal for approvals.</p>
+          </div>
+        </div>
+        <div class="sm2-render">
+          <div class="pdfwin">
+            <div class="pdfwin-bar"><span class="pdfwin-chip">PDF</span><div class="pdfwin-icons"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="6,9 6,2 18,2 18,9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></div></div>
+            <div class="pdfwin-body">
+              <h4>Purchase Order</h4>
+              <div class="pdfwin-line pw1"></div><div class="pdfwin-line pw2"></div><div class="pdfwin-line pw3"></div><div class="pdfwin-line pw4"></div><div class="pdfwin-line pw5"></div>
+              <div class="stamp-box">
+                <div class="stamp-box-inner">
+                  <span class="stamp-rot"><i></i><s></s></span>
+                  <span class="stamp-handle sh-tl"></span><span class="stamp-handle sh-tr"></span><span class="stamp-handle sh-bl"></span><span class="stamp-handle sh-br"></span><span class="stamp-handle sh-tc"></span><span class="stamp-handle sh-bc"></span>
+                  <svg viewBox="0 0 100 100" width="64" height="64" style="transform:rotate(-10deg);" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="none" stroke="#3b5bdb" stroke-width="2.5" opacity="0.9"/><circle cx="50" cy="50" r="40" fill="none" stroke="#3b5bdb" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="34" fill="none" stroke="#3b5bdb" stroke-width="0.8" stroke-dasharray="1.5 2.5" opacity="0.6"/><defs><path id="stamp-top" d="M 18,50 A 32,32 0 0 1 82,50"/><path id="stamp-bot" d="M 20,52 A 30,30 0 0 0 80,52"/></defs><text font-size="7.5" font-weight="700" letter-spacing="1.2" fill="#3b5bdb" opacity="0.95"><textPath href="#stamp-top" startOffset="50%" text-anchor="middle">GLOBAL SOLUTIONS LTD</textPath></text><text font-size="6" font-weight="600" letter-spacing="1.5" fill="#3b5bdb" opacity="0.8"><textPath href="#stamp-bot" startOffset="50%" text-anchor="middle">★ AUTHORIZED ★</textPath></text><text x="50" y="54" text-anchor="middle" font-size="11.5" font-weight="800" fill="#3b5bdb" opacity="0.95">APPROVED</text></svg>
+                  <span class="stamp-sig"><svg viewBox="0 0 240 96" width="150" height="60" role="img" aria-label="Signature"><g fill="none" stroke="#1e3a8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 56 C18 24 46 18 41 48 C37 72 31 92 17 83 C7 77 14 60 31 59 C41 58 47 51 50 42 C53 33 44 31 40 41 C36 52 46 59 52 49 C57 39 66 16 61 14 C56 22 56 51 60 57 C64 49 73 47 75 56 C77 48 85 46 87 56 C89 48 97 46 99 56 C101 53 105 53 110 50"/><path d="M138 32 C133 20 116 23 119 36 C121 47 138 44 136 56 C133 69 114 67 113 55 C118 54 121 47 123 55 C125 47 131 47 132 56 C134 47 140 47 141 56 C143 48 149 47 150 56 C151 52 153 52 155 56 C158 47 163 28 163 30 C162 43 162 53 166 57 C170 51 176 50 179 57 C183 60 189 58 196 51"/><path d="M154 42 l0.5 0"/><path d="M157 40 L171 38" stroke-width="2.4"/><path d="M30 76 C100 95 168 92 214 68 C208 74 204 76 200 73" stroke-width="2.4"/></g></svg><span class="sig-cap">Director</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sm2-feats v">
+          <div class="sm2-feat v"><span class="fi"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span><label>Use Signature Images (PNG)</label></div>
+          <div class="sm2-feat v"><span class="fi"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 22h14M5 18h14v4H5zM12 18v-4M9 6a3 3 0 1 1 6 0c0 2-1.5 3-1.5 5h-3C10.5 9 9 8 9 6z"/></svg></span><label>Add Company Stamps / Seals</label></div>
+          <div class="sm2-feat v"><span class="fi"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="5,9 2,12 5,15"/><polyline points="9,5 12,2 15,5"/><polyline points="15,19 12,22 9,19"/><polyline points="19,9 22,12 19,15"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/></svg></span><label>Drag, Resize &amp; Place Anywhere</label></div>
+        </div>
       </div>
-      <div class="how-step">
-        <div class="step-num">3</div>
-        <h4>Choose DSC token or stamp image</h4>
-        <p>Insert your USB DSC token or upload a signature/stamp image — whichever you have.</p>
-      </div>
-      <div class="how-step">
-        <div class="step-num">4</div>
-        <h4>Click Sign</h4>
-        <p>Enter your token PIN if using DSC, choose placement, and sign. Saved instantly.</p>
-      </div>
+    </div>
+
+    <div class="sm2-proof">
+      <div class="sm2-proof-item"><svg width="22" height="22" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg><div><h5>Documents Stay Private</h5><p>Never uploaded. Never processed outside your computer.</p></div></div>
+      <div class="sm2-proof-item"><svg width="22" height="22" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><div><h5>Secure by Design</h5><p>Local processing keeps your data safe and confidential.</p></div></div>
+      <div class="sm2-proof-item"><svg width="22" height="22" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><div><h5>Legally Valid</h5><p>Compliant digital signatures you can trust.</p></div></div>
+      <div class="sm2-proof-item"><svg width="22" height="22" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><div><h5>Windows Native</h5><p>Optimized for Windows. Fast, stable, and efficient.</p></div></div>
     </div>
   </div>
 </section>
+
+
 
 <!-- ─── SEE IT IN ACTION ─── -->
 <section class="tutorials" id="demo">
@@ -2852,6 +3266,451 @@
 </section>
 
 <!-- ─── PAIN SECTION ─── -->
+<!-- ─── PRIVACY — LOCAL PROCESSING (global diagram) ─── -->
+<section class="privacy-flow" id="privacy">
+  <div class="container">
+    <div class="pd-panel">
+      <div class="pd-grid">
+        <div class="pd-copy">
+          <h2>Your documents <span class="grn">never leave</span> your computer.</h2>
+          <p>Every PDF is signed locally on your Windows PC. PDFSign processes documents on your device—not on our servers.</p>
+        </div>
+        <div class="pd-flow">
+          <div class="pd-file pd-s1"><svg viewBox="0 0 60 70" width="46" height="54" role="img" aria-label="PDF file"><path d="M11 3h26l13 13v48a3 3 0 0 1-3 3H11a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3z" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/><path d="M37 3v13h13z" fill="#e2e8f0"/><rect x="13" y="24" width="25" height="13" rx="2.5" fill="#e11d48"/><text x="25.5" y="33.5" text-anchor="middle" font-size="8.5" font-weight="700" font-family="ui-sans-serif,system-ui,sans-serif" fill="#ffffff">PDF</text><line x1="14" y1="48" x2="46" y2="48" stroke="#e2e8f0" stroke-width="2.5" stroke-linecap="round"/><line x1="14" y1="55" x2="46" y2="55" stroke="#e2e8f0" stroke-width="2.5" stroke-linecap="round"/><line x1="14" y1="62" x2="34" y2="62" stroke="#e2e8f0" stroke-width="2.5" stroke-linecap="round"/></svg><span>Invoice.pdf</span></div>
+          <div class="pd-conn"><i class="pk1"></i></div>
+          <div class="pd-box pd-s2"><svg viewBox="0 0 96 66" width="70" height="48" role="img" aria-label="Your Windows PC"><rect x="18" y="4" width="60" height="41" rx="3" fill="#1e293b"/><rect x="21" y="7" width="54" height="32" rx="1" fill="#ffffff"/><g transform="translate(38,15)" fill="#2563EB"><rect x="0" y="0" width="8" height="8" rx="0.5"/><rect x="10" y="0" width="8" height="8" rx="0.5"/><rect x="0" y="10" width="8" height="8" rx="0.5"/><rect x="10" y="10" width="8" height="8" rx="0.5"/></g><path d="M6 49h84l5 9a3 3 0 0 1-3 4H4a3 3 0 0 1-3-4z" fill="#cbd5e1"/><rect x="40" y="49" width="16" height="3" rx="1.5" fill="#94a3b8"/></svg><div><span class="t1">Your Windows PC</span><span class="t2">File stays on your computer</span></div></div>
+          <div class="pd-conn" style="height:22px;"><i class="pk2"></i></div>
+          <span class="pd-lpp"><i></i>Local PDF Processing</span>
+          <div class="pd-box hero pd-s3"><span style="position:relative;display:inline-flex;flex-shrink:0;"><span class="pd-glow"></span><svg viewBox="0 0 56 64" width="52" height="60" class="pd-shield-anim" style="position:relative;" role="img" aria-label="PDFSign"><defs><linearGradient id="pd-shield" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#15803d"/></linearGradient></defs><path d="M28 3 51 11v18c0 15-10 25-23 31C15 54 5 44 5 29V11z" fill="url(#pd-shield)"/><path d="M28 9 45 15v14c0 11-7 19-17 24V9z" fill="#ffffff" opacity="0.12"/><path d="M18 31l6.5 6.5L40 22" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><span class="brand"><span class="n">PDF</span><span class="g">Sign</span></span><span class="t2">Local processing engine</span><span class="ok pd-success-anim"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Digital Signature Applied</span></div></div>
+          <div class="pd-conn"><i class="pk3"></i></div>
+          <div class="pd-file pd-s4"><span style="position:relative;display:inline-flex;flex-shrink:0;"><span class="pd-sgnglow"></span><svg viewBox="0 0 60 70" width="46" height="54" style="position:relative;" role="img" aria-label="Signed PDF"><path d="M11 3h26l13 13v48a3 3 0 0 1-3 3H11a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3z" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/><path d="M37 3v13h13z" fill="#e2e8f0"/><rect x="13" y="24" width="25" height="13" rx="2.5" fill="#16a34a"/><text x="25.5" y="33.5" text-anchor="middle" font-size="8.5" font-weight="700" font-family="ui-sans-serif,system-ui,sans-serif" fill="#ffffff">PDF</text><path d="M14 52c4-5 6 3 10-1s5-4 8-2" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round"/><circle cx="44" cy="54" r="9" fill="#16a34a"/><path d="M40 54l3 3 5-6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Invoice_signed.pdf</span></div>
+        </div>
+        <div class="pd-cloud">
+          <svg viewBox="0 0 150 116" width="96" role="img" aria-label="Cloud servers — not used"><path d="M44 96c-15 0-27-11-27-25 0-13 9-23 22-25 4-15 18-26 34-26 18 0 33 13 35 31 12 1 21 11 21 23 0 13-11 22-24 22z" fill="#edf1f6"/><g fill="#d2dae5"><rect x="52" y="44" width="46" height="13" rx="2.5"/><rect x="52" y="61" width="46" height="13" rx="2.5"/></g><g fill="#f3f6fa"><circle cx="59" cy="50.5" r="1.7"/><circle cx="66" cy="50.5" r="1.7"/><circle cx="59" cy="67.5" r="1.7"/><circle cx="66" cy="67.5" r="1.7"/></g><path d="M50 38 100 88M100 38 50 88" stroke="#fda4af" stroke-width="5.5" stroke-linecap="round" opacity="0.75"/></svg>
+          <ul>
+            <li><span class="ci"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.5 19a4.5 4.5 0 1 0-.9-8.9A7 7 0 1 0 6 19z"/></svg><em></em></span>No document upload</li>
+            <li><span class="ci"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="7" rx="2"/><rect x="2" y="14" width="20" height="7" rx="2"/><circle cx="6.5" cy="6.5" r="0.5"/><circle cx="6.5" cy="17.5" r="0.5"/></svg><em></em></span>No document processing</li>
+            <li><span class="ci ok2"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>Your files remain on your PC</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pd-strip">
+        <div><span class="si"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16a4.5 4.5 0 0 0-3.5-4.4A7 7 0 0 0 6.3 8.5"/><path d="M3.6 6.6A7 7 0 0 0 5 12.5 4.5 4.5 0 0 0 6.5 21H18"/><line x1="2" y1="2" x2="22" y2="22"/></svg></span><h4>No Document Upload</h4><p>Your PDFs always stay on your computer.</p></div>
+        <div><span class="si"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16a4.5 4.5 0 0 0-3.5-4.4A7 7 0 0 0 6.3 8.5"/><path d="M3.6 6.6A7 7 0 0 0 5 12.5 4.5 4.5 0 0 0 6.5 21H18"/><line x1="2" y1="2" x2="22" y2="22"/></svg></span><h4>No Cloud Processing</h4><p>Every signature is created locally.</p></div>
+        <div><span class="si"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg></span><h4>Works Offline</h4><p>Internet isn&rsquo;t required for signing.</p></div>
+        <div><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="9" height="9" rx="0.5"/><rect x="13" y="2" width="9" height="9" rx="0.5"/><rect x="2" y="13" width="9" height="9" rx="0.5"/><rect x="13" y="13" width="9" height="9" rx="0.5"/></svg></span><h4>Windows Native</h4><p>Optimized for Windows performance.</p></div>
+      </div>
+      <p class="pd-note">PDFSign may connect to our servers for trial activation, licensing, updates, or account management — never for your documents.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TOOLBOX ─── -->
+<section class="toolbox" id="toolbox">
+  <div class="container">
+    <div class="tbx-head">
+      <span class="tbx-kicker">PDF Tools — Built into PDFSign · 20+ tools</span>
+      <h2>Your complete PDF toolbox. <span class="grn2">Built right in.</span></h2>
+      <p>Edit, merge, split, compress, convert and protect PDFs — without uploading your files. Everything runs locally on your PC.</p>
+      <span class="tbx-pill"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>100% offline processing · No uploads · No per-tool subscriptions</span>
+    </div>
+
+    <div class="tbx-primary">
+      <div class="tbx-card">
+        <span class="ti"><svg width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><path d="M10.5 17.5l6-6-2-2-6 6-.7 2.7z"/></svg></span>
+        <h4>Edit PDF</h4>
+        <p>Edit text, images and content directly inside your PDFs — fix typos, update values, redact.</p>
+      </div>
+      <div class="tbx-card">
+        <span class="ti"><svg width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><path d="M8 13l1.5 5L12 13l2.5 5L16 13"/></svg></span>
+        <h4>PDF to Word</h4>
+        <p>Turn PDFs into editable Word documents — with a scanned-page check first.</p>
+      </div>
+      <div class="tbx-card">
+        <span class="ti"><svg width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path d="M8 7V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><rect x="3" y="7" width="14" height="14" rx="2"/><path d="M8 14h6M11 11l3 3-3 3"/></svg></span>
+        <h4>Merge PDFs</h4>
+        <p>Combine multiple PDFs into one file, in the order you choose.</p>
+      </div>
+      <div class="tbx-card">
+        <span class="ti"><svg width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><path d="M12 11v7M12 11l-2.5 2.5M12 11l2.5 2.5M9 18.5h6"/></svg></span>
+        <h4>Compress PDF</h4>
+        <p>Reduce file size for email, portals and sharing — you pick the quality.</p>
+      </div>
+    </div>
+
+    <div class="tbx-cats">
+      <div class="tbx-cat"><h5>Edit</h5><p>Edit PDF · Fill Form · Remove Signature · Crop / Trim</p></div>
+      <div class="tbx-cat"><h5>Organize</h5><p>Merge · Split · Reorder Pages · Page Numbers · Bates Numbering · Remove Blank Pages</p></div>
+      <div class="tbx-cat"><h5>Convert</h5><p>PDF → Word · Word / Excel → PDF · Image → PDF · PDF → Image · Export</p></div>
+      <div class="tbx-cat"><h5>Protect</h5><p>Protect (AES-256) · Watermark · Header / Footer · Flatten · Repair</p></div>
+    </div>
+
+    <div class="tbx-cta">
+      <a href="https://api.pdfsign.in/api/download" class="btn-primary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Get PDFSign — all 20+ tools included
+      </a>
+      <span class="note">Every tool is included in every plan. Free evaluation — no credit card required.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BUILT FOR REAL WORK (global port, 4 animated feature cards) ─── -->
+<section id="real-work" aria-label="Built for real work">
+<style>
+#bfrw-root [data-lucide], #bfrw-root .lucide { width:1em; height:1em; display:inline-block; vertical-align:middle; stroke-width:2; flex-shrink:0; }
+#bfrw-root { overflow:hidden; background:#ffffff !important; padding:64px 24px 56px !important; }
+@media (max-width: 880px) {
+  #bfrw-root { padding:56px 16px 64px !important; }
+  #bfrw-root h2 { font-size:34px !important; }
+  #bfrw-root .bfrw-card { grid-template-columns:1fr !important; }
+  #bfrw-root .bfrw-card > div { padding:30px 26px !important; }
+  #bfrw-root .bfrw-card h3 { font-size:23px !important; }
+}
+</style>
+
+<div id="bfrw-root" data-loop="1" style="background:#F8FAFC; font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif; color:#0F172A; padding:80px 24px 96px; -webkit-font-smoothing:antialiased; line-height:1.5;">
+
+  <!-- ===================== HEADER ===================== -->
+  <div style="max-width:760px; margin:0 auto 56px; text-align:center;">
+    <div style="display:inline-flex; align-items:center; gap:8px; background:#DCFCE7; color:#15803D; font-size:12.5px; font-weight:700; letter-spacing:0.08em; padding:7px 14px; border-radius:999px; margin-bottom:24px;">
+      <i data-lucide="rocket" style="font-size:14px;"></i><span>BUILT FOR REAL WORK</span>
+    </div>
+    <h2 style="font-size:48px; line-height:1.08; font-weight:800; letter-spacing:-0.02em; margin:0 0 18px; color:#0F172A;">Built for the way<br>professionals <span style="color:#16A34A;">sign PDFs.</span></h2>
+    <p style="font-size:18px; color:#475569; margin:0; max-width:620px; margin-left:auto; margin-right:auto;">Powerful tools that save time, reduce errors, and keep your documents private, secure, and compliant.</p>
+  </div>
+
+  <div style="max-width:1140px; margin:0 auto; display:flex; flex-direction:column; gap:20px;">
+
+    <!-- ===================== FEATURE 01 ===================== -->
+    <div class="bfrw-card" data-anim="f1" style="background:#fff; border:1px solid #E2E8F0; border-radius:24px; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 16px 40px -20px rgba(15,23,42,0.10); overflow:hidden; display:grid; grid-template-columns:1.05fr 0.95fr; align-items:center;">
+      <!-- screenshot : REAL PDFSign Bulk Sign panel -->
+      <div style="padding:40px 24px 40px 44px;">
+        <div style="border:1px solid #E2E8F0; border-radius:20px; overflow:hidden; box-shadow:0 1px 2px rgba(15,23,42,0.05), 0 20px 48px -26px rgba(15,23,42,0.40); background:#fff;">
+          <!-- dark app header -->
+          <div style="background:#0E2A50; padding:13px 18px; display:flex; align-items:center; justify-content:space-between;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <span style="width:30px;height:30px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;color:#16A34A;font-size:17px;"><i data-lucide="shield-check"></i></span>
+              <div style="line-height:1.1;"><div style="font-size:15px;font-weight:800;color:#fff;letter-spacing:-0.01em;">PDF<span style="color:#22C55E;">Sign</span></div><div style="font-size:8px;color:#8FA6C6;margin-top:1px;">Private. Secure. Signed.</div></div>
+            </div>
+            <span style="font-size:9px;color:#8FA6C6;font-weight:600;">v3.6.5</span>
+          </div>
+          <!-- body -->
+          <div style="padding:18px 18px 20px;">
+            <!-- Document + tabs -->
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:15px;">
+              <span style="display:flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:#0F172A;"><i data-lucide="file-text" style="color:#2563EB; font-size:15px;"></i>Document</span>
+              <div style="display:flex; gap:7px;">
+                <span id="f1-single" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; padding:6px 12px; border-radius:8px; background:#1B2A4A; color:#fff; border:1px solid #1B2A4A; transition:all 0.4s ease;"><i data-lucide="file" style="font-size:12px;"></i>Single PDF</span>
+                <span id="f1-bulk" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; padding:6px 12px; border-radius:8px; background:#F1F5F9; color:#475569; border:1px solid #E2E8F0; transition:all 0.4s ease;"><i data-lucide="briefcase" style="font-size:12px;"></i>Bulk Sign</span>
+              </div>
+            </div>
+            <!-- Source Folder -->
+            <div style="border:1px solid #E2E8F0; border-radius:11px; padding:12px 14px; display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px;">
+              <div style="min-width:0;"><div style="font-size:10px; color:#64748B; margin-bottom:3px;">Source Folder</div><div id="f1-src" style="font-size:12.5px; font-weight:600; color:#0F172A; opacity:0; transform:translateY(4px); transition:opacity 0.45s ease, transform 0.45s ease;">C:\\Reports</div></div>
+              <span style="border:1px solid #CBD5E1; border-radius:8px; padding:7px 14px; font-size:11.5px; font-weight:600; color:#334155; white-space:nowrap;">Browse</span>
+            </div>
+            <!-- Destination Folder -->
+            <div style="border:1px solid #E2E8F0; border-radius:11px; padding:12px 14px; display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px;">
+              <div style="min-width:0;"><div style="font-size:10px; color:#64748B; margin-bottom:3px;">Destination Folder</div><div id="f1-dst" style="font-size:12.5px; font-weight:600; color:#0F172A; opacity:0; transform:translateY(4px); transition:opacity 0.45s ease, transform 0.45s ease;">C:\\Report Signed</div></div>
+              <span style="border:1px solid #CBD5E1; border-radius:8px; padding:7px 14px; font-size:11.5px; font-weight:600; color:#334155; white-space:nowrap;">Browse</span>
+            </div>
+            <!-- overwrite toggle -->
+            <div style="display:flex; align-items:center; gap:11px; margin-bottom:16px;">
+              <span style="width:36px; height:20px; border-radius:999px; background:#CBD5E1; position:relative; flex-shrink:0;"><span style="position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:999px; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,0.2);"></span></span>
+              <span style="font-size:12px; color:#475569;">Overwrite existing signed files</span>
+            </div>
+            <!-- progress -->
+            <div style="border-top:1px solid #EEF2F6; padding-top:14px;">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:7px;">
+                <span style="font-size:11.5px; font-weight:600; color:#334155; display:flex; align-items:center; gap:6px;"><i data-lucide="loader" style="color:#16A34A; font-size:13px;"></i>Signing files… <span style="color:#16A34A; font-weight:700;">124 found</span></span>
+                <span id="f1-pct" style="font-size:11.5px; font-weight:800; color:#16A34A;">0%</span>
+              </div>
+              <div style="height:9px; background:#EEF2F6; border-radius:999px; overflow:hidden;">
+                <div id="f1-progress" style="height:100%; width:0%; background:#16A34A; border-radius:999px; transition:width 1.4s cubic-bezier(0.22,1,0.36,1);"></div>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-top:8px; font-size:10px; color:#94A3B8;"><span>Elapsed&nbsp; 00:01:32</span><span>Remaining&nbsp; 00:00:12</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- text -->
+      <div style="padding:48px 56px 48px 28px;">
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
+          <span style="width:48px; height:48px; border-radius:13px; background:#DCFCE7; color:#16A34A; display:flex; align-items:center; justify-content:center; font-size:22px;"><i data-lucide="folder"></i></span>
+          <span style="font-size:22px; font-weight:800; color:#1B2A47; letter-spacing:0.02em;">01</span>
+        </div>
+        <h3 style="font-size:28px; font-weight:800; letter-spacing:-0.015em; margin:0 0 12px; line-height:1.15;">Sign 500 PDFs before your coffee gets cold.</h3>
+        <p style="font-size:16px; color:#475569; margin:0 0 22px;">Point PDFSign at a folder and walk away — every file is signed, stamped and saved on its own.</p>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; align-items:center; gap:10px; font-size:15px; color:#334155; font-weight:500;"><i data-lucide="circle-check" style="color:#16A34A; font-size:18px;"></i>Select folder</div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:15px; color:#334155; font-weight:500;"><i data-lucide="circle-check" style="color:#16A34A; font-size:18px;"></i>Automatic output</div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:15px; color:#334155; font-weight:500;"><i data-lucide="circle-check" style="color:#16A34A; font-size:18px;"></i>Save hours every week</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== FEATURE 02 ===================== -->
+    <div class="bfrw-card" data-anim="f2" style="background:#fff; border:1px solid #E2E8F0; border-radius:24px; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 16px 40px -20px rgba(15,23,42,0.10); overflow:hidden; display:grid; grid-template-columns:0.95fr 1.05fr; align-items:center;">
+      <!-- text -->
+      <div style="padding:48px 28px 48px 56px;">
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
+          <span style="width:48px; height:48px; border-radius:13px; background:#DBEAFE; color:#2563EB; display:flex; align-items:center; justify-content:center; font-size:22px;"><i data-lucide="mouse-pointer-2"></i></span>
+          <span style="font-size:22px; font-weight:800; color:#1B2A47; letter-spacing:0.02em;">02</span>
+        </div>
+        <h3 style="font-size:28px; font-weight:800; letter-spacing:-0.015em; margin:0 0 12px; line-height:1.15;">Land your signature exactly where it belongs.</h3>
+        <p style="font-size:16px; color:#475569; margin:0 0 26px;">Drag a box once and PDFSign drops your signature to the pixel — no nudging, no guesswork.</p>
+        <div style="display:flex; gap:14px;">
+          <div style="flex:1; text-align:center;"><div style="width:46px;height:46px;border-radius:12px;background:#F1F5F9;color:#334155;display:flex;align-items:center;justify-content:center;font-size:20px;margin:0 auto 8px;"><i data-lucide="mouse-pointer-click"></i></div><div style="font-size:12.5px;font-weight:600;color:#475569;">Click on PDF</div></div>
+          <div style="flex:1; text-align:center;"><div style="width:46px;height:46px;border-radius:12px;background:#F1F5F9;color:#334155;display:flex;align-items:center;justify-content:center;font-size:20px;margin:0 auto 8px;"><i data-lucide="move"></i></div><div style="font-size:12.5px;font-weight:600;color:#475569;">Drag &amp; Resize</div></div>
+          <div style="flex:1; text-align:center;"><div style="width:46px;height:46px;border-radius:12px;background:#F1F5F9;color:#334155;display:flex;align-items:center;justify-content:center;font-size:20px;margin:0 auto 8px;"><i data-lucide="layout-template"></i></div><div style="font-size:12.5px;font-weight:600;color:#475569;">Preset Positions</div></div>
+        </div>
+      </div>
+      <!-- screenshot : REAL Pick Signature Position -->
+      <div style="padding:30px 44px 30px 24px;">
+        <div style="border:1px solid #E2E8F0; border-radius:20px; overflow:hidden; box-shadow:0 1px 2px rgba(15,23,42,0.05), 0 20px 48px -26px rgba(15,23,42,0.40); background:#fff;">
+          <!-- title bar -->
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-bottom:1px solid #EEF2F6; background:#fff;">
+            <div style="display:flex; align-items:center; gap:8px; font-size:12px; font-weight:700; color:#0F172A;"><i data-lucide="shield-check" style="color:#16A34A; font-size:14px;"></i>Pick Signature Position</div>
+            <div style="display:flex; gap:12px; color:#94A3B8; font-size:11px;"><i data-lucide="minus"></i><i data-lucide="square"></i><i data-lucide="x"></i></div>
+          </div>
+          <!-- blue hint bar -->
+          <div style="background:#EFF6FF; border-bottom:1px solid #DBEAFE; padding:8px 14px; font-size:10.5px; color:#2563EB; display:flex; align-items:center; gap:7px;"><i data-lucide="pencil" style="font-size:12px;"></i>Click and drag on the page to draw the signature box. Navigate with ◀ ▶.</div>
+          <!-- body -->
+          <div style="display:flex; background:#5B6B82;">
+            <!-- doc canvas -->
+            <div style="flex:1; padding:18px; display:flex; justify-content:center;">
+              <div style="background:#fff; border-radius:3px; box-shadow:0 8px 22px -10px rgba(0,0,0,0.45); padding:16px 18px; width:100%; max-width:280px; position:relative; min-height:248px;">
+                <div style="height:5px;background:#EEF2F6;border-radius:3px;margin-bottom:6px;width:100%;"></div>
+                <div style="height:5px;background:#EEF2F6;border-radius:3px;margin-bottom:6px;width:94%;"></div>
+                <div style="height:5px;background:#EEF2F6;border-radius:3px;margin-bottom:6px;width:97%;"></div>
+                <div style="height:5px;background:#EEF2F6;border-radius:3px;margin-bottom:14px;width:62%;"></div>
+                <div style="height:5px;background:#EEF2F6;border-radius:3px;margin-bottom:6px;width:98%;"></div>
+                <div style="height:5px;background:#EEF2F6;border-radius:3px;margin-bottom:6px;width:90%;"></div>
+                <div style="height:5px;background:#EEF2F6;border-radius:3px;margin-bottom:14px;width:70%;"></div>
+                <div style="height:5px;background:#EEF2F6;border-radius:3px;margin-bottom:6px;width:95%;"></div>
+                <div style="height:5px;background:#EEF2F6;border-radius:3px;margin-bottom:6px;width:88%;"></div>
+                <div style="height:5px;background:#EEF2F6;border-radius:3px;width:55%;"></div>
+                <!-- signature selection box -->
+                <div id="f2-selbox" style="position:absolute; right:16px; bottom:22px; border:1.5px dashed #2563EB; border-radius:2px; padding:6px 9px; background:rgba(239,246,255,0.55); opacity:0; transform:scale(0.9) translateY(4px); transition:opacity 0.5s cubic-bezier(0.22,1,0.36,1), transform 0.5s cubic-bezier(0.22,1,0.36,1);">
+                  <div style="display:flex; align-items:center; gap:7px;">
+                    <div style="font-size:6px; line-height:1.4; color:#1E3A8A; white-space:nowrap;">
+                      <div style="font-weight:700; color:#16A34A;">Signature valid</div>
+                      <div class="india-only"><div>Digitally signed by RAJESH KUMAR</div><div>Date: 2026.06.28 16:37 IST</div><div>Designation: Proprietor</div><div>Reason: Tender Document</div><div>Location: Mumbai</div></div>
+                      <div class="intl-only"><div>Digitally signed by JOHN SMITH</div><div>Date: 2026.06.28 16:37 GMT</div><div>Designation: Director</div><div>Reason: Contract Document</div><div>Location: New York</div></div>
+                    </div>
+                    <i data-lucide="check" style="color:#16A34A; font-size:24px; stroke-width:3;"></i>
+                  </div>
+                  <span style="position:absolute; left:-3px; top:-3px; width:6px; height:6px; background:#2563EB; border-radius:1px;"></span>
+                  <span style="position:absolute; right:-3px; top:-3px; width:6px; height:6px; background:#2563EB; border-radius:1px;"></span>
+                  <span style="position:absolute; left:-3px; bottom:-3px; width:6px; height:6px; background:#2563EB; border-radius:1px;"></span>
+                  <span style="position:absolute; right:-3px; bottom:-3px; width:6px; height:6px; background:#2563EB; border-radius:1px;"></span>
+                  <span id="f2-check" style="position:absolute; right:-11px; top:-11px; width:22px; height:22px; border-radius:999px; background:#16A34A; border:2px solid #fff; color:#fff; font-size:11px; display:flex; align-items:center; justify-content:center; opacity:0; transform:scale(0.4); transition:opacity 0.4s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);"><i data-lucide="check"></i></span>
+                </div>
+              </div>
+            </div>
+            <!-- right panel -->
+            <div style="width:152px; flex-shrink:0; background:#fff; border-left:1px solid #E2E8F0; padding:14px 13px;">
+              <div style="font-size:8px; color:#94A3B8; letter-spacing:0.09em; font-weight:700; margin-bottom:8px;">PAGE</div>
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
+                <span style="width:24px; height:24px; border-radius:6px; border:1px solid #E2E8F0; display:flex; align-items:center; justify-content:center; color:#64748B; font-size:11px;"><i data-lucide="chevron-left"></i></span>
+                <span style="font-size:13px; font-weight:800; color:#0F172A;">3 / 3</span>
+                <span style="width:24px; height:24px; border-radius:6px; border:1px solid #E2E8F0; display:flex; align-items:center; justify-content:center; color:#64748B; font-size:11px;"><i data-lucide="chevron-right"></i></span>
+              </div>
+              <div id="f2-area" style="border:1px solid #E2E8F0; border-radius:10px; padding:11px 12px; transition:border-color 0.5s ease, background 0.5s ease;">
+                <div style="font-size:9px; font-weight:800; color:#16A34A; letter-spacing:0.05em; margin-bottom:10px;">SELECTED AREA</div>
+                <div style="display:flex; justify-content:space-between; font-size:10px; margin-bottom:7px;"><span style="color:#94A3B8;">Page</span><span style="color:#0F172A; font-weight:700;">3</span></div>
+                <div style="display:flex; justify-content:space-between; font-size:10px; margin-bottom:7px;"><span style="color:#94A3B8;">Left</span><span style="color:#0F172A; font-weight:700;">426 pt</span></div>
+                <div style="display:flex; justify-content:space-between; font-size:10px; margin-bottom:7px;"><span style="color:#94A3B8;">Bottom</span><span style="color:#0F172A; font-weight:700;">119 pt</span></div>
+                <div style="display:flex; justify-content:space-between; font-size:10px; margin-bottom:7px;"><span style="color:#94A3B8;">Width</span><span style="color:#0F172A; font-weight:700;">157 pt</span></div>
+                <div style="display:flex; justify-content:space-between; font-size:10px;"><span style="color:#94A3B8;">Height</span><span style="color:#0F172A; font-weight:700;">54 pt</span></div>
+              </div>
+              <div style="display:flex; align-items:center; justify-content:center; gap:5px; font-size:10px; color:#94A3B8; margin-top:11px; border:1px solid #E2E8F0; border-radius:8px; padding:7px;"><i data-lucide="x" style="font-size:11px;"></i>Clear selection</div>
+            </div>
+          </div>
+          <!-- bottom bar -->
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-top:1px solid #EEF2F6; background:#fff;">
+            <span style="font-size:11px; font-weight:600; color:#64748B; padding:8px 18px; background:#F1F5F9; border-radius:8px;">Cancel</span>
+            <span id="f2-confirm" style="display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:#fff; padding:8px 18px; background:#16A34A; border-radius:8px; transition:transform 0.22s ease; box-shadow:0 6px 16px -8px rgba(22,163,74,0.6);"><i data-lucide="check" style="font-size:13px;"></i>Confirm Position</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== FEATURE 03 ===================== -->
+    <div class="bfrw-card" data-anim="f3" style="background:#fff; border:1px solid #E2E8F0; border-radius:24px; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 16px 40px -20px rgba(15,23,42,0.10); overflow:hidden; display:grid; grid-template-columns:1.05fr 0.95fr; align-items:center;">
+      <!-- screenshot : REAL Saved Template dropdown -->
+      <div style="position:relative; padding:40px 24px 40px 44px;">
+        <div style="border:1px solid #E2E8F0; border-radius:20px; box-shadow:0 1px 2px rgba(15,23,42,0.05), 0 20px 48px -26px rgba(15,23,42,0.40); background:#fff; padding:22px 24px;">
+          <div style="display:flex; align-items:center; gap:8px; font-size:14px; font-weight:700; color:#0F172A; margin-bottom:18px;"><i data-lucide="map-pin" style="color:#DC2626; font-size:16px;"></i>Signature Position</div>
+          <!-- radio row -->
+          <div style="display:flex; gap:22px; margin-bottom:16px;">
+            <span style="display:flex; align-items:center; gap:7px; font-size:12px; color:#64748B;"><span style="width:14px; height:14px; border-radius:999px; border:2px solid #CBD5E1;"></span>Click on PDF</span>
+            <span style="display:flex; align-items:center; gap:7px; font-size:12px; color:#64748B;"><span style="width:14px; height:14px; border-radius:999px; border:2px solid #CBD5E1;"></span>Preset Position</span>
+            <span style="display:flex; align-items:center; gap:7px; font-size:12px; color:#0F172A; font-weight:600;"><span style="width:14px; height:14px; border-radius:999px; border:2px solid #16A34A; display:flex; align-items:center; justify-content:center;"><span style="width:6px; height:6px; border-radius:999px; background:#16A34A;"></span></span><i data-lucide="bookmark" style="color:#16A34A; font-size:13px;"></i>Saved Template</span>
+          </div>
+          <!-- dropdown field + manage -->
+          <div style="display:flex; gap:9px; position:relative;">
+            <div id="f3-field" style="flex:1; border:1.5px solid #93C5FD; background:#EFF6FF; border-radius:9px; padding:11px 13px; font-size:12.5px; display:flex; align-items:center; justify-content:space-between; transition:border-color 0.4s ease, background 0.4s ease;">
+              <span style="display:flex; align-items:center; gap:0;">
+                <span id="f3-fcheck" style="color:#16A34A; font-size:14px; opacity:0; width:0; overflow:hidden; transition:opacity 0.4s ease, width 0.4s ease, margin 0.4s ease; display:inline-flex; align-items:center;"><i data-lucide="circle-check"></i></span>
+                <span id="f3-ftext" style="color:#64748B;">— Select a profile —</span>
+              </span>
+              <i data-lucide="chevron-down" style="color:#64748B; font-size:15px;"></i>
+            </div>
+            <span style="border:1px solid #CBD5E1; border-radius:9px; padding:11px 16px; font-size:12px; font-weight:600; color:#334155; white-space:nowrap;">Manage…</span>
+            <!-- open list -->
+            <div id="f3-list" style="position:absolute; top:50px; left:0; right:84px; background:#fff; border:1px solid #CBD5E1; border-radius:10px; box-shadow:0 20px 44px -16px rgba(15,23,42,0.35); overflow:hidden; z-index:5; opacity:0; transform:scaleY(0.85) translateY(-6px); transform-origin:top; transition:opacity 0.35s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1);">
+              <div style="padding:10px 14px; font-size:12.5px; color:#64748B; background:#EFF6FF; border-bottom:1px solid #F1F5F9;">— Select a profile —</div>
+              <div style="padding:10px 14px; font-size:12.5px; color:#0F172A; border-bottom:1px solid #F1F5F9;">Invoice Digital Sign</div>
+              <div style="padding:10px 14px; font-size:12.5px; color:#0F172A; border-bottom:1px solid #F1F5F9;">Contract Document - Digital Sign</div>
+              <div id="f3-opt-sel" style="padding:10px 14px; font-size:12.5px; color:#0F172A; display:flex; align-items:center; justify-content:space-between; transition:background 0.4s ease;">Offer Letter - Sign and Stamp <span id="f3-check" style="width:20px; height:20px; border-radius:999px; background:#16A34A; color:#fff; font-size:10px; display:flex; align-items:center; justify-content:center; opacity:0; transform:scale(0.4); transition:opacity 0.4s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);"><i data-lucide="check"></i></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- text -->
+      <div style="padding:48px 56px 48px 28px;">
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
+          <span style="width:48px; height:48px; border-radius:13px; background:#16A34A; color:#fff; display:flex; align-items:center; justify-content:center; font-size:22px;"><i data-lucide="bookmark"></i></span>
+          <span style="font-size:22px; font-weight:800; color:#1B2A47; letter-spacing:0.02em;">03</span>
+        </div>
+        <h3 style="font-size:28px; font-weight:800; letter-spacing:-0.015em; margin:0 0 12px; line-height:1.15;">Place it once.<br>Reuse it forever.</h3>
+        <p style="font-size:16px; color:#475569; margin:0 0 22px;">Save the position as a template and apply it across thousands of documents in a single click.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <span style="display:inline-flex;align-items:center;gap:6px;background:#F0FDF4;color:#15803D;font-size:13px;font-weight:600;padding:7px 13px;border-radius:999px;"><i data-lucide="circle-check"></i>Consistent</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;background:#F0FDF4;color:#15803D;font-size:13px;font-weight:600;padding:7px 13px;border-radius:999px;"><i data-lucide="circle-check"></i>Accurate</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;background:#F0FDF4;color:#15803D;font-size:13px;font-weight:600;padding:7px 13px;border-radius:999px;"><i data-lucide="circle-check"></i>Time-saving</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== FEATURE 06 ===================== -->
+    <div class="bfrw-card" data-anim="f6" style="background:#fff; border:1px solid #E2E8F0; border-radius:24px; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 16px 40px -20px rgba(15,23,42,0.10); overflow:hidden; display:grid; grid-template-columns:0.95fr 1.05fr; align-items:center;">
+      <!-- text -->
+      <div style="padding:48px 28px 48px 56px;">
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
+          <span style="width:48px; height:48px; border-radius:13px; background:#DBEAFE; color:#2563EB; display:flex; align-items:center; justify-content:center; font-size:22px;"><i data-lucide="stamp"></i></span>
+          <span style="font-size:22px; font-weight:800; color:#1B2A47; letter-spacing:0.02em;">04</span>
+        </div>
+        <h3 style="font-size:28px; font-weight:800; letter-spacing:-0.015em; margin:0 0 12px; line-height:1.15;">Signatures that pass every compliance check.</h3>
+        <p style="font-size:16px; color:#475569; margin:0;">Reason, location, designation, timestamp and certificate — laid out exactly the way auditors expect.</p>
+      </div>
+      <!-- screenshot : REAL Signature Details + Stamp Preview -->
+      <div style="padding:40px 44px 40px 24px;">
+        <div style="border:1px solid #E2E8F0; border-radius:20px; box-shadow:0 1px 2px rgba(15,23,42,0.05), 0 20px 48px -26px rgba(15,23,42,0.40); background:#fff; padding:22px 24px;">
+          <div style="display:flex; align-items:center; gap:8px; font-size:14px; font-weight:700; color:#0F172A; margin-bottom:16px;"><i data-lucide="pen-line" style="color:#2563EB; font-size:16px;"></i>Signature Details</div>
+          <!-- reason + location -->
+          <div style="display:flex; gap:12px; margin-bottom:13px;">
+            <div style="flex:1;"><div style="font-size:10px; color:#64748B; margin-bottom:5px;">Reason</div><div style="border:1px solid #E2E8F0; border-radius:8px; padding:9px 11px; font-size:12px; color:#0F172A;"><span class="india-only geo-inline">Tender Document</span><span class="intl-only geo-inline">Contract</span></div></div>
+            <div style="flex:1;"><div style="font-size:10px; color:#64748B; margin-bottom:5px;">Location</div><div style="border:1px solid #E2E8F0; border-radius:8px; padding:9px 11px; font-size:12px; color:#0F172A;"><span class="india-only geo-inline">Mumbai</span><span class="intl-only geo-inline">London</span></div></div>
+          </div>
+          <!-- designation -->
+          <div style="margin-bottom:14px;"><div style="font-size:10px; color:#64748B; margin-bottom:5px;">Designation (optional)</div><div style="border:1px solid #E2E8F0; border-radius:8px; padding:9px 11px; font-size:12px; color:#0F172A;"><span class="india-only geo-inline">Proprietor</span><span class="intl-only geo-inline">Authorised Signatory</span></div></div>
+          <!-- toggle (renamed) -->
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+            <span id="f6-track" style="width:38px; height:21px; border-radius:999px; background:#CBD5E1; position:relative; flex-shrink:0; transition:background 0.4s ease;"><span id="f6-knob" style="position:absolute; top:2px; left:2px; width:17px; height:17px; border-radius:999px; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,0.2); transition:left 0.4s cubic-bezier(0.22,1,0.36,1);"></span></span>
+            <span style="font-size:12px; font-weight:600; color:#334155;">Professional Signature Layout</span>
+            <span id="f6-state" style="font-size:10px; font-weight:800; color:#94A3B8; letter-spacing:0.04em; transition:color 0.4s ease;">OFF</span>
+          </div>
+          <!-- stamp preview (two layouts) -->
+          <div style="font-size:11px; font-weight:700; color:#475569; margin-bottom:8px;">Stamp Preview</div>
+          <div style="position:relative; min-height:110px;">
+            <!-- classic / Government-Adobe layout -->
+            <div id="f6-classic" style="border:1.5px solid #E2E8F0; border-radius:9px; padding:13px 15px; position:relative; overflow:hidden; background:#fff; opacity:0; transition:opacity 0.5s ease;">
+              <div style="font-size:11px; font-weight:800; color:#16A34A; margin-bottom:3px;">Signature valid</div>
+              <div style="font-size:10px; color:#334155; line-height:1.7;">
+                <div class="india-only"><div>Digitally signed by <strong style="color:#0F172A;">RAJESH KUMAR</strong></div><div>Date: 2026.06.28&nbsp; 16:54:24 IST</div><div>Designation: Proprietor</div><div>Reason: Tender Document</div><div>Location: Mumbai</div></div>
+                <div class="intl-only"><div>Digitally signed by <strong style="color:#0F172A;">JOHN SMITH</strong></div><div>Date: 2026.06.28&nbsp; 16:54:24 GMT</div><div>Designation: Director</div><div>Reason: Contract Document</div><div>Location: New York</div></div>
+              </div>
+              <span style="position:absolute; right:20px; top:50%; width:54px; height:54px; display:flex; align-items:center; justify-content:center; color:#16A34A; transform:translate(0,-50%);"><i data-lucide="check" style="font-size:54px; stroke-width:4;"></i></span>
+            </div>
+            <!-- modern professional card layout -->
+            <div id="f6-modern" style="position:absolute; inset:0; display:flex; align-items:center; gap:13px; border:1.5px solid #BBF7D0; border-radius:9px; padding:13px 15px; background:#F0FDF4; opacity:1; transition:opacity 0.5s ease;">
+              <span style="width:38px; height:38px; border-radius:999px; background:#16A34A; color:#fff; display:flex; align-items:center; justify-content:center; font-size:19px; flex-shrink:0;"><i data-lucide="check"></i></span>
+              <div>
+                <div style="font-size:11px; font-weight:800; color:#16A34A;">Signature valid</div>
+                <div style="font-size:13.5px; font-weight:800; color:#0F172A; margin-top:1px;"><span class="india-only geo-inline">Rajesh Kumar</span><span class="intl-only geo-inline">John Smith</span></div>
+                <div style="font-size:10.5px; color:#475569;"><span class="india-only geo-inline">Proprietor</span><span class="intl-only geo-inline">Authorised Signatory</span></div>
+                <div style="font-size:10.5px; color:#94A3B8;"><span class="india-only geo-inline">Tender Document · Mumbai</span><span class="intl-only geo-inline">Contract · London</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== CTA STRIP ===================== -->
+    <div style="background:#ECFDF3; border:1px solid #BBF7D0; border-radius:24px; padding:34px 44px; margin-top:24px; display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap;">
+      <div style="display:flex; align-items:center; gap:20px;">
+        <span style="width:64px; height:64px; border-radius:18px; background:#16A34A; color:#fff; display:flex; align-items:center; justify-content:center; font-size:30px; flex-shrink:0; box-shadow:0 14px 30px -12px rgba(22,163,74,0.5);"><i data-lucide="shield-check"></i></span>
+        <div>
+          <div style="font-size:24px; font-weight:800; letter-spacing:-0.015em; color:#0F172A; line-height:1.2;">All the tools you need.</div>
+          <div style="font-size:24px; font-weight:800; letter-spacing:-0.015em; color:#16A34A; line-height:1.2;">Built for the way you work.</div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:12px;">
+        <a href="https://api.pdfsign.in/api/download" style="display:inline-flex; align-items:center; gap:9px; background:#16A34A; color:#fff; font-size:16px; font-weight:700; padding:14px 28px; border-radius:12px; text-decoration:none; box-shadow:0 12px 28px -10px rgba(22,163,74,0.55);">Download Free Evaluation <i data-lucide="download"></i></a>
+        <div style="display:flex; gap:18px; color:#475569; font-size:12.5px; font-weight:600; flex-wrap:wrap;">
+          <span style="display:inline-flex; align-items:center; gap:5px;"><i data-lucide="circle-check" style="color:#16A34A;"></i>Windows 10 &amp; 11</span>
+          <span style="display:inline-flex; align-items:center; gap:5px;"><i data-lucide="circle-check" style="color:#16A34A;"></i>No Credit Card</span>
+          <span style="display:inline-flex; align-items:center; gap:5px;"><i data-lucide="circle-check" style="color:#16A34A;"></i>Free Evaluation</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</section>
+
+<!-- ─── TOKEN COMPATIBILITY ─── -->
+<section class="tokenwall" id="tokens">
+  <div class="container">
+    <div class="tw2-head">
+      <div>
+        <span class="tw2-badge"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>USB Token Compatibility</span>
+        <h2>Works with the <span class="grn">USB tokens</span> you already own</h2>
+        <p><span class="india-only geo-inline">Use your existing DSC USB token with PDFSign.</span><span class="intl-only geo-inline">Use your existing USB security token with PDFSign.</span> Compatible with the industry&rsquo;s most widely used PKCS#11 security tokens&mdash;no additional hardware required.</p>
+      </div>
+      <div class="tw2-photos">
+        <span class="tw2-shield"><span class="ring"></span><svg viewBox="0 0 56 64" width="64" height="73" aria-hidden="true"><defs><linearGradient id="tw-shield" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#15803d"/></linearGradient></defs><path d="M28 3 51 11v18c0 15-10 25-23 31C15 54 5 44 5 29V11z" fill="url(#tw-shield)"/><path d="M18 31l6.5 6.5L40 22" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <img class="p1" src="usb-token.png" alt="SafeNet USB security token" width="1170" height="945" loading="lazy" />
+        <img class="p2" src="tokens/gemalto.png" alt="Gemalto USB security token" loading="lazy" />
+        <img class="p3" src="tokens/hyp2003.jpeg" alt="HYP2003 USB security token" loading="lazy" />
+        <span class="tw2-plus" style="top:0; left:24%;">+</span>
+        <span class="tw2-plus" style="top:10%; right:6%;">+</span>
+        <span class="tw2-plus" style="bottom:34%; left:4%;">+</span>
+      </div>
+    </div>
+
+    <div class="tw2-wall">
+      <h3>Compatible with major USB security tokens</h3>
+      <div class="tw2-logos">
+        <img src="logos/safenet.png" style="height:38px;" alt="Thales SafeNet" loading="lazy" />
+        <img src="logos/gemalto.png" style="height:34px;" alt="Gemalto" loading="lazy" />
+        <img src="logos/hyp2003.png" style="height:22px;" alt="HYP2003" loading="lazy" />
+        <img src="logos/watchdata.png" style="height:18px;" alt="WatchData" loading="lazy" />
+        <img src="logos/feitian.png" style="height:34px;" alt="FEITIAN" loading="lazy" />
+        <img src="logos/proxkey.png" style="height:22px;" alt="ProxKey" loading="lazy" />
+        <img src="logos/trustkey.png" style="height:22px;" alt="TrustKey" loading="lazy" />
+        <span class="tw2-pkcs"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>PKCS#11<br/>Compatible</span>
+      </div>
+    </div>
+    <p class="tw2-tm">SafeNet&reg;, Gemalto&reg;, FEITIAN&reg;, WatchData&reg; and other trademarks belong to their respective owners. Logos are displayed solely to indicate compatibility.</p>
+
+    <div class="tw2-caps">
+      <div class="tw2-cap"><span class="ci2"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9 14l-1.5 7L12 18.5 16.5 21 15 14"/></svg></span><h4>Class 3 DSC</h4><p>Supports legally valid DSC certificates</p></div>
+      <div class="tw2-cap"><span class="ci2"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></span><h4>Individual &amp; Organization</h4><p>Works with all DSC certificate types</p></div>
+      <div class="tw2-cap"><span class="ci2"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><h4>Certificate Access</h4><p>Read certificates from your token</p></div>
+      <div class="tw2-cap"><span class="ci2"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span><h4>PKCS#11 Support</h4><p>Works with standard USB token drivers</p></div>
+      <div class="tw2-cap"><span class="ci2"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="9" height="9" rx="0.5"/><rect x="13" y="2" width="9" height="9" rx="0.5"/><rect x="2" y="13" width="9" height="9" rx="0.5"/><rect x="13" y="13" width="9" height="9" rx="0.5"/></svg></span><h4>Windows Certificate Store</h4><p>Works with the Windows Certificate Store</p></div>
+    </div>
+
+    <p class="tokenwall-note">Don&rsquo;t see your token? PDFSign supports most PKCS#11-compatible USB security tokens.</p>
+  </div>
+</section>
+
 <section class="pain india-only" id="pain">
   <div class="container">
     <div style="text-align:center;margin-bottom:32px;">
@@ -2926,83 +3785,7 @@
 </section>
 
 <!-- ─── FEATURES ─── -->
-<section class="features" id="features">
-  <div class="container">
-    <div style="text-align:center;">
-      <div class="section-tag">Why PDFSign</div>
-      <h2 class="section-title">Built for real-world DSC signing<br />(not theory)</h2>
-      <p class="section-sub" style="margin:0 auto;">Built for Indian professionals — CA firms, lawyers, contractors, exporters, and businesses — who need legally valid, fast, and compliant digital signatures on any document.</p>
-    </div>
 
-    <div class="features-grid">
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="11" width="20" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        </div>
-        <h3>All DSC Tokens Supported</h3>
-        <p>Works with HyperPKI HYP2003, ePass 2003/3003, Proxkey, WD Pro, Feitian, Watchdata — any PKCS#11 token from a CCA-licensed CA.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M12 8v8"/><circle cx="12" cy="12" r="3"/></svg>
-        </div>
-        <h3>Sign without DSC using stamp image</h3>
-        <p>Upload your handwritten signature or company stamp as an image and embed it visually on any PDF — no DSC token required for this mode.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
-        </div>
-        <h3>Bulk PDF Signing</h3>
-        <p>Sign multiple PDFs at once — sign hundreds of PDFs in one click. Perfect for tender submissions, GST invoices, certificates, and bulk document workflows. <a href="/bulk-pdf-signing" style="color:#16A34A;font-weight:600;">Learn about bulk PDF signing →</a></p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><line x1="8" y1="15" x2="10" y2="15"/><line x1="8" y1="18" x2="16" y2="18"/></svg>
-        </div>
-        <h3>PDF Security</h3>
-        <p>Restrict printing, editing, and copying of your signed PDF. Set a document open password or owner permissions — enforced by Adobe Acrobat.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="15,3 12,3 9,3"/><circle cx="12" cy="14" r="3"/><path d="M12 11V9"/></svg>
-        </div>
-        <h3>Click exactly where you want your signature</h3>
-        <p>Click anywhere on the PDF page preview to place your signature exactly where you want it — no guessing row/column positions.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
-        </div>
-        <h3>RFC 3161 Timestamp</h3>
-        <p>Embed a trusted timestamp from a government-recognised TSA server — proves the document was signed at a specific point in time, even after cert expiry.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-        </div>
-        <h3>Offline &amp; Private</h3>
-        <p>Your documents never leave your PC. Signing happens entirely on your machine — no uploads, no cloud, no third-party server sees your files.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-        </div>
-        <h3>Government Compliant</h3>
-        <p>PAdES signatures accepted on GeM, CPPP, NIC e-Procurement, MCA21, Income Tax, DGFT, and all major Indian government portals.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 <!-- ─── COMPARE ─── -->
 <section class="compare india-only" id="compare">
@@ -3019,7 +3802,7 @@
             <th>Feature</th>
             <th class="our-col">PDFSign</th>
             <th>SignFiles.com</th>
-            <th>eMudhra SignX</th>
+            <th>eMudhra Document Signer</th>
             <th>Online tools<br/><small style="font-weight:400;font-size:11px;">(DocuSign, SmallPDF etc.)</small></th>
           </tr>
         </thead>
@@ -3072,6 +3855,13 @@
             <td><span class="cmp-no">✕</span></td>
             <td><span class="cmp-yes">✓</span></td>
             <td><span class="cmp-part">Some plans</span></td>
+          </tr>
+          <tr>
+            <td>20+ built-in PDF tools (edit, merge, compress — offline)</td>
+            <td class="our-col"><span class="cmp-yes">✓</span></td>
+            <td><span class="cmp-no">✕</span></td>
+            <td><span class="cmp-no">✕</span></td>
+            <td><span class="cmp-part">Cloud only</span></td>
           </tr>
           <tr>
             <td>No Java / no browser plugin</td>
@@ -3213,6 +4003,13 @@
             <td><span class="cmp-yes">✓</span></td>
           </tr>
           <tr>
+            <td>20+ built-in PDF tools (edit, merge, compress — offline)</td>
+            <td class="our-col"><span class="cmp-yes">✓</span></td>
+            <td><span class="cmp-no">✕</span></td>
+            <td><span class="cmp-yes">✓</span></td>
+            <td><span class="cmp-part">Cloud only</span></td>
+          </tr>
+          <tr>
             <td>No Java / no browser plugin</td>
             <td class="our-col"><span class="cmp-yes">✓</span></td>
             <td><span class="cmp-yes">✓</span></td>
@@ -3243,22 +4040,24 @@
 <!-- ─── PRICING ─── -->
 <section class="pricing" id="pricing">
   <div class="container">
-    <div class="pricing-header">
-      <div class="section-tag">Pricing</div>
-      <h2 class="section-title">Simple, honest pricing</h2>
-      <p class="section-sub">Start free. Upgrade only if it works for you.</p>
-      <p class="section-sub" style="margin-top:6px;color:#64748b;font-size:14px;">Used by professionals who can't afford signing failures. No per-signature fees. No hidden charges.</p>
-      <div class="plan-toggle-row" style="margin-top:28px;">
-      <button class="plan-toggle-btn active" id="btnSolo" onclick="setPlanMode('solo')">Solo</button>
-      <button class="plan-toggle-btn" id="btnTeam" onclick="setPlanMode('team')">Team (5 seats)</button>
+    <div class="pr2-grid">
+    <div class="pr2-rail">
+      <div class="section-tag" style="text-align:left;">Pricing</div>
+      <h2 class="pr2-title">Professional licensing made <span class="grn">simple.</span></h2>
+      <p class="pr2-sub">All purchases are made securely on our website — or directly inside the app. You&rsquo;ll get your license key by email instantly.</p>
+      <div class="pr2-secure"><span class="sh"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>100% Secure &amp; Trusted</div>
+      <div class="plan-toggle-row" style="margin-top:24px;">
+        <button class="plan-toggle-btn active" id="btnSolo" onclick="setPlanMode('solo')">Solo</button>
+        <button class="plan-toggle-btn" id="btnTeam" onclick="setPlanMode('team')">Team (5 seats)</button>
+      </div>
+      <p class="plan-seats-note plan-team-note" id="teamNote" style="text-align:left;margin-top:8px;">5-seat licence for your firm or office — one shared key, 5 Windows PCs</p>
     </div>
-    <p class="plan-seats-note plan-team-note" id="teamNote">5-seat licence for your firm or office — one shared key, 5 Windows PCs</p>
-    </div><!-- /pricing-header -->
 
     <div class="pricing-grid" id="pricingGrid">
 
       <!-- Monthly -->
       <div class="plan-card" id="cardMonthly">
+        <span class="plan-ico" style="background:var(--green-pale);color:var(--green);"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
         <div class="plan-name">Monthly</div>
         <div class="plan-price">
           <span class="plan-currency">₹</span>
@@ -3269,6 +4068,7 @@
         <div class="plan-divider"></div>
         <ul class="plan-features">
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Unlimited PDF signings</li>
+          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Complete PDF Toolbox included</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>All DSC tokens supported</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>1 Windows device</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Email support</li>
@@ -3279,7 +4079,8 @@
 
       <!-- Annual (Featured) -->
       <div class="plan-card featured">
-        <div class="plan-badge">🔥 Most Popular</div>
+        <div class="plan-badge">★ MOST POPULAR</div>
+        <span class="plan-ico" style="background:var(--green);color:#fff;"><svg width="20" height="20" fill="currentColor" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9.3 16.5,14 18.5,21 12,17 5.5,21 7.5,14 2,9.3 9,9"/></svg></span>
         <div class="plan-name">Annual</div>
         <div class="plan-price">
           <span class="plan-currency">₹</span>
@@ -3290,6 +4091,7 @@
         <div class="plan-divider"></div>
         <ul class="plan-features">
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Unlimited PDF signings</li>
+          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Complete PDF Toolbox included</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>All DSC tokens supported</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span><span id="devicesAnnual">1 Windows device</span></li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Priority email support</li>
@@ -3300,28 +4102,45 @@
 
       <!-- Lifetime -->
       <div class="plan-card">
-        <div class="plan-name">Lifetime</div>
+        <span class="plan-ico" style="background:#F3E8FF;color:#7C3AED;"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18.5 8.5c2 0 3.5 1.6 3.5 3.5s-1.5 3.5-3.5 3.5c-3.5 0-6-7-9-7C7.5 8.5 6 10.1 6 12s1.5 3.5 3.5 3.5c3 0 5.5-7 9-7z" transform="translate(-1.8,0)"/></svg></span>
+        <div class="plan-name">Perpetual License</div>
         <div class="plan-price">
           <span class="plan-currency">₹</span>
           <span class="plan-amount" id="priceLifetime">4,999</span>
           <span class="plan-period">one-time</span>
         </div>
-        <p class="plan-desc" id="descLifetime">Pay once, use forever. Ideal for firms and power users who sign daily.</p>
+        <p class="plan-desc" id="descLifetime">Pay once, use forever. Ideal for firms and power users.</p>
         <div class="plan-divider"></div>
         <ul class="plan-features">
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Unlimited PDF signings</li>
+          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Complete PDF Toolbox included</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>All DSC tokens supported</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span><span id="devicesLifetime">1 Windows device</span></li>
-          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Lifetime upgrades</li>
-          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Priority + WhatsApp support</li>
+          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Perpetual upgrades included</li>
+          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Priority support</li>
         </ul>
-        <a href="#pricing" class="plan-btn plan-btn-outline" id="btnLifetime" onclick="return handlePlanClick(event,'lifetime')">Get Lifetime Access</a>
+        <a href="#pricing" class="plan-btn plan-btn-outline" id="btnLifetime" onclick="return handlePlanClick(event,'lifetime')">Get Perpetual License</a>
       </div>
 
     </div>
+    </div><!-- /pr2-grid -->
+
+    <div class="pr2-includes">
+      <div class="pr2-inc-lead"><svg width="20" height="20" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg><b>Every plan includes everything you need</b></div>
+      <div class="pr2-inc-item"><svg width="17" height="17" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>100% Local Processing</div>
+      <div class="pr2-inc-item"><svg width="17" height="17" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Batch Signing</div>
+      <div class="pr2-inc-item"><svg width="17" height="17" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Signatures &amp; Stamps</div>
+      <div class="pr2-inc-item"><svg width="17" height="17" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Unlimited PDF Signing</div>
+      <div class="pr2-inc-item"><svg width="17" height="17" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>PDF Toolbox — 20+ Tools</div>
+      <div class="pr2-inc-item"><svg width="17" height="17" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><polyline points="23,4 23,10 17,10"/><path d="M20.5 15a9 9 0 1 1-2-9.4L23 10"/></svg>Free Updates</div>
+    </div>
+    <p class="pr2-activation"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.6" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><b>Works instantly after activation.</b>&nbsp;No account required for licensed users.</p>
 
     <p class="pricing-note" id="pricingNote">
       All prices are inclusive of GST &nbsp;·&nbsp; Free evaluation included &nbsp;·&nbsp; Payments via Razorpay (UPI, Cards, Net Banking) &nbsp;·&nbsp; GST invoice sent automatically to your email
+    </p>
+    <p class="pricing-note" style="margin-top:10px;">
+      Prefer to buy in the app? Purchase directly inside PDFSign — your license activates instantly.
     </p>
   </div>
 </section>
@@ -3598,6 +4417,15 @@
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
           <span class="faq-q-icon">Q</span>
+          <span class="faq-q-text">Can PDFSign merge, compress, or edit PDFs too?</span>
+          <span class="faq-toggle-icon">+</span>
+        </button>
+        <div class="faq-a-wrap"><p class="faq-a">Yes. PDFSign includes PDFToolbox — 20+ built-in PDF tools: edit text, merge, split, compress, reorder pages, page numbers, watermark, header/footer, protect with a password (AES-256), fill &amp; flatten forms, Bates numbering, repair damaged PDFs, convert PDF ⇄ Word/images, and more. Everything runs 100% offline on your PC — unlike online tools, your files are never uploaded anywhere.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-icon">Q</span>
           <span class="faq-q-text">Can I restrict printing, editing, or copying of the signed PDF?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
@@ -3628,7 +4456,7 @@
           <span class="faq-q-text">Is the licence tied to one computer?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">Solo licences (Monthly, Annual, Lifetime) are for 1 Windows device. Team licences cover 5 PCs — ideal for CA firms, law offices, and corporate teams. You can transfer a solo licence to a new PC by contacting support.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">Solo licences (Monthly, Annual, Perpetual) are for 1 Windows device. Team licences cover 5 PCs — ideal for CA firms, law offices, and corporate teams. You can transfer a solo licence to a new PC by contacting support.</p></div>
       </div>
 
       <div class="faq-item">
@@ -3637,7 +4465,7 @@
           <span class="faq-q-text">What is the team plan and how does it work?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">The team plan (Annual ₹3,499/yr or Lifetime ₹13,999) covers 5 Windows PCs under one shared licence key. Each user in your firm gets their own copy of the app, activated with the same key. Ideal for CA firms, law offices, and tender-filing teams.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">The team plan (Annual ₹3,499/yr or Perpetual ₹13,999 one-time) covers 5 Windows PCs under one shared licence key. Each user in your firm gets their own copy of the app, activated with the same key. Ideal for CA firms, law offices, and tender-filing teams.</p></div>
       </div>
 
       <div class="faq-item">
@@ -3880,256 +4708,33 @@
 </section>
 
 <!-- ─── INTERNATIONAL / DIASPORA ─── -->
-<section class="intl india-only" id="international">
+<!-- ─── FINAL CTA (global port) ─── -->
+<section class="fcta" id="download">
   <div class="container">
-    <div style="text-align:center;">
-      <div class="section-tag">For Indians Abroad</div>
-      <h2 class="section-title">Sign Indian documents from anywhere in the world</h2>
-      <p class="section-sub" style="margin:0 auto;">If you hold an Indian DSC token, PDFSign works on your Windows PC — no matter which country you're in. Sign tender submissions, legal agreements, CA filings, and government documents from your office abroad.</p>
-    </div>
-    <div class="intl-grid">
-      <div class="intl-card">
-        <div class="intl-flag"><span class="fi fi-ae"></span></div>
-        <h4>UAE &amp; Gulf Region</h4>
-        <p>NRI professionals filing documents for Indian property, business, or government portals.</p>
+    <div class="fcta-panel">
+      <div class="fcta-copy">
+        <span class="fcta-pill"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>100% Offline. 100% Secure.</span>
+        <h2>Ready to start signing PDFs <span class="grn">securely?</span></h2>
+        <p class="fcta-sub">Download PDFSign today and sign with your own <span class="india-only geo-inline">Digital Signature Certificate (DSC)</span><span class="intl-only geo-inline">Digital Signature Certificate</span> or signature stamp — in minutes.</p>
+        <div class="fcta-feats">
+          <div class="fcta-feat"><svg width="17" height="17" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg><span><b>Free evaluation</b><small>30 days or 100 signed PDFs</small></span></div>
+          <div class="fcta-feat"><svg width="17" height="17" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg><span><b>No credit card</b><small>required</small></span></div>
+          <div class="fcta-feat"><svg width="17" height="17" viewBox="0 0 24 24" fill="#16A34A"><rect x="2" y="2" width="9" height="9" rx="0.5"/><rect x="13" y="2" width="9" height="9" rx="0.5"/><rect x="2" y="13" width="9" height="9" rx="0.5"/><rect x="13" y="13" width="9" height="9" rx="0.5"/></svg><span><b>Works on</b><small>Windows 10 &amp; 11</small></span></div>
+        </div>
+        <a href="https://api.pdfsign.in/api/download" class="btn-primary" style="margin-top:6px;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Free Evaluation
+        </a>
+        <p class="fcta-ready"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Ready to use in under a minute.</p>
       </div>
-      <div class="intl-card">
-        <div class="intl-flag"><span class="fi fi-gb"></span></div>
-        <h4>United Kingdom</h4>
-        <p>Indian diaspora submitting GeM bids, MCA filings, or legal documents back home.</p>
-      </div>
-      <div class="intl-card">
-        <div class="intl-flag"><span class="fi fi-us"></span></div>
-        <h4>United States</h4>
-        <p>Indian business owners and CA firms managing Indian corporate filings remotely.</p>
-      </div>
-      <div class="intl-card">
-        <div class="intl-flag"><span class="fi fi-ca"></span></div>
-        <h4>Canada</h4>
-        <p>NRI entrepreneurs and exporters who need to sign Indian trade and compliance documents.</p>
-      </div>
-      <div class="intl-card">
-        <div class="intl-flag"><span class="fi fi-au"></span></div>
-        <h4>Australia</h4>
-        <p>Indian professionals signing property, income tax, and business documents for India.</p>
-      </div>
-      <div class="intl-card">
-        <div class="intl-flag"><span class="intl-flag-globe">🌍</span></div>
-        <h4>Anywhere Else</h4>
-        <p>PDFSign has no geo-restriction. If Windows runs on your PC, it works — fully offline.</p>
+      <div class="fcta-shot">
+        <img src="hero-app.png" alt="The PDFSign desktop app signing a PDF with a digital certificate — fully offline on Windows" width="2544" height="2316" loading="lazy" />
       </div>
     </div>
-    <p class="intl-note">Your DSC token was issued in India — <strong>PDFSign makes it work wherever you are.</strong></p>
+    <p class="fcta-trust"><svg width="15" height="15" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>Trusted by professionals in <b>50+ countries</b> for secure and reliable PDF signing.</p>
   </div>
 </section>
 
-<!-- ─── ROADMAP ─── -->
-<section class="roadmap india-only" id="roadmap">
-  <div class="container">
-    <div style="text-align:center; margin-bottom: 48px;">
-      <div class="section-tag">What's Coming</div>
-      <h2 class="section-title">Built for India. Growing with India.</h2>
-      <p class="section-sub" style="margin: 0 auto; text-align: center;">We're on a mission to make digital signing accessible to every Indian professional. Here's what's live and what's coming.</p>
-    </div>
-
-    <div class="roadmap-grid">
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">🔏</div>
-        <div class="roadmap-text">
-          <h4>Single &amp; Batch PDF Signing</h4>
-          <p>Sign one PDF or hundreds in a single click. Fully offline, PAdES compliant, accepted everywhere.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">🔌</div>
-        <div class="roadmap-text">
-          <h4>All Major DSC Tokens Supported</h4>
-          <p>HyperPKI, ePass, Proxkey, Feitian, WD Pro, Watchdata — plug in and sign instantly.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item soon">
-        <span class="roadmap-badge badge-soon">Coming Soon</span>
-        <div class="roadmap-icon-wrap">🇮🇳</div>
-        <div class="roadmap-text">
-          <h4>Hindi &amp; Regional Language UI</h4>
-          <p>Full Hindi interface for tier-2 and tier-3 city users. Marathi, Bengali, Tamil support planned.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">🖼️</div>
-        <div class="roadmap-text">
-          <h4>Signature &amp; Stamp Image</h4>
-          <p>Upload your handwritten signature or company rubber stamp image — embedded directly on any PDF page without a DSC token.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">👥</div>
-        <div class="roadmap-text">
-          <h4>Team Licences for Firms</h4>
-          <p>5-seat team licences available for CA firms, law offices, and tender-filing teams — Annual ₹3,499 or Lifetime ₹13,999.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item soon">
-        <span class="roadmap-badge badge-soon">Coming Soon</span>
-        <div class="roadmap-icon-wrap">💬</div>
-        <div class="roadmap-text">
-          <h4>WhatsApp Licence Delivery</h4>
-          <p>Get your licence key and renewal reminders directly on WhatsApp — no email needed.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">📦</div>
-        <div class="roadmap-text">
-          <h4>Complete Offline Installer</h4>
-          <p>Single .exe installer — download once, install anywhere, no internet required. Available at cdn.pdfsign.in.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">🤝</div>
-        <div class="roadmap-text">
-          <h4>DSC Reseller &amp; Affiliate Programme</h4>
-          <p>DSC token sellers, CA consultants, and IT professionals — partner with PDFSign and earn on every licence you refer. <a href="/reseller-portal" style="color:var(--green);text-decoration:underline;">Enquire now →</a></p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ─── ROADMAP (INTL) ─── -->
-<section class="roadmap intl-only" id="roadmap-intl">
-  <div class="container">
-    <div style="text-align:center; margin-bottom: 48px;">
-      <div class="section-tag">What's Coming</div>
-      <h2 class="section-title">Built for privacy. Growing globally.</h2>
-      <p class="section-sub" style="margin: 0 auto; text-align: center;">We're on a mission to make offline digital signing accessible to every professional worldwide. Here's what's live and what's coming.</p>
-    </div>
-
-    <div class="roadmap-grid">
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">🔏</div>
-        <div class="roadmap-text">
-          <h4>Single &amp; Batch PDF Signing</h4>
-          <p>Sign one PDF or hundreds in a single click. Fully offline, PAdES &amp; CAdES compliant, accepted everywhere.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">🔌</div>
-        <div class="roadmap-text">
-          <h4>Any PKCS#11 USB Token Supported</h4>
-          <p>HyperPKI, ePass, Feitian, SafeNet, Gemalto, Yubikey — plug in any hardware token and sign instantly.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item soon">
-        <span class="roadmap-badge badge-soon">Coming Soon</span>
-        <div class="roadmap-icon-wrap">🌍</div>
-        <div class="roadmap-text">
-          <h4>Multi-language UI</h4>
-          <p>German, French, Spanish, and Portuguese interface planned. Localised for European and global markets.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">🖼️</div>
-        <div class="roadmap-text">
-          <h4>Signature &amp; Stamp Image</h4>
-          <p>Upload your handwritten signature or company seal image — embedded directly on any PDF page without a hardware token.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">👥</div>
-        <div class="roadmap-text">
-          <h4>Team Licences for Firms</h4>
-          <p>5-seat team licences for law firms, accounting practices, and compliance teams — billed annually or lifetime.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item soon">
-        <span class="roadmap-badge badge-soon">Coming Soon</span>
-        <div class="roadmap-icon-wrap">🍎</div>
-        <div class="roadmap-text">
-          <h4>macOS Support</h4>
-          <p>Native macOS app in development. Sign PDFs with your hardware token on Mac — fully offline, no cloud.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">📦</div>
-        <div class="roadmap-text">
-          <h4>Complete Offline Installer</h4>
-          <p>Single .exe installer — download once, install anywhere, no internet required. Available at cdn.pdfsign.in.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-item">
-        <span class="roadmap-badge badge-live">Live Now</span>
-        <div class="roadmap-icon-wrap">🤝</div>
-        <div class="roadmap-text">
-          <h4>Global Reseller Programme</h4>
-          <p>Token resellers and IT consultants worldwide — partner with PDFSign and earn on every licence you refer. <a href="/reseller-portal" style="color:var(--green);text-decoration:underline;">Enquire now →</a></p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ─── CTA BAND ─── -->
-<section class="cta-band india-only">
-  <div class="cta-band-inner">
-    <h2>Stop struggling with DSC errors.<br>Start signing in seconds.</h2>
-    <p>Download now and sign your first PDF in under 1 minute. No credit card required. Works with the DSC token you already have.</p>
-    <div class="cta-actions">
-      <a href="https://api.pdfsign.in/api/download" class="btn-primary-lg">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download Now
-      </a>
-      <a href="/cdn-cgi/l/email-protection#e38b868f93a3938785908a848dcd8a8d" style="color:#ffffff;font-size:15px;font-weight:500;text-decoration:underline;opacity:0.9;"><span class="__cf_email__" data-cfemail="95fdf0f9e5d5e5f1f3e6fcf2fbbbfcfb">[email&#160;protected]</span></a>
-    </div>
-    <p class="cta-footnote">For Windows 10 &amp; 11 · Free evaluation — up to 30 days or 100 signed PDFs · No credit card needed</p>
-  </div>
-</section>
-
-<!-- ─── CTA BAND (INTL) ─── -->
-<section class="cta-band intl-only">
-  <div class="cta-band-inner">
-    <h2>Stop uploading confidential documents<br>to cloud servers.</h2>
-    <p>Sign any PDF offline, in seconds. Your documents never leave your computer. Works with any USB security token worldwide.</p>
-    <div class="cta-actions">
-      <a href="https://api.pdfsign.in/api/download" class="btn-primary-lg">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download Free Evaluation
-      </a>
-      <a href="mailto:support@pdfsign.in" style="color:#ffffff;font-size:15px;font-weight:500;text-decoration:underline;opacity:0.9;">support@pdfsign.in</a>
-    </div>
-    <p class="cta-footnote">For Windows 10 &amp; 11 · Free evaluation — up to 30 days or 100 signed PDFs · No credit card needed</p>
-  </div>
-</section>
-
-<!-- ─── FEEDBACK STRIP ─── -->
 <section class="feedback-strip">
   <div style="max-width:600px;margin:0 auto;">
     <h3>How is PDFSign working for you?</h3>
@@ -4280,14 +4885,14 @@
           <svg class="logo-mark" width="38" height="38" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#243558"/><text x="32" y="23" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="14" letter-spacing="1.5" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle">PDF</text><rect x="10" y="31" width="44" height="2.5" rx="1.25" fill="#16A34A"/><text x="32" y="46" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="12" letter-spacing="1.5" fill="#93C5FD" text-anchor="middle" dominant-baseline="middle">SIGN</text></svg>
           <span class="logo-name">PDF<em>Sign</em></span>
         </a>
-        <p>Sign PDFs with your DSC token. Offline, private, and accepted everywhere in India.</p>
+        <p>Sign PDFs with your <span class="india-only geo-inline">DSC token</span><span class="intl-only geo-inline">USB token</span>. Offline, private, and <span class="india-only geo-inline">accepted everywhere in India</span><span class="intl-only geo-inline">legally valid worldwide</span>. Plus 20+ built-in PDF tools.</p>
       </div>
 
       <div class="footer-col">
         <h5>Product</h5>
         <ul>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#how">How it works</a></li>
+          <li><a href="#real-work">Features</a></li>
+          <li><a href="#demo">How it works</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="https://api.pdfsign.in/api/download">Download</a></li>
           <li><a href="https://pdfsign.in/changelog">Changelog</a></li>
@@ -4325,7 +4930,6 @@
     <div class="footer-bottom">
       <p>© 2026 PDFSign &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; 🦁 Made in India &nbsp;·&nbsp; 🇮🇳 Proud to be Indian</p>
       <div class="footer-bottom-links">
-        <a href="/global">🌐 Global Site</a>
         <a href="/privacy">Privacy</a>
         <a href="/terms">Terms</a>
         <a href="/cdn-cgi/l/email-protection#137b767f6353637775607a747d3d7a7d"><span class="__cf_email__" data-cfemail="c7afa2abb787b7a3a1b4aea0a9e9aea9">[email&#160;protected]</span></a>
@@ -4456,6 +5060,8 @@ function applyGeo() {
     if (_isIndia) {
       if      (el.classList.contains('trust-grid'))      el.style.display = 'grid';
       else if (el.classList.contains('trust-capability')) el.style.display = 'flex';
+      else if (el.classList.contains('geo-inline'))       el.style.display = 'inline';
+      else if (el.classList.contains('geo-flex'))         el.style.display = 'flex';
       // everything else: display='' → CSS .india-only{display:block} applies correctly
     }
   });
@@ -4465,6 +5071,8 @@ function applyGeo() {
     el.style.display = _isIndia ? 'none'
       : el.classList.contains('trust-grid') ? 'grid'
       : el.classList.contains('trust-capability') ? 'flex'
+      : el.classList.contains('geo-inline') ? 'inline'
+      : el.classList.contains('geo-flex') ? 'flex'
       : 'block';
   });
 
@@ -4650,7 +5258,7 @@ function setPlanMode(mode, forceRedraw) {
   if (isSolo) {
     document.getElementById('descLifetime').textContent = isUSD
       ? 'Pay once, use forever. One-time purchase, all future updates included.'
-      : 'Pay once, use forever. Ideal for firms and power users who sign daily.';
+      : 'Pay once, use forever. Ideal for firms and power users.';
   } else {
     var ltSeatInr = Math.round(getInr('team-lifetime') / 100 / 5);
     var ltSeatUsd = fmtUsd(getUsd('team-lifetime') / 5);
@@ -4660,7 +5268,7 @@ function setPlanMode(mode, forceRedraw) {
   }
   document.getElementById('devicesLifetime').textContent = isSolo ? '1 Windows device' : '5 Windows devices';
   var lnkLifetime = document.getElementById('btnLifetime');
-  lnkLifetime.textContent = isSolo ? 'Get Lifetime Access' : 'Get Team Lifetime Access';
+  lnkLifetime.textContent = isSolo ? 'Get Perpetual License' : 'Get Team Perpetual License';
   lnkLifetime.href = INR_LINKS[lifetimePlan];
 }
 
@@ -4804,7 +5412,7 @@ window.addEventListener("scroll", function() {
   sections.forEach(function(sec) {
     if (sec.offsetTop <= scrollY && sec.offsetTop + sec.offsetHeight > scrollY) {
       navLinks.forEach(function(a) {
-        a.style.color = a.getAttribute("href") === "#" + sec.id ? "#fff" : "rgba(255,255,255,0.65)";
+        a.style.color = a.getAttribute("href") === "#" + sec.id ? "#16A34A" : "#475569";
       });
     }
   });
@@ -4908,5 +5516,172 @@ document.querySelectorAll(".feature-card,.how-step,.plan-card,.testimonial").for
 })();
 </script>
 <script src="/js/download-gate.js" defer></script>
+<!-- BFRW: lucide icons + in-view animation loop (vanilla port of the global page component) -->
+<script defer src="https://cdn.jsdelivr.net/npm/lucide@0.462.0/dist/umd/lucide.min.js"
+        onload="window.__bfrwInit&&window.__bfrwInit()"></script>
+<script>
+window.__bfrwInit = function () {
+  try { lucide.createIcons(); } catch (e) {}
+  var root = document.getElementById('bfrw-root');
+  if (!root) return;
+  function q(sel) { return root.querySelector(sel); }
+  function snap(el, fn) {
+    if (!el) return;
+    var tr = el.style.transition;
+    el.style.transition = 'none';
+    fn();
+    void el.offsetWidth;
+    requestAnimationFrame(function () { el.style.transition = tr; });
+  }
+  function reset(name) {
+    if (name === 'f1') {
+      snap(q('#f1-single'), function () { var e = q('#f1-single'); e.style.background = '#1B2A4A'; e.style.color = '#fff'; e.style.borderColor = '#1B2A4A'; });
+      snap(q('#f1-bulk'), function () { var e = q('#f1-bulk'); e.style.background = '#F1F5F9'; e.style.color = '#475569'; e.style.borderColor = '#E2E8F0'; });
+      snap(q('#f1-src'), function () { var e = q('#f1-src'); e.style.opacity = '0'; e.style.transform = 'translateY(4px)'; });
+      snap(q('#f1-dst'), function () { var e = q('#f1-dst'); e.style.opacity = '0'; e.style.transform = 'translateY(4px)'; });
+      snap(q('#f1-progress'), function () { q('#f1-progress').style.width = '0%'; });
+      var pct = q('#f1-pct'); if (pct) pct.textContent = '0%';
+    }
+    if (name === 'f2') {
+      snap(q('#f2-selbox'), function () { var e = q('#f2-selbox'); e.style.opacity = '0'; e.style.transform = 'scale(0.9) translateY(4px)'; });
+      snap(q('#f2-area'), function () { var e = q('#f2-area'); e.style.borderColor = '#E2E8F0'; e.style.background = 'transparent'; });
+      snap(q('#f2-check'), function () { var e = q('#f2-check'); e.style.opacity = '0'; e.style.transform = 'scale(0.4)'; });
+      var c = q('#f2-confirm'); if (c) c.style.transform = 'scale(1)';
+    }
+    if (name === 'f3') {
+      snap(q('#f3-list'), function () { var e = q('#f3-list'); e.style.opacity = '0'; e.style.transform = 'scaleY(0.85) translateY(-6px)'; });
+      var opt = q('#f3-opt-sel'); if (opt) opt.style.background = 'transparent';
+      snap(q('#f3-check'), function () { var e = q('#f3-check'); e.style.opacity = '0'; e.style.transform = 'scale(0.4)'; });
+      snap(q('#f3-field'), function () { var e = q('#f3-field'); e.style.borderColor = '#93C5FD'; e.style.background = '#EFF6FF'; });
+      var ft = q('#f3-ftext'); if (ft) { ft.textContent = '\u2014 Select a profile \u2014'; ft.style.color = '#64748B'; ft.style.fontWeight = '400'; }
+      snap(q('#f3-fcheck'), function () { var e = q('#f3-fcheck'); e.style.opacity = '0'; e.style.width = '0'; e.style.marginRight = '0'; });
+    }
+    if (name === 'f4') {
+      snap(q('#f4-list'), function () { var e = q('#f4-list'); e.style.opacity = '0'; e.style.transform = 'scaleY(0.85) translateY(-6px)'; });
+      var opt = q('#f4-opt-sel'); if (opt) opt.style.background = 'transparent';
+      snap(q('#f4-check'), function () { var e = q('#f4-check'); e.style.opacity = '0'; e.style.transform = 'scale(0.4)'; });
+      snap(q('#f4-field'), function () { var e = q('#f4-field'); e.style.borderColor = '#CBD5E1'; e.style.background = '#F8FAFC'; });
+      var ft = q('#f4-ftext'); if (ft) { ft.textContent = '\u2014 Select a certificate \u2014'; ft.style.color = '#64748B'; ft.style.fontWeight = '400'; }
+      snap(q('#f4-connected'), function () { var e = q('#f4-connected'); e.style.opacity = '0'; e.style.transform = 'translateY(6px)'; });
+    }
+    if (name === 'f5') {
+      snap(q('#f5-cur'), function () { var e = q('#f5-cur'); e.style.background = '#1B2A4A'; e.style.color = '#fff'; });
+      snap(q('#f5-every'), function () { var e = q('#f5-every'); e.style.background = '#F1F5F9'; e.style.color = '#475569'; });
+      snap(q('#f5-badge'), function () { var e = q('#f5-badge'); e.style.opacity = '0'; e.style.transform = 'translateY(8px)'; });
+      root.querySelectorAll('[data-pagesig]').forEach(function (el) { snap(el, function () { el.style.opacity = '0'; }); });
+    }
+    if (name === 'f6') {
+      snap(q('#f6-track'), function () { q('#f6-track').style.background = '#CBD5E1'; });
+      snap(q('#f6-knob'), function () { q('#f6-knob').style.left = '2px'; });
+      var st = q('#f6-state'); if (st) { st.textContent = 'OFF'; st.style.color = '#94A3B8'; }
+      snap(q('#f6-modern'), function () { q('#f6-modern').style.opacity = '1'; });
+      snap(q('#f6-classic'), function () { q('#f6-classic').style.opacity = '0'; });
+    }
+  }
+  function play(name, T) {
+    if (name === 'f1') {
+      var single = q('#f1-single'), bulk = q('#f1-bulk'), src = q('#f1-src'), dst = q('#f1-dst');
+      T(function () {
+        if (single) { single.style.background = '#F1F5F9'; single.style.color = '#475569'; single.style.borderColor = '#E2E8F0'; }
+        if (bulk) { bulk.style.background = '#1B2A4A'; bulk.style.color = '#fff'; bulk.style.borderColor = '#1B2A4A'; }
+      }, 400);
+      T(function () { if (src) { src.style.opacity = '1'; src.style.transform = 'translateY(0)'; } }, 800);
+      T(function () { if (dst) { dst.style.opacity = '1'; dst.style.transform = 'translateY(0)'; } }, 1100);
+      var bar = q('#f1-progress'), pct = q('#f1-pct');
+      T(function () { if (bar) bar.style.width = '100%'; }, 1450);
+      for (var i = 1; i <= 20; i++) {
+        (function (i) { T(function () { if (pct) pct.textContent = Math.round((i / 20) * 100) + '%'; }, 1450 + i * 70); })(i);
+      }
+    }
+    if (name === 'f2') {
+      var box = q('#f2-selbox'), area = q('#f2-area'), chk = q('#f2-check'), confirm = q('#f2-confirm');
+      T(function () { if (box) { box.style.opacity = '1'; box.style.transform = 'scale(1) translateY(0)'; } }, 400);
+      T(function () {
+        if (area) { area.style.borderColor = '#16A34A'; area.style.background = '#F0FDF4'; }
+        if (chk) { chk.style.opacity = '1'; chk.style.transform = 'scale(1)'; }
+        if (confirm) { confirm.style.transform = 'scale(1.05)'; T(function () { confirm.style.transform = 'scale(1)'; }, 240); }
+      }, 1100);
+    }
+    if (name === 'f3') {
+      var list = q('#f3-list'), opt = q('#f3-opt-sel'), chk3 = q('#f3-check'), field = q('#f3-field'), ftext = q('#f3-ftext'), fcheck = q('#f3-fcheck');
+      T(function () { if (list) { list.style.opacity = '1'; list.style.transform = 'scaleY(1) translateY(0)'; } }, 400);
+      T(function () { if (opt) opt.style.background = '#EFF6FF'; }, 950);
+      T(function () { if (chk3) { chk3.style.opacity = '1'; chk3.style.transform = 'scale(1)'; } }, 1300);
+      T(function () {
+        if (list) { list.style.opacity = '0'; list.style.transform = 'scaleY(0.85) translateY(-6px)'; }
+        if (ftext) { ftext.textContent = 'Offer Letter - Sign and Stamp'; ftext.style.color = '#0F172A'; ftext.style.fontWeight = '600'; }
+        if (fcheck) { fcheck.style.opacity = '1'; fcheck.style.width = '16px'; fcheck.style.marginRight = '7px'; }
+        if (field) { field.style.borderColor = '#16A34A'; field.style.background = '#F0FDF4'; }
+      }, 2050);
+    }
+    if (name === 'f4') {
+      var list4 = q('#f4-list'), opt4 = q('#f4-opt-sel'), chk4 = q('#f4-check'), field4 = q('#f4-field'), ftext4 = q('#f4-ftext'), conn = q('#f4-connected');
+      T(function () { if (list4) { list4.style.opacity = '1'; list4.style.transform = 'scaleY(1) translateY(0)'; } }, 400);
+      T(function () { if (opt4) opt4.style.background = '#EFF6FF'; }, 950);
+      T(function () { if (chk4) { chk4.style.opacity = '1'; chk4.style.transform = 'scale(1)'; } }, 1300);
+      T(function () {
+        if (list4) { list4.style.opacity = '0'; list4.style.transform = 'scaleY(0.85) translateY(-6px)'; }
+        if (ftext4) { ftext4.textContent = 'John Smith  [Individual DSC]  exp:02-01-2027'; ftext4.style.color = '#0F172A'; ftext4.style.fontWeight = '600'; }
+        if (field4) { field4.style.borderColor = '#16A34A'; field4.style.background = '#F0FDF4'; }
+      }, 2000);
+      T(function () { if (conn) { conn.style.opacity = '1'; conn.style.transform = 'translateY(0)'; } }, 2350);
+    }
+    if (name === 'f5') {
+      var cur = q('#f5-cur'), every = q('#f5-every'), badge = q('#f5-badge');
+      var sigs = root.querySelectorAll('[data-pagesig]');
+      T(function () {
+        if (cur) { cur.style.background = '#F1F5F9'; cur.style.color = '#475569'; }
+        if (every) { every.style.background = '#1B2A4A'; every.style.color = '#fff'; }
+        sigs.forEach(function (el, i) { T(function () { el.style.opacity = '1'; }, 620 + i * 160); });
+        T(function () { if (badge) { badge.style.opacity = '1'; badge.style.transform = 'translateY(0)'; } }, 620 + sigs.length * 160 + 150);
+      }, 500);
+    }
+    if (name === 'f6') {
+      var track = q('#f6-track'), knob = q('#f6-knob'), state = q('#f6-state'), classic = q('#f6-classic'), modern = q('#f6-modern');
+      T(function () {
+        if (track) track.style.background = '#16A34A';
+        if (knob) knob.style.left = '19px';
+        if (state) { state.textContent = 'ON'; state.style.color = '#16A34A'; }
+        if (modern) modern.style.opacity = '0';
+        if (classic) classic.style.opacity = '1';
+      }, 1400);
+    }
+  }
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) {
+    ['f1','f2','f3','f4','f5','f6'].forEach(function (n) { reset(n); play(n, function (fn) { fn(); return 0; }); });
+    return;
+  }
+  var loops = {};
+  function cycleLen(name) { return ({ f1:2900, f2:1700, f3:2600, f4:2950, f5:1900, f6:1950 })[name] || 2500; }
+  function startLoop(name) {
+    if (loops[name] && loops[name].active) return;
+    var loop = { active: true, timers: [] };
+    loops[name] = loop;
+    function T(fn, ms) { var id = window.setTimeout(fn, ms); loop.timers.push(id); return id; }
+    var period = 700 + cycleLen(name) + 3000;
+    function cycle() {
+      if (!loop.active) return;
+      reset(name);
+      T(function () { if (loop.active) play(name, T); }, 700);
+      T(cycle, period);
+    }
+    cycle();
+  }
+  function stopLoop(name) {
+    var loop = loops[name];
+    if (loop) { loop.active = false; loop.timers.forEach(function (id) { clearTimeout(id); }); delete loops[name]; }
+  }
+  var els = Array.prototype.slice.call(root.querySelectorAll('[data-anim]'));
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      var name = e.target.getAttribute('data-anim');
+      if (!name) return;
+      if (e.isIntersecting) startLoop(name); else stopLoop(name);
+    });
+  }, { threshold: 0.25 });
+  els.forEach(function (el) { io.observe(el); });
+};
+</script>
 </body>
 </html>
