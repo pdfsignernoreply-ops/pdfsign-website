@@ -806,7 +806,7 @@ body {
       <div class="sfi">PDF</div>
       <div>
         <div class="sfn">Tender_Document_2025_signed.pdf</div>
-        <div class="sfm">✓ PAdES compliant · Digitally signed · 2.5 MB</div>
+        <div class="sfm">✓ Digitally signed · SHA-256 · 2.5 MB</div>
       </div>
       <div class="valid-badge">✓ Valid</div>
     </div>
@@ -1086,7 +1086,7 @@ function startSigning() {
   var stages = [
     [300,  'progress', '⟳ Authenticating with HyperPKI token...'],
     [900,  'progress', '⟳ Computing document hash (SHA-256)...'],
-    [1700, 'progress', '⟳ Applying digital signature (PAdES)...'],
+    [1700, 'progress', '⟳ Applying digital signature (SHA-256)...'],
     [2500, 'progress', '⟳ Embedding signature into PDF...'],
     [3200, 'success',  '✓ PDF signed successfully!'],
   ];

@@ -37,7 +37,7 @@
     })();
 </script>
 <title>PDFSign — Sign PDF with DSC / USB Token &amp; Stamp, 100% Offline</title>
-<meta name="description" content="Digitally sign any PDF with your DSC / USB security token or signature stamp image — 100% offline, no Java, no cloud uploads. Bulk sign 100+ PDFs in 60 seconds, plus 20+ built-in PDF tools: edit, merge, compress and more. Free evaluation — up to 30 days or 100 signed PDFs. Accepted on GeM, CPPP, and government portals; eIDAS & E-SIGN compatible worldwide." />
+<meta name="description" content="Digitally sign any PDF with your DSC / USB security token or signature stamp image — 100% offline, no Java, no cloud uploads. Bulk sign 100+ PDFs in 60 seconds, plus 20+ built-in PDF tools: edit, merge, compress and more. Free evaluation — up to 30 days or 100 signed PDFs. Built for GeM, CPPP and e-procurement filings — signed files verified on GeM on 18 July 2026." />
 <meta name="keywords" content="digitally sign PDF, sign PDF online, digital signature PDF, PDF digital signature, sign PDF with DSC token, digital signature online, electronic signature PDF, DSC token PDF signer, sign PDF Windows, digital signature software India, PDF signer India, HyperPKI PDF signer, ePass PDF signing, Proxkey PDF sign, bulk PDF signing, sign multiple PDFs, batch PDF signing, batch PDF signer, bulk sign PDFs, sign PDF in bulk, sign hundreds of PDFs, automated PDF signing, free PDF signer, free bulk PDF signer, free PDF digital sign, sign PDF without Java, offline PDF signer, GeM portal digital signature, CPPP PDF signing, e-procurement PDF signer India, Class 3 DSC PDF, signature stamp PDF, wet signature PDF, PDF security restrict print, RFC 3161 timestamp PDF" />
 <meta name="robots" content="index, follow" />
 <meta name="author" content="PDFSign.in" />
@@ -2725,7 +2725,7 @@
   "name": "PDFSign.in",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "BusinessApplication",
-  "description": "Digitally sign any PDF with your DSC / USB security token or signature stamp image. 100% offline, no Java, no browser plugins. Bulk signing, 20+ built-in PDF tools (edit, merge, compress), PDF security, RFC 3161 timestamp. Accepted on GeM, CPPP, and Indian government portals; eIDAS and E-SIGN compatible worldwide.",
+  "description": "Digitally sign any PDF with your DSC / USB security token or signature stamp image. 100% offline, no Java, no browser plugins. Bulk signing, 20+ built-in PDF tools (edit, merge, compress), PDF security, optional RFC 3161 timestamp. Built for GeM, CPPP and Indian e-procurement filings — signed files verified on GeM on 18 July 2026.",
   "featureList": [
     "USB DSC / security token signing (HyperPKI, ePass, Proxkey, Feitian, WD Pro, Watchdata, SafeNet, Gemalto)",
     "Signature and stamp image embedding",
@@ -2735,8 +2735,8 @@
     "Click-to-place signature position on PDF",
     "RFC 3161 trusted timestamp",
     "100% offline — no cloud upload",
-    "PAdES and CAdES compliant",
-    "GeM and CPPP accepted",
+    "Adobe detached PKCS#7 signatures, SHA-256",
+    "Signed files verified on GeM, July 2026",
     "Team licence (5 seats)"
   ],
   "offers": [
@@ -2801,13 +2801,13 @@
   "@type": "FAQPage",
   "mainEntity": [
     {"@type":"Question","name":"Are my PDFs uploaded when I sign with PDFSign.in?","acceptedAnswer":{"@type":"Answer","text":"No. Signing happens 100% on your machine. Your documents never leave your computer. We have no access to your files or DSC token private key."}},
-    {"@type":"Question","name":"Will signed PDFs be accepted on government portals like GeM and CPPP?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign.in uses PAdES (PDF Advanced Electronic Signatures) accepted on GeM, CPPP, NIC e-Procurement, MCA21, Income Tax, DGFT, and all major Indian government portals."}},
-    {"@type":"Question","name":"Which DSC token brands does PDFSign.in support?","acceptedAnswer":{"@type":"Answer","text":"PDFSign.in supports HyperPKI HYP2003, ePass 2003, ePass 3003, Proxkey, Feitian, WD Pro, Watchdata, and any PKCS#11 compatible USB DSC token issued by a licensed CA under CCA India."}},
+    {"@type":"Question","name":"Will signed PDFs be accepted on government portals like GeM and CPPP?","acceptedAnswer":{"@type":"Answer","text":"PDFSign writes a standard Adobe detached PKCS#7 signature (SHA-256) with your CCA-issued DSC — the format Adobe Acrobat and Indian portals read. Signed files were verified on GeM on 18 July 2026. We have not run dated portal-by-portal tests on CPPP, NIC e-Procurement, MCA21, Income Tax or DGFT, so if a portal rejects a signed file, contact us and we will fix it."}},
+    {"@type":"Question","name":"Which DSC token brands does PDFSign.in support?","acceptedAnswer":{"@type":"Answer","text":"PDFSign.in supports HyperPKI HYP2003, ePass 2003, ePass 3003, Proxkey, Feitian, WD Pro, Watchdata, and any USB DSC token from a CCA-licensed Indian CA whose Windows driver is installed."}},
     {"@type":"Question","name":"Do I need Java or browser plugins to use PDFSign.in?","acceptedAnswer":{"@type":"Answer","text":"No. PDFSign.in is a native Windows desktop app. It requires no Java, no browser plugin, no admin rights, and no internet connection to sign PDFs."}},
     {"@type":"Question","name":"Can I sign PDFs without a DSC token using a signature or stamp image?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign.in includes a Signature and Stamp Image mode. Upload a PNG or JPG of your handwritten signature or company stamp and embed it on any PDF page without a USB DSC token."}},
     {"@type":"Question","name":"How does batch PDF signing work?","acceptedAnswer":{"@type":"Answer","text":"Point PDFSign.in at a folder, enter your PIN once, and it signs every PDF in that folder automatically with the same settings. Signed copies are saved to your output folder."}},
     {"@type":"Question","name":"Can I restrict printing, editing, or copying of the signed PDF?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign.in lets you set PDF permissions to restrict printing, editing, and content copying, with an optional document open password. Enforced by Adobe Acrobat and compatible viewers."}},
-    {"@type":"Question","name":"What is RFC 3161 timestamp and why does it matter?","acceptedAnswer":{"@type":"Answer","text":"An RFC 3161 timestamp embeds cryptographic proof of when the document was signed from a trusted Timestamp Authority server. The signature remains legally valid even after your DSC certificate expires."}},
+    {"@type":"Question","name":"What is RFC 3161 timestamp and why does it matter?","acceptedAnswer":{"@type":"Answer","text":"An optional RFC 3161 timestamp embeds cryptographic proof of when the document was signed, from a trusted Timestamp Authority server, so a reader can tell the signature was made while your certificate was still valid. It is not long-term validation (LTV): PDFSign does not embed revocation data (OCSP/CRL) in the file, so a verifier still checks revocation itself."}},
     {"@type":"Question","name":"Can I use PDFSign.in from outside India?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign.in works on any Windows PC worldwide with no geo-restriction. Indian DSC token holders in UAE, UK, USA, Canada, Australia, or anywhere can sign Indian government documents remotely."}},
     {"@type":"Question","name":"What is the team plan?","acceptedAnswer":{"@type":"Answer","text":"The team plan covers 5 Windows PCs under one shared licence key. Annual team plan is Rs. 3,499 per year; Perpetual team licence is Rs. 13,999 one-time. Ideal for CA firms, law offices, and tender-filing teams."}},
     {"@type":"Question","name":"Is PDFSign free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every download includes a free evaluation. You can evaluate PDFSign for up to 30 days or 100 signed PDFs (whichever comes first) before choosing a subscription."}},
@@ -2815,7 +2815,7 @@
     {"@type":"Question","name":"What happens when my evaluation ends?","acceptedAnswer":{"@type":"Answer","text":"Your documents, settings, saved signatures and templates remain safely stored on your computer. Only new PDF signing requires an active subscription."}},
     {"@type":"Question","name":"What is your refund policy?","acceptedAnswer":{"@type":"Answer","text":"PDFSign includes a free evaluation — up to 30 days or 100 signed PDFs — so you can fully evaluate it before buying. Because of that, all licence purchases are final and non-refundable, except where required by applicable law. See our Refund Policy for details."}},
     {"@type":"Question","name":"Can PDFSign merge, compress, or edit PDFs too?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign includes PDFToolbox — 20+ built-in PDF tools: edit text, merge, split, compress, reorder pages, page numbers, watermark, header/footer, password protect (AES-256), fill and flatten forms, Bates numbering, repair damaged PDFs, and convert PDF to and from Word and images. Everything runs 100% offline on your PC."}},
-    {"@type":"Question","name":"Are PDFSign signatures legally valid outside India?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign produces PAdES-compliant PKI digital signatures based on your USB token's X.509 certificate. These are legally valid under the EU eIDAS Regulation, the US E-SIGN Act, the UK Electronic Communications Act, and equivalent laws in most countries."}}
+    {"@type":"Question","name":"Are the digital signatures legally valid outside India?","acceptedAnswer":{"@type":"Answer","text":"PDFSign signs with the X.509 certificate on your USB token and writes a standard Adobe detached PKCS#7 signature (SHA-256) that Adobe Acrobat verifies anywhere in the world. The legal weight comes from your certificate and the law where you file, not from the software. EU qualified signatures additionally need a Qualified Certificate from a Qualified Trust Service Provider (QTSP). Our dated compatibility testing is on GeM (18 July 2026)."}}
   ]
 }
 </script>
@@ -2824,7 +2824,7 @@
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "PDFSign.in",
-  "description": "Windows desktop application for signing PDFs using USB DSC tokens. Accepted on GeM, CPPP and all Indian government portals.",
+  "description": "Windows desktop application for signing PDFs using USB DSC tokens. Built for GeM, CPPP and Indian e-procurement filings; signed files verified on GeM on 18 July 2026.",
   "url": "https://pdfsign.in",
   "email": "help@pdfsign.in",
   "telephone": "+917057413999",
@@ -2847,7 +2847,7 @@
   "name": "PDFSign.in",
   "alternateName": "PDFSign",
   "url": "https://pdfsign.in",
-  "description": "Sign PDFs with USB DSC token or signature stamp. 100% offline Windows app. Accepted on GeM, CPPP, and all Indian government portals.",
+  "description": "Sign PDFs with USB DSC token or signature stamp. 100% offline Windows app. Built for GeM, CPPP and Indian e-procurement filings; signed files verified on GeM on 18 July 2026.",
   "inLanguage": "en-IN",
   "potentialAction": {
     "@type": "SearchAction",
@@ -2984,7 +2984,7 @@
       <h2 class="intl-only hero-alt-h1">Sign PDFs with your <span class="grn">USB token, signature, or company stamp.</span></h2>
       <p class="heroG-sub intl-only"><em>Fully offline. Nothing uploaded.</em></p>
       <p class="heroG-sub intl-only">
-        Add a digital signature, handwritten signature, or company stamp to any PDF in under 60 seconds. Compatible with SafeNet, Thales, HID, Gemalto, Feitian, and all PKCS#11 tokens. No Java. No browser plugins. No cloud.
+        Add a digital signature, handwritten signature, or company stamp to any PDF in under 60 seconds. Works with SafeNet, Thales, HID, Gemalto and Feitian tokens — any DSC USB token whose Windows driver is installed. No Java. No browser plugins. No cloud.
       </p>
       <p class="heroG-urgency intl-only"><em>Your documents stay on your device — always.</em></p>
 
@@ -3006,7 +3006,7 @@
         <div class="heroG-check"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>No credit card needed</div>
         <div class="heroG-check"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Works offline</div>
         <div class="heroG-check india-only geo-flex"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Legal under IT Act 2000</div>
-        <div class="heroG-check intl-only geo-flex"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>eIDAS &amp; E-SIGN Act compatible</div>
+        <div class="heroG-check intl-only geo-flex"><svg width="14" height="14" fill="none" stroke="#16A34A" stroke-width="2.4" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>SHA-256 PKI signature, verifiable in Adobe</div>
       </div>
 
       <div class="heroG-trust">
@@ -3116,7 +3116,7 @@
     <div style="text-align:center;">
       <div class="section-tag">Flexible Signing Options</div>
       <h2 class="section-title">One application. <span style="color:var(--green);">Two powerful ways</span> to sign.</h2>
-      <p class="section-sub" style="margin:0 auto;">Whether you need legally valid digital signatures or fast document approvals with signatures and stamps, PDFSign adapts to the way you work.</p>
+      <p class="section-sub" style="margin:0 auto;">Whether you need DSC digital signatures or fast document approvals with signatures and stamps, PDFSign adapts to the way you work.</p>
     </div>
 
     <div class="sm2-grid">
@@ -3671,7 +3671,7 @@
       <div>
         <span class="tw2-badge"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>USB Token Compatibility</span>
         <h2>Works with the <span class="grn">USB tokens</span> you already own</h2>
-        <p><span class="india-only geo-inline">Use your existing DSC USB token with PDFSign.</span><span class="intl-only geo-inline">Use your existing USB security token with PDFSign.</span> Compatible with the industry&rsquo;s most widely used PKCS#11 security tokens&mdash;no additional hardware required.</p>
+        <p><span class="india-only geo-inline">Use your existing DSC USB token with PDFSign.</span><span class="intl-only geo-inline">Use your existing USB security token with PDFSign.</span> Works with the industry&rsquo;s most widely used USB security tokens&mdash;any token whose Windows driver is installed, no additional hardware required.</p>
       </div>
       <div class="tw2-photos">
         <span class="tw2-shield"><span class="ring"></span><svg viewBox="0 0 56 64" width="64" height="73" aria-hidden="true"><defs><linearGradient id="tw-shield" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#15803d"/></linearGradient></defs><path d="M28 3 51 11v18c0 15-10 25-23 31C15 54 5 44 5 29V11z" fill="url(#tw-shield)"/><path d="M18 31l6.5 6.5L40 22" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -3694,20 +3694,20 @@
         <img src="logos/feitian.png" style="height:34px;" alt="FEITIAN" loading="lazy" />
         <img src="logos/proxkey.png" style="height:22px;" alt="ProxKey" loading="lazy" />
         <img src="logos/trustkey.png" style="height:22px;" alt="TrustKey" loading="lazy" />
-        <span class="tw2-pkcs"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>PKCS#11<br/>Compatible</span>
+        <span class="tw2-pkcs"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>Windows Driver<br/>Compatible</span>
       </div>
     </div>
     <p class="tw2-tm">SafeNet&reg;, Gemalto&reg;, FEITIAN&reg;, WatchData&reg; and other trademarks belong to their respective owners. Logos are displayed solely to indicate compatibility.</p>
 
     <div class="tw2-caps">
-      <div class="tw2-cap"><span class="ci2"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9 14l-1.5 7L12 18.5 16.5 21 15 14"/></svg></span><h4>Class 3 DSC</h4><p>Supports legally valid DSC certificates</p></div>
+      <div class="tw2-cap"><span class="ci2"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9 14l-1.5 7L12 18.5 16.5 21 15 14"/></svg></span><h4>Class 3 DSC</h4><p>Signs with your CCA-issued DSC</p></div>
       <div class="tw2-cap"><span class="ci2"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></span><h4>Individual &amp; Organization</h4><p>Works with all DSC certificate types</p></div>
       <div class="tw2-cap"><span class="ci2"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><h4>Certificate Access</h4><p>Read certificates from your token</p></div>
-      <div class="tw2-cap"><span class="ci2"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span><h4>PKCS#11 Support</h4><p>Works with standard USB token drivers</p></div>
+      <div class="tw2-cap"><span class="ci2"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span><h4>Driver-Based</h4><p>Works with standard Windows token drivers</p></div>
       <div class="tw2-cap"><span class="ci2"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="9" height="9" rx="0.5"/><rect x="13" y="2" width="9" height="9" rx="0.5"/><rect x="2" y="13" width="9" height="9" rx="0.5"/><rect x="13" y="13" width="9" height="9" rx="0.5"/></svg></span><h4>Windows Certificate Store</h4><p>Works with the Windows Certificate Store</p></div>
     </div>
 
-    <p class="tokenwall-note">Don&rsquo;t see your token? PDFSign supports most PKCS#11-compatible USB security tokens.</p>
+    <p class="tokenwall-note">Don&rsquo;t see your token? PDFSign supports most USB security tokens whose Windows driver is installed.</p>
   </div>
 </section>
 
@@ -3738,7 +3738,7 @@
           <li><span class="pain-check">✓</span> Open app → load PDF → sign. Done in 10 seconds</li>
           <li><span class="pain-check">✓</span> 100% offline — your files never leave your PC</li>
           <li><span class="pain-check">✓</span> Auto-detects all major DSC tokens instantly</li>
-          <li><span class="pain-check">✓</span> One tool for GeM, CPPP, Income Tax, MCA21, all portals</li>
+          <li><span class="pain-check">✓</span> One tool for GeM, CPPP, Income Tax and MCA21 filings</li>
           <li><span class="pain-check">✓</span> Bulk sign hundreds of PDFs in one click</li>
           <li><span class="pain-check">✓</span> Expired cert warning before you sign — no surprises</li>
         </ul>
@@ -3878,7 +3878,7 @@
             <td><span class="cmp-yes">✓</span></td>
           </tr>
           <tr>
-            <td>GeM / CPPP / NIC accepted</td>
+            <td>For GeM / CPPP / NIC filings</td>
             <td class="our-col"><span class="cmp-yes">✓</span></td>
             <td><span class="cmp-yes">✓</span></td>
             <td><span class="cmp-yes">✓</span></td>
@@ -3954,7 +3954,7 @@
             <td><span class="cmp-no">✕</span></td>
           </tr>
           <tr>
-            <td>USB hardware token (PKCS#11)</td>
+            <td>USB hardware token (Windows driver)</td>
             <td class="our-col"><span class="cmp-yes">✓</span></td>
             <td><span class="cmp-no">✕</span></td>
             <td><span class="cmp-part">Limited</span></td>
@@ -4025,7 +4025,7 @@
           </tr>
           <tr>
             <td>Starting price</td>
-            <td class="our-col"><span class="cmp-yes">$1.99 / month</span></td>
+            <td class="our-col"><span class="cmp-yes">$2.99 / month</span></td>
             <td><span class="cmp-no">$15+ / month</span></td>
             <td><span class="cmp-no">$23+ / month</span></td>
             <td><span class="cmp-part">$12+ / month</span></td>
@@ -4175,7 +4175,7 @@
     <div style="text-align:center;" class="intl-only">
       <div class="section-tag">Built for Privacy-Conscious Professionals</div>
       <h2 class="section-title">What PDFSign handles for you</h2>
-      <p class="section-sub" style="margin:0 auto;">Built for professionals who handle sensitive documents — contracts, NDAs, filings, audits — and need legally valid signatures without trusting a cloud server.</p>
+      <p class="section-sub" style="margin:0 auto;">Built for professionals who handle sensitive documents — contracts, NDAs, filings, audits — and need PKI signatures without trusting a cloud server.</p>
     </div>
 
     <!-- India trust cards -->
@@ -4184,7 +4184,7 @@
         <div class="trust-icon-wrap">🏗️</div>
         <div class="trust-card-body">
           <h4>Tender Submissions</h4>
-          <p>Bulk sign all bid documents in one go. GeM, CPPP, NIC e-Procurement accepted.</p>
+          <p>Bulk sign all bid documents in one go — for GeM, CPPP and NIC e-Procurement submissions.</p>
         </div>
       </div>
       <div class="trust-card">
@@ -4198,7 +4198,7 @@
         <div class="trust-icon-wrap">⚖️</div>
         <div class="trust-card-body">
           <h4>Legal &amp; Court Filings</h4>
-          <p>Sign affidavits, plaints, and agreements. Legally valid under IT Act 2000.</p>
+          <p>Sign affidavits, plaints and agreements with your CCA-issued Class 3 DSC.</p>
         </div>
       </div>
       <div class="trust-card">
@@ -4237,7 +4237,7 @@
         <div class="trust-icon-wrap">⚖️</div>
         <div class="trust-card-body">
           <h4>Legal &amp; Compliance Filings</h4>
-          <p>Sign contracts, NDAs, court filings, and affidavits. PKI-based signatures are legally valid in EU (eIDAS), US (E-SIGN), and 100+ countries.</p>
+          <p>Sign contracts, NDAs, court filings and affidavits with the PKI certificate on your own token. What legal weight a signature carries depends on your certificate and the rules where you file — not on the software.</p>
         </div>
       </div>
       <div class="trust-card">
@@ -4265,16 +4265,16 @@
         <div class="trust-icon-wrap">🌐</div>
         <div class="trust-card-body">
           <h4>Any PKI Token, Any Country</h4>
-          <p>Works with SafeNet iKey, Thales, HID ActivKey, Gemalto, WD Pro, Feitian, and any standard PKCS#11 token.</p>
+          <p>Works with SafeNet iKey, Thales, HID ActivKey, Gemalto, WD Pro, Feitian, and any DSC USB token whose Windows driver is installed.</p>
         </div>
       </div>
     </div>
 
     <!-- India trust pills -->
     <div class="trust-capability india-only">
-      <span class="trust-pill"><span class="trust-pill-dot"></span>PAdES &amp; CAdES compliant</span>
+      <span class="trust-pill"><span class="trust-pill-dot"></span>Adobe PKCS#7 &middot; SHA-256</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>RFC 3161 trusted timestamp</span>
-      <span class="trust-pill"><span class="trust-pill-dot"></span>IT Act 2000 legally valid</span>
+      <span class="trust-pill"><span class="trust-pill-dot"></span>Signs with your CCA-issued DSC</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>100% offline — no upload</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>All CCA-licensed DSC tokens</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>PDF security &amp; permissions</span>
@@ -4282,11 +4282,11 @@
     </div>
     <!-- International trust pills -->
     <div class="trust-capability intl-only">
-      <span class="trust-pill"><span class="trust-pill-dot"></span>PAdES &amp; CAdES compliant</span>
+      <span class="trust-pill"><span class="trust-pill-dot"></span>Adobe PKCS#7 &middot; SHA-256</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>RFC 3161 trusted timestamp</span>
-      <span class="trust-pill"><span class="trust-pill-dot"></span>eIDAS &amp; E-SIGN Act compatible</span>
+      <span class="trust-pill"><span class="trust-pill-dot"></span>SHA-256 PKI signature, verifiable in Adobe</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>100% offline — GDPR-safe</span>
-      <span class="trust-pill"><span class="trust-pill-dot"></span>Any PKCS#11 USB token</span>
+      <span class="trust-pill"><span class="trust-pill-dot"></span>Any DSC USB token with a Windows driver</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>PDF security &amp; permissions</span>
       <span class="trust-pill"><span class="trust-pill-dot"></span>Free evaluation</span>
     </div>
@@ -4309,7 +4309,7 @@
           <span class="faq-q-text">Why does DSC fail in other tools but work in PDFSign?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">Most tools rely on Java applets, browser plugins, or cloud servers — all of which break with Windows updates, Chrome security changes, or internet issues. PDFSign talks directly to your DSC token via the Windows PKCS#11 interface, with no browser or Java in the middle. That's why it works reliably.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">Most tools rely on Java applets, browser plugins, or cloud servers — all of which break with Windows updates, Chrome security changes, or internet issues. PDFSign reads your certificate straight from the Windows certificate store and signs through Windows' own crypto layer, with no browser or Java in the middle. That's why it works reliably.</p></div>
       </div>
 
       <div class="faq-item open">
@@ -4337,7 +4337,7 @@
           <span class="faq-q-text">Will my signed PDFs be accepted on government portals?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">PDFs signed with a USB DSC token using PDFSign are accepted on GeM, CPPP, NIC e-Procurement, MCA21, Income Tax, DGFT, and all major Indian government portals — because the signature uses PAdES (PDF Advanced Electronic Signatures) compliant with IT Act 2000. Note: PDFs signed with only a stamp or handwritten image (without a DSC token) are <em>not</em> digitally signed and may not be accepted on government procurement portals that require a valid Class 2 or Class 3 DSC.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">PDFSign signs with your USB DSC token and writes a standard Adobe detached PKCS#7 signature (SHA-256) — the format Acrobat and Indian portals read. Signed files were verified on GeM on 18 July 2026; CPPP, NIC e-Procurement, MCA21, Income Tax and DGFT are what customers file with but we have no dated test result for them, so tell us if one ever rejects a file. Note: PDFs signed with only a stamp or handwritten image (without a DSC token) are <em>not</em> digitally signed and may not be accepted on government procurement portals that require a valid Class 2 or Class 3 DSC.</p></div>
       </div>
 
       <!-- International FAQ: legal validity -->
@@ -4347,7 +4347,7 @@
           <span class="faq-q-text">Are the digital signatures legally valid outside India?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">Yes. PDFSign produces PAdES-compliant PKI digital signatures based on your USB token's X.509 certificate. These are legally valid under EU eIDAS Regulation (as Advanced Electronic Signatures), the US E-SIGN Act, UK Electronic Communications Act, and equivalent laws in most countries. For court-admissible qualified signatures in the EU, your token must hold a Qualified Certificate issued by a Qualified Trust Service Provider (QTSP).</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">PDFSign signs with the X.509 certificate on your USB token and writes a standard Adobe detached PKCS#7 signature (/adbe.pkcs7.detached, SHA-256) that Adobe Acrobat verifies anywhere in the world. The legal weight comes from your certificate and the law where you file, not from the software — so we don't claim eIDAS, E-SIGN or any other statute on PDFSign's behalf. Two specifics worth knowing: PDFSign does not add eIDAS or ICP-Brasil policy identifiers to the signature, and EU qualified signatures additionally need a Qualified Certificate from a Qualified Trust Service Provider (QTSP). Our dated compatibility testing is on GeM (18 July 2026); we have not tested non-Indian government portals, so ask us before you commit to one.</p></div>
       </div>
 
       <!-- International FAQ: GDPR -->
@@ -4367,7 +4367,7 @@
           <span class="faq-q-text">Which DSC token brands are supported?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">PDFSign works with all major USB DSC tokens used in India — HyperPKI (HYP2003), ePass 2003/3003, Proxkey, Feitian, WD Pro, Watchdata, and any PKCS#11-compatible token issued by a licensed CA under CCA India.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">PDFSign works with all major USB DSC tokens used in India — HyperPKI (HYP2003), ePass 2003/3003, Proxkey, Feitian, WD Pro, Watchdata, and any token from a CCA-licensed Indian CA whose Windows driver is installed.</p></div>
       </div>
       <div class="faq-item intl-only">
         <button class="faq-q" onclick="toggleFaq(this)">
@@ -4375,7 +4375,7 @@
           <span class="faq-q-text">Which USB signing tokens are supported?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">PDFSign works with any standard PKCS#11-compatible USB token — including SafeNet iKey, Thales Luna USB, HID ActivKey, Gemalto IDPrime, Feitian ePass, WD Pro, WatchData, and tokens issued by any trusted CA globally. If your token has a PKCS#11 driver for Windows, PDFSign will detect and use it.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">PDFSign works with USB tokens that install a Windows driver — including SafeNet iKey, Thales Luna USB, HID ActivKey, Gemalto IDPrime, Feitian ePass, WD Pro and WatchData, from CAs worldwide. Install your token's Windows driver; once its certificate shows up in the Windows certificate store, PDFSign detects and uses it.</p></div>
       </div>
 
       <div class="faq-item">
@@ -4438,7 +4438,7 @@
           <span class="faq-q-text">What is RFC 3161 timestamp and why does it matter?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">An RFC 3161 timestamp embeds a cryptographic proof of <em>when</em> the document was signed, obtained from a trusted Timestamp Authority (TSA) server. This means the signature remains legally valid even after your DSC certificate expires — which is critical for long-term document archival.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">An optional RFC 3161 timestamp embeds a cryptographic proof of <em>when</em> the document was signed, obtained from a trusted Timestamp Authority (TSA) server. That lets a reader see the signature was made while your certificate was still valid, instead of relying on the clock on your PC. It is <em>not</em> long-term validation (LTV): PDFSign does not embed revocation data (OCSP/CRL) or a /DSS dictionary, so a verifier still fetches revocation information itself. The timestamp is also best-effort — if the TSA is unreachable, PDFSign tells you and completes the signature without one.</p></div>
       </div>
 
       <div class="faq-item">
@@ -4572,8 +4572,8 @@
         <h3>Lawyers &amp; Law Firms</h3>
         <p>Sign affidavits, plaints, legal notices, power of attorney, court filings, and contracts.</p>
         <ul>
-          <li>IT Act 2000 legally valid</li>
-          <li>e-Court &amp; eFiling compatible</li>
+          <li>Signs with your CCA-issued DSC</li>
+          <li>Optional timestamp on the filing date</li>
           <li>Client agreement signing</li>
         </ul>
       </div>
@@ -4583,9 +4583,9 @@
         <h3>Contractors &amp; Tender Filers</h3>
         <p>Sign tender documents, bid submissions, and project reports for GeM, CPPP, and state portals.</p>
         <ul>
-          <li>GeM &amp; CPPP accepted</li>
+          <li>Signed files verified on GeM</li>
           <li>Batch tender signing</li>
-          <li>NIC e-Procurement ready</li>
+          <li>Classic PDF output portals can read</li>
         </ul>
       </div>
 
@@ -4642,8 +4642,8 @@
         <h3>Legal Professionals</h3>
         <p>Sign contracts, affidavits, court filings, NDAs, and legal notices with a cryptographically verifiable digital signature.</p>
         <ul>
-          <li>Legally valid under eIDAS &amp; local e-signature laws</li>
-          <li>RFC 3161 timestamp for long-term validity</li>
+          <li>Standard PKI signature, verifiable in Adobe Acrobat</li>
+          <li>Optional RFC 3161 timestamp proving when you signed</li>
           <li>Offline — client documents never leave your office</li>
         </ul>
       </div>
@@ -4688,16 +4688,16 @@
         <ul>
           <li>Company stamp + signature in one step</li>
           <li>Multi-signer team licences available</li>
-          <li>Works with any PKI hardware token globally</li>
+          <li>Works with PKI hardware tokens that install a Windows driver</li>
         </ul>
       </div>
 
       <div class="who-card">
         <span class="who-icon">🔐</span>
         <h3>IT &amp; Security Professionals</h3>
-        <p>Deploy hardware HSM-backed signing across your organisation with full PKCS#11 compatibility.</p>
+        <p>Roll out token-based signing across your organisation with no cloud dependency and no browser plugins.</p>
         <ul>
-          <li>PKCS#11 / PKCS#12 token support</li>
+          <li>Any DSC token with a Windows driver</li>
           <li>Zero cloud dependency</li>
           <li>Silent install for enterprise deployment</li>
         </ul>
@@ -4828,7 +4828,7 @@
       <a href="/blog/digitally-sign-pdf-dsc-token-step-by-step.html" style="text-decoration:none;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .2s;" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'" onmouseout="this.style.boxShadow='none'">
         <span style="font-size:11px;font-weight:700;color:#16A34A;text-transform:uppercase;letter-spacing:.5px;">Step-by-step Guide</span>
         <span style="font-size:1rem;font-weight:700;color:#1B2A47;line-height:1.4;">How to Sign a PDF with a USB Hardware Token</span>
-        <span style="font-size:.875rem;color:#64748b;line-height:1.5;">Complete walkthrough — select certificate, place signature, verify. Works with all PKCS#11 tokens globally.</span>
+        <span style="font-size:.875rem;color:#64748b;line-height:1.5;">Complete walkthrough — select certificate, place signature, verify. Works with DSC tokens worldwide once the Windows driver is installed.</span>
         <span style="font-size:.8rem;color:#16A34A;font-weight:600;margin-top:auto;">Read guide →</span>
       </a>
 
@@ -4885,7 +4885,7 @@
           <svg class="logo-mark" width="38" height="38" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#243558"/><text x="32" y="23" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="14" letter-spacing="1.5" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle">PDF</text><rect x="10" y="31" width="44" height="2.5" rx="1.25" fill="#16A34A"/><text x="32" y="46" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="12" letter-spacing="1.5" fill="#93C5FD" text-anchor="middle" dominant-baseline="middle">SIGN</text></svg>
           <span class="logo-name">PDF<em>Sign</em></span>
         </a>
-        <p>Sign PDFs with your <span class="india-only geo-inline">DSC token</span><span class="intl-only geo-inline">USB token</span>. Offline, private, and <span class="india-only geo-inline">accepted everywhere in India</span><span class="intl-only geo-inline">legally valid worldwide</span>. Plus 20+ built-in PDF tools.</p>
+        <p>Sign PDFs with your <span class="india-only geo-inline">DSC token</span><span class="intl-only geo-inline">USB token</span>. Offline, private, and built for <span class="india-only geo-inline">Indian filings</span><span class="intl-only geo-inline">professional document workflows</span>. Plus 20+ built-in PDF tools.</p>
       </div>
 
       <div class="footer-col">
@@ -5490,20 +5490,15 @@ document.querySelectorAll(".feature-card,.how-step,.plan-card,.testimonial").for
       .catch(function(){});
   }
 
+  // Fetched ONCE per page load / refresh. No polling, by decision (2026-10-02).
+  // History: this ran every 60s in every open tab including backgrounded ones —
+  // 117k calls to /api/stats, whose get_live_stats() full-scans usage_events and
+  // downloads on every call, which ate the project's Supabase Disk IO budget
+  // (Sep 2026). Gating on document.hidden and relaxing to 120s reduced it; this
+  // removes it. A downloads counter is not a live feed, and a visitor reading the
+  // page does not need it to tick. Do not reintroduce a timer here — if the number
+  // ever has to refresh mid-session, denormalise the counter instead of polling.
   fetchStats(true);
-  // Poll only while the tab is actually visible. This used to run every 60s
-  // forever in every open tab, including backgrounded ones — 117k calls to
-  // /api/stats, whose get_live_stats() full-scans two tables, which ate the
-  // project's Supabase Disk IO budget (Sep 2026). Interval also relaxed to
-  // 120s: it's a slow-moving counter, not a live feed.
-  setInterval(function(){
-    if (document.hidden) return;
-    fetchStats(false);
-  }, 120000);
-  // Refresh once on return to the tab so a re-focused page isn't stale.
-  document.addEventListener('visibilitychange', function(){
-    if (!document.hidden) fetchStats(false);
-  });
 
   // Optimistic increment on download click
   document.addEventListener('click', function(e) {
