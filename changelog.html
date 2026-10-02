@@ -76,7 +76,110 @@ footer a:hover{color:white;}
 <div class="page-wrap">
 
         <h1>Changelog</h1>
-        <p class="meta">Release history for PDFSign</p>
+        <p class="meta">Release history for PDFSign — current version v3.8.2, released 3 September 2026</p>
+
+        <div class="changelog-entry">
+          <div class="changelog-version">v3.8.2 <span class="changelog-date">September 2026</span></div>
+          <ul>
+            <li>Fixed: signing failed on PDFs that had been signed once before — if you saw a ByteRange error, this release clears it</li>
+            <li>Compress now shrinks text-only and scan-style PDFs that previously would not compress at all, and size estimates are much faster</li>
+            <li>Convert to Word now produces real, editable text from scanned and image-based PDFs instead of a picture inside a Word file</li>
+            <li>PDF Toolbox opens with Edit PDF, Convert to Word, Merge and Compress up front, plus a search box to find any tool</li>
+            <li>Right-click any PDF in File Explorer to open it straight in Edit PDF</li>
+            <li>New guided tour for first-time users</li>
+          </ul>
+        </div>
+
+        <div class="changelog-entry">
+          <div class="changelog-version">v3.8.1 <span class="changelog-date">August 2026</span></div>
+          <ul>
+            <li>Buy and unlock inside the app — pay, and PDFSign activates itself, with no licence key to type</li>
+            <li>Restore your licence on a new PC using just your email address</li>
+            <li>Files signed with an all-pages stamp are now dramatically smaller</li>
+            <li>Edit PDF works on every install type, handles rotated pages, and adds Hindi text support</li>
+            <li>Clearer activation screen</li>
+            <li>New Enterprise plan with AutoSign</li>
+          </ul>
+        </div>
+
+        <div class="changelog-entry">
+          <div class="changelog-version">v3.7.3 <span class="changelog-date">July 2026</span></div>
+          <ul>
+            <li>Signing no longer stalls when a timestamp server is slow or you are offline — PDFSign completes a valid digital signature either way, skipping the timestamp when it cannot be reached</li>
+            <li>The Government/Adobe signature style is now applied correctly when placing signatures page by page</li>
+            <li>First-run welcome guidance for new installs</li>
+          </ul>
+        </div>
+
+        <div class="changelog-entry">
+          <div class="changelog-version">v3.7.2 <span class="changelog-date">July 2026</span></div>
+          <ul>
+            <li>PDF Toolbox — merge, split, compress and convert PDFs alongside signing, all on your own PC</li>
+            <li>Right-click a PDF in File Explorer and open it directly with PDFSign</li>
+          </ul>
+        </div>
+
+        <div class="changelog-entry">
+          <div class="changelog-version">v3.7.1 <span class="changelog-date">July 2026</span></div>
+          <ul>
+            <li>Activation now completes in the same session — no need to restart the app after buying</li>
+            <li>Restored the classic navy PDFSign logo across the app</li>
+          </ul>
+        </div>
+
+        <div class="changelog-entry">
+          <div class="changelog-version">v3.7.0 <span class="changelog-date">July 2026</span></div>
+          <ul>
+            <li>Signing is roughly 7× faster — removed an online certificate-revocation lookup that was adding 10–20 seconds to every file</li>
+            <li>PAdES is now the default signature standard (recommended)</li>
+            <li>Set signature positions page by page without first saving a template, with previews and click-to-place at your configured size</li>
+            <li>Free evaluation limits stated plainly in the app: up to 30 days or 100 signed PDFs</li>
+            <li>More reliable crash reporting</li>
+          </ul>
+        </div>
+
+        <div class="changelog-entry">
+          <div class="changelog-version">v3.6.5 <span class="changelog-date">June 2026</span></div>
+          <ul>
+            <li>New Government/Adobe-style signature stamp, now the default — the familiar "Signature valid" look government portals and officers expect</li>
+            <li>Redesigned signing-success screen showing your signing stats and a privacy reminder</li>
+            <li>RFC 3161 timestamp is always visible; advanced security options tucked away to reduce clutter</li>
+            <li>The app now opens maximised for a cleaner one-screen view</li>
+          </ul>
+        </div>
+
+        <div class="changelog-entry">
+          <div class="changelog-version">v3.6.3 <span class="changelog-date">June 2026</span></div>
+          <ul>
+            <li>Smarter certificate selection — auto-detects your connected DSC token without asking for a PIN, listed alphabetically</li>
+            <li>Prevents an invalid output file being written if the token is unplugged part-way through</li>
+            <li>In-app demo and interface polish</li>
+          </ul>
+        </div>
+
+        <div class="changelog-entry">
+          <div class="changelog-version">v3.6.2 <span class="changelog-date">June 2026</span></div>
+          <ul>
+            <li>Fixed GeM and other portal upload compatibility for signed PDFs</li>
+            <li>Added a first-run guide</li>
+            <li>Improved the in-app update experience</li>
+          </ul>
+        </div>
+
+        <div class="changelog-entry">
+          <div class="changelog-version">v3.3.2 <span class="changelog-date">May 2026</span></div>
+          <ul>
+            <li>"Click to Place Signature" is now the default placement mode for easier signing</li>
+          </ul>
+        </div>
+
+        <div class="changelog-entry">
+          <div class="changelog-version">v3.0.0 – v3.2.0 <span class="changelog-date">April – May 2026</span></div>
+          <ul>
+            <li>PDFSign 3 — DSC token signing, signature and stamp images, bulk signing, click-to-place positioning, RFC 3161 timestamping and PDF security in a single app</li>
+            <li>PDFSign now installs from the Microsoft Store — one-click install, a Microsoft-verified publisher, and automatic updates</li>
+          </ul>
+        </div>
 
         <div class="changelog-entry">
           <div class="changelog-version">v2.1.0 <span class="changelog-date">March 2026</span></div>
