@@ -22,7 +22,7 @@ async function proxyToWeb(request, url, webPath) {
   // `X-Robots-Tag: noindex, nofollow` to keep the preview domain out of search.
   // Vercel overwrites our x-forwarded-host, so the app's middleware can't tell
   // canonical traffic apart and adds it even here. Strip it on this canonical
-  // (pdfsign.in) path so /global and the indexable /web tool pages can rank.
+  // (pdfsign.in) path so the indexable /web tool pages can rank.
   // Direct *.vercel.app access (which bypasses this Worker) keeps its noindex.
   const headers = new Headers(resp.headers);
   headers.delete('x-robots-tag');
@@ -39,11 +39,10 @@ export default {
       return proxyToWeb(request, url, url.pathname);
     }
 
-    // Public global landing page: /global → Next.js app at /web/global.
-    // Keeps the canonical (https://pdfsign.in/global) resolving; must run before
-    // the non-blog clean-URL → .html redirect below, which would otherwise 404.
+    // /global is retired: the homepage now serves both audiences (geo-adaptive).
+    // 301 folds its link equity and any residual rankings into the root.
     if (url.pathname === '/global' || url.pathname === '/global/') {
-      return proxyToWeb(request, url, '/web/global');
+      return Response.redirect(`${url.origin}/`, 301);
     }
 
     // Geo endpoint — served by the Worker (not a static asset) so request.cf.country is reliable.

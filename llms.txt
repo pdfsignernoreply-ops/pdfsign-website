@@ -8,14 +8,15 @@ PDFSign.in lets Indian professionals sign any PDF document in under 60 seconds u
 
 ## Key features
 
-- **DSC Token Signing** — Works with HyperPKI HYP2003, ePass 2003/3003, Proxkey, Feitian, WD Pro, Watchdata, and all PKCS#11-compatible tokens issued by CCA-licensed CAs in India
+- **DSC Token Signing** — Works with HyperPKI HYP2003, ePass 2003/3003, Proxkey, Feitian, WD Pro, Watchdata, and any token from a CCA-licensed Indian CA whose Windows driver is installed
 - **Signature & Stamp Image** — Embed a handwritten signature or rubber stamp image on any PDF without a DSC token
 - **Batch Signing** — Sign hundreds of PDFs in one click from a folder
 - **PDF Security** — Restrict printing, editing, and copying; set document open password
 - **Pick Position on PDF** — Click anywhere on the PDF preview to place signature exactly
-- **RFC 3161 Timestamp** — Trusted timestamp from TSA server; signature valid even after cert expiry
+- **Optional RFC 3161 Timestamp** — Trusted timestamp from a TSA server proving when you signed (not long-term validation/LTV)
 - **100% Offline** — No internet required after licence activation; files never leave the user's PC
-- **Government Compliant** — PAdES/CAdES signatures accepted on GeM, CPPP, NIC e-Procurement, MCA21, Income Tax, DGFT
+- **Built for Indian e-procurement filings** — standard Adobe detached PKCS#7 signatures (SHA-256) for GeM, CPPP, NIC e-Procurement, MCA21, Income Tax and DGFT filings; signed files verified on GeM on 18 July 2026
+- **PDFToolbox** — 20+ built-in offline PDF tools: edit text, merge, split, compress, reorder pages, page numbers, watermark, header/footer, protect (AES-256), fill & flatten forms, Bates numbering, repair, PDF ⇄ Word/image conversion
 
 ## Pricing (INR, inclusive of GST)
 
@@ -40,21 +41,20 @@ PDFSign.in lets Indian professionals sign any PDF document in under 60 seconds u
 
 - Platform: Windows 10 and Windows 11 (64-bit)
 - Runtime: .NET 10
-- Signature standard: PAdES (PDF Advanced Electronic Signatures)
+- Signature format: Adobe detached PKCS#7 (/adbe.pkcs7.detached), SHA-256
 - Timestamp: RFC 3161
-- Token protocol: PKCS#11
+- Token access: Windows certificate store (install your token's Windows driver)
 - Current version: 3.0.0
 
 ## Legal
 
-- Legally valid under IT Act 2000, India
-- Accepted by: GeM, CPPP, NIC, MCA21, Income Tax Department, DGFT, and all major Indian government portals
+- Signs with your CCA-issued DSC certificate; legal weight comes from your certificate and where you file
+- Built for filings on GeM, CPPP, NIC, MCA21, Income Tax Department and DGFT; signed files verified on GeM on 18 July 2026
 - No Aadhaar OTP required — uses physical DSC token
 
 ## Key pages
 
 - [Download PDFSign for Windows](https://pdfsign.in/) — free 30-day trial, no credit card
-- [Global / International edition](https://pdfsign.in/global) — USD pricing, worldwide DSC token support
 - [Verify a PDF signature online](https://pdfsign.in/verify.html) — free, runs entirely in the browser
 - [Blog & how-to guides](https://pdfsign.in/blog/) — DSC token setup and GeM, CPPP, NIC, MCA21 signing tutorials
 - [Privacy Policy](https://pdfsign.in/privacy.html) · [Terms & Conditions](https://pdfsign.in/terms.html) · [Refund Policy](https://pdfsign.in/refund.html)
