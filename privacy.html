@@ -63,7 +63,7 @@ footer a:hover{color:white;}
 <div class="page-wrap">
 
   <h1>Privacy Policy</h1>
-  <p class="meta">Last updated: April 2026 &nbsp;·&nbsp; Effective from: January 2026</p>
+  <p class="meta">Last updated: 9 October 2026 &nbsp;·&nbsp; Effective from: January 2026</p>
 
   <div class="highlight-box">
     <p>🔒 <strong>Key promise:</strong> Your PDF documents are signed entirely on your local machine. No document, file, or its contents are ever uploaded to our servers. Your private key never leaves your DSC token.</p>
@@ -78,13 +78,18 @@ footer a:hover{color:white;}
     <li><strong>Phone number</strong> — optional, collected only if you provide it for support purposes.</li>
     <li><strong>GSTIN (GST Identification Number)</strong> — optional, collected at checkout if you wish to receive a GST invoice for tax set-off purposes.</li>
     <li><strong>Payment information</strong> — processed entirely by Razorpay. We never see or store your card details, UPI ID, or banking credentials.</li>
-    <li><strong>Machine fingerprint (hardware ID)</strong> — a one-way hash derived from your device's hardware properties. This is used solely to enforce licence seat limits and detect duplicate activations. It cannot be used to identify you personally.</li>
+    <li><strong>Machine fingerprint (hardware ID)</strong> — a one-way hash derived from your device's hardware properties. This is used solely to enforce licence seat limits and detect duplicate activations. The hash on its own does not reveal who you are.</li>
+    <li><strong>Device name</strong> — the name of your computer and your Windows user name, sent with each licence check (when the app starts), so that you and your administrator can tell your activated computers apart in your licence's seat list.</li>
     <li><strong>Licence activation records</strong> — which machine(s) activated a licence and when, used for team licence seat management.</li>
+    <li><strong>Crash reports</strong> — if the app hits an unexpected error, it sends a technical report: the error type and message, the technical stack trace, and the app and Windows versions. File names, folder paths, email addresses and other personal details are removed before the report is stored, and the report is not linked to your licence or your computer.</li>
+    <li><strong>Usage statistics</strong> — counts of activity, such as how many documents were signed in a session, which tools were opened, onboarding progress and uninstallation. These are counts only — never the documents, their names or their contents.</li>
+    <li><strong>Update check</strong> — when the app starts, it asks our server for the latest version number so it can tell you when an update is available.</li>
   </ul>
 
   <h2>2. Information We Do NOT Collect</h2>
   <ul>
-    <li>Your PDF documents or their contents — signing happens 100% locally on your device.</li>
+    <li>Your PDF documents or their contents — signing and every PDF tool run 100% locally on your device.</li>
+    <li>The names or locations of your files — they are removed from error reports before anything is stored.</li>
     <li>Your DSC private key — it never leaves your physical token.</li>
     <li>Browsing history or behaviour beyond what Google Analytics records (see Section 6).</li>
     <li>Any biometric or sensitive personal data.</li>
@@ -118,9 +123,9 @@ footer a:hover{color:white;}
 
   <h2>7. Data Storage &amp; Security</h2>
   <ul>
-    <li><strong>Licence and account data</strong> is stored in Supabase (PostgreSQL), hosted in Singapore (ap-southeast-1 region), with encryption at rest and in transit.</li>
+    <li><strong>Licence and account data</strong> is stored in Supabase (PostgreSQL), hosted in Mumbai, India (ap-south-1 region), with encryption at rest and in transit.</li>
     <li><strong>Payment records</strong> are maintained by Razorpay in accordance with RBI guidelines and PCI-DSS standards.</li>
-    <li><strong>Emails</strong> are sent via Google Workspace (Gmail SMTP). Email content is not retained beyond delivery.</li>
+    <li><strong>Emails</strong> (licence keys, invoices, reminders) are sent via Resend. Email content is not retained by us beyond delivery.</li>
     <li>We retain your data for as long as your licence is active and for up to <strong>3 years</strong> thereafter for legal and accounting compliance under the Companies Act and GST laws.</li>
   </ul>
 
@@ -140,8 +145,10 @@ footer a:hover{color:white;}
     <li><strong>Razorpay</strong> — payment processing (<a href="https://razorpay.com/privacy/" target="_blank" rel="noopener">razorpay.com/privacy</a>)</li>
     <li><strong>Supabase</strong> — database hosting (<a href="https://supabase.com/privacy" target="_blank" rel="noopener">supabase.com/privacy</a>)</li>
     <li><strong>Google Analytics</strong> — website analytics (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>)</li>
-    <li><strong>Vercel</strong> — API hosting (<a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">vercel.com/legal/privacy-policy</a>)</li>
-    <li><strong>Cloudflare</strong> — website hosting and DDoS protection (<a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a>)</li>
+    <li><strong>Cloudflare</strong> — API hosting (Workers), website hosting and DDoS protection (<a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a>)</li>
+    <li><strong>Vercel</strong> — API hosting for app versions released before July 2026 (<a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">vercel.com/legal/privacy-policy</a>)</li>
+    <li><strong>Resend</strong> — transactional email delivery (<a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener">resend.com/legal/privacy-policy</a>)</li>
+    <li><strong>Timestamp authority</strong> — when trusted timestamping is switched on, the app sends only a cryptographic hash of your signature (never the document) to the timestamp server chosen in the app's settings (Sectigo by default; DigiCert, GlobalSign, Entrust or FreeTSA if you choose them).</li>
   </ul>
 
   <h2>10. Changes to This Policy</h2>
