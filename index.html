@@ -2392,17 +2392,17 @@
     },
     {
       "@type": "Offer",
-      "name": "Lifetime Solo Plan",
+      "name": "Perpetual Solo Licence",
       "price": "4999",
       "priceCurrency": "INR",
-      "description": "Lifetime solo licence — 1 Windows device"
+      "description": "Perpetual solo licence — 1 Windows device, free upgrades for 1 year"
     },
     {
       "@type": "Offer",
-      "name": "Lifetime Team Plan",
+      "name": "Perpetual Team Licence",
       "price": "13999",
       "priceCurrency": "INR",
-      "description": "Lifetime team licence — 5 Windows devices"
+      "description": "Perpetual team licence — 5 Windows devices, free upgrades for 1 year"
     }
   ],
   "url": "https://pdfsign.in",
@@ -2438,7 +2438,7 @@
     {"@type":"Question","name":"Can I restrict printing, editing, or copying of the signed PDF?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign.in lets you set PDF permissions to restrict printing, editing, and content copying, with an optional document open password. Enforced by Adobe Acrobat and compatible viewers."}},
     {"@type":"Question","name":"What is RFC 3161 timestamp and why does it matter?","acceptedAnswer":{"@type":"Answer","text":"An optional RFC 3161 timestamp embeds cryptographic proof of when the document was signed, from a trusted Timestamp Authority server, so a reader can tell the signature was made while your certificate was still valid. It is not long-term validation (LTV): PDFSign does not embed revocation data (OCSP/CRL) in the file, so a verifier still checks revocation itself."}},
     {"@type":"Question","name":"Can I use PDFSign.in from outside India?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDFSign.in works on any Windows PC worldwide with no geo-restriction. Indian DSC token holders in UAE, UK, USA, Canada, Australia, or anywhere can sign Indian government documents remotely."}},
-    {"@type":"Question","name":"What is the team plan?","acceptedAnswer":{"@type":"Answer","text":"The team plan covers 5 Windows PCs under one shared licence key. Annual team plan is Rs. 3,499 per year; Lifetime team plan is Rs. 13,999 one-time. Ideal for CA firms, law offices, and tender-filing teams."}},
+    {"@type":"Question","name":"What is the team plan?","acceptedAnswer":{"@type":"Answer","text":"The team plan covers 5 Windows PCs under one shared licence key. Annual team plan is Rs. 3,499 per year; Perpetual team licence is Rs. 13,999 one-time. Ideal for CA firms, law offices, and tender-filing teams."}},
     {"@type":"Question","name":"Is PDFSign free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every download includes a free evaluation. You can evaluate PDFSign for up to 30 days or 100 signed PDFs (whichever comes first) before choosing a subscription."}},
     {"@type":"Question","name":"Why is the evaluation limited?","acceptedAnswer":{"@type":"Answer","text":"The purpose of the free evaluation is to let you verify that PDFSign works perfectly with your USB DSC token, PDF documents and signing workflow. If you regularly sign large numbers of PDFs, you can continue without interruption by upgrading to a paid plan."}},
     {"@type":"Question","name":"What happens when my evaluation ends?","acceptedAnswer":{"@type":"Answer","text":"Your documents, settings, saved signatures and templates remain safely stored on your computer. Only new PDF signing requires an active subscription."}},
@@ -3298,9 +3298,9 @@
         <a href="#pricing" class="plan-btn plan-btn-solid" id="btnAnnual" onclick="return handlePlanClick(event,'yearly')">Get Annual Plan</a>
       </div>
 
-      <!-- Lifetime -->
+      <!-- Perpetual -->
       <div class="plan-card">
-        <div class="plan-name">Lifetime</div>
+        <div class="plan-name">Perpetual</div>
         <div class="plan-price">
           <span class="plan-currency">₹</span>
           <span class="plan-amount" id="priceLifetime">4,999</span>
@@ -3312,10 +3312,10 @@
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Unlimited PDF signings</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>All DSC tokens supported</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span><span id="devicesLifetime">1 Windows device</span></li>
-          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Lifetime upgrades</li>
+          <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Free upgrades for 1 year</li>
           <li><span class="check"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span>Priority + WhatsApp support</li>
         </ul>
-        <a href="#pricing" class="plan-btn plan-btn-outline" id="btnLifetime" onclick="return handlePlanClick(event,'lifetime')">Get Lifetime Access</a>
+        <a href="#pricing" class="plan-btn plan-btn-outline" id="btnLifetime" onclick="return handlePlanClick(event,'lifetime')">Get Perpetual Licence</a>
       </div>
 
     </div>
@@ -3628,7 +3628,7 @@
           <span class="faq-q-text">Is the licence tied to one computer?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">Solo licences (Monthly, Annual, Lifetime) are for 1 Windows device. Team licences cover 5 PCs — ideal for CA firms, law offices, and corporate teams. You can transfer a solo licence to a new PC by contacting support.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">Solo licences (Monthly, Annual, Perpetual) are for 1 Windows device. Team licences cover 5 PCs — ideal for CA firms, law offices, and corporate teams. You can transfer a solo licence to a new PC by contacting support.</p></div>
       </div>
 
       <div class="faq-item">
@@ -3637,7 +3637,7 @@
           <span class="faq-q-text">What is the team plan and how does it work?</span>
           <span class="faq-toggle-icon">+</span>
         </button>
-        <div class="faq-a-wrap"><p class="faq-a">The team plan (Annual ₹3,499/yr or Lifetime ₹13,999) covers 5 Windows PCs under one shared licence key. Each user in your firm gets their own copy of the app, activated with the same key. Ideal for CA firms, law offices, and tender-filing teams.</p></div>
+        <div class="faq-a-wrap"><p class="faq-a">The team plan (Annual ₹3,499/yr or Perpetual ₹13,999) covers 5 Windows PCs under one shared licence key. Each user in your firm gets their own copy of the app, activated with the same key. Ideal for CA firms, law offices, and tender-filing teams.</p></div>
       </div>
 
       <div class="faq-item">
@@ -3975,7 +3975,7 @@
         <div class="roadmap-icon-wrap">👥</div>
         <div class="roadmap-text">
           <h4>Team Licences for Firms</h4>
-          <p>5-seat team licences available for CA firms, law offices, and tender-filing teams — Annual ₹3,499 or Lifetime ₹13,999.</p>
+          <p>5-seat team licences available for CA firms, law offices, and tender-filing teams — Annual ₹3,499 or Perpetual ₹13,999.</p>
         </div>
       </div>
 
@@ -4062,7 +4062,7 @@
         <div class="roadmap-icon-wrap">👥</div>
         <div class="roadmap-text">
           <h4>Team Licences for Firms</h4>
-          <p>5-seat team licences for law firms, accounting practices, and compliance teams — billed annually or lifetime.</p>
+          <p>5-seat team licences for law firms, accounting practices, and compliance teams — billed annually or as a one-time perpetual licence.</p>
         </div>
       </div>
 
@@ -4649,7 +4649,7 @@ function setPlanMode(mode, forceRedraw) {
 
   if (isSolo) {
     document.getElementById('descLifetime').textContent = isUSD
-      ? 'Pay once, use forever. One-time purchase, all future updates included.'
+      ? 'Pay once, use forever. One-time purchase, free upgrades for 1 year included.'
       : 'Pay once, use forever. Ideal for firms and power users who sign daily.';
   } else {
     var ltSeatInr = Math.round(getInr('team-lifetime') / 100 / 5);
@@ -4660,7 +4660,7 @@ function setPlanMode(mode, forceRedraw) {
   }
   document.getElementById('devicesLifetime').textContent = isSolo ? '1 Windows device' : '5 Windows devices';
   var lnkLifetime = document.getElementById('btnLifetime');
-  lnkLifetime.textContent = isSolo ? 'Get Lifetime Access' : 'Get Team Lifetime Access';
+  lnkLifetime.textContent = isSolo ? 'Get Perpetual Licence' : 'Get Team Perpetual Licence';
   lnkLifetime.href = INR_LINKS[lifetimePlan];
 }
 

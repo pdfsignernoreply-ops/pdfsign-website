@@ -156,9 +156,9 @@ tr:hover td{background:#1e293b33}
         <option value="">Select plan…</option>
         <option value="monthly">1 Month</option>
         <option value="yearly">1 Year</option>
-        <option value="lifetime">Lifetime</option>
+        <option value="lifetime">Perpetual</option>
         <option value="team-yearly">Team — 1 Year (5 seats)</option>
-        <option value="team-lifetime">Team — Lifetime (5 seats)</option>
+        <option value="team-lifetime">Team — Perpetual (5 seats)</option>
       </select>
     </div>
     <div id="price-preview" style="display:none;background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px;margin-bottom:4px;font-size:13px">
@@ -196,7 +196,7 @@ tr:hover td{background:#1e293b33}
 <script>
 var API = 'https://api.pdfsign.in/api/reseller';
 var PLAN_RETAIL = { monthly:99, yearly:999, lifetime:4999, 'team-yearly':3499, 'team-lifetime':13999 };
-var PLAN_LABEL  = { monthly:'1 Month', yearly:'1 Year', lifetime:'Lifetime', 'team-yearly':'Team 1 Year', 'team-lifetime':'Team Lifetime' };
+var PLAN_LABEL  = { monthly:'1 Month', yearly:'1 Year', lifetime:'Perpetual', 'team-yearly':'Team 1 Year', 'team-lifetime':'Team Perpetual' };
 var S = null, PRICING = {};
 
 window.onload = function() {

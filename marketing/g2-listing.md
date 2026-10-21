@@ -101,11 +101,11 @@ PDFSign is a Windows desktop application for digitally signing PDF documents usi
 |------|-------|---------|
 | Monthly | $1.99 / month | Monthly |
 | Annual | $11.99 / year | Annual |
-| Lifetime | $59.99 | One-time |
+| Perpetual (1 year of upgrades) | $59.99 | One-time |
 | Team Annual | $39.99 / year (5 seats) | Annual |
-| Team Lifetime | $159.99 (5 seats) | One-time |
+| Team Perpetual | $159.99 (5 seats) | One-time |
 
-*(Use USD for G2 global pricing; INR equivalents: ₹99/mo, ₹999/yr, ₹4,999 lifetime)*
+*(Use USD for G2 global pricing; INR equivalents: ₹99/mo, ₹999/yr, ₹4,999 perpetual)*
 
 **Starting price display:** $1.99 / month
 **Entry-level note:** 30-day free trial. No credit card required.
